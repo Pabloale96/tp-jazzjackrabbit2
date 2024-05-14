@@ -1,4 +1,4 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
 #undef _GNU_SOURCE
 #undef GNU_SOURCE

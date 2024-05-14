@@ -1,4 +1,4 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
 #include "common_resolver.h"
 
@@ -79,7 +79,6 @@ Resolver::~Resolver() {
     if (this->result)
         freeaddrinfo(this->result);
 }
-
 
 void Resolver::chk_addr_or_fail() const {
     if (result == nullptr) {

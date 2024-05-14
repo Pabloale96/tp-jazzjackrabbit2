@@ -1,7 +1,7 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
-#ifndef THREAD_H_
-#define THREAD_H_
+#ifndef COMMON_THREAD_H_
+#define COMMON_THREAD_H_
 
 #include <atomic>
 #include <iostream>
@@ -67,4 +67,4 @@ public:
     Thread& operator=(Thread&& other) = delete;
 };
 
-#endif
+#endif  // COMMON_THREAD_H_

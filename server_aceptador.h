@@ -21,7 +21,8 @@ public:
     // Crea el socket del servidor y pone was_closed_aceptador en false
     explicit Aceptador(const std::string& servname, Juego& juego);
 
-    // Crea una lista de clientes aceptados y acepta clientes hasta que se cierre el aceptador
+    // Crea una lista de clientes aceptados y acepta clientes hasta que se cierre
+    // el aceptador
     void run() override;
 
     // Limpia los clientes que terminaron de la lista de clientes
@@ -36,6 +37,5 @@ public:
     // Destructor
     ~Aceptador();
 };
-
 
 #endif

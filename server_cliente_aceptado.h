@@ -50,5 +50,4 @@ public:
     ClienteAceptado& operator=(ClienteAceptado&& other) = delete;
 };
 
-
 #endif

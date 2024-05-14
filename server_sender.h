@@ -8,7 +8,6 @@
 #include "server_juego.h"
 #include "server_protocol.h"
 
-
 class ServerSender: public Thread {
 private:
     ProtocolServer& protocolo_server;
@@ -23,6 +22,5 @@ public:
 
     void run() override;
 };
-
 
 #endif

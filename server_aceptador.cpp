@@ -51,7 +51,6 @@ void Aceptador::stop() {
     socket_server.close();
 }
 
-
 Aceptador::~Aceptador() {
     // socket_server.shutdown(SHUT_RDWR);
     // socket_server.close();

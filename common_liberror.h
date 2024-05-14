@@ -1,4 +1,4 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
 #ifndef LIB_ERROR_H
 #define LIB_ERROR_H

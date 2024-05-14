@@ -1,4 +1,4 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
 #include "common_resolvererror.h"
 

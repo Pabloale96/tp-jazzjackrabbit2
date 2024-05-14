@@ -1,4 +1,4 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
 #include "common_sockets.h"
 
@@ -179,7 +179,6 @@ int Socket::recvall(void* data, unsigned int sz, bool* was_closed) {
 
     return sz;
 }
-
 
 int Socket::sendall(const void* data, unsigned int sz, bool* was_closed) {
     unsigned int sent = 0;

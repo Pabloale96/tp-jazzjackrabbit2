@@ -1,7 +1,7 @@
-// Código de la cátedra
+// Copyright 2024 Martin Di Paola
 
-#ifndef RESOLVER_H
-#define RESOLVER_H
+#ifndef COMMON_RESOLVER_H_
+#define COMMON_RESOLVER_H_
 
 #include <netdb.h>
 #include <sys/socket.h>
@@ -70,4 +70,4 @@ public:
      * */
     ~Resolver();
 };
-#endif
+#endif  // COMMON_RESOLVER_H_

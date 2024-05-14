@@ -24,5 +24,4 @@ public:
     ~ServerReceiver();
 };
 
-
 #endif

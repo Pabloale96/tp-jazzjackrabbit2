@@ -21,19 +21,22 @@ public:
     // Crea una cola de comandos de clientes y un vector de 5 enemigos
     Juego();
 
-    // Agrega una cola de mensajes del servidor de un cliente aceptado al vector de colas
+    // Agrega una cola de mensajes del servidor de un cliente aceptado al vector
+    // de colas
     void agregar_queue_server_msg_de_cliente_aceptado(Queue<ServerJuegoMensaje>* nueva_queue);
 
     // Popea un comando de la cola de comandos de clientes y lo procesa
     void run() override;
 
-    // Disminuye en 1 la cant de enemigos vivos y aumenta en 1 la cant de enemigos matados
+    // Disminuye en 1 la cant de enemigos vivos y aumenta en 1 la cant de enemigos
+    // matados
     void atacar();
 
     // Mata un enemigo si hay alguno vivo y devuelve true, sino devuelve false
     bool matar_enemigo();
 
-    // Aumenta las iteraciones de los enemigos y devuelve true si se revivio alguno
+    // Aumenta las iteraciones de los enemigos y devuelve true si se revivio
+    // alguno
     bool aumentar_iteraciones();
 
     // Devuelve la cantidad de enemigos vivos
@@ -57,6 +60,5 @@ public:
     // Destructor
     ~Juego();
 };
-
 
 #endif

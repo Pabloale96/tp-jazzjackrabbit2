@@ -23,11 +23,13 @@ int main(int argc, char const* argv[]) {
 
         return SUCCESS;
     } catch (const std::exception& err) {
-        std::cerr << "Something went wrong and an exception was caught in client->main: \t"
+        std::cerr << "Something went wrong and an exception was caught in "
+                     "client->main: \t"
                   << err.what() << "\n";
         return ERROR;
     } catch (...) {
-        std::cerr << "Something went wrong and an unknown exception was caught in client->main.\n";
+        std::cerr << "Something went wrong and an unknown exception was caught in "
+                     "client->main.\n";
         return ERROR;
     }
 }
