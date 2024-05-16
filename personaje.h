@@ -8,14 +8,18 @@
 #include "Arma.h"
 #include "Puntos.h"
 #include "Estado.h"
+#include "Acciones.h"
+#include "posicion.h"
 
 class Personaje {
 
     private:
-    Puntos puntos;
-    int vidas;
-    Arma arma;
-    Estado estado;
+    int puntos =0;
+    int vida =10;
+    Arma arma={ArmaInicial};
+    Estado estado={Normal};
+    Acciones acciones={Acciones};
+    Posicion posicion; // para meterlo en un tablero?
 
     public:
     Personaje();
@@ -23,21 +27,23 @@ class Personaje {
 };
 
 class Jazz  : public Personaje {
-
     public:
-    Jazz();  
+    Jazz();
+    void ActivarEspecial() override;  
 };
 
 class Lori  : public Personaje {
     
     public:
     Lori();
+    void ActivarEspecial() override;  
 };
 
 class Spazz  : public Personaje {
     
     public:
     Spazz();
+    void ActivarEspecial() override;  
 };
 
 #endif

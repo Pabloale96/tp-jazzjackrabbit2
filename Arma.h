@@ -17,15 +17,15 @@ class Arma {
     Arma();
 };
 
+class ArmaInicial  : public Arma {
+
+};
+
 class Arma1  : public Arma {
 
 };
 
 class Arma2  : public Arma {
-
-};
-
-class Arma3  : public Arma {
     
 };
 

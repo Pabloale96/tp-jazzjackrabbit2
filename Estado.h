@@ -9,21 +9,33 @@ class Estado {
 
     private:
 
-
     public:
     Estado();
+    void run(); // la joda es hacer directamente estado->run.
 };
 
-class Estado1  : public Estado {
-
-};
-
-class Estado2  : public Estado {
+class Normal  : public Estado {
 
 };
 
-class Estado3  : public Estado {
-    
+class Intoxicado  : public Estado {
+    public:
+    void run() override;
+};
+
+class Impacto  : public Estado {
+    public:
+    void run() override;
+};
+
+class Muerte  : public Estado {
+    public:
+    void run() override;
+};
+
+class RecibirDano  : public Estado {
+    public:
+    void run() override;
 };
 
 #endif
