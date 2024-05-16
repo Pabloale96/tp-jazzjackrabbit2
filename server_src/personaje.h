@@ -1,14 +1,15 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
 
-#include <vector>
 #include <iostream>
+#include <vector>
+
 #include <netinet/in.h>
 
-#include "Arma.h"
-#include "Puntos.h"
-#include "Estado.h"
 #include "Acciones.h"
+#include "Arma.h"
+#include "Estado.h"
+#include "Puntos.h"
 #include "posicion.h"
 
 #define PUNTOS_INICIALES 0
@@ -16,37 +17,37 @@
 
 class Personaje {
 
-    private:
+private:
     int puntos;
     int vida;
     Arma arma;
     Estado estado;
     Acciones acciones;
-    Posicion posicion; // para meterlo en un tablero?
+    Posicion posicion;  // para meterlo en un tablero?
 
-    public:
-    explicit Personaje();
+public:
+    Personaje();
     virtual void activarEspecial();
 };
 
-class Jazz  : public Personaje {
-    public:
+class Jazz: public Personaje {
+public:
     Jazz();
-    void activarEspecial() override;  
+    void activarEspecial() override;
 };
 
-class Lori  : public Personaje {
-    
-    public:
+class Lori: public Personaje {
+
+public:
     Lori();
-    void activarEspecial() override;  
+    void activarEspecial() override;
 };
 
-class Spazz  : public Personaje {
-    
-    public:
+class Spazz: public Personaje {
+
+public:
     Spazz();
-    void activarEspecial() override;  
+    void activarEspecial() override;
 };
 
 #endif

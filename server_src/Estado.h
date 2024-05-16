@@ -1,45 +1,45 @@
 #ifndef ESTADO_H
 #define ESTADO_H
 
-#include <vector>
 #include <iostream>
+#include <vector>
+
 #include <netinet/in.h>
 
 class Estado {
 
-    private:
-
-    public:
+private:
+public:
     Estado();
-    virtual void run(); // la joda es hacer directamente estado->run.
+    virtual void run();  // la joda es hacer directamente estado->run.
 };
 
-class Normal  : public Estado {
-    public:
+class Normal: public Estado {
+public:
     Normal();
     void run() override;
 };
 
-class Intoxicado  : public Estado {
-    public:
+class Intoxicado: public Estado {
+public:
     Intoxicado();
     void run() override;
 };
 
-class Impacto  : public Estado {
-    public:
+class Impacto: public Estado {
+public:
     Impacto();
     void run() override;
 };
 
-class Muerte  : public Estado {
-    public:
+class Muerte: public Estado {
+public:
     Muerte();
     void run() override;
 };
 
-class RecibirDanio  : public Estado {
-    public:
+class RecibirDanio: public Estado {
+public:
     RecibirDanio();
     void run() override;
 };

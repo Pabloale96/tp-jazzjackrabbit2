@@ -9,13 +9,9 @@ public:
     ~Puntos();
 };
 
-Puntos::Puntos(/* args */)
-{
-}
+Puntos::Puntos(/* args */) {}
 
-Puntos::~Puntos()
-{
-}
+Puntos::~Puntos() {}
 
 
 #endif

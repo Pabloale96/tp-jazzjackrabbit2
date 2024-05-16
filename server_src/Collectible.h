@@ -1,28 +1,27 @@
 #ifndef COLLECTIBLE_H
-#define PERSONAJE_H
+#define COLLECTIBLE_H
 
-#include <vector>
 #include <iostream>
-#include <netinet/in.h>
+#include <vector>
 
 class Collectible {
 
-    private:
+private:
     float punto;
 
-    public:
-    Personaje();
+public:
+    Collectible();
 };
 
-class Gema  : public Collectible {
+class Gema: public Collectible {
 
-    public:
+public:
     Gema();
 };
 
-class Moneda  : public Collectible {
-    
-    public:
+class Moneda: public Collectible {
+
+public:
     Moneda();
 };
 

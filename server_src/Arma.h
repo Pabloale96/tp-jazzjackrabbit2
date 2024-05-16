@@ -1,8 +1,9 @@
 #ifndef ARMA_H
 #define ARMA_H
 
-#include<vector>
 #include <iostream>
+#include <vector>
+
 #include <netinet/in.h>
 
 #define MUNICION_INICIAL 0
@@ -11,13 +12,13 @@
 #define DANO_INICIAL 0
 
 class Arma {
-    private:
+private:
     int municion;
     float vel_dis;
     float vel_proy;
     float dano;
 
-    public:
+public:
     Arma();
 };
 
@@ -29,12 +30,8 @@ Arma::Arma() {
     dano = DANO_INICIAL;
 }
 
-class Arma1  : public Arma {
+class Arma1: public Arma {};
 
-};
-
-class Arma2  : public Arma {
-    
-};
+class Arma2: public Arma {};
 
 #endif

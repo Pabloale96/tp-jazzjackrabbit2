@@ -1,13 +1,14 @@
 #ifndef ARMA_H
 #define ARMA_H
 
-#include <vector>
 #include <iostream>
+#include <vector>
+
 #include <netinet/in.h>
 
 class Enemigos {
 
-    private:
+private:
     int vida;
     float dano;
     float puntos;
@@ -15,20 +16,14 @@ class Enemigos {
     float prob_municion;
     float prob_vida;
 
-    public:
+public:
     Enemigos();
 };
 
-class Enemigos1  : public Enemigos {
+class Enemigos1: public Enemigos {};
 
-};
+class Enemigos2: public Enemigos {};
 
-class Enemigos2  : public Enemigos {
-
-};
-
-class Enemigos3  : public Enemigos {
-    
-};
+class Enemigos3: public Enemigos {};
 
 #endif
