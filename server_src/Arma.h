@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include <netinet/in.h>
-
 #define MUNICION_INICIAL 0
 #define VEL_DIS_INICIAL 0
 #define VEL_PROY_INICIAL 0

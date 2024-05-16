@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include <netinet/in.h>
-
 class Estado {
 
 private:

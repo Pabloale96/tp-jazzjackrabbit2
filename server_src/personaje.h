@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include <netinet/in.h>
-
 #include "Acciones.h"
 #include "Arma.h"
 #include "Estado.h"

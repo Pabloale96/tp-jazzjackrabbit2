@@ -15,7 +15,10 @@ void ServerMonitor::broadcastear(const ServerJuegoMensaje& msg) {
         try {
             vector_de_server_msg[i]->try_push(msg);
         } catch (const ClosedQueue&) {
-            borrar_queue(vector_de_server_msg[i]);
+            vector_de_server_msg.erase(
+                    std::remove(vector_de_server_msg.begin(), vector_de_server_msg.end(),
+                                vector_de_server_msg[i]),
+                    vector_de_server_msg.end());
         }
     }
 }
