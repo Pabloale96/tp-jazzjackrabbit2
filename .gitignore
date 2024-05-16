@@ -49,3 +49,7 @@ server
 # pruebas
 compare_outputs.sh
 run_tests.sh
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
