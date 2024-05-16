@@ -1,4 +1,4 @@
-#include "server_juego_mensaje.h"
+#include "../server_src/server_juego_mensaje.h"
 
 ServerJuegoMensaje::ServerJuegoMensaje(uint8_t accion, uint16_t enemigos_vivos,
                                        uint16_t enemigos_muertos):

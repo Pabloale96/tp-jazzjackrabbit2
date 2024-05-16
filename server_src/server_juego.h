@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 
-#include "common_queue.h"
-#include "common_thread.h"
-#include "server_enemigo.h"
-#include "server_monitor.h"
+#include "../common_src/common_queue.h"
+#include "../common_src/common_thread.h"
+#include "../server_src/server_enemigo.h"
+#include "../server_src/server_monitor.h"
 
 class Juego: public Thread {
 private:

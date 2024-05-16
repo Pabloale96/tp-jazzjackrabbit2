@@ -1,10 +1,10 @@
-#include "server_.h"
+#include "server_server.h"
 
 #include <iostream>
 #include <utility>  // move()
 
-#include "server_aceptador.h"
-#include "server_juego.h"
+#include "../server_src/server_aceptador.h"
+#include "../server_src/server_juego.h"
 
 #define MAX_TAM_COLA 10
 

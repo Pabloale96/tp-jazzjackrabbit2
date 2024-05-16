@@ -5,7 +5,7 @@
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "common_sockets.h"
+#include "../common_src/common_sockets.h"
 
 #define MAX_TAM_COLA 10
 

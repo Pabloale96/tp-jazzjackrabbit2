@@ -1,4 +1,4 @@
-#include "server_enemigo.h"
+#include "../server_src/server_enemigo.h"
 
 #include <iostream>
 

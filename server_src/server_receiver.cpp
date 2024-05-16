@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "common_liberror.h"
-#include "server_juego.h"
-#include "server_protocol.h"
+#include "../common_src/common_liberror.h"
+#include "../server_src/server_juego.h"
+#include "../server_src/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed, Juego& juego):
         protocolo_server(protocolo_server), was_closed(was_closed), juego(juego) {}

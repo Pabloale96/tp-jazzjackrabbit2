@@ -1,10 +1,10 @@
-#ifndef __CLIENT_H__
-#define __CLIENT_H__
+#ifndef __CLIENT_CLIENT_H__
+#define __CLIENT_CLIENT_H__
 
 #include <string>
 
-#include "client_protocol.h"
-#include "common_sockets.h"
+#include "../client_src/client_protocol.h"
+#include "../common_src/common_sockets.h"
 
 class Client {
 private:

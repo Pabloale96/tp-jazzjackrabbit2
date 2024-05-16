@@ -1,11 +1,11 @@
-#include "server_juego.h"
+#include "../server_src/server_juego.h"
 
 #include <chrono>  // std::chrono()
 #include <iostream>
 #include <string>
 
-#include "common_queue.h"
-#include "server_juego_mensaje.h"
+#include "../common_src/common_queue.h"
+#include "../server_src/server_juego_mensaje.h"
 
 #define MAX_TAM_COLA 10
 #define CINCO_LOOPS_POR_SEGUNDO 200

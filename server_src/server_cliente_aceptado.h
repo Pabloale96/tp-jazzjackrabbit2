@@ -3,13 +3,13 @@
 
 #include <string>
 
-#include "common_queue.h"
-#include "common_sockets.h"
-#include "common_thread.h"
-#include "server_juego.h"
-#include "server_protocol.h"
-#include "server_receiver.h"
-#include "server_sender.h"
+#include "../common_src/common_queue.h"
+#include "../common_src/common_sockets.h"
+#include "../common_src/common_thread.h"
+#include "../server_src/server_juego.h"
+#include "../server_src/server_protocol.h"
+#include "../server_src/server_receiver.h"
+#include "../server_src/server_sender.h"
 
 class ClienteAceptado {
 private:

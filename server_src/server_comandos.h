@@ -1,7 +1,7 @@
 #ifndef SERVER_COMANDOS_H
 #define SERVER_COMANDOS_H
 
-#include "server_juego.h"
+#include "../server_src/server_juego.h"
 
 class Comando {
 public:

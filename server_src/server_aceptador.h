@@ -4,10 +4,10 @@
 #include <list>
 #include <string>
 
-#include "common_sockets.h"
-#include "common_thread.h"
-#include "server_cliente_aceptado.h"
-#include "server_juego.h"
+#include "../common_src/common_sockets.h"
+#include "../common_src/common_thread.h"
+#include "../server_src/server_cliente_aceptado.h"
+#include "../server_src/server_juego.h"
 
 class Aceptador: public Thread {
 private:

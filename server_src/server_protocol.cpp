@@ -1,4 +1,4 @@
-#include "server_protocol.h"
+#include "../server_src/server_protocol.h"
 
 #include <algorithm>  // transform()
 #include <cstring>

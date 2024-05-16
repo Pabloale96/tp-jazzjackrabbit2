@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common_sockets.h"
+#include "../common_src/common_sockets.h"
 
 enum class TipoAccion : char {
     Atacar,

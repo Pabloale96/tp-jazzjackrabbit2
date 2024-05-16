@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "common_queue.h"
-#include "server_juego_mensaje.h"
+#include "../common_src/common_queue.h"
+#include "../server_src/server_juego_mensaje.h"
 
 class ServerMonitor {
 private:

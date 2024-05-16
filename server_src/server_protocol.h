@@ -6,8 +6,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "common_sockets.h"
-#include "server_comandos.h"
+#include "../common_src/common_sockets.h"
+#include "../server_src/server_comandos.h"
 
 class ProtocolServer {
 private:

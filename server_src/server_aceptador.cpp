@@ -5,10 +5,10 @@
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "common_liberror.h"
-#include "server_cliente_aceptado.h"
-#include "server_juego.h"
-#include "server_protocol.h"
+#include "../common_src/common_liberror.h"
+#include "../server_src/server_cliente_aceptado.h"
+#include "../server_src/server_juego.h"
+#include "../server_src/server_protocol.h"
 
 Aceptador::Aceptador(const std::string& servname, Juego& juego):
         socket_server(servname.c_str()), was_closed_aceptador(false), juego(juego) {}
