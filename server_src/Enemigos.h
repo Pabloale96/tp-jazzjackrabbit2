@@ -1,7 +1,7 @@
 #ifndef ARMA_H
 #define ARMA_H
 
-#include<vector>
+#include <vector>
 #include <iostream>
 #include <netinet/in.h>
 

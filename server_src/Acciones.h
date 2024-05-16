@@ -1,7 +1,7 @@
 #ifndef ACCIONES_H
 #define ACCIONES_H
 
-#include<vector>
+#include <vector>
 #include <iostream>
 #include <netinet/in.h>
 
@@ -10,10 +10,10 @@ class Acciones {
     private:
     
     public:
-    Acciones();
-    Saltar();
-    Correr();
-    CorrerMuyRapido();
-    Disparar();
+        Acciones();
+        void saltar();
+        void correr();
+        void correrMuyRapido();
+        void disparar();
 };
 #endif

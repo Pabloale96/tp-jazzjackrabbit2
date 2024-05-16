@@ -1,7 +1,7 @@
 #ifndef COLLECTIBLE_H
 #define PERSONAJE_H
 
-#include<vector>
+#include <vector>
 #include <iostream>
 #include <netinet/in.h>
 
