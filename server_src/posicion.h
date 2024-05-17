@@ -10,10 +10,22 @@
 class Posicion {
 
 private:
-    int x = X_INICIAL;
-    int y = Y_INICIAL;
+    int x;
+    int y;
 
 public:
     Posicion();
+    void mover(int x, int y);
 };
+
+Posicion::Posicion() : x(X_INICIAL), y(Y_INICIAL){}
+
+void Posicion::mover(int x, int y) {
+    this->x += x;
+    this->y += y;
+}
+
+// TODO: No se si habrá que checkear los bordes del tablero
+
+
 #endif

@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Accion.h"
-#include "Arma.h"
+#include "arma.h"
 #include "Estado.h"
 #include "Puntos.h"
 #include "posicion.h"

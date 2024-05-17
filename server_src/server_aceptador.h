@@ -13,7 +13,7 @@ class Aceptador: public Thread {
 private:
     Socket socket_server;
     std::atomic<bool> was_closed_aceptador;
-    GameLoop juego;
+    GameLoop game_loop;
 
 public:
     // Constructor
