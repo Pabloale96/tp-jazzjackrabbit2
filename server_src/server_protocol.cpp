@@ -32,7 +32,7 @@ void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& me
 
 std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido) {
     if (mensaje_recibido == ATACAR) {
-        return std::make_unique<ComandoAtacar>();
+        return std::make_unique<Atacar>();
     }
     return nullptr;
 }

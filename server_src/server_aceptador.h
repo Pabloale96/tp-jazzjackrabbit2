@@ -7,19 +7,19 @@
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
 #include "../server_src/server_cliente_aceptado.h"
-#include "../server_src/server_juego.h"
+#include "../server_src/server_game_loop.h"
 
 class Aceptador: public Thread {
 private:
     Socket socket_server;
     std::atomic<bool> was_closed_aceptador;
-    Juego& juego;
+    GameLoop game_loop;
 
 public:
     // Constructor
     // Recibe el nombre del servidor y una referencia al juego
     // Crea el socket del servidor y pone was_closed_aceptador en false
-    explicit Aceptador(const std::string& servname, Juego& juego);
+    explicit Aceptador(const std::string& servname);
 
     // Crea una lista de clientes aceptados y acepta clientes hasta que se cierre
     // el aceptador

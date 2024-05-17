@@ -1,17 +1,17 @@
 #ifndef SERVER_COMANDOS_H
 #define SERVER_COMANDOS_H
 
-#include "../server_src/server_juego.h"
+#include "../server_src/server_game_loop.h"
 
 class Comando {
 public:
-    virtual void ejecutar(Juego& juego) = 0;
+    virtual void ejecutar(GameLoop& game_loop) = 0;
     virtual ~Comando() {}
 };
 
-class ComandoAtacar: public Comando {
+class Atacar: public Comando {
 public:
-    void ejecutar(Juego& juego) override { juego.atacar(); }
+    void ejecutar(GameLoop& game_loop) override { game_loop.atacar(); }
 };
 
 #endif

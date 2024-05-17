@@ -1,12 +1,13 @@
 #ifndef _SERVER_CLIENTE_ACEPTADO_H_
 #define _SERVER_CLIENTE_ACEPTADO_H_
 
+#include <memory>
 #include <string>
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/server_juego.h"
+#include "../server_src/server_game_loop.h"
 #include "../server_src/server_protocol.h"
 #include "../server_src/server_receiver.h"
 #include "../server_src/server_sender.h"
@@ -15,8 +16,8 @@ class ClienteAceptado {
 private:
     ProtocolServer protocolo_server;
     bool was_closed;
-    Queue<ServerJuegoMensaje>* server_msg;
-    Juego& juego;
+    Queue<std::shared_ptr<ServerJuegoMensaje>> server_msg;
+    GameLoop& juego;
     ServerSender sender;
     ServerReceiver receiver;
 
@@ -27,7 +28,7 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
-    ClienteAceptado(Socket&& socket_cliente, Juego& juego);
+    ClienteAceptado(Socket&& socket_cliente, GameLoop& juego);
 
     // Inicia el sender y el receiver
     void start();

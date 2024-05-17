@@ -1,1 +1,0 @@
-#include "personaje.h"

@@ -1,4 +1,4 @@
-#include "server_aceptador.h"
+#include "../server_src/server_aceptador.h"
 
 #include <list>
 #include <utility>  // move()
@@ -7,26 +7,28 @@
 
 #include "../common_src/common_liberror.h"
 #include "../server_src/server_cliente_aceptado.h"
-#include "../server_src/server_juego.h"
+#include "../server_src/server_game_loop.h"
 #include "../server_src/server_protocol.h"
 
-Aceptador::Aceptador(const std::string& servname, Juego& juego):
-        socket_server(servname.c_str()), was_closed_aceptador(false), juego(juego) {}
+Aceptador::Aceptador(const std::string& servname):
+        socket_server(servname.c_str()), was_closed_aceptador(false), game_loop() {}
 
 void Aceptador::run() {
     std::list<ClienteAceptado> lista_clientes;
+    game_loop.start();
     while (!was_closed_aceptador) {
         try {
             Socket socket_cliente = socket_server.accept();
-            lista_clientes.emplace_back(std::move(socket_cliente), juego);
+            lista_clientes.emplace_back(std::move(socket_cliente), game_loop);
             lista_clientes.back().start();
-            limpiar_clientes_que_terminaron(lista_clientes);
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
-                limpiar_lista(lista_clientes);
+                game_loop.stop();
+                game_loop.join();
                 return;
             }
         }
+        limpiar_clientes_que_terminaron(lista_clientes);
     }
 }
 
@@ -41,17 +43,10 @@ void Aceptador::limpiar_clientes_que_terminaron(std::list<ClienteAceptado>& list
     }
 }
 
-void Aceptador::limpiar_lista(std::list<ClienteAceptado>& lista_clientes) {
-    lista_clientes.clear();
-}
-
 void Aceptador::stop() {
     was_closed_aceptador = true;
     socket_server.shutdown(SHUT_RDWR);
     socket_server.close();
 }
 
-Aceptador::~Aceptador() {
-    // socket_server.shutdown(SHUT_RDWR);
-    // socket_server.close();
-}
+Aceptador::~Aceptador() {}

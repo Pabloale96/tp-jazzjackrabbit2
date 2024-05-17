@@ -1,4 +1,4 @@
-#include "server_cliente_aceptado.h"
+#include "../server_src/server_cliente_aceptado.h"
 
 #include <utility>  // move()
 #include <vector>
@@ -9,10 +9,10 @@
 
 #define MAX_TAM_COLA 10
 
-ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, Juego& juego):
+ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameLoop& juego):
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
-        server_msg(new Queue<ServerJuegoMensaje>(MAX_TAM_COLA)),
+        server_msg(MAX_TAM_COLA),
         juego(juego),
         sender(protocolo_server, was_closed, juego, server_msg),
         receiver(protocolo_server, was_closed, juego) {
@@ -32,7 +32,7 @@ bool ClienteAceptado::is_dead() {
 }
 
 void ClienteAceptado::stop() {
-    server_msg->close();
+    server_msg.close();
     juego.borrar_queue_server_msg_de_cliente_aceptado(server_msg);
     if (!was_closed) {
         protocolo_server.cerrar_socket_cliente();
@@ -43,9 +43,4 @@ void ClienteAceptado::stop() {
 }
 
 // Destructor
-ClienteAceptado::~ClienteAceptado() {
-    stop();
-    if (server_msg) {
-        delete server_msg;
-    }
-}
+ClienteAceptado::~ClienteAceptado() { stop(); }
