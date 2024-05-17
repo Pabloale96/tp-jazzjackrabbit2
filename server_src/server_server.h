@@ -10,13 +10,12 @@
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
 #include "../server_src/server_aceptador.h"
-#include "../server_src/server_juego.h"
+#include "../server_src/server_game_loop.h"
 #include "../server_src/server_protocol.h"
 
 class Server {
 
 private:
-    Juego juego;
     Aceptador aceptador;
 
 public:

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "Acciones.h"
+#include "Accion.h"
 #include "Arma.h"
 #include "Estado.h"
 #include "Puntos.h"
@@ -20,7 +20,7 @@ private:
     int vida;
     Arma arma;
     Estado estado;
-    Acciones acciones;
+    Accion accion;
     Posicion posicion;  // para meterlo en un tablero?
 
 public:

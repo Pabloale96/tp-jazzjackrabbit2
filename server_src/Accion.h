@@ -4,11 +4,11 @@
 #include <iostream>
 #include <vector>
 
-class Acciones {
+class Accion {
 
 private:
 public:
-    Acciones();
+    Accion();
     void saltar();
     void correr();
     void correrMuyRapido();

@@ -4,11 +4,14 @@
 #include <iostream>
 #include <vector>
 
+#define X_INICIAL 0
+#define Y_INICIAL 0
+
 class Posicion {
 
 private:
-    int x = 0;
-    int y = 0;
+    int x = X_INICIAL;
+    int y = Y_INICIAL;
 
 public:
     Posicion();
