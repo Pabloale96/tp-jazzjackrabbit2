@@ -17,7 +17,7 @@ private:
     ProtocolServer protocolo_server;
     bool was_closed;
     Queue<std::shared_ptr<ServerJuegoMensaje>> server_msg;
-    GameLoop& juego;
+    GameLoop& gameloop;
     ServerSender sender;
     ServerReceiver receiver;
 

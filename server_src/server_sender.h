@@ -13,12 +13,11 @@ class ServerSender: public Thread {
 private:
     ProtocolServer& protocolo_server;
     bool& was_closed;
-    GameLoop& juego;
     Queue<std::shared_ptr<ServerJuegoMensaje>>& server_msg;
 
 public:
     // Constructor
-    ServerSender(ProtocolServer& protocolo_server, bool& was_closed, GameLoop& juego,
+    ServerSender(ProtocolServer& protocolo_server, bool& was_closed,
                  Queue<std::shared_ptr<ServerJuegoMensaje>>& server_msg);
 
     void run() override;

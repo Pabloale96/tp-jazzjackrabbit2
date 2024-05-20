@@ -3,11 +3,22 @@
 
 #define ITERACIONES_PARA_REVIVIR 15
 
+#define VIDAS_INICIALES 5
+#define SIN_DANIO_INICIAL 0
+#define PUNTOS_INICIALES 1
+#define TIME_REVIVE_INICIAL 50
+
 class Enemigo {
 
 private:
     bool vivo;
-    unsigned int iteraciones;
+    unsigned int iteraciones; /*
+     int vidas;
+     int danio;
+     int puntos;
+     int time_revive;
+     float prob_municion;
+     float prob_vida;*/
 
 public:
     // Constructor
@@ -25,6 +36,34 @@ public:
 
     // Devuelve true si el enemigo esta vivo
     bool esta_vivo();
+
+    // Destructor
+    // virtual ~Enemigo() = default;
 };
+
+/*
+class Enemigo1: public Enemigo {
+public:
+    Enemigo1();
+};
+
+Enemigo1::Enemigo1() {}
+
+
+class Enemigo2: public Enemigo {
+public:
+    Enemigo2();
+};
+
+Enemigo2::Enemigo2() {}
+
+
+class Enemigo3: public Enemigo {
+public:
+    Enemigo3();
+};
+
+Enemigo3::Enemigo3() {}
+*/
 
 #endif

@@ -6,12 +6,9 @@
 #define MATAR 0x04
 #define REVIVIR 0x05
 
-ServerSender::ServerSender(ProtocolServer& protocolo_server, bool& was_closed, GameLoop& juego,
+ServerSender::ServerSender(ProtocolServer& protocolo_server, bool& was_closed,
                            Queue<std::shared_ptr<ServerJuegoMensaje>>& server_msg):
-        protocolo_server(protocolo_server),
-        was_closed(was_closed),
-        juego(juego),
-        server_msg(server_msg) {}
+        protocolo_server(protocolo_server), was_closed(was_closed), server_msg(server_msg) {}
 
 void ServerSender::run() {
     while (!was_closed) {

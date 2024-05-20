@@ -23,3 +23,9 @@ Pasar el pre-commit:
 ```shell
 pre-commit run --all-files
 ```
+
+## Para correr los tests:
+```shell
+./testing/run_tests.sh ./ testing/casos/ multi-client no-valgrind  60 10 yes
+./testing/compare_outputs.sh testing/casos testing/salidas
+```

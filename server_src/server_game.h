@@ -1,9 +1,10 @@
 #ifndef _SERVER_GAME_H_
 #define _SERVER_GAME_H_
 
-#include <vector>
 #include <cstdint>
 #include <memory>
+#include <string>
+#include <vector>
 
 // #include "../server_src/personaje.h"
 #include "../server_src/server_enemigo.h"
@@ -12,9 +13,9 @@
 
 class Game {
 private:
-    //Personaje personaje;
+    // Personaje personaje;
     std::vector<Enemigo> enemigos;
-    
+
 public:
     Game();
 

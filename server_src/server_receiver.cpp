@@ -7,15 +7,16 @@
 #include "../server_src/server_game_loop.h"
 #include "../server_src/server_protocol.h"
 
-ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed, GameLoop& juego):
-        protocolo_server(protocolo_server), was_closed(was_closed), juego(juego) {}
+ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,
+                               GameLoop& gameloop):
+        protocolo_server(protocolo_server), was_closed(was_closed), gameloop(gameloop) {}
 
 void ServerReceiver::run() {
     while (!was_closed) {
         try {
             auto comando = protocolo_server.recibir_acciones(was_closed);
             if (comando) {
-                comando->ejecutar(juego);
+                comando->ejecutar(gameloop);
             }
 
             if (!this->is_alive()) {

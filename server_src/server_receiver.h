@@ -12,11 +12,11 @@ class ServerReceiver: public Thread {
 private:
     ProtocolServer& protocolo_server;
     bool& was_closed;
-    GameLoop& juego;
+    GameLoop& gameloop;
 
 public:
     // Constructor
-    ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed, GameLoop& juego);
+    ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed, GameLoop& gameloop);
 
     void run() override;
 

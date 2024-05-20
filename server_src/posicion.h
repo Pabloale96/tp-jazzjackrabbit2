@@ -18,7 +18,7 @@ public:
     void mover(int x, int y);
 };
 
-Posicion::Posicion() : x(X_INICIAL), y(Y_INICIAL){}
+Posicion::Posicion(): x(X_INICIAL), y(Y_INICIAL) {}
 
 void Posicion::mover(int x, int y) {
     this->x += x;

@@ -25,6 +25,7 @@ void Aceptador::run() {
             if (!is_alive() or was_closed_aceptador) {
                 game_loop.stop();
                 game_loop.join();
+                // clean all
                 return;
             }
         }

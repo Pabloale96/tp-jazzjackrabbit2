@@ -14,10 +14,10 @@
 #define MATAR 0x04
 #define REVIVIR 0x05
 
-GameLoop::GameLoop():
-        client_commands(MAX_TAM_COLA), game() {}
+GameLoop::GameLoop(): client_commands(MAX_TAM_COLA), game() {}
 
-void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<ServerJuegoMensaje>>& nueva_queue) {
+void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
+        Queue<std::shared_ptr<ServerJuegoMensaje>>& nueva_queue) {
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
@@ -61,13 +61,11 @@ void GameLoop::dormir() {
     std::this_thread::sleep_for(milliseconds_to_sleep);
 }
 
-void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<ServerJuegoMensaje>>& queue) {
+void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
+        Queue<std::shared_ptr<ServerJuegoMensaje>>& queue) {
     monitor_lista_de_queues_server_msg.borrar_queue(queue);
 }
 
-void GameLoop::stop() {
-    client_commands.close();
-}
+void GameLoop::stop() { client_commands.close(); }
 
-GameLoop::~GameLoop() {
-}
+GameLoop::~GameLoop() {}

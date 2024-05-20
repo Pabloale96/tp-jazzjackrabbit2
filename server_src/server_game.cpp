@@ -58,6 +58,4 @@ uint16_t Game::obtener_cant_muertos() {
     return cant_muertos;
 }
 
-Game::~Game()
-{
-}
+Game::~Game() {}

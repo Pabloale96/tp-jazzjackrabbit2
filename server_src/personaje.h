@@ -5,9 +5,9 @@
 #include <vector>
 
 #include "Accion.h"
-#include "arma.h"
 #include "Estado.h"
 #include "Puntos.h"
+#include "arma.h"
 #include "posicion.h"
 
 #define PUNTOS_INICIALES 0
