@@ -19,8 +19,6 @@ private:
 public:
     Game();
 
-    bool ejecutar_accion(std::shared_ptr<std::string> accion);
-
     bool matar_enemigo();
 
     bool aumentar_iteraciones();

@@ -8,6 +8,7 @@
 
 #include "../common_src/common_sockets.h"
 #include "../server_src/server_comandos.h"
+#include "../server_src/server_juego_mensaje.h"
 
 class ProtocolServer {
 private:

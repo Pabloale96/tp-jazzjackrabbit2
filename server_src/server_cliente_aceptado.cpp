@@ -15,7 +15,7 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameLoop& gameloop):
         server_msg(MAX_TAM_COLA),
         gameloop(gameloop),
         sender(protocolo_server, was_closed, server_msg),
-        receiver(protocolo_server, was_closed, gameloop) {
+        receiver(protocolo_server, was_closed, gameloop.obtener_queue_de_client_commands()) {
     gameloop.agregar_queue_server_msg_de_cliente_aceptado(server_msg);
 }
 

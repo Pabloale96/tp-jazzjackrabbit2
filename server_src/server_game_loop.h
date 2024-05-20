@@ -8,12 +8,13 @@
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_thread.h"
+#include "../server_src/server_comandos.h"
 #include "../server_src/server_game.h"
 #include "../server_src/server_monitor.h"
 
 class GameLoop: public Thread {
 private:
-    Queue<std::shared_ptr<std::string>> client_commands;
+    Queue<std::shared_ptr<Comando>> client_commands;
     ServerMonitor monitor_lista_de_queues_server_msg;
     Game game;
 
@@ -21,6 +22,8 @@ public:
     // Constructor
     // Crea una cola de comandos de clientes y un vector de 5 enemigos
     GameLoop();
+
+    Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();
 
     // Agrega una cola de mensajes del servidor de un cliente aceptado al vector
     // de colas
@@ -32,7 +35,7 @@ public:
 
     // Disminuye en 1 la cant de enemigos vivos y aumenta en 1 la cant de enemigos
     // matados
-    void atacar();
+    // void atacar();
 
     // Broadcastea un mensaje a todos los clientes
     void broadcastear(uint8_t accion);

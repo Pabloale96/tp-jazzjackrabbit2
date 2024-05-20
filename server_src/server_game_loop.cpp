@@ -16,6 +16,10 @@
 
 GameLoop::GameLoop(): client_commands(MAX_TAM_COLA), game() {}
 
+Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
+    return client_commands;
+}
+
 void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
         Queue<std::shared_ptr<ServerJuegoMensaje>>& nueva_queue) {
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
@@ -24,12 +28,13 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
 void GameLoop::run() {
     try {
         while (true) {
-            std::shared_ptr<std::string> accion;
-            while (client_commands.try_pop(accion)) {
-                if (game.ejecutar_accion(accion)) {
+            std::shared_ptr<Comando> comando;
+            while (client_commands.try_pop(comando)) {
+                if (comando && comando->ejecutar(this->game)) {
                     broadcastear(MATAR);
                 }
             }
+            // aca deberia actualizar el game state para pasarle al cliente para que renderise
             if (game.aumentar_iteraciones()) {
                 broadcastear(REVIVIR);
             }
@@ -47,8 +52,6 @@ void GameLoop::run() {
         std::cerr << "Unexpected exception in juego->run: <unknown>\n";
     }
 }
-
-void GameLoop::atacar() { client_commands.push(std::make_shared<std::string>("Atacar")); }
 
 void GameLoop::broadcastear(uint8_t tipo_accion) {
     ServerJuegoMensaje mensaje(tipo_accion, game.obtener_cant_vivos(), game.obtener_cant_muertos());

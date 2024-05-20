@@ -7,15 +7,6 @@
 
 Game::Game(): /*personaje(),*/ enemigos(NUMERO_INICIAL_ENEMIGOS) {}
 
-bool Game::ejecutar_accion(std::shared_ptr<std::string> accion) {
-    if (*accion == std::string("Atacar")) {
-        if (matar_enemigo()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 bool Game::matar_enemigo() {
     for (auto& enemigo: enemigos) {
         if (enemigo.esta_vivo()) {
