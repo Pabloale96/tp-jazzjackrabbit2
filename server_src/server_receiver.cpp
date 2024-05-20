@@ -1,9 +1,9 @@
 #include "server_receiver.h"
 
+#include <memory>
 #include <string>
 #include <utility>  // move()
 #include <vector>
-#include <memory>
 
 #include "../common_src/common_liberror.h"
 #include "../server_src/server_game_loop.h"

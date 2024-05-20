@@ -24,11 +24,11 @@ void Client::jugar() {
         accion_actual = toLowercase(accion_actual);
         if (accion_actual == "atacar") {
             atacar();
-        } else if (accion_actual == "derecha") {
+        } else if (accion_actual == "derecha" or accion_actual == "d") {
             moverDerecha();
-        } else if (accion_actual == "izquierda") {
+        } else if (accion_actual == "izquierda" or accion_actual == "i") {
             moverIzquierda();
-        } else if (accion_actual == "arriba") {
+        } else if (accion_actual == "arriba" or accion_actual == "up") {
             moverArriba();
         } else if (accion_actual == "abajo") {
             moverAbajo();

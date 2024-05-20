@@ -2,6 +2,7 @@
 #define POSICION_H
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 #define X_INICIAL 0
@@ -16,13 +17,13 @@ private:
 public:
     Posicion();
 
-    //void mover(int x, int y);
+    // void mover(int x, int y);
 
     bool mover(const std::string& direccion);
 
-    int get_posicion_x();
+    uint16_t get_posicion_x();
 
-    int get_posicion_y();
+    uint16_t get_posicion_y();
 };
 
 #endif

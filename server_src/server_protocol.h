@@ -29,7 +29,8 @@ public:
     // Toma los valores del mensaje y los traduce a acciones
     std::unique_ptr<Comando> deserializar_acciones(const uint8_t& mensaje_recibido);
 
-    void obtener_posicion_del_personaje(ServerJuegoMensaje& msg, std::vector<uint16_t>& posicion_personaje);
+    void obtener_posicion_del_personaje(ServerJuegoMensaje& msg,
+                                        std::vector<uint16_t>& posicion_personaje);
 
     // Para poder enviar comandos
     void enviar_respuesta(ServerJuegoMensaje& msg, bool& was_closed);

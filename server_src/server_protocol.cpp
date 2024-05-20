@@ -60,7 +60,7 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed) {
 }
 
 void ProtocolServer::obtener_posicion_del_personaje(ServerJuegoMensaje& msg,
-                                                     std::vector<uint16_t>& posicion_personaje) {
+                                                    std::vector<uint16_t>& posicion_personaje) {
     posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_x());
     posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_y());
 }

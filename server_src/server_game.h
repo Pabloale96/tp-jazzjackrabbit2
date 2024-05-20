@@ -21,7 +21,7 @@ public:
 
     Personaje obtener_personaje();
 
-    bool mover(std::string direccion);
+    bool mover(const std::string direccion);
 
     bool matar_enemigo();
 

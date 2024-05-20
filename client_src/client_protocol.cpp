@@ -3,6 +3,7 @@
 #include <cstring>
 #include <iostream>
 #include <sstream>
+
 #include <arpa/inet.h>  // para usar htons()
 
 #include "../common_src/common_protocol_utils.h"
@@ -32,7 +33,7 @@ void ProtocolClient::enviar_accion(TipoAccion accion) {
             accion_serializada = MOVER_ABAJO;
             break;
         default:
-            return; // Acción no válida
+            return;  // Acción no válida
     }
     enviar_accion_serializada(accion_serializada, was_closed);
 }

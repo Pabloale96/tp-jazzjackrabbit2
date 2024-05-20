@@ -12,13 +12,13 @@ class Enemigo {
 
 private:
     bool vivo;
-    unsigned int iteraciones; /*
-     int vidas;
-     int danio;
-     int puntos;
-     int time_revive;
-     float prob_municion;
-     float prob_vida;*/
+    unsigned int iteraciones;
+    // int vidas;
+    // int danio;
+    // int puntos;
+    // int time_revive;
+    // float prob_municion;
+    // float prob_vida;
 
 public:
     // Constructor
@@ -41,8 +41,7 @@ public:
     // virtual ~Enemigo() = default;
 };
 
-/*
-class Enemigo1: public Enemigo {
+/* class Enemigo1: public Enemigo {
 public:
     Enemigo1();
 };
@@ -63,7 +62,6 @@ public:
     Enemigo3();
 };
 
-Enemigo3::Enemigo3() {}
-*/
+Enemigo3::Enemigo3() {} */
 
 #endif

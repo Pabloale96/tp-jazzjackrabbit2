@@ -12,7 +12,7 @@ private:
     Personaje personaje;
 
 public:
-    ServerJuegoMensaje(Personaje personaje);
+    explicit ServerJuegoMensaje(Personaje personaje);
 
     Personaje obtener_personaje();
 

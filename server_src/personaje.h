@@ -2,6 +2,7 @@
 #define PERSONAJE_H
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "arma.h"
@@ -24,10 +25,10 @@ public:
     bool mover(const std::string& direccion);
 
     Posicion obtener_posicion();
-    
-    //virtual void activarEspecial() = 0;
 
-    //virtual ~Personaje() = default;
+    // virtual void activarEspecial() = 0;
+
+    // virtual ~Personaje() = default;
 };
 
 /*

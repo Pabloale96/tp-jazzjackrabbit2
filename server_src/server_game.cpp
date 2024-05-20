@@ -7,9 +7,7 @@
 
 Game::Game(): personaje(), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
 
-Personaje Game::obtener_personaje() {
-    return personaje;
-}
+Personaje Game::obtener_personaje() { return personaje; }
 
 bool Game::matar_enemigo() {
     for (auto& enemigo: enemigos) {
@@ -21,8 +19,9 @@ bool Game::matar_enemigo() {
     return false;
 }
 
-bool Game::mover(std::string direccion) {
-    if (direccion != "derecha" && direccion != "izquierda") {
+bool Game::mover(const std::string direccion) {
+    if (direccion != "derecha" && direccion != "izquierda" && direccion != "arriba" &&
+        direccion != "abajo") {
         return false;
     } else {
         personaje.mover(direccion);

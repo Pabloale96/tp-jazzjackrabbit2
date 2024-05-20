@@ -1,8 +1,8 @@
 #ifndef _SERVER_RECEIVER_H_
 #define _SERVER_RECEIVER_H_
 
-#include <string>
 #include <memory>
+#include <string>
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_thread.h"
