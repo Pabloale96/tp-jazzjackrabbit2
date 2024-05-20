@@ -19,6 +19,8 @@ private:
 public:
     Game();
 
+    Personaje obtener_personaje();
+
     bool mover(std::string direccion);
 
     bool matar_enemigo();

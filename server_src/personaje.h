@@ -4,10 +4,7 @@
 #include <iostream>
 #include <vector>
 
-// #include "Accion.h"
-// #include "Estado.h"
-// #include "Puntos.h"
-// #include "arma.h"
+#include "arma.h"
 #include "posicion.h"
 
 #define PUNTOS_INICIALES 0
@@ -16,11 +13,9 @@
 class Personaje {
 
 private:
-    // int puntos;
-    // int vida;
-    // Arma arma;
-    // Estado estado;
-    // Accion accion;
+    int puntos;
+    int vida;
+    Arma arma;
     Posicion posicion;
 
 public:
@@ -28,12 +23,12 @@ public:
 
     bool mover(const std::string& direccion);
 
-    // virtual void activarEspecial() = 0;
+    Posicion obtener_posicion();
+    
+    //virtual void activarEspecial() = 0;
 
-    // virtual ~Personaje() = default;
+    //virtual ~Personaje() = default;
 };
-
-#endif
 
 /*
 class Jazz: public Personaje {
@@ -53,3 +48,5 @@ public:
     void activarEspecial() override;
 };
 */
+
+#endif

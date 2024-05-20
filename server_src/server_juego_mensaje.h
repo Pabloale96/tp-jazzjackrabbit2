@@ -5,25 +5,18 @@
 #include <iostream>
 #include <string>
 
-#define MATAR 0x04
-#define REVIVIR 0x05
+#include "../server_src/personaje.h"
 
 class ServerJuegoMensaje {
 private:
-    uint8_t accion;
-    uint16_t enemigos_vivos;
-    uint16_t enemigos_muertos;
+    Personaje personaje;
 
 public:
-    ServerJuegoMensaje(uint8_t accion, uint16_t enemigos_vivos, uint16_t enemigos_muertos);
+    ServerJuegoMensaje(Personaje personaje);
+
+    Personaje obtener_personaje();
 
     void imprimir_mensaje();
-
-    uint8_t obtener_accion();
-
-    uint16_t obtener_enemigos_vivos();
-
-    uint16_t obtener_enemigos_muertos();
 
     ~ServerJuegoMensaje();
 };

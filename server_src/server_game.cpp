@@ -7,6 +7,10 @@
 
 Game::Game(): personaje(), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
 
+Personaje Game::obtener_personaje() {
+    return personaje;
+}
+
 bool Game::matar_enemigo() {
     for (auto& enemigo: enemigos) {
         if (enemigo.esta_vivo()) {

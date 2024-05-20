@@ -10,13 +10,19 @@
 class Posicion {
 
 private:
-    int x;
-    int y;
+    uint16_t x;
+    uint16_t y;
 
 public:
     Posicion();
+
     //void mover(int x, int y);
+
     bool mover(const std::string& direccion);
+
+    int get_posicion_x();
+
+    int get_posicion_y();
 };
 
 #endif

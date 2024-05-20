@@ -59,14 +59,10 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed) {
     return deserializar_acciones(mensaje_recibido);
 }
 
-void ProtocolServer::obtener_estado_enemigos_del_msg(ServerJuegoMensaje& msg,
-                                                     std::vector<uint16_t>& estado_enemigos) {
-    estado_enemigos.push_back(msg.obtener_enemigos_vivos());
-    estado_enemigos.push_back(msg.obtener_enemigos_muertos());
-}
-
-uint8_t ProtocolServer::obtener_tipo_evento_del_msg(ServerJuegoMensaje& msg) {
-    return msg.obtener_accion();
+void ProtocolServer::obtener_posicion_del_personaje(ServerJuegoMensaje& msg,
+                                                     std::vector<uint16_t>& posicion_personaje) {
+    posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_x());
+    posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_y());
 }
 
 void ProtocolServer::enviar_respuesta(ServerJuegoMensaje& msg, bool& was_closed) {
@@ -75,18 +71,14 @@ void ProtocolServer::enviar_respuesta(ServerJuegoMensaje& msg, bool& was_closed)
     socket_cliente.sendall(&mensaje, sizeof(uint8_t), &was_closed);
 
     // Envio la cant de enemigos vivos y muertos
-    std::vector<uint16_t> estado_enemigos;
-    obtener_estado_enemigos_del_msg(msg, estado_enemigos);
+    std::vector<uint16_t> posicion_personaje;
+    obtener_posicion_del_personaje(msg, posicion_personaje);
 
-    uint16_t vivos = htons(estado_enemigos[0]);
-    socket_cliente.sendall(&vivos, sizeof(uint16_t), &was_closed);
+    uint16_t posicion_x = htons(posicion_personaje[0]);
+    socket_cliente.sendall(&posicion_x, sizeof(uint16_t), &was_closed);
 
-    uint16_t muertos = htons(estado_enemigos[1]);
-    socket_cliente.sendall(&muertos, sizeof(uint16_t), &was_closed);
-
-    // Envio el tipo de evento
-    uint8_t evento = obtener_tipo_evento_del_msg(msg);
-    socket_cliente.sendall(&evento, sizeof(uint8_t), &was_closed);
+    uint16_t posicion_y = htons(posicion_personaje[1]);
+    socket_cliente.sendall(&posicion_y, sizeof(uint16_t), &was_closed);
 }
 
 void ProtocolServer::cerrar_socket_cliente() {

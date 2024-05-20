@@ -31,12 +31,12 @@ void GameLoop::run() {
             std::shared_ptr<Comando> comando;
             while (client_commands.try_pop(comando)) {
                 if (comando && comando->ejecutar(this->game)) {
-                    broadcastear(MATAR);
+                    broadcastear();
                 }
             }
             // aca deberia actualizar el game state para pasarle al cliente para que renderise
             if (game.aumentar_iteraciones()) {
-                broadcastear(REVIVIR);
+                broadcastear();
             }
             dormir();
         }
@@ -53,8 +53,8 @@ void GameLoop::run() {
     }
 }
 
-void GameLoop::broadcastear(uint8_t tipo_accion) {
-    ServerJuegoMensaje mensaje(tipo_accion, game.obtener_cant_vivos(), game.obtener_cant_muertos());
+void GameLoop::broadcastear() {
+    ServerJuegoMensaje mensaje(game.obtener_personaje());
     mensaje.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(mensaje);
 }

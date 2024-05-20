@@ -26,3 +26,10 @@ bool Posicion::mover(const std::string& direccion) {
     return false;
 }
 
+int Posicion::get_posicion_x() {
+    return this->x;
+}
+
+int Posicion::get_posicion_y() {
+    return this->y;
+}

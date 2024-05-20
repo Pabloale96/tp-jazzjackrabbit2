@@ -38,7 +38,7 @@ public:
     // void atacar();
 
     // Broadcastea un mensaje a todos los clientes
-    void broadcastear(uint8_t accion);
+    void broadcastear();
 
     // Duerme el hilo por 200 segundos
     void dormir();
