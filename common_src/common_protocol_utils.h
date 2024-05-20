@@ -1,0 +1,11 @@
+#ifndef _COMMON_PROTOCOL_UTILS_H_
+#define _COMMON_PROTOCOL_UTILS_H_
+
+#define ATACAR 0x01
+#define MOVER_DERECHA 0x02
+#define MOVER_IZQUIERDA 0x03
+#define MOVER_ARRIBA 0x04
+#define MOVER_ABAJO 0x05
+
+
+#endif

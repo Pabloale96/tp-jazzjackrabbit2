@@ -15,6 +15,12 @@ private:
     // Le envia al server un mensaje indicando su intención de atacar
     void atacar();
 
+    // Le envia al server un mensaje indicando su intención de moverse
+    void moverDerecha();
+    void moverIzquierda();
+    void moverArriba();
+    void moverAbajo();
+
     // Espera hasta recibir la respuesta del server y la imprime
     void leer();
 

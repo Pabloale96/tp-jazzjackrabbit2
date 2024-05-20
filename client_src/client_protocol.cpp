@@ -3,18 +3,38 @@
 #include <cstring>
 #include <iostream>
 #include <sstream>
-
 #include <arpa/inet.h>  // para usar htons()
 
-#define ATACAR 0x03
+#include "../common_src/common_protocol_utils.h"
+
 #define MUERTO 0x04
 #define REVIVIO 0x05
 
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
 
-void ProtocolClient::enviar_accion_atacar(TipoAccion accion) {
-    enviar_accion_serializada((uint8_t)ATACAR, was_closed);
+void ProtocolClient::enviar_accion(TipoAccion accion) {
+    uint8_t accion_serializada;
+    switch (accion) {
+        case TipoAccion::Atacar:
+            accion_serializada = ATACAR;
+            break;
+        case TipoAccion::MoverDerecha:
+            accion_serializada = MOVER_DERECHA;
+            break;
+        case TipoAccion::MoverIzquierda:
+            accion_serializada = MOVER_IZQUIERDA;
+            break;
+        case TipoAccion::MoverArriba:
+            accion_serializada = MOVER_ARRIBA;
+            break;
+        case TipoAccion::MoverAbajo:
+            accion_serializada = MOVER_ABAJO;
+            break;
+        default:
+            return; // Acción no válida
+    }
+    enviar_accion_serializada(accion_serializada, was_closed);
 }
 
 void ProtocolClient::enviar_accion_serializada(uint8_t accion_serializada, bool& was_closed) {

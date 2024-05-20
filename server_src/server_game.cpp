@@ -5,7 +5,7 @@
 
 #include "../server_src/server_enemigo.h"
 
-Game::Game(): /*personaje(),*/ enemigos(NUMERO_INICIAL_ENEMIGOS) {}
+Game::Game(): personaje(), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
 
 bool Game::matar_enemigo() {
     for (auto& enemigo: enemigos) {
@@ -15,6 +15,15 @@ bool Game::matar_enemigo() {
         }
     }
     return false;
+}
+
+bool Game::mover(std::string direccion) {
+    if (direccion != "derecha" && direccion != "izquierda") {
+        return false;
+    } else {
+        personaje.mover(direccion);
+        return true;
+    }
 }
 
 bool Game::aumentar_iteraciones() {

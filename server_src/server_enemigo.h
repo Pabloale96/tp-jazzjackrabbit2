@@ -5,7 +5,7 @@
 
 #define VIDAS_INICIALES 5
 #define SIN_DANIO_INICIAL 0
-#define PUNTOS_INICIALES 1
+#define PUNTOS_INICIALES_ENEMIGO 1
 #define TIME_REVIVE_INICIAL 50
 
 class Enemigo {

@@ -9,6 +9,10 @@
 
 enum class TipoAccion : char {
     Atacar,
+    MoverDerecha,
+    MoverIzquierda,
+    MoverArriba,
+    MoverAbajo
 };
 
 struct Respuesta {
@@ -30,7 +34,7 @@ public:
     ProtocolClient(const std::string& hostname, const std::string& servicio);
 
     // Recibe del cliente la accion para serializar y enviar al server
-    void enviar_accion_atacar(TipoAccion accion);
+    void enviar_accion(TipoAccion accion);
 
     // Envia las acciones ya con su valor asociado al server
     void enviar_accion_serializada(uint8_t accion_serializada, bool& was_closed);

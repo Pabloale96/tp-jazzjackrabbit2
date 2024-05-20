@@ -4,10 +4,10 @@
 #include <iostream>
 #include <vector>
 
-#include "Accion.h"
-#include "Estado.h"
-#include "Puntos.h"
-#include "arma.h"
+// #include "Accion.h"
+// #include "Estado.h"
+// #include "Puntos.h"
+// #include "arma.h"
 #include "posicion.h"
 
 #define PUNTOS_INICIALES 0
@@ -16,36 +16,40 @@
 class Personaje {
 
 private:
-    int puntos;
-    int vida;
-    Arma arma;
-    Estado estado;
-    Accion accion;
-    Posicion posicion;  // para meterlo en un tablero?
+    // int puntos;
+    // int vida;
+    // Arma arma;
+    // Estado estado;
+    // Accion accion;
+    Posicion posicion;
 
 public:
     Personaje();
-    virtual void activarEspecial();
+
+    bool mover(const std::string& direccion);
+
+    // virtual void activarEspecial() = 0;
+
+    // virtual ~Personaje() = default;
 };
 
+#endif
+
+/*
 class Jazz: public Personaje {
 public:
-    Jazz();
     void activarEspecial() override;
 };
 
 class Lori: public Personaje {
 
 public:
-    Lori();
     void activarEspecial() override;
 };
 
 class Spazz: public Personaje {
 
 public:
-    Spazz();
     void activarEspecial() override;
 };
-
-#endif
+*/

@@ -6,18 +6,20 @@
 #include <string>
 #include <vector>
 
-// #include "../server_src/personaje.h"
+#include "../server_src/personaje.h"
 #include "../server_src/server_enemigo.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 
 class Game {
 private:
-    // Personaje personaje;
+    Personaje personaje;
     std::vector<Enemigo> enemigos;
 
 public:
     Game();
+
+    bool mover(std::string direccion);
 
     bool matar_enemigo();
 

@@ -15,17 +15,8 @@ private:
 
 public:
     Posicion();
-    void mover(int x, int y);
+    //void mover(int x, int y);
+    bool mover(const std::string& direccion);
 };
-
-Posicion::Posicion(): x(X_INICIAL), y(Y_INICIAL) {}
-
-void Posicion::mover(int x, int y) {
-    this->x += x;
-    this->y += y;
-}
-
-// TODO: No se si habrá que checkear los bordes del tablero
-
 
 #endif

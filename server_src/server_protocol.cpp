@@ -11,7 +11,8 @@
 #include <arpa/inet.h>   // htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#define ATACAR 0x03
+#include "../common_src/common_protocol_utils.h"
+
 #define MUERTO 0x04
 #define REVIVIO 0x05
 #define MENSAJE 0x06
@@ -33,6 +34,18 @@ void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& me
 std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido) {
     if (mensaje_recibido == ATACAR) {
         return std::make_unique<Atacar>();
+    }
+    if (mensaje_recibido == MOVER_DERECHA) {
+        return std::make_unique<MoverDerecha>();
+    }
+    if (mensaje_recibido == MOVER_IZQUIERDA) {
+        return std::make_unique<MoverIzquierda>();
+    }
+    if (mensaje_recibido == MOVER_ARRIBA) {
+        return std::make_unique<MoverArriba>();
+    }
+    if (mensaje_recibido == MOVER_ABAJO) {
+        return std::make_unique<MoverAbajo>();
     }
     return nullptr;
 }
