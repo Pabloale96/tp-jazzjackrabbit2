@@ -1,15 +1,15 @@
-#include "../server_src/server_monitor.h"
+#include "../server_src/game_state_monitor.h"
 
 #include <algorithm>
 
-ServerMonitor::ServerMonitor(/* args */) {}
+GameStateMonitor::GameStateMonitor(/* args */) {}
 
-void ServerMonitor::agregar_queue(Queue<std::shared_ptr<GameState>>& nueva_queue) {
+void GameStateMonitor::agregar_queue(Queue<std::shared_ptr<GameState>>& nueva_queue) {
     std::unique_lock<std::mutex> lock(m);
     vector_de_server_msg.push_back(&nueva_queue);
 }
 
-void ServerMonitor::broadcastear(const GameState& msg) {
+void GameStateMonitor::broadcastear(const GameState& msg) {
     std::unique_lock<std::mutex> lck(m);
     for (size_t i = 0; i < vector_de_server_msg.size(); ++i) {
         try {
@@ -24,11 +24,11 @@ void ServerMonitor::broadcastear(const GameState& msg) {
     }
 }
 
-void ServerMonitor::borrar_queue(Queue<std::shared_ptr<GameState>>& queue) {
+void GameStateMonitor::borrar_queue(Queue<std::shared_ptr<GameState>>& queue) {
     std::unique_lock<std::mutex> lock(m);
     vector_de_server_msg.erase(
             std::remove(vector_de_server_msg.begin(), vector_de_server_msg.end(), &queue),
             vector_de_server_msg.end());
 }
 
-ServerMonitor::~ServerMonitor() {}
+GameStateMonitor::~GameStateMonitor() {}

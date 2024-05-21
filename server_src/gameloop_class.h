@@ -10,12 +10,12 @@
 #include "../common_src/common_thread.h"
 #include "../server_src/game_comandos.h"
 #include "../server_src/game_class.h"
-#include "../server_src/server_monitor.h"
+#include "../server_src/game_state_monitor.h"
 
 class GameLoop: public Thread {
 private:
     Queue<std::shared_ptr<Comando>> client_commands;
-    ServerMonitor monitor_lista_de_queues_server_msg;
+    GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
     // una lista de personajes por client id ?
 
