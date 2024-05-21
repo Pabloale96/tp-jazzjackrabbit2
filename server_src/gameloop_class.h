@@ -8,8 +8,8 @@
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/game_comandos.h"
 #include "../server_src/game_class.h"
+#include "../server_src/game_comandos.h"
 #include "../server_src/game_state_monitor.h"
 
 class GameLoop: public Thread {
@@ -41,8 +41,7 @@ public:
     // Duerme el hilo por 200 segundos
     void dormir();
 
-    void borrar_queue_server_msg_de_cliente_aceptado(
-            Queue<std::shared_ptr<GameState>>& queue);
+    void borrar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<GameState>>& queue);
 
     // Cierra la cola de comandos de clientes
     // Cierra las colas de mensajes de los clientes

@@ -19,7 +19,7 @@ bool Game::matar_enemigo() {
     return false;
 }
 
-bool Game::mover(const std::string direccion) {
+bool Game::mover(const std::string& direccion) {
     if (direccion != "derecha" && direccion != "izquierda" && direccion != "arriba" &&
         direccion != "abajo") {
         return false;

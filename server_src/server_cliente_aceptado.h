@@ -8,10 +8,10 @@
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
 #include "../server_src/gameloop_class.h"
+#include "../server_src/gameloop_monitor.h"
 #include "../server_src/server_protocol.h"
 #include "../server_src/server_receiver.h"
 #include "../server_src/server_sender.h"
-#include "../server_src/gameloop_monitor.h"
 
 class ClienteAceptado {
 private:
@@ -29,7 +29,8 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
-    ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor, uint16_t gameloop_id);
+    ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor,
+                    uint16_t gameloop_id);
 
     // Inicia el sender y el receiver
     void start();

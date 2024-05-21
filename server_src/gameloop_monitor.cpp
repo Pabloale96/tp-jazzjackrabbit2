@@ -1,6 +1,6 @@
 #include "gameloop_monitor.h"
 
-GameloopMonitor::GameloopMonitor() : gameloop_id(ID_INICIAL) {}
+GameloopMonitor::GameloopMonitor(): gameloop_id(ID_INICIAL) {}
 
 uint16_t GameloopMonitor::agregar_gameloop() {
     try {
@@ -26,13 +26,14 @@ GameLoop* GameloopMonitor::obtener_gameloop(uint16_t gameloop_id) {
     return it->second;
 }
 
-Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_commands(uint16_t gameloop_id) {
+Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_commands(
+        uint16_t gameloop_id) {
     return obtener_gameloop(gameloop_id)->obtener_queue_de_client_commands();
 }
 
 GameloopMonitor::~GameloopMonitor() {
     std::unique_lock<std::mutex> lock(m);
-    for (auto& [id, gameloop] : diccionario_de_gameloops) {
+    for (auto& [id, gameloop]: diccionario_de_gameloops) {
         gameloop->stop();
         gameloop->join();
         delete gameloop;

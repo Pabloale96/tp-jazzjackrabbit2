@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "../server_src/game_personaje.h"
 #include "../server_src/game_enemigo.h"
+#include "../server_src/game_personaje.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 
@@ -21,7 +21,7 @@ public:
 
     Personaje obtener_personaje();
 
-    bool mover(const std::string direccion);
+    bool mover(const std::string& direccion);
 
     bool matar_enemigo();
 

@@ -9,8 +9,8 @@
 #include "../common_src/common_queue.h"
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/server_aceptador.h"
 #include "../server_src/gameloop_class.h"
+#include "../server_src/server_aceptador.h"
 #include "../server_src/server_protocol.h"
 
 class Server {

@@ -10,6 +10,7 @@
 class GameState {
 private:
     Personaje personaje;
+    // vector de enemigos y objetos
 
 public:
     explicit GameState(Personaje personaje);

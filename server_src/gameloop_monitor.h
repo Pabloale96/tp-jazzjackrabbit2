@@ -2,13 +2,13 @@
 #define _GAMELOOP_MONITOR_H
 
 #include <map>
+#include <memory>  // shared_ptr()
 #include <string>
 #include <utility>  // move()
-#include <memory>  // shared_ptr()
 
-#include "../server_src/gameloop_class.h"
 #include "../common_src/common_queue.h"
 #include "../server_src/game_comandos.h"
+#include "../server_src/gameloop_class.h"
 
 #define ID_INICIAL 0
 
