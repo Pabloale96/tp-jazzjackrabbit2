@@ -24,6 +24,7 @@ public:
     // Crea una cola de comandos de clientes y un vector de 5 enemigos
     GameLoop();
 
+    // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();
 
     // Agrega una cola de mensajes del servidor de un cliente aceptado al vector
@@ -33,10 +34,6 @@ public:
 
     // Popea un comando de la cola de comandos de clientes y lo procesa
     void run() override;
-
-    // Disminuye en 1 la cant de enemigos vivos y aumenta en 1 la cant de enemigos
-    // matados
-    // void atacar();
 
     // Broadcastea un mensaje a todos los clientes
     void broadcastear();

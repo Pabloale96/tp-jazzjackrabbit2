@@ -15,7 +15,7 @@
 class GameloopMonitor {
 private:
     std::mutex m;
-    std::map<uint16_t, GameLoop&&> diccionario_de_gameloops;
+    std::map<uint16_t, GameLoop*> diccionario_de_gameloops;
     uint16_t gameloop_id;
 
 public:
@@ -23,7 +23,7 @@ public:
 
     uint16_t agregar_gameloop();
 
-    GameLoop& obtener_gameloop(uint16_t gameloop_id);
+    GameLoop* obtener_gameloop(uint16_t gameloop_id);
 
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands(uint16_t gameloop_id);
 
