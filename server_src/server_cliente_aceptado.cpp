@@ -9,14 +9,14 @@
 
 #define MAX_TAM_COLA 10
 
-ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameLoop& gameloop):
+ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor, uint16_t gameloop_id):
+        gameloop_id(gameloop_id),
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
         server_msg(MAX_TAM_COLA),
-        gameloop(gameloop),
         sender(protocolo_server, was_closed, server_msg),
-        receiver(protocolo_server, was_closed, gameloop.obtener_queue_de_client_commands()) {
-    gameloop.agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+        receiver(protocolo_server, was_closed, gameloop_monitor, gameloop_id) {
+    //gameloop.agregar_queue_server_msg_de_cliente_aceptado(server_msg);
 }
 
 void ClienteAceptado::start() {
@@ -33,7 +33,7 @@ bool ClienteAceptado::is_dead() {
 
 void ClienteAceptado::stop() {
     server_msg.close();
-    gameloop.borrar_queue_server_msg_de_cliente_aceptado(server_msg);
+    //gameloop.borrar_queue_server_msg_de_cliente_aceptado(server_msg);
     if (!was_closed) {
         protocolo_server.cerrar_socket_cliente();
         was_closed = true;

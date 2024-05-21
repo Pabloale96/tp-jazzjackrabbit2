@@ -11,13 +11,14 @@
 #include "../server_src/server_protocol.h"
 #include "../server_src/server_receiver.h"
 #include "../server_src/server_sender.h"
+#include "../server_src/gameloop_monitor.h"
 
 class ClienteAceptado {
 private:
+    uint16_t gameloop_id;
     ProtocolServer protocolo_server;
     bool was_closed;
     Queue<std::shared_ptr<GameState>> server_msg;
-    GameLoop& gameloop;
     ServerSender sender;
     ServerReceiver receiver;
 
@@ -28,7 +29,7 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
-    ClienteAceptado(Socket&& socket_cliente, GameLoop& juego);
+    ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor, uint16_t gameloop_id);
 
     // Inicia el sender y el receiver
     void start();

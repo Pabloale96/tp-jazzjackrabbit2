@@ -8,6 +8,7 @@
 #include "../common_src/common_thread.h"
 #include "../server_src/gameloop_class.h"
 #include "../server_src/server_protocol.h"
+#include "../server_src/gameloop_monitor.h"
 
 class ServerReceiver: public Thread {
 private:
@@ -17,8 +18,7 @@ private:
 
 public:
     // Constructor
-    ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,
-                   Queue<std::shared_ptr<Comando>>& client_commands);
+    ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor, uint16_t gameloop_id);
 
     void run() override;
 

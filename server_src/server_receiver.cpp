@@ -10,10 +10,10 @@
 #include "../server_src/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,
-                               Queue<std::shared_ptr<Comando>>& client_commands):
+                               GameloopMonitor& gameloop_monitor, uint16_t gameloop_id):
         protocolo_server(protocolo_server),
         was_closed(was_closed),
-        client_commands(client_commands) {}
+        client_commands(gameloop_monitor.obtener_queue_de_client_commands(gameloop_id)) {}
 
 void ServerReceiver::run() {
     while (!was_closed) {

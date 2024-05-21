@@ -8,14 +8,15 @@
 #include "../common_src/common_thread.h"
 #include "../server_src/server_cliente_aceptado.h"
 #include "../server_src/gameloop_class.h"
+#include "../server_src/gameloop_monitor.h"
 
 class Aceptador: public Thread {
 private:
     Socket socket_server;
     std::atomic<bool> was_closed_aceptador;
-    GameLoop game_loop;
+    GameloopMonitor monitor_diccionario_de_gameloops;
 
-public:
+    public:
     // Constructor
     // Recibe el nombre del servidor y una referencia al juego
     // Crea el socket del servidor y pone was_closed_aceptador en false
