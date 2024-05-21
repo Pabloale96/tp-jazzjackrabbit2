@@ -1,12 +1,12 @@
-#ifndef PERSONAJE_H
-#define PERSONAJE_H
+#ifndef _GAME_PERSONAJE_H_
+#define _GAME_PERSONAJE_H_
 
 #include <iostream>
 #include <string>
 #include <vector>
 
-#include "arma.h"
-#include "posicion.h"
+#include "game_arma.h"
+#include "game_posicion.h"
 
 #define PUNTOS_INICIALES 0
 #define VIDA_INICIAL 10

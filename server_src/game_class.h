@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "../server_src/personaje.h"
-#include "../server_src/server_enemigo.h"
+#include "../server_src/game_personaje.h"
+#include "../server_src/game_enemigo.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 

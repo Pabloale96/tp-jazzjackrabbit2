@@ -7,7 +7,7 @@
 #include "../common_src/common_queue.h"
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/server_game_loop.h"
+#include "../server_src/gameloop_class.h"
 #include "../server_src/server_protocol.h"
 #include "../server_src/server_receiver.h"
 #include "../server_src/server_sender.h"
@@ -16,7 +16,7 @@ class ClienteAceptado {
 private:
     ProtocolServer protocolo_server;
     bool was_closed;
-    Queue<std::shared_ptr<ServerJuegoMensaje>> server_msg;
+    Queue<std::shared_ptr<GameState>> server_msg;
     GameLoop& gameloop;
     ServerSender sender;
     ServerReceiver receiver;

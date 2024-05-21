@@ -1,5 +1,5 @@
-#ifndef COLLECTIBLE_H
-#define COLLECTIBLE_H
+#ifndef _GAME_COLLECTIBLE_H_
+#define _GAME_COLLECTIBLE_H_
 
 #include <iostream>
 #include <vector>

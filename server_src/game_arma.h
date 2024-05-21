@@ -1,5 +1,5 @@
-#ifndef ARMA_H
-#define ARMA_H
+#ifndef _GAME_ARMA_H_
+#define _GAME_ARMA_H_
 
 #include <iostream>
 #include <vector>

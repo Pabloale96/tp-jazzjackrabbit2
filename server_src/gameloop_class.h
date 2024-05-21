@@ -1,5 +1,5 @@
-#ifndef _SERVER_GAME_LOOP_H_
-#define _SERVER_GAME_LOOP_H_
+#ifndef _GAMELOOP_H_
+#define _GAMELOOP_H_
 
 #include <cstdint>
 #include <memory>
@@ -8,8 +8,8 @@
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/server_comandos.h"
-#include "../server_src/server_game.h"
+#include "../server_src/game_comandos.h"
+#include "../server_src/game_class.h"
 #include "../server_src/server_monitor.h"
 
 class GameLoop: public Thread {
@@ -17,6 +17,7 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     ServerMonitor monitor_lista_de_queues_server_msg;
     Game game;
+    // una lista de personajes por client id ?
 
 public:
     // Constructor
@@ -28,7 +29,7 @@ public:
     // Agrega una cola de mensajes del servidor de un cliente aceptado al vector
     // de colas
     void agregar_queue_server_msg_de_cliente_aceptado(
-            Queue<std::shared_ptr<ServerJuegoMensaje>>& nueva_queue);
+            Queue<std::shared_ptr<GameState>>& nueva_queue);
 
     // Popea un comando de la cola de comandos de clientes y lo procesa
     void run() override;
@@ -44,7 +45,7 @@ public:
     void dormir();
 
     void borrar_queue_server_msg_de_cliente_aceptado(
-            Queue<std::shared_ptr<ServerJuegoMensaje>>& queue);
+            Queue<std::shared_ptr<GameState>>& queue);
 
     // Cierra la cola de comandos de clientes
     // Cierra las colas de mensajes de los clientes

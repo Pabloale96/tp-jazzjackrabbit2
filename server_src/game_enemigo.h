@@ -1,5 +1,5 @@
-#ifndef SERVER_ENEMIGO_H
-#define SERVER_ENEMIGO_H
+#ifndef _GAME_ENEMIGO_H_
+#define _GAME_ENEMIGO_H_
 
 #define ITERACIONES_PARA_REVIVIR 15
 

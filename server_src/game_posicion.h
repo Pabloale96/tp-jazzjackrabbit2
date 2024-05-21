@@ -1,5 +1,5 @@
-#ifndef POSICION_H
-#define POSICION_H
+#ifndef _GAME_POSICION_H_
+#define _GAME_POSICION_H_
 
 #include <iostream>
 #include <string>

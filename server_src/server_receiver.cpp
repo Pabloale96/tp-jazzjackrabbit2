@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../common_src/common_liberror.h"
-#include "../server_src/server_game_loop.h"
+#include "../server_src/gameloop_class.h"
 #include "../server_src/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,

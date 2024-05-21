@@ -1,6 +1,5 @@
-#include "../server_src/server_comandos.h"
-
-#include "../server_src/server_game.h"
+#include "../server_src/game_comandos.h"
+#include "../server_src/game_class.h"
 
 bool Atacar::ejecutar(Game& game) { return game.matar_enemigo(); }
 

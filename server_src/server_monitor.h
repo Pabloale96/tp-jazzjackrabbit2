@@ -5,21 +5,21 @@
 #include <vector>
 
 #include "../common_src/common_queue.h"
-#include "../server_src/server_juego_mensaje.h"
+#include "../server_src/game_state.h"
 
 class ServerMonitor {
 private:
     std::mutex m;
-    std::vector<Queue<std::shared_ptr<ServerJuegoMensaje>>*> vector_de_server_msg;
+    std::vector<Queue<std::shared_ptr<GameState>>*> vector_de_server_msg;
 
 public:
     ServerMonitor();
 
-    void agregar_queue(Queue<std::shared_ptr<ServerJuegoMensaje>>& queue);
+    void agregar_queue(Queue<std::shared_ptr<GameState>>& queue);
 
-    void broadcastear(const ServerJuegoMensaje& msg);
+    void broadcastear(const GameState& msg);
 
-    void borrar_queue(Queue<std::shared_ptr<ServerJuegoMensaje>>& queue);
+    void borrar_queue(Queue<std::shared_ptr<GameState>>& queue);
 
     ~ServerMonitor();
 };

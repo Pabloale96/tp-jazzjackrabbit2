@@ -1,5 +1,5 @@
-#ifndef ESTADO_H
-#define ESTADO_H
+#ifndef _GAME_PERSONAJE_ESTADO_H
+#define _GAME_PERSONAJE_ESTADO_H
 
 #include <iostream>
 #include <vector>

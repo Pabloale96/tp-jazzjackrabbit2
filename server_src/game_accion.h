@@ -1,5 +1,5 @@
-#ifndef ACCIONES_H
-#define ACCIONES_H
+#ifndef _GAME_ACCION_H_
+#define _GAME_ACCION_H_
 
 #include <iostream>
 #include <vector>

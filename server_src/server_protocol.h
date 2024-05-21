@@ -7,8 +7,8 @@
 #include <vector>
 
 #include "../common_src/common_sockets.h"
-#include "../server_src/server_comandos.h"
-#include "../server_src/server_juego_mensaje.h"
+#include "../server_src/game_comandos.h"
+#include "../server_src/game_state.h"
 
 class ProtocolServer {
 private:
@@ -29,11 +29,11 @@ public:
     // Toma los valores del mensaje y los traduce a acciones
     std::unique_ptr<Comando> deserializar_acciones(const uint8_t& mensaje_recibido);
 
-    void obtener_posicion_del_personaje(ServerJuegoMensaje& msg,
+    void obtener_posicion_del_personaje(GameState& msg,
                                         std::vector<uint16_t>& posicion_personaje);
 
     // Para poder enviar comandos
-    void enviar_respuesta(ServerJuegoMensaje& msg, bool& was_closed);
+    void enviar_respuesta(GameState& msg, bool& was_closed);
 
     // Cierra el socket del cliente ordenadamente
     void cerrar_socket_cliente();

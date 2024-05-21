@@ -1,9 +1,9 @@
-#include "../server_src/server_game.h"
+#include "../server_src/game_class.h"
 
 #include <memory>
 #include <string>
 
-#include "../server_src/server_enemigo.h"
+#include "../server_src/game_enemigo.h"
 
 Game::Game(): personaje(), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
 

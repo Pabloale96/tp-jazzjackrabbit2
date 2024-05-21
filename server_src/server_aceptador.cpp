@@ -7,7 +7,7 @@
 
 #include "../common_src/common_liberror.h"
 #include "../server_src/server_cliente_aceptado.h"
-#include "../server_src/server_game_loop.h"
+#include "../server_src/gameloop_class.h"
 #include "../server_src/server_protocol.h"
 
 Aceptador::Aceptador(const std::string& servname):
@@ -15,6 +15,7 @@ Aceptador::Aceptador(const std::string& servname):
 
 void Aceptador::run() {
     std::list<ClienteAceptado> lista_clientes;
+    std::list<GameLoop> lista_game_loops;
     game_loop.start();
     while (!was_closed_aceptador) {
         try {

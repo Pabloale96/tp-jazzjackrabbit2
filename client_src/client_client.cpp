@@ -17,20 +17,33 @@ std::string toLowercase(const std::string& str) {
     return minusculas;
 }
 
+void Client::acciones_posibles() {
+    std::cout << "Acciones posibles:" << std::endl;
+    std::cout << "  - Disparar (s)" << std::endl;
+    std::cout << "  - Derecha (r)" << std::endl;
+    std::cout << "  - Izquierda (l)" << std::endl;
+    std::cout << "  - Arriba (u)" << std::endl;
+    std::cout << "  - Abajo (d)" << std::endl;
+    std::cout << "  - Leer <cant_lineas_leer>" << std::endl;
+    std::cout << "  - Salir (q)" << std::endl;
+}
+
+
 void Client::jugar() {
+    acciones_posibles();
     std::string accion_actual;
     int cant_lineas_a_leer;
     while (std::cin >> accion_actual) {
         accion_actual = toLowercase(accion_actual);
-        if (accion_actual == "atacar") {
+        if (accion_actual == "disparar" or accion_actual == "s") {
             atacar();
-        } else if (accion_actual == "derecha" or accion_actual == "d") {
+        } else if (accion_actual == "derecha" or accion_actual == "r") {
             moverDerecha();
-        } else if (accion_actual == "izquierda" or accion_actual == "i") {
+        } else if (accion_actual == "izquierda" or accion_actual == "l") {
             moverIzquierda();
-        } else if (accion_actual == "arriba" or accion_actual == "up") {
+        } else if (accion_actual == "arriba" or accion_actual == "u") {
             moverArriba();
-        } else if (accion_actual == "abajo") {
+        } else if (accion_actual == "abajo" or accion_actual == "d") {
             moverAbajo();
         } else if (accion_actual == "leer") {
             if (!(std::cin >> cant_lineas_a_leer)) {
@@ -40,7 +53,7 @@ void Client::jugar() {
             for (int n = 0; n < cant_lineas_a_leer; n++) {
                 leer();
             }
-        } else if (accion_actual == "salir") {
+        } else if (accion_actual == "salir" or accion_actual == "q") {
             return;
         } else {
             std::cout << "Error: Acción no reconocida" << std::endl;

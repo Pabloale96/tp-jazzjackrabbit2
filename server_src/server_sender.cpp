@@ -7,13 +7,13 @@
 #define REVIVIR 0x05
 
 ServerSender::ServerSender(ProtocolServer& protocolo_server, bool& was_closed,
-                           Queue<std::shared_ptr<ServerJuegoMensaje>>& server_msg):
+                           Queue<std::shared_ptr<GameState>>& server_msg):
         protocolo_server(protocolo_server), was_closed(was_closed), server_msg(server_msg) {}
 
 void ServerSender::run() {
     while (!was_closed) {
         try {
-            std::shared_ptr<ServerJuegoMensaje> msg = server_msg.pop();
+            std::shared_ptr<GameState> msg = server_msg.pop();
             protocolo_server.enviar_respuesta(*msg, was_closed);
         } catch (const ClosedQueue&) {
             return;

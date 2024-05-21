@@ -59,13 +59,13 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed) {
     return deserializar_acciones(mensaje_recibido);
 }
 
-void ProtocolServer::obtener_posicion_del_personaje(ServerJuegoMensaje& msg,
+void ProtocolServer::obtener_posicion_del_personaje(GameState& msg,
                                                     std::vector<uint16_t>& posicion_personaje) {
     posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_x());
     posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_y());
 }
 
-void ProtocolServer::enviar_respuesta(ServerJuegoMensaje& msg, bool& was_closed) {
+void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
     // Envio el 0x06
     uint8_t mensaje = MENSAJE;
     socket_cliente.sendall(&mensaje, sizeof(uint8_t), &was_closed);

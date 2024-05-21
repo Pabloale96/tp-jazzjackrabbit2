@@ -7,7 +7,7 @@
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
 #include "../server_src/server_cliente_aceptado.h"
-#include "../server_src/server_game_loop.h"
+#include "../server_src/gameloop_class.h"
 
 class Aceptador: public Thread {
 private:

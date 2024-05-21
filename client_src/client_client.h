@@ -12,6 +12,9 @@ private:
     std::string servicio;
     ProtocolClient protocolo_client;
 
+    // Muestra las acciones posibles que puede realizar el cliente
+    void acciones_posibles();
+
     // Le envia al server un mensaje indicando su intención de atacar
     void atacar();
 

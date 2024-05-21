@@ -1,11 +1,11 @@
-#include "../server_src/server_game_loop.h"
+#include "../server_src/gameloop_class.h"
 
 #include <chrono>  // std::chrono()
 #include <iostream>
 #include <string>
 
 #include "../common_src/common_queue.h"
-#include "../server_src/server_juego_mensaje.h"
+#include "../server_src/game_state.h"
 
 #define MAX_TAM_COLA 10
 #define CINCO_LOOPS_POR_SEGUNDO 200
@@ -21,7 +21,7 @@ Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
 }
 
 void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
-        Queue<std::shared_ptr<ServerJuegoMensaje>>& nueva_queue) {
+        Queue<std::shared_ptr<GameState>>& nueva_queue) {
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
@@ -54,7 +54,7 @@ void GameLoop::run() {
 }
 
 void GameLoop::broadcastear() {
-    ServerJuegoMensaje mensaje(game.obtener_personaje());
+    GameState mensaje(game.obtener_personaje());
     mensaje.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(mensaje);
 }
@@ -65,7 +65,7 @@ void GameLoop::dormir() {
 }
 
 void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
-        Queue<std::shared_ptr<ServerJuegoMensaje>>& queue) {
+        Queue<std::shared_ptr<GameState>>& queue) {
     monitor_lista_de_queues_server_msg.borrar_queue(queue);
 }
 
