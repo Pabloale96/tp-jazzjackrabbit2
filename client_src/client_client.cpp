@@ -99,9 +99,9 @@ void Client::leer() {
 }
 
 void Client::imprimir_respuesta(const Respuesta& respuesta) {
-    std::cout << "Un enemigo ha " + respuesta.tipo_evento + ". " +
-                         std::to_string(respuesta.enemigos_vivos) + " vivo(s) y " +
-                         std::to_string(respuesta.enemigos_muertos) + " muerto(s)."
+    std::cout << "El personaje está en la posición (" +
+                         std::to_string(respuesta.posicion_x_personaje) + ", " +
+                         std::to_string(respuesta.posicion_y_personaje) + " )."
               << std::endl;
 }
 

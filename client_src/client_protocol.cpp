@@ -64,26 +64,18 @@ bool ProtocolClient::recibir_respuesta(Respuesta& respuesta) {
     if (was_closed) {
         return false;
     }
-    socket_cliente.recvall(&respuesta.enemigos_vivos, sizeof(uint16_t), &was_closed);
-    respuesta.enemigos_vivos = ntohs(respuesta.enemigos_vivos);
+    socket_cliente.recvall(&respuesta.posicion_x_personaje, sizeof(uint16_t), &was_closed);
+    respuesta.posicion_x_personaje = ntohs(respuesta.posicion_x_personaje);
 
     if (was_closed) {
         return false;
     }
-    socket_cliente.recvall(&respuesta.enemigos_muertos, sizeof(uint16_t), &was_closed);
-    respuesta.enemigos_muertos = ntohs(respuesta.enemigos_muertos);
+    socket_cliente.recvall(&respuesta.posicion_y_personaje, sizeof(uint16_t), &was_closed);
+    respuesta.posicion_y_personaje = ntohs(respuesta.posicion_y_personaje);
 
     if (was_closed) {
         return false;
     }
-    uint8_t tipo_evento_mensaje;
-    socket_cliente.recvall(&tipo_evento_mensaje, sizeof(uint8_t), &was_closed);
-    if (tipo_evento_mensaje == (uint8_t)MUERTO) {
-        respuesta.tipo_evento = "muerto";
-    } else if (tipo_evento_mensaje == (uint8_t)REVIVIO) {
-        respuesta.tipo_evento = "revivido";
-    }
-
     return true;
 }
 

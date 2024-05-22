@@ -20,10 +20,10 @@ enum class TipoAccion : char {
 
 struct Respuesta {
     // cppcheck-suppress unusedStructMember
-    uint16_t enemigos_vivos;
+    uint16_t posicion_x_personaje;
     // cppcheck-suppress unusedStructMember
-    uint16_t enemigos_muertos;
-    std::string tipo_evento;
+    uint16_t posicion_y_personaje;
+    // Despeus deberian de venir la posicion de todos los enemigos
 };
 
 class ProtocolClient {
