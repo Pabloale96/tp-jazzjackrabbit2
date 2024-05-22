@@ -1,6 +1,6 @@
 #include "../server_src/game_state.h"
 
-GameState::GameState(Personaje personaje): personaje(personaje) {}
+GameState::GameState(const Personaje& personaje): personaje(personaje) {}
 
 Personaje GameState::obtener_personaje() { return personaje; }
 

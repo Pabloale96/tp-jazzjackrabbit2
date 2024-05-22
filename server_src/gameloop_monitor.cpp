@@ -33,6 +33,7 @@ Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_comman
 
 GameloopMonitor::~GameloopMonitor() {
     std::unique_lock<std::mutex> lock(m);
+    // cppcheck-suppress unusedVariable
     for (auto& [id, gameloop]: diccionario_de_gameloops) {
         gameloop->stop();
         gameloop->join();

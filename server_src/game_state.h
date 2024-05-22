@@ -13,7 +13,7 @@ private:
     // vector de enemigos y objetos
 
 public:
-    explicit GameState(Personaje personaje);
+    explicit GameState(const Personaje& personaje);
 
     Personaje obtener_personaje();
 
