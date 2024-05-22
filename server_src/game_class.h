@@ -17,7 +17,7 @@ private:
     std::vector<Enemigo> enemigos;
 
 public:
-    Game();
+    explicit Game(uint16_t nuevo_gameloop_id);
 
     Personaje obtener_personaje();
 

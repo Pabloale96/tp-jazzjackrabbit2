@@ -14,7 +14,10 @@
 #define MATAR 0x04
 #define REVIVIR 0x05
 
-GameLoop::GameLoop(): client_commands(MAX_TAM_COLA), game() {}
+GameLoop::GameLoop(uint16_t nuevo_gameloop_id):
+        client_commands(MAX_TAM_COLA), game(nuevo_gameloop_id) {
+    client_ids.push_back(nuevo_gameloop_id);
+}
 
 Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
     return client_commands;

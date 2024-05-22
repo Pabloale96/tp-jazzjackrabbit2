@@ -2,6 +2,7 @@
 #define _GAMELOOP_H_
 
 #include <cstdint>
+#include <list>
 #include <memory>
 #include <string>
 #include <vector>
@@ -17,12 +18,13 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
+    std::list<u_int16_t> client_ids;
     // una lista de personajes por client id ?
 
 public:
     // Constructor
     // Crea una cola de comandos de clientes y un vector de 5 enemigos
-    GameLoop();
+    explicit GameLoop(uint16_t nuevo_gameloop_id);
 
     // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();

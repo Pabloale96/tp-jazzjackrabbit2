@@ -5,7 +5,8 @@
 
 #include "../server_src/game_enemigo.h"
 
-Game::Game(): personaje(), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
+Game::Game(uint16_t nuevo_gameloop_id):
+        personaje(nuevo_gameloop_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
 
 Personaje Game::obtener_personaje() { return personaje; }
 
