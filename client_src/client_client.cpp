@@ -81,9 +81,13 @@ void Client::moverAbajo() { protocolo_client.enviar_accion(TipoAccion::MoverAbaj
 
 void Client::saltar() { protocolo_client.enviar_accion(TipoAccion::Saltar); }
 
-void Client::moverDerechaRapido() { protocolo_client.enviar_accion(TipoAccion::MoverDerechaRapido); }
+void Client::moverDerechaRapido() {
+    protocolo_client.enviar_accion(TipoAccion::MoverDerechaRapido);
+}
 
-void Client::moverIzquierdaRapido() { protocolo_client.enviar_accion(TipoAccion::MoverIzquierdaRapido); }
+void Client::moverIzquierdaRapido() {
+    protocolo_client.enviar_accion(TipoAccion::MoverIzquierdaRapido);
+}
 
 void Client::leer() {
     Respuesta respuesta;

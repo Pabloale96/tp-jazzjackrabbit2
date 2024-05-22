@@ -28,7 +28,7 @@ private:
     void moverIzquierdaRapido();
 
     // Saltar
-    void saltar();    
+    void saltar();
 
     // TODO: Chequear si estos 2 métodos son necesarios
     void moverArriba();
