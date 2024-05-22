@@ -33,6 +33,7 @@ bool Posicion::mover(const std::string& direccion) {
     } else if (direccion == "saltar") {
         // TODO: Capaz habria que chequear cuánto aumenta el saltar
         this->y += 2;
+        return true;
     }
     return false;
 }

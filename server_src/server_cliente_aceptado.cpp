@@ -16,7 +16,10 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gamel
         was_closed(false),
         server_msg(MAX_TAM_COLA),
         sender(protocolo_server, was_closed, server_msg),
-        receiver(protocolo_server, was_closed, gameloop_monitor, gameloop_id) {}
+        receiver(protocolo_server, was_closed, gameloop_monitor, gameloop_id) {
+    gameloop_monitor.obtener_gameloop(gameloop_id)
+            ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+}
 
 void ClienteAceptado::start() {
     receiver.start();

@@ -101,7 +101,7 @@ void Client::leer() {
 void Client::imprimir_respuesta(const Respuesta& respuesta) {
     std::cout << "El personaje está en la posición (" +
                          std::to_string(respuesta.posicion_x_personaje) + ", " +
-                         std::to_string(respuesta.posicion_y_personaje) + " )."
+                         std::to_string(respuesta.posicion_y_personaje) + ")."
               << std::endl;
 }
 
