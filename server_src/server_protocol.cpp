@@ -32,8 +32,8 @@ void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& me
 }
 
 std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido) {
-    if (mensaje_recibido == ATACAR) {
-        return std::make_unique<Atacar>();
+    if (mensaje_recibido == DISPARAR) {
+        return std::make_unique<Disparar>();
     }
     if (mensaje_recibido == MOVER_DERECHA) {
         return std::make_unique<MoverDerecha>();
@@ -46,6 +46,9 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& me
     }
     if (mensaje_recibido == MOVER_ABAJO) {
         return std::make_unique<MoverAbajo>();
+    }
+    if (mensaje_recibido == SALTAR) {
+        return std::make_unique<Saltar>();
     }
     return nullptr;
 }

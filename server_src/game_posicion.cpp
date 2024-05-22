@@ -22,6 +22,9 @@ bool Posicion::mover(const std::string& direccion) {
     } else if (direccion == "abajo") {
         this->y--;
         return true;
+    } else if (direccion == "saltar") {
+        // Capaz habria que chequear cuánto aumenta el saltar
+        this->y += 2;
     }
     return false;
 }

@@ -9,7 +9,7 @@ public:
     virtual ~Comando() {}
 };
 
-class Atacar: public Comando {
+class Disparar: public Comando {
 public:
     bool ejecutar(Game& game) override;
 };
@@ -30,6 +30,11 @@ public:
 };
 
 class MoverAbajo: public Comando {
+public:
+    bool ejecutar(Game& game) override;
+};
+
+class Saltar: public Comando {
 public:
     bool ejecutar(Game& game) override;
 };

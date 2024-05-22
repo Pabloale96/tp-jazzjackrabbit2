@@ -17,8 +17,8 @@ ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& s
 void ProtocolClient::enviar_accion(TipoAccion accion) {
     uint8_t accion_serializada;
     switch (accion) {
-        case TipoAccion::Atacar:
-            accion_serializada = ATACAR;
+        case TipoAccion::Disparar:
+            accion_serializada = DISPARAR;
             break;
         case TipoAccion::MoverDerecha:
             accion_serializada = MOVER_DERECHA;
@@ -31,6 +31,9 @@ void ProtocolClient::enviar_accion(TipoAccion accion) {
             break;
         case TipoAccion::MoverAbajo:
             accion_serializada = MOVER_ABAJO;
+            break;
+        case TipoAccion::Saltar:
+            accion_serializada = SALTAR;
             break;
         default:
             return;  // Acción no válida

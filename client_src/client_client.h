@@ -16,13 +16,14 @@ private:
     void acciones_posibles();
 
     // Le envia al server un mensaje indicando su intención de atacar
-    void atacar();
+    void disparar();
 
     // Le envia al server un mensaje indicando su intención de moverse
     void moverDerecha();
     void moverIzquierda();
     void moverArriba();
     void moverAbajo();
+    void saltar();
 
     // Espera hasta recibir la respuesta del server y la imprime
     void leer();

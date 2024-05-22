@@ -24,6 +24,7 @@ void Client::acciones_posibles() {
     std::cout << "  - Izquierda (l)" << std::endl;
     std::cout << "  - Arriba (u)" << std::endl;
     std::cout << "  - Abajo (d)" << std::endl;
+    std::cout << "  - Saltar (j)" << std::endl;
     std::cout << "  - Leer <cant_lineas_leer>" << std::endl;
     std::cout << "  - Salir (q)" << std::endl;
 }
@@ -36,7 +37,7 @@ void Client::jugar() {
     while (std::cin >> accion_actual) {
         accion_actual = toLowercase(accion_actual);
         if (accion_actual == "disparar" or accion_actual == "s") {
-            atacar();
+            disparar();
         } else if (accion_actual == "derecha" or accion_actual == "r") {
             moverDerecha();
         } else if (accion_actual == "izquierda" or accion_actual == "l") {
@@ -45,6 +46,8 @@ void Client::jugar() {
             moverArriba();
         } else if (accion_actual == "abajo" or accion_actual == "d") {
             moverAbajo();
+        } else if (accion_actual == "saltar" or accion_actual == "j") {
+            saltar();
         } else if (accion_actual == "leer") {
             if (!(std::cin >> cant_lineas_a_leer)) {
                 std::cout << "Error: No indicó la cantidad de líneas a leer" << std::endl;
@@ -61,7 +64,7 @@ void Client::jugar() {
     }
 }
 
-void Client::atacar() { protocolo_client.enviar_accion(TipoAccion::Atacar); }
+void Client::disparar() { protocolo_client.enviar_accion(TipoAccion::Disparar); }
 
 void Client::moverDerecha() { protocolo_client.enviar_accion(TipoAccion::MoverDerecha); }
 
@@ -70,6 +73,8 @@ void Client::moverIzquierda() { protocolo_client.enviar_accion(TipoAccion::Mover
 void Client::moverArriba() { protocolo_client.enviar_accion(TipoAccion::MoverArriba); }
 
 void Client::moverAbajo() { protocolo_client.enviar_accion(TipoAccion::MoverAbajo); }
+
+void Client::saltar() { protocolo_client.enviar_accion(TipoAccion::Saltar); }
 
 void Client::leer() {
     Respuesta respuesta;

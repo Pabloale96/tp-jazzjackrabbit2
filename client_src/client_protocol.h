@@ -7,7 +7,7 @@
 
 #include "../common_src/common_sockets.h"
 
-enum class TipoAccion : char { Atacar, MoverDerecha, MoverIzquierda, MoverArriba, MoverAbajo };
+enum class TipoAccion : char { Disparar, MoverDerecha, MoverIzquierda, MoverArriba, MoverAbajo, Saltar };
 
 struct Respuesta {
     // cppcheck-suppress unusedStructMember

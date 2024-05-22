@@ -2,7 +2,7 @@
 
 #include "../server_src/game_class.h"
 
-bool Atacar::ejecutar(Game& game) { return game.matar_enemigo(); }
+bool Disparar::ejecutar(Game& game) { return game.matar_enemigo(); }
 
 bool MoverDerecha::ejecutar(Game& game) { return game.mover("derecha"); }
 
@@ -12,3 +12,5 @@ bool MoverIzquierda::ejecutar(Game& game) { return game.mover("izquierda"); }
 bool MoverArriba::ejecutar(Game& game) { return game.mover("arriba"); }
 
 bool MoverAbajo::ejecutar(Game& game) { return game.mover("abajo"); }
+
+bool Saltar::ejecutar(Game& game) { return game.mover("saltar"); }
