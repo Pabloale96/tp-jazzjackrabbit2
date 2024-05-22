@@ -23,8 +23,14 @@ void ProtocolClient::enviar_accion(TipoAccion accion) {
         case TipoAccion::MoverDerecha:
             accion_serializada = MOVER_DERECHA;
             break;
+        case TipoAccion::MoverDerechaRapido:
+            accion_serializada = MOVER_DERECHA_RAPIDO;
+            break;
         case TipoAccion::MoverIzquierda:
             accion_serializada = MOVER_IZQUIERDA;
+            break;
+        case TipoAccion::MoverIzquierdaRapido:
+            accion_serializada = MOVER_IZQUIERDA_RAPIDO;
             break;
         case TipoAccion::MoverArriba:
             accion_serializada = MOVER_ARRIBA;

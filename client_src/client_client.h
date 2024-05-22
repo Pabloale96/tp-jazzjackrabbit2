@@ -15,15 +15,25 @@ private:
     // Muestra las acciones posibles que puede realizar el cliente
     void acciones_posibles();
 
-    // Le envia al server un mensaje indicando su intención de atacar
+    // A partir de acá vienen las acciones que puede realizar el cliente
+    // Disparar
     void disparar();
 
-    // Le envia al server un mensaje indicando su intención de moverse
+    // Correr
     void moverDerecha();
     void moverIzquierda();
+
+    // Corer muy rápido
+    void moverDerechaRapido();
+    void moverIzquierdaRapido();
+
+    // Saltar
+    void saltar();    
+
+    // TODO: Chequear si estos 2 métodos son necesarios
     void moverArriba();
     void moverAbajo();
-    void saltar();
+
 
     // Espera hasta recibir la respuesta del server y la imprime
     void leer();

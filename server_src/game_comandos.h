@@ -19,7 +19,17 @@ public:
     bool ejecutar(Game& game) override;
 };
 
+class MoverDerechaRapido: public Comando {
+public:
+    bool ejecutar(Game& game) override;
+};
+
 class MoverIzquierda: public Comando {
+public:
+    bool ejecutar(Game& game) override;
+};
+
+class MoverIzquierdaRapido: public Comando {
 public:
     bool ejecutar(Game& game) override;
 };

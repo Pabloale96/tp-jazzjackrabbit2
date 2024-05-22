@@ -13,8 +13,16 @@ bool Posicion::mover(const std::string& direccion) {
     if (direccion == "derecha") {
         this->x++;
         return true;
+    } else if (direccion == "derecha_rapido") {
+        // TODO: Capaz habría que chequear cuánto aumenta el mover rápido
+        this->x += 2;
+        return true;
     } else if (direccion == "izquierda") {
         this->x--;
+        return true;
+    } else if (direccion == "izquierda_rapido") {
+        // TODO: Capaz habría que chequear cuánto aumenta el mover rápido
+        this->x -= 2;
         return true;
     } else if (direccion == "arriba") {
         this->y++;
@@ -23,7 +31,7 @@ bool Posicion::mover(const std::string& direccion) {
         this->y--;
         return true;
     } else if (direccion == "saltar") {
-        // Capaz habria que chequear cuánto aumenta el saltar
+        // TODO: Capaz habria que chequear cuánto aumenta el saltar
         this->y += 2;
     }
     return false;

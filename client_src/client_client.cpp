@@ -42,6 +42,10 @@ void Client::jugar() {
             moverDerecha();
         } else if (accion_actual == "izquierda" or accion_actual == "l") {
             moverIzquierda();
+        } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
+            moverDerechaRapido();
+        } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
+            moverIzquierdaRapido();
         } else if (accion_actual == "arriba" or accion_actual == "u") {
             moverArriba();
         } else if (accion_actual == "abajo" or accion_actual == "d") {
@@ -75,6 +79,10 @@ void Client::moverArriba() { protocolo_client.enviar_accion(TipoAccion::MoverArr
 void Client::moverAbajo() { protocolo_client.enviar_accion(TipoAccion::MoverAbajo); }
 
 void Client::saltar() { protocolo_client.enviar_accion(TipoAccion::Saltar); }
+
+void Client::moverDerechaRapido() { protocolo_client.enviar_accion(TipoAccion::MoverDerechaRapido); }
+
+void Client::moverIzquierdaRapido() { protocolo_client.enviar_accion(TipoAccion::MoverIzquierdaRapido); }
 
 void Client::leer() {
     Respuesta respuesta;

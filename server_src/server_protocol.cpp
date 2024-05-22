@@ -38,8 +38,14 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& me
     if (mensaje_recibido == MOVER_DERECHA) {
         return std::make_unique<MoverDerecha>();
     }
+    if (mensaje_recibido == MOVER_DERECHA_RAPIDO) {
+        return std::make_unique<MoverDerechaRapido>();
+    }
     if (mensaje_recibido == MOVER_IZQUIERDA) {
         return std::make_unique<MoverIzquierda>();
+    }
+    if (mensaje_recibido == MOVER_IZQUIERDA_RAPIDO) {
+        return std::make_unique<MoverIzquierdaRapido>();
     }
     if (mensaje_recibido == MOVER_ARRIBA) {
         return std::make_unique<MoverArriba>();

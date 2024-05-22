@@ -21,12 +21,10 @@ bool Game::matar_enemigo() {
 }
 
 bool Game::mover(const std::string& direccion) {
-    if (direccion != "derecha" && direccion != "izquierda" && direccion != "arriba" &&
-        direccion != "abajo" && direccion != "saltar") {
-        return false;
-    } else {
-        personaje.mover(direccion);
+    if (personaje.mover(direccion)) {
         return true;
+    } else {
+        return false;
     }
 }
 
