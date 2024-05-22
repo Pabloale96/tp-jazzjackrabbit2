@@ -21,14 +21,15 @@ void Client::acciones_posibles() {
     std::cout << "Acciones posibles:" << std::endl;
     std::cout << "  - Disparar (s)" << std::endl;
     std::cout << "  - Derecha (r)" << std::endl;
+    std::cout << "  - Derecha rápido (fr)" << std::endl;
     std::cout << "  - Izquierda (l)" << std::endl;
+    std::cout << "  - Izquierda rápido (fl)" << std::endl;
     std::cout << "  - Arriba (u)" << std::endl;
     std::cout << "  - Abajo (d)" << std::endl;
     std::cout << "  - Saltar (j)" << std::endl;
     std::cout << "  - Leer <cant_lineas_leer>" << std::endl;
     std::cout << "  - Salir (q)" << std::endl;
 }
-
 
 void Client::jugar() {
     acciones_posibles();
