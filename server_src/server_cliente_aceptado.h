@@ -22,6 +22,7 @@ private:
     Queue<std::shared_ptr<GameState>> server_msg;
     ServerSender sender;
     std::unique_ptr<ServerReceiver> receiver;
+    uint16_t gameloop_id;
 
 public:
     // Constructor
@@ -35,7 +36,9 @@ public:
 
     void establecer_partida(GameloopMonitor& gameloop_monitor);
 
-    void crear_partida(GameloopMonitor& gameloop_monitor);
+    void crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida);
+
+    void joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
 
     // Inicia el sender y el receiver
     void start();

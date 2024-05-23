@@ -15,6 +15,7 @@
 
 class GameLoop: public Thread {
 private:
+    std::string nombre_partida;
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
@@ -24,7 +25,7 @@ private:
 public:
     // Constructor
     // Crea una cola de comandos de clientes y un vector de 5 enemigos
-    explicit GameLoop(uint16_t nuevo_gameloop_id);
+    explicit GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida);
 
     // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();

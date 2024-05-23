@@ -22,6 +22,28 @@
 ProtocolServer::ProtocolServer(Socket&& socket_cliente):
         socket_cliente(std::move(socket_cliente)) {}
 
+uint8_t ProtocolServer::crear_partida(bool& was_closed) {
+    uint8_t buffer = 0;
+    socket_cliente.recvall(&buffer, sizeof(uint8_t), &was_closed);
+    return buffer;
+}
+
+void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& was_closed) {
+    uint8_t nombre_partida_len = 0;
+    socket_cliente.recvall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return;
+    }
+    // TODO: mejorar esta parte para que no tenga limite de buffer
+    char nombre_partida_buffer[256];
+    socket_cliente.recvall(nombre_partida_buffer, nombre_partida_len, &was_closed);
+    if (was_closed) {
+        return;
+    }
+    nombre_partida_buffer[nombre_partida_len] = '\0';
+    nombre_partida = nombre_partida_buffer;
+}
+
 void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido) {
     if (was_closed) {
         return;

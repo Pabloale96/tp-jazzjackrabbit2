@@ -14,8 +14,8 @@
 #define MATAR 0x04
 #define REVIVIR 0x05
 
-GameLoop::GameLoop(uint16_t nuevo_gameloop_id):
-        client_commands(MAX_TAM_COLA), game(nuevo_gameloop_id) {
+GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida):
+        nombre_partida(nombre_partida), client_commands(MAX_TAM_COLA), game(nuevo_gameloop_id) {
     client_ids.push_back(nuevo_gameloop_id);
 }
 

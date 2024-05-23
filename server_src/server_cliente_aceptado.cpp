@@ -5,6 +5,7 @@
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
+#include "../common_src/common_protocol_utils.h"
 #include "../common_src/common_sockets.h"
 
 #define MAX_TAM_COLA 10
@@ -18,25 +19,28 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gamel
         sender(protocolo_server, was_closed, server_msg),
         receiver(nullptr) {}
 
-void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor) {
+void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
+                                    const std::string& nombre_partida) {
     uint16_t nuevo_gameloop_id = 0;
-    nuevo_gameloop_id = gameloop_monitor.agregar_gameloop();
+    nuevo_gameloop_id = gameloop_monitor.agregar_gameloop(nombre_partida);
     gameloop_monitor.obtener_gameloop(nuevo_gameloop_id)
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                 nuevo_gameloop_id);
     lista_de_gameloops_activos.push_back(nuevo_gameloop_id);
+    gameloop_id = nuevo_gameloop_id;
     return;
 }
 
+void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) { return; }
+
 void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
-    if (lista_de_gameloops_activos.empty()) {
-        // Si está vacío, se crea un nuevo gameloop
-        crear_partida(gameloop_monitor);
+    if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {
+        std::string nombre_partida;
+        protocolo_server.recibir_nombre_partida(nombre_partida, was_closed);
+        crear_partida(gameloop_monitor, nombre_partida);
     } else {
-        // Si no está vacío, puede o crear uno nuevo o joinearse a la existente
-        // protocolo_server.establecer_partida();
-        crear_partida(gameloop_monitor);
+        joinearse_a_una_partida(gameloop_monitor);
     }
 }
 

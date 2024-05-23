@@ -8,11 +8,57 @@
 
 #include "../common_src/common_protocol_utils.h"
 
-#define MUERTO 0x04
-#define REVIVIO 0x05
-
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
+
+bool ProtocolClient::crear_partida(std::string& nombre_partida) {
+    uint8_t accion_serializada = CREAR_PARTIDA;
+    enviar_accion_serializada(accion_serializada, was_closed);
+    if (was_closed) {
+        return false;
+    }
+    uint8_t nombre_partida_len = nombre_partida.size();
+    socket_cliente.sendall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return false;
+    }
+    socket_cliente.sendall(nombre_partida.c_str(), nombre_partida_len, &was_closed);
+    return true;
+}
+
+bool ProtocolClient::unirse_a_partida() {
+    uint8_t accion_serializada = UNIRSE_A_PARTIDA;
+    enviar_accion_serializada(accion_serializada, was_closed);
+    if (was_closed) {
+        return false;
+    }
+    return true;
+}
+
+void ProtocolClient::recibir_partidas_disponibles() {
+    bool was_closed = false;
+    uint8_t cantidad_partidas;
+    socket_cliente.recvall(&cantidad_partidas, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return;
+    }
+    cantidad_partidas = ntohs(cantidad_partidas);
+    std::cout << "Cantidad de partidas disponibles: " << (int)cantidad_partidas << std::endl;
+    for (int i = 0; i < cantidad_partidas; i++) {
+        uint8_t nombre_partida_len;
+        socket_cliente.recvall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        char nombre_partida[256];
+        socket_cliente.recvall(nombre_partida, nombre_partida_len, &was_closed);
+        if (was_closed) {
+            return;
+        }
+        nombre_partida[nombre_partida_len] = '\0';
+        std::cout << "Partida " << i + 1 << ": " << nombre_partida << std::endl;
+    }
+}
 
 void ProtocolClient::enviar_accion(TipoAccion accion) {
     uint8_t accion_serializada;

@@ -9,7 +9,121 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         servicio(servicio),
         protocolo_client(hostname.c_str(), servicio.c_str()) {}
 
-std::string toLowercase(const std::string& str) {
+void Client::imprimir_portada() {
+    std::cout
+            << "╔════════════════════════════════════════════════════════════════════════════════╗"
+            << std::endl;
+    std::cout
+            << "║                                                                                ║"
+            << std::endl;
+    std::cout
+            << "║                       ██╗ █████╗ ███████╗███████╗                              ║"
+            << std::endl;
+    std::cout
+            << "║                       ██║██╔══██╗╚══███╔╝╚══███╔╝                              ║"
+            << std::endl;
+    std::cout
+            << "║                       ██║███████║  ███╔╝   ███╔╝                               ║"
+            << std::endl;
+    std::cout
+            << "║                  ██   ██║██╔══██║ ███╔╝   ███╔╝                                ║"
+            << std::endl;
+    std::cout
+            << "║                  ╚█████╔╝██║  ██║███████╗███████╗                              ║"
+            << std::endl;
+    std::cout
+            << "║                   ╚════╝ ╚═╝  ╚═╝╚══════╝╚══════╝                              ║"
+            << std::endl;
+    std::cout
+            << "║       ██╗ █████╗  ██████╗██╗  ██╗██████╗  █████╗ ██████╗ ██████╗ ██╗████████╗  ║"
+            << std::endl;
+    std::cout
+            << "║       ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║╚══██╔══╝  ║"
+            << std::endl;
+    std::cout
+            << "║       ██║███████║██║     █████╔╝ ██████╔╝███████║██████╔╝██████╔╝██║   ██║     ║"
+            << std::endl;
+    std::cout
+            << "║  ██   ██║██╔══██║██║     ██╔═██╗ ██╔══██╗██╔══██║██╔══██╗██╔══██╗██║   ██║     ║"
+            << std::endl;
+    std::cout
+            << "║  ╚█████╔╝██║  ██║╚██████╗██║  ██╗██║  ██║██║  ██║██████╔╝██████╔╝██║   ██║     ║"
+            << std::endl;
+    std::cout
+            << "║   ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═════╝ ╚═╝   ╚═╝     ║"
+            << std::endl;
+    std::cout
+            << "║                                  ██████╗                                       ║"
+            << std::endl;
+    std::cout
+            << "║                                  ╚════██╗                                      ║"
+            << std::endl;
+    std::cout
+            << "║                                   █████╔╝                                      ║"
+            << std::endl;
+    std::cout
+            << "║                                  ██╔═══╝                                       ║"
+            << std::endl;
+    std::cout
+            << "║                                  ███████╗                                      ║"
+            << std::endl;
+    std::cout
+            << "║                                  ╚══════╝                                      ║"
+            << std::endl;
+    std::cout
+            << "║                                                                                ║"
+            << std::endl;
+    std::cout
+            << "╚════════════════════════════════════════════════════════════════════════════════╝"
+            << std::endl;
+}
+
+void Client::imprimir_bienvenida() {
+    imprimir_portada();
+    std::cout << "Bienvenido al juego!" << std::endl;
+}
+
+void Client::crear_partida() {
+    std::cout << "Ingrese el nombre de la partida que desea crear" << std::endl;
+    std::string nombre_partida;
+    std::cin.ignore();
+    std::getline(std::cin, nombre_partida);
+    if (protocolo_client.crear_partida(nombre_partida) == false) {
+        std::cout << "Error: No se pudo crear la partida" << std::endl;
+        return;
+    }
+}
+
+void Client::unirse_a_partida() {
+    if (protocolo_client.unirse_a_partida() == true) {
+        std::cout << "Estas son las partidas disponibles para unirse" << std::endl;
+        protocolo_client.recibir_partidas_disponibles();
+    } else {
+        std::cout << "Error: No se pudo unir a la partida" << std::endl;
+        return;
+    }
+}
+
+void Client::establecer_partida() {
+    std::cout << "¿Desea crear una partida o ver las partidas disponibles para unirse?"
+              << std::endl;
+    std::cout << "Ingrese 'c' para crear una partida o 'j' para unirse a una partida" << std::endl;
+    std::string accion_actual;
+    while (std::cin >> accion_actual) {
+        accion_actual = toLowercase(accion_actual);
+        if (accion_actual == "c") {
+            crear_partida();
+            return;
+        } else if (accion_actual == "j") {
+            unirse_a_partida();
+            return;
+        } else {
+            std::cout << "Error: Acción no reconocida" << std::endl;
+        }
+    }
+}
+
+std::string Client::toLowercase(const std::string& str) {
     std::string minusculas;
     for (char c: str) {
         minusculas += std::tolower(c);
@@ -32,6 +146,8 @@ void Client::acciones_posibles() {
 }
 
 void Client::jugar() {
+    imprimir_bienvenida();
+    establecer_partida();
     acciones_posibles();
     std::string accion_actual;
     int cant_lineas_a_leer;

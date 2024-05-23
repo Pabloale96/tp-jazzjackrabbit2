@@ -36,6 +36,12 @@ public:
     // Carga en el diccionario las acciones posibles y su valor asociado
     ProtocolClient(const std::string& hostname, const std::string& servicio);
 
+    bool crear_partida(std::string& nombre_partida);
+
+    bool unirse_a_partida();
+
+    void recibir_partidas_disponibles();
+
     // Recibe del cliente la accion para serializar y enviar al server
     void enviar_accion(TipoAccion accion);
 

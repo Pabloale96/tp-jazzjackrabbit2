@@ -2,12 +2,12 @@
 
 GameloopMonitor::GameloopMonitor(): gameloop_id(ID_INICIAL) {}
 
-uint16_t GameloopMonitor::agregar_gameloop() {
+uint16_t GameloopMonitor::agregar_gameloop(std::string nombre_partida) {
     try {
         std::unique_lock<std::mutex> lock(m);
         uint16_t nuevo_gameloop_id = gameloop_id;
         gameloop_id++;
-        GameLoop* nuevo_gameloop = new GameLoop(nuevo_gameloop_id);
+        GameLoop* nuevo_gameloop = new GameLoop(nuevo_gameloop_id, nombre_partida);
         nuevo_gameloop->start();
         diccionario_de_gameloops.insert(std::make_pair(nuevo_gameloop_id, nuevo_gameloop));
         return nuevo_gameloop_id;

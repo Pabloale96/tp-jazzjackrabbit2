@@ -23,7 +23,7 @@ private:
 public:
     GameloopMonitor();
 
-    uint16_t agregar_gameloop();
+    uint16_t agregar_gameloop(std::string nombre_partida);
 
     void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id);
 

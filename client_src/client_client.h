@@ -12,6 +12,18 @@ private:
     std::string servicio;
     ProtocolClient protocolo_client;
 
+    std::string toLowercase(const std::string& str);
+
+    void imprimir_bienvenida();
+
+    void imprimir_portada();
+
+    void establecer_partida();
+
+    void crear_partida();
+
+    void unirse_a_partida();
+
     // Muestra las acciones posibles que puede realizar el cliente
     void acciones_posibles();
 

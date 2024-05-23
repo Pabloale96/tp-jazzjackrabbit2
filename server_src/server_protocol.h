@@ -18,7 +18,9 @@ public:
     // Constructor
     explicit ProtocolServer(Socket&& socket_cliente);
 
-    void establecer_partida();
+    uint8_t crear_partida(bool& was_closed);
+
+    void recibir_nombre_partida(std::string& nombre_partida, bool& was_closed);
 
     // Como no se cuantas acciones me va a mandar el cliente, itero hasta que
     // termine el receive
