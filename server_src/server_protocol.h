@@ -18,6 +18,8 @@ public:
     // Constructor
     explicit ProtocolServer(Socket&& socket_cliente);
 
+    void establecer_partida();
+
     // Como no se cuantas acciones me va a mandar el cliente, itero hasta que
     // termine el receive
     void recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido);

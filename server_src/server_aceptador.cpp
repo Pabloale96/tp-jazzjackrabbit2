@@ -20,9 +20,9 @@ void Aceptador::run() {
     while (!was_closed_aceptador) {
         try {
             Socket socket_cliente = socket_server.accept();
-            uint16_t gameloop_id = monitor_diccionario_de_gameloops.agregar_gameloop();
             lista_clientes.emplace_back(std::move(socket_cliente), monitor_diccionario_de_gameloops,
-                                        gameloop_id);
+                                        lista_de_gameloops_activos);
+            lista_clientes.back().establecer_partida(monitor_diccionario_de_gameloops);
             lista_clientes.back().start();
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {

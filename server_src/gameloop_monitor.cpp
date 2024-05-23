@@ -17,6 +17,18 @@ uint16_t GameloopMonitor::agregar_gameloop() {
     }
 }
 
+void GameloopMonitor::agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id) {
+    try {
+        std::unique_lock<std::mutex> lock(m);
+        GameLoop* gameloop = obtener_gameloop(gameloop_id);
+        gameloop->agregar_cliente(client_id);
+        clients_ids.push_back(client_id);
+    } catch (const std::exception& e) {
+        std::cerr << "Error al agregar cliente al gameloop: " << e.what() << std::endl;
+        throw;
+    }
+}
+
 GameLoop* GameloopMonitor::obtener_gameloop(uint16_t gameloop_id) {
     std::unique_lock<std::mutex> lock(m);
     auto it = diccionario_de_gameloops.find(gameloop_id);

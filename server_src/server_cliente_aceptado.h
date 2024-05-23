@@ -1,6 +1,7 @@
 #ifndef _SERVER_CLIENTE_ACEPTADO_H_
 #define _SERVER_CLIENTE_ACEPTADO_H_
 
+#include <list>
 #include <memory>
 #include <string>
 
@@ -15,12 +16,12 @@
 
 class ClienteAceptado {
 private:
-    uint16_t gameloop_id;
     ProtocolServer protocolo_server;
     bool was_closed;
+    std::list<uint16_t>& lista_de_gameloops_activos;
     Queue<std::shared_ptr<GameState>> server_msg;
     ServerSender sender;
-    ServerReceiver receiver;
+    std::unique_ptr<ServerReceiver> receiver;
 
 public:
     // Constructor
@@ -30,7 +31,11 @@ public:
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
     ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor,
-                    uint16_t gameloop_id);
+                    std::list<uint16_t>& lista_de_gameloops_activos);
+
+    void establecer_partida(GameloopMonitor& gameloop_monitor);
+
+    void crear_partida(GameloopMonitor& gameloop_monitor);
 
     // Inicia el sender y el receiver
     void start();

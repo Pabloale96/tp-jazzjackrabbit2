@@ -15,6 +15,7 @@ private:
     Socket socket_server;
     std::atomic<bool> was_closed_aceptador;
     GameloopMonitor monitor_diccionario_de_gameloops;
+    std::list<uint16_t> lista_de_gameloops_activos;
 
 public:
     // Constructor

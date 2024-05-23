@@ -28,6 +28,8 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
+void GameLoop::agregar_cliente(uint16_t client_id) { client_ids.push_back(client_id); }
+
 void GameLoop::run() {
     try {
         while (true) {

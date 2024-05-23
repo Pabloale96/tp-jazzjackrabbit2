@@ -18,7 +18,7 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
-    std::list<u_int16_t> client_ids;
+    std::list<uint16_t> client_ids;
     // una lista de personajes por client id ?
 
 public:
@@ -33,6 +33,8 @@ public:
     // de colas
     void agregar_queue_server_msg_de_cliente_aceptado(
             Queue<std::shared_ptr<GameState>>& nueva_queue);
+
+    void agregar_cliente(uint16_t client_id);
 
     // Popea un comando de la cola de comandos de clientes y lo procesa
     void run() override;
