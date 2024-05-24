@@ -44,6 +44,42 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
     nombre_partida = nombre_partida_buffer;
 }
 
+void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
+                                                 bool& was_closed) {
+    std::map<uint16_t, std::string> partidas_disponibles;
+    gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
+    uint16_t cant_partidas = partidas_disponibles.size();
+    cant_partidas = htons(cant_partidas);
+    socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);
+    if (was_closed) {
+        return;
+    }
+    for (const auto& pair: partidas_disponibles) {
+        uint16_t id = pair.first;
+        id = htons(id);
+        socket_cliente.sendall(&id, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        std::string nombre_partida = pair.second;
+        uint8_t nombre_partida_len = nombre_partida.size();
+        socket_cliente.sendall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        socket_cliente.sendall(nombre_partida.c_str(), nombre_partida_len, &was_closed);
+        if (was_closed) {
+            return;
+        }
+    }
+}
+
+uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
+    uint16_t buffer = 0;
+    socket_cliente.recvall(&buffer, sizeof(uint16_t), &was_closed);
+    return buffer;
+}
+
 void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido) {
     if (was_closed) {
         return;
@@ -90,26 +126,57 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed) {
     return deserializar_acciones(mensaje_recibido);
 }
 
-void ProtocolServer::obtener_posicion_del_personaje(GameState& msg,
-                                                    std::vector<uint16_t>& posicion_personaje) {
-    posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_x());
-    posicion_personaje.push_back(msg.obtener_personaje().obtener_posicion().get_posicion_y());
-}
-
 void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
     // Envio el 0x06
     uint8_t mensaje = MENSAJE;
     socket_cliente.sendall(&mensaje, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return;
+    }
+    std::map<uint16_t, Personaje>& diccionario_de_personajes =
+            msg.obtener_diccionario_de_personajes();
+    int cant_personajes = diccionario_de_personajes.size();
+    cant_personajes = htons(cant_personajes);
+    socket_cliente.sendall(&cant_personajes, sizeof(int), &was_closed);
 
-    // Envio la cant de enemigos vivos y muertos
-    std::vector<uint16_t> posicion_personaje;
-    obtener_posicion_del_personaje(msg, posicion_personaje);
+    for (auto& pair: diccionario_de_personajes) {
+        Personaje& personaje = pair.second;
+        // Envio el id del personaje
+        uint16_t id_personaje = personaje.obtener_personaje_id();
+        id_personaje = htons(id_personaje);
+        socket_cliente.sendall(&id_personaje, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        // Envio la posicion del personaje
+        uint16_t posicion_x = personaje.obtener_posicion().get_posicion_x();
+        posicion_x = htons(posicion_x);
+        socket_cliente.sendall(&posicion_x, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        uint16_t posicion_y = personaje.obtener_posicion().get_posicion_y();
+        posicion_y = htons(posicion_y);
+        socket_cliente.sendall(&posicion_y, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
 
-    uint16_t posicion_x = htons(posicion_personaje[0]);
-    socket_cliente.sendall(&posicion_x, sizeof(uint16_t), &was_closed);
+        /*
 
-    uint16_t posicion_y = htons(posicion_personaje[1]);
-    socket_cliente.sendall(&posicion_y, sizeof(uint16_t), &was_closed);
+        uint8_t vida = personaje.obtener_vida();
+        socket_cliente.sendall(&vida, sizeof(uint8_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+
+        uint8_t estado = personaje.obtener_estado();
+        socket_cliente.sendall(&estado, sizeof(uint8_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        */
+    }
 }
 
 void ProtocolServer::cerrar_socket_cliente() {

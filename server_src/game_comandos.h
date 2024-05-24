@@ -5,6 +5,7 @@
 
 class Comando {
 public:
+    uint16_t client_id;
     virtual bool ejecutar(Game& game) = 0;
     virtual ~Comando() {}
 };

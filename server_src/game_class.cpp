@@ -5,10 +5,20 @@
 
 #include "../server_src/game_enemigo.h"
 
-Game::Game(uint16_t nuevo_gameloop_id):
-        personaje(nuevo_gameloop_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {}
+Game::Game(uint16_t client_id): enemigos(NUMERO_INICIAL_ENEMIGOS) {
+    personajes.push_back(Personaje(client_id));
+}
 
-Personaje Game::obtener_personaje() { return personaje; }
+std::vector<Personaje> Game::obtener_vector_de_personajes() { return personajes; }
+
+Personaje Game::obtener_personaje(uint16_t client_id) {
+    for (auto& personaje: personajes) {
+        if (personaje.obtener_personaje_id() == client_id) {
+            return personaje;
+        }
+    }
+    throw std::runtime_error("No se encontro el personaje");
+}
 
 bool Game::matar_enemigo() {
     for (auto& enemigo: enemigos) {
@@ -20,8 +30,8 @@ bool Game::matar_enemigo() {
     return false;
 }
 
-bool Game::mover(const std::string& direccion) {
-    if (personaje.mover(direccion)) {
+bool Game::mover(const std::string& direccion, uint16_t client_id) {
+    if (obtener_personaje(client_id).mover(direccion)) {
         return true;
     } else {
         return false;

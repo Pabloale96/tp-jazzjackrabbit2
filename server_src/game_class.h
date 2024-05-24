@@ -13,15 +13,17 @@
 
 class Game {
 private:
-    Personaje personaje;
+    std::vector<Personaje> personajes;
     std::vector<Enemigo> enemigos;
 
 public:
-    explicit Game(uint16_t nuevo_gameloop_id);
+    explicit Game(uint16_t client_id);
 
-    Personaje obtener_personaje();
+    std::vector<Personaje> obtener_vector_de_personajes();
 
-    bool mover(const std::string& direccion);
+    Personaje obtener_personaje(uint16_t client_id);
+
+    bool mover(const std::string& direccion, uint16_t client_id);
 
     bool matar_enemigo();
 

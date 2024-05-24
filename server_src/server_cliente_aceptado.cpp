@@ -9,30 +9,36 @@
 #include "../common_src/common_sockets.h"
 
 #define MAX_TAM_COLA 10
+#define PARTIDA_NO_ASIGNADA 0
 
-ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor,
-                                 std::list<uint16_t>& lista_de_gameloops_activos):
+ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente):
+        id_cliente(id_cliente),
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
-        lista_de_gameloops_activos(lista_de_gameloops_activos),
         server_msg(MAX_TAM_COLA),
         sender(protocolo_server, was_closed, server_msg),
-        receiver(nullptr) {}
+        receiver(nullptr),
+        gameloop_id(PARTIDA_NO_ASIGNADA) {}
 
 void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
                                     const std::string& nombre_partida) {
-    uint16_t nuevo_gameloop_id = 0;
-    nuevo_gameloop_id = gameloop_monitor.agregar_gameloop(nombre_partida);
-    gameloop_monitor.obtener_gameloop(nuevo_gameloop_id)
+    gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente);
+    gameloop_monitor.obtener_gameloop(gameloop_id)
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
-                                                nuevo_gameloop_id);
-    lista_de_gameloops_activos.push_back(nuevo_gameloop_id);
-    gameloop_id = nuevo_gameloop_id;
+                                                gameloop_id);
     return;
 }
 
-void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) { return; }
+void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) {
+    protocolo_server.enviar_partidas_disponibles(gameloop_monitor, was_closed);
+    uint16_t gameloop_id = protocolo_server.recibir_id_partida(was_closed);
+    gameloop_monitor.obtener_gameloop(gameloop_id)
+            ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+    receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
+                                                gameloop_id);
+    return;
+}
 
 void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
     if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {

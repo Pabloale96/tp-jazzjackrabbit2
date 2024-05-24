@@ -14,14 +14,14 @@
 class Personaje {
 
 private:
-    uint16_t personaje_id;
+    uint16_t client_id;
     int puntos;
     int vida;
     Arma arma;
     Posicion posicion;
 
 public:
-    explicit Personaje(uint16_t nuevo_gameloop_id);
+    explicit Personaje(uint16_t client_id);
 
     bool mover(const std::string& direccion);
 

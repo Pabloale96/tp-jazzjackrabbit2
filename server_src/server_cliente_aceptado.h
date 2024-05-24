@@ -16,9 +16,9 @@
 
 class ClienteAceptado {
 private:
+    uint16_t id_cliente;
     ProtocolServer protocolo_server;
     bool was_closed;
-    std::list<uint16_t>& lista_de_gameloops_activos;
     Queue<std::shared_ptr<GameState>> server_msg;
     ServerSender sender;
     std::unique_ptr<ServerReceiver> receiver;
@@ -31,8 +31,7 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
-    ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& gameloop_monitor,
-                    std::list<uint16_t>& lista_de_gameloops_activos);
+    ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente);
 
     void establecer_partida(GameloopMonitor& gameloop_monitor);
 

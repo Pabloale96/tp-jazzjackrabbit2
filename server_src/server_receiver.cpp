@@ -14,6 +14,7 @@ ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_close
         protocolo_server(protocolo_server),
         was_closed(was_closed),
         client_commands(gameloop_monitor.obtener_queue_de_client_commands(gameloop_id)) {}
+// client_id?
 
 void ServerReceiver::run() {
     while (!was_closed) {

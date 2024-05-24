@@ -10,20 +10,23 @@
 #include "../server_src/server_cliente_aceptado.h"
 #include "../server_src/server_protocol.h"
 
+#define ID_CLIENTE_INICIAL 0
+
 Aceptador::Aceptador(const std::string& servname):
         socket_server(servname.c_str()),
         was_closed_aceptador(false),
-        monitor_diccionario_de_gameloops() {}
+        monitor_diccionario_de_gameloops(),
+        client_id(ID_CLIENTE_INICIAL) {}
 
 void Aceptador::run() {
     std::list<ClienteAceptado> lista_clientes;
     while (!was_closed_aceptador) {
         try {
             Socket socket_cliente = socket_server.accept();
-            lista_clientes.emplace_back(std::move(socket_cliente), monitor_diccionario_de_gameloops,
-                                        lista_de_gameloops_activos);
+            lista_clientes.emplace_back(std::move(socket_cliente), client_id);
             lista_clientes.back().establecer_partida(monitor_diccionario_de_gameloops);
             lista_clientes.back().start();
+            client_id++;
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
                 // TODO: ahora el monitor de gamellops tiene que cerrar los gameloops

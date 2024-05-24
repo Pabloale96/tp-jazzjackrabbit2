@@ -9,6 +9,7 @@
 #include "../common_src/common_sockets.h"
 #include "../server_src/game_comandos.h"
 #include "../server_src/game_state.h"
+#include "../server_src/gameloop_monitor.h"
 
 class ProtocolServer {
 private:
@@ -22,6 +23,10 @@ public:
 
     void recibir_nombre_partida(std::string& nombre_partida, bool& was_closed);
 
+    void enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor, bool& was_closed);
+
+    uint16_t recibir_id_partida(bool& was_closed);
+
     // Como no se cuantas acciones me va a mandar el cliente, itero hasta que
     // termine el receive
     void recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido);
@@ -32,8 +37,6 @@ public:
 
     // Toma los valores del mensaje y los traduce a acciones
     std::unique_ptr<Comando> deserializar_acciones(const uint8_t& mensaje_recibido);
-
-    void obtener_posicion_del_personaje(GameState& msg, std::vector<uint16_t>& posicion_personaje);
 
     // Para poder enviar comandos
     void enviar_respuesta(GameState& msg, bool& was_closed);
