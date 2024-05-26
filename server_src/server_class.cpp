@@ -14,6 +14,7 @@ void Server::jugar() {
     while (std::cin.get() != 'q') {
         // Loopeo hasta que encuentro un q o un ctrl+c
     }
+    // TODO: Notificar a los clientes que se va a cerrar el servidor
     aceptador.stop();
     aceptador.join();
 }

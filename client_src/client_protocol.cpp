@@ -11,6 +11,8 @@
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
 
+// ********************** PROTOCOLOS DE LOBBY **********************
+
 bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     uint8_t accion_serializada = CREAR_PARTIDA;
     enviar_accion_serializada(accion_serializada, was_closed);
@@ -69,6 +71,8 @@ void ProtocolClient::enviar_id_partida(uint16_t id_partida) {
     id_partida = htons(id_partida);
     socket_cliente.sendall(&id_partida, sizeof(uint16_t), &was_closed);
 }
+
+// ********************** PROTOCOLOS DE JUEGO **********************
 
 void ProtocolClient::enviar_accion(TipoAccion accion) {
     uint8_t accion_serializada;
