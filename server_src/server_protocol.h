@@ -36,7 +36,8 @@ public:
     std::unique_ptr<Comando> recibir_acciones(bool& was_closed, uint16_t id_cliente);
 
     // Toma los valores del mensaje y los traduce a acciones
-    std::unique_ptr<Comando> deserializar_acciones(const uint8_t& mensaje_recibido, uint16_t cliente_id);
+    std::unique_ptr<Comando> deserializar_acciones(const uint8_t& mensaje_recibido,
+                                                   uint16_t cliente_id);
 
     // Para poder enviar comandos
     void enviar_respuesta(GameState& msg, bool& was_closed);

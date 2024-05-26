@@ -1,5 +1,6 @@
 #include "../server_src/game_class.h"
 
+#include <algorithm>  // find_if()
 #include <memory>
 #include <string>
 
@@ -13,12 +14,16 @@ Game::Game(uint16_t client_id): enemigos(NUMERO_INICIAL_ENEMIGOS) {
 std::vector<Personaje> Game::obtener_vector_de_personajes() { return personajes; }
 
 Personaje& Game::obtener_personaje(uint16_t client_id) {
-    for (auto& personaje: personajes) {
-        if (personaje.obtener_personaje_id() == client_id) {
-            return personaje;
-        }
+    auto it = std::find_if(personajes.begin(), personajes.end(),
+                           [client_id](const Personaje& personaje) {
+                               return personaje.obtener_personaje_id() == client_id;
+                           });
+
+    if (it != personajes.end()) {
+        return *it;
+    } else {
+        throw std::runtime_error("No se encontro el personaje");
     }
-    throw std::runtime_error("No se encontro el personaje");
 }
 
 bool Game::matar_enemigo() {
@@ -50,7 +55,6 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
         gamestate.obtener_diccionario_de_personajes().insert(
                 std::make_pair(enemigo.obtener_enemigo_id(), enemigo));
     }*/
-
 }
 
 bool Game::aumentar_iteraciones() {

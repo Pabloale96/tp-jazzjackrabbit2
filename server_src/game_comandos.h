@@ -9,9 +9,7 @@ public:
     virtual bool ejecutar(Game& game) = 0;
     virtual ~Comando() {}
 
-    void set_client_id(uint16_t client_id) {
-        this->client_id = client_id;
-    }
+    void set_client_id(uint16_t client_id) { this->client_id = client_id; }
 };
 
 class Disparar: public Comando {

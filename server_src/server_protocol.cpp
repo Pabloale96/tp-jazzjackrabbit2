@@ -22,6 +22,8 @@
 ProtocolServer::ProtocolServer(Socket&& socket_cliente):
         socket_cliente(std::move(socket_cliente)) {}
 
+// ********************** PROTOCOLOS DE LOBBY **********************
+
 uint8_t ProtocolServer::crear_partida(bool& was_closed) {
     uint8_t buffer = 0;
     socket_cliente.recvall(&buffer, sizeof(uint8_t), &was_closed);
@@ -80,6 +82,8 @@ uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
     return buffer;
 }
 
+// ********************** PROTOCOLOS DE JUEGO **********************
+
 void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido) {
     if (was_closed) {
         return;
@@ -89,7 +93,8 @@ void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& me
     mensaje_recibido = buffer;
 }
 
-std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido, uint16_t cliente_id) {
+std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido,
+                                                               uint16_t cliente_id) {
     if (mensaje_recibido == DISPARAR) {
         std::unique_ptr<Comando> comando = std::make_unique<Disparar>();
         comando->set_client_id(cliente_id);
@@ -149,14 +154,14 @@ void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
     if (was_closed) {
         return;
     }
-    std::map<uint16_t, Personaje>& diccionario_de_personajes =
+    const std::map<uint16_t, Personaje>& diccionario_de_personajes =
             msg.obtener_diccionario_de_personajes();
     int cant_personajes = diccionario_de_personajes.size();
     cant_personajes = htons(cant_personajes);
     socket_cliente.sendall(&cant_personajes, sizeof(int), &was_closed);
 
     for (auto& pair: diccionario_de_personajes) {
-        Personaje& personaje = pair.second;
+        const Personaje& personaje = pair.second;
         // Envio el id del personaje
         uint16_t id_personaje = personaje.obtener_personaje_id();
         id_personaje = htons(id_personaje);

@@ -10,7 +10,8 @@
 #include "../server_src/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,
-                               GameloopMonitor& gameloop_monitor, uint16_t gameloop_id, uint16_t cliente_id):
+                               GameloopMonitor& gameloop_monitor, uint16_t gameloop_id,
+                               uint16_t cliente_id):
         protocolo_server(protocolo_server),
         was_closed(was_closed),
         cliente_id(cliente_id),
