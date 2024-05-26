@@ -449,3 +449,56 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_VISIBILITY succeeded with the following output:
+Change Dir: /media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_40fa8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_40fa8.dir/build.make CMakeFiles/cmTC_40fa8.dir/build
+gmake[1]: Entering directory '/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_40fa8.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -fvisibility=hidden -std=c++17 -o CMakeFiles/cmTC_40fa8.dir/src.cxx.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp/src.cxx"
+Linking CXX executable cmTC_40fa8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_40fa8.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_40fa8.dir/src.cxx.o -o cmTC_40fa8 
+gmake[1]: Leaving directory '/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY succeeded with the following output:
+Change Dir: /media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_743ba/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_743ba.dir/build.make CMakeFiles/cmTC_743ba.dir/build
+gmake[1]: Entering directory '/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_743ba.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -fvisibility-inlines-hidden -std=c++17 -o CMakeFiles/cmTC_743ba.dir/src.cxx.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp/src.cxx"
+Linking CXX executable cmTC_743ba
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_743ba.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_743ba.dir/src.cxx.o -o cmTC_743ba 
+gmake[1]: Leaving directory '/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR succeeded with the following output:
+Change Dir: /media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_49375/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_49375.dir/build.make CMakeFiles/cmTC_49375.dir/build
+gmake[1]: Entering directory '/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_49375.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_HAS_DEPRECATED_ATTR  -std=c++17 -o CMakeFiles/cmTC_49375.dir/src.cxx.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp/src.cxx"
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
+    2 |     int main() { return somefunc();}
+      |                         ~~~~~~~~^~
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp/src.cxx:1:37: note: declared here
+    1 | __attribute__((__deprecated__)) int somefunc() { return 0; }
+      |                                     ^~~~~~~~
+Linking CXX executable cmTC_49375
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49375.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_49375.dir/src.cxx.o -o cmTC_49375 
+gmake[1]: Leaving directory '/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+__attribute__((__deprecated__)) int somefunc() { return 0; }
+    int main() { return somefunc();}

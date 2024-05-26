@@ -101,22 +101,123 @@ CMakeFiles/gui.dir/src/gui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/gui.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/gui.cpp" -o CMakeFiles/gui.dir/src/gui.cpp.s
 
+CMakeFiles/gui.dir/src/main.cpp.o: CMakeFiles/gui.dir/flags.make
+CMakeFiles/gui.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/gui.dir/src/main.cpp.o: CMakeFiles/gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/gui.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gui.dir/src/main.cpp.o -MF CMakeFiles/gui.dir/src/main.cpp.o.d -o CMakeFiles/gui.dir/src/main.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/main.cpp"
+
+CMakeFiles/gui.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/main.cpp" > CMakeFiles/gui.dir/src/main.cpp.i
+
+CMakeFiles/gui.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/main.cpp" -o CMakeFiles/gui.dir/src/main.cpp.s
+
+CMakeFiles/gui.dir/src/elements/animaciones.cpp.o: CMakeFiles/gui.dir/flags.make
+CMakeFiles/gui.dir/src/elements/animaciones.cpp.o: ../src/elements/animaciones.cpp
+CMakeFiles/gui.dir/src/elements/animaciones.cpp.o: CMakeFiles/gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gui.dir/src/elements/animaciones.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gui.dir/src/elements/animaciones.cpp.o -MF CMakeFiles/gui.dir/src/elements/animaciones.cpp.o.d -o CMakeFiles/gui.dir/src/elements/animaciones.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/animaciones.cpp"
+
+CMakeFiles/gui.dir/src/elements/animaciones.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui.dir/src/elements/animaciones.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/animaciones.cpp" > CMakeFiles/gui.dir/src/elements/animaciones.cpp.i
+
+CMakeFiles/gui.dir/src/elements/animaciones.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/elements/animaciones.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/animaciones.cpp" -o CMakeFiles/gui.dir/src/elements/animaciones.cpp.s
+
+CMakeFiles/gui.dir/src/elements/escenario.cpp.o: CMakeFiles/gui.dir/flags.make
+CMakeFiles/gui.dir/src/elements/escenario.cpp.o: ../src/elements/escenario.cpp
+CMakeFiles/gui.dir/src/elements/escenario.cpp.o: CMakeFiles/gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gui.dir/src/elements/escenario.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gui.dir/src/elements/escenario.cpp.o -MF CMakeFiles/gui.dir/src/elements/escenario.cpp.o.d -o CMakeFiles/gui.dir/src/elements/escenario.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/escenario.cpp"
+
+CMakeFiles/gui.dir/src/elements/escenario.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui.dir/src/elements/escenario.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/escenario.cpp" > CMakeFiles/gui.dir/src/elements/escenario.cpp.i
+
+CMakeFiles/gui.dir/src/elements/escenario.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/elements/escenario.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/escenario.cpp" -o CMakeFiles/gui.dir/src/elements/escenario.cpp.s
+
+CMakeFiles/gui.dir/src/elements/personaje.cpp.o: CMakeFiles/gui.dir/flags.make
+CMakeFiles/gui.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cpp
+CMakeFiles/gui.dir/src/elements/personaje.cpp.o: CMakeFiles/gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/gui.dir/src/elements/personaje.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gui.dir/src/elements/personaje.cpp.o -MF CMakeFiles/gui.dir/src/elements/personaje.cpp.o.d -o CMakeFiles/gui.dir/src/elements/personaje.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp"
+
+CMakeFiles/gui.dir/src/elements/personaje.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui.dir/src/elements/personaje.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp" > CMakeFiles/gui.dir/src/elements/personaje.cpp.i
+
+CMakeFiles/gui.dir/src/elements/personaje.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/elements/personaje.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp" -o CMakeFiles/gui.dir/src/elements/personaje.cpp.s
+
+CMakeFiles/gui.dir/src/elements/enemigos.cpp.o: CMakeFiles/gui.dir/flags.make
+CMakeFiles/gui.dir/src/elements/enemigos.cpp.o: ../src/elements/enemigos.cpp
+CMakeFiles/gui.dir/src/elements/enemigos.cpp.o: CMakeFiles/gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/gui.dir/src/elements/enemigos.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gui.dir/src/elements/enemigos.cpp.o -MF CMakeFiles/gui.dir/src/elements/enemigos.cpp.o.d -o CMakeFiles/gui.dir/src/elements/enemigos.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/enemigos.cpp"
+
+CMakeFiles/gui.dir/src/elements/enemigos.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui.dir/src/elements/enemigos.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/enemigos.cpp" > CMakeFiles/gui.dir/src/elements/enemigos.cpp.i
+
+CMakeFiles/gui.dir/src/elements/enemigos.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/elements/enemigos.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/enemigos.cpp" -o CMakeFiles/gui.dir/src/elements/enemigos.cpp.s
+
+CMakeFiles/gui.dir/src/elements/frame.cpp.o: CMakeFiles/gui.dir/flags.make
+CMakeFiles/gui.dir/src/elements/frame.cpp.o: ../src/elements/frame.cpp
+CMakeFiles/gui.dir/src/elements/frame.cpp.o: CMakeFiles/gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/gui.dir/src/elements/frame.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gui.dir/src/elements/frame.cpp.o -MF CMakeFiles/gui.dir/src/elements/frame.cpp.o.d -o CMakeFiles/gui.dir/src/elements/frame.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/frame.cpp"
+
+CMakeFiles/gui.dir/src/elements/frame.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gui.dir/src/elements/frame.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/frame.cpp" > CMakeFiles/gui.dir/src/elements/frame.cpp.i
+
+CMakeFiles/gui.dir/src/elements/frame.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gui.dir/src/elements/frame.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/frame.cpp" -o CMakeFiles/gui.dir/src/elements/frame.cpp.s
+
 # Object files for target gui
 gui_OBJECTS = \
 "CMakeFiles/gui.dir/src/greeter.cpp.o" \
-"CMakeFiles/gui.dir/src/gui.cpp.o"
+"CMakeFiles/gui.dir/src/gui.cpp.o" \
+"CMakeFiles/gui.dir/src/main.cpp.o" \
+"CMakeFiles/gui.dir/src/elements/animaciones.cpp.o" \
+"CMakeFiles/gui.dir/src/elements/escenario.cpp.o" \
+"CMakeFiles/gui.dir/src/elements/personaje.cpp.o" \
+"CMakeFiles/gui.dir/src/elements/enemigos.cpp.o" \
+"CMakeFiles/gui.dir/src/elements/frame.cpp.o"
 
 # External object files for target gui
 gui_EXTERNAL_OBJECTS =
 
 gui: CMakeFiles/gui.dir/src/greeter.cpp.o
 gui: CMakeFiles/gui.dir/src/gui.cpp.o
+gui: CMakeFiles/gui.dir/src/main.cpp.o
+gui: CMakeFiles/gui.dir/src/elements/animaciones.cpp.o
+gui: CMakeFiles/gui.dir/src/elements/escenario.cpp.o
+gui: CMakeFiles/gui.dir/src/elements/personaje.cpp.o
+gui: CMakeFiles/gui.dir/src/elements/enemigos.cpp.o
+gui: CMakeFiles/gui.dir/src/elements/frame.cpp.o
 gui: CMakeFiles/gui.dir/build.make
 gui: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
+gui: SDL2pp/libSDL2pp.so.8.3.0
 gui: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 gui: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
+gui: /usr/local/lib/libSDL2-2.0.so.0.3100.0
+gui: /usr/local/lib/libSDL2main.a
+gui: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
+gui: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 gui: CMakeFiles/gui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable gui"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gui.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

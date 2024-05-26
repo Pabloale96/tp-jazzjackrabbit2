@@ -129,6 +129,139 @@ gui/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/build
 .PHONY : gui/fast
 
+#=============================================================================
+# Target rules for targets named SDL2pp
+
+# Build rule for target.
+SDL2pp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp
+.PHONY : SDL2pp
+
+# fast build rule for target.
+SDL2pp/fast:
+	$(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/build
+.PHONY : SDL2pp/fast
+
+src/elements/animaciones.o: src/elements/animaciones.cpp.o
+.PHONY : src/elements/animaciones.o
+
+# target to build an object file
+src/elements/animaciones.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/animaciones.cpp.o
+.PHONY : src/elements/animaciones.cpp.o
+
+src/elements/animaciones.i: src/elements/animaciones.cpp.i
+.PHONY : src/elements/animaciones.i
+
+# target to preprocess a source file
+src/elements/animaciones.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/animaciones.cpp.i
+.PHONY : src/elements/animaciones.cpp.i
+
+src/elements/animaciones.s: src/elements/animaciones.cpp.s
+.PHONY : src/elements/animaciones.s
+
+# target to generate assembly for a file
+src/elements/animaciones.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/animaciones.cpp.s
+.PHONY : src/elements/animaciones.cpp.s
+
+src/elements/enemigos.o: src/elements/enemigos.cpp.o
+.PHONY : src/elements/enemigos.o
+
+# target to build an object file
+src/elements/enemigos.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/enemigos.cpp.o
+.PHONY : src/elements/enemigos.cpp.o
+
+src/elements/enemigos.i: src/elements/enemigos.cpp.i
+.PHONY : src/elements/enemigos.i
+
+# target to preprocess a source file
+src/elements/enemigos.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/enemigos.cpp.i
+.PHONY : src/elements/enemigos.cpp.i
+
+src/elements/enemigos.s: src/elements/enemigos.cpp.s
+.PHONY : src/elements/enemigos.s
+
+# target to generate assembly for a file
+src/elements/enemigos.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/enemigos.cpp.s
+.PHONY : src/elements/enemigos.cpp.s
+
+src/elements/escenario.o: src/elements/escenario.cpp.o
+.PHONY : src/elements/escenario.o
+
+# target to build an object file
+src/elements/escenario.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/escenario.cpp.o
+.PHONY : src/elements/escenario.cpp.o
+
+src/elements/escenario.i: src/elements/escenario.cpp.i
+.PHONY : src/elements/escenario.i
+
+# target to preprocess a source file
+src/elements/escenario.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/escenario.cpp.i
+.PHONY : src/elements/escenario.cpp.i
+
+src/elements/escenario.s: src/elements/escenario.cpp.s
+.PHONY : src/elements/escenario.s
+
+# target to generate assembly for a file
+src/elements/escenario.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/escenario.cpp.s
+.PHONY : src/elements/escenario.cpp.s
+
+src/elements/frame.o: src/elements/frame.cpp.o
+.PHONY : src/elements/frame.o
+
+# target to build an object file
+src/elements/frame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/frame.cpp.o
+.PHONY : src/elements/frame.cpp.o
+
+src/elements/frame.i: src/elements/frame.cpp.i
+.PHONY : src/elements/frame.i
+
+# target to preprocess a source file
+src/elements/frame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/frame.cpp.i
+.PHONY : src/elements/frame.cpp.i
+
+src/elements/frame.s: src/elements/frame.cpp.s
+.PHONY : src/elements/frame.s
+
+# target to generate assembly for a file
+src/elements/frame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/frame.cpp.s
+.PHONY : src/elements/frame.cpp.s
+
+src/elements/personaje.o: src/elements/personaje.cpp.o
+.PHONY : src/elements/personaje.o
+
+# target to build an object file
+src/elements/personaje.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/personaje.cpp.o
+.PHONY : src/elements/personaje.cpp.o
+
+src/elements/personaje.i: src/elements/personaje.cpp.i
+.PHONY : src/elements/personaje.i
+
+# target to preprocess a source file
+src/elements/personaje.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/personaje.cpp.i
+.PHONY : src/elements/personaje.cpp.i
+
+src/elements/personaje.s: src/elements/personaje.cpp.s
+.PHONY : src/elements/personaje.s
+
+# target to generate assembly for a file
+src/elements/personaje.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/personaje.cpp.s
+.PHONY : src/elements/personaje.cpp.s
+
 src/greeter.o: src/greeter.cpp.o
 .PHONY : src/greeter.o
 
@@ -177,6 +310,30 @@ src/gui.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/gui.cpp.s
 .PHONY : src/gui.cpp.s
 
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -185,13 +342,32 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... SDL2pp"
 	@echo "... gui"
+	@echo "... src/elements/animaciones.o"
+	@echo "... src/elements/animaciones.i"
+	@echo "... src/elements/animaciones.s"
+	@echo "... src/elements/enemigos.o"
+	@echo "... src/elements/enemigos.i"
+	@echo "... src/elements/enemigos.s"
+	@echo "... src/elements/escenario.o"
+	@echo "... src/elements/escenario.i"
+	@echo "... src/elements/escenario.s"
+	@echo "... src/elements/frame.o"
+	@echo "... src/elements/frame.i"
+	@echo "... src/elements/frame.s"
+	@echo "... src/elements/personaje.o"
+	@echo "... src/elements/personaje.i"
+	@echo "... src/elements/personaje.s"
 	@echo "... src/greeter.o"
 	@echo "... src/greeter.i"
 	@echo "... src/greeter.s"
 	@echo "... src/gui.o"
 	@echo "... src/gui.i"
 	@echo "... src/gui.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

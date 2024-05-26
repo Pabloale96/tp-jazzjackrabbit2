@@ -8,6 +8,10 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
+  "../SDL2pp/CMakeLists.txt"
+  "../SDL2pp/SDL2pp/Config.hh.in"
+  "../SDL2pp/cmake/FindSDL2_image.cmake"
+  "../SDL2pp/cmake/FindSDL2_ttf.cmake"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
@@ -47,8 +51,20 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2Config.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2ConfigVersion.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2Targets-release.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2Targets.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2mainTargets-release.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2mainTargets.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2staticTargets-release.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2staticTargets.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2testTargets-release.cmake"
+  "/usr/local/lib/cmake/SDL2/SDL2testTargets.cmake"
+  "/usr/local/lib/cmake/SDL2/sdlfind.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake"
@@ -56,15 +72,24 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/CMakeParseArguments.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckCCompilerFlag.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckCSourceCompiles.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckCXXCompilerFlag.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckCXXSourceCompiles.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.22/Modules/FeatureSummary.cmake"
+  "/usr/share/cmake-3.22/Modules/GenerateExportHeader.cmake"
+  "/usr/share/cmake-3.22/Modules/Internal/CheckCompilerFlag.cmake"
+  "/usr/share/cmake-3.22/Modules/Internal/CheckSourceCompiles.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake-3.22/Modules/exportheader.cmake.in"
   )
 
 # The corresponding makefile is:
@@ -76,9 +101,13 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "SDL2pp/SDL2pp/Config.hh"
+  "SDL2pp/SDL2pp/Export.hh"
+  "SDL2pp/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/gui.dir/DependInfo.cmake"
+  "SDL2pp/CMakeFiles/SDL2pp.dir/DependInfo.cmake"
   )
