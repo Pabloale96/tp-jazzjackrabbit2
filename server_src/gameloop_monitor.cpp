@@ -7,6 +7,7 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
         std::unique_lock<std::mutex> lock(m);
         uint16_t nuevo_gameloop_id = gameloop_id;
         gameloop_id++;
+        // TODO: Probar usar smart_pointers()
         GameLoop* nuevo_gameloop = new GameLoop(nuevo_gameloop_id, nombre_partida, client_id);
         nuevo_gameloop->start();
         diccionario_de_gameloops.insert(std::make_pair(nuevo_gameloop_id, nuevo_gameloop));
@@ -17,8 +18,10 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
     }
 }
 
+// TODO: Mando el map en vez de pasarlo por referencia
 void GameloopMonitor::obtener_partidas_disponibles(
         std::map<uint16_t, std::string>& partidas_disponibles) {
+            // TODO: Agregar lock 
     partidas_disponibles.clear();
     for (const auto& pair: diccionario_de_gameloops) {
         uint16_t id = pair.first;

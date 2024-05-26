@@ -129,6 +129,7 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
         uint16_t id_personaje;
         uint16_t posicion_x;
         uint16_t posicion_y;
+        // Probar hacer un wrapper tipo recvall_or_fail()
         socket_cliente.recvall(&id_personaje, sizeof(uint16_t), &was_closed);
         id_personaje = ntohs(id_personaje);
         if (was_closed) {

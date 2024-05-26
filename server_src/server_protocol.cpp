@@ -89,41 +89,57 @@ void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& me
     mensaje_recibido = buffer;
 }
 
-std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido) {
+std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido, uint16_t cliente_id) {
     if (mensaje_recibido == DISPARAR) {
-        return std::make_unique<Disparar>();
+        std::unique_ptr<Comando> comando = std::make_unique<Disparar>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == MOVER_DERECHA) {
-        return std::make_unique<MoverDerecha>();
+        std::unique_ptr<Comando> comando = std::make_unique<MoverDerecha>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == MOVER_DERECHA_RAPIDO) {
-        return std::make_unique<MoverDerechaRapido>();
+        std::unique_ptr<Comando> comando = std::make_unique<MoverDerechaRapido>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == MOVER_IZQUIERDA) {
-        return std::make_unique<MoverIzquierda>();
+        std::unique_ptr<Comando> comando = std::make_unique<MoverIzquierda>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == MOVER_IZQUIERDA_RAPIDO) {
-        return std::make_unique<MoverIzquierdaRapido>();
+        std::unique_ptr<Comando> comando = std::make_unique<MoverIzquierdaRapido>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == MOVER_ARRIBA) {
-        return std::make_unique<MoverArriba>();
+        std::unique_ptr<Comando> comando = std::make_unique<MoverArriba>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == MOVER_ABAJO) {
-        return std::make_unique<MoverAbajo>();
+        std::unique_ptr<Comando> comando = std::make_unique<MoverAbajo>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     if (mensaje_recibido == SALTAR) {
-        return std::make_unique<Saltar>();
+        std::unique_ptr<Comando> comando = std::make_unique<Saltar>();
+        comando->set_client_id(cliente_id);
+        return comando;
     }
     return nullptr;
 }
 
-std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed) {
+std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed, uint16_t cliente_id) {
     uint8_t mensaje_recibido = 0;
     recibir_acciones_serializadas(was_closed, mensaje_recibido);
     if (was_closed) {
         return nullptr;
     }
-    return deserializar_acciones(mensaje_recibido);
+    return deserializar_acciones(mensaje_recibido, cliente_id);
 }
 
 void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {

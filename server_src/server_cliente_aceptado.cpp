@@ -26,7 +26,7 @@ void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
     gameloop_monitor.obtener_gameloop(gameloop_id)
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
-                                                gameloop_id);
+                                                gameloop_id, id_cliente);
     return;
 }
 
@@ -36,7 +36,7 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
     gameloop_monitor.obtener_gameloop(gameloop_id)
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
-                                                gameloop_id);
+                                                gameloop_id, id_cliente);
     return;
 }
 

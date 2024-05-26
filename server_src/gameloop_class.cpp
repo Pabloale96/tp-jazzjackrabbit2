@@ -66,6 +66,7 @@ void GameLoop::run() {
 }
 
 void GameLoop::broadcastear() {
+    // Todo: Game construite el gamestate
     GameState estado_del_juego(obtener_game());
     estado_del_juego.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(estado_del_juego);
