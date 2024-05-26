@@ -1,15 +1,30 @@
 #include "../server_src/game_state.h"
 
-GameState::GameState(const Personaje& personaje): personaje(personaje) {}
+#include "../server_src/game_personaje.h"
 
-Personaje GameState::obtener_personaje() { return personaje; }
+GameState::GameState(): diccionario_de_personajes() {}
+
+std::map<uint16_t, Personaje>& GameState::obtener_diccionario_de_personajes() {
+    return diccionario_de_personajes;
+}
+
+Personaje GameState::obtener_personaje(uint16_t client_id) {
+    auto it = diccionario_de_personajes.find(client_id);
+    if (it != diccionario_de_personajes.end()) {
+        return it->second;
+    }
+    throw std::out_of_range("No se encontró el personaje");
+}
 
 void GameState::imprimir_mensaje() {
-    std::string msg = "El personaje " + std::to_string(personaje.obtener_personaje_id()) +
-                      " esta en la posicion: (" +
-                      std::to_string(personaje.obtener_posicion().get_posicion_x()) + ", " +
-                      std::to_string(personaje.obtener_posicion().get_posicion_y()) + ")";
-    std::cout << msg << std::endl;
+    for (const auto& pair: diccionario_de_personajes) {
+        const Personaje& personaje = pair.second;
+        std::cout << "El personaje " << personaje.obtener_personaje_id()
+                  << " está en la posición: (" << personaje.obtener_posicion().get_posicion_x()
+                  << ", " << personaje.obtener_posicion().get_posicion_y() << ")." << std::endl;
+        // std::cout << "Personaje vida: " << personaje.obtener_vida() << std::endl;
+    }
+    // Deberia de hacer lo mismo con los enemigos
 }
 
 GameState::~GameState() {}

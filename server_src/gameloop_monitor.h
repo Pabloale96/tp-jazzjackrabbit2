@@ -11,19 +11,20 @@
 #include "../server_src/game_comandos.h"
 #include "../server_src/gameloop_class.h"
 
-#define ID_INICIAL 0
+#define ID_GAMELOOP_INICIAL 1
 
 class GameloopMonitor {
 private:
     std::mutex m;
-    std::map<uint16_t, GameLoop*> diccionario_de_gameloops;
     uint16_t gameloop_id;
-    std::list<uint16_t> clients_ids;
+    std::map<uint16_t, GameLoop*> diccionario_de_gameloops;
 
 public:
     GameloopMonitor();
 
-    uint16_t agregar_gameloop(std::string nombre_partida);
+    uint16_t crear_gameloop(std::string nombre_partida, uint16_t client_id);
+
+    void obtener_partidas_disponibles(std::map<uint16_t, std::string>& partidas_disponibles);
 
     void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id);
 

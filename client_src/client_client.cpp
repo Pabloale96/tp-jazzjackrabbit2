@@ -2,7 +2,9 @@
 
 #include <cctype>  // std::tolower()
 #include <iostream>
+#include <map>
 #include <sstream>
+#include <string>
 
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
@@ -95,11 +97,24 @@ void Client::crear_partida() {
 }
 
 void Client::unirse_a_partida() {
-    if (protocolo_client.unirse_a_partida() == true) {
-        std::cout << "Estas son las partidas disponibles para unirse" << std::endl;
-        protocolo_client.recibir_partidas_disponibles();
-    } else {
-        std::cout << "Error: No se pudo unir a la partida" << std::endl;
+    std::cout << "Estas son las partidas disponibles para unirse" << std::endl;
+    std::map<uint16_t, std::string> partidas_disponibles;
+    protocolo_client.recibir_partidas_disponibles(partidas_disponibles);
+    if (partidas_disponibles.empty()) {
+        std::cout << "No hay partidas disponibles para unirse" << std::endl;
+        return;
+    }
+    for (const auto& pair: partidas_disponibles) {
+        std::cout << "ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
+    }
+    std::cout << "Ingrese el ID de la partida a la que desea unirse" << std::endl;
+    uint16_t id_partida;
+    while (std::cin >> id_partida) {
+        if (partidas_disponibles.find(id_partida) == partidas_disponibles.end()) {
+            std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
+            continue;
+        }
+        protocolo_client.enviar_id_partida(id_partida);
         return;
     }
 }
@@ -150,7 +165,6 @@ void Client::jugar() {
     establecer_partida();
     acciones_posibles();
     std::string accion_actual;
-    int cant_lineas_a_leer;
     while (std::cin >> accion_actual) {
         accion_actual = toLowercase(accion_actual);
         if (accion_actual == "disparar" or accion_actual == "s") {
@@ -170,13 +184,7 @@ void Client::jugar() {
         } else if (accion_actual == "saltar" or accion_actual == "j") {
             saltar();
         } else if (accion_actual == "leer") {
-            if (!(std::cin >> cant_lineas_a_leer)) {
-                std::cout << "Error: No indicó la cantidad de líneas a leer" << std::endl;
-                continue;
-            }
-            for (int n = 0; n < cant_lineas_a_leer; n++) {
-                leer();
-            }
+            leer();
         } else if (accion_actual == "salir" or accion_actual == "q") {
             return;
         } else {
@@ -206,19 +214,12 @@ void Client::moverIzquierdaRapido() {
 }
 
 void Client::leer() {
-    Respuesta respuesta;
-    if (protocolo_client.recibir_respuesta(respuesta) == false) {
+    ClientGameRespuesta game_respuesta;
+    if (protocolo_client.recibir_respuesta(game_respuesta) == false) {
         return;
     } else {
-        imprimir_respuesta(respuesta);
+        game_respuesta.imprimir_respuesta();
     }
-}
-
-void Client::imprimir_respuesta(const Respuesta& respuesta) {
-    std::cout << "El personaje está en la posición (" +
-                         std::to_string(respuesta.posicion_x_personaje) + ", " +
-                         std::to_string(respuesta.posicion_y_personaje) + ")."
-              << std::endl;
 }
 
 Client::~Client() {}

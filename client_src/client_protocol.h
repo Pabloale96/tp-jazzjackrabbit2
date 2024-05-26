@@ -1,10 +1,12 @@
 #ifndef __PROTOCOL_CLIENT_H__
 #define __PROTOCOL_CLIENT_H__
 
+#include <map>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include "../client_src/client_game_respuesta.h"
 #include "../common_src/common_sockets.h"
 
 enum class TipoAccion : char {
@@ -16,14 +18,6 @@ enum class TipoAccion : char {
     MoverArriba,
     MoverAbajo,
     Saltar
-};
-
-struct Respuesta {
-    // cppcheck-suppress unusedStructMember
-    uint16_t posicion_x_personaje;
-    // cppcheck-suppress unusedStructMember
-    uint16_t posicion_y_personaje;
-    // Despeus deberian de venir la posicion de todos los enemigos
 };
 
 class ProtocolClient {
@@ -40,7 +34,9 @@ public:
 
     bool unirse_a_partida();
 
-    void recibir_partidas_disponibles();
+    void recibir_partidas_disponibles(std::map<uint16_t, std::string>& partidas_disponibles);
+
+    void enviar_id_partida(uint16_t id_partida);
 
     // Recibe del cliente la accion para serializar y enviar al server
     void enviar_accion(TipoAccion accion);
@@ -49,7 +45,7 @@ public:
     void enviar_accion_serializada(uint8_t accion_serializada, bool& was_closed);
 
     // Para poder recivir comandos
-    bool recibir_respuesta(Respuesta& respuesta);
+    bool recibir_respuesta(ClientGameRespuesta& game_respuesta);
 
     // Destructor
     ~ProtocolClient();

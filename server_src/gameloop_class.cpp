@@ -14,10 +14,15 @@
 #define MATAR 0x04
 #define REVIVIR 0x05
 
-GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida):
-        nombre_partida(nombre_partida), client_commands(MAX_TAM_COLA), game(nuevo_gameloop_id) {
-    client_ids.push_back(nuevo_gameloop_id);
+GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id):
+        gameloop_id(nuevo_gameloop_id),
+        nombre_partida(nombre_partida),
+        client_commands(MAX_TAM_COLA),
+        game(client_id) {
+    agregar_cliente(client_id);
 }
+
+std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
 
 Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
     return client_commands;
@@ -28,7 +33,9 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
-void GameLoop::agregar_cliente(uint16_t client_id) { client_ids.push_back(client_id); }
+void GameLoop::agregar_cliente(uint16_t client_id) { clients_id.push_back(client_id); }
+
+Game& GameLoop::obtener_game() { return game; }
 
 void GameLoop::run() {
     try {
@@ -59,9 +66,11 @@ void GameLoop::run() {
 }
 
 void GameLoop::broadcastear() {
-    GameState mensaje(game.obtener_personaje());
-    mensaje.imprimir_mensaje();
-    monitor_lista_de_queues_server_msg.broadcastear(mensaje);
+    // Todo: Game construite el gamestate
+    GameState nuevo_gamestate;
+    game.crear_nuevo_gamestate(nuevo_gamestate);
+    nuevo_gamestate.imprimir_mensaje();
+    monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 
 void GameLoop::dormir() {
