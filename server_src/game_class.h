@@ -8,6 +8,7 @@
 
 #include "../server_src/game_enemigo.h"
 #include "../server_src/game_personaje.h"
+#include "../server_src/game_state.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 
@@ -24,13 +25,15 @@ public:
 
     std::vector<Personaje> obtener_vector_de_personajes();
 
-    Personaje obtener_personaje(uint16_t client_id);
+    Personaje& obtener_personaje(uint16_t client_id);
 
     bool mover(const std::string& direccion, uint16_t client_id);
 
     bool matar_enemigo();
 
     bool aumentar_iteraciones();
+
+    void crear_nuevo_gamestate(GameState& gamestate);
 
     uint16_t obtener_cant_vivos();
 

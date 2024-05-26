@@ -10,7 +10,7 @@
 #include "../server_src/server_cliente_aceptado.h"
 #include "../server_src/server_protocol.h"
 
-#define ID_CLIENTE_INICIAL 0
+#define ID_CLIENTE_INICIAL 10
 
 Aceptador::Aceptador(const std::string& servname):
         socket_server(servname.c_str()),

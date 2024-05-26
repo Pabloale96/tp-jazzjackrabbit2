@@ -7,6 +7,6 @@ Personaje::Personaje(uint16_t client_id):
 
 bool Personaje::mover(const std::string& direccion) { return posicion.mover(direccion); }
 
-Posicion Personaje::obtener_posicion() { return posicion; }
+Posicion Personaje::obtener_posicion() const { return posicion; }
 
-uint16_t Personaje::obtener_personaje_id() { return client_id; }
+uint16_t Personaje::obtener_personaje_id() const { return client_id; }

@@ -6,16 +6,14 @@
 #include <map>
 #include <string>
 
-#include "../server_src/game_class.h"
 #include "../server_src/game_personaje.h"
 
 class GameState {
 private:
-    Game& game;
     std::map<uint16_t, Personaje> diccionario_de_personajes;
 
 public:
-    explicit GameState(Game& game);
+    GameState();
 
     std::map<uint16_t, Personaje>& obtener_diccionario_de_personajes();
 

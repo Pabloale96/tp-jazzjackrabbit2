@@ -25,9 +25,9 @@ public:
 
     bool mover(const std::string& direccion);
 
-    Posicion obtener_posicion();
+    Posicion obtener_posicion() const;
 
-    uint16_t obtener_personaje_id();
+    uint16_t obtener_personaje_id() const;
 
     // virtual void activarEspecial() = 0;
 
