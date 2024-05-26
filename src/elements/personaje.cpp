@@ -4,10 +4,14 @@
 #include <SDL2pp/SDL2pp.hh>
 #include "../../include/personaje.h"
 
-Spaz::Spaz(Renderer & renderer):Personaje(renderer){
+Spaz::Spaz(Renderer & renderer):
+            Personaje(renderer){
     sprites.SetBlendMode(SDL_BLENDMODE_BLEND);
+
 }
-Spaz::~Spaz(){}
+Spaz::~Spaz(){
+    //delete animaciones;
+}
 
 void Spaz::animacion(int animacion){
     switch (animacion)
@@ -16,7 +20,8 @@ void Spaz::animacion(int animacion){
             movimiento.standing();
             break;*/
         case 1:
-            movDer.run();
+            //animaciones = new AnimacionDerecha(renderer,sprites);
+            aniDer.run();
             break;
         /*case 2:
             movimiento.moverIzquierda();

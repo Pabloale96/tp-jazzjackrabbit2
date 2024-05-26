@@ -26,8 +26,12 @@ class Spaz : public Personaje {
     private:
         Surface spaz{Surface(IMG_PATH "/spaz.png")};
         Texture sprites{Texture(renderer, spaz.SetColorKey(true, SDL_MapRGB(spaz.Get()->format, 44, 102, 150)))};
-        AnimacionDerecha movDer{AnimacionDerecha(std::ref(renderer),std::ref(sprites))};
-        //Animacion movimiento{Animacion(std::ref(renderer),std::ref(sprites))};
+
+        // Animaciones:
+        AnimacionDerecha aniDer{AnimacionDerecha(renderer,sprites)};
+
+        Animacion animaciones{Animacion(renderer,sprites)};
+        
         
     public:
         Spaz(Renderer &);

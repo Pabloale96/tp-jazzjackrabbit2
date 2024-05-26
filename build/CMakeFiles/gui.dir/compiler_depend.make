@@ -1863,6 +1863,14 @@ CMakeFiles/gui.dir/src/gui.cpp.o: ../src/gui.cpp \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
   ../include/gui.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
   ../SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
@@ -1888,7 +1896,6 @@ CMakeFiles/gui.dir/src/gui.cpp.o: ../src/gui.cpp \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/c++/11/bits/specfun.h \
-  /usr/include/c++/11/limits \
   /usr/include/c++/11/tr1/gamma.tcc \
   /usr/include/c++/11/tr1/special_function_util.h \
   /usr/include/c++/11/tr1/bessel_function.tcc \
@@ -2279,6 +2286,22 @@ CMakeFiles/gui.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../include/gui.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
   ../SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
@@ -2304,7 +2327,6 @@ CMakeFiles/gui.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/c++/11/bits/specfun.h \
-  /usr/include/c++/11/limits \
   /usr/include/c++/11/tr1/gamma.tcc \
   /usr/include/c++/11/tr1/special_function_util.h \
   /usr/include/c++/11/tr1/bessel_function.tcc \
@@ -2322,16 +2344,9 @@ CMakeFiles/gui.dir/src/main.cpp.o: ../src/main.cpp \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
-  /usr/include/c++/11/utility \
-  /usr/include/c++/11/bits/stl_relops.h \
   /usr/include/c++/11/bits/enable_special_members.h \
   ../SDL2pp/SDL2pp/AudioDevice.hh \
   /usr/include/c++/11/functional \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/uses_allocator.h \
-  /usr/include/c++/11/bits/invoke.h \
-  /usr/include/c++/11/bits/refwrap.h \
   /usr/include/c++/11/bits/std_function.h \
   /usr/include/c++/11/unordered_map \
   /usr/include/c++/11/ext/aligned_buffer.h \
@@ -2522,6 +2537,10 @@ CMakeFiles/gui.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh
 
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
+
+/usr/include/c++/11/bits/std_thread.h:
 
 ../include/gui.h:
 
@@ -3512,6 +3531,8 @@ ui_Greeter.h:
 ../src/elements/personaje.cpp:
 
 /usr/include/c++/11/memory:
+
+/usr/include/c++/11/thread:
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainertools_impl.h:
 
