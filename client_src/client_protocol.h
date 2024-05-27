@@ -30,6 +30,9 @@ public:
     // Carga en el diccionario las acciones posibles y su valor asociado
     ProtocolClient(const std::string& hostname, const std::string& servicio);
 
+    // Devuelve el estado de was_closed
+    bool obtener_estado_de_la_conexion();
+
     bool crear_partida(std::string& nombre_partida);
 
     bool unirse_a_partida();

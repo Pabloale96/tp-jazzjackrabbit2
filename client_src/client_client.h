@@ -1,9 +1,13 @@
 #ifndef __CLIENT_CLIENT_H__
 #define __CLIENT_CLIENT_H__
 
+#include <memory>
 #include <string>
 
+#include "../client_src/client_game_respuesta.h"
 #include "../client_src/client_protocol.h"
+#include "../client_src/client_receiver.h"
+#include "../client_src/client_sender.h"
 #include "../common_src/common_sockets.h"
 
 class Client {
@@ -11,6 +15,10 @@ private:
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;
+    Queue<TipoAccion> client_commands;
+    ClientSender sender;
+    Queue<std::shared_ptr<ClientGameRespuesta>> server_msg;
+    ClientReceiver receiver;
 
     std::string toLowercase(const std::string& str);
 

@@ -11,6 +11,8 @@
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
 
+bool ProtocolClient::obtener_estado_de_la_conexion() { return was_closed; }
+
 // ********************** PROTOCOLOS DE LOBBY **********************
 
 bool ProtocolClient::enviar_personaje(const std::string& personaje) {

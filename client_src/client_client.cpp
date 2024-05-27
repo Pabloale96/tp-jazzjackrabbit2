@@ -6,10 +6,19 @@
 #include <sstream>
 #include <string>
 
+#define MAX_TAM_COLA 10
+
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
         servicio(servicio),
-        protocolo_client(hostname.c_str(), servicio.c_str()) {}
+        protocolo_client(hostname.c_str(), servicio.c_str()),
+        client_commands(MAX_TAM_COLA),
+        sender(protocolo_client, client_commands),
+        server_msg(MAX_TAM_COLA),
+        receiver(protocolo_client, server_msg) {
+    sender.start();
+    receiver.start();
+}
 
 void Client::imprimir_portada() {
     std::cout
@@ -242,4 +251,9 @@ void Client::leer() {
     }
 }
 
-Client::~Client() {}
+Client::~Client() {
+    sender.stop();
+    receiver.stop();
+    sender.join();
+    receiver.join();
+}
