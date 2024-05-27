@@ -25,7 +25,7 @@ void GameState::imprimir_mensaje() {
                   << personaje.obtener_posicion().get_posicion_y() << ")." << std::endl;
         // std::cout << "Personaje vida: " << personaje.obtener_vida() << std::endl;
     }
-    // Deberia de hacer lo mismo con los enemigos
+    // TODO: Deberia de hacer lo mismo con los enemigos
 }
 
 GameState::~GameState() {}
