@@ -7,7 +7,8 @@
 #include "../server_src/game_enemigo.h"
 #include "../server_src/game_state.h"
 
-Game::Game(uint16_t partida_id, uint16_t client_id): partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {
+Game::Game(uint16_t partida_id, uint16_t client_id):
+        partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {
     personajes.push_back(Personaje(partida_id, client_id));
 }
 
@@ -22,7 +23,7 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
     if (it != personajes.end()) {
         return *it;
     } else {
-        throw std::runtime_error("No se encontro el personaje");
+        throw std::runtime_error("No se encontro el personaje en game");
     }
 }
 
@@ -55,6 +56,10 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
         gamestate.obtener_diccionario_de_personajes().insert(
                 std::make_pair(enemigo.obtener_enemigo_id(), enemigo));
     }*/
+}
+
+void Game::agregar_personaje(uint16_t client_id) {
+    personajes.push_back(Personaje(partida_id, client_id));
 }
 
 bool Game::aumentar_iteraciones() {

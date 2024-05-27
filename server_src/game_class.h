@@ -36,6 +36,8 @@ public:
 
     void crear_nuevo_gamestate(GameState& gamestate);
 
+    void agregar_personaje(uint16_t client_id);
+
     uint16_t obtener_cant_vivos();
 
     uint16_t obtener_cant_muertos();

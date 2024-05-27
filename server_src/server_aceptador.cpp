@@ -23,7 +23,8 @@ void Aceptador::run() {
     while (!was_closed_aceptador) {
         try {
             Socket socket_cliente = socket_server.accept();
-            std::cout << "Ha llegado un nuevo jugador. Su ID es: " << std::to_string(client_id) << std::endl;
+            std::cout << "Ha llegado un nuevo jugador. Su ID es: " << std::to_string(client_id)
+                      << std::endl;
             lista_clientes.emplace_back(std::move(socket_cliente), client_id);
             lista_clientes.back().establecer_partida(monitor_diccionario_de_gameloops);
             lista_clientes.back().start();

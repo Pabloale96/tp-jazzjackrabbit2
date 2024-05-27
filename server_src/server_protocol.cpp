@@ -37,7 +37,7 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
         return;
     }
     nombre_partida.resize(nombre_partida_len);
-    socket_cliente.recvall(&nombre_partida[0], nombre_partida_len*sizeof(uint8_t), &was_closed);
+    socket_cliente.recvall(&nombre_partida[0], nombre_partida_len * sizeof(uint8_t), &was_closed);
 }
 
 void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
@@ -46,7 +46,7 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
     gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
     uint16_t cant_partidas = partidas_disponibles.size();
     cant_partidas = htons(cant_partidas);
-    socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);   
+    socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);
     if (was_closed) {
         return;
     }
@@ -54,7 +54,7 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
         uint16_t id = pair.first;
         id = htons(id);
         socket_cliente.sendall(&id, sizeof(uint16_t), &was_closed);
-        
+
         if (was_closed) {
             return;
         }
@@ -68,7 +68,6 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
         if (was_closed) {
             return;
         }
-        
     }
 }
 

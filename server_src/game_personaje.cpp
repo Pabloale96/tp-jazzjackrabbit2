@@ -3,7 +3,12 @@
 #include <iostream>
 
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
-        partida_id(partida_id), client_id(client_id), puntos(PUNTOS_INICIALES), vida(VIDA_INICIAL), arma(), posicion() {}
+        partida_id(partida_id),
+        client_id(client_id),
+        puntos(PUNTOS_INICIALES),
+        vida(VIDA_INICIAL),
+        arma(),
+        posicion() {}
 
 bool Personaje::mover(const std::string& direccion) { return posicion.mover(direccion); }
 
