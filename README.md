@@ -17,6 +17,8 @@ tiburoncin -o -A 127.0.0.1:9095 -B 127.0.0.1:8080 -o
 Client:
 ```shell
 ./client 127.0.0.1 9095
+
+./client 127.0.0.2 8080
 ```
 
 Pasar el pre-commit:

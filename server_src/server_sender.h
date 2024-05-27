@@ -6,19 +6,19 @@
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/server_game_loop.h"
+#include "../server_src/game_state.h"
 #include "../server_src/server_protocol.h"
 
 class ServerSender: public Thread {
 private:
     ProtocolServer& protocolo_server;
     bool& was_closed;
-    Queue<std::shared_ptr<ServerJuegoMensaje>>& server_msg;
+    Queue<std::shared_ptr<GameState>>& server_msg;
 
 public:
     // Constructor
     ServerSender(ProtocolServer& protocolo_server, bool& was_closed,
-                 Queue<std::shared_ptr<ServerJuegoMensaje>>& server_msg);
+                 Queue<std::shared_ptr<GameState>>& server_msg);
 
     void run() override;
 };

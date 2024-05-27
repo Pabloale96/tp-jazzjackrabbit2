@@ -6,25 +6,34 @@
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
 #include "../common_src/common_liberror.h"
+#include "../server_src/gameloop_class.h"
 #include "../server_src/server_cliente_aceptado.h"
-#include "../server_src/server_game_loop.h"
 #include "../server_src/server_protocol.h"
 
+#define ID_CLIENTE_INICIAL 10
+
 Aceptador::Aceptador(const std::string& servname):
-        socket_server(servname.c_str()), was_closed_aceptador(false), game_loop() {}
+        socket_server(servname.c_str()),
+        was_closed_aceptador(false),
+        monitor_diccionario_de_gameloops(),
+        client_id(ID_CLIENTE_INICIAL) {}
 
 void Aceptador::run() {
     std::list<ClienteAceptado> lista_clientes;
-    game_loop.start();
     while (!was_closed_aceptador) {
         try {
             Socket socket_cliente = socket_server.accept();
-            lista_clientes.emplace_back(std::move(socket_cliente), game_loop);
+            std::cout << "Ha llegado un nuevo jugador. Su ID es: " << std::to_string(client_id)
+                      << std::endl;
+            lista_clientes.emplace_back(std::move(socket_cliente), client_id);
+            lista_clientes.back().establecer_partida(monitor_diccionario_de_gameloops);
             lista_clientes.back().start();
+            client_id++;
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
-                game_loop.stop();
-                game_loop.join();
+                // TODO: ahora el monitor de gameloops tiene que cerrar los gameloops
+                // game_loop.stop();
+                // game_loop.join();
                 // clean all
                 return;
             }

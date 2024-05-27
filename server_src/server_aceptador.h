@@ -6,14 +6,16 @@
 
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
+#include "../server_src/gameloop_class.h"
+#include "../server_src/gameloop_monitor.h"
 #include "../server_src/server_cliente_aceptado.h"
-#include "../server_src/server_game_loop.h"
 
 class Aceptador: public Thread {
 private:
     Socket socket_server;
     std::atomic<bool> was_closed_aceptador;
-    GameLoop game_loop;
+    GameloopMonitor monitor_diccionario_de_gameloops;
+    uint16_t client_id;
 
 public:
     // Constructor

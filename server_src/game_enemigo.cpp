@@ -1,16 +1,19 @@
-#include "../server_src/server_enemigo.h"
+#include "../server_src/game_enemigo.h"
 
 #include <iostream>
 
 Enemigo::Enemigo():
         vivo(true),
-        iteraciones(0) /*,
-         vidas(VIDAS_INICIALES),
-         danio(SIN_DANIO_INICIAL),
-         puntos(PUNTOS_INICIALES),
-         time_revive(TIME_REVIVE_INICIAL),
-         prob_municion(0.0f),
-         prob_vida(0.0f)*/
+        iteraciones(0)
+// cppcheck-suppress readability/multiline_comment
+/*,
+vidas(VIDAS_INICIALES),
+danio(SIN_DANIO_INICIAL),
+puntos(PUNTOS_INICIALES),
+time_revive(TIME_REVIVE_INICIAL),
+prob_municion(0.0f),
+prob_vida(0.0f)
+*/
 {}
 
 void Enemigo::matar_enemigo() {

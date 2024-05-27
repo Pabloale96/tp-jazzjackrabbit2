@@ -1,4 +1,4 @@
-#include "arma.h"
+#include "game_arma.h"
 
 // Arma es la clase arma Inicial, a medida que vaya ganando, pasará a tener las otras armas
 Arma::Arma():

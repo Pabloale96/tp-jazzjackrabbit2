@@ -1,24 +1,24 @@
-#ifndef SERVER_ENEMIGO_H
-#define SERVER_ENEMIGO_H
+#ifndef _GAME_ENEMIGO_H_
+#define _GAME_ENEMIGO_H_
 
 #define ITERACIONES_PARA_REVIVIR 15
 
 #define VIDAS_INICIALES 5
 #define SIN_DANIO_INICIAL 0
-#define PUNTOS_INICIALES 1
+#define PUNTOS_INICIALES_ENEMIGO 1
 #define TIME_REVIVE_INICIAL 50
 
 class Enemigo {
 
 private:
     bool vivo;
-    unsigned int iteraciones; /*
-     int vidas;
-     int danio;
-     int puntos;
-     int time_revive;
-     float prob_municion;
-     float prob_vida;*/
+    unsigned int iteraciones;
+    // int vidas;
+    // int danio;
+    // int puntos;
+    // int time_revive;
+    // float prob_municion;
+    // float prob_vida;
 
 public:
     // Constructor
@@ -41,8 +41,7 @@ public:
     // virtual ~Enemigo() = default;
 };
 
-/*
-class Enemigo1: public Enemigo {
+/* class Enemigo1: public Enemigo {
 public:
     Enemigo1();
 };
@@ -63,7 +62,6 @@ public:
     Enemigo3();
 };
 
-Enemigo3::Enemigo3() {}
-*/
+Enemigo3::Enemigo3() {} */
 
 #endif

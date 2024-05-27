@@ -12,8 +12,42 @@ private:
     std::string servicio;
     ProtocolClient protocolo_client;
 
-    // Le envia al server un mensaje indicando su intención de atacar
-    void atacar();
+    std::string toLowercase(const std::string& str);
+
+    void imprimir_bienvenida();
+
+    void imprimir_portada();
+
+    void establecer_partida();
+
+    void crear_personaje();
+
+    void crear_partida();
+
+    void unirse_a_partida();
+
+    // Muestra las acciones posibles que puede realizar el cliente
+    void acciones_posibles();
+
+    // A partir de acá vienen las acciones que puede realizar el cliente
+    // Disparar
+    void disparar();
+
+    // Correr
+    void moverDerecha();
+    void moverIzquierda();
+
+    // Corer muy rápido
+    void moverDerechaRapido();
+    void moverIzquierdaRapido();
+
+    // Saltar
+    void saltar();
+
+    // TODO: Chequear si estos 2 métodos son necesarios
+    void moverArriba();
+    void moverAbajo();
+
 
     // Espera hasta recibir la respuesta del server y la imprime
     void leer();

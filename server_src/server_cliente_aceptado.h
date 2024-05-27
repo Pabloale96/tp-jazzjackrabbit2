@@ -1,25 +1,28 @@
 #ifndef _SERVER_CLIENTE_ACEPTADO_H_
 #define _SERVER_CLIENTE_ACEPTADO_H_
 
+#include <list>
 #include <memory>
 #include <string>
 
 #include "../common_src/common_queue.h"
 #include "../common_src/common_sockets.h"
 #include "../common_src/common_thread.h"
-#include "../server_src/server_game_loop.h"
+#include "../server_src/gameloop_class.h"
+#include "../server_src/gameloop_monitor.h"
 #include "../server_src/server_protocol.h"
 #include "../server_src/server_receiver.h"
 #include "../server_src/server_sender.h"
 
 class ClienteAceptado {
 private:
+    uint16_t id_cliente;
     ProtocolServer protocolo_server;
     bool was_closed;
-    Queue<std::shared_ptr<ServerJuegoMensaje>> server_msg;
-    GameLoop& gameloop;
+    Queue<std::shared_ptr<GameState>> server_msg;
     ServerSender sender;
-    ServerReceiver receiver;
+    std::unique_ptr<ServerReceiver> receiver;
+    uint16_t gameloop_id;
 
 public:
     // Constructor
@@ -28,7 +31,13 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
-    ClienteAceptado(Socket&& socket_cliente, GameLoop& juego);
+    ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente);
+
+    void establecer_partida(GameloopMonitor& gameloop_monitor);
+
+    void crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida);
+
+    void joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
 
     // Inicia el sender y el receiver
     void start();
