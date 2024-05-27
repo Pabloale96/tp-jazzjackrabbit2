@@ -34,6 +34,8 @@ public:
 
     bool unirse_a_partida();
 
+    bool enviar_personaje(const std::string& personaje);
+
     void recibir_partidas_disponibles(std::map<uint16_t, std::string>& partidas_disponibles);
 
     void enviar_id_partida(uint16_t id_partida);

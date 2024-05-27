@@ -13,6 +13,21 @@ ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& s
 
 // ********************** PROTOCOLOS DE LOBBY **********************
 
+bool ProtocolClient::enviar_personaje(const std::string& personaje) {
+    uint8_t personaje_serializado;
+    if (personaje == "j") {
+        personaje_serializado = JAZZ;
+    } else if (personaje == "s") {
+        personaje_serializado = SPAZ;
+    } else if (personaje == "l") {
+        personaje_serializado = LORI;
+    } else {
+        return false;  // Personaje no válido
+    }
+    socket_cliente.sendall(&personaje_serializado, sizeof(uint8_t), &was_closed);
+    return true;
+}
+
 bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     uint8_t accion_serializada = CREAR_PARTIDA;
     enviar_accion_serializada(accion_serializada, was_closed);

@@ -86,6 +86,20 @@ void Client::imprimir_bienvenida() {
     std::cout << "Bienvenido al juego!" << std::endl;
 }
 
+void Client::crear_personaje() {
+    std::string personaje;
+    std::cout << "Ingrese el nombre del personaje que desea utilizar" << std::endl;
+    std::cout << "  - Jazz (j)" << std::endl;
+    std::cout << "  - Spaz (s)" << std::endl;
+    std::cout << "  - Lori (l)" << std::endl;
+    std::cin >> personaje;
+    personaje = toLowercase(personaje);
+    if (protocolo_client.enviar_personaje(personaje) == false) {
+        std::cout << "Error: No se pudo crear el personaje" << std::endl;
+        return;
+    }
+}
+
 void Client::crear_partida() {
     std::cout << "Ingrese el nombre de la partida que desea crear" << std::endl;
     std::string nombre_partida;
@@ -168,6 +182,7 @@ void Client::acciones_posibles() {
 void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
+    crear_personaje();
     acciones_posibles();
     std::string accion_actual;
     while (std::cin >> accion_actual) {

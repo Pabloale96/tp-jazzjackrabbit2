@@ -20,6 +20,8 @@ private:
 
     void establecer_partida();
 
+    void crear_personaje();
+
     void crear_partida();
 
     void unirse_a_partida();
