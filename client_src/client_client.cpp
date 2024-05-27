@@ -210,29 +210,34 @@ void Client::jugar() {
 
         std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
+            // TODO: aca se debería de actualizar el render
             respuesta->imprimir_respuesta();
         }
 
-        accion_actual = toLowercase(accion_actual);
-        if (accion_actual == "disparar" or accion_actual == "s") {
-            disparar();
-        } else if (accion_actual == "derecha" or accion_actual == "r") {
-            moverDerecha();
-        } else if (accion_actual == "izquierda" or accion_actual == "l") {
-            moverIzquierda();
-        } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
-            moverDerechaRapido();
-        } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
-            moverIzquierdaRapido();
-        } else if (accion_actual == "arriba" or accion_actual == "u") {
-            moverArriba();
-        } else if (accion_actual == "abajo" or accion_actual == "d") {
-            moverAbajo();
-        } else if (accion_actual == "saltar" or accion_actual == "j") {
-            saltar();
-        } else {
-            std::cout << "Error: Acción no reconocida" << std::endl;
-        }
+        ejecutar_accion(accion_actual);
+    }
+}
+
+void Client::ejecutar_accion(std::string& accion_actual) {
+    accion_actual = toLowercase(accion_actual);
+    if (accion_actual == "disparar" or accion_actual == "s") {
+        disparar();
+    } else if (accion_actual == "derecha" or accion_actual == "r") {
+        moverDerecha();
+    } else if (accion_actual == "izquierda" or accion_actual == "l") {
+        moverIzquierda();
+    } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
+        moverDerechaRapido();
+    } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
+        moverIzquierdaRapido();
+    } else if (accion_actual == "arriba" or accion_actual == "u") {
+        moverArriba();
+    } else if (accion_actual == "abajo" or accion_actual == "d") {
+        moverAbajo();
+    } else if (accion_actual == "saltar" or accion_actual == "j") {
+        saltar();
+    } else {
+        std::cout << "Error: Acción no reconocida" << std::endl;
     }
 }
 

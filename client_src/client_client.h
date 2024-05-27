@@ -39,6 +39,8 @@ private:
     // Muestra las acciones posibles que puede realizar el cliente
     void acciones_posibles();
 
+    void ejecutar_accion(std::string& accion_actual);
+
     // A partir de acá vienen las acciones que puede realizar el cliente
     // Disparar
     void disparar();
