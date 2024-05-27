@@ -138,13 +138,13 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
     if (was_closed) {
         return false;
     }
-    uint16_t cant_personajes;
-    socket_cliente.recvall(&cant_personajes, sizeof(uint16_t), &was_closed);
+    int cant_personajes;
+    socket_cliente.recvall(&cant_personajes, sizeof(int), &was_closed);
     cant_personajes = ntohs(cant_personajes);
     if (was_closed) {
         return false;
     }
-    for (size_t i = 0; i < cant_personajes; i++) {
+    for (int i = 0; i < cant_personajes; i++) {
         uint16_t id_personaje;
         uint16_t posicion_x;
         uint16_t posicion_y;

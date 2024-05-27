@@ -88,7 +88,6 @@ void ProtocolServer::recibir_personaje(std::string& personaje, bool& was_closed)
     } else if (buffer == LORI) {
         personaje = "lori";
     }
-    std::cout << "Personaje: " << personaje << std::endl;
 }
 
 // ********************** PROTOCOLOS DE JUEGO **********************
