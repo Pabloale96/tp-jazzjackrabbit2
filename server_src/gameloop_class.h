@@ -53,6 +53,8 @@ public:
 
     void borrar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<GameState>>& queue);
 
+    void borrar_cliente(uint16_t client_id);
+
     // Cierra la cola de comandos de clientes
     // Cierra las colas de mensajes de los clientes
     void stop() override;

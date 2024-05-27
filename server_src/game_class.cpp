@@ -94,4 +94,18 @@ uint16_t Game::obtener_cant_muertos() {
     return cant_muertos;
 }
 
+void Game::borrar_personaje(uint16_t client_id) {
+    auto it = std::find_if(personajes.begin(), personajes.end(),
+                           [client_id](const Personaje& personaje) {
+                               return personaje.obtener_personaje_id() == client_id;
+                           });
+
+    if (it != personajes.end()) {
+        personajes.erase(it);
+        std::cout << "El personaje con client ID " << client_id << " se ha borrado" << std::endl;
+    } else {
+        throw std::runtime_error("No se encontro el personaje en game");
+    }
+}
+
 Game::~Game() {}

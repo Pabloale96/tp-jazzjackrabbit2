@@ -42,6 +42,8 @@ public:
 
     uint16_t obtener_cant_muertos();
 
+    void borrar_personaje(uint16_t client_id);
+
     ~Game();
 };
 

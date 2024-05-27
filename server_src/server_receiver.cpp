@@ -28,7 +28,10 @@ void ServerReceiver::run() {
                 break;
             }
         } catch (const LibError& err) {
-            std::cerr << "Fallo el receive en ServerReceiver->run: " << err.what() << "\n";
+            // Si falla el receive, es porque el cliente cerró la conexion (o falló)
+            std::cout << "Cliente " << cliente_id << "se ha desconectado\n";
+            protocolo_server.cerrar_socket_cliente();
+            return;
         }
     }
 }

@@ -32,6 +32,8 @@ public:
 
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands(uint16_t gameloop_id);
 
+    void borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id);
+
     ~GameloopMonitor();
 };
 

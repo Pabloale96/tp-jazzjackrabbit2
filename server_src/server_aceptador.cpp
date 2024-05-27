@@ -31,7 +31,7 @@ void Aceptador::run() {
             client_id++;
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
-                // TODO: ahora el monitor de gamellops tiene que cerrar los gameloops
+                // TODO: ahora el monitor de gameloops tiene que cerrar los gameloops
                 // game_loop.stop();
                 // game_loop.join();
                 // clean all

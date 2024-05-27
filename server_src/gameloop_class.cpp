@@ -83,6 +83,11 @@ void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.borrar_queue(queue);
 }
 
+void GameLoop::borrar_cliente(uint16_t client_id) {
+    game.borrar_personaje(client_id);
+    clients_id.remove(client_id);
+}
+
 void GameLoop::stop() { client_commands.close(); }
 
 GameLoop::~GameLoop() {}

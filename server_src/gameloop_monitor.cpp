@@ -58,6 +58,12 @@ Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_comman
     return obtener_gameloop(gameloop_id)->obtener_queue_de_client_commands();
 }
 
+void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id) {
+    std::unique_lock<std::mutex> lock(m);
+    GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    gameloop->borrar_cliente(client_id);
+}
+
 GameloopMonitor::~GameloopMonitor() {
     std::unique_lock<std::mutex> lock(m);
     // cppcheck-suppress unusedVariable
