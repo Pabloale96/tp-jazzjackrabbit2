@@ -5,7 +5,7 @@
 #define UNIRSE_A_PARTIDA 0x02
 
 #define JAZZ 0x01
-#define SPAZ 0x02
+#define SPAZZ 0x02
 #define LORI 0x03
 
 #define DISPARAR 0x01

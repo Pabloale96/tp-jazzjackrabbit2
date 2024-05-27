@@ -22,7 +22,7 @@ private:
 public:
     GameloopMonitor();
 
-    uint16_t crear_gameloop(std::string nombre_partida, uint16_t client_id);
+    uint16_t crear_gameloop(std::string nombre_partida, uint16_t client_id, std::string& personaje);
 
     void obtener_partidas_disponibles(std::map<uint16_t, std::string>& partidas_disponibles);
 

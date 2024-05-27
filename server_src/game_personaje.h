@@ -24,7 +24,7 @@ private:
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
 
-    bool mover(const std::string& direccion);
+    virtual bool mover(const std::string& direccion);
 
     Posicion obtener_posicion() const;
 
@@ -32,28 +32,27 @@ public:
 
     uint16_t obtener_personaje_id() const;
 
-    // virtual void activarEspecial() = 0;
-
-    // virtual ~Personaje() = default;
+    virtual ~Personaje() = default;
 };
 
-/*
 class Jazz: public Personaje {
 public:
-    void activarEspecial() override;
+    Jazz(uint16_t partida_id, uint16_t client_id);
+    void punietazo_hacia_arriba();
 };
 
 class Lori: public Personaje {
-
 public:
-    void activarEspecial() override;
+    Lori(uint16_t partida_id, uint16_t client_id);
+    void patada_de_corto_alcance();
 };
 
 class Spazz: public Personaje {
-
 public:
-    void activarEspecial() override;
+    Spazz(uint16_t partida_id, uint16_t client_id);
+    void patada_hacia_un_costado();
 };
-*/
+
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje);
 
 #endif

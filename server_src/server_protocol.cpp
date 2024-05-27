@@ -78,6 +78,19 @@ uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
     return buffer;
 }
 
+void ProtocolServer::recibir_personaje(std::string& personaje, bool& was_closed) {
+    uint8_t buffer = 0;
+    socket_cliente.recvall(&buffer, sizeof(uint8_t), &was_closed);
+    if (buffer == JAZZ) {
+        personaje = "jazz";
+    } else if (buffer == SPAZZ) {
+        personaje = "spazz";
+    } else if (buffer == LORI) {
+        personaje = "lori";
+    }
+    std::cout << "Personaje: " << personaje << std::endl;
+}
+
 // ********************** PROTOCOLOS DE JUEGO **********************
 
 void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido) {

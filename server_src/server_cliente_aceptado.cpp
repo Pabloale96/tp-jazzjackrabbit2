@@ -20,9 +20,21 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente):
         receiver(nullptr),
         gameloop_id(PARTIDA_NO_ASIGNADA) {}
 
+void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
+    if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {
+        std::string nombre_partida;
+        protocolo_server.recibir_nombre_partida(nombre_partida, was_closed);
+        crear_partida(gameloop_monitor, nombre_partida);
+    } else {
+        joinearse_a_una_partida(gameloop_monitor);
+    }
+}
+
 void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
                                     const std::string& nombre_partida) {
-    gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente);
+    std::string personaje;
+    protocolo_server.recibir_personaje(personaje, was_closed);
+    gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente, personaje);
     gameloop_monitor.obtener_gameloop(gameloop_id)
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
@@ -36,9 +48,11 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
     try {
         protocolo_server.enviar_partidas_disponibles(gameloop_monitor, was_closed);
         uint16_t gameloop_id = protocolo_server.recibir_id_partida(was_closed);
+        std::string personaje;
+        protocolo_server.recibir_personaje(personaje, was_closed);
         gameloop_monitor.obtener_gameloop(gameloop_id)
                 ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
-        gameloop_monitor.obtener_gameloop(gameloop_id)->agregar_cliente(id_cliente);
+        gameloop_monitor.obtener_gameloop(gameloop_id)->agregar_cliente(id_cliente, personaje);
         receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                     gameloop_id, id_cliente);
         std::cout << "Se unio a la partida con id " << gameloop_id << std::endl;
@@ -47,16 +61,6 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
         throw;
     }
     return;
-}
-
-void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
-    if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {
-        std::string nombre_partida;
-        protocolo_server.recibir_nombre_partida(nombre_partida, was_closed);
-        crear_partida(gameloop_monitor, nombre_partida);
-    } else {
-        joinearse_a_una_partida(gameloop_monitor);
-    }
 }
 
 void ClienteAceptado::start() {

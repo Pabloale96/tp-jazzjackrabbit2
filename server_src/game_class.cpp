@@ -7,21 +7,26 @@
 #include "../server_src/game_enemigo.h"
 #include "../server_src/game_state.h"
 
-Game::Game(uint16_t partida_id, uint16_t client_id):
+Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje):
         partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {
-    personajes.push_back(Personaje(partida_id, client_id));
+    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
+    if (personaje_ptr) {
+        personajes.push_back(std::unique_ptr<Personaje>(personaje_ptr));
+    } else {
+        throw std::runtime_error("Tipo de personaje desconocido");
+    }
 }
 
-std::vector<Personaje> Game::obtener_vector_de_personajes() { return personajes; }
+std::vector<std::unique_ptr<Personaje>>& Game::obtener_vector_de_personajes() { return personajes; }
 
 Personaje& Game::obtener_personaje(uint16_t client_id) {
     auto it = std::find_if(personajes.begin(), personajes.end(),
-                           [client_id](const Personaje& personaje) {
-                               return personaje.obtener_personaje_id() == client_id;
+                           [client_id](const std::unique_ptr<Personaje>& personaje) {
+                               return personaje->obtener_personaje_id() == client_id;
                            });
 
     if (it != personajes.end()) {
-        return *it;
+        return **it;
     } else {
         throw std::runtime_error("No se encontro el personaje en game");
     }
@@ -46,10 +51,9 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
 }
 
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
-    std::vector<Personaje> personajes = obtener_vector_de_personajes();
-    for (auto& personaje: personajes) {
+    for (const auto& personaje: personajes) {
         gamestate.obtener_diccionario_de_personajes().insert(
-                std::make_pair(personaje.obtener_personaje_id(), personaje));
+                std::make_pair(personaje->obtener_personaje_id(), *personaje));
     }
     /*
     for (auto& enemigo: enemigos) {
@@ -58,8 +62,13 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
     }*/
 }
 
-void Game::agregar_personaje(uint16_t client_id) {
-    personajes.push_back(Personaje(partida_id, client_id));
+void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {
+    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
+    if (personaje_ptr) {
+        personajes.push_back(std::unique_ptr<Personaje>(personaje_ptr));
+    } else {
+        throw std::runtime_error("Tipo de personaje desconocido");
+    }
 }
 
 bool Game::aumentar_iteraciones() {
@@ -96,8 +105,8 @@ uint16_t Game::obtener_cant_muertos() {
 
 void Game::borrar_personaje(uint16_t client_id) {
     auto it = std::find_if(personajes.begin(), personajes.end(),
-                           [client_id](const Personaje& personaje) {
-                               return personaje.obtener_personaje_id() == client_id;
+                           [client_id](const std::unique_ptr<Personaje>& personaje) {
+                               return personaje->obtener_personaje_id() == client_id;
                            });
 
     if (it != personajes.end()) {

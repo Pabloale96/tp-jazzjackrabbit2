@@ -18,7 +18,7 @@ bool ProtocolClient::enviar_personaje(const std::string& personaje) {
     if (personaje == "j") {
         personaje_serializado = JAZZ;
     } else if (personaje == "s") {
-        personaje_serializado = SPAZ;
+        personaje_serializado = SPAZZ;
     } else if (personaje == "l") {
         personaje_serializado = LORI;
     } else {

@@ -14,11 +14,12 @@
 #define MATAR 0x04
 #define REVIVIR 0x05
 
-GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id):
+GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
+                   std::string& personaje):
         gameloop_id(nuevo_gameloop_id),
         nombre_partida(nombre_partida),
         client_commands(MAX_TAM_COLA),
-        game(nuevo_gameloop_id, client_id) {
+        game(nuevo_gameloop_id, client_id, personaje) {
     clients_id.push_back(client_id);
 }
 
@@ -33,7 +34,9 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
-void GameLoop::agregar_cliente(uint16_t client_id) { game.agregar_personaje(client_id); }
+void GameLoop::agregar_cliente(uint16_t client_id, std::string& personaje) {
+    game.agregar_personaje(client_id, personaje);
+}
 
 Game& GameLoop::obtener_game() { return game; }
 

@@ -90,7 +90,7 @@ void Client::crear_personaje() {
     std::string personaje;
     std::cout << "Ingrese el nombre del personaje que desea utilizar" << std::endl;
     std::cout << "  - Jazz (j)" << std::endl;
-    std::cout << "  - Spaz (s)" << std::endl;
+    std::cout << "  - Spazz (s)" << std::endl;
     std::cout << "  - Lori (l)" << std::endl;
     std::cin >> personaje;
     personaje = toLowercase(personaje);

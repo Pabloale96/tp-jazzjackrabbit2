@@ -2,13 +2,15 @@
 
 GameloopMonitor::GameloopMonitor(): gameloop_id(ID_GAMELOOP_INICIAL) {}
 
-uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t client_id) {
+uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t client_id,
+                                         std::string& personaje) {
     try {
         std::unique_lock<std::mutex> lock(m);
         uint16_t nuevo_gameloop_id = gameloop_id;
         gameloop_id++;
         // TODO: Probar usar smart_pointers()
-        GameLoop* nuevo_gameloop = new GameLoop(nuevo_gameloop_id, nombre_partida, client_id);
+        GameLoop* nuevo_gameloop =
+                new GameLoop(nuevo_gameloop_id, nombre_partida, client_id, personaje);
         nuevo_gameloop->start();
         diccionario_de_gameloops.insert(std::make_pair(nuevo_gameloop_id, nuevo_gameloop));
         return nuevo_gameloop_id;

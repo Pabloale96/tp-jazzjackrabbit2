@@ -25,6 +25,8 @@ public:
 
     void enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor, bool& was_closed);
 
+    void recibir_personaje(std::string& personaje, bool& was_closed);
+
     uint16_t recibir_id_partida(bool& was_closed);
 
     // Como no se cuantas acciones me va a mandar el cliente, itero hasta que
