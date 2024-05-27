@@ -4,9 +4,9 @@
 #include <memory>
 #include <string>
 
+#include "../client_src/client_protocol.h"
 #include "../common_src/common_queue.h"
 #include "../common_src/common_thread.h"
-#include "../client_src/client_protocol.h"
 
 class ClientSender: public Thread {
 private:
@@ -15,8 +15,7 @@ private:
 
 public:
     // Constructor
-    ClientSender(ProtocolClient& protocolo_cliente, 
-                 Queue<TipoAccion>& client_commands);
+    ClientSender(ProtocolClient& protocolo_cliente, Queue<TipoAccion>& client_commands);
 
     void run() override;
 };

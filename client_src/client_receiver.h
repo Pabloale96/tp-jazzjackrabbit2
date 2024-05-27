@@ -4,10 +4,10 @@
 #include <memory>
 #include <string>
 
-#include "../common_src/common_thread.h"
-#include "../client_src/client_protocol.h"
 #include "../client_src/client_game_respuesta.h"
+#include "../client_src/client_protocol.h"
 #include "../common_src/common_queue.h"
+#include "../common_src/common_thread.h"
 
 class ClientReceiver: public Thread {
 private:
@@ -16,7 +16,7 @@ private:
 
 public:
     // Constructor
-    ClientReceiver(ProtocolClient& protocolo_cliente, 
+    ClientReceiver(ProtocolClient& protocolo_cliente,
                    Queue<std::shared_ptr<ClientGameRespuesta>>& server_msg);
 
     void run() override;

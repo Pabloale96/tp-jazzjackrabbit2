@@ -15,10 +15,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client, server_msg) {
-    sender.start();
-    receiver.start();
-}
+        receiver(protocolo_client, server_msg) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -188,13 +185,34 @@ void Client::acciones_posibles() {
     std::cout << "  - Salir (q)" << std::endl;
 }
 
+void Client::iniciar_hilos() {
+    sender.start();
+    receiver.start();
+}
+
 void Client::jugar() {
+
+    // ***************** LOBBY *****************
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
+
+    // ***************** JUEGO *****************
+    iniciar_hilos();
     acciones_posibles();
+
     std::string accion_actual;
     while (std::cin >> accion_actual) {
+        if (accion_actual == "q") {
+            stop_hilos();
+            break;
+        }
+
+        std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
+        while (server_msg.try_pop(respuesta)) {
+            respuesta->imprimir_respuesta();
+        }
+
         accion_actual = toLowercase(accion_actual);
         if (accion_actual == "disparar" or accion_actual == "s") {
             disparar();
@@ -212,48 +230,40 @@ void Client::jugar() {
             moverAbajo();
         } else if (accion_actual == "saltar" or accion_actual == "j") {
             saltar();
-        } else if (accion_actual == "leer") {
-            leer();
-        } else if (accion_actual == "salir" or accion_actual == "q") {
-            return;
         } else {
             std::cout << "Error: Acción no reconocida" << std::endl;
         }
     }
 }
 
-void Client::disparar() { protocolo_client.enviar_accion(TipoAccion::Disparar); }
+void Client::disparar() { client_commands.push(TipoAccion::Disparar); }
 
-void Client::moverDerecha() { protocolo_client.enviar_accion(TipoAccion::MoverDerecha); }
+void Client::moverDerecha() { client_commands.push(TipoAccion::MoverDerecha); }
 
-void Client::moverIzquierda() { protocolo_client.enviar_accion(TipoAccion::MoverIzquierda); }
+void Client::moverIzquierda() { client_commands.push(TipoAccion::MoverIzquierda); }
 
-void Client::moverArriba() { protocolo_client.enviar_accion(TipoAccion::MoverArriba); }
+void Client::moverArriba() { client_commands.push(TipoAccion::MoverArriba); }
 
-void Client::moverAbajo() { protocolo_client.enviar_accion(TipoAccion::MoverAbajo); }
+void Client::moverAbajo() { client_commands.push(TipoAccion::MoverAbajo); }
 
-void Client::saltar() { protocolo_client.enviar_accion(TipoAccion::Saltar); }
+void Client::saltar() { client_commands.push(TipoAccion::Saltar); }
 
-void Client::moverDerechaRapido() {
-    protocolo_client.enviar_accion(TipoAccion::MoverDerechaRapido);
-}
+void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerechaRapido); }
 
 void Client::moverIzquierdaRapido() {
     protocolo_client.enviar_accion(TipoAccion::MoverIzquierdaRapido);
 }
 
-void Client::leer() {
-    ClientGameRespuesta game_respuesta;
-    if (protocolo_client.recibir_respuesta(game_respuesta) == false) {
-        return;
-    } else {
-        game_respuesta.imprimir_respuesta();
-    }
-}
-
-Client::~Client() {
+void Client::stop_hilos() {
     sender.stop();
     receiver.stop();
     sender.join();
     receiver.join();
+}
+
+Client::~Client() {
+    client_commands.close();
+    server_msg.close();
+
+    stop_hilos();
 }

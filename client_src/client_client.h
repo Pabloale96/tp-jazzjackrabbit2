@@ -34,6 +34,8 @@ private:
 
     void unirse_a_partida();
 
+    void iniciar_hilos();
+
     // Muestra las acciones posibles que puede realizar el cliente
     void acciones_posibles();
 
@@ -56,10 +58,6 @@ private:
     void moverArriba();
     void moverAbajo();
 
-
-    // Espera hasta recibir la respuesta del server y la imprime
-    void leer();
-
     // Espera la respuesta del server y la imprime
     void imprimir_respuesta(const Respuesta& respuesta);
 
@@ -70,6 +68,8 @@ public:
 
     // Lee por entrada estandar y parsea las acciones
     void jugar();
+
+    void stop_hilos();
 
     // Destructor
     ~Client();
