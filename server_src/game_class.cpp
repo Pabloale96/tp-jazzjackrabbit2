@@ -52,8 +52,12 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
 
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
     for (const auto& personaje: personajes) {
-        gamestate.obtener_diccionario_de_personajes().insert(
-                std::make_pair(personaje->obtener_personaje_id(), *personaje));
+        if (personaje) {
+            gamestate.obtener_diccionario_de_personajes().insert(
+                    std::make_pair(personaje->obtener_personaje_id(), *personaje));
+        } else {
+            std::cerr << "ERROR en crear_nuevo_gamestate" << std::endl;
+        }
     }
     /*
     for (auto& enemigo: enemigos) {

@@ -16,8 +16,8 @@ class Personaje {
 private:
     uint16_t partida_id;
     uint16_t client_id;
-    int puntos;
-    int vida;
+    uint16_t puntos;
+    uint16_t vida;
     Arma arma;
     Posicion posicion;
 
@@ -31,6 +31,14 @@ public:
     uint16_t obtener_partida_id() const;
 
     uint16_t obtener_personaje_id() const;
+
+    uint16_t obtener_puntos() const;
+
+    uint16_t obtener_vida() const;
+
+    std::string obtener_nombre_arma() const;
+
+    uint16_t obtener_municion() const;
 
     virtual ~Personaje() = default;
 };

@@ -20,10 +20,13 @@ void GameState::imprimir_mensaje() {
     for (const auto& pair: diccionario_de_personajes) {
         const Personaje& personaje = pair.second;
         std::cout << "En la partida " << personaje.obtener_partida_id() << " el personaje "
-                  << personaje.obtener_personaje_id() << " está en la posición: ("
-                  << personaje.obtener_posicion().get_posicion_x() << ", "
+                  << personaje.obtener_personaje_id() << " tiene:" << std::endl;
+        std::cout << "  - Posición: (" << personaje.obtener_posicion().get_posicion_x() << ", "
                   << personaje.obtener_posicion().get_posicion_y() << ")." << std::endl;
-        // std::cout << "Personaje vida: " << personaje.obtener_vida() << std::endl;
+        std::cout << "  - Puntos: " << personaje.obtener_puntos() << std::endl;
+        std::cout << "  - Vida: " << personaje.obtener_vida() << std::endl;
+        std::cout << "  - Municion: " << personaje.obtener_municion() << std::endl;
+        std::cout << "  - Arma: " << personaje.obtener_nombre_arma() << std::endl;
     }
     // TODO: Deberia de hacer lo mismo con los enemigos
 }

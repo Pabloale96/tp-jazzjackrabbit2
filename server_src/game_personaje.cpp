@@ -18,6 +18,14 @@ uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 
 uint16_t Personaje::obtener_personaje_id() const { return client_id; }
 
+uint16_t Personaje::obtener_puntos() const { return puntos; }
+
+uint16_t Personaje::obtener_vida() const { return vida; }
+
+uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
+
+std::string Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
+
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {}
 
 void Jazz::punietazo_hacia_arriba() {
