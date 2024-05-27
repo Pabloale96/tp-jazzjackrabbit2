@@ -19,7 +19,7 @@ Personaje GameState::obtener_personaje(uint16_t client_id) {
 void GameState::imprimir_mensaje() {
     for (const auto& pair: diccionario_de_personajes) {
         const Personaje& personaje = pair.second;
-        std::cout << "El personaje " << personaje.obtener_personaje_id()
+        std::cout << "En la partida " << personaje.obtener_partida_id() << " el personaje " << personaje.obtener_personaje_id()
                   << " está en la posición: (" << personaje.obtener_posicion().get_posicion_x()
                   << ", " << personaje.obtener_posicion().get_posicion_y() << ")." << std::endl;
         // std::cout << "Personaje vida: " << personaje.obtener_vida() << std::endl;

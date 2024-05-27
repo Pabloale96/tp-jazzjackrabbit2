@@ -14,6 +14,7 @@
 
 class Game {
 private:
+    uint16_t partida_id;
     // TODO: Clase escenario que contenga a los personajes y enemigos ?
     // TODO: unorderedmap sería más rápido
     std::vector<Personaje> personajes;
@@ -21,7 +22,7 @@ private:
     // Pared? Piso?
 
 public:
-    explicit Game(uint16_t client_id);
+    explicit Game(uint16_t partida_id, uint16_t client_id);
 
     std::vector<Personaje> obtener_vector_de_personajes();
 

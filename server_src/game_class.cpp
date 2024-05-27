@@ -7,8 +7,8 @@
 #include "../server_src/game_enemigo.h"
 #include "../server_src/game_state.h"
 
-Game::Game(uint16_t client_id): enemigos(NUMERO_INICIAL_ENEMIGOS) {
-    personajes.push_back(Personaje(client_id));
+Game::Game(uint16_t partida_id, uint16_t client_id): partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {
+    personajes.push_back(Personaje(partida_id, client_id));
 }
 
 std::vector<Personaje> Game::obtener_vector_de_personajes() { return personajes; }

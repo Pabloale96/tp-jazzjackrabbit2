@@ -81,7 +81,8 @@ void Client::imprimir_portada() {
 }
 
 void Client::imprimir_bienvenida() {
-    imprimir_portada();
+    // TODO: Volver a poner la portada (la saco para testear)
+    // imprimir_portada();
     std::cout << "Bienvenido al juego!" << std::endl;
 }
 
@@ -97,7 +98,11 @@ void Client::crear_partida() {
 }
 
 void Client::unirse_a_partida() {
-    std::cout << "Estas son las partidas disponibles para unirse" << std::endl;
+    if (protocolo_client.unirse_a_partida() == false) {
+        std::cout << "Error: No se pudo joinear a la partida" << std::endl;
+        return;
+    }
+    std::cout << "Estas son las partidas disponibles para unirse: " << std::endl;
     std::map<uint16_t, std::string> partidas_disponibles;
     protocolo_client.recibir_partidas_disponibles(partidas_disponibles);
     if (partidas_disponibles.empty()) {
@@ -105,7 +110,7 @@ void Client::unirse_a_partida() {
         return;
     }
     for (const auto& pair: partidas_disponibles) {
-        std::cout << "ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
+        std::cout << "   - ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
     }
     std::cout << "Ingrese el ID de la partida a la que desea unirse" << std::endl;
     uint16_t id_partida;

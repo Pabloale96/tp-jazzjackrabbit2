@@ -18,7 +18,7 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         gameloop_id(nuevo_gameloop_id),
         nombre_partida(nombre_partida),
         client_commands(MAX_TAM_COLA),
-        game(client_id) {
+        game(nuevo_gameloop_id, client_id) {
     agregar_cliente(client_id);
 }
 

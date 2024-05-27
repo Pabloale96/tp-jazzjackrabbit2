@@ -21,7 +21,7 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
 // TODO: Mando el map en vez de pasarlo por referencia
 void GameloopMonitor::obtener_partidas_disponibles(
         std::map<uint16_t, std::string>& partidas_disponibles) {
-    // TODO: Agregar lock
+    std::unique_lock<std::mutex> lock(m);
     partidas_disponibles.clear();
     for (const auto& pair: diccionario_de_gameloops) {
         uint16_t id = pair.first;

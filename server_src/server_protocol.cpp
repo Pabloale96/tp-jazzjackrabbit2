@@ -36,14 +36,8 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
     if (was_closed) {
         return;
     }
-    // TODO: mejorar esta parte para que no tenga limite de buffer
-    char nombre_partida_buffer[256];
-    socket_cliente.recvall(nombre_partida_buffer, nombre_partida_len, &was_closed);
-    if (was_closed) {
-        return;
-    }
-    nombre_partida_buffer[nombre_partida_len] = '\0';
-    nombre_partida = nombre_partida_buffer;
+    nombre_partida.resize(nombre_partida_len);
+    socket_cliente.recvall(&nombre_partida[0], nombre_partida_len*sizeof(uint8_t), &was_closed);
 }
 
 void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
@@ -52,7 +46,7 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
     gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
     uint16_t cant_partidas = partidas_disponibles.size();
     cant_partidas = htons(cant_partidas);
-    socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);
+    socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);   
     if (was_closed) {
         return;
     }
@@ -60,6 +54,7 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
         uint16_t id = pair.first;
         id = htons(id);
         socket_cliente.sendall(&id, sizeof(uint16_t), &was_closed);
+        
         if (was_closed) {
             return;
         }
@@ -73,12 +68,14 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
         if (was_closed) {
             return;
         }
+        
     }
 }
 
 uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
     uint16_t buffer = 0;
     socket_cliente.recvall(&buffer, sizeof(uint16_t), &was_closed);
+    buffer = ntohs(buffer);
     return buffer;
 }
 

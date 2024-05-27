@@ -14,6 +14,7 @@
 class Personaje {
 
 private:
+    uint16_t partida_id;
     uint16_t client_id;
     int puntos;
     int vida;
@@ -21,11 +22,13 @@ private:
     Posicion posicion;
 
 public:
-    explicit Personaje(uint16_t client_id);
+    explicit Personaje(uint16_t partida_id, uint16_t client_id);
 
     bool mover(const std::string& direccion);
 
     Posicion obtener_posicion() const;
+
+    uint16_t obtener_partida_id() const;
 
     uint16_t obtener_personaje_id() const;
 
