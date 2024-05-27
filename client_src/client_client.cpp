@@ -181,7 +181,6 @@ void Client::acciones_posibles() {
     std::cout << "  - Arriba (u)" << std::endl;
     std::cout << "  - Abajo (d)" << std::endl;
     std::cout << "  - Saltar (j)" << std::endl;
-    std::cout << "  - Leer <cant_lineas_leer>" << std::endl;
     std::cout << "  - Salir (q)" << std::endl;
 }
 
@@ -205,7 +204,8 @@ void Client::jugar() {
     while (std::cin >> accion_actual) {
         if (accion_actual == "q") {
             stop_hilos();
-            break;
+            protocolo_client.cerrar_socket();
+            return;
         }
 
         std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
@@ -250,9 +250,7 @@ void Client::saltar() { client_commands.push(TipoAccion::Saltar); }
 
 void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerechaRapido); }
 
-void Client::moverIzquierdaRapido() {
-    protocolo_client.enviar_accion(TipoAccion::MoverIzquierdaRapido);
-}
+void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
 
 void Client::stop_hilos() {
     sender.stop();
@@ -262,6 +260,7 @@ void Client::stop_hilos() {
 }
 
 Client::~Client() {
+    protocolo_client.cerrar_socket();
     client_commands.close();
     server_msg.close();
 

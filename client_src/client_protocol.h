@@ -52,6 +52,8 @@ public:
     // Para poder recivir comandos
     bool recibir_respuesta(ClientGameRespuesta& game_respuesta);
 
+    void cerrar_socket();
+
     // Destructor
     ~ProtocolClient();
 };

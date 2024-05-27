@@ -4,7 +4,8 @@
 #include <iostream>
 #include <sstream>
 
-#include <arpa/inet.h>  // para usar htons()
+#include <arpa/inet.h>   // para usar htons()
+#include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
 #include "../common_src/common_protocol_utils.h"
 
@@ -170,6 +171,11 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
         client_game_respuesta.agregar_respuesta(respuesta_actual);
     }
     return true;
+}
+
+void ProtocolClient::cerrar_socket() {
+    socket_cliente.shutdown(SHUT_RDWR);
+    socket_cliente.close();
 }
 
 ProtocolClient::~ProtocolClient() {}
