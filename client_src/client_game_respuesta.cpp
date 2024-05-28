@@ -8,10 +8,13 @@ void ClientGameRespuesta::agregar_respuesta(Respuesta& respuesta) {
 
 void ClientGameRespuesta::imprimir_respuesta() {
     for (const auto& resp: estado_juego) {
-        std::cout << "El personaje " + std::to_string(resp.id_personaje) +
-                             " está en la posición (" + std::to_string(resp.posicion_x) + ", " +
-                             std::to_string(resp.posicion_y) + ")."
+        std::cout << "El personaje " + std::to_string(resp.id_personaje) + " tiene:" << std::endl;
+        std::cout << "  - Posición: (" << resp.posicion_x << ", " << resp.posicion_y << ")."
                   << std::endl;
+        std::cout << "  - Puntos: " << resp.puntos << std::endl;
+        std::cout << "  - Vida: " << resp.vida << std::endl;
+        std::cout << "  - Municion: " << resp.municion << std::endl;
+        std::cout << "  - Arma: " << resp.nombre_arma << std::endl;
     }
 }
 
