@@ -255,9 +255,7 @@ void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerech
 
 void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
 
-void Client::stop_hilos() {
-
-}
+void Client::stop_hilos() {}
 
 Client::~Client() {
     client_commands.close();
