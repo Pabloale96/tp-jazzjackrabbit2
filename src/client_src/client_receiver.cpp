@@ -20,7 +20,6 @@ void ClientReceiver::run() {
             protocolo_cliente.recibir_respuesta(*msg);
             server_msg.push(msg);
         } catch (const ClosedQueue&) {
-            protocolo_cliente.cerrar_socket();
             return;
         } catch (const LibError& err) {
             std::cerr << "Fallo el receive en ClientSender->run: " << err.what() << "\n";

@@ -14,6 +14,8 @@ void ClientSender::run() {
             if (!this->is_alive()) {
                 break;
             }
+        } catch (const ClosedQueue&) {
+            return;
         } catch (const LibError& err) {
             std::cerr << "Fallo el send en ClientReceiver->run: " << err.what() << "\n";
         }

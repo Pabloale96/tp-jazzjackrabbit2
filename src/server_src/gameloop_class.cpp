@@ -49,6 +49,7 @@ void GameLoop::run() {
                 }
             }
             // aca deberia actualizar el game state para pasarle al cliente para que renderise
+            // TODO: Mover enemigos ?
             if (game.aumentar_iteraciones()) {
                 broadcastear();
             }

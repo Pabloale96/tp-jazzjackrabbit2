@@ -203,8 +203,6 @@ void Client::jugar() {
     std::string accion_actual;
     while (std::cin >> accion_actual) {
         if (accion_actual == "q") {
-            stop_hilos();
-            protocolo_client.cerrar_socket();
             return;
         }
 
@@ -258,16 +256,15 @@ void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerech
 void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
 
 void Client::stop_hilos() {
+
+}
+
+Client::~Client() {
+    client_commands.close();
+    server_msg.close();
+    protocolo_client.cerrar_socket();
     sender.stop();
     receiver.stop();
     sender.join();
     receiver.join();
-}
-
-Client::~Client() {
-    protocolo_client.cerrar_socket();
-    client_commands.close();
-    server_msg.close();
-
-    stop_hilos();
 }
