@@ -1,8 +1,9 @@
 # tp-jazzjackrabbit2
 
-## Para correr el TP:
+## Para correr el TP
 
-Server: 
+Server:
+
 ```shell
 ./server 8080
 
@@ -10,11 +11,13 @@ valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-reachabl
 ```
 
 Tiburoncin:
+
 ```shell
 tiburoncin -o -A 127.0.0.1:9095 -B 127.0.0.1:8080 -o
 ```
 
 Client:
+
 ```shell
 ./client 127.0.0.1 9095
 
@@ -26,11 +29,13 @@ valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-reachabl
 ```
 
 Pasar el pre-commit:
+
 ```shell
 pre-commit run --all-files
 ```
 
-## Para correr los tests:
+## Para correr los tests
+
 ```shell
 ./testing/run_tests.sh ./ testing/casos/ multi-client no-valgrind  60 10 yes
 ./testing/compare_outputs.sh testing/casos testing/salidas
