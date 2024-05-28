@@ -26,6 +26,8 @@ public:
 
     std::vector<std::unique_ptr<Personaje>>& obtener_vector_de_personajes();
 
+    std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
+
     Personaje& obtener_personaje(uint16_t client_id);
 
     bool mover(const std::string& direccion, uint16_t client_id);
@@ -37,10 +39,6 @@ public:
     void crear_nuevo_gamestate(GameState& gamestate);
 
     void agregar_personaje(uint16_t client_id, const std::string& personaje);
-
-    uint16_t obtener_cant_vivos();
-
-    uint16_t obtener_cant_muertos();
 
     void borrar_personaje(uint16_t client_id);
 

@@ -2,6 +2,11 @@
 
 Posicion::Posicion(): x(X_INICIAL), y(Y_INICIAL) {}
 
+void Posicion::set_posicion(uint16_t x, uint16_t y) {
+    this->x = x;
+    this->y = y;
+}
+
 /*
 void Posicion::mover(int x, int y) {
     this->x += x;

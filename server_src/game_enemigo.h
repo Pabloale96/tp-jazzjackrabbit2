@@ -3,21 +3,20 @@
 
 #include <cstdint>
 
-#define ITERACIONES_PARA_REVIVIR 15
-
-#define VIDAS_INICIALES 5
-#define DANIO_INICIAL 1
-#define PUNTOS_INICIALES_ENEMIGO 1
-#define TIME_REVIVE_INICIAL 50
+#include "../server_src/game_posicion.h"
 
 enum class TipoEnemigo { ENEMIGO1, ENEMIGO2, ENEMIGO3 };
 
 class Enemigo {
 
 private:
+    uint16_t id_enemigo;
     TipoEnemigo tipo_enemigo;
+    Posicion posicion_enemigo;
+
     bool vivo;
     unsigned int iteraciones;
+
     uint16_t vidas;
     uint16_t danio_al_jugador;
     uint16_t puntos;
@@ -30,14 +29,22 @@ public:
     // Inicializa vivo en true y las iteraciones en 0
     Enemigo();
 
+    void set_enemigo_id(uint16_t id_enemigo);
     void set_tipo_enemigo(TipoEnemigo tipo_enemigo);
+    void set_posicion_enemigo(uint16_t x, uint16_t y);
+    void set_vidas(uint16_t vidas);
+    void set_danio_al_jugador(uint16_t danio_al_jugador);
+    void set_puntos(uint16_t puntos);
 
-    uint16_t get_vidas();
-    uint16_t get_danio_al_jugador();
-    uint16_t get_puntos();
+    uint16_t get_id_enemigo() const;
+    TipoEnemigo get_tipo_enemigo() const;
+    Posicion get_posicion_enemigo() const;
+    uint16_t get_vidas() const;
+    uint16_t get_danio_al_jugador() const;
+    uint16_t get_puntos() const;
 
-    // Mata al enemigo
-    void atacar_enemigo();
+    // reduce vida al enemigo
+    void recibir_disparo();
 
     // Aumenta las iteraciones del enemigo. Si llega a 15 llama a revivir_enemigo
     void aumentar_iteraciones();
@@ -52,16 +59,27 @@ public:
     virtual ~Enemigo() = default;
 };
 
+
+
+
+
+
+
+// ************  ENEMIGO 1 ("nombre")  ************
 class Enemigo1: public Enemigo {
 public:
     Enemigo1();
 };
 
+
+// ************  ENEMIGO 2 ("nombre")  ************
 class Enemigo2: public Enemigo {
 public:
     Enemigo2();
 };
 
+
+// ************  ENEMIGO 3 ("nombre")  ************
 class Enemigo3: public Enemigo {
 public:
     Enemigo3();

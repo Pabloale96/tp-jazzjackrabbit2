@@ -3,6 +3,7 @@
 #include <algorithm>  // find_if()
 #include <memory>
 #include <string>
+#include <random>
 
 #include "../server_src/game_enemigo.h"
 #include "../server_src/game_state.h"
@@ -17,7 +18,26 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
     }
 
     for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
-        enemigos[i] = std::make_unique<Enemigo>();
+        enemigos[i] = crear_enemigo_aleatorio();
+        enemigos[i]->set_enemigo_id(i);
+    }
+}
+
+std::unique_ptr<Enemigo> Game::crear_enemigo_aleatorio() {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(0, 2);
+
+    int tipoEnemigo = distrib(gen);
+    switch (tipoEnemigo) {
+        case 0:
+            return std::make_unique<Enemigo1>();
+        case 1:
+            return std::make_unique<Enemigo2>();
+        case 2:
+            return std::make_unique<Enemigo3>();
+        default:
+            throw std::runtime_error("Tipo de enemigo desconocido");
     }
 }
 
@@ -42,7 +62,7 @@ bool Game::atacar_enemigo(uint16_t client_id) {
     }
     for (auto& enemigo: enemigos) {
         if (enemigo->esta_vivo()) {
-            enemigo->atacar_enemigo();
+            enemigo->recibir_disparo();
             obtener_personaje(client_id).disminuir_municion();
             return true;
         }
@@ -64,14 +84,19 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
             gamestate.obtener_diccionario_de_personajes().insert(
                     std::make_pair(personaje->obtener_personaje_id(), *personaje));
         } else {
-            std::cerr << "ERROR en crear_nuevo_gamestate" << std::endl;
+            std::cerr << "ERROR en personaje de crear_nuevo_gamestate" << std::endl;
         }
     }
-    /*
+    
     for (auto& enemigo: enemigos) {
-        gamestate.obtener_diccionario_de_personajes().insert(
-                std::make_pair(enemigo.obtener_enemigo_id(), enemigo));
-    }*/
+        if (enemigo) {
+            gamestate.obtener_diccionario_de_enemigos().insert(
+                std::make_pair(enemigo->get_id_enemigo(), *enemigo));
+        } else {
+            std::cerr << "ERROR en enemigo de crear_nuevo_gamestate" << std::endl;
+        }
+    }
+
 }
 
 void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {
@@ -93,26 +118,6 @@ bool Game::aumentar_iteraciones() {
         }
     }
     return false;
-}
-
-uint16_t Game::obtener_cant_vivos() {
-    uint16_t cant_vivos = 0;
-    for (auto& enemigo: enemigos) {
-        if (enemigo->esta_vivo()) {
-            cant_vivos++;
-        }
-    }
-    return cant_vivos;
-}
-
-uint16_t Game::obtener_cant_muertos() {
-    uint16_t cant_muertos = 0;
-    for (auto& enemigo: enemigos) {
-        if (!enemigo->esta_vivo()) {
-            cant_muertos++;
-        }
-    }
-    return cant_muertos;
 }
 
 void Game::borrar_personaje(uint16_t client_id) {
