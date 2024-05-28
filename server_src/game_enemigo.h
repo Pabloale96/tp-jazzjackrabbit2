@@ -1,10 +1,12 @@
 #ifndef _GAME_ENEMIGO_H_
 #define _GAME_ENEMIGO_H_
 
+#include <cstdint>
+
 #define ITERACIONES_PARA_REVIVIR 15
 
 #define VIDAS_INICIALES 5
-#define SIN_DANIO_INICIAL 0
+#define DANIO_INICIAL 1
 #define PUNTOS_INICIALES_ENEMIGO 1
 #define TIME_REVIVE_INICIAL 50
 
@@ -13,8 +15,8 @@ class Enemigo {
 private:
     bool vivo;
     unsigned int iteraciones;
-    // int vidas;
-    // int danio;
+    uint16_t vidas;
+    uint16_t danio;
     // int puntos;
     // int time_revive;
     // float prob_municion;
@@ -38,30 +40,22 @@ public:
     bool esta_vivo();
 
     // Destructor
-    // virtual ~Enemigo() = default;
+    virtual ~Enemigo() = default;
 };
 
-/* class Enemigo1: public Enemigo {
+class Enemigo1: public Enemigo {
 public:
     Enemigo1();
 };
-
-Enemigo1::Enemigo1() {}
-
 
 class Enemigo2: public Enemigo {
 public:
     Enemigo2();
 };
 
-Enemigo2::Enemigo2() {}
-
-
 class Enemigo3: public Enemigo {
 public:
     Enemigo3();
 };
-
-Enemigo3::Enemigo3() {} */
 
 #endif

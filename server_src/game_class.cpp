@@ -15,6 +15,10 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
     } else {
         throw std::runtime_error("Tipo de personaje desconocido");
     }
+
+    for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
+        enemigos[i] = std::make_unique<Enemigo>();
+    }
 }
 
 std::vector<std::unique_ptr<Personaje>>& Game::obtener_vector_de_personajes() { return personajes; }
@@ -34,8 +38,8 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
 
 bool Game::matar_enemigo() {
     for (auto& enemigo: enemigos) {
-        if (enemigo.esta_vivo()) {
-            enemigo.matar_enemigo();
+        if (enemigo->esta_vivo()) {
+            enemigo->matar_enemigo();
             return true;
         }
     }
@@ -77,9 +81,9 @@ void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {
 
 bool Game::aumentar_iteraciones() {
     for (auto& enemigo: enemigos) {
-        if (!enemigo.esta_vivo()) {
-            enemigo.aumentar_iteraciones();
-            if (enemigo.esta_vivo()) {
+        if (!enemigo->esta_vivo()) {
+            enemigo->aumentar_iteraciones();
+            if (enemigo->esta_vivo()) {
                 return true;
             }
         }
@@ -90,7 +94,7 @@ bool Game::aumentar_iteraciones() {
 uint16_t Game::obtener_cant_vivos() {
     uint16_t cant_vivos = 0;
     for (auto& enemigo: enemigos) {
-        if (enemigo.esta_vivo()) {
+        if (enemigo->esta_vivo()) {
             cant_vivos++;
         }
     }
@@ -100,7 +104,7 @@ uint16_t Game::obtener_cant_vivos() {
 uint16_t Game::obtener_cant_muertos() {
     uint16_t cant_muertos = 0;
     for (auto& enemigo: enemigos) {
-        if (!enemigo.esta_vivo()) {
+        if (!enemigo->esta_vivo()) {
             cant_muertos++;
         }
     }

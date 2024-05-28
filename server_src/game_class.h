@@ -18,7 +18,7 @@ private:
     // TODO: Clase escenario que contenga a los personajes y enemigos ?
     // TODO: unorderedmap sería más rápido
     std::vector<std::unique_ptr<Personaje>> personajes;
-    std::vector<Enemigo> enemigos;
+    std::vector<std::unique_ptr<Enemigo>> enemigos;
     // Pared? Piso?
 
 public:
