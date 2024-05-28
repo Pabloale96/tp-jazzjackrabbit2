@@ -4,25 +4,33 @@
 #include <iostream>
 #include <vector>
 
+#define GEMAS 100
+#define MONEDAS 50
+
 class Collectible {
 
 private:
-    float punto;
+    uint16_t puntos;
+
+protected:
+    Collectible(uint16_t puntos) : puntos(puntos) {}
 
 public:
-    Collectible();
+    Collectible() : puntos(0) {}
+
+    uint16_t obtener_puntos() const {
+        return puntos;
+    }
 };
 
 class Gema: public Collectible {
-
 public:
-    Gema();
+    Gema() : Collectible(GEMAS) {}
 };
 
 class Moneda: public Collectible {
-
 public:
-    Moneda();
+    Moneda() : Collectible(MONEDAS) {}
 };
 
 #endif
