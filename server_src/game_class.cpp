@@ -2,8 +2,8 @@
 
 #include <algorithm>  // find_if()
 #include <memory>
-#include <string>
 #include <random>
+#include <string>
 
 #include "../server_src/game_enemigo.h"
 #include "../server_src/game_state.h"
@@ -19,7 +19,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
 
     for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
         enemigos[i] = crear_enemigo_aleatorio();
-        enemigos[i]->set_enemigo_id(i);
+        enemigos[i]->set_enemigo_id(i+1);
     }
 }
 
@@ -87,16 +87,15 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
             std::cerr << "ERROR en personaje de crear_nuevo_gamestate" << std::endl;
         }
     }
-    
+
     for (auto& enemigo: enemigos) {
         if (enemigo) {
             gamestate.obtener_diccionario_de_enemigos().insert(
-                std::make_pair(enemigo->get_id_enemigo(), *enemigo));
+                    std::make_pair(enemigo->get_id_enemigo(), *enemigo));
         } else {
             std::cerr << "ERROR en enemigo de crear_nuevo_gamestate" << std::endl;
         }
     }
-
 }
 
 void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {

@@ -1,10 +1,10 @@
 #include "../server_src/game_state.h"
 
-#include "../server_src/game_personaje.h"
-#include "../server_src/game_enemigo.h"
-
 #include <iostream>
 #include <memory>
+
+#include "../server_src/game_enemigo.h"
+#include "../server_src/game_personaje.h"
 
 GameState::GameState(uint16_t partida_id): partida_id(partida_id), diccionario_de_personajes() {}
 
@@ -29,7 +29,7 @@ void GameState::imprimir_mensaje() {
     std::cout << " PARTIDA " << partida_id << " :" << std::endl;
     for (const auto& pair: diccionario_de_personajes) {
         const Personaje& personaje = pair.second;
-        std::cout << " >> Personaje "<< personaje.obtener_personaje_id() << " :" << std::endl;
+        std::cout << " >> Personaje " << personaje.obtener_personaje_id() << " :" << std::endl;
         std::cout << "     - Posición: (" << personaje.obtener_posicion().get_posicion_x() << ", "
                   << personaje.obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Puntos: " << personaje.obtener_puntos() << std::endl;
@@ -40,7 +40,7 @@ void GameState::imprimir_mensaje() {
 
     for (const auto& pair: diccionario_de_enemigos) {
         const Enemigo& enemigo = pair.second;
-        std::cout << " >> Enemigo "<< enemigo.get_id_enemigo() << " :" << std::endl;
+        std::cout << " >> Enemigo " << enemigo.get_id_enemigo() << " :" << std::endl;
         std::cout << "     - Posición: (" << enemigo.get_posicion_enemigo().get_posicion_x() << ", "
                   << enemigo.get_posicion_enemigo().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Puntos: " << enemigo.get_puntos() << std::endl;

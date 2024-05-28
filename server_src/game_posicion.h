@@ -18,7 +18,7 @@ public:
     Posicion();
 
     void set_posicion(uint16_t x, uint16_t y);
-    
+
     // void mover(int x, int y);
 
     bool mover(const std::string& direccion);

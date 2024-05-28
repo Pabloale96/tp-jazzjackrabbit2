@@ -21,7 +21,7 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         client_commands(MAX_TAM_COLA),
         game(nuevo_gameloop_id, client_id, personaje) {
     clients_id.push_back(client_id);
-    broadcastear(); // Para que se vea la posicion inicial del personaje
+    broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
 std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }

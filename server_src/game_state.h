@@ -6,8 +6,8 @@
 #include <map>
 #include <string>
 
-#include "../server_src/game_personaje.h"
 #include "../server_src/game_enemigo.h"
+#include "../server_src/game_personaje.h"
 
 class GameState {
 private:
@@ -16,7 +16,7 @@ private:
     std::map<uint16_t, Enemigo> diccionario_de_enemigos;
 
 public:
-    GameState(uint16_t partida_id);
+    explicit GameState(uint16_t partida_id);
 
     std::map<uint16_t, Personaje>& obtener_diccionario_de_personajes();
 

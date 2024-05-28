@@ -14,7 +14,6 @@ private:
     TipoEnemigo tipo_enemigo;
     Posicion posicion_enemigo;
 
-    bool vivo;
     unsigned int iteraciones;
 
     uint16_t vidas;
@@ -50,7 +49,7 @@ public:
     void aumentar_iteraciones();
 
     // Revive al enemigo
-    void revivir_enemigo();
+    virtual void revivir_enemigo();
 
     // Devuelve true si el enemigo esta vivo
     bool esta_vivo();
@@ -60,15 +59,13 @@ public:
 };
 
 
-
-
-
-
-
 // ************  ENEMIGO 1 ("nombre")  ************
 class Enemigo1: public Enemigo {
 public:
     Enemigo1();
+
+    // Revive al enemigo
+    void revivir_enemigo() override;
 };
 
 
@@ -76,6 +73,9 @@ public:
 class Enemigo2: public Enemigo {
 public:
     Enemigo2();
+
+    // Revive al enemigo
+    void revivir_enemigo() override;
 };
 
 
@@ -83,6 +83,9 @@ public:
 class Enemigo3: public Enemigo {
 public:
     Enemigo3();
+
+    // Revive al enemigo
+    void revivir_enemigo() override;
 };
 
 #endif
