@@ -208,8 +208,6 @@ package "Game"  {
     +ejecutar_accion()
     +matar_enemigo()
     +aumentar_iteraciones()
-    +obtener_cant_vivos()
-    +obtener_cant_muertos()
     +~Game()
   }
 }

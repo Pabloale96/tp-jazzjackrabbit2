@@ -11,9 +11,6 @@
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define ITERACIONES_PARA_REVIVIR 15
 
-#define MATAR 0x04
-#define REVIVIR 0x05
-
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    std::string& personaje):
         gameloop_id(nuevo_gameloop_id),
@@ -21,6 +18,7 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         client_commands(MAX_TAM_COLA),
         game(nuevo_gameloop_id, client_id, personaje) {
     clients_id.push_back(client_id);
+    broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
 std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
@@ -34,8 +32,9 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
-void GameLoop::agregar_cliente(uint16_t client_id, std::string& personaje) {
+void GameLoop::agregar_cliente(uint16_t client_id, const std::string& personaje) {
     game.agregar_personaje(client_id, personaje);
+    broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
 Game& GameLoop::obtener_game() { return game; }
@@ -50,6 +49,7 @@ void GameLoop::run() {
                 }
             }
             // aca deberia actualizar el game state para pasarle al cliente para que renderise
+            // TODO: Mover enemigos ?
             if (game.aumentar_iteraciones()) {
                 broadcastear();
             }
@@ -70,7 +70,7 @@ void GameLoop::run() {
 
 void GameLoop::broadcastear() {
     // Todo: Game construite el gamestate
-    GameState nuevo_gamestate;
+    GameState nuevo_gamestate(gameloop_id);
     game.crear_nuevo_gamestate(nuevo_gamestate);
     nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);

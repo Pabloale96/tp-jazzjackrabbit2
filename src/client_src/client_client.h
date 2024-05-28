@@ -1,9 +1,13 @@
 #ifndef __CLIENT_CLIENT_H__
 #define __CLIENT_CLIENT_H__
 
+#include <memory>
 #include <string>
 
+#include "../client_src/client_game_respuesta.h"
 #include "../client_src/client_protocol.h"
+#include "../client_src/client_receiver.h"
+#include "../client_src/client_sender.h"
 #include "../common_src/common_sockets.h"
 
 class Client {
@@ -11,6 +15,10 @@ private:
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;
+    Queue<TipoAccion> client_commands;
+    ClientSender sender;
+    Queue<std::shared_ptr<ClientGameRespuesta>> server_msg;
+    ClientReceiver receiver;
 
     std::string toLowercase(const std::string& str);
 
@@ -26,8 +34,12 @@ private:
 
     void unirse_a_partida();
 
+    void iniciar_hilos();
+
     // Muestra las acciones posibles que puede realizar el cliente
     void acciones_posibles();
+
+    void ejecutar_accion(std::string& accion_actual);
 
     // A partir de acá vienen las acciones que puede realizar el cliente
     // Disparar
@@ -48,10 +60,6 @@ private:
     void moverArriba();
     void moverAbajo();
 
-
-    // Espera hasta recibir la respuesta del server y la imprime
-    void leer();
-
     // Espera la respuesta del server y la imprime
     void imprimir_respuesta(const Respuesta& respuesta);
 
@@ -62,6 +70,8 @@ public:
 
     // Lee por entrada estandar y parsea las acciones
     void jugar();
+
+    void stop_hilos();
 
     // Destructor
     ~Client();

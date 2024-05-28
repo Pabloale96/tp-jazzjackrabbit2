@@ -6,10 +6,16 @@
 #include <sstream>
 #include <string>
 
+#define MAX_TAM_COLA 10
+
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
         servicio(servicio),
-        protocolo_client(hostname.c_str(), servicio.c_str()) {}
+        protocolo_client(hostname.c_str(), servicio.c_str()),
+        client_commands(MAX_TAM_COLA),
+        sender(protocolo_client, client_commands),
+        server_msg(MAX_TAM_COLA),
+        receiver(protocolo_client, server_msg) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -175,71 +181,88 @@ void Client::acciones_posibles() {
     std::cout << "  - Arriba (u)" << std::endl;
     std::cout << "  - Abajo (d)" << std::endl;
     std::cout << "  - Saltar (j)" << std::endl;
-    std::cout << "  - Leer <cant_lineas_leer>" << std::endl;
     std::cout << "  - Salir (q)" << std::endl;
 }
 
+void Client::iniciar_hilos() {
+    sender.start();
+    receiver.start();
+}
+
 void Client::jugar() {
+
+    // ***************** LOBBY *****************
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
+
+    // ***************** JUEGO *****************
+    iniciar_hilos();
     acciones_posibles();
+
     std::string accion_actual;
     while (std::cin >> accion_actual) {
-        accion_actual = toLowercase(accion_actual);
-        if (accion_actual == "disparar" or accion_actual == "s") {
-            disparar();
-        } else if (accion_actual == "derecha" or accion_actual == "r") {
-            moverDerecha();
-        } else if (accion_actual == "izquierda" or accion_actual == "l") {
-            moverIzquierda();
-        } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
-            moverDerechaRapido();
-        } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
-            moverIzquierdaRapido();
-        } else if (accion_actual == "arriba" or accion_actual == "u") {
-            moverArriba();
-        } else if (accion_actual == "abajo" or accion_actual == "d") {
-            moverAbajo();
-        } else if (accion_actual == "saltar" or accion_actual == "j") {
-            saltar();
-        } else if (accion_actual == "leer") {
-            leer();
-        } else if (accion_actual == "salir" or accion_actual == "q") {
+        if (accion_actual == "q") {
             return;
-        } else {
-            std::cout << "Error: Acción no reconocida" << std::endl;
         }
+
+        std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
+        while (server_msg.try_pop(respuesta)) {
+            // TODO: aca se debería de actualizar el render
+            respuesta->imprimir_respuesta();
+        }
+
+        ejecutar_accion(accion_actual);
     }
 }
 
-void Client::disparar() { protocolo_client.enviar_accion(TipoAccion::Disparar); }
-
-void Client::moverDerecha() { protocolo_client.enviar_accion(TipoAccion::MoverDerecha); }
-
-void Client::moverIzquierda() { protocolo_client.enviar_accion(TipoAccion::MoverIzquierda); }
-
-void Client::moverArriba() { protocolo_client.enviar_accion(TipoAccion::MoverArriba); }
-
-void Client::moverAbajo() { protocolo_client.enviar_accion(TipoAccion::MoverAbajo); }
-
-void Client::saltar() { protocolo_client.enviar_accion(TipoAccion::Saltar); }
-
-void Client::moverDerechaRapido() {
-    protocolo_client.enviar_accion(TipoAccion::MoverDerechaRapido);
-}
-
-void Client::moverIzquierdaRapido() {
-    protocolo_client.enviar_accion(TipoAccion::MoverIzquierdaRapido);
-}
-
-void Client::leer() {
-    ClientGameRespuesta game_respuesta;
-    if (protocolo_client.recibir_respuesta(game_respuesta) == false) {
-        return;
+void Client::ejecutar_accion(std::string& accion_actual) {
+    accion_actual = toLowercase(accion_actual);
+    if (accion_actual == "disparar" or accion_actual == "s") {
+        disparar();
+    } else if (accion_actual == "derecha" or accion_actual == "r") {
+        moverDerecha();
+    } else if (accion_actual == "izquierda" or accion_actual == "l") {
+        moverIzquierda();
+    } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
+        moverDerechaRapido();
+    } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
+        moverIzquierdaRapido();
+    } else if (accion_actual == "arriba" or accion_actual == "u") {
+        moverArriba();
+    } else if (accion_actual == "abajo" or accion_actual == "d") {
+        moverAbajo();
+    } else if (accion_actual == "saltar" or accion_actual == "j") {
+        saltar();
     } else {
-        game_respuesta.imprimir_respuesta();
+        std::cout << "Error: Acción no reconocida" << std::endl;
     }
 }
 
-Client::~Client() {}
+void Client::disparar() { client_commands.push(TipoAccion::Disparar); }
+
+void Client::moverDerecha() { client_commands.push(TipoAccion::MoverDerecha); }
+
+void Client::moverIzquierda() { client_commands.push(TipoAccion::MoverIzquierda); }
+
+void Client::moverArriba() { client_commands.push(TipoAccion::MoverArriba); }
+
+void Client::moverAbajo() { client_commands.push(TipoAccion::MoverAbajo); }
+
+void Client::saltar() { client_commands.push(TipoAccion::Saltar); }
+
+void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerechaRapido); }
+
+void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
+
+void Client::stop_hilos() {}
+
+Client::~Client() {
+    client_commands.close();
+    server_msg.close();
+    protocolo_client.cerrar_socket();
+    sender.stop();
+    receiver.stop();
+    sender.join();
+    receiver.join();
+}

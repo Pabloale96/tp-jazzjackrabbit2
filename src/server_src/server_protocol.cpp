@@ -191,14 +191,36 @@ void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
             return;
         }
 
-        /*
-
-        uint8_t vida = personaje.obtener_vida();
-        socket_cliente.sendall(&vida, sizeof(uint8_t), &was_closed);
+        uint16_t puntos = personaje.obtener_puntos();
+        puntos = htons(puntos);
+        socket_cliente.sendall(&puntos, sizeof(uint16_t), &was_closed);
         if (was_closed) {
             return;
         }
 
+        uint16_t vida = personaje.obtener_vida();
+        vida = htons(vida);
+        socket_cliente.sendall(&vida, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+
+        uint16_t municion = personaje.obtener_municion();
+        municion = htons(municion);
+        socket_cliente.sendall(&municion, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+
+        std::string nombre_arma = personaje.obtener_nombre_arma();
+        uint16_t nombre_arma_len = nombre_arma.size();
+        socket_cliente.sendall(&nombre_arma_len, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return;
+        }
+        socket_cliente.sendall(nombre_arma.c_str(), nombre_arma_len, &was_closed);
+
+        /*
         uint8_t estado = personaje.obtener_estado();
         socket_cliente.sendall(&estado, sizeof(uint8_t), &was_closed);
         if (was_closed) {

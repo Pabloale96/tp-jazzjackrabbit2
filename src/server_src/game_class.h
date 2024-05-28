@@ -18,7 +18,7 @@ private:
     // TODO: Clase escenario que contenga a los personajes y enemigos ?
     // TODO: unorderedmap sería más rápido
     std::vector<std::unique_ptr<Personaje>> personajes;
-    std::vector<Enemigo> enemigos;
+    std::vector<std::unique_ptr<Enemigo>> enemigos;
     // Pared? Piso?
 
 public:
@@ -26,21 +26,19 @@ public:
 
     std::vector<std::unique_ptr<Personaje>>& obtener_vector_de_personajes();
 
+    std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
+
     Personaje& obtener_personaje(uint16_t client_id);
 
     bool mover(const std::string& direccion, uint16_t client_id);
 
-    bool matar_enemigo();
+    bool atacar_enemigo(uint16_t client_id);
 
     bool aumentar_iteraciones();
 
     void crear_nuevo_gamestate(GameState& gamestate);
 
     void agregar_personaje(uint16_t client_id, const std::string& personaje);
-
-    uint16_t obtener_cant_vivos();
-
-    uint16_t obtener_cant_muertos();
 
     void borrar_personaje(uint16_t client_id);
 

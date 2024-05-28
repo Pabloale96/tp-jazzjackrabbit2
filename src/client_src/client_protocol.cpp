@@ -4,12 +4,15 @@
 #include <iostream>
 #include <sstream>
 
-#include <arpa/inet.h>  // para usar htons()
+#include <arpa/inet.h>   // para usar htons()
+#include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
 #include "../common_src/common_protocol_utils.h"
 
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
+
+bool ProtocolClient::obtener_estado_de_la_conexion() { return was_closed; }
 
 // ********************** PROTOCOLOS DE LOBBY **********************
 
@@ -148,6 +151,12 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
         uint16_t id_personaje;
         uint16_t posicion_x;
         uint16_t posicion_y;
+        uint16_t puntos;
+        uint16_t vida;
+        uint16_t municion;
+        std::string nombre_arma;
+
+
         // Probar hacer un wrapper tipo recvall_or_fail()
         socket_cliente.recvall(&id_personaje, sizeof(uint16_t), &was_closed);
         id_personaje = ntohs(id_personaje);
@@ -164,10 +173,39 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
         if (was_closed) {
             return false;
         }
-        Respuesta respuesta_actual(id_personaje, posicion_x, posicion_y);
+        socket_cliente.recvall(&puntos, sizeof(uint16_t), &was_closed);
+        puntos = ntohs(puntos);
+        if (was_closed) {
+            return false;
+        }
+        socket_cliente.recvall(&vida, sizeof(uint16_t), &was_closed);
+        vida = ntohs(vida);
+        if (was_closed) {
+            return false;
+        }
+        socket_cliente.recvall(&municion, sizeof(uint16_t), &was_closed);
+        municion = ntohs(municion);
+        if (was_closed) {
+            return false;
+        }
+        uint16_t nombre_arma_len;
+        socket_cliente.recvall(&nombre_arma_len, sizeof(uint16_t), &was_closed);
+        if (was_closed) {
+            return false;
+        }
+        nombre_arma.resize(nombre_arma_len);
+        socket_cliente.recvall(&nombre_arma[0], nombre_arma_len, &was_closed);
+
+        Respuesta respuesta_actual(id_personaje, posicion_x, posicion_y, puntos, vida, municion,
+                                   nombre_arma);
         client_game_respuesta.agregar_respuesta(respuesta_actual);
     }
     return true;
+}
+
+void ProtocolClient::cerrar_socket() {
+    socket_cliente.shutdown(SHUT_RDWR);
+    socket_cliente.close();
 }
 
 ProtocolClient::~ProtocolClient() {}

@@ -2,6 +2,7 @@
 
 #include <algorithm>  // find_if()
 #include <memory>
+#include <random>
 #include <string>
 
 #include "../server_src/game_enemigo.h"
@@ -14,6 +15,29 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
         personajes.push_back(std::unique_ptr<Personaje>(personaje_ptr));
     } else {
         throw std::runtime_error("Tipo de personaje desconocido");
+    }
+
+    for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
+        enemigos[i] = crear_enemigo_aleatorio();
+        enemigos[i]->set_enemigo_id(i + 1);
+    }
+}
+
+std::unique_ptr<Enemigo> Game::crear_enemigo_aleatorio() {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(0, 2);
+
+    int tipoEnemigo = distrib(gen);
+    switch (tipoEnemigo) {
+        case 0:
+            return std::make_unique<Enemigo1>();
+        case 1:
+            return std::make_unique<Enemigo2>();
+        case 2:
+            return std::make_unique<Enemigo3>();
+        default:
+            throw std::runtime_error("Tipo de enemigo desconocido");
     }
 }
 
@@ -32,10 +56,14 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
     }
 }
 
-bool Game::matar_enemigo() {
+bool Game::atacar_enemigo(uint16_t client_id) {
+    if (obtener_personaje(client_id).obtener_municion() == 0) {
+        return false;
+    }
     for (auto& enemigo: enemigos) {
-        if (enemigo.esta_vivo()) {
-            enemigo.matar_enemigo();
+        if (enemigo->esta_vivo()) {
+            enemigo->recibir_disparo();
+            obtener_personaje(client_id).disminuir_municion();
             return true;
         }
     }
@@ -52,14 +80,22 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
 
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
     for (const auto& personaje: personajes) {
-        gamestate.obtener_diccionario_de_personajes().insert(
-                std::make_pair(personaje->obtener_personaje_id(), *personaje));
+        if (personaje) {
+            gamestate.obtener_diccionario_de_personajes().insert(
+                    std::make_pair(personaje->obtener_personaje_id(), *personaje));
+        } else {
+            std::cerr << "ERROR en personaje de crear_nuevo_gamestate" << std::endl;
+        }
     }
-    /*
+
     for (auto& enemigo: enemigos) {
-        gamestate.obtener_diccionario_de_personajes().insert(
-                std::make_pair(enemigo.obtener_enemigo_id(), enemigo));
-    }*/
+        if (enemigo) {
+            gamestate.obtener_diccionario_de_enemigos().insert(
+                    std::make_pair(enemigo->get_id_enemigo(), *enemigo));
+        } else {
+            std::cerr << "ERROR en enemigo de crear_nuevo_gamestate" << std::endl;
+        }
+    }
 }
 
 void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {
@@ -73,34 +109,14 @@ void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {
 
 bool Game::aumentar_iteraciones() {
     for (auto& enemigo: enemigos) {
-        if (!enemigo.esta_vivo()) {
-            enemigo.aumentar_iteraciones();
-            if (enemigo.esta_vivo()) {
+        if (!enemigo->esta_vivo()) {
+            enemigo->aumentar_iteraciones();
+            if (enemigo->esta_vivo()) {
                 return true;
             }
         }
     }
     return false;
-}
-
-uint16_t Game::obtener_cant_vivos() {
-    uint16_t cant_vivos = 0;
-    for (auto& enemigo: enemigos) {
-        if (enemigo.esta_vivo()) {
-            cant_vivos++;
-        }
-    }
-    return cant_vivos;
-}
-
-uint16_t Game::obtener_cant_muertos() {
-    uint16_t cant_muertos = 0;
-    for (auto& enemigo: enemigos) {
-        if (!enemigo.esta_vivo()) {
-            cant_muertos++;
-        }
-    }
-    return cant_muertos;
 }
 
 void Game::borrar_personaje(uint16_t client_id) {
