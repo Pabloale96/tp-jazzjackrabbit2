@@ -3,9 +3,6 @@
 #include "../client_src/client_protocol.h"
 #include "../common_src/common_liberror.h"
 
-#define MATAR 0x04
-#define REVIVIR 0x05
-
 ClientSender::ClientSender(ProtocolClient& protocolo_cliente, Queue<TipoAccion>& client_commands):
         protocolo_cliente(protocolo_cliente), client_commands(client_commands) {}
 

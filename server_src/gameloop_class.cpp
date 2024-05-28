@@ -11,9 +11,6 @@
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define ITERACIONES_PARA_REVIVIR 15
 
-#define MATAR 0x04
-#define REVIVIR 0x05
-
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    std::string& personaje):
         gameloop_id(nuevo_gameloop_id),

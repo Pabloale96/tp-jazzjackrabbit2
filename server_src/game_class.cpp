@@ -19,7 +19,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
 
     for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
         enemigos[i] = crear_enemigo_aleatorio();
-        enemigos[i]->set_enemigo_id(i+1);
+        enemigos[i]->set_enemigo_id(i + 1);
     }
 }
 

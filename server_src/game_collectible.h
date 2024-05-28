@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 
-#define GEMAS 100
-#define MONEDAS 50
+#define PUNTOS_GEMAS 100
+#define PUNTOS_MONEDAS 50
 
 class Collectible {
 
@@ -23,12 +23,12 @@ public:
 
 class Gema: public Collectible {
 public:
-    Gema(): Collectible(GEMAS) {}
+    Gema(): Collectible(PUNTOS_GEMAS) {}
 };
 
 class Moneda: public Collectible {
 public:
-    Moneda(): Collectible(MONEDAS) {}
+    Moneda(): Collectible(PUNTOS_MONEDAS) {}
 };
 
 #endif
