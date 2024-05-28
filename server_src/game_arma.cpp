@@ -3,7 +3,7 @@
 // Arma es la clase arma Inicial, a medida que vaya ganando, pasará a tener las otras armas
 Arma::Arma():
         nombre_arma("Inicial"),
-        municion(MUNICION_INICIAL),
+        municion(MUNICION_ARMA_INICIAL_INFINITA),
         vel_dis(VEL_DIS_INICIAL),
         vel_proy(VEL_PROY_INICIAL),
         dano(DANO_INICIAL) {}

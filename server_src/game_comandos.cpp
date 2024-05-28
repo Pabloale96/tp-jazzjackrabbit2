@@ -2,7 +2,7 @@
 
 #include "../server_src/game_class.h"
 
-bool Disparar::ejecutar(Game& game) { return game.matar_enemigo(); }
+bool Disparar::ejecutar(Game& game) { return game.atacar_enemigo(client_id); }
 
 bool MoverDerecha::ejecutar(Game& game) { return game.mover("derecha", client_id); }
 

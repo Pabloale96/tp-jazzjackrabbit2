@@ -30,7 +30,7 @@ public:
 
     bool mover(const std::string& direccion, uint16_t client_id);
 
-    bool matar_enemigo();
+    bool atacar_enemigo(uint16_t client_id);
 
     bool aumentar_iteraciones();
 

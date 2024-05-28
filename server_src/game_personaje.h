@@ -29,6 +29,10 @@ public:
 
     virtual bool mover(const std::string& direccion);
 
+    void disminuir_vida(uint16_t danio);
+
+    void disminuir_municion();
+
     Posicion obtener_posicion() const;
 
     uint16_t obtener_partida_id() const;

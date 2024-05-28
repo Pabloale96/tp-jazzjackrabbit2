@@ -17,6 +17,16 @@ void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
 
 bool Personaje::mover(const std::string& direccion) { return posicion.mover(direccion); }
 
+void Personaje::disminuir_vida(uint16_t danio) {
+    if (vida > danio) {
+        vida -= danio;
+    } else {
+        vida = 0;
+    }
+}
+
+void Personaje::disminuir_municion() { arma.disminuir_municion(); }
+
 Posicion Personaje::obtener_posicion() const { return posicion; }
 
 uint16_t Personaje::obtener_partida_id() const { return partida_id; }

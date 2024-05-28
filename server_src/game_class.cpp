@@ -36,10 +36,14 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
     }
 }
 
-bool Game::matar_enemigo() {
+bool Game::atacar_enemigo(uint16_t client_id) {
+    if (obtener_personaje(client_id).obtener_municion() == 0) {
+        return false;
+    }
     for (auto& enemigo: enemigos) {
         if (enemigo->esta_vivo()) {
-            enemigo->matar_enemigo();
+            enemigo->atacar_enemigo();
+            obtener_personaje(client_id).disminuir_municion();
             return true;
         }
     }

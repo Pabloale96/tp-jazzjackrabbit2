@@ -13,24 +13,22 @@ private:
     uint16_t puntos;
 
 protected:
-    Collectible(uint16_t puntos) : puntos(puntos) {}
+    explicit Collectible(uint16_t puntos): puntos(puntos) {}
 
 public:
-    Collectible() : puntos(0) {}
+    Collectible(): puntos(0) {}
 
-    uint16_t obtener_puntos() const {
-        return puntos;
-    }
+    uint16_t obtener_puntos() const { return puntos; }
 };
 
 class Gema: public Collectible {
 public:
-    Gema() : Collectible(GEMAS) {}
+    Gema(): Collectible(GEMAS) {}
 };
 
 class Moneda: public Collectible {
 public:
-    Moneda() : Collectible(MONEDAS) {}
+    Moneda(): Collectible(MONEDAS) {}
 };
 
 #endif
