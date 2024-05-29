@@ -16,8 +16,10 @@ class Frame {
     public:
         Frame();
         Frame(Renderer &,Texture &);
+        Frame(Renderer &,Texture &,int,int,int,int);
         ~Frame();
-        void copy();
+        void copy(bool,int,int);
+        void copy(bool,int,int,int,int);
         void setFrame(int,int,int,int);
 };
 

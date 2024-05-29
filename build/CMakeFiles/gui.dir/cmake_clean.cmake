@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/gui.dir/src/elements/frame.cpp.o.d"
   "CMakeFiles/gui.dir/src/elements/personaje.cpp.o"
   "CMakeFiles/gui.dir/src/elements/personaje.cpp.o.d"
+  "CMakeFiles/gui.dir/src/elements/platform.cpp.o"
+  "CMakeFiles/gui.dir/src/elements/platform.cpp.o.d"
   "CMakeFiles/gui.dir/src/greeter.cpp.o"
   "CMakeFiles/gui.dir/src/greeter.cpp.o.d"
   "CMakeFiles/gui.dir/src/gui.cpp.o"

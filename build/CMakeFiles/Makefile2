@@ -98,12 +98,12 @@ SDL2pp/clean: SDL2pp/CMakeFiles/SDL2pp.dir/clean
 CMakeFiles/gui.dir/all: SDL2pp/CMakeFiles/SDL2pp.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=21,22,23,24,25,26,27,28,29,30 "Built target gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=21,22,23,24,25,26,27,28,29,30,31 "Built target gui"
 .PHONY : CMakeFiles/gui.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 30
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/gui.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 0
 .PHONY : CMakeFiles/gui.dir/rule

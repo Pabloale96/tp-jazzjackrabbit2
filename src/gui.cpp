@@ -4,14 +4,15 @@
 
 #include "../include/gui.h"
 #include "../include/personaje.h"
+#include "../include/escenario.h"
 
 Gui::Gui(){}
 
 Gui::~Gui(){}
 
 void Gui::run() {
-    const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
+    const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
     SDL sdl(SDL_INIT_VIDEO);
     SDLTTF ttf;
@@ -30,14 +31,21 @@ void Gui::run() {
     Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     std::unique_ptr<Personaje> spaz = std::make_unique<Spaz>(renderer);
-    Texture sprites_beach(renderer, Surface(IMG_PATH "/beach.png")
-                                      .SetColorKey(true, 0));
+    Escenario escenario(renderer);
 
     int animacion = 0;
     int animacion_prev = 0;
 
 	auto frame_start = steady_clock::now();;
-    while (true) {
+	unsigned int prev_ticks = SDL_GetTicks();
+
+	while (1) {
+
+		unsigned int frame_ticks = SDL_GetTicks();
+		unsigned int frame_delta = frame_ticks - prev_ticks;
+        int dif_x=0;
+        int dif_y=0;
+		prev_ticks = frame_ticks;
         SDL_Event event;
         
         while (SDL_PollEvent(&event)) {
@@ -50,9 +58,11 @@ void Gui::run() {
                         return;
                     case SDLK_RIGHT: 
                         animacion = 1;
+                        dif_x -= frame_delta * 0.2;
                         break;
                     case SDLK_LEFT:
                         animacion = 2;
+                        dif_x += frame_delta * 0.2;
                         break;
                 }
             } else if (event.type == SDL_KEYUP) {
@@ -69,7 +79,8 @@ void Gui::run() {
 
         // Limpiar pantalla
         renderer.Clear();
-        spaz->animacion(animacion);
+        escenario.show(dif_x,dif_y);
+        spaz->show(animacion);
         renderer.Present();
 
         auto frame_end = steady_clock::now();

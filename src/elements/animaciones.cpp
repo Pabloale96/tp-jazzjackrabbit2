@@ -3,55 +3,81 @@
 
 Animacion::~Animacion(){}
 
-Animacion::Animacion(Renderer & render,Texture & sprites):
-                        render(render),sprites(sprites){}
+Animacion::Animacion(Renderer & render,Texture & sprites,std::vector<Frame> & vect):
+                        render(render),sprites(sprites),frames(vect){}
 
-AnimacionDerecha::AnimacionDerecha(Renderer & render,Texture & sprites):
-                        Animacion(render,sprites)
-{
-   
-   for (size_t i = 0; i < (sizeof(x_frames)/sizeof(x_frames[0])); i++)
-   {
-      Frame frame(render,sprites);
-      frame.setFrame(x_frames[i],y_frames[i],w_frames[i],h_frames[i]);
-      frames.emplace_back(frame);
-   }                   
+void Animacion::setFlip(bool flip){
+   this->flip=flip;
 }
 
-AnimacionDerecha::~AnimacionDerecha(){}
-
-void AnimacionDerecha::run(){
-   frames[scr_x].copy();
+void Animacion::run(int pos_x,int pos_y){
+   frames[scr_x].copy(flip,pos_x,pos_y);
    scr_x++;
-   if (scr_x == 8) scr_x=0;
- }
+   if (scr_x == frames.size()) scr_x=0;
+}
 
-/*
-void Animacion::moverIzquierda(){
-    sprites.SetAlphaMod(255);
-	render.Copy(
-            sprites,
-            Rect(walk[scr_x], 884, 50, 47),
-            Rect(render.GetOutputWidth()/2-25, render.GetOutputHeight()/2-23, 75, 75),
-            180.0,
-            NullOpt,
-            2
-    );
-    scr_x++;
-    if (scr_x == 8) scr_x=0;
- }
+AnimacionWalk::AnimacionWalk(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
 
-void Animacion::standing(){
-   sprites.SetAlphaMod(255);
-	render.Copy(
-            sprites,
-            Rect(stand[scr_x], 812,39, 47),
-            Rect(render.GetOutputWidth()/2-19, render.GetOutputHeight()/2-23, 75, 75)
-            //180.0,
-            //NullOpt,
-            //2
-    );
-    scr_x++;
-    if (scr_x == 5) scr_x=0;
- }
- */
+AnimacionWalk::~AnimacionWalk(){}
+
+AnimacionStand::AnimacionStand(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionStand::~AnimacionStand(){}
+
+AnimacionJump::AnimacionJump(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionJump::~AnimacionJump(){}
+
+AnimacionRunning::AnimacionRunning(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionRunning::~AnimacionRunning(){}
+
+AnimacionJumpAndMove::AnimacionJumpAndMove(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionJumpAndMove::~AnimacionJumpAndMove(){}
+
+AnimacionIntoxicated::AnimacionIntoxicated(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionIntoxicated::~AnimacionIntoxicated(){}
+
+AnimacionHurt::AnimacionHurt(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionHurt::~AnimacionHurt(){}
+
+AnimacionShoot::AnimacionShoot(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionShoot::~AnimacionShoot(){}
+
+AnimacionStopShoot::AnimacionStopShoot(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionStopShoot::~AnimacionStopShoot(){}
+
+AnimacionShootUp::AnimacionShootUp(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionShootUp::~AnimacionShootUp(){}
+
+AnimacionShootAndMove::AnimacionShootAndMove(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionShootAndMove::~AnimacionShootAndMove(){}
+
+AnimacionStopShootAndMove::AnimacionStopShootAndMove(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionStopShootAndMove::~AnimacionStopShootAndMove(){}
+
+AnimacionShootAndFalling::AnimacionShootAndFalling(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionShootAndFalling::~AnimacionShootAndFalling(){}
+
+AnimacionStopShootAndFalling::AnimacionStopShootAndFalling(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionStopShootAndFalling::~AnimacionStopShootAndFalling(){}
+
+AnimacionDash::AnimacionDash(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionDash::~AnimacionDash(){}
+
+
+AnimacionSpecial::AnimacionSpecial(Renderer & render,Texture & sprites,std::vector<Frame>& vect):
+                        Animacion(render,sprites,vect){}
+AnimacionSpecial::~AnimacionSpecial(){}

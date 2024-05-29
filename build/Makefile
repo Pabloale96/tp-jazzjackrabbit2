@@ -262,6 +262,30 @@ src/elements/personaje.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/personaje.cpp.s
 .PHONY : src/elements/personaje.cpp.s
 
+src/elements/platform.o: src/elements/platform.cpp.o
+.PHONY : src/elements/platform.o
+
+# target to build an object file
+src/elements/platform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/platform.cpp.o
+.PHONY : src/elements/platform.cpp.o
+
+src/elements/platform.i: src/elements/platform.cpp.i
+.PHONY : src/elements/platform.i
+
+# target to preprocess a source file
+src/elements/platform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/platform.cpp.i
+.PHONY : src/elements/platform.cpp.i
+
+src/elements/platform.s: src/elements/platform.cpp.s
+.PHONY : src/elements/platform.s
+
+# target to generate assembly for a file
+src/elements/platform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/src/elements/platform.cpp.s
+.PHONY : src/elements/platform.cpp.s
+
 src/greeter.o: src/greeter.cpp.o
 .PHONY : src/greeter.o
 
@@ -359,6 +383,9 @@ help:
 	@echo "... src/elements/personaje.o"
 	@echo "... src/elements/personaje.i"
 	@echo "... src/elements/personaje.s"
+	@echo "... src/elements/platform.o"
+	@echo "... src/elements/platform.i"
+	@echo "... src/elements/platform.s"
 	@echo "... src/greeter.o"
 	@echo "... src/greeter.i"
 	@echo "... src/greeter.s"

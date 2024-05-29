@@ -13,30 +13,128 @@ class Animacion {
     private:
         Renderer & render;
         Texture & sprites;
-    public:
-        Animacion(Renderer&,Texture&);
-        ~Animacion();
-
-        void run(){}
-};
-
-class AnimacionDerecha : public Animacion {
-    private:
+        std::vector<Frame> & frames;
+        bool flip = false;
         int scr_x=0;
         int scr_y=0;
-        std::vector<Frame> frames;
-        int x_frames[8] = {4,52,103,154,205,257,307,356};
-        int y_frames[8] = {944,944,944,944,944,944,944,944};
-        int w_frames[8] = {43,43,43,43,43,43,43,43};
-        int h_frames[8] = {45,46,45,45,46,45,45,46};
-
     public:
-        AnimacionDerecha(Renderer&,Texture&);
-        ~AnimacionDerecha();
+        Animacion(Renderer&,Texture&,std::vector<Frame> & );
+        ~Animacion();
 
-        void run();
+        void run(int, int);
+        void setFlip(bool);
 };
 
+class AnimacionWalk : public Animacion {
+    public:
+        AnimacionWalk(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionWalk();
+};
+
+class AnimacionStand : public Animacion {
+    public:
+        AnimacionStand(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionStand();
+
+};
+
+class AnimacionJump : public Animacion {
+    public:
+        AnimacionJump(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionJump();
+
+};
+
+class AnimacionRunning : public Animacion {
+    public:
+        AnimacionRunning(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionRunning();
+
+};
+
+class AnimacionJumpAndMove : public Animacion {
+    public:
+        AnimacionJumpAndMove(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionJumpAndMove();
+
+};
+
+class AnimacionIntoxicated : public Animacion {
+    public:
+        AnimacionIntoxicated(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionIntoxicated();
+
+};
+
+class AnimacionHurt : public Animacion {
+    public:
+        AnimacionHurt(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionHurt();
+
+};
+
+class AnimacionShoot : public Animacion {
+    public:
+        AnimacionShoot(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionShoot();
+
+};
+
+class AnimacionStopShoot : public Animacion {
+    public:
+        AnimacionStopShoot(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionStopShoot();
+
+};
+
+class AnimacionShootUp : public Animacion {
+    public:
+        AnimacionShootUp(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionShootUp();
+
+};
+
+class AnimacionShootAndMove : public Animacion {
+    public:
+        AnimacionShootAndMove(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionShootAndMove();
+
+};
+
+class AnimacionStopShootAndMove : public Animacion {
+    public:
+        AnimacionStopShootAndMove(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionStopShootAndMove();
+
+};
+
+class AnimacionShootAndFalling : public Animacion {
+    public:
+        AnimacionShootAndFalling(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionShootAndFalling();
+
+};
+
+class AnimacionStopShootAndFalling : public Animacion {
+    public:
+        AnimacionStopShootAndFalling(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionStopShootAndFalling();
+
+};
+
+class AnimacionDash : public Animacion {
+    public:
+        AnimacionDash(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionDash();
+
+};
+
+class AnimacionSpecial : public Animacion {
+    public:
+        AnimacionSpecial(Renderer&,Texture&,std::vector<Frame>&);
+        ~AnimacionSpecial();
+
+};
 
 
 #endif

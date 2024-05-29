@@ -57,6 +57,7 @@ add_executable(gui
   src/elements/personaje.cpp
   src/elements/enemigos.cpp
   src/elements/frame.cpp
+  src/elements/platform.cpp
   ${UIS_HEADERS})
 
 # Use the Widgets module from Qt 5.

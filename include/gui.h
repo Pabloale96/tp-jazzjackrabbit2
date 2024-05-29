@@ -13,10 +13,10 @@
 using namespace std::chrono;
 class Gui {
 private:
-    //Escenario escenario;
-    //Personaje personaje;
-    //Enemigos enemigos;
-    // Background background; objeto del fondo, por ahora no es necesario.
+    int posx;
+    int posy;
+    int w;
+    int h;
 public:
     Gui();
     ~Gui();
