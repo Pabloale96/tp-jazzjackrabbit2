@@ -1,21 +1,13 @@
-# SDL2pp tutorial
-#
-# Written in 2015 by Dmitry Marakasiv <amdmi3@amdmi3.ru>
-#
-# To the extent possible under law, the author(s) have dedicated all copyright
-# and related and neighboring rights to this software to the public domain
-# worldwide. This software is distributed without any warranty.
-#
-# You should have received a copy of the CC0 Public Domain Dedication along with
-# this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
-
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
+project(jazzJackrabbit2)
 
-project(SDL2pp-tutorial LANGUAGES CXX)
-project(qt5-demo)
+# Find the SDL2pp library
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer 2.6.3 REQUIRED)
 
-# Find the QtWidgets library
-find_package(Qt5Widgets)
+# Find the yaml-cpp library
+find_package(yaml-cpp REQUIRED)
 
 # set up SDL2pp library
 set(SDL2PP_WITH_IMAGE YES)
@@ -89,6 +81,58 @@ add_executable(server
   src/server_src/main.cpp
   ${UIS_HEADERS})
 
+
+
 # Use the Widgets module from Qt 5.
-target_link_libraries(client PUBLIC Qt5::Widgets SDL2pp)
+target_link_libraries(client PUBLIC SDL2pp)
 #target_link_libraries(server PUBLIC Qt5::Widgets SDL2pp)
+
+# CPack setup
+include(CPack)
+
+# Set package properties
+set(CPACK_PACKAGE_NAME "JazzJackrabbit2")
+set(CPACK_PACKAGE_VENDOR "YourCompany")
+set(CPACK_PACKAGE_CONTACT "your.email@domain.com")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Jazz Jackrabbit 2 Game")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+
+# Specify which generator to use
+if(WIN32)
+    set(CPACK_GENERATOR "NSIS")
+elseif(APPLE)
+    set(CPACK_GENERATOR "DragNDrop")
+elseif(UNIX)
+    set(CPACK_GENERATOR "DEB;RPM")
+endif()
+
+# Additional settings for NSIS (Windows)
+if(CPACK_GENERATOR STREQUAL "NSIS")
+    set(CPACK_NSIS_DISPLAY_NAME "${CPACK_PACKAGE_NAME} ${CPACK_PACKAGE_VERSION}")
+    set(CPACK_NSIS_PACKAGE_NAME "${CPACK_PACKAGE_NAME}")
+    set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icon.ico")
+    set(CPACK_NSIS_MUI_UNIICON "${CMAKE_CURRENT_SOURCE_DIR}/icon.ico")
+endif()
+
+# Additional settings for DEB (Debian-based Linux)
+if(CPACK_GENERATOR STREQUAL "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name") # required
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.27), libgcc1 (>= 1:4.2.1), libstdc++6 (>= 4.2.1)")
+endif()
+
+# Additional settings for RPM (RedHat-based Linux)
+if(CPACK_GENERATOR STREQUAL "RPM")
+    set(CPACK_RPM_PACKAGE_REQUIRES "libc.so.6, libgcc_s.so.1, libstdc++.so.6")
+endif()
+
+# Include the install targets
+install(TARGETS client server
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/img DESTINATION share/${CPACK_PACKAGE_NAME})
+install(FILES ${PROJECT_SOURCE_DIR}/config/config.yaml DESTINATION etc/${CPACK_PACKAGE_NAME})

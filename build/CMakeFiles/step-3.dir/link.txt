@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/step-3.dir/src/greeter.o CMakeFiles/step-3.dir/src/gui.o -o step-3  /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 

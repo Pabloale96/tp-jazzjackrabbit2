@@ -260,7 +260,7 @@ CMakeFiles/client.dir/src/client_src/client.cpp.o: ../src/client_src/client.cpp 
   ../include/client_sender.h \
   ../include/gui.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -297,7 +297,7 @@ CMakeFiles/client.dir/src/client_src/client.cpp.o: ../src/client_src/client.cpp 
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -343,19 +343,13 @@ CMakeFiles/client.dir/src/client_src/client.cpp.o: ../src/client_src/client.cpp 
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -440,42 +434,35 @@ CMakeFiles/client.dir/src/client_src/client.cpp.o: ../src/client_src/client.cpp 
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc
@@ -1629,7 +1616,7 @@ CMakeFiles/client.dir/src/client_src/gui.cpp.o: ../src/client_src/gui.cpp \
   /usr/include/c++/11/ctime \
   /usr/include/c++/11/bits/parse_numbers.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -1666,7 +1653,7 @@ CMakeFiles/client.dir/src/client_src/gui.cpp.o: ../src/client_src/gui.cpp \
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -1724,19 +1711,13 @@ CMakeFiles/client.dir/src/client_src/gui.cpp.o: ../src/client_src/gui.cpp \
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -1821,42 +1802,35 @@ CMakeFiles/client.dir/src/client_src/gui.cpp.o: ../src/client_src/gui.cpp \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh \
   ../include/thread.h \
   /usr/include/c++/11/atomic \
@@ -2128,7 +2102,7 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ../src/client_src/main.cpp \
   ../include/client_sender.h \
   ../include/gui.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -2165,7 +2139,7 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ../src/client_src/main.cpp \
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -2211,19 +2185,13 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ../src/client_src/main.cpp \
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -2308,42 +2276,35 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ../src/client_src/main.cpp \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh
 
 CMakeFiles/client.dir/src/common_src/liberror.cpp.o: ../src/common_src/liberror.cpp \
@@ -3062,7 +3023,7 @@ CMakeFiles/client.dir/src/elements/animaciones.cpp.o: ../src/elements/animacione
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -3100,7 +3061,7 @@ CMakeFiles/client.dir/src/elements/animaciones.cpp.o: ../src/elements/animacione
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -3164,19 +3125,13 @@ CMakeFiles/client.dir/src/elements/animaciones.cpp.o: ../src/elements/animacione
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -3261,42 +3216,35 @@ CMakeFiles/client.dir/src/elements/animaciones.cpp.o: ../src/elements/animacione
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh \
   ../include/frame.h
 
@@ -3510,7 +3458,7 @@ CMakeFiles/client.dir/src/elements/escenario.cpp.o: ../src/elements/escenario.cp
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -3548,7 +3496,7 @@ CMakeFiles/client.dir/src/elements/escenario.cpp.o: ../src/elements/escenario.cp
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -3606,19 +3554,13 @@ CMakeFiles/client.dir/src/elements/escenario.cpp.o: ../src/elements/escenario.cp
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -3703,42 +3645,35 @@ CMakeFiles/client.dir/src/elements/escenario.cpp.o: ../src/elements/escenario.cp
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh \
   ../include/frame.h \
   ../include/platform.h
@@ -3925,7 +3860,7 @@ CMakeFiles/client.dir/src/elements/frame.cpp.o: ../src/elements/frame.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -3963,7 +3898,7 @@ CMakeFiles/client.dir/src/elements/frame.cpp.o: ../src/elements/frame.cpp \
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -4032,19 +3967,13 @@ CMakeFiles/client.dir/src/elements/frame.cpp.o: ../src/elements/frame.cpp \
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -4129,42 +4058,35 @@ CMakeFiles/client.dir/src/elements/frame.cpp.o: ../src/elements/frame.cpp \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh
 
 CMakeFiles/client.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cpp \
@@ -4348,7 +4270,7 @@ CMakeFiles/client.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cp
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -4386,7 +4308,7 @@ CMakeFiles/client.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cp
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -4455,19 +4377,13 @@ CMakeFiles/client.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cp
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -4552,42 +4468,35 @@ CMakeFiles/client.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cp
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh \
   ../include/personaje.h \
   /usr/include/c++/11/memory \
@@ -4814,7 +4723,7 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
   ../SDL2pp/SDL2pp/SDL2pp.hh \
-  ../SDL2pp/SDL2pp/Config.hh \
+  SDL2pp/SDL2pp/Config.hh \
   ../SDL2pp/SDL2pp/SDL.hh \
   /usr/local/include/SDL2/SDL_stdinc.h \
   /usr/local/include/SDL2/SDL_config.h \
@@ -4852,7 +4761,7 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  ../SDL2pp/SDL2pp/Export.hh \
+  SDL2pp/SDL2pp/Export.hh \
   ../SDL2pp/SDL2pp/Exception.hh \
   ../SDL2pp/SDL2pp/Optional.hh \
   /usr/include/c++/11/optional \
@@ -4910,19 +4819,13 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
   /usr/include/assert.h \
   ../SDL2pp/SDL2pp/SDLTTF.hh \
   ../SDL2pp/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/SDL2/SDL_assert.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_atomic.h \
-  /usr/include/SDL2/SDL_audio.h \
-  /usr/include/SDL2/SDL_clipboard.h \
-  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL.h \
+  /usr/local/include/SDL2/SDL_main.h \
+  /usr/local/include/SDL2/SDL_assert.h \
+  /usr/local/include/SDL2/SDL_audio.h \
+  /usr/local/include/SDL2/SDL_clipboard.h \
+  /usr/local/include/SDL2/SDL_cpuinfo.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
@@ -5007,42 +4910,35 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
   /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
-  /usr/include/SDL2/SDL_endian.h \
-  /usr/include/SDL2/SDL_error.h \
-  /usr/include/SDL2/SDL_events.h \
-  /usr/include/SDL2/SDL_video.h \
-  /usr/include/SDL2/SDL_keyboard.h \
-  /usr/include/SDL2/SDL_keycode.h \
-  /usr/include/SDL2/SDL_scancode.h \
-  /usr/include/SDL2/SDL_mouse.h \
-  /usr/include/SDL2/SDL_joystick.h \
-  /usr/include/SDL2/SDL_gamecontroller.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_sensor.h \
-  /usr/include/SDL2/SDL_quit.h \
-  /usr/include/SDL2/SDL_gesture.h \
-  /usr/include/SDL2/SDL_touch.h \
-  /usr/include/SDL2/SDL_filesystem.h \
-  /usr/include/SDL2/SDL_haptic.h \
-  /usr/include/SDL2/SDL_hidapi.h \
-  /usr/include/SDL2/SDL_hints.h \
-  /usr/include/SDL2/SDL_loadso.h \
-  /usr/include/SDL2/SDL_log.h \
-  /usr/include/SDL2/SDL_messagebox.h \
-  /usr/include/SDL2/SDL_metal.h \
-  /usr/include/SDL2/SDL_mutex.h \
-  /usr/include/SDL2/SDL_power.h \
-  /usr/include/SDL2/SDL_render.h \
-  /usr/include/SDL2/SDL_rect.h \
-  /usr/include/SDL2/SDL_shape.h \
-  /usr/include/SDL2/SDL_pixels.h \
-  /usr/include/SDL2/SDL_surface.h \
-  /usr/include/SDL2/SDL_system.h \
-  /usr/include/SDL2/SDL_thread.h \
-  /usr/include/SDL2/SDL_timer.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h \
+  /usr/local/include/SDL2/SDL_events.h \
+  /usr/local/include/SDL2/SDL_video.h \
+  /usr/local/include/SDL2/SDL_keyboard.h \
+  /usr/local/include/SDL2/SDL_keycode.h \
+  /usr/local/include/SDL2/SDL_scancode.h \
+  /usr/local/include/SDL2/SDL_mouse.h \
+  /usr/local/include/SDL2/SDL_joystick.h \
+  /usr/local/include/SDL2/SDL_guid.h \
+  /usr/local/include/SDL2/SDL_gamecontroller.h \
+  /usr/local/include/SDL2/SDL_sensor.h \
+  /usr/local/include/SDL2/SDL_quit.h \
+  /usr/local/include/SDL2/SDL_gesture.h \
+  /usr/local/include/SDL2/SDL_touch.h \
+  /usr/local/include/SDL2/SDL_filesystem.h \
+  /usr/local/include/SDL2/SDL_haptic.h \
+  /usr/local/include/SDL2/SDL_hidapi.h \
+  /usr/local/include/SDL2/SDL_hints.h \
+  /usr/local/include/SDL2/SDL_loadso.h \
+  /usr/local/include/SDL2/SDL_log.h \
+  /usr/local/include/SDL2/SDL_messagebox.h \
+  /usr/local/include/SDL2/SDL_metal.h \
+  /usr/local/include/SDL2/SDL_power.h \
+  /usr/local/include/SDL2/SDL_render.h \
+  /usr/local/include/SDL2/SDL_shape.h \
+  /usr/local/include/SDL2/SDL_system.h \
+  /usr/local/include/SDL2/SDL_timer.h \
+  /usr/local/include/SDL2/SDL_version.h \
+  /usr/local/include/SDL2/SDL_locale.h \
+  /usr/local/include/SDL2/SDL_misc.h \
   ../SDL2pp/SDL2pp/SDLImage.hh \
   ../include/frame.h
 
@@ -5053,17 +4949,13 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 ../src/elements/animaciones.cpp:
 
-../src/common_src/resolvererror.cpp:
-
-/usr/include/linux/close_range.h:
-
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/x86_64-linux-gnu/bits/netdb.h:
 
 /usr/include/netdb.h:
+
+../include/resolver.h:
 
 ../src/common_src/resolver.cpp:
 
@@ -5085,6 +4977,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/asm-generic/posix_types.h:
 
+/usr/include/x86_64-linux-gnu/asm/posix_types.h:
+
 /usr/include/linux/posix_types.h:
 
 /usr/include/x86_64-linux-gnu/bits/socket_type.h:
@@ -5093,41 +4987,49 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/netinet/in.h:
 
-/usr/include/c++/11/sstream:
-
 /usr/include/arpa/inet.h:
 
-/usr/include/SDL2/SDL_locale.h:
+/usr/include/c++/11/sstream:
 
-/usr/include/SDL2/SDL_thread.h:
+/usr/local/include/SDL2/SDL_misc.h:
 
-/usr/include/SDL2/SDL_rect.h:
+/usr/local/include/SDL2/SDL_system.h:
 
-/usr/include/SDL2/SDL_metal.h:
+/usr/include/linux/close_range.h:
 
-/usr/include/SDL2/SDL_messagebox.h:
+/usr/local/include/SDL2/SDL_shape.h:
 
-/usr/include/SDL2/SDL_haptic.h:
+/usr/local/include/SDL2/SDL_power.h:
 
-/usr/include/SDL2/SDL_filesystem.h:
+../src/common_src/resolvererror.cpp:
 
-/usr/include/SDL2/SDL_touch.h:
+/usr/local/include/SDL2/SDL_metal.h:
 
-/usr/include/SDL2/SDL_shape.h:
+/usr/local/include/SDL2/SDL_messagebox.h:
 
-/usr/include/SDL2/SDL_quit.h:
+/usr/local/include/SDL2/SDL_log.h:
 
-../include/resolver.h:
+/usr/local/include/SDL2/SDL_hints.h:
 
-/usr/include/SDL2/SDL_sensor.h:
+/usr/local/include/SDL2/SDL_haptic.h:
 
-/usr/include/SDL2/SDL_keyboard.h:
+/usr/local/include/SDL2/SDL_touch.h:
 
-/usr/include/SDL2/SDL_video.h:
+/usr/local/include/SDL2/SDL_gesture.h:
 
-/usr/include/SDL2/SDL_error.h:
+/usr/include/rpc/netdb.h:
 
-/usr/include/SDL2/SDL_endian.h:
+/usr/local/include/SDL2/SDL_quit.h:
+
+/usr/local/include/SDL2/SDL_sensor.h:
+
+/usr/local/include/SDL2/SDL_joystick.h:
+
+/usr/local/include/SDL2/SDL_mouse.h:
+
+/usr/local/include/SDL2/SDL_keycode.h:
+
+/usr/local/include/SDL2/SDL_events.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h:
 
@@ -5137,8 +5039,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 ../include/personaje.h:
 
-/usr/include/SDL2/SDL_loadso.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/vaesintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/f16cintrin.h:
@@ -5147,15 +5047,9 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h:
 
-/usr/include/SDL2/SDL_system.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/shaintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectvlintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectintrin.h:
-
-/usr/include/SDL2/SDL_power.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bitalgintrin.h:
 
@@ -5183,8 +5077,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 ../include/protocol_utils.h:
 
-/usr/include/SDL2/SDL_mutex.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512cdintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512fintrin.h:
@@ -5207,8 +5099,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/xsaveintrin.h:
 
-/usr/include/SDL2/SDL_log.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512pfintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/wbnoinvdintrin.h:
@@ -5227,7 +5117,11 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/rdseedintrin.h:
 
+/usr/local/include/SDL2/SDL_filesystem.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h:
+
+/usr/local/include/SDL2/SDL_guid.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/popcntintrin.h:
 
@@ -5251,27 +5145,19 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h:
 
-/usr/include/SDL2/SDL_cpuinfo.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectintrin.h:
 
-/usr/include/SDL2/SDL_audio.h:
+/usr/local/include/SDL2/SDL_cpuinfo.h:
 
-/usr/include/SDL2/SDL_assert.h:
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
-/usr/include/SDL2/close_code.h:
-
-/usr/include/x86_64-linux-gnu/asm/posix_types.h:
-
-/usr/include/SDL2/SDL_version.h:
-
-/usr/include/SDL2/begin_code.h:
-
-/usr/include/SDL2/SDL_stdinc.h:
+/usr/local/include/SDL2/SDL_assert.h:
 
 ../SDL2pp/SDL2pp/Font.hh:
 
 ../SDL2pp/SDL2pp/SDLTTF.hh:
 
-/usr/include/SDL2/SDL_joystick.h:
+/usr/local/include/SDL2/SDL_clipboard.h:
 
 /usr/include/assert.h:
 
@@ -5329,8 +5215,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 ../SDL2pp/SDL2pp/AudioDevice.hh:
 
-/usr/include/SDL2/SDL.h:
-
 /usr/include/c++/11/optional:
 
 ../SDL2pp/SDL2pp/Optional.hh:
@@ -5339,7 +5223,7 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 ../SDL2pp/SDL2pp/Exception.hh:
 
-../SDL2pp/SDL2pp/Export.hh:
+SDL2pp/SDL2pp/Export.hh:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h:
 
@@ -5363,6 +5247,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
+/usr/local/include/SDL2/SDL_scancode.h:
+
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
@@ -5379,6 +5265,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/math.h:
 
+/usr/local/include/SDL2/SDL_locale.h:
+
 /usr/include/strings.h:
 
 /usr/include/c++/11/stdlib.h:
@@ -5387,7 +5275,7 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/local/include/SDL2/SDL_platform.h:
 
-/usr/include/SDL2/SDL_ttf.h:
+/usr/local/include/SDL2/SDL_hidapi.h:
 
 /usr/include/inttypes.h:
 
@@ -5395,9 +5283,7 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/local/include/SDL2/SDL_stdinc.h:
 
-/usr/include/rpc/netdb.h:
-
-../SDL2pp/SDL2pp/Config.hh:
+SDL2pp/SDL2pp/Config.hh:
 
 ../SDL2pp/SDL2pp/SDL2pp.hh:
 
@@ -5420,8 +5306,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/c++/11/bits/allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/SDL2/SDL_gamecontroller.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
@@ -5473,13 +5357,13 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
+/usr/local/include/SDL2/SDL_keyboard.h:
+
 /usr/include/c++/11/deque:
 
 ../include/liberror.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/SDL2/SDL_rwops.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
@@ -5488,6 +5372,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/uintrintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/local/include/SDL2/SDL.h:
 
 /usr/local/include/SDL2/SDL_endian.h:
 
@@ -5499,6 +5385,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
+/usr/local/include/SDL2/SDL_main.h:
+
 /usr/include/locale.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
@@ -5508,6 +5396,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bwintrin.h:
 
 /usr/include/wchar.h:
+
+/usr/local/include/SDL2/SDL_ttf.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
@@ -5526,8 +5416,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/asm-generic/socket.h:
-
-/usr/include/SDL2/SDL_keycode.h:
 
 /usr/include/c++/11/bits/invoke.h:
 
@@ -5577,8 +5465,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/pstl/glue_memory_defs.h:
 
-/usr/include/SDL2/SDL_misc.h:
-
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
@@ -5604,8 +5490,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/c++/11/bit:
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
-
-/usr/include/SDL2/SDL_atomic.h:
 
 /usr/include/c++/11/cstdlib:
 
@@ -5649,8 +5533,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
-/usr/include/SDL2/SDL_surface.h:
-
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
@@ -5678,6 +5560,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/c++/11/initializer_list:
 
 /usr/include/c++/11/iosfwd:
+
+/usr/local/include/SDL2/SDL_loadso.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
@@ -5719,8 +5603,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 ../SDL2pp/SDL2pp/SDLImage.hh:
 
-/usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
-
 /usr/local/include/SDL2/SDL_surface.h:
 
 /usr/include/c++/11/tr1/legendre_function.tcc:
@@ -5758,6 +5640,8 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/local/include/SDL2/SDL_gamecontroller.h:
 
 /usr/local/include/SDL2/close_code.h:
 
@@ -5843,8 +5727,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/bits/nested_exception.h:
 
-/usr/include/SDL2/SDL_clipboard.h:
-
 /usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
@@ -5877,8 +5759,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/clocale:
 
-/usr/include/SDL2/SDL_mouse.h:
-
 /usr/include/c++/11/bits/ostream.tcc:
 
 ../SDL2pp/SDL2pp/SDL.hh:
@@ -5889,9 +5769,9 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/cctype:
 
-/usr/include/c++/11/unordered_map:
+/usr/local/include/SDL2/SDL_render.h:
 
-/usr/include/SDL2/SDL_gesture.h:
+/usr/include/c++/11/unordered_map:
 
 /usr/include/ctype.h:
 
@@ -5914,8 +5794,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/c++/11/ext/aligned_buffer.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/SDL2/SDL_timer.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
@@ -5942,8 +5820,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/sched.h:
 
 /usr/include/wctype.h:
-
-/usr/include/SDL2/SDL_main.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
@@ -5973,8 +5849,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/system_error:
 
-/usr/include/SDL2/SDL_hidapi.h:
-
 /usr/include/c++/11/bits/stl_vector.h:
 
 /usr/include/c++/11/ios:
@@ -5997,9 +5871,9 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/cwctype:
 
-/usr/include/SDL2/SDL_config.h:
-
 /usr/include/c++/11/bits/streambuf_iterator.h:
+
+/usr/local/include/SDL2/SDL_timer.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
@@ -6027,8 +5901,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/bits/vector.tcc:
 
-/usr/include/SDL2/SDL_render.h:
-
 /usr/include/c++/11/bits/stl_map.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx2intrin.h:
@@ -6043,19 +5915,13 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 
 /usr/include/c++/11/bits/erase_if.h:
 
-/usr/include/SDL2/SDL_scancode.h:
-
 /usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
-/usr/include/SDL2/SDL_events.h:
-
 /usr/include/c++/11/bits/basic_ios.tcc:
 
 /usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/SDL2/SDL_hints.h:
 
 /usr/include/pthread.h:
 
@@ -6070,8 +5936,6 @@ CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp 
 /usr/include/c++/11/tr1/bessel_function.tcc:
 
 ../include/queue.h:
-
-/usr/include/SDL2/SDL_pixels.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
