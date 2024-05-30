@@ -1,4 +1,4 @@
-#include "../server_src/server_protocol.h"
+#include "../../include/server_protocol.h"
 
 #include <algorithm>  // transform()
 #include <cstring>
@@ -11,7 +11,7 @@
 #include <arpa/inet.h>   // htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../common_src/common_protocol_utils.h"
+#include "../../include/protocol_utils.h"
 
 #define MUERTO 0x04
 #define REVIVIO 0x05

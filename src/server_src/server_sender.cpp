@@ -1,7 +1,7 @@
-#include "../server_src/server_sender.h"
+#include "../../include/server_sender.h"
 
-#include "../common_src/common_liberror.h"
-#include "../server_src/server_protocol.h"
+#include "../../include/liberror.h"
+#include "../../include/server_protocol.h"
 
 #define MATAR 0x04
 #define REVIVIR 0x05

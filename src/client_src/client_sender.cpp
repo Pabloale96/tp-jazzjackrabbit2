@@ -1,7 +1,7 @@
-#include "../client_src/client_sender.h"
+#include "../../include/client_sender.h"
 
-#include "../client_src/client_protocol.h"
-#include "../common_src/common_liberror.h"
+#include "../../include/client_protocol.h"
+#include "../../include/liberror.h"
 
 ClientSender::ClientSender(ProtocolClient& protocolo_cliente, Queue<TipoAccion>& client_commands):
         protocolo_cliente(protocolo_cliente), client_commands(client_commands) {}

@@ -40,3 +40,22 @@ pre-commit run --all-files
 ./testing/run_tests.sh ./ testing/casos/ multi-client no-valgrind  60 10 yes
 ./testing/compare_outputs.sh testing/casos testing/salidas
 ```
+
+## Para compilar y correr con cmake:
+
+Es necesario crear una carpeta build usando: 
+
+`mkdir build`
+
+Se tiene que entrar en la carpeta con:
+
+`cd build`
+
+Una vez adentro de la carpeta build, se tiene que crear el archivo makefile usando el comando:
+
+`cmake ..`
+
+Por ultimo se compila el programa con `make`. 
+
+Para ejecutar el servidor o cliente hay que estar en la carpeta build.
+

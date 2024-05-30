@@ -5,7 +5,7 @@
 #include <exception>
 #include <SDL2pp/SDL2pp.hh>
 
-#include "../../include/animaciones.h"
+#include "animaciones.h"
 
 class Enemigos {
     private:

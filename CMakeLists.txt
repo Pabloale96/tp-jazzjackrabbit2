@@ -38,20 +38,25 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Los nombres de los headers generados se guardan en la variable pasada
 # como primer parámetro.
 # No, no los genera con la carpeta como prefijo.
-qt5_wrap_ui(UIS_HEADERS
-        ui/Greeter.ui
-)
 
 # Agrego la carpeta con los headers autogenerados a los includes
 message("Agregando '${PROJECT_BINARY_DIR}' como directorio de includes")
-include_directories(${PROJECT_BINARY_DIR})
+include_directories(${PROJECT_BINARY_DIR}/include)
 
 message("Headers generados: ${UIS_HEADERS}")
 
-add_executable(gui
-  src/greeter.cpp
-  src/gui.cpp
-  src/main.cpp
+add_executable(client
+  src/client_src/client.cpp
+  src/client_src/game_respuesta.cpp
+  src/client_src/gui.cpp
+  src/client_src/main.cpp
+  src/client_src/client_protocol.cpp
+  src/client_src/client_receiver.cpp
+  src/client_src/client_sender.cpp
+  src/common_src/liberror.cpp
+  src/common_src/resolver.cpp
+  src/common_src/resolvererror.cpp
+  src/common_src/sockets.cpp
   src/elements/animaciones.cpp
   src/elements/escenario.cpp
   src/elements/personaje.cpp
@@ -60,5 +65,30 @@ add_executable(gui
   src/elements/platform.cpp
   ${UIS_HEADERS})
 
+add_executable(server
+  src/server_src/cliente_aceptado.cpp
+  src/server_src/server_aceptador.cpp
+  src/server_src/server.cpp
+  src/server_src/game_arma.cpp
+  src/server_src/game_class.cpp
+  src/server_src/game_comandos.cpp
+  src/server_src/game_enemigo.cpp
+  src/server_src/game_personaje.cpp
+  src/server_src/game_posicion.cpp
+  src/server_src/game_state_monitor.cpp
+  src/server_src/game_state.cpp
+  src/server_src/gameloop_class.cpp
+  src/server_src/gameloop_monitor.cpp
+  src/server_src/server_protocol.cpp
+  src/server_src/server_receiver.cpp
+  src/server_src/server_sender.cpp
+  src/common_src/liberror.cpp
+  src/common_src/resolver.cpp
+  src/common_src/resolvererror.cpp
+  src/common_src/sockets.cpp
+  src/server_src/main.cpp
+  ${UIS_HEADERS})
+
 # Use the Widgets module from Qt 5.
-target_link_libraries(gui PUBLIC Qt5::Widgets SDL2pp)
+target_link_libraries(client PUBLIC Qt5::Widgets SDL2pp)
+#target_link_libraries(server PUBLIC Qt5::Widgets SDL2pp)
