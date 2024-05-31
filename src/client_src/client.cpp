@@ -214,6 +214,7 @@ void Client::jugar() {
             if (respuesta->obtener_estado_de_la_partida() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
                 // TODO: aca se deberían de mostrar las estadísticas
+                mostrar_estadisticas(*respuesta);
                 return;
             }    
         }
@@ -260,6 +261,15 @@ void Client::saltar() { client_commands.push(TipoAccion::Saltar); }
 void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerechaRapido); }
 
 void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
+
+void Client::mostrar_estadisticas(const ClientGameRespuesta& respuestas) const {
+    // TODO: Habria q dejarla mas linda y que imprima en orden de puntos
+    std::cout << "Estadísticas de la partida:" << std::endl;
+    std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;
+    for (const auto& respuesta: respuestas.obtener_respuestas()) {
+        std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " << respuesta.obtener_puntos() << std::endl;
+    }
+}
 
 void Client::stop_hilos() {}
 

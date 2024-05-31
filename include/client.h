@@ -65,6 +65,8 @@ private:
     // Espera la respuesta del server y la imprime
     void imprimir_respuesta(const Respuesta& respuesta);
 
+    void mostrar_estadisticas(const ClientGameRespuesta& respuestas) const;
+
 public:
     // Constructor
     // Crea el protocolo para poder hablar con el server

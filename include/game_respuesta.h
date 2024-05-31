@@ -27,8 +27,16 @@ struct Respuesta {
             municion(municion),
             nombre_arma(nombre_arma) {}
     
-    uint8_t obtnener_estado_de_la_partida() {
+    uint8_t obtnener_estado_de_la_partida() const {
         return estado_de_la_partida;
+    }
+
+    uint16_t obtener_id_personaje() const {
+        return id_personaje;
+    }
+
+    uint16_t obtener_puntos() const {
+        return puntos;
     }
 };
 
@@ -40,6 +48,8 @@ public:
     ClientGameRespuesta();
 
     void agregar_respuesta(Respuesta& respuesta);
+
+    const std::vector<Respuesta>& obtener_respuestas() const;
 
     uint8_t obtener_estado_de_la_partida();
 

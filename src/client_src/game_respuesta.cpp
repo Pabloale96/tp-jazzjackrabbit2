@@ -6,6 +6,10 @@ void ClientGameRespuesta::agregar_respuesta(Respuesta& respuesta) {
     estado_juego.push_back(respuesta);
 }
 
+const std::vector<Respuesta>& ClientGameRespuesta::obtener_respuestas() const {
+    return estado_juego;
+}
+
 uint8_t ClientGameRespuesta::obtener_estado_de_la_partida() {
     // Supongo que todos los estados de la partida son iguales
     return estado_juego[0].estado_de_la_partida;
