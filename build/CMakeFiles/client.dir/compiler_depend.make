@@ -2305,7 +2305,8 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o: ../src/client_src/main.cpp \
   /usr/local/include/SDL2/SDL_version.h \
   /usr/local/include/SDL2/SDL_locale.h \
   /usr/local/include/SDL2/SDL_misc.h \
-  ../SDL2pp/SDL2pp/SDLImage.hh
+  ../SDL2pp/SDL2pp/SDLImage.hh \
+  ../include/liberror.h
 
 CMakeFiles/client.dir/src/common_src/liberror.cpp.o: ../src/common_src/liberror.cpp \
   /usr/include/stdc-predef.h \

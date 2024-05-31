@@ -92,8 +92,8 @@ include(CPack)
 
 # Set package properties
 set(CPACK_PACKAGE_NAME "JazzJackrabbit2")
-set(CPACK_PACKAGE_VENDOR "YourCompany")
-set(CPACK_PACKAGE_CONTACT "your.email@domain.com")
+set(CPACK_PACKAGE_VENDOR "FIUBA")
+set(CPACK_PACKAGE_CONTACT "csebellin@fi.uba.ar")
 set(CPACK_PACKAGE_VERSION_MAJOR "1")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
 set(CPACK_PACKAGE_VERSION_PATCH "0")

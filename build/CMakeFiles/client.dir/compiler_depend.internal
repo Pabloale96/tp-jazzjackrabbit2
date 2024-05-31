@@ -2313,6 +2313,7 @@ CMakeFiles/client.dir/src/client_src/main.cpp.o
  /usr/local/include/SDL2/SDL_locale.h
  /usr/local/include/SDL2/SDL_misc.h
  /home/camila/Desktop/taller/tp-jazzjackrabbit2/SDL2pp/SDL2pp/SDLImage.hh
+ /home/camila/Desktop/taller/tp-jazzjackrabbit2/include/liberror.h
 
 CMakeFiles/client.dir/src/common_src/liberror.cpp.o
  /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/liberror.cpp
