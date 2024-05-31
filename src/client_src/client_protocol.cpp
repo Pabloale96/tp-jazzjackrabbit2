@@ -141,6 +141,13 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
     if (was_closed) {
         return false;
     }
+
+    uint8_t estado_de_la_partida;
+    socket_cliente.recvall(&estado_de_la_partida, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return false;
+    }
+
     int cant_personajes;
     socket_cliente.recvall(&cant_personajes, sizeof(int), &was_closed);
     cant_personajes = ntohs(cant_personajes);
@@ -196,7 +203,7 @@ bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuest
         nombre_arma.resize(nombre_arma_len);
         socket_cliente.recvall(&nombre_arma[0], nombre_arma_len, &was_closed);
 
-        Respuesta respuesta_actual(id_personaje, posicion_x, posicion_y, puntos, vida, municion,
+        Respuesta respuesta_actual(estado_de_la_partida, id_personaje, posicion_x, posicion_y, puntos, vida, municion,
                                    nombre_arma);
         client_game_respuesta.agregar_respuesta(respuesta_actual);
     }

@@ -1,6 +1,6 @@
 #include "../../include/gameloop_class.h"
 
-#include <chrono>  // std::chrono()
+#include <chrono>
 #include <iostream>
 #include <string>
 
@@ -10,14 +10,17 @@
 #define MAX_TAM_COLA 10
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define ITERACIONES_PARA_REVIVIR 15
+#define CANT_MAX_SEG_DE_PARTIDA 60  // 1 minuto TODO: agregar al yaml
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    std::string& personaje):
         gameloop_id(nuevo_gameloop_id),
         nombre_partida(nombre_partida),
+        jugando(false),
         client_commands(MAX_TAM_COLA),
         game(nuevo_gameloop_id, client_id, personaje) {
     clients_id.push_back(client_id);
+    iniciar_partida();
     broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
@@ -39,9 +42,28 @@ void GameLoop::agregar_cliente(uint16_t client_id, const std::string& personaje)
 
 Game& GameLoop::obtener_game() { return game; }
 
+void GameLoop::iniciar_partida() { jugando = true; }
+
+void GameLoop::terminar_partida() { jugando = false; }
+
+bool GameLoop::obtener_estado_de_partida() {
+    return jugando;
+}
+
 void GameLoop::run() {
+    auto start_time = std::chrono::steady_clock::now();
+    auto max_duration = std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA);
+
     try {
         while (true) {
+            auto current_time = std::chrono::steady_clock::now();
+            if (current_time - start_time > max_duration) {
+                terminar_partida();
+                broadcastear();
+                std::cout << "Partida " << gameloop_id << " terminada por tiempo límite alcanzado.\n";
+                break;
+            }
+
             std::shared_ptr<Comando> comando;
             while (client_commands.try_pop(comando)) {
                 if (comando && comando->ejecutar(this->game)) {
@@ -70,7 +92,7 @@ void GameLoop::run() {
 
 void GameLoop::broadcastear() {
     // Todo: Game construite el gamestate
-    GameState nuevo_gamestate(gameloop_id);
+    GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
     nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);

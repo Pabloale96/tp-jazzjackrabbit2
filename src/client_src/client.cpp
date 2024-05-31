@@ -211,6 +211,11 @@ void Client::jugar() {
         while (server_msg.try_pop(respuesta)) {
             // TODO: aca se debería de actualizar el render
             respuesta->imprimir_respuesta();
+            if (respuesta->obtener_estado_de_la_partida() == false) {
+                std::cout << "La partida ha finalizado" << std::endl;
+                // TODO: aca se deberían de mostrar las estadísticas
+                return;
+            }    
         }
 
         ejecutar_accion(accion_actual);

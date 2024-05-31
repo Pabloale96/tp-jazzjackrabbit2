@@ -6,6 +6,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <atomic>
 
 #include "game_class.h"
 #include "game_comandos.h"
@@ -17,6 +18,7 @@ class GameLoop: public Thread {
 private:
     uint16_t gameloop_id;
     std::string nombre_partida;
+    std::atomic<bool> jugando;
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
@@ -45,6 +47,12 @@ public:
 
     // Popea un comando de la cola de comandos de clientes y lo procesa
     void run() override;
+
+    void iniciar_partida();
+
+    void terminar_partida();
+
+    bool obtener_estado_de_partida();
 
     // Broadcastea un mensaje a todos los clientes
     void broadcastear();
