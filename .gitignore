@@ -43,8 +43,8 @@ server
 .*.swp
 *~
 
-# dependendencias
-deps/
+# build
+build/
 
 # tiburoncin
 *.dump
