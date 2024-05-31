@@ -4,11 +4,11 @@
 #include <memory>
 #include <string>
 
-#include "queue.h"
-#include "thread.h"
 #include "gameloop_class.h"
 #include "gameloop_monitor.h"
+#include "queue.h"
 #include "server_protocol.h"
+#include "thread.h"
 
 class ServerReceiver: public Thread {
 private:

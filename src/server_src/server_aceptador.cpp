@@ -5,9 +5,9 @@
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/liberror.h"
-#include "../../include/gameloop_class.h"
 #include "../../include/cliente_aceptado.h"
+#include "../../include/gameloop_class.h"
+#include "../../include/liberror.h"
 #include "../../include/server_protocol.h"
 
 #define ID_CLIENTE_INICIAL 10

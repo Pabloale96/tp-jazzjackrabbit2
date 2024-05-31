@@ -7,11 +7,11 @@
 #include <string>
 #include <vector>
 
-#include "queue.h"
-#include "thread.h"
 #include "game_class.h"
 #include "game_comandos.h"
 #include "game_state_monitor.h"
+#include "queue.h"
+#include "thread.h"
 
 class GameLoop: public Thread {
 private:

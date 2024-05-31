@@ -4,12 +4,11 @@
 #include <list>
 #include <string>
 
-
-#include "sockets.h"
-#include "thread.h"
+#include "cliente_aceptado.h"
 #include "gameloop_class.h"
 #include "gameloop_monitor.h"
-#include "cliente_aceptado.h"
+#include "sockets.h"
+#include "thread.h"
 
 class Aceptador: public Thread {
 private:

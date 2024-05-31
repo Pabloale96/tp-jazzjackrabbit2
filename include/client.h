@@ -4,12 +4,12 @@
 #include <memory>
 #include <string>
 
-#include "game_respuesta.h"
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
-#include "sockets.h"
+#include "game_respuesta.h"
 #include "gui.h"
+#include "sockets.h"
 
 class Client {
 private:

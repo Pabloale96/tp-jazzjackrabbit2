@@ -5,8 +5,8 @@
 #include <utility>  // move()
 #include <vector>
 
-#include "../../include/liberror.h"
 #include "../../include/gameloop_class.h"
+#include "../../include/liberror.h"
 #include "../../include/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,

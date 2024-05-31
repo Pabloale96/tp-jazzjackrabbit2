@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "../../include/queue.h"
 #include "../../include/game_state.h"
+#include "../../include/queue.h"
 
 #define MAX_TAM_COLA 10
 #define CINCO_LOOPS_POR_SEGUNDO 200

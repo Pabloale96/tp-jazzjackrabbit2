@@ -187,7 +187,7 @@ void Client::acciones_posibles() {
 void Client::iniciar_hilos() {
     sender.start();
     receiver.start();
-    //gui.start();
+    // gui.start();
 }
 
 void Client::jugar() {

@@ -7,9 +7,9 @@
 #include <string>
 #include <utility>  // move()
 
-#include "queue.h"
 #include "game_comandos.h"
 #include "gameloop_class.h"
+#include "queue.h"
 
 #define ID_GAMELOOP_INICIAL 1
 

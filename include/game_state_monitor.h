@@ -4,8 +4,8 @@
 #include <memory>
 #include <vector>
 
-#include "queue.h"
 #include "game_state.h"
+#include "queue.h"
 
 class GameStateMonitor {
 private:
