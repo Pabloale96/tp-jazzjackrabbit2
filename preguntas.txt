@@ -1,0 +1,22 @@
+Preguntas meet de hoy: 
+
+1) Hace falta una especie de constant rate loop en el gameloop? (porque asumo q tengo q mandarle el resto del estado del
+    juego por mas que el personaje no haga nada (tipo, aunque el personaje no se mueva, los enemigos si))
+
+2) Como hago para que los enemigos se muevan sin tener una activacion como el personaje (una especie de update pos_enemigos ?)
+
+3) El tema del protocolo del client: es necesario el tema de mandar mover(derecha, client_id, 1) (el tema de 1, 0, ¿cómo lo manejo?)
+
+4) Por algun motivo, el primero no se imprime (en el cliente) :(
+    Agregar breakpoint en el cliente
+    sacar optimizacion
+    -O0
+    -ggdb
+
+5) El tema de las estadíticas, por consola o front bonito?
+consola
+Armas: inicial y 1 mas
+
+Prioridad: programación multithreading, protocolos, que el servidor y cliente reflejen los mismos movimientos
+
+6) Tema salto: hay que tener el estado caída ?

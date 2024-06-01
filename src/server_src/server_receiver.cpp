@@ -5,8 +5,8 @@
 #include <utility>  // move()
 #include <vector>
 
-#include "../../include/liberror.h"
 #include "../../include/gameloop_class.h"
+#include "../../include/liberror.h"
 #include "../../include/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,
@@ -30,6 +30,7 @@ void ServerReceiver::run() {
         } catch (const LibError& err) {
             // Si falla el receive, es porque el cliente cerró la conexion (o falló)
             std::cout << "Cliente " << cliente_id << "se ha desconectado\n";
+            // TODO: gamelop, cerra este cliente/personaje
             protocolo_server.cerrar_socket_cliente();
             return;
         }

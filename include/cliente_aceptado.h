@@ -5,14 +5,14 @@
 #include <memory>
 #include <string>
 
-#include "queue.h"
-#include "sockets.h"
-#include "thread.h"
 #include "gameloop_class.h"
 #include "gameloop_monitor.h"
+#include "queue.h"
 #include "server_protocol.h"
 #include "server_receiver.h"
 #include "server_sender.h"
+#include "sockets.h"
+#include "thread.h"
 
 class ClienteAceptado {
 private:

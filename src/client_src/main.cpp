@@ -2,6 +2,7 @@
 #include <string>
 
 #include "../../include/client.h"
+#include "../../include/liberror.h"
 
 #define SUCCESS 0
 #define ERROR 1
@@ -22,6 +23,9 @@ int main(int argc, char const* argv[]) {
         client.jugar();
 
         return SUCCESS;
+    } catch (const LibError& err) {
+        std::cerr << "Fallo la conexión con el servidor. Revisa si está levantado."
+                  << "\n";
     } catch (const std::exception& err) {
         std::cerr << "Something went wrong and an exception was caught in "
                      "client->main: \t"

@@ -23,15 +23,13 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/enemigos.cpp" "CMakeFiles/client.dir/src/elements/enemigos.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/enemigos.cpp.o.d"
   "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/escenario.cpp" "CMakeFiles/client.dir/src/elements/escenario.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/escenario.cpp.o.d"
   "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/frame.cpp" "CMakeFiles/client.dir/src/elements/frame.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/frame.cpp.o.d"
-  "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/jazz.cpp" "CMakeFiles/client.dir/src/elements/jazz.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/jazz.cpp.o.d"
-  "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/lori.cpp" "CMakeFiles/client.dir/src/elements/lori.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/lori.cpp.o.d"
+  "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp" "CMakeFiles/client.dir/src/elements/personaje.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/personaje.cpp.o.d"
   "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/platform.cpp" "CMakeFiles/client.dir/src/elements/platform.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/platform.cpp.o.d"
-  "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/spaz.cpp" "CMakeFiles/client.dir/src/elements/spaz.cpp.o" "gcc" "CMakeFiles/client.dir/src/elements/spaz.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/SDL2pp.dir/DependInfo.cmake"
+  "/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/SDL2pp.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

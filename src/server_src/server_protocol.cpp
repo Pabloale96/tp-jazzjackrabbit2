@@ -162,6 +162,15 @@ void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
     if (was_closed) {
         return;
     }
+
+    uint8_t estado_de_la_partida = (uint8_t) msg.obtener_estado_de_la_partida();
+    socket_cliente.sendall(&estado_de_la_partida, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return;
+    }
+
+    // TODO: Mandar tiempo restante
+
     const std::map<uint16_t, Personaje>& diccionario_de_personajes =
             msg.obtener_diccionario_de_personajes();
     int cant_personajes = diccionario_de_personajes.size();

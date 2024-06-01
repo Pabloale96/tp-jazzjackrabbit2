@@ -15,7 +15,12 @@ void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
-bool Personaje::mover(const std::string& direccion) { return posicion.mover(direccion); }
+bool Personaje::mover(const std::string& direccion) {
+    // TODO: Esto es reactivo
+    return posicion.mover(direccion);
+    // Deberia setear el toggle de movimiento
+    // y siempre hago el update
+}
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {

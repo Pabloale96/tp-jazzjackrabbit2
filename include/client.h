@@ -4,12 +4,12 @@
 #include <memory>
 #include <string>
 
-#include "game_respuesta.h"
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
-#include "sockets.h"
+#include "game_respuesta.h"
 #include "gui.h"
+#include "sockets.h"
 
 class Client {
 private:
@@ -68,6 +68,8 @@ private:
 
     // Espera la respuesta del server y la imprime
     void imprimir_respuesta(const Respuesta& respuesta);
+
+    void mostrar_estadisticas(const ClientGameRespuesta& respuestas) const;
 
 public:
     // Constructor

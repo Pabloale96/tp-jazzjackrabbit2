@@ -4,10 +4,10 @@
 #include <memory>
 #include <string>
 
-#include "queue.h"
-#include "thread.h"
 #include "game_state.h"
+#include "queue.h"
 #include "server_protocol.h"
+#include "thread.h"
 
 class ServerSender: public Thread {
 private:

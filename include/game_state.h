@@ -12,11 +12,14 @@
 class GameState {
 private:
     uint16_t partida_id;
+    bool jugando;
     std::map<uint16_t, Personaje> diccionario_de_personajes;
     std::map<uint16_t, Enemigo> diccionario_de_enemigos;
 
 public:
-    explicit GameState(uint16_t partida_id);
+    explicit GameState(uint16_t partida_id, bool jugando);
+
+    bool obtener_estado_de_la_partida();
 
     std::map<uint16_t, Personaje>& obtener_diccionario_de_personajes();
 

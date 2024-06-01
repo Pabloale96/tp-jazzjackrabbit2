@@ -1,15 +1,20 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
 
-#include <iostream>
 #include <exception>
+#include <iostream>
 #include <memory>
+#include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
 
 #include "animaciones.h"
 
-using namespace SDL2pp;
+using SDL2pp::Renderer;
+using SDL2pp::Surface;
+using SDL2pp::Texture;
+using SDL2pp::Window;
+
 class Personaje {
     protected:
         Renderer & renderer;

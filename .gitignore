@@ -43,6 +43,9 @@ server
 .*.swp
 *~
 
+# build
+build/
+
 # tiburoncin
 *.dump
 

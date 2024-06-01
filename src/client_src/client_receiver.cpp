@@ -5,8 +5,8 @@
 #include <utility>  // move()
 #include <vector>
 
-#include "../../include/game_respuesta.h"
 #include "../../include/client_protocol.h"
+#include "../../include/game_respuesta.h"
 #include "../../include/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente,
