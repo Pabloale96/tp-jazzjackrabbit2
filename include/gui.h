@@ -1,26 +1,31 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <iostream>
-#include <exception>
 #include <chrono>
-#include <thread>
+#include <exception>
+#include <iostream>
 
 #include <SDL2pp/SDL2pp.hh>
 
-#define RATE  15.0
+#include "thread.h"
 
-using namespace std::chrono;
-class Gui {
+#define RATE 15.0
+
+using std::chrono::duration;
+using std::chrono::nanoseconds;
+using std::chrono::steady_clock;
+
+class Gui: public Thread {
 private:
     int posx;
     int posy;
     int w;
     int h;
+
 public:
     Gui();
     ~Gui();
-    void run();
+    void run() override;
 };
 
 #endif

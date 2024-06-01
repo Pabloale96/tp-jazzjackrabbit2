@@ -54,16 +54,17 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2"
+CMAKE_SOURCE_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build"
+CMAKE_BINARY_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/gui.dir/all
+all: CMakeFiles/client.dir/all
+all: CMakeFiles/server.dir/all
 all: SDL2pp/all
 .PHONY : all
 
@@ -72,7 +73,8 @@ preinstall: SDL2pp/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/gui.dir/clean
+clean: CMakeFiles/client.dir/clean
+clean: CMakeFiles/server.dir/clean
 clean: SDL2pp/clean
 .PHONY : clean
 
@@ -92,30 +94,56 @@ SDL2pp/clean: SDL2pp/CMakeFiles/SDL2pp.dir/clean
 .PHONY : SDL2pp/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/gui.dir
+# Target rules for target CMakeFiles/client.dir
 
 # All Build rule for target.
-CMakeFiles/gui.dir/all: SDL2pp/CMakeFiles/SDL2pp.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=21,22,23,24,25,26,27,28,29,30,31 "Built target gui"
-.PHONY : CMakeFiles/gui.dir/all
+CMakeFiles/client.dir/all: SDL2pp/CMakeFiles/SDL2pp.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38 "Built target client"
+.PHONY : CMakeFiles/client.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/gui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 31
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/gui.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 0
-.PHONY : CMakeFiles/gui.dir/rule
+CMakeFiles/client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 38
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 0
+.PHONY : CMakeFiles/client.dir/rule
 
 # Convenience name for target.
-gui: CMakeFiles/gui.dir/rule
-.PHONY : gui
+client: CMakeFiles/client.dir/rule
+.PHONY : client
 
 # clean rule for target.
-CMakeFiles/gui.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gui.dir/build.make CMakeFiles/gui.dir/clean
-.PHONY : CMakeFiles/gui.dir/clean
+CMakeFiles/client.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/clean
+.PHONY : CMakeFiles/client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/server.dir
+
+# All Build rule for target.
+CMakeFiles/server.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 "Built target server"
+.PHONY : CMakeFiles/server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 22
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 0
+.PHONY : CMakeFiles/server.dir/rule
+
+# Convenience name for target.
+server: CMakeFiles/server.dir/rule
+.PHONY : server
+
+# clean rule for target.
+CMakeFiles/server.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/clean
+.PHONY : CMakeFiles/server.dir/clean
 
 #=============================================================================
 # Target rules for target SDL2pp/CMakeFiles/SDL2pp.dir
@@ -124,14 +152,14 @@ CMakeFiles/gui.dir/clean:
 SDL2pp/CMakeFiles/SDL2pp.dir/all:
 	$(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/depend
 	$(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target SDL2pp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target SDL2pp"
 .PHONY : SDL2pp/CMakeFiles/SDL2pp.dir/all
 
 # Build rule for subdir invocation for target.
 SDL2pp/CMakeFiles/SDL2pp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/CMakeFiles/SDL2pp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 0
 .PHONY : SDL2pp/CMakeFiles/SDL2pp.dir/rule
 
 # Convenience name for target.

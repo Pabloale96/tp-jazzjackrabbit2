@@ -1,23 +1,26 @@
-#include "../server_src/gameloop_class.h"
+#include "../../include/gameloop_class.h"
 
-#include <chrono>  // std::chrono()
+#include <chrono>
 #include <iostream>
 #include <string>
 
-#include "../common_src/common_queue.h"
-#include "../server_src/game_state.h"
+#include "../../include/game_state.h"
+#include "../../include/queue.h"
 
-#define MAX_TAM_COLA 10
+#define MAX_TAM_COLA 100
 #define CINCO_LOOPS_POR_SEGUNDO 200
-#define ITERACIONES_PARA_REVIVIR 15
+#define CANT_MAX_SEG_DE_PARTIDA 60  // 1 minuto TODO: agregar al yaml
+#define RATE 15
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    std::string& personaje):
         gameloop_id(nuevo_gameloop_id),
         nombre_partida(nombre_partida),
+        jugando(false),
         client_commands(MAX_TAM_COLA),
         game(nuevo_gameloop_id, client_id, personaje) {
     clients_id.push_back(client_id);
+    iniciar_partida();
     broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
@@ -39,23 +42,55 @@ void GameLoop::agregar_cliente(uint16_t client_id, const std::string& personaje)
 
 Game& GameLoop::obtener_game() { return game; }
 
+void GameLoop::iniciar_partida() { jugando = true; }
+
+void GameLoop::terminar_partida() { jugando = false; }
+
+bool GameLoop::obtener_estado_de_partida() {
+    return jugando;
+}
+
 void GameLoop::run() {
+    auto start_time = std::chrono::steady_clock::now();
+    auto max_duration = std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA);
+
+    const std::chrono::nanoseconds rate_ns(static_cast<int>(1e20 / RATE)); // TODO: cambiar a 1e9 (lo dejo grande para poder hacer puruebas)
+    auto t_0 = std::chrono::high_resolution_clock::now();
+    
     try {
         while (true) {
+            // Calculo el tiempo para ver si corto por tiempo limite
+            auto current_time = std::chrono::steady_clock::now();
+            if (current_time - start_time > max_duration) {
+                terminar_partida();
+                broadcastear();
+                std::cout << "Partida " << gameloop_id << " terminada por tiempo límite alcanzado.\n";
+                break;
+            }
+
             std::shared_ptr<Comando> comando;
             while (client_commands.try_pop(comando)) {
                 if (comando && comando->ejecutar(this->game)) {
                     broadcastear();
                 }
             }
-            // aca deberia actualizar el game state para pasarle al cliente para que renderise
-            // TODO: Mover enemigos ?
-            if (game.aumentar_iteraciones()) {
-                broadcastear();
+            // TODO: Aca actualizo posiciones de enemigos:
+            // game.actualizar_posiciones();
+            broadcastear();
+
+            // Calculo tiempo para mantener el rate
+            auto t_final = std::chrono::high_resolution_clock::now();
+            auto duracion = std::chrono::duration_cast<std::chrono::nanoseconds>(t_final - t_0);
+            auto rest = rate_ns - duracion;
+            if (rest.count() > 0) {
+                std::this_thread::sleep_for(rest);  
             }
-            dormir();
+            
+            // Reseteo el tiempo
+            t_0 = std::chrono::high_resolution_clock::now();
         }
     } catch (const ClosedQueue&) {
+        std::cout << "GameLoop " << gameloop_id << " cerrado.\n";
         return;
     } catch (const std::exception& err) {
         if (!this->is_alive()) {
@@ -70,7 +105,7 @@ void GameLoop::run() {
 
 void GameLoop::broadcastear() {
     // Todo: Game construite el gamestate
-    GameState nuevo_gamestate(gameloop_id);
+    GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
     nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);

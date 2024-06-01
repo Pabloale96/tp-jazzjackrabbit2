@@ -1,12 +1,16 @@
-#include "../server_src/game_state.h"
+#include "../../include/game_state.h"
 
 #include <iostream>
 #include <memory>
 
-#include "../server_src/game_enemigo.h"
-#include "../server_src/game_personaje.h"
+#include "../../include/game_enemigo.h"
+#include "../../include/game_personaje.h"
 
-GameState::GameState(uint16_t partida_id): partida_id(partida_id), diccionario_de_personajes() {}
+GameState::GameState(uint16_t partida_id, bool jugando): partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}
+
+bool GameState::obtener_estado_de_la_partida() {
+    return jugando;
+}
 
 std::map<uint16_t, Personaje>& GameState::obtener_diccionario_de_personajes() {
     return diccionario_de_personajes;
@@ -15,7 +19,6 @@ std::map<uint16_t, Personaje>& GameState::obtener_diccionario_de_personajes() {
 std::map<uint16_t, Enemigo>& GameState::obtener_diccionario_de_enemigos() {
     return diccionario_de_enemigos;
 }
-
 
 Personaje GameState::obtener_personaje(uint16_t client_id) {
     auto it = diccionario_de_personajes.find(client_id);

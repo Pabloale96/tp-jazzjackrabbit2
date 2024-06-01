@@ -1,12 +1,12 @@
-#include "../server_src/game_class.h"
+#include "../../include/game_class.h"
 
 #include <algorithm>  // find_if()
 #include <memory>
 #include <random>
 #include <string>
 
-#include "../server_src/game_enemigo.h"
-#include "../server_src/game_state.h"
+#include "../../include/game_enemigo.h"
+#include "../../include/game_state.h"
 
 Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje):
         partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {

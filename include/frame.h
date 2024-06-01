@@ -1,26 +1,33 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-#include <iostream>
+#include <algorithm>
 #include <exception>
+#include <iostream>
+#include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
 
-using namespace SDL2pp;
-class Frame {
-    private:
-        Renderer & renderer;
-        Texture & sprite;
-        std::vector<int> vec_frames;
+using SDL2pp::NullOpt;
+using SDL2pp::Rect;
+using SDL2pp::Renderer;
+using SDL2pp::Texture;
 
-    public:
-        Frame();
-        Frame(Renderer &,Texture &);
-        Frame(Renderer &,Texture &,int,int,int,int);
-        ~Frame();
-        void copy(bool,int,int);
-        void copy(bool,int,int,int,int);
-        void setFrame(int,int,int,int);
+
+class Frame {
+private:
+    Renderer& renderer;
+    Texture& sprite;
+    std::vector<int> vec_frames;
+
+public:
+    Frame();
+    Frame(Renderer&, Texture&);
+    Frame(Renderer&, Texture&, int, int, int, int);
+    ~Frame();
+    void copy(bool, int, int);
+    void copy(bool, int, int, int, int);
+    void setFrame(int, int, int, int);
 };
 
 #endif

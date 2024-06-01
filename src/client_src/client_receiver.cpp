@@ -1,13 +1,13 @@
-#include "../client_src/client_receiver.h"
+#include "../../include/client_receiver.h"
 
 #include <memory>  // shared_ptr()
 #include <string>
 #include <utility>  // move()
 #include <vector>
 
-#include "../client_src/client_game_respuesta.h"
-#include "../client_src/client_protocol.h"
-#include "../common_src/common_liberror.h"
+#include "../../include/client_protocol.h"
+#include "../../include/game_respuesta.h"
+#include "../../include/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente,
                                Queue<std::shared_ptr<ClientGameRespuesta>>& server_msg):

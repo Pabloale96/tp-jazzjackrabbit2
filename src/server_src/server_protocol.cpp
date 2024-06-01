@@ -1,4 +1,4 @@
-#include "../server_src/server_protocol.h"
+#include "../../include/server_protocol.h"
 
 #include <algorithm>  // transform()
 #include <cstring>
@@ -11,7 +11,7 @@
 #include <arpa/inet.h>   // htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../common_src/common_protocol_utils.h"
+#include "../../include/protocol_utils.h"
 
 #define MUERTO 0x04
 #define REVIVIO 0x05
@@ -162,6 +162,15 @@ void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
     if (was_closed) {
         return;
     }
+
+    uint8_t estado_de_la_partida = (uint8_t) msg.obtener_estado_de_la_partida();
+    socket_cliente.sendall(&estado_de_la_partida, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return;
+    }
+
+    // TODO: Mandar tiempo restante
+
     const std::map<uint16_t, Personaje>& diccionario_de_personajes =
             msg.obtener_diccionario_de_personajes();
     int cant_personajes = diccionario_de_personajes.size();

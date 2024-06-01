@@ -1,4 +1,4 @@
-# Install script for directory: /media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/SDL2pp
+# Install script for directory: /home/camila/Desktop/taller/tp-jazzjackrabbit2/SDL2pp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

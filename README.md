@@ -1,5 +1,17 @@
 # tp-jazzjackrabbit2
 
+## Para compilar y correr con cmake
+
+Es necesario crear una carpeta build usando: `mkdir build`. (En caso de tenerla previamente, borrarla con `rm -r build` y luego crearla)
+
+Se tiene que entrar en la carpeta con: `cd build`.
+
+Una vez adentro de la carpeta build, se tiene que crear el archivo makefile usando el comando: `cmake ../`
+
+Por ultimo se compila el programa con `make`. 
+
+Para ejecutar el servidor o cliente hay que estar en la carpeta build.
+
 ## Para correr el TP
 
 Server:
