@@ -251,24 +251,52 @@ CMakeFiles/client.dir/src/elements/escenario.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/elements/escenario.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/escenario.cpp" -o CMakeFiles/client.dir/src/elements/escenario.cpp.s
 
-CMakeFiles/client.dir/src/elements/personaje.cpp.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/src/elements/personaje.cpp.o: ../src/elements/personaje.cpp
-CMakeFiles/client.dir/src/elements/personaje.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/client.dir/src/elements/personaje.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/personaje.cpp.o -MF CMakeFiles/client.dir/src/elements/personaje.cpp.o.d -o CMakeFiles/client.dir/src/elements/personaje.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp"
+CMakeFiles/client.dir/src/elements/spaz.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/elements/spaz.cpp.o: ../src/elements/spaz.cpp
+CMakeFiles/client.dir/src/elements/spaz.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/client.dir/src/elements/spaz.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/spaz.cpp.o -MF CMakeFiles/client.dir/src/elements/spaz.cpp.o.d -o CMakeFiles/client.dir/src/elements/spaz.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/spaz.cpp"
 
-CMakeFiles/client.dir/src/elements/personaje.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/elements/personaje.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp" > CMakeFiles/client.dir/src/elements/personaje.cpp.i
+CMakeFiles/client.dir/src/elements/spaz.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/elements/spaz.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/spaz.cpp" > CMakeFiles/client.dir/src/elements/spaz.cpp.i
 
-CMakeFiles/client.dir/src/elements/personaje.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/elements/personaje.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/personaje.cpp" -o CMakeFiles/client.dir/src/elements/personaje.cpp.s
+CMakeFiles/client.dir/src/elements/spaz.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/elements/spaz.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/spaz.cpp" -o CMakeFiles/client.dir/src/elements/spaz.cpp.s
+
+CMakeFiles/client.dir/src/elements/lori.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/elements/lori.cpp.o: ../src/elements/lori.cpp
+CMakeFiles/client.dir/src/elements/lori.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/client.dir/src/elements/lori.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/lori.cpp.o -MF CMakeFiles/client.dir/src/elements/lori.cpp.o.d -o CMakeFiles/client.dir/src/elements/lori.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/lori.cpp"
+
+CMakeFiles/client.dir/src/elements/lori.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/elements/lori.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/lori.cpp" > CMakeFiles/client.dir/src/elements/lori.cpp.i
+
+CMakeFiles/client.dir/src/elements/lori.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/elements/lori.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/lori.cpp" -o CMakeFiles/client.dir/src/elements/lori.cpp.s
+
+CMakeFiles/client.dir/src/elements/jazz.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/elements/jazz.cpp.o: ../src/elements/jazz.cpp
+CMakeFiles/client.dir/src/elements/jazz.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/client.dir/src/elements/jazz.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/jazz.cpp.o -MF CMakeFiles/client.dir/src/elements/jazz.cpp.o.d -o CMakeFiles/client.dir/src/elements/jazz.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/jazz.cpp"
+
+CMakeFiles/client.dir/src/elements/jazz.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/elements/jazz.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/jazz.cpp" > CMakeFiles/client.dir/src/elements/jazz.cpp.i
+
+CMakeFiles/client.dir/src/elements/jazz.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/elements/jazz.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/jazz.cpp" -o CMakeFiles/client.dir/src/elements/jazz.cpp.s
 
 CMakeFiles/client.dir/src/elements/enemigos.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/elements/enemigos.cpp.o: ../src/elements/enemigos.cpp
 CMakeFiles/client.dir/src/elements/enemigos.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/client.dir/src/elements/enemigos.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/client.dir/src/elements/enemigos.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/enemigos.cpp.o -MF CMakeFiles/client.dir/src/elements/enemigos.cpp.o.d -o CMakeFiles/client.dir/src/elements/enemigos.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/enemigos.cpp"
 
 CMakeFiles/client.dir/src/elements/enemigos.cpp.i: cmake_force
@@ -282,7 +310,7 @@ CMakeFiles/client.dir/src/elements/enemigos.cpp.s: cmake_force
 CMakeFiles/client.dir/src/elements/frame.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/elements/frame.cpp.o: ../src/elements/frame.cpp
 CMakeFiles/client.dir/src/elements/frame.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/client.dir/src/elements/frame.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/client.dir/src/elements/frame.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/frame.cpp.o -MF CMakeFiles/client.dir/src/elements/frame.cpp.o.d -o CMakeFiles/client.dir/src/elements/frame.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/frame.cpp"
 
 CMakeFiles/client.dir/src/elements/frame.cpp.i: cmake_force
@@ -296,7 +324,7 @@ CMakeFiles/client.dir/src/elements/frame.cpp.s: cmake_force
 CMakeFiles/client.dir/src/elements/platform.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/elements/platform.cpp.o: ../src/elements/platform.cpp
 CMakeFiles/client.dir/src/elements/platform.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/client.dir/src/elements/platform.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/client.dir/src/elements/platform.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/src/elements/platform.cpp.o -MF CMakeFiles/client.dir/src/elements/platform.cpp.o.d -o CMakeFiles/client.dir/src/elements/platform.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/elements/platform.cpp"
 
 CMakeFiles/client.dir/src/elements/platform.cpp.i: cmake_force
@@ -322,7 +350,9 @@ client_OBJECTS = \
 "CMakeFiles/client.dir/src/common_src/sockets.cpp.o" \
 "CMakeFiles/client.dir/src/elements/animaciones.cpp.o" \
 "CMakeFiles/client.dir/src/elements/escenario.cpp.o" \
-"CMakeFiles/client.dir/src/elements/personaje.cpp.o" \
+"CMakeFiles/client.dir/src/elements/spaz.cpp.o" \
+"CMakeFiles/client.dir/src/elements/lori.cpp.o" \
+"CMakeFiles/client.dir/src/elements/jazz.cpp.o" \
 "CMakeFiles/client.dir/src/elements/enemigos.cpp.o" \
 "CMakeFiles/client.dir/src/elements/frame.cpp.o" \
 "CMakeFiles/client.dir/src/elements/platform.cpp.o"
@@ -343,7 +373,9 @@ client: CMakeFiles/client.dir/src/common_src/resolvererror.cpp.o
 client: CMakeFiles/client.dir/src/common_src/sockets.cpp.o
 client: CMakeFiles/client.dir/src/elements/animaciones.cpp.o
 client: CMakeFiles/client.dir/src/elements/escenario.cpp.o
-client: CMakeFiles/client.dir/src/elements/personaje.cpp.o
+client: CMakeFiles/client.dir/src/elements/spaz.cpp.o
+client: CMakeFiles/client.dir/src/elements/lori.cpp.o
+client: CMakeFiles/client.dir/src/elements/jazz.cpp.o
 client: CMakeFiles/client.dir/src/elements/enemigos.cpp.o
 client: CMakeFiles/client.dir/src/elements/frame.cpp.o
 client: CMakeFiles/client.dir/src/elements/platform.cpp.o
@@ -357,7 +389,7 @@ client: /usr/local/lib/libSDL2main.a
 client: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
 client: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

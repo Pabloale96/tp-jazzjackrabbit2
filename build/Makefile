@@ -527,29 +527,53 @@ src/elements/frame.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/frame.cpp.s
 .PHONY : src/elements/frame.cpp.s
 
-src/elements/personaje.o: src/elements/personaje.cpp.o
-.PHONY : src/elements/personaje.o
+src/elements/jazz.o: src/elements/jazz.cpp.o
+.PHONY : src/elements/jazz.o
 
 # target to build an object file
-src/elements/personaje.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/personaje.cpp.o
-.PHONY : src/elements/personaje.cpp.o
+src/elements/jazz.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/jazz.cpp.o
+.PHONY : src/elements/jazz.cpp.o
 
-src/elements/personaje.i: src/elements/personaje.cpp.i
-.PHONY : src/elements/personaje.i
+src/elements/jazz.i: src/elements/jazz.cpp.i
+.PHONY : src/elements/jazz.i
 
 # target to preprocess a source file
-src/elements/personaje.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/personaje.cpp.i
-.PHONY : src/elements/personaje.cpp.i
+src/elements/jazz.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/jazz.cpp.i
+.PHONY : src/elements/jazz.cpp.i
 
-src/elements/personaje.s: src/elements/personaje.cpp.s
-.PHONY : src/elements/personaje.s
+src/elements/jazz.s: src/elements/jazz.cpp.s
+.PHONY : src/elements/jazz.s
 
 # target to generate assembly for a file
-src/elements/personaje.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/personaje.cpp.s
-.PHONY : src/elements/personaje.cpp.s
+src/elements/jazz.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/jazz.cpp.s
+.PHONY : src/elements/jazz.cpp.s
+
+src/elements/lori.o: src/elements/lori.cpp.o
+.PHONY : src/elements/lori.o
+
+# target to build an object file
+src/elements/lori.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/lori.cpp.o
+.PHONY : src/elements/lori.cpp.o
+
+src/elements/lori.i: src/elements/lori.cpp.i
+.PHONY : src/elements/lori.i
+
+# target to preprocess a source file
+src/elements/lori.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/lori.cpp.i
+.PHONY : src/elements/lori.cpp.i
+
+src/elements/lori.s: src/elements/lori.cpp.s
+.PHONY : src/elements/lori.s
+
+# target to generate assembly for a file
+src/elements/lori.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/lori.cpp.s
+.PHONY : src/elements/lori.cpp.s
 
 src/elements/platform.o: src/elements/platform.cpp.o
 .PHONY : src/elements/platform.o
@@ -574,6 +598,30 @@ src/elements/platform.s: src/elements/platform.cpp.s
 src/elements/platform.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/platform.cpp.s
 .PHONY : src/elements/platform.cpp.s
+
+src/elements/spaz.o: src/elements/spaz.cpp.o
+.PHONY : src/elements/spaz.o
+
+# target to build an object file
+src/elements/spaz.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/spaz.cpp.o
+.PHONY : src/elements/spaz.cpp.o
+
+src/elements/spaz.i: src/elements/spaz.cpp.i
+.PHONY : src/elements/spaz.i
+
+# target to preprocess a source file
+src/elements/spaz.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/spaz.cpp.i
+.PHONY : src/elements/spaz.cpp.i
+
+src/elements/spaz.s: src/elements/spaz.cpp.s
+.PHONY : src/elements/spaz.s
+
+# target to generate assembly for a file
+src/elements/spaz.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/spaz.cpp.s
+.PHONY : src/elements/spaz.cpp.s
 
 src/server_src/cliente_aceptado.o: src/server_src/cliente_aceptado.cpp.o
 .PHONY : src/server_src/cliente_aceptado.o
@@ -1039,12 +1087,18 @@ help:
 	@echo "... src/elements/frame.o"
 	@echo "... src/elements/frame.i"
 	@echo "... src/elements/frame.s"
-	@echo "... src/elements/personaje.o"
-	@echo "... src/elements/personaje.i"
-	@echo "... src/elements/personaje.s"
+	@echo "... src/elements/jazz.o"
+	@echo "... src/elements/jazz.i"
+	@echo "... src/elements/jazz.s"
+	@echo "... src/elements/lori.o"
+	@echo "... src/elements/lori.i"
+	@echo "... src/elements/lori.s"
 	@echo "... src/elements/platform.o"
 	@echo "... src/elements/platform.i"
 	@echo "... src/elements/platform.s"
+	@echo "... src/elements/spaz.o"
+	@echo "... src/elements/spaz.i"
+	@echo "... src/elements/spaz.s"
 	@echo "... src/server_src/cliente_aceptado.o"
 	@echo "... src/server_src/cliente_aceptado.i"
 	@echo "... src/server_src/cliente_aceptado.s"

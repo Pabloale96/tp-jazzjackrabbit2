@@ -20,7 +20,11 @@ private:
     ClientSender sender;
     Queue<std::shared_ptr<ClientGameRespuesta>> server_msg;
     ClientReceiver receiver;
+    bool client_off = false;
+    std::string personaje;
     Gui gui;
+    
+
 
     std::string toLowercase(const std::string& str);
 

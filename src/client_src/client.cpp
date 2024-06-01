@@ -15,7 +15,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client, server_msg) {}
+        receiver(protocolo_client, server_msg),gui(0,0,800,600,std::ref(client_off),std::ref(personaje)){}
 
 void Client::imprimir_portada() {
     std::cout
@@ -93,7 +93,6 @@ void Client::imprimir_bienvenida() {
 }
 
 void Client::crear_personaje() {
-    std::string personaje;
     std::cout << "Ingrese el nombre del personaje que desea utilizar" << std::endl;
     std::cout << "  - Jazz (j)" << std::endl;
     std::cout << "  - Spazz (s)" << std::endl;
@@ -104,6 +103,7 @@ void Client::crear_personaje() {
         std::cout << "Error: No se pudo crear el personaje" << std::endl;
         return;
     }
+    gui.start();
 }
 
 void Client::crear_partida() {
@@ -187,7 +187,6 @@ void Client::acciones_posibles() {
 void Client::iniciar_hilos() {
     sender.start();
     receiver.start();
-    //gui.start();
 }
 
 void Client::jugar() {
@@ -202,10 +201,7 @@ void Client::jugar() {
     acciones_posibles();
 
     std::string accion_actual;
-    while (std::cin >> accion_actual) {
-        if (accion_actual == "q") {
-            return;
-        }
+    while (not client_off) {
 
         std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
@@ -213,7 +209,7 @@ void Client::jugar() {
             respuesta->imprimir_respuesta();
         }
 
-        ejecutar_accion(accion_actual);
+        //ejecutar_accion(accion_actual);
     }
 }
 
@@ -264,6 +260,8 @@ Client::~Client() {
     protocolo_client.cerrar_socket();
     sender.stop();
     receiver.stop();
+    gui.stop();
     sender.join();
     receiver.join();
+    gui.join();
 }

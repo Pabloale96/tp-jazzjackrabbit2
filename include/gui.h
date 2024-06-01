@@ -18,8 +18,10 @@ private:
     int posy;
     int w;
     int h;
+    bool & client_off;
+    std::string & personaje;
 public:
-    Gui();
+    Gui(int,int,int,int,bool&,std::string &);
     ~Gui();
     void run() override;
 };

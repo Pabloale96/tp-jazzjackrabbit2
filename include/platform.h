@@ -17,7 +17,7 @@ private:
     int pos_x;
     int pos_y;
     bool flip = false;
-    Frame platform{Frame(renderer,sprites,0,2496,75,27)};
+    Frame platform{Frame(renderer,sprites,0,2496,500,27)};
 
 public:
     Platform(Renderer &, Texture &,int,int);

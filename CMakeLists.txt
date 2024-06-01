@@ -59,7 +59,9 @@ add_executable(client
   src/common_src/sockets.cpp
   src/elements/animaciones.cpp
   src/elements/escenario.cpp
-  src/elements/personaje.cpp
+  src/elements/spaz.cpp
+  src/elements/lori.cpp
+  src/elements/jazz.cpp
   src/elements/enemigos.cpp
   src/elements/frame.cpp
   src/elements/platform.cpp

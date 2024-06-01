@@ -6,7 +6,8 @@
 #include "../include/personaje.h"
 #include "../include/escenario.h"
 
-Gui::Gui(){}
+Gui::Gui(int x, int y, int w, int h,bool & client_off,std::string & personaje):
+    posx(x),posy(y),w(w),h(h),client_off(client_off),personaje(personaje){}
 
 Gui::~Gui(){}
 
@@ -30,7 +31,21 @@ void Gui::run() {
 
     Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    std::unique_ptr<Personaje> spaz = std::make_unique<Spaz>(renderer);
+    // crear clase para guardar todos los texturas:
+    // mapa que indixe por cada uno de la textura. 
+    // {'jazz_walk': jazz_tex}
+    // se podria mandar los frame_vector.
+    Surface jazz{Surface(IMG_PATH "/jazz.png")};
+    Texture sprites{Texture(renderer, jazz.SetColorKey(true, SDL_MapRGB(jazz.Get()->format, 44, 102, 150)))};
+
+    std::unique_ptr<Personaje> jugador;
+    if (personaje == "j") {
+        jugador = std::make_unique<Jazz>(renderer);
+    } else if (personaje == "s") {
+        jugador = std::make_unique<Spaz>(renderer);
+    } else if (personaje == "l") {
+        jugador = std::make_unique<Lori>(renderer);
+    }
     Escenario escenario(renderer);
 
     int animacion = 0;
@@ -47,7 +62,8 @@ void Gui::run() {
         int dif_y=0;
 		prev_ticks = frame_ticks;
         SDL_Event event;
-        
+        // definir N it para las animaciones de frame.
+        // dividite por X de la diapos que mostro leo.
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 return;
@@ -55,12 +71,18 @@ void Gui::run() {
                 switch (event.key.keysym.sym) {
                     case SDLK_ESCAPE: 
                     case SDLK_q:
+                        client_off=true;
+                        return;
+                    case SDLK_s:
+                        // enviar mensajer atacar 1 ((16bytes) (16bytes) (16bytes))
                         return;
                     case SDLK_RIGHT: 
+                        // enviar mensaje mover derecha 1
                         animacion = 1;
                         dif_x -= frame_delta * 0.2;
                         break;
                     case SDLK_LEFT:
+                        // enviar mensaje mover izquierda 1
                         animacion = 2;
                         dif_x += frame_delta * 0.2;
                         break;
@@ -68,9 +90,11 @@ void Gui::run() {
             } else if (event.type == SDL_KEYUP) {
                 switch (event.key.keysym.sym) {
                     case SDLK_RIGHT: 
+                        // enviar mensaje mover izquierda 0
                         animacion = 0; 
                         break;
                     case SDLK_LEFT: 
+                        // enviar mensaje mover izquierda 0
                         animacion = 0; 
                         break;
                 }
@@ -80,7 +104,7 @@ void Gui::run() {
         // Limpiar pantalla
         renderer.Clear();
         escenario.show(dif_x,dif_y);
-        spaz->show(animacion);
+        jugador->show(animacion);
         renderer.Present();
 
         auto frame_end = steady_clock::now();
