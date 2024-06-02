@@ -16,7 +16,7 @@ private:
 
 public:
     Posicion();
-    Posicion(uint16_t x, uint16_t y):x(x),y(y){}
+    Posicion(uint16_t x, uint16_t y): x(x), y(y) {}
 
     void set_posicion(uint16_t x, uint16_t y);
 

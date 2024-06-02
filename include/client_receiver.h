@@ -11,12 +11,12 @@
 class ClientReceiver: public Thread {
 private:
     ProtocolClient& protocolo_cliente;
-    uint16_t & client_id;
+    uint16_t& client_id;
     Queue<std::shared_ptr<GameState>>& server_msg;
 
 public:
     // Constructor
-    ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t & client_id,
+    ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
                    Queue<std::shared_ptr<GameState>>& server_msg);
 
     void run() override;

@@ -6,7 +6,7 @@
 class Comando {
 public:
     uint16_t client_id;
-    bool toggle =false;
+    bool toggle = false;
     virtual bool ejecutar(Game& game) = 0;
     virtual ~Comando() {}
 

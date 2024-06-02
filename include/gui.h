@@ -4,14 +4,15 @@
 #include <chrono>
 #include <exception>
 #include <iostream>
+#include <string>
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "thread.h"
+#include "clase_texturas.h"
+#include "game_state.h"
 #include "msgToSent.h"
 #include "queue.h"
-#include "game_state.h"
-#include "clase_texturas.h"
+#include "thread.h"
 
 #define RATE 15.0
 
@@ -34,14 +35,15 @@ private:
     int posy;
     int w;
     int h;
-    bool & client_off;
-    std::string & personaje;
-    Queue<msgAccion> & client_commands;
+    bool& client_off;
+    std::string& personaje;
+    Queue<msgAccion>& client_commands;
+
 public:
-    Gui(int,int,int,int,bool&,std::string &,Queue<msgAccion> &);
+    Gui(int, int, int, int, bool&, std::string&, Queue<msgAccion>&);
     ~Gui();
     void run() override;
-    void setGameState(GameState &,uint16_t);
+    void setGameState(GameState&, uint16_t);
 };
 
 #endif

@@ -105,8 +105,7 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& 
                                                                uint16_t cliente_id) {
 
     std::unique_ptr<Comando> comando = nullptr;
-    switch (mensaje_recibido.accion)
-    {
+    switch (mensaje_recibido.accion) {
         case DISPARAR:
             comando = std::make_unique<Disparar>();
             comando->set_client_id(cliente_id);
@@ -116,7 +115,7 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& 
             comando = std::make_unique<MoverDerecha>();
             comando->set_client_id(cliente_id);
             comando->set_toggle(mensaje_recibido.toggle);
-            return comando;        
+            return comando;
         case MOVER_DERECHA_RAPIDO:
             comando = std::make_unique<MoverDerechaRapido>();
             comando->set_client_id(cliente_id);
@@ -131,23 +130,23 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& 
             comando = std::make_unique<MoverIzquierdaRapido>();
             comando->set_client_id(cliente_id);
             comando->set_toggle(mensaje_recibido.toggle);
-            return comando;     
+            return comando;
         case MOVER_ARRIBA:
             comando = std::make_unique<MoverArriba>();
             comando->set_client_id(cliente_id);
             comando->set_toggle(mensaje_recibido.toggle);
-            return comando;      
+            return comando;
         case MOVER_ABAJO:
             comando = std::make_unique<MoverAbajo>();
             comando->set_client_id(cliente_id);
             comando->set_toggle(mensaje_recibido.toggle);
-            return comando; 
+            return comando;
         case SALTAR:
             comando = std::make_unique<Saltar>();
             comando->set_client_id(cliente_id);
             comando->set_toggle(mensaje_recibido.toggle);
             return comando;
-        
+
         default:
             return nullptr;
     }
@@ -162,17 +161,16 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed, uint
     return deserializar_acciones(mensaje_recibido, cliente_id);
 }
 
-void ProtocolServer::enviar_respuesta(GameState & gameState,uint16_t cliente_id, bool& was_closed) {
-    msgGameState msg(gameState,cliente_id);
+void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id, bool& was_closed) {
+    msgGameState msg(gameState, cliente_id);
     if (was_closed) {
         return;
     }
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
-    
+
     msgPersonaje personaje;
-    for (auto& pair : gameState.obtener_diccionario_de_personajes())
-    {
-        personaje = msgPersonaje(pair.first,pair.second);
+    for (auto& pair: gameState.obtener_diccionario_de_personajes()) {
+        personaje = msgPersonaje(pair.first, pair.second);
         if (was_closed) {
             return;
         }

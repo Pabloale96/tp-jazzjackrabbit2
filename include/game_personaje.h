@@ -13,63 +13,63 @@
 
 class Personaje {
 
-    private:
-        std::string tipo_personaje;
-        uint16_t partida_id;
-        uint16_t client_id;
-        uint16_t puntos;
-        uint16_t vida;
-        Arma arma;
-        Posicion posicion;
+private:
+    std::string tipo_personaje;
+    uint16_t partida_id;
+    uint16_t client_id;
+    uint16_t puntos;
+    uint16_t vida;
+    Arma arma;
+    Posicion posicion;
 
-    public:
-        explicit Personaje(uint16_t partida_id, uint16_t client_id);
+public:
+    explicit Personaje(uint16_t partida_id, uint16_t client_id);
 
-        explicit Personaje(uint16_t * personaje);
+    explicit Personaje(uint16_t* personaje);
 
-        void asignar_tipo_personaje(const std::string& tipo_personaje);
+    void asignar_tipo_personaje(const std::string& tipo_personaje);
 
-        virtual bool mover(const std::string& direccion);
+    virtual bool mover(const std::string& direccion);
 
-        void disminuir_vida(uint16_t danio);
+    void disminuir_vida(uint16_t danio);
 
-        void disminuir_municion();
+    void disminuir_municion();
 
-        Posicion obtener_posicion() const;
+    Posicion obtener_posicion() const;
 
-        uint16_t obtener_partida_id() const;
+    uint16_t obtener_partida_id() const;
 
-        uint16_t obtener_personaje_id() const;
+    uint16_t obtener_personaje_id() const;
 
-        std::string obtener_tipo_personaje() const;
+    std::string obtener_tipo_personaje() const;
 
-        uint16_t obtener_puntos() const;
+    uint16_t obtener_puntos() const;
 
-        uint16_t obtener_vida() const;
+    uint16_t obtener_vida() const;
 
-        uint8_t obtener_nombre_arma() const;
+    uint8_t obtener_nombre_arma() const;
 
-        uint16_t obtener_municion() const;
+    uint16_t obtener_municion() const;
 
-        virtual ~Personaje() = default;
+    virtual ~Personaje() = default;
 };
 
 class Jazz: public Personaje {
-    public:
-        Jazz(uint16_t partida_id, uint16_t client_id);
-        void punietazo_hacia_arriba();
+public:
+    Jazz(uint16_t partida_id, uint16_t client_id);
+    void punietazo_hacia_arriba();
 };
 
 class Lori: public Personaje {
-    public:
-        Lori(uint16_t partida_id, uint16_t client_id);
-        void patada_de_corto_alcance();
+public:
+    Lori(uint16_t partida_id, uint16_t client_id);
+    void patada_de_corto_alcance();
 };
 
 class Spazz: public Personaje {
-    public:
-        Spazz(uint16_t partida_id, uint16_t client_id);
-        void patada_hacia_un_costado();
+public:
+    Spazz(uint16_t partida_id, uint16_t client_id);
+    void patada_hacia_un_costado();
 };
 
 Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje);

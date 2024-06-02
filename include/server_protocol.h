@@ -9,8 +9,8 @@
 #include "game_comandos.h"
 #include "game_state.h"
 #include "gameloop_monitor.h"
-#include "sockets.h"
 #include "msgToSent.h"
+#include "sockets.h"
 
 class ProtocolServer {
 private:
@@ -43,8 +43,8 @@ public:
                                                    uint16_t cliente_id);
 
     // Para poder enviar comandos
-    void enviar_respuesta(GameState & ,uint16_t , bool& );
-    void enviar_respuesta(msgGameState& , bool& );
+    void enviar_respuesta(GameState&, uint16_t, bool&);
+    void enviar_respuesta(msgGameState&, bool&);
 
     // Cierra el socket del cliente ordenadamente
     void cerrar_socket_cliente();

@@ -11,14 +11,14 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         arma(),
         posicion() {}
 
-Personaje::Personaje(uint16_t * personaje):
+Personaje::Personaje(uint16_t* personaje):
         tipo_personaje(),
         partida_id(partida_id),
         client_id(personaje[0]),
         puntos(personaje[3]),
         vida(personaje[4]),
-        arma(personaje[5],personaje[6]),
-        posicion(personaje[1],personaje[2]) {}
+        arma(personaje[5], personaje[6]),
+        posicion(personaje[1], personaje[2]) {}
 
 void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;

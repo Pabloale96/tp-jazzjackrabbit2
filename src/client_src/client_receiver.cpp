@@ -8,15 +8,15 @@
 #include "../../include/client_protocol.h"
 #include "../../include/liberror.h"
 
-ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t & client_id,
+ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
                                Queue<std::shared_ptr<GameState>>& server_msg):
-        protocolo_cliente(protocolo_cliente),client_id(client_id), server_msg(server_msg) {}
+        protocolo_cliente(protocolo_cliente), client_id(client_id), server_msg(server_msg) {}
 
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            auto gameState = std::make_shared<GameState>(0,true);
-            protocolo_cliente.recibir_respuesta(*gameState,client_id);
+            auto gameState = std::make_shared<GameState>(0, true);
+            protocolo_cliente.recibir_respuesta(*gameState, client_id);
             server_msg.push(gameState);
         } catch (const ClosedQueue&) {
             return;

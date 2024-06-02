@@ -7,11 +7,9 @@
 #include "../../include/game_personaje.h"
 
 GameState::GameState(uint16_t partida_id, bool jugando):
-    partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}
+        partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}
 
-bool GameState::obtener_estado_de_la_partida() {
-    return jugando;
-}
+bool GameState::obtener_estado_de_la_partida() { return jugando; }
 
 std::map<uint16_t, Personaje>& GameState::obtener_diccionario_de_personajes() {
     return diccionario_de_personajes;

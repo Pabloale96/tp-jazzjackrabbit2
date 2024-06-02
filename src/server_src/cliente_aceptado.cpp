@@ -16,7 +16,7 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente):
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
         server_msg(MAX_TAM_COLA),
-        sender(protocolo_server,id_cliente, was_closed, server_msg),
+        sender(protocolo_server, id_cliente, was_closed, server_msg),
         receiver(nullptr),
         gameloop_id(PARTIDA_NO_ASIGNADA) {}
 

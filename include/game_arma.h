@@ -30,7 +30,7 @@ protected:
 
 public:
     Arma();
-    Arma(uint16_t municion,uint16_t nombre):municion(municion),nombre_arma(nombre){}
+    Arma(uint16_t municion, uint16_t nombre): municion(municion), nombre_arma(nombre) {}
 
     uint8_t obtener_nombre_arma() const { return nombre_arma; }
 

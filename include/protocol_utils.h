@@ -21,6 +21,4 @@
 #define ARMA_SECUNDARIA 0x02
 
 
-
-
 #endif

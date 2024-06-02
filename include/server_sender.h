@@ -18,7 +18,7 @@ private:
 
 public:
     // Constructor
-    ServerSender(ProtocolServer& protocolo_server,uint16_t id_cliente,bool& was_closed,
+    ServerSender(ProtocolServer& protocolo_server, uint16_t id_cliente, bool& was_closed,
                  Queue<std::shared_ptr<GameState>>& server_msg);
 
     void run() override;

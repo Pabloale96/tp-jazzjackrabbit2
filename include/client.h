@@ -4,11 +4,11 @@
 #include <memory>
 #include <string>
 
-#include "msgToSent.h"
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
 #include "gui.h"
+#include "msgToSent.h"
 #include "sockets.h"
 
 class Client {

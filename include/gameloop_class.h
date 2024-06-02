@@ -1,12 +1,12 @@
 #ifndef _GAMELOOP_H_
 #define _GAMELOOP_H_
 
+#include <atomic>
 #include <cstdint>
 #include <list>
 #include <memory>
 #include <string>
 #include <vector>
-#include <atomic>
 
 #include "game_class.h"
 #include "game_comandos.h"

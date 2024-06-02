@@ -98,14 +98,14 @@ void ProtocolClient::enviar_id_partida(uint16_t id_partida) {
 
 // ********************** PROTOCOLOS DE JUEGO **********************
 
-void ProtocolClient::enviar_accion(msgAccion & msg) {
+void ProtocolClient::enviar_accion(msgAccion& msg) {
     if (was_closed) {
         return;
     }
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-bool ProtocolClient::recibir_respuesta(GameState & gameState,uint16_t & client_id) {
+bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id) {
     msgGameState msg;
     if (was_closed) {
         return false;
@@ -114,8 +114,7 @@ bool ProtocolClient::recibir_respuesta(GameState & gameState,uint16_t & client_i
     gameState.setGameState(msg.state_partida);
     client_id = msg.client_id;
     msgPersonaje personaje;
-    for (size_t i = 0; i < msg.cantidad_personajes; i++)
-    {
+    for (size_t i = 0; i < msg.cantidad_personajes; i++) {
         if (was_closed) {
             return false;
         }

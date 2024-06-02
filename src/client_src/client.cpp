@@ -15,8 +15,8 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client,client_id, server_msg),
-        gui(0,0,800,600,std::ref(client_off),std::ref(personaje),std::ref(client_commands)){}
+        receiver(protocolo_client, client_id, server_msg),
+        gui(0, 0, 800, 600, std::ref(client_off), std::ref(personaje), std::ref(client_commands)) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -205,14 +205,14 @@ void Client::jugar() {
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
             // TODO: aca se debería de actualizar el render
-            gui.setGameState(*respuesta,client_id);
-            
+            gui.setGameState(*respuesta, client_id);
+
             if (respuesta->obtener_estado_de_la_partida() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
                 // TODO: aca se deberían de mostrar las estadísticas
                 mostrar_estadisticas(*respuesta);
                 return;
-            }    
+            }
         }
     }
 }
@@ -222,7 +222,8 @@ void Client::mostrar_estadisticas(const GameState& respuestas) const {
     std::cout << "Estadísticas de la partida:" << std::endl;
     std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;
     /*for (const auto& respuesta: respuestas.obtener_respuestas()) {
-        std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " << respuesta.obtener_puntos() << std::endl;
+        std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " <<
+    respuesta.obtener_puntos() << std::endl;
     }*/
 }
 

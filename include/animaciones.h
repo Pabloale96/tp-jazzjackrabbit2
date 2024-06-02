@@ -21,7 +21,7 @@ public:
     Animacion();
     ~Animacion();
 
-    void run(int, int,std::vector<Frame>&);
+    void run(int, int, std::vector<Frame>&);
     void setFlip(bool);
 };
 

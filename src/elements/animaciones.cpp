@@ -3,14 +3,15 @@
 
 Animacion::~Animacion() {}
 
-Animacion::Animacion(){}
+Animacion::Animacion() {}
 
 void Animacion::setFlip(bool flip) { this->flip = flip; }
 
-void Animacion::run(int pos_x, int pos_y,std::vector<Frame> & frames) {
+void Animacion::run(int pos_x, int pos_y, std::vector<Frame>& frames) {
     frames[scr_x].copy(flip, pos_x, pos_y);
     scr_x++;
-    if (scr_x == frames.size()) scr_x = 0;
+    if (scr_x == frames.size())
+        scr_x = 0;
 }
 /*
 void Animacion::run(int pos_x,int pos_y){
