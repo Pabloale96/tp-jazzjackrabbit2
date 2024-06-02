@@ -17,4 +17,10 @@
 #define MOVER_ABAJO 0x07
 #define SALTAR 0x08
 
+#define ARMA_INICIAL 0x01
+#define ARMA_SECUNDARIA 0x02
+
+
+
+
 #endif

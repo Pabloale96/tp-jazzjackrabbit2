@@ -28,6 +28,7 @@ public:
     void copy(bool, int, int);
     void copy(bool, int, int, int, int);
     void setFrame(int, int, int, int);
+    Frame& operator=(const Frame& other);
 };
 
 #endif

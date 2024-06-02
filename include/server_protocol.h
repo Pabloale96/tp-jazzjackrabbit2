@@ -10,6 +10,7 @@
 #include "game_state.h"
 #include "gameloop_monitor.h"
 #include "sockets.h"
+#include "msgToSent.h"
 
 class ProtocolServer {
 private:
@@ -31,18 +32,19 @@ public:
 
     // Como no se cuantas acciones me va a mandar el cliente, itero hasta que
     // termine el receive
-    void recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido);
+    void recibir_acciones_serializadas(bool& was_closed, msgAccion& mensaje_recibido);
 
     // Recibe las acciones del cliente, las deserializa y se las devuelve al
     // server
     std::unique_ptr<Comando> recibir_acciones(bool& was_closed, uint16_t id_cliente);
 
     // Toma los valores del mensaje y los traduce a acciones
-    std::unique_ptr<Comando> deserializar_acciones(const uint8_t& mensaje_recibido,
+    std::unique_ptr<Comando> deserializar_acciones(const msgAccion& mensaje_recibido,
                                                    uint16_t cliente_id);
 
     // Para poder enviar comandos
-    void enviar_respuesta(GameState& msg, bool& was_closed);
+    void enviar_respuesta(GameState & ,uint16_t , bool& );
+    void enviar_respuesta(msgGameState& , bool& );
 
     // Cierra el socket del cliente ordenadamente
     void cerrar_socket_cliente();

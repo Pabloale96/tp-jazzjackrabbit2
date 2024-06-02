@@ -40,3 +40,12 @@ void Frame::setFrame(int x, int y, int w, int h) {
     vec_frames.emplace_back(w);
     vec_frames.emplace_back(h);
 }
+
+Frame& Frame::operator=(const Frame& other){
+    if (this != &other) { // Evita autoasignación
+        renderer = std::move(other.renderer);
+        sprite = std::move(other.sprite);
+        vec_frames = other.vec_frames;
+    }
+    return *this;
+}

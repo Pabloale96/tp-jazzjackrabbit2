@@ -11,6 +11,15 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         arma(),
         posicion() {}
 
+Personaje::Personaje(uint16_t * personaje):
+        tipo_personaje(),
+        partida_id(partida_id),
+        client_id(personaje[0]),
+        puntos(personaje[3]),
+        vida(personaje[4]),
+        arma(personaje[5],personaje[6]),
+        posicion(personaje[1],personaje[2]) {}
+
 void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
@@ -46,7 +55,7 @@ uint16_t Personaje::obtener_vida() const { return vida; }
 
 uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
 
-std::string Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
+uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
     asignar_tipo_personaje("jazz");

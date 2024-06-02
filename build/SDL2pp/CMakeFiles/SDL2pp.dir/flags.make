@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSDL2pp_EXPORTS
 
-CXX_INCLUDES = -I/home/camila/Desktop/taller/tp-jazzjackrabbit2/SDL2pp -I/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp -isystem /usr/local/include/SDL2
+CXX_INCLUDES = -I"/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/SDL2pp" -I"/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp" -isystem /usr/local/include/SDL2 -isystem /usr/include/SDL2
 
 CXX_FLAGS = -fPIC -std=c++17
 

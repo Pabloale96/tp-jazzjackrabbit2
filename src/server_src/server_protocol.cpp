@@ -92,62 +92,69 @@ void ProtocolServer::recibir_personaje(std::string& personaje, bool& was_closed)
 
 // ********************** PROTOCOLOS DE JUEGO **********************
 
-void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, uint8_t& mensaje_recibido) {
+void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, msgAccion& mensaje_recibido) {
     if (was_closed) {
         return;
     }
-    uint8_t buffer = 0;
-    socket_cliente.recvall(&buffer, sizeof(uint8_t), &was_closed);
+    msgAccion buffer;
+    socket_cliente.recvall(&buffer, sizeof(buffer), &was_closed);
     mensaje_recibido = buffer;
 }
 
-std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const uint8_t& mensaje_recibido,
+std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& mensaje_recibido,
                                                                uint16_t cliente_id) {
-    if (mensaje_recibido == DISPARAR) {
-        std::unique_ptr<Comando> comando = std::make_unique<Disparar>();
-        comando->set_client_id(cliente_id);
-        return comando;
+
+    std::unique_ptr<Comando> comando = nullptr;
+    switch (mensaje_recibido.accion)
+    {
+        case DISPARAR:
+            comando = std::make_unique<Disparar>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;
+        case MOVER_DERECHA:
+            comando = std::make_unique<MoverDerecha>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;        
+        case MOVER_DERECHA_RAPIDO:
+            comando = std::make_unique<MoverDerechaRapido>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;
+        case MOVER_IZQUIERDA:
+            comando = std::make_unique<MoverIzquierda>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;
+        case MOVER_IZQUIERDA_RAPIDO:
+            comando = std::make_unique<MoverIzquierdaRapido>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;     
+        case MOVER_ARRIBA:
+            comando = std::make_unique<MoverArriba>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;      
+        case MOVER_ABAJO:
+            comando = std::make_unique<MoverAbajo>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando; 
+        case SALTAR:
+            comando = std::make_unique<Saltar>();
+            comando->set_client_id(cliente_id);
+            comando->set_toggle(mensaje_recibido.toggle);
+            return comando;
+        
+        default:
+            return nullptr;
     }
-    if (mensaje_recibido == MOVER_DERECHA) {
-        std::unique_ptr<Comando> comando = std::make_unique<MoverDerecha>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    if (mensaje_recibido == MOVER_DERECHA_RAPIDO) {
-        std::unique_ptr<Comando> comando = std::make_unique<MoverDerechaRapido>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    if (mensaje_recibido == MOVER_IZQUIERDA) {
-        std::unique_ptr<Comando> comando = std::make_unique<MoverIzquierda>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    if (mensaje_recibido == MOVER_IZQUIERDA_RAPIDO) {
-        std::unique_ptr<Comando> comando = std::make_unique<MoverIzquierdaRapido>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    if (mensaje_recibido == MOVER_ARRIBA) {
-        std::unique_ptr<Comando> comando = std::make_unique<MoverArriba>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    if (mensaje_recibido == MOVER_ABAJO) {
-        std::unique_ptr<Comando> comando = std::make_unique<MoverAbajo>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    if (mensaje_recibido == SALTAR) {
-        std::unique_ptr<Comando> comando = std::make_unique<Saltar>();
-        comando->set_client_id(cliente_id);
-        return comando;
-    }
-    return nullptr;
 }
 
 std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed, uint16_t cliente_id) {
-    uint8_t mensaje_recibido = 0;
+    msgAccion mensaje_recibido;
     recibir_acciones_serializadas(was_closed, mensaje_recibido);
     if (was_closed) {
         return nullptr;
@@ -155,87 +162,21 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed, uint
     return deserializar_acciones(mensaje_recibido, cliente_id);
 }
 
-void ProtocolServer::enviar_respuesta(GameState& msg, bool& was_closed) {
-    // Envio el 0x06
-    uint8_t mensaje = MENSAJE;
-    socket_cliente.sendall(&mensaje, sizeof(uint8_t), &was_closed);
+void ProtocolServer::enviar_respuesta(GameState & gameState,uint16_t cliente_id, bool& was_closed) {
+    msgGameState msg(gameState,cliente_id);
     if (was_closed) {
         return;
     }
-
-    uint8_t estado_de_la_partida = (uint8_t) msg.obtener_estado_de_la_partida();
-    socket_cliente.sendall(&estado_de_la_partida, sizeof(uint8_t), &was_closed);
-    if (was_closed) {
-        return;
-    }
-
-    // TODO: Mandar tiempo restante
-
-    const std::map<uint16_t, Personaje>& diccionario_de_personajes =
-            msg.obtener_diccionario_de_personajes();
-    int cant_personajes = diccionario_de_personajes.size();
-    cant_personajes = htons(cant_personajes);
-    socket_cliente.sendall(&cant_personajes, sizeof(int), &was_closed);
-
-    for (auto& pair: diccionario_de_personajes) {
-        const Personaje& personaje = pair.second;
-        // Envio el id del personaje
-        uint16_t id_personaje = personaje.obtener_personaje_id();
-        id_personaje = htons(id_personaje);
-        socket_cliente.sendall(&id_personaje, sizeof(uint16_t), &was_closed);
+    socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
+    
+    msgPersonaje personaje;
+    for (auto& pair : gameState.obtener_diccionario_de_personajes())
+    {
+        personaje = msgPersonaje(pair.first,pair.second);
         if (was_closed) {
             return;
         }
-        // Envio la posicion del personaje
-        uint16_t posicion_x = personaje.obtener_posicion().get_posicion_x();
-        posicion_x = htons(posicion_x);
-        socket_cliente.sendall(&posicion_x, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-        uint16_t posicion_y = personaje.obtener_posicion().get_posicion_y();
-        posicion_y = htons(posicion_y);
-        socket_cliente.sendall(&posicion_y, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-
-        uint16_t puntos = personaje.obtener_puntos();
-        puntos = htons(puntos);
-        socket_cliente.sendall(&puntos, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-
-        uint16_t vida = personaje.obtener_vida();
-        vida = htons(vida);
-        socket_cliente.sendall(&vida, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-
-        uint16_t municion = personaje.obtener_municion();
-        municion = htons(municion);
-        socket_cliente.sendall(&municion, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-
-        std::string nombre_arma = personaje.obtener_nombre_arma();
-        uint16_t nombre_arma_len = nombre_arma.size();
-        socket_cliente.sendall(&nombre_arma_len, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-        socket_cliente.sendall(nombre_arma.c_str(), nombre_arma_len, &was_closed);
-
-        /*
-        uint8_t estado = personaje.obtener_estado();
-        socket_cliente.sendall(&estado, sizeof(uint8_t), &was_closed);
-        if (was_closed) {
-            return;
-        }
-        */
+        socket_cliente.sendall(&personaje, sizeof(personaje), &was_closed);
     }
 }
 

@@ -6,19 +6,18 @@
 #include <vector>
 
 #include "../../include/client_protocol.h"
-#include "../../include/game_respuesta.h"
 #include "../../include/liberror.h"
 
-ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente,
-                               Queue<std::shared_ptr<ClientGameRespuesta>>& server_msg):
-        protocolo_cliente(protocolo_cliente), server_msg(server_msg) {}
+ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t & client_id,
+                               Queue<std::shared_ptr<GameState>>& server_msg):
+        protocolo_cliente(protocolo_cliente),client_id(client_id), server_msg(server_msg) {}
 
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            auto msg = std::make_shared<ClientGameRespuesta>();
-            protocolo_cliente.recibir_respuesta(*msg);
-            server_msg.push(msg);
+            auto gameState = std::make_shared<GameState>(0,true);
+            protocolo_cliente.recibir_respuesta(*gameState,client_id);
+            server_msg.push(gameState);
         } catch (const ClosedQueue&) {
             return;
         } catch (const LibError& err) {

@@ -22,7 +22,7 @@
 
 class Arma {
 protected:
-    std::string nombre_arma;
+    uint8_t nombre_arma;
     uint16_t municion;
     float vel_dis;
     float vel_proy;
@@ -30,13 +30,14 @@ protected:
 
 public:
     Arma();
+    Arma(uint16_t municion,uint16_t nombre):municion(municion),nombre_arma(nombre){}
 
-    std::string obtener_nombre_arma() const { return nombre_arma; }
+    uint8_t obtener_nombre_arma() const { return nombre_arma; }
 
     uint16_t obtener_municion() const { return municion; }
 
     void disminuir_municion() {
-        if (nombre_arma == "Inicial") {
+        if (nombre_arma == 0) {
             // El arma inicial tiene municion infinita
             return;
         } else {

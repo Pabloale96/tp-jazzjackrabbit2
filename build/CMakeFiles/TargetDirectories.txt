@@ -1,19 +1,19 @@
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/client.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/server.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/package.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/package_source.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/edit_cache.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/rebuild_cache.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/list_install_components.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/install.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/install/local.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/install/strip.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/SDL2pp.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/package.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/package_source.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/edit_cache.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/rebuild_cache.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/list_install_components.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/install.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/install/local.dir
-/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/install/strip.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/client.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/server.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/package.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/package_source.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/edit_cache.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/rebuild_cache.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/list_install_components.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/install.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/install/local.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/install/strip.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/SDL2pp.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/package.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/package_source.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/edit_cache.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/rebuild_cache.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/list_install_components.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/install.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/install/local.dir
+/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp/CMakeFiles/install/strip.dir

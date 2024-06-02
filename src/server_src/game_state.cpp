@@ -6,7 +6,8 @@
 #include "../../include/game_enemigo.h"
 #include "../../include/game_personaje.h"
 
-GameState::GameState(uint16_t partida_id, bool jugando): partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}
+GameState::GameState(uint16_t partida_id, bool jugando):
+    partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}
 
 bool GameState::obtener_estado_de_la_partida() {
     return jugando;
@@ -50,5 +51,6 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Vida: " << enemigo.get_vidas() << std::endl;
     }
 }
+
 
 GameState::~GameState() {}

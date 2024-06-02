@@ -4,10 +4,10 @@
 #include <memory>
 #include <string>
 
+#include "msgToSent.h"
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
-#include "game_respuesta.h"
 #include "gui.h"
 #include "sockets.h"
 
@@ -16,15 +16,14 @@ private:
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;
-    Queue<TipoAccion> client_commands;
+    Queue<msgAccion> client_commands;
     ClientSender sender;
-    Queue<std::shared_ptr<ClientGameRespuesta>> server_msg;
+    Queue<std::shared_ptr<GameState>> server_msg;
     ClientReceiver receiver;
     bool client_off = false;
     std::string personaje;
+    uint16_t client_id;
     Gui gui;
-    
-
 
     std::string toLowercase(const std::string& str);
 
@@ -42,34 +41,7 @@ private:
 
     void iniciar_hilos();
 
-    // Muestra las acciones posibles que puede realizar el cliente
-    void acciones_posibles();
-
-    void ejecutar_accion(std::string& accion_actual);
-
-    // A partir de acá vienen las acciones que puede realizar el cliente
-    // Disparar
-    void disparar();
-
-    // Correr
-    void moverDerecha();
-    void moverIzquierda();
-
-    // Corer muy rápido
-    void moverDerechaRapido();
-    void moverIzquierdaRapido();
-
-    // Saltar
-    void saltar();
-
-    // TODO: Chequear si estos 2 métodos son necesarios
-    void moverArriba();
-    void moverAbajo();
-
-    // Espera la respuesta del server y la imprime
-    void imprimir_respuesta(const Respuesta& respuesta);
-
-    void mostrar_estadisticas(const ClientGameRespuesta& respuestas) const;
+    void mostrar_estadisticas(const GameState& respuestas) const;
 
 public:
     // Constructor

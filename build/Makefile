@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2
+CMAKE_SOURCE_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2/build
+CMAKE_BINARY_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /media/pablo/753ADE053056059B/Facultad/Informatica/taller\ de\ programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -152,9 +152,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles /home/camila/Desktop/taller/tp-jazzjackrabbit2/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -315,30 +315,6 @@ src/client_src/client_sender.s: src/client_src/client_sender.cpp.s
 src/client_src/client_sender.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/client_sender.cpp.s
 .PHONY : src/client_src/client_sender.cpp.s
-
-src/client_src/game_respuesta.o: src/client_src/game_respuesta.cpp.o
-.PHONY : src/client_src/game_respuesta.o
-
-# target to build an object file
-src/client_src/game_respuesta.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/game_respuesta.cpp.o
-.PHONY : src/client_src/game_respuesta.cpp.o
-
-src/client_src/game_respuesta.i: src/client_src/game_respuesta.cpp.i
-.PHONY : src/client_src/game_respuesta.i
-
-# target to preprocess a source file
-src/client_src/game_respuesta.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/game_respuesta.cpp.i
-.PHONY : src/client_src/game_respuesta.cpp.i
-
-src/client_src/game_respuesta.s: src/client_src/game_respuesta.cpp.s
-.PHONY : src/client_src/game_respuesta.s
-
-# target to generate assembly for a file
-src/client_src/game_respuesta.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client_src/game_respuesta.cpp.s
-.PHONY : src/client_src/game_respuesta.cpp.s
 
 src/client_src/gui.o: src/client_src/gui.cpp.o
 .PHONY : src/client_src/gui.o
@@ -520,6 +496,30 @@ src/elements/animaciones.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/animaciones.cpp.s
 .PHONY : src/elements/animaciones.cpp.s
 
+src/elements/clase_texturas.o: src/elements/clase_texturas.cpp.o
+.PHONY : src/elements/clase_texturas.o
+
+# target to build an object file
+src/elements/clase_texturas.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/clase_texturas.cpp.o
+.PHONY : src/elements/clase_texturas.cpp.o
+
+src/elements/clase_texturas.i: src/elements/clase_texturas.cpp.i
+.PHONY : src/elements/clase_texturas.i
+
+# target to preprocess a source file
+src/elements/clase_texturas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/clase_texturas.cpp.i
+.PHONY : src/elements/clase_texturas.cpp.i
+
+src/elements/clase_texturas.s: src/elements/clase_texturas.cpp.s
+.PHONY : src/elements/clase_texturas.s
+
+# target to generate assembly for a file
+src/elements/clase_texturas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/clase_texturas.cpp.s
+.PHONY : src/elements/clase_texturas.cpp.s
+
 src/elements/enemigos.o: src/elements/enemigos.cpp.o
 .PHONY : src/elements/enemigos.o
 
@@ -592,53 +592,29 @@ src/elements/frame.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/frame.cpp.s
 .PHONY : src/elements/frame.cpp.s
 
-src/elements/jazz.o: src/elements/jazz.cpp.o
-.PHONY : src/elements/jazz.o
+src/elements/personaje.o: src/elements/personaje.cpp.o
+.PHONY : src/elements/personaje.o
 
 # target to build an object file
-src/elements/jazz.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/jazz.cpp.o
-.PHONY : src/elements/jazz.cpp.o
+src/elements/personaje.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/personaje.cpp.o
+.PHONY : src/elements/personaje.cpp.o
 
-src/elements/jazz.i: src/elements/jazz.cpp.i
-.PHONY : src/elements/jazz.i
-
-# target to preprocess a source file
-src/elements/jazz.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/jazz.cpp.i
-.PHONY : src/elements/jazz.cpp.i
-
-src/elements/jazz.s: src/elements/jazz.cpp.s
-.PHONY : src/elements/jazz.s
-
-# target to generate assembly for a file
-src/elements/jazz.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/jazz.cpp.s
-.PHONY : src/elements/jazz.cpp.s
-
-src/elements/lori.o: src/elements/lori.cpp.o
-.PHONY : src/elements/lori.o
-
-# target to build an object file
-src/elements/lori.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/lori.cpp.o
-.PHONY : src/elements/lori.cpp.o
-
-src/elements/lori.i: src/elements/lori.cpp.i
-.PHONY : src/elements/lori.i
+src/elements/personaje.i: src/elements/personaje.cpp.i
+.PHONY : src/elements/personaje.i
 
 # target to preprocess a source file
-src/elements/lori.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/lori.cpp.i
-.PHONY : src/elements/lori.cpp.i
+src/elements/personaje.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/personaje.cpp.i
+.PHONY : src/elements/personaje.cpp.i
 
-src/elements/lori.s: src/elements/lori.cpp.s
-.PHONY : src/elements/lori.s
+src/elements/personaje.s: src/elements/personaje.cpp.s
+.PHONY : src/elements/personaje.s
 
 # target to generate assembly for a file
-src/elements/lori.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/lori.cpp.s
-.PHONY : src/elements/lori.cpp.s
+src/elements/personaje.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/personaje.cpp.s
+.PHONY : src/elements/personaje.cpp.s
 
 src/elements/platform.o: src/elements/platform.cpp.o
 .PHONY : src/elements/platform.o
@@ -663,30 +639,6 @@ src/elements/platform.s: src/elements/platform.cpp.s
 src/elements/platform.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/platform.cpp.s
 .PHONY : src/elements/platform.cpp.s
-
-src/elements/spaz.o: src/elements/spaz.cpp.o
-.PHONY : src/elements/spaz.o
-
-# target to build an object file
-src/elements/spaz.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/spaz.cpp.o
-.PHONY : src/elements/spaz.cpp.o
-
-src/elements/spaz.i: src/elements/spaz.cpp.i
-.PHONY : src/elements/spaz.i
-
-# target to preprocess a source file
-src/elements/spaz.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/spaz.cpp.i
-.PHONY : src/elements/spaz.cpp.i
-
-src/elements/spaz.s: src/elements/spaz.cpp.s
-.PHONY : src/elements/spaz.s
-
-# target to generate assembly for a file
-src/elements/spaz.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/elements/spaz.cpp.s
-.PHONY : src/elements/spaz.cpp.s
 
 src/server_src/cliente_aceptado.o: src/server_src/cliente_aceptado.cpp.o
 .PHONY : src/server_src/cliente_aceptado.o
@@ -717,6 +669,7 @@ src/server_src/game_arma.o: src/server_src/game_arma.cpp.o
 
 # target to build an object file
 src/server_src/game_arma.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_arma.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_arma.cpp.o
 .PHONY : src/server_src/game_arma.cpp.o
 
@@ -725,6 +678,7 @@ src/server_src/game_arma.i: src/server_src/game_arma.cpp.i
 
 # target to preprocess a source file
 src/server_src/game_arma.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_arma.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_arma.cpp.i
 .PHONY : src/server_src/game_arma.cpp.i
 
@@ -733,6 +687,7 @@ src/server_src/game_arma.s: src/server_src/game_arma.cpp.s
 
 # target to generate assembly for a file
 src/server_src/game_arma.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_arma.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_arma.cpp.s
 .PHONY : src/server_src/game_arma.cpp.s
 
@@ -789,6 +744,7 @@ src/server_src/game_enemigo.o: src/server_src/game_enemigo.cpp.o
 
 # target to build an object file
 src/server_src/game_enemigo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_enemigo.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o
 .PHONY : src/server_src/game_enemigo.cpp.o
 
@@ -797,6 +753,7 @@ src/server_src/game_enemigo.i: src/server_src/game_enemigo.cpp.i
 
 # target to preprocess a source file
 src/server_src/game_enemigo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_enemigo.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.i
 .PHONY : src/server_src/game_enemigo.cpp.i
 
@@ -805,6 +762,7 @@ src/server_src/game_enemigo.s: src/server_src/game_enemigo.cpp.s
 
 # target to generate assembly for a file
 src/server_src/game_enemigo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_enemigo.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.s
 .PHONY : src/server_src/game_enemigo.cpp.s
 
@@ -813,6 +771,7 @@ src/server_src/game_personaje.o: src/server_src/game_personaje.cpp.o
 
 # target to build an object file
 src/server_src/game_personaje.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_personaje.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o
 .PHONY : src/server_src/game_personaje.cpp.o
 
@@ -821,6 +780,7 @@ src/server_src/game_personaje.i: src/server_src/game_personaje.cpp.i
 
 # target to preprocess a source file
 src/server_src/game_personaje.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_personaje.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_personaje.cpp.i
 .PHONY : src/server_src/game_personaje.cpp.i
 
@@ -829,6 +789,7 @@ src/server_src/game_personaje.s: src/server_src/game_personaje.cpp.s
 
 # target to generate assembly for a file
 src/server_src/game_personaje.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_personaje.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_personaje.cpp.s
 .PHONY : src/server_src/game_personaje.cpp.s
 
@@ -837,6 +798,7 @@ src/server_src/game_posicion.o: src/server_src/game_posicion.cpp.o
 
 # target to build an object file
 src/server_src/game_posicion.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_posicion.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o
 .PHONY : src/server_src/game_posicion.cpp.o
 
@@ -845,6 +807,7 @@ src/server_src/game_posicion.i: src/server_src/game_posicion.cpp.i
 
 # target to preprocess a source file
 src/server_src/game_posicion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_posicion.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_posicion.cpp.i
 .PHONY : src/server_src/game_posicion.cpp.i
 
@@ -853,6 +816,7 @@ src/server_src/game_posicion.s: src/server_src/game_posicion.cpp.s
 
 # target to generate assembly for a file
 src/server_src/game_posicion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_posicion.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_posicion.cpp.s
 .PHONY : src/server_src/game_posicion.cpp.s
 
@@ -861,6 +825,7 @@ src/server_src/game_state.o: src/server_src/game_state.cpp.o
 
 # target to build an object file
 src/server_src/game_state.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_state.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_state.cpp.o
 .PHONY : src/server_src/game_state.cpp.o
 
@@ -869,6 +834,7 @@ src/server_src/game_state.i: src/server_src/game_state.cpp.i
 
 # target to preprocess a source file
 src/server_src/game_state.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_state.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_state.cpp.i
 .PHONY : src/server_src/game_state.cpp.i
 
@@ -877,6 +843,7 @@ src/server_src/game_state.s: src/server_src/game_state.cpp.s
 
 # target to generate assembly for a file
 src/server_src/game_state.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/server_src/game_state.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server_src/game_state.cpp.s
 .PHONY : src/server_src/game_state.cpp.s
 
@@ -1125,9 +1092,6 @@ help:
 	@echo "... src/client_src/client_sender.o"
 	@echo "... src/client_src/client_sender.i"
 	@echo "... src/client_src/client_sender.s"
-	@echo "... src/client_src/game_respuesta.o"
-	@echo "... src/client_src/game_respuesta.i"
-	@echo "... src/client_src/game_respuesta.s"
 	@echo "... src/client_src/gui.o"
 	@echo "... src/client_src/gui.i"
 	@echo "... src/client_src/gui.s"
@@ -1149,6 +1113,9 @@ help:
 	@echo "... src/elements/animaciones.o"
 	@echo "... src/elements/animaciones.i"
 	@echo "... src/elements/animaciones.s"
+	@echo "... src/elements/clase_texturas.o"
+	@echo "... src/elements/clase_texturas.i"
+	@echo "... src/elements/clase_texturas.s"
 	@echo "... src/elements/enemigos.o"
 	@echo "... src/elements/enemigos.i"
 	@echo "... src/elements/enemigos.s"
@@ -1158,18 +1125,12 @@ help:
 	@echo "... src/elements/frame.o"
 	@echo "... src/elements/frame.i"
 	@echo "... src/elements/frame.s"
-	@echo "... src/elements/jazz.o"
-	@echo "... src/elements/jazz.i"
-	@echo "... src/elements/jazz.s"
-	@echo "... src/elements/lori.o"
-	@echo "... src/elements/lori.i"
-	@echo "... src/elements/lori.s"
+	@echo "... src/elements/personaje.o"
+	@echo "... src/elements/personaje.i"
+	@echo "... src/elements/personaje.s"
 	@echo "... src/elements/platform.o"
 	@echo "... src/elements/platform.i"
 	@echo "... src/elements/platform.s"
-	@echo "... src/elements/spaz.o"
-	@echo "... src/elements/spaz.i"
-	@echo "... src/elements/spaz.s"
 	@echo "... src/server_src/cliente_aceptado.o"
 	@echo "... src/server_src/cliente_aceptado.i"
 	@echo "... src/server_src/cliente_aceptado.s"

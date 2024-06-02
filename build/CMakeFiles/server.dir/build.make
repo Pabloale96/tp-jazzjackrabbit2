@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2
+CMAKE_SOURCE_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2/build
+CMAKE_BINARY_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/server.dir/depend.make
@@ -72,296 +72,296 @@ include CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o: ../src/server_src/cliente_aceptado.cpp
 CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o -MF CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o.d -o CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/cliente_aceptado.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o -MF CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o.d -o CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/cliente_aceptado.cpp"
 
 CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/cliente_aceptado.cpp > CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/cliente_aceptado.cpp" > CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.i
 
 CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/cliente_aceptado.cpp -o CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/cliente_aceptado.cpp" -o CMakeFiles/server.dir/src/server_src/cliente_aceptado.cpp.s
 
 CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o: ../src/server_src/server_aceptador.cpp
 CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_aceptador.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_aceptador.cpp"
 
 CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_aceptador.cpp > CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_aceptador.cpp" > CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.i
 
 CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_aceptador.cpp -o CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_aceptador.cpp" -o CMakeFiles/server.dir/src/server_src/server_aceptador.cpp.s
 
 CMakeFiles/server.dir/src/server_src/server.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/server.cpp.o: ../src/server_src/server.cpp
 CMakeFiles/server.dir/src/server_src/server.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/server_src/server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server.cpp.o -MF CMakeFiles/server.dir/src/server_src/server.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/server_src/server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server.cpp.o -MF CMakeFiles/server.dir/src/server_src/server.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server.cpp"
 
 CMakeFiles/server.dir/src/server_src/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server.cpp > CMakeFiles/server.dir/src/server_src/server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server.cpp" > CMakeFiles/server.dir/src/server_src/server.cpp.i
 
 CMakeFiles/server.dir/src/server_src/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server.cpp -o CMakeFiles/server.dir/src/server_src/server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server.cpp" -o CMakeFiles/server.dir/src/server_src/server.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_arma.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_arma.cpp.o: ../src/server_src/game_arma.cpp
 CMakeFiles/server.dir/src/server_src/game_arma.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/server_src/game_arma.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_arma.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_arma.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_arma.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_arma.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/server_src/game_arma.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_arma.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_arma.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_arma.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_arma.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_arma.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_arma.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_arma.cpp > CMakeFiles/server.dir/src/server_src/game_arma.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_arma.cpp" > CMakeFiles/server.dir/src/server_src/game_arma.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_arma.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_arma.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_arma.cpp -o CMakeFiles/server.dir/src/server_src/game_arma.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_arma.cpp" -o CMakeFiles/server.dir/src/server_src/game_arma.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_class.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_class.cpp.o: ../src/server_src/game_class.cpp
 CMakeFiles/server.dir/src/server_src/game_class.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/server_src/game_class.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_class.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_class.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_class.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_class.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/server_src/game_class.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_class.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_class.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_class.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_class.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_class.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_class.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_class.cpp > CMakeFiles/server.dir/src/server_src/game_class.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_class.cpp" > CMakeFiles/server.dir/src/server_src/game_class.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_class.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_class.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_class.cpp -o CMakeFiles/server.dir/src/server_src/game_class.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_class.cpp" -o CMakeFiles/server.dir/src/server_src/game_class.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o: ../src/server_src/game_comandos.cpp
 CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_comandos.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_comandos.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_comandos.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_comandos.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_comandos.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_comandos.cpp > CMakeFiles/server.dir/src/server_src/game_comandos.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_comandos.cpp" > CMakeFiles/server.dir/src/server_src/game_comandos.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_comandos.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_comandos.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_comandos.cpp -o CMakeFiles/server.dir/src/server_src/game_comandos.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_comandos.cpp" -o CMakeFiles/server.dir/src/server_src/game_comandos.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o: ../src/server_src/game_enemigo.cpp
 CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_enemigo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_enemigo.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_enemigo.cpp > CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_enemigo.cpp" > CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_enemigo.cpp -o CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_enemigo.cpp" -o CMakeFiles/server.dir/src/server_src/game_enemigo.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o: ../src/server_src/game_personaje.cpp
 CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_personaje.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_personaje.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_personaje.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_personaje.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_personaje.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_personaje.cpp > CMakeFiles/server.dir/src/server_src/game_personaje.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_personaje.cpp" > CMakeFiles/server.dir/src/server_src/game_personaje.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_personaje.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_personaje.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_personaje.cpp -o CMakeFiles/server.dir/src/server_src/game_personaje.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_personaje.cpp" -o CMakeFiles/server.dir/src/server_src/game_personaje.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o: ../src/server_src/game_posicion.cpp
 CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_posicion.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_posicion.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_posicion.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_posicion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_posicion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_posicion.cpp > CMakeFiles/server.dir/src/server_src/game_posicion.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_posicion.cpp" > CMakeFiles/server.dir/src/server_src/game_posicion.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_posicion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_posicion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_posicion.cpp -o CMakeFiles/server.dir/src/server_src/game_posicion.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_posicion.cpp" -o CMakeFiles/server.dir/src/server_src/game_posicion.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o: ../src/server_src/game_state_monitor.cpp
 CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_state_monitor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_state_monitor.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_state_monitor.cpp > CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_state_monitor.cpp" > CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_state_monitor.cpp -o CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_state_monitor.cpp" -o CMakeFiles/server.dir/src/server_src/game_state_monitor.cpp.s
 
 CMakeFiles/server.dir/src/server_src/game_state.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/game_state.cpp.o: ../src/server_src/game_state.cpp
 CMakeFiles/server.dir/src/server_src/game_state.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/src/server_src/game_state.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_state.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_state.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_state.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_state.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/src/server_src/game_state.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/game_state.cpp.o -MF CMakeFiles/server.dir/src/server_src/game_state.cpp.o.d -o CMakeFiles/server.dir/src/server_src/game_state.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_state.cpp"
 
 CMakeFiles/server.dir/src/server_src/game_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/game_state.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_state.cpp > CMakeFiles/server.dir/src/server_src/game_state.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_state.cpp" > CMakeFiles/server.dir/src/server_src/game_state.cpp.i
 
 CMakeFiles/server.dir/src/server_src/game_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/game_state.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/game_state.cpp -o CMakeFiles/server.dir/src/server_src/game_state.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/game_state.cpp" -o CMakeFiles/server.dir/src/server_src/game_state.cpp.s
 
 CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o: ../src/server_src/gameloop_class.cpp
 CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o -MF CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o.d -o CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/gameloop_class.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o -MF CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o.d -o CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/gameloop_class.cpp"
 
 CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/gameloop_class.cpp > CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/gameloop_class.cpp" > CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.i
 
 CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/gameloop_class.cpp -o CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/gameloop_class.cpp" -o CMakeFiles/server.dir/src/server_src/gameloop_class.cpp.s
 
 CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o: ../src/server_src/gameloop_monitor.cpp
 CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o -MF CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o.d -o CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/gameloop_monitor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o -MF CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o.d -o CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/gameloop_monitor.cpp"
 
 CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/gameloop_monitor.cpp > CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/gameloop_monitor.cpp" > CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.i
 
 CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/gameloop_monitor.cpp -o CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/gameloop_monitor.cpp" -o CMakeFiles/server.dir/src/server_src/gameloop_monitor.cpp.s
 
 CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o: ../src/server_src/server_protocol.cpp
 CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_protocol.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_protocol.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_protocol.cpp"
 
 CMakeFiles/server.dir/src/server_src/server_protocol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/server_protocol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_protocol.cpp > CMakeFiles/server.dir/src/server_src/server_protocol.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_protocol.cpp" > CMakeFiles/server.dir/src/server_src/server_protocol.cpp.i
 
 CMakeFiles/server.dir/src/server_src/server_protocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/server_protocol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_protocol.cpp -o CMakeFiles/server.dir/src/server_src/server_protocol.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_protocol.cpp" -o CMakeFiles/server.dir/src/server_src/server_protocol.cpp.s
 
 CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o: ../src/server_src/server_receiver.cpp
 CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_receiver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_receiver.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_receiver.cpp"
 
 CMakeFiles/server.dir/src/server_src/server_receiver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/server_receiver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_receiver.cpp > CMakeFiles/server.dir/src/server_src/server_receiver.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_receiver.cpp" > CMakeFiles/server.dir/src/server_src/server_receiver.cpp.i
 
 CMakeFiles/server.dir/src/server_src/server_receiver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/server_receiver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_receiver.cpp -o CMakeFiles/server.dir/src/server_src/server_receiver.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_receiver.cpp" -o CMakeFiles/server.dir/src/server_src/server_receiver.cpp.s
 
 CMakeFiles/server.dir/src/server_src/server_sender.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/server_sender.cpp.o: ../src/server_src/server_sender.cpp
 CMakeFiles/server.dir/src/server_src/server_sender.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/src/server_src/server_sender.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_sender.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_sender.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_sender.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_sender.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/src/server_src/server_sender.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/server_sender.cpp.o -MF CMakeFiles/server.dir/src/server_src/server_sender.cpp.o.d -o CMakeFiles/server.dir/src/server_src/server_sender.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_sender.cpp"
 
 CMakeFiles/server.dir/src/server_src/server_sender.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/server_sender.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_sender.cpp > CMakeFiles/server.dir/src/server_src/server_sender.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_sender.cpp" > CMakeFiles/server.dir/src/server_src/server_sender.cpp.i
 
 CMakeFiles/server.dir/src/server_src/server_sender.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/server_sender.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/server_sender.cpp -o CMakeFiles/server.dir/src/server_src/server_sender.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/server_sender.cpp" -o CMakeFiles/server.dir/src/server_src/server_sender.cpp.s
 
 CMakeFiles/server.dir/src/common_src/liberror.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/liberror.cpp.o: ../src/common_src/liberror.cpp
 CMakeFiles/server.dir/src/common_src/liberror.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/src/common_src/liberror.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/liberror.cpp.o -MF CMakeFiles/server.dir/src/common_src/liberror.cpp.o.d -o CMakeFiles/server.dir/src/common_src/liberror.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/liberror.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/src/common_src/liberror.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/liberror.cpp.o -MF CMakeFiles/server.dir/src/common_src/liberror.cpp.o.d -o CMakeFiles/server.dir/src/common_src/liberror.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/liberror.cpp"
 
 CMakeFiles/server.dir/src/common_src/liberror.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/common_src/liberror.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/liberror.cpp > CMakeFiles/server.dir/src/common_src/liberror.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/liberror.cpp" > CMakeFiles/server.dir/src/common_src/liberror.cpp.i
 
 CMakeFiles/server.dir/src/common_src/liberror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/common_src/liberror.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/liberror.cpp -o CMakeFiles/server.dir/src/common_src/liberror.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/liberror.cpp" -o CMakeFiles/server.dir/src/common_src/liberror.cpp.s
 
 CMakeFiles/server.dir/src/common_src/resolver.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/resolver.cpp.o: ../src/common_src/resolver.cpp
 CMakeFiles/server.dir/src/common_src/resolver.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/src/common_src/resolver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/resolver.cpp.o -MF CMakeFiles/server.dir/src/common_src/resolver.cpp.o.d -o CMakeFiles/server.dir/src/common_src/resolver.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/resolver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/src/common_src/resolver.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/resolver.cpp.o -MF CMakeFiles/server.dir/src/common_src/resolver.cpp.o.d -o CMakeFiles/server.dir/src/common_src/resolver.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/resolver.cpp"
 
 CMakeFiles/server.dir/src/common_src/resolver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/common_src/resolver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/resolver.cpp > CMakeFiles/server.dir/src/common_src/resolver.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/resolver.cpp" > CMakeFiles/server.dir/src/common_src/resolver.cpp.i
 
 CMakeFiles/server.dir/src/common_src/resolver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/common_src/resolver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/resolver.cpp -o CMakeFiles/server.dir/src/common_src/resolver.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/resolver.cpp" -o CMakeFiles/server.dir/src/common_src/resolver.cpp.s
 
 CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o: ../src/common_src/resolvererror.cpp
 CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o -MF CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o.d -o CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/resolvererror.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o -MF CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o.d -o CMakeFiles/server.dir/src/common_src/resolvererror.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/resolvererror.cpp"
 
 CMakeFiles/server.dir/src/common_src/resolvererror.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/common_src/resolvererror.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/resolvererror.cpp > CMakeFiles/server.dir/src/common_src/resolvererror.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/resolvererror.cpp" > CMakeFiles/server.dir/src/common_src/resolvererror.cpp.i
 
 CMakeFiles/server.dir/src/common_src/resolvererror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/common_src/resolvererror.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/resolvererror.cpp -o CMakeFiles/server.dir/src/common_src/resolvererror.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/resolvererror.cpp" -o CMakeFiles/server.dir/src/common_src/resolvererror.cpp.s
 
 CMakeFiles/server.dir/src/common_src/sockets.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/common_src/sockets.cpp.o: ../src/common_src/sockets.cpp
 CMakeFiles/server.dir/src/common_src/sockets.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/src/common_src/sockets.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/sockets.cpp.o -MF CMakeFiles/server.dir/src/common_src/sockets.cpp.o.d -o CMakeFiles/server.dir/src/common_src/sockets.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/sockets.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/src/common_src/sockets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/common_src/sockets.cpp.o -MF CMakeFiles/server.dir/src/common_src/sockets.cpp.o.d -o CMakeFiles/server.dir/src/common_src/sockets.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/sockets.cpp"
 
 CMakeFiles/server.dir/src/common_src/sockets.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/common_src/sockets.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/sockets.cpp > CMakeFiles/server.dir/src/common_src/sockets.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/sockets.cpp" > CMakeFiles/server.dir/src/common_src/sockets.cpp.i
 
 CMakeFiles/server.dir/src/common_src/sockets.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/common_src/sockets.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/common_src/sockets.cpp -o CMakeFiles/server.dir/src/common_src/sockets.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/common_src/sockets.cpp" -o CMakeFiles/server.dir/src/common_src/sockets.cpp.s
 
 CMakeFiles/server.dir/src/server_src/main.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server_src/main.cpp.o: ../src/server_src/main.cpp
 CMakeFiles/server.dir/src/server_src/main.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/src/server_src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/main.cpp.o -MF CMakeFiles/server.dir/src/server_src/main.cpp.o.d -o CMakeFiles/server.dir/src/server_src/main.cpp.o -c /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/src/server_src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server_src/main.cpp.o -MF CMakeFiles/server.dir/src/server_src/main.cpp.o.d -o CMakeFiles/server.dir/src/server_src/main.cpp.o -c "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/main.cpp"
 
 CMakeFiles/server.dir/src/server_src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/server_src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/main.cpp > CMakeFiles/server.dir/src/server_src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/main.cpp" > CMakeFiles/server.dir/src/server_src/main.cpp.i
 
 CMakeFiles/server.dir/src/server_src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/server_src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/camila/Desktop/taller/tp-jazzjackrabbit2/src/server_src/main.cpp -o CMakeFiles/server.dir/src/server_src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/src/server_src/main.cpp" -o CMakeFiles/server.dir/src/server_src/main.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
@@ -413,7 +413,7 @@ server: CMakeFiles/server.dir/src/common_src/sockets.cpp.o
 server: CMakeFiles/server.dir/src/server_src/main.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -425,6 +425,6 @@ CMakeFiles/server.dir/clean:
 .PHONY : CMakeFiles/server.dir/clean
 
 CMakeFiles/server.dir/depend:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/camila/Desktop/taller/tp-jazzjackrabbit2 /home/camila/Desktop/taller/tp-jazzjackrabbit2 /home/camila/Desktop/taller/tp-jazzjackrabbit2/build /home/camila/Desktop/taller/tp-jazzjackrabbit2/build /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles/server.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/server.dir/depend
 

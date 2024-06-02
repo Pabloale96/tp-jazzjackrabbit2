@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(jazzJackrabbit2)
 
 # Find the SDL2pp library
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_mixer 2.6.3 REQUIRED)
+#find_package(SDL2 REQUIRED)
+#find_package(SDL2_image REQUIRED)
+#find_package(SDL2_mixer REQUIRED)
 
 # Find the yaml-cpp library
-find_package(yaml-cpp REQUIRED)
+#find_package(yaml-cpp REQUIRED)
 
 # set up SDL2pp library
 set(SDL2PP_WITH_IMAGE YES)
@@ -39,7 +39,11 @@ message("Headers generados: ${UIS_HEADERS}")
 
 add_executable(client
   src/client_src/client.cpp
-  src/client_src/game_respuesta.cpp
+  src/server_src/game_personaje.cpp
+  src/server_src/game_enemigo.cpp
+  src/server_src/game_arma.cpp
+  src/server_src/game_posicion.cpp
+  src/server_src/game_state.cpp
   src/client_src/gui.cpp
   src/client_src/main.cpp
   src/client_src/client_protocol.cpp
@@ -51,9 +55,8 @@ add_executable(client
   src/common_src/sockets.cpp
   src/elements/animaciones.cpp
   src/elements/escenario.cpp
-  src/elements/spaz.cpp
-  src/elements/lori.cpp
-  src/elements/jazz.cpp
+  src/elements/personaje.cpp
+  src/elements/clase_texturas.cpp
   src/elements/enemigos.cpp
   src/elements/frame.cpp
   src/elements/platform.cpp

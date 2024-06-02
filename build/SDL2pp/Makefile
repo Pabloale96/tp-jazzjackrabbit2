@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2
+CMAKE_SOURCE_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2/build
+CMAKE_BINARY_DIR = "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/camila/Desktop/taller/tp-jazzjackrabbit2/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CPackSourceConfig.cmake
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && /usr/bin/cpack --config ./CPackSourceConfig.cmake /media/pablo/753ADE053056059B/Facultad/Informatica/taller\ de\ programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -152,14 +152,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/SDL2pp//CMakeFiles/progress.marks
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/camila/Desktop/taller/tp-jazzjackrabbit2/build/CMakeFiles 0
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/SDL2pp//CMakeFiles/progress.marks"
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/clean
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/clean
 .PHONY : clean
 
 # The main clean target
@@ -168,22 +168,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/preinstall
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/preinstall
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 SDL2pp/CMakeFiles/SDL2pp.dir/rule:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/CMakeFiles/SDL2pp.dir/rule
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp/CMakeFiles/SDL2pp.dir/rule
 .PHONY : SDL2pp/CMakeFiles/SDL2pp.dir/rule
 
 # Convenience name for target.
@@ -192,7 +192,7 @@ SDL2pp: SDL2pp/CMakeFiles/SDL2pp.dir/rule
 
 # fast build rule for target.
 SDL2pp/fast:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/build
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/build
 .PHONY : SDL2pp/fast
 
 SDL2pp/AudioDevice.o: SDL2pp/AudioDevice.cc.o
@@ -200,7 +200,7 @@ SDL2pp/AudioDevice.o: SDL2pp/AudioDevice.cc.o
 
 # target to build an object file
 SDL2pp/AudioDevice.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o
 .PHONY : SDL2pp/AudioDevice.cc.o
 
 SDL2pp/AudioDevice.i: SDL2pp/AudioDevice.cc.i
@@ -208,7 +208,7 @@ SDL2pp/AudioDevice.i: SDL2pp/AudioDevice.cc.i
 
 # target to preprocess a source file
 SDL2pp/AudioDevice.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.i
 .PHONY : SDL2pp/AudioDevice.cc.i
 
 SDL2pp/AudioDevice.s: SDL2pp/AudioDevice.cc.s
@@ -216,7 +216,7 @@ SDL2pp/AudioDevice.s: SDL2pp/AudioDevice.cc.s
 
 # target to generate assembly for a file
 SDL2pp/AudioDevice.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.s
 .PHONY : SDL2pp/AudioDevice.cc.s
 
 SDL2pp/AudioLock.o: SDL2pp/AudioLock.cc.o
@@ -224,7 +224,7 @@ SDL2pp/AudioLock.o: SDL2pp/AudioLock.cc.o
 
 # target to build an object file
 SDL2pp/AudioLock.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o
 .PHONY : SDL2pp/AudioLock.cc.o
 
 SDL2pp/AudioLock.i: SDL2pp/AudioLock.cc.i
@@ -232,7 +232,7 @@ SDL2pp/AudioLock.i: SDL2pp/AudioLock.cc.i
 
 # target to preprocess a source file
 SDL2pp/AudioLock.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.i
 .PHONY : SDL2pp/AudioLock.cc.i
 
 SDL2pp/AudioLock.s: SDL2pp/AudioLock.cc.s
@@ -240,7 +240,7 @@ SDL2pp/AudioLock.s: SDL2pp/AudioLock.cc.s
 
 # target to generate assembly for a file
 SDL2pp/AudioLock.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.s
 .PHONY : SDL2pp/AudioLock.cc.s
 
 SDL2pp/AudioSpec.o: SDL2pp/AudioSpec.cc.o
@@ -248,7 +248,7 @@ SDL2pp/AudioSpec.o: SDL2pp/AudioSpec.cc.o
 
 # target to build an object file
 SDL2pp/AudioSpec.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o
 .PHONY : SDL2pp/AudioSpec.cc.o
 
 SDL2pp/AudioSpec.i: SDL2pp/AudioSpec.cc.i
@@ -256,7 +256,7 @@ SDL2pp/AudioSpec.i: SDL2pp/AudioSpec.cc.i
 
 # target to preprocess a source file
 SDL2pp/AudioSpec.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.i
 .PHONY : SDL2pp/AudioSpec.cc.i
 
 SDL2pp/AudioSpec.s: SDL2pp/AudioSpec.cc.s
@@ -264,7 +264,7 @@ SDL2pp/AudioSpec.s: SDL2pp/AudioSpec.cc.s
 
 # target to generate assembly for a file
 SDL2pp/AudioSpec.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s
 .PHONY : SDL2pp/AudioSpec.cc.s
 
 SDL2pp/Color.o: SDL2pp/Color.cc.o
@@ -272,7 +272,7 @@ SDL2pp/Color.o: SDL2pp/Color.cc.o
 
 # target to build an object file
 SDL2pp/Color.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o
 .PHONY : SDL2pp/Color.cc.o
 
 SDL2pp/Color.i: SDL2pp/Color.cc.i
@@ -280,7 +280,7 @@ SDL2pp/Color.i: SDL2pp/Color.cc.i
 
 # target to preprocess a source file
 SDL2pp/Color.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.i
 .PHONY : SDL2pp/Color.cc.i
 
 SDL2pp/Color.s: SDL2pp/Color.cc.s
@@ -288,7 +288,7 @@ SDL2pp/Color.s: SDL2pp/Color.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Color.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.s
 .PHONY : SDL2pp/Color.cc.s
 
 SDL2pp/Exception.o: SDL2pp/Exception.cc.o
@@ -296,7 +296,7 @@ SDL2pp/Exception.o: SDL2pp/Exception.cc.o
 
 # target to build an object file
 SDL2pp/Exception.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o
 .PHONY : SDL2pp/Exception.cc.o
 
 SDL2pp/Exception.i: SDL2pp/Exception.cc.i
@@ -304,7 +304,7 @@ SDL2pp/Exception.i: SDL2pp/Exception.cc.i
 
 # target to preprocess a source file
 SDL2pp/Exception.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.i
 .PHONY : SDL2pp/Exception.cc.i
 
 SDL2pp/Exception.s: SDL2pp/Exception.cc.s
@@ -312,7 +312,7 @@ SDL2pp/Exception.s: SDL2pp/Exception.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Exception.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s
 .PHONY : SDL2pp/Exception.cc.s
 
 SDL2pp/Font.o: SDL2pp/Font.cc.o
@@ -320,7 +320,7 @@ SDL2pp/Font.o: SDL2pp/Font.cc.o
 
 # target to build an object file
 SDL2pp/Font.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o
 .PHONY : SDL2pp/Font.cc.o
 
 SDL2pp/Font.i: SDL2pp/Font.cc.i
@@ -328,7 +328,7 @@ SDL2pp/Font.i: SDL2pp/Font.cc.i
 
 # target to preprocess a source file
 SDL2pp/Font.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i
 .PHONY : SDL2pp/Font.cc.i
 
 SDL2pp/Font.s: SDL2pp/Font.cc.s
@@ -336,7 +336,7 @@ SDL2pp/Font.s: SDL2pp/Font.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Font.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s
 .PHONY : SDL2pp/Font.cc.s
 
 SDL2pp/Point.o: SDL2pp/Point.cc.o
@@ -344,7 +344,7 @@ SDL2pp/Point.o: SDL2pp/Point.cc.o
 
 # target to build an object file
 SDL2pp/Point.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o
 .PHONY : SDL2pp/Point.cc.o
 
 SDL2pp/Point.i: SDL2pp/Point.cc.i
@@ -352,7 +352,7 @@ SDL2pp/Point.i: SDL2pp/Point.cc.i
 
 # target to preprocess a source file
 SDL2pp/Point.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.i
 .PHONY : SDL2pp/Point.cc.i
 
 SDL2pp/Point.s: SDL2pp/Point.cc.s
@@ -360,7 +360,7 @@ SDL2pp/Point.s: SDL2pp/Point.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Point.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.s
 .PHONY : SDL2pp/Point.cc.s
 
 SDL2pp/RWops.o: SDL2pp/RWops.cc.o
@@ -368,7 +368,7 @@ SDL2pp/RWops.o: SDL2pp/RWops.cc.o
 
 # target to build an object file
 SDL2pp/RWops.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o
 .PHONY : SDL2pp/RWops.cc.o
 
 SDL2pp/RWops.i: SDL2pp/RWops.cc.i
@@ -376,7 +376,7 @@ SDL2pp/RWops.i: SDL2pp/RWops.cc.i
 
 # target to preprocess a source file
 SDL2pp/RWops.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.i
 .PHONY : SDL2pp/RWops.cc.i
 
 SDL2pp/RWops.s: SDL2pp/RWops.cc.s
@@ -384,7 +384,7 @@ SDL2pp/RWops.s: SDL2pp/RWops.cc.s
 
 # target to generate assembly for a file
 SDL2pp/RWops.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.s
 .PHONY : SDL2pp/RWops.cc.s
 
 SDL2pp/Rect.o: SDL2pp/Rect.cc.o
@@ -392,7 +392,7 @@ SDL2pp/Rect.o: SDL2pp/Rect.cc.o
 
 # target to build an object file
 SDL2pp/Rect.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o
 .PHONY : SDL2pp/Rect.cc.o
 
 SDL2pp/Rect.i: SDL2pp/Rect.cc.i
@@ -400,7 +400,7 @@ SDL2pp/Rect.i: SDL2pp/Rect.cc.i
 
 # target to preprocess a source file
 SDL2pp/Rect.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.i
 .PHONY : SDL2pp/Rect.cc.i
 
 SDL2pp/Rect.s: SDL2pp/Rect.cc.s
@@ -408,7 +408,7 @@ SDL2pp/Rect.s: SDL2pp/Rect.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Rect.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.s
 .PHONY : SDL2pp/Rect.cc.s
 
 SDL2pp/Renderer.o: SDL2pp/Renderer.cc.o
@@ -416,7 +416,7 @@ SDL2pp/Renderer.o: SDL2pp/Renderer.cc.o
 
 # target to build an object file
 SDL2pp/Renderer.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o
 .PHONY : SDL2pp/Renderer.cc.o
 
 SDL2pp/Renderer.i: SDL2pp/Renderer.cc.i
@@ -424,7 +424,7 @@ SDL2pp/Renderer.i: SDL2pp/Renderer.cc.i
 
 # target to preprocess a source file
 SDL2pp/Renderer.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.i
 .PHONY : SDL2pp/Renderer.cc.i
 
 SDL2pp/Renderer.s: SDL2pp/Renderer.cc.s
@@ -432,7 +432,7 @@ SDL2pp/Renderer.s: SDL2pp/Renderer.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Renderer.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.s
 .PHONY : SDL2pp/Renderer.cc.s
 
 SDL2pp/SDL.o: SDL2pp/SDL.cc.o
@@ -440,7 +440,7 @@ SDL2pp/SDL.o: SDL2pp/SDL.cc.o
 
 # target to build an object file
 SDL2pp/SDL.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o
 .PHONY : SDL2pp/SDL.cc.o
 
 SDL2pp/SDL.i: SDL2pp/SDL.cc.i
@@ -448,7 +448,7 @@ SDL2pp/SDL.i: SDL2pp/SDL.cc.i
 
 # target to preprocess a source file
 SDL2pp/SDL.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.i
 .PHONY : SDL2pp/SDL.cc.i
 
 SDL2pp/SDL.s: SDL2pp/SDL.cc.s
@@ -456,7 +456,7 @@ SDL2pp/SDL.s: SDL2pp/SDL.cc.s
 
 # target to generate assembly for a file
 SDL2pp/SDL.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s
 .PHONY : SDL2pp/SDL.cc.s
 
 SDL2pp/SDLImage.o: SDL2pp/SDLImage.cc.o
@@ -464,7 +464,7 @@ SDL2pp/SDLImage.o: SDL2pp/SDLImage.cc.o
 
 # target to build an object file
 SDL2pp/SDLImage.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o
 .PHONY : SDL2pp/SDLImage.cc.o
 
 SDL2pp/SDLImage.i: SDL2pp/SDLImage.cc.i
@@ -472,7 +472,7 @@ SDL2pp/SDLImage.i: SDL2pp/SDLImage.cc.i
 
 # target to preprocess a source file
 SDL2pp/SDLImage.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i
 .PHONY : SDL2pp/SDLImage.cc.i
 
 SDL2pp/SDLImage.s: SDL2pp/SDLImage.cc.s
@@ -480,7 +480,7 @@ SDL2pp/SDLImage.s: SDL2pp/SDLImage.cc.s
 
 # target to generate assembly for a file
 SDL2pp/SDLImage.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s
 .PHONY : SDL2pp/SDLImage.cc.s
 
 SDL2pp/SDLTTF.o: SDL2pp/SDLTTF.cc.o
@@ -488,7 +488,7 @@ SDL2pp/SDLTTF.o: SDL2pp/SDLTTF.cc.o
 
 # target to build an object file
 SDL2pp/SDLTTF.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o
 .PHONY : SDL2pp/SDLTTF.cc.o
 
 SDL2pp/SDLTTF.i: SDL2pp/SDLTTF.cc.i
@@ -496,7 +496,7 @@ SDL2pp/SDLTTF.i: SDL2pp/SDLTTF.cc.i
 
 # target to preprocess a source file
 SDL2pp/SDLTTF.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i
 .PHONY : SDL2pp/SDLTTF.cc.i
 
 SDL2pp/SDLTTF.s: SDL2pp/SDLTTF.cc.s
@@ -504,7 +504,7 @@ SDL2pp/SDLTTF.s: SDL2pp/SDLTTF.cc.s
 
 # target to generate assembly for a file
 SDL2pp/SDLTTF.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s
 .PHONY : SDL2pp/SDLTTF.cc.s
 
 SDL2pp/Surface.o: SDL2pp/Surface.cc.o
@@ -512,7 +512,7 @@ SDL2pp/Surface.o: SDL2pp/Surface.cc.o
 
 # target to build an object file
 SDL2pp/Surface.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o
 .PHONY : SDL2pp/Surface.cc.o
 
 SDL2pp/Surface.i: SDL2pp/Surface.cc.i
@@ -520,7 +520,7 @@ SDL2pp/Surface.i: SDL2pp/Surface.cc.i
 
 # target to preprocess a source file
 SDL2pp/Surface.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.i
 .PHONY : SDL2pp/Surface.cc.i
 
 SDL2pp/Surface.s: SDL2pp/Surface.cc.s
@@ -528,7 +528,7 @@ SDL2pp/Surface.s: SDL2pp/Surface.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Surface.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.s
 .PHONY : SDL2pp/Surface.cc.s
 
 SDL2pp/SurfaceLock.o: SDL2pp/SurfaceLock.cc.o
@@ -536,7 +536,7 @@ SDL2pp/SurfaceLock.o: SDL2pp/SurfaceLock.cc.o
 
 # target to build an object file
 SDL2pp/SurfaceLock.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o
 .PHONY : SDL2pp/SurfaceLock.cc.o
 
 SDL2pp/SurfaceLock.i: SDL2pp/SurfaceLock.cc.i
@@ -544,7 +544,7 @@ SDL2pp/SurfaceLock.i: SDL2pp/SurfaceLock.cc.i
 
 # target to preprocess a source file
 SDL2pp/SurfaceLock.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.i
 .PHONY : SDL2pp/SurfaceLock.cc.i
 
 SDL2pp/SurfaceLock.s: SDL2pp/SurfaceLock.cc.s
@@ -552,7 +552,7 @@ SDL2pp/SurfaceLock.s: SDL2pp/SurfaceLock.cc.s
 
 # target to generate assembly for a file
 SDL2pp/SurfaceLock.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.s
 .PHONY : SDL2pp/SurfaceLock.cc.s
 
 SDL2pp/Texture.o: SDL2pp/Texture.cc.o
@@ -560,7 +560,7 @@ SDL2pp/Texture.o: SDL2pp/Texture.cc.o
 
 # target to build an object file
 SDL2pp/Texture.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o
 .PHONY : SDL2pp/Texture.cc.o
 
 SDL2pp/Texture.i: SDL2pp/Texture.cc.i
@@ -568,7 +568,7 @@ SDL2pp/Texture.i: SDL2pp/Texture.cc.i
 
 # target to preprocess a source file
 SDL2pp/Texture.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.i
 .PHONY : SDL2pp/Texture.cc.i
 
 SDL2pp/Texture.s: SDL2pp/Texture.cc.s
@@ -576,7 +576,7 @@ SDL2pp/Texture.s: SDL2pp/Texture.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Texture.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.s
 .PHONY : SDL2pp/Texture.cc.s
 
 SDL2pp/TextureLock.o: SDL2pp/TextureLock.cc.o
@@ -584,7 +584,7 @@ SDL2pp/TextureLock.o: SDL2pp/TextureLock.cc.o
 
 # target to build an object file
 SDL2pp/TextureLock.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o
 .PHONY : SDL2pp/TextureLock.cc.o
 
 SDL2pp/TextureLock.i: SDL2pp/TextureLock.cc.i
@@ -592,7 +592,7 @@ SDL2pp/TextureLock.i: SDL2pp/TextureLock.cc.i
 
 # target to preprocess a source file
 SDL2pp/TextureLock.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.i
 .PHONY : SDL2pp/TextureLock.cc.i
 
 SDL2pp/TextureLock.s: SDL2pp/TextureLock.cc.s
@@ -600,7 +600,7 @@ SDL2pp/TextureLock.s: SDL2pp/TextureLock.cc.s
 
 # target to generate assembly for a file
 SDL2pp/TextureLock.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.s
 .PHONY : SDL2pp/TextureLock.cc.s
 
 SDL2pp/Wav.o: SDL2pp/Wav.cc.o
@@ -608,7 +608,7 @@ SDL2pp/Wav.o: SDL2pp/Wav.cc.o
 
 # target to build an object file
 SDL2pp/Wav.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o
 .PHONY : SDL2pp/Wav.cc.o
 
 SDL2pp/Wav.i: SDL2pp/Wav.cc.i
@@ -616,7 +616,7 @@ SDL2pp/Wav.i: SDL2pp/Wav.cc.i
 
 # target to preprocess a source file
 SDL2pp/Wav.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.i
 .PHONY : SDL2pp/Wav.cc.i
 
 SDL2pp/Wav.s: SDL2pp/Wav.cc.s
@@ -624,7 +624,7 @@ SDL2pp/Wav.s: SDL2pp/Wav.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Wav.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.s
 .PHONY : SDL2pp/Wav.cc.s
 
 SDL2pp/Window.o: SDL2pp/Window.cc.o
@@ -632,7 +632,7 @@ SDL2pp/Window.o: SDL2pp/Window.cc.o
 
 # target to build an object file
 SDL2pp/Window.cc.o:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o
 .PHONY : SDL2pp/Window.cc.o
 
 SDL2pp/Window.i: SDL2pp/Window.cc.i
@@ -640,7 +640,7 @@ SDL2pp/Window.i: SDL2pp/Window.cc.i
 
 # target to preprocess a source file
 SDL2pp/Window.cc.i:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.i
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.i
 .PHONY : SDL2pp/Window.cc.i
 
 SDL2pp/Window.s: SDL2pp/Window.cc.s
@@ -648,7 +648,7 @@ SDL2pp/Window.s: SDL2pp/Window.cc.s
 
 # target to generate assembly for a file
 SDL2pp/Window.cc.s:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.s
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(MAKE) $(MAKESILENT) -f SDL2pp/CMakeFiles/SDL2pp.dir/build.make SDL2pp/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.s
 .PHONY : SDL2pp/Window.cc.s
 
 # Help Target
@@ -734,6 +734,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/camila/Desktop/taller/tp-jazzjackrabbit2/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/media/pablo/753ADE053056059B/Facultad/Informatica/taller de programacion/tps/tp-grupal/tp-jazzjackrabbit2/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

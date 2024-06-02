@@ -6,8 +6,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "game_respuesta.h"
 #include "sockets.h"
+#include "msgToSent.h"
 
 enum class TipoAccion : char {
     Disparar,
@@ -44,13 +44,10 @@ public:
     void enviar_id_partida(uint16_t id_partida);
 
     // Recibe del cliente la accion para serializar y enviar al server
-    void enviar_accion(TipoAccion accion);
-
-    // Envia las acciones ya con su valor asociado al server
-    void enviar_accion_serializada(uint8_t accion_serializada, bool& was_closed);
+    void enviar_accion(msgAccion & msg);
 
     // Para poder recivir comandos
-    bool recibir_respuesta(ClientGameRespuesta& game_respuesta);
+    bool recibir_respuesta(GameState& msg, uint16_t &);
 
     void cerrar_socket();
 

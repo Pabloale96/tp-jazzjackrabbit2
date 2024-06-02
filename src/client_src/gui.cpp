@@ -8,11 +8,29 @@
 
 #include "../include/escenario.h"
 #include "../include/personaje.h"
+#include "../include/protocol_utils.h"
 
-Gui::Gui(int x, int y, int w, int h,bool & client_off,std::string & personaje):
-    posx(x),posy(y),w(w),h(h),client_off(client_off),personaje(personaje){}
+Gui::Gui(int x, int y, int w, int h,
+    bool & client_off,
+    std::string & personaje,
+    Queue<msgAccion> & client_commands):
+    posx(x),posy(y),w(w),h(h),
+    client_off(client_off),
+    personaje(personaje),
+    client_commands(client_commands){}
 
 Gui::~Gui() {}
+
+void Gui::setGameState(GameState & gamestate, uint16_t client_id) {
+    
+    for (const auto& pair: gamestate.obtener_diccionario_de_personajes()) {
+        if (pair.first == client_id)
+        {
+            posx = pair.second.obtener_posicion().get_posicion_x();
+            posy = pair.second.obtener_posicion().get_posicion_y();
+        }
+    }
+}
 
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
@@ -35,16 +53,16 @@ void Gui::run() {
     // mapa que indixe por cada uno de la textura. 
     // {'jazz_walk': jazz_tex}
     // se podria mandar los frame_vector.
-    Surface jazz{Surface(IMG_PATH "/jazz.png")};
-    Texture sprites{Texture(renderer, jazz.SetColorKey(true, SDL_MapRGB(jazz.Get()->format, 44, 102, 150)))};
 
-    std::unique_ptr<Personaje> jugador;
+    ClaseTexturas texturas(renderer);
+
+    std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<Jazz>(renderer);
+        jugador = std::make_unique<JazzGui>(texturas);
     } else if (personaje == "s") {
-        jugador = std::make_unique<Spaz>(renderer);
+        jugador = std::make_unique<SpazGui>(texturas);
     } else if (personaje == "l") {
-        jugador = std::make_unique<Lori>(renderer);
+        jugador = std::make_unique<LoriGui>(texturas);
     }
     Escenario escenario(renderer);
 
@@ -68,6 +86,7 @@ void Gui::run() {
             if (event.type == SDL_QUIT) {
                 return;
             } else if (event.type == SDL_KEYDOWN) {
+                msgAccion msg_to_sent(0x00,false); 
                 switch (event.key.keysym.sym) {
                     case SDLK_ESCAPE:
                     case SDLK_q:
@@ -75,14 +94,16 @@ void Gui::run() {
                         return;
                     case SDLK_s:
                         // enviar mensajer atacar 1 ((16bytes) (16bytes) (16bytes))
+                        //push a client_commands
                         return;
                     case SDLK_RIGHT: 
-                        // enviar mensaje mover derecha 1
-                        animacion = 1;
-                        dif_x -= frame_delta * 0.2;
+                        msg_to_sent = msgAccion(MOVER_DERECHA,true); 
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_MOVER_DERECHA;
                         break;
                     case SDLK_LEFT:
                         // enviar mensaje mover izquierda 1
+                        //push a client_commands
                         animacion = 2;
                         dif_x += frame_delta * 0.2;
                         break;
@@ -103,7 +124,7 @@ void Gui::run() {
 
         // Clear the screen
         renderer.Clear();
-        escenario.show(dif_x,dif_y);
+        escenario.show(posx,posy);
         jugador->show(animacion);
         renderer.Present();
 
@@ -120,3 +141,8 @@ void Gui::run() {
         frame_start += rate_ns;
     }
 }
+
+
+/*void Gui::setGameState( respuesta){
+    
+}*/

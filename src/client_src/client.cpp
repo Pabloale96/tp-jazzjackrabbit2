@@ -15,7 +15,8 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client, server_msg),gui(0,0,800,600,std::ref(client_off),std::ref(personaje)){}
+        receiver(protocolo_client,client_id, server_msg),
+        gui(0,0,800,600,std::ref(client_off),std::ref(personaje),std::ref(client_commands)){}
 
 void Client::imprimir_portada() {
     std::cout
@@ -171,7 +172,7 @@ std::string Client::toLowercase(const std::string& str) {
     return minusculas;
 }
 
-void Client::acciones_posibles() {
+/*void Client::acciones_posibles() {
     std::cout << "Acciones posibles:" << std::endl;
     std::cout << "  - Disparar (s)" << std::endl;
     std::cout << "  - Derecha (r)" << std::endl;
@@ -182,7 +183,7 @@ void Client::acciones_posibles() {
     std::cout << "  - Abajo (d)" << std::endl;
     std::cout << "  - Saltar (j)" << std::endl;
     std::cout << "  - Salir (q)" << std::endl;
-}
+}*/
 
 void Client::iniciar_hilos() {
     sender.start();
@@ -198,15 +199,14 @@ void Client::jugar() {
 
     // ***************** JUEGO *****************
     iniciar_hilos();
-    acciones_posibles();
 
-    std::string accion_actual;
     while (not client_off) {
 
-        std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
+        std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
             // TODO: aca se debería de actualizar el render
-            respuesta->imprimir_respuesta();
+            gui.setGameState(*respuesta,client_id);
+            
             if (respuesta->obtener_estado_de_la_partida() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
                 // TODO: aca se deberían de mostrar las estadísticas
@@ -214,57 +214,16 @@ void Client::jugar() {
                 return;
             }    
         }
-
-        //ejecutar_accion(accion_actual);
     }
 }
 
-void Client::ejecutar_accion(std::string& accion_actual) {
-    accion_actual = toLowercase(accion_actual);
-    if (accion_actual == "disparar" or accion_actual == "s") {
-        disparar();
-    } else if (accion_actual == "derecha" or accion_actual == "r") {
-        moverDerecha();
-    } else if (accion_actual == "izquierda" or accion_actual == "l") {
-        moverIzquierda();
-    } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
-        moverDerechaRapido();
-    } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
-        moverIzquierdaRapido();
-    } else if (accion_actual == "arriba" or accion_actual == "u") {
-        moverArriba();
-    } else if (accion_actual == "abajo" or accion_actual == "d") {
-        moverAbajo();
-    } else if (accion_actual == "saltar" or accion_actual == "j") {
-        saltar();
-    } else {
-        std::cout << "Error: Acción no reconocida" << std::endl;
-    }
-}
-
-void Client::disparar() { client_commands.push(TipoAccion::Disparar); }
-
-void Client::moverDerecha() { client_commands.push(TipoAccion::MoverDerecha); }
-
-void Client::moverIzquierda() { client_commands.push(TipoAccion::MoverIzquierda); }
-
-void Client::moverArriba() { client_commands.push(TipoAccion::MoverArriba); }
-
-void Client::moverAbajo() { client_commands.push(TipoAccion::MoverAbajo); }
-
-void Client::saltar() { client_commands.push(TipoAccion::Saltar); }
-
-void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerechaRapido); }
-
-void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
-
-void Client::mostrar_estadisticas(const ClientGameRespuesta& respuestas) const {
+void Client::mostrar_estadisticas(const GameState& respuestas) const {
     // TODO: Habria q dejarla mas linda y que imprima en orden de puntos
     std::cout << "Estadísticas de la partida:" << std::endl;
     std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;
-    for (const auto& respuesta: respuestas.obtener_respuestas()) {
+    /*for (const auto& respuesta: respuestas.obtener_respuestas()) {
         std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " << respuesta.obtener_puntos() << std::endl;
-    }
+    }*/
 }
 
 void Client::stop_hilos() {}
