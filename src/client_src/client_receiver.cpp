@@ -1,12 +1,12 @@
-#include "../../include/client_receiver.h"
+#include "../../include/client_src/client_receiver.h"
 
 #include <memory>  // shared_ptr()
 #include <string>
 #include <utility>  // move()
 #include <vector>
 
-#include "../../include/client_protocol.h"
-#include "../../include/liberror.h"
+#include "../../include/client_src/client_protocol.h"
+#include "../../include/common_src/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
                                Queue<std::shared_ptr<GameState>>& server_msg):

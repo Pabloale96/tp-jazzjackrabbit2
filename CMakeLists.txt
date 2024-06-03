@@ -24,6 +24,11 @@ message("[INFO] La raiz del proyecto es ${PROJECT_SOURCE_DIR}")
 # Agrego ej3/include a la lista de directorios de includes
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+# Agregar subcarpetas a la lista de directorios de includes
+include_directories(${PROJECT_SOURCE_DIR}/include/common_src)
+include_directories(${PROJECT_SOURCE_DIR}/include/client_src)
+include_directories(${PROJECT_SOURCE_DIR}/include/server_src)
+
 # Esta macro toma cada uno los parámetros y ejecuta *uic* sobre ellos
 # La aplicacion uic genera headers con la definición de los widgets
 # a partir de un archivo .ui

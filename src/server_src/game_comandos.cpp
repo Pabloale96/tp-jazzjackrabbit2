@@ -1,6 +1,6 @@
-#include "../../include/game_comandos.h"
+#include "../../include/server_src/game_comandos.h"
 
-#include "../../include/game_class.h"
+#include "../../include/server_src/game_class.h"
 
 bool Disparar::ejecutar(Game& game) { return game.atacar_enemigo(client_id); }
 

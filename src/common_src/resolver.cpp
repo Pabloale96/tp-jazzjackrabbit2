@@ -1,6 +1,6 @@
 // Copyright 2024 Martin Di Paola
 
-#include "../../include/resolver.h"
+#include "../../include/common_src/resolver.h"
 
 #include <stdexcept>
 
@@ -13,8 +13,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../../include/liberror.h"
-#include "../../include/resolvererror.h"
+#include "../../include/common_src/liberror.h"
+#include "../../include/common_src/resolvererror.h"
 
 Resolver::Resolver(const char* hostname, const char* servname, bool is_passive) {
     struct addrinfo hints;

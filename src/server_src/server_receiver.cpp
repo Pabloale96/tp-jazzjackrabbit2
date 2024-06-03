@@ -1,13 +1,13 @@
-#include "../../include/server_receiver.h"
+#include "../../include/server_src/server_receiver.h"
 
 #include <memory>
 #include <string>
 #include <utility>  // move()
 #include <vector>
 
-#include "../../include/gameloop_class.h"
-#include "../../include/liberror.h"
-#include "../../include/server_protocol.h"
+#include "../../include/server_src/gameloop_class.h"
+#include "../../include/common_src/liberror.h"
+#include "../../include/server_src/server_protocol.h"
 
 ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_closed,
                                GameloopMonitor& gameloop_monitor, uint16_t gameloop_id,

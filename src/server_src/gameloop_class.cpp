@@ -1,11 +1,11 @@
-#include "../../include/gameloop_class.h"
+#include "../../include/server_src/gameloop_class.h"
 
 #include <chrono>
 #include <iostream>
 #include <string>
 
-#include "../../include/game_state.h"
-#include "../../include/queue.h"
+#include "../../include/server_src/game_state.h"
+#include "../../include/common_src/queue.h"
 
 #define MAX_TAM_COLA 100
 #define CINCO_LOOPS_POR_SEGUNDO 200

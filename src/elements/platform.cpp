@@ -1,4 +1,4 @@
-#include "../../include/platform.h"
+#include "../../include/client_src/platform.h"
 
 
 Platform::Platform(Renderer& render, Texture& sprite, int pos_x, int pos_y):

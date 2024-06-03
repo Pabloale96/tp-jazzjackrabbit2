@@ -1,4 +1,4 @@
-#include "../../include/client_protocol.h"
+#include "../../include/client_src/client_protocol.h"
 
 #include <cstring>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include <arpa/inet.h>   // para usar htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/protocol_utils.h"
+#include "../../include/common_src/protocol_utils.h"
 
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}

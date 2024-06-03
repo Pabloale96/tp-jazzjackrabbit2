@@ -1,12 +1,12 @@
-#include "../../include/cliente_aceptado.h"
+#include "../../include/server_src/cliente_aceptado.h"
 
 #include <utility>  // move()
 #include <vector>
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/protocol_utils.h"
-#include "../../include/sockets.h"
+#include "../../include/common_src/protocol_utils.h"
+#include "../../include/common_src/sockets.h"
 
 #define MAX_TAM_COLA 10
 #define PARTIDA_NO_ASIGNADA 0

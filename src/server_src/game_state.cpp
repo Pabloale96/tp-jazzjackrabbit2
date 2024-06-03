@@ -1,10 +1,10 @@
-#include "../../include/game_state.h"
+#include "../../include/server_src/game_state.h"
 
 #include <iostream>
 #include <memory>
 
-#include "../../include/game_enemigo.h"
-#include "../../include/game_personaje.h"
+#include "../../include/server_src/game_enemigo.h"
+#include "../../include/server_src/game_personaje.h"
 
 GameState::GameState(uint16_t partida_id, bool jugando):
         partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}

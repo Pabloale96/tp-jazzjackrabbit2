@@ -1,11 +1,11 @@
-#include "../../include/server.h"
+#include "../../include/server_src/server.h"
 
 #include <csignal>  // signal, sig_atomic_t
 #include <iostream>
 #include <utility>  // move()
 
-#include "../../include/server_aceptador.h"
-#include "../../include/sockets.h"
+#include "../../include/server_src/server_aceptador.h"
+#include "../../include/common_src/sockets.h"
 
 #define MAX_TAM_COLA 10
 

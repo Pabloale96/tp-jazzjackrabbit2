@@ -1,4 +1,4 @@
-#include "../include/gui.h"
+#include "../include/client_src/gui.h"
 
 #include <chrono>
 #include <exception>
@@ -6,9 +6,9 @@
 #include <memory>
 #include <thread>
 
-#include "../include/escenario.h"
-#include "../include/personaje.h"
-#include "../include/protocol_utils.h"
+#include "../include/client_src/escenario.h"
+#include "../include/client_src/personaje.h"
+#include "../include/common_src/protocol_utils.h"
 
 Gui::Gui(int x, int y, int w, int h, bool& client_off, std::string& personaje,
          Queue<msgAccion>& client_commands):

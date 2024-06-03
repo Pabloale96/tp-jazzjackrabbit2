@@ -1,4 +1,4 @@
-#include "../../include/clase_texturas.h"
+#include "../../include/client_src/clase_texturas.h"
 
 
 ClaseTexturas::~ClaseTexturas() {}
