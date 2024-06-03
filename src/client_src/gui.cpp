@@ -66,7 +66,7 @@ void Gui::run() {
     }
     Escenario escenario(renderer);
 
-    int animacion = 0;
+    int animacion = ANI_STAND;
     int animacion_prev = 0;
 
     auto frame_start = steady_clock::now();
@@ -125,7 +125,7 @@ void Gui::run() {
         // Clear the screen
         renderer.Clear();
         escenario.show(posx, posy);
-        jugador->show(animacion);
+        jugador->show(renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2,animacion);
         renderer.Present();
 
         auto frame_end = steady_clock::now();

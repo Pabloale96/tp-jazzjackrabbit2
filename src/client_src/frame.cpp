@@ -49,3 +49,8 @@ Frame& Frame::operator=(const Frame& other) {
     }
     return *this;
 }
+
+int Frame::getX(){return vec_frames[0];}
+int Frame::getY(){return vec_frames[1];}
+int Frame::getW(){return vec_frames[2];}
+int Frame::getH(){return vec_frames[3];}

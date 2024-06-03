@@ -58,13 +58,13 @@ add_executable(client
   src/common_src/resolver.cpp
   src/common_src/resolvererror.cpp
   src/common_src/sockets.cpp
-  src/elements/animaciones.cpp
-  src/elements/escenario.cpp
-  src/elements/personaje.cpp
-  src/elements/clase_texturas.cpp
-  src/elements/enemigos.cpp
-  src/elements/frame.cpp
-  src/elements/platform.cpp
+  src/client_src/animaciones.cpp
+  src/client_src/escenario.cpp
+  src/client_src/personaje.cpp
+  src/client_src/clase_texturas.cpp
+  src/client_src/enemigos.cpp
+  src/client_src/frame.cpp
+  src/client_src/platform.cpp
   ${UIS_HEADERS})
 
 add_executable(server
@@ -90,8 +90,6 @@ add_executable(server
   src/common_src/sockets.cpp
   src/server_src/main.cpp
   ${UIS_HEADERS})
-
-
 
 # Use the Widgets module from Qt 5.
 target_link_libraries(client PUBLIC SDL2pp)

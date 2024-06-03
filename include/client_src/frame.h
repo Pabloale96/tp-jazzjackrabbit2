@@ -21,13 +21,16 @@ private:
     std::vector<int> vec_frames;
 
 public:
-    Frame();
     Frame(Renderer&, Texture&);
     Frame(Renderer&, Texture&, int, int, int, int);
     ~Frame();
     void copy(bool, int, int);
     void copy(bool, int, int, int, int);
     void setFrame(int, int, int, int);
+    int getX();
+    int getY();
+    int getW();
+    int getH();
     Frame& operator=(const Frame& other);
 };
 

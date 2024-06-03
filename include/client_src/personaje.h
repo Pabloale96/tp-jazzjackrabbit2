@@ -11,6 +11,8 @@
 #include "animaciones.h"
 #include "clase_texturas.h"
 #include "frame.h"
+#include "defines.h"
+
 
 using SDL2pp::Renderer;
 using SDL2pp::Surface;
@@ -23,36 +25,36 @@ protected:
     Animacion animacion;
 
 public:
-    explicit PersonajeGui(ClaseTexturas& texturas): texturas(texturas), animacion() {}
-    ~PersonajeGui() {}
-    virtual void show(int) {}
+    explicit PersonajeGui(ClaseTexturas&);
+    ~PersonajeGui();
+    virtual void show(int,int,int);
 };
 
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas& texturas): PersonajeGui(texturas) {}
-    ~SpazGui() {}
+    explicit SpazGui(ClaseTexturas& );
+    ~SpazGui();
 
-    void show(int) {}
+    void show(int,int,int);
 };
 
 
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas& texturas): PersonajeGui(texturas) {}
-    ~JazzGui() {}
+    explicit JazzGui(ClaseTexturas& );
+    ~JazzGui();
 
-    void show(int) {}
+    void show(int,int,int);
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas& texturas): PersonajeGui(texturas) {}
-    ~LoriGui() {}
+    explicit LoriGui(ClaseTexturas& );
+    ~LoriGui();
 
-    void show(int) {}
+    void show(int,int,int);
 };
 #endif

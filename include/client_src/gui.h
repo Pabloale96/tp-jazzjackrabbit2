@@ -13,17 +13,9 @@
 #include "msgToSent.h"
 #include "queue.h"
 #include "thread.h"
+#include "defines.h"
 
 #define RATE 15.0
-
-#define ANI_DISPARAR 1
-#define ANI_MOVER_DERECHA 2
-#define ANI_MOVER_DERECHA_RAPIDO 3
-#define ANI_MOVER_IZQUIERDA 4
-#define ANI_MOVER_IZQUIERDA_RAPIDO 5
-#define ANI_MOVER_ARRIBA 6
-#define ANI_MOVER_ABAJO 7
-#define ANI_SALTAR 8
 
 using std::chrono::duration;
 using std::chrono::nanoseconds;

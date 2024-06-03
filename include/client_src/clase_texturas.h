@@ -9,11 +9,15 @@
 #include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
+
+#include "frame.h"
+#include "defines.h"
+
 using SDL2pp::Renderer;
 using SDL2pp::Surface;
 using SDL2pp::Texture;
 
-#include "frame.h"
+
 
 class ClaseTexturas {
 private:
@@ -28,64 +32,20 @@ private:
     Texture lori_tex{Texture(renderer,
                              lori.SetColorKey(true, SDL_MapRGB(lori.Get()->format, 44, 102, 150)))};
 
-    std::map<std::string, std::vector<Frame>> frames;
+    std::map<std::string, std::vector<Frame>> frames_map;
 
 public:
-    explicit ClaseTexturas(Renderer& render): renderer(render) {
-        this->jazzWalk();
-        this->jazzStand();
-        this->jazzJump();
-        this->jazzRunning();
-        this->jazzJumpAndMove();
-        this->jazzIntoxicated();
-        this->jazzHurt();
-        this->jazzShoot();
-        this->jazzStopShoot();
-        this->jazzShootUp();
-        this->jazzShootAndMove();
-        this->jazzStopShootAndMove();
-        this->jazzShootAndFalling();
-        this->jazzStopShootAndFalling();
-        this->jazzDash();
-        this->jazzSpecial();
-
-        this->spazWalk();
-        this->spazStand();
-        this->spazJump();
-        this->spazRunning();
-        this->spazJumpAndMove();
-        this->spazIntoxicated();
-        this->spazHurt();
-        this->spazShoot();
-        this->spazStopShoot();
-        this->spazShootUp();
-        this->spazShootAndMove();
-        this->spazStopShootAndMove();
-        this->spazShootAndFalling();
-        this->spazStopShootAndFalling();
-        this->spazDash();
-        this->spazSpecial();
-
-        this->loriWalk();
-        this->loriStand();
-        this->loriJump();
-        this->loriRunning();
-        this->loriJumpAndMove();
-        this->loriIntoxicated();
-        this->loriHurt();
-        this->loriShoot();
-        this->loriStopShoot();
-        this->loriShootUp();
-        this->loriShootAndMove();
-        this->loriStopShootAndMove();
-        this->loriShootAndFalling();
-        this->loriStopShootAndFalling();
-        this->loriDash();
-        this->loriSpecial();
-    }
+    explicit ClaseTexturas(Renderer& render);
     ~ClaseTexturas();
 
+    // Metodo de busqueda en el map:
+    Texture& jazz_text();
+    Texture& spaz_text();
+    Texture& lori_text();
 
+    std::vector<Frame>& findFrame(std::string);
+
+    // Definiciones de frames:
     void loriStand();
     void loriWalk();
     void loriJump();
