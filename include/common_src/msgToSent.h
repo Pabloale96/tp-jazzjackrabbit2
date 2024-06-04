@@ -3,8 +3,8 @@
 
 #include <cstdint>
 
-#include "game_state.h"
 #include "game_platform.h"
+#include "game_state.h"
 
 
 #define SIZE_ARRAY_PERSONAJE 7
@@ -102,7 +102,6 @@ struct msgPlataforma {
         plataforma[POS_ROTATE_PLATAFORM] = pla.obtener_rotate();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();
         plataforma[POS_HEIGHT_PLATAFORM] = pla.obtener_height();
-
     }
 
     msgPlataforma& operator=(const msgPlataforma& other) {
