@@ -25,6 +25,8 @@ message("[INFO] La raiz del proyecto es ${PROJECT_SOURCE_DIR}")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Agregar subcarpetas a la lista de directorios de includes
+include_directories(${PROJECT_SOURCE_DIR}/include/client_src/gui)
+include_directories(${PROJECT_SOURCE_DIR}/include/server_src/game)
 include_directories(${PROJECT_SOURCE_DIR}/include/common_src)
 include_directories(${PROJECT_SOURCE_DIR}/include/client_src)
 include_directories(${PROJECT_SOURCE_DIR}/include/server_src)
@@ -44,12 +46,12 @@ message("Headers generados: ${UIS_HEADERS}")
 
 add_executable(client
   src/client_src/client.cpp
-  src/server_src/game_personaje.cpp
-  src/server_src/game_enemigo.cpp
-  src/server_src/game_arma.cpp
-  src/server_src/game_posicion.cpp
-  src/server_src/game_state.cpp
-  src/client_src/gui.cpp
+  src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_arma.cpp
+  src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_state.cpp
+  src/client_src/gui/gui.cpp
   src/client_src/main.cpp
   src/client_src/client_protocol.cpp
   src/client_src/client_receiver.cpp
@@ -58,29 +60,30 @@ add_executable(client
   src/common_src/resolver.cpp
   src/common_src/resolvererror.cpp
   src/common_src/sockets.cpp
-  src/client_src/animaciones.cpp
-  src/client_src/escenario.cpp
-  src/client_src/personaje.cpp
-  src/client_src/clase_texturas.cpp
-  src/client_src/enemigos.cpp
-  src/client_src/frame.cpp
-  src/client_src/platform.cpp
+  src/client_src/gui/gui_animaciones.cpp
+  src/client_src/gui/gui_escenario.cpp
+  src/client_src/gui/gui_personaje.cpp
+  src/client_src/gui/gui_clase_texturas.cpp
+  src/client_src/gui/gui_enemigos.cpp
+  src/client_src/gui/gui_frame.cpp
+  src/client_src/gui/gui_platform.cpp
   ${UIS_HEADERS})
 
 add_executable(server
   src/server_src/cliente_aceptado.cpp
   src/server_src/server_aceptador.cpp
   src/server_src/server.cpp
-  src/server_src/game_arma.cpp
-  src/server_src/game_class.cpp
-  src/server_src/game_comandos.cpp
-  src/server_src/game_enemigo.cpp
-  src/server_src/game_personaje.cpp
-  src/server_src/game_posicion.cpp
-  src/server_src/game_state_monitor.cpp
-  src/server_src/game_state.cpp
-  src/server_src/gameloop_class.cpp
-  src/server_src/gameloop_monitor.cpp
+  src/server_src/game/game_arma.cpp
+  src/server_src/game/game_class.cpp
+  src/server_src/game/game_comandos.cpp
+  src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_platform.cpp
+  src/server_src/game/game_state_monitor.cpp
+  src/server_src/game/game_state.cpp
+  src/server_src/game/gameloop_class.cpp
+  src/server_src/game/gameloop_monitor.cpp
   src/server_src/server_protocol.cpp
   src/server_src/server_receiver.cpp
   src/server_src/server_sender.cpp

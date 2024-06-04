@@ -7,7 +7,7 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "frame.h"
+#include "gui_frame.h"
 
 using SDL2pp::Renderer;
 using SDL2pp::Texture;

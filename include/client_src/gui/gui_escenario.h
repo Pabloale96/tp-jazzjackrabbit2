@@ -8,8 +8,8 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "frame.h"
-#include "platform.h"
+#include "gui_frame.h"
+#include "gui_platform.h"
 
 using SDL2pp::Renderer;
 using SDL2pp::Surface;
@@ -28,34 +28,34 @@ private:
                                                          // pisa a crear un personaje
 
 
-    std::vector<Platform> platforms;
-    Platform platform_7{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 700,
+    std::vector<PlatformGui> platforms;
+    PlatformGui platform_7{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 700,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform_6{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 600,
+    PlatformGui platform_6{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 600,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform_5{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 500,
+    PlatformGui platform_5{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 500,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform_4{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 400,
+    PlatformGui platform_4{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 400,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform_3{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 300,
+    PlatformGui platform_3{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 300,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform_2{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 200,
+    PlatformGui platform_2{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 200,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform_1{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 100,
+    PlatformGui platform_1{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21 + 100,
                                  renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform1{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 21,
+    PlatformGui platform1{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 21,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform2{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 121,
+    PlatformGui platform2{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 121,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform3{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 221,
+    PlatformGui platform3{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 221,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform4{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 321,
+    PlatformGui platform4{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 321,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform5{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 421,
+    PlatformGui platform5{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 421,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform6{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 521,
+    PlatformGui platform6{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 521,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
-    Platform platform7{Platform(renderer, sprites, renderer.GetOutputWidth() / 2 - 621,
+    PlatformGui platform7{PlatformGui(renderer, sprites, renderer.GetOutputWidth() / 2 - 621,
                                 renderer.GetOutputHeight() / 2 - 21 + 75)};
 
 public:

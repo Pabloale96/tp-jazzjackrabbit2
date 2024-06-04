@@ -10,8 +10,8 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "frame.h"
-#include "defines.h"
+#include "gui_frame.h"
+#include "gui_defines_frames.h"
 
 using SDL2pp::Renderer;
 using SDL2pp::Surface;

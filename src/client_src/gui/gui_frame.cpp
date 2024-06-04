@@ -1,4 +1,4 @@
-#include "../../include/client_src/frame.h"
+#include "../../include/client_src/gui/gui_frame.h"
 
 Frame::Frame(Renderer& renderer, Texture& sprite): renderer(renderer), sprite(sprite) {}
 

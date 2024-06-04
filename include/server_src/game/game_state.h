@@ -17,6 +17,7 @@ private:
     std::map<uint16_t, Personaje> diccionario_de_personajes;
     std::map<uint16_t, Enemigo> diccionario_de_enemigos;
 
+
 public:
     explicit GameState(uint16_t partida_id, bool jugando);
 

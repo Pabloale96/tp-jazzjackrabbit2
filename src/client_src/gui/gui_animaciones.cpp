@@ -1,4 +1,4 @@
-#include "../../include/client_src/animaciones.h"
+#include "../../include/client_src/gui/gui_animaciones.h"
 
 
 Animacion::~Animacion() {}

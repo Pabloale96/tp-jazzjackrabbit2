@@ -1,4 +1,4 @@
-#include "../../include/client_src/clase_texturas.h"
+#include "../../include/client_src/gui/gui_clase_texturas.h"
 
 
 

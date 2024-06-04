@@ -6,7 +6,7 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "animaciones.h"
+#include "gui_animaciones.h"
 
 class Enemigos {
 private:

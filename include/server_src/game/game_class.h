@@ -9,6 +9,7 @@
 #include "game_enemigo.h"
 #include "game_personaje.h"
 #include "game_state.h"
+#include "game_platform.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 
@@ -19,6 +20,7 @@ private:
     // TODO: unorderedmap sería más rápido
     std::vector<std::unique_ptr<Personaje>> personajes;
     std::vector<std::unique_ptr<Enemigo>> enemigos;
+    std::vector<Platform> plataformas;
     // Pared? Piso?
 
 public:

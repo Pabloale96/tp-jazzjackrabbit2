@@ -8,10 +8,10 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "animaciones.h"
-#include "clase_texturas.h"
-#include "frame.h"
-#include "defines.h"
+#include "gui_animaciones.h"
+#include "gui_clase_texturas.h"
+#include "gui_frame.h"
+#include "gui_defines_frames.h"
 
 
 using SDL2pp::Renderer;

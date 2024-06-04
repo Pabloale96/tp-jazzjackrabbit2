@@ -1,4 +1,4 @@
-#include "../../include/server_src/game_enemigo.h"
+#include "../../include/server_src/game/game_enemigo.h"
 
 #include <iostream>
 #define ITERACIONES_PARA_REVIVIR 15

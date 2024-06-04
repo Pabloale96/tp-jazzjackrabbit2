@@ -1,4 +1,4 @@
-#include "../../include/client_src/personaje.h"
+#include "../../include/client_src/gui/gui_personaje.h"
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas): texturas(texturas), animacion() {}
 

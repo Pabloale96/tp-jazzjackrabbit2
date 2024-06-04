@@ -1,4 +1,4 @@
-#include "../../include/server_src/game_posicion.h"
+#include "../../include/server_src/game/game_posicion.h"
 
 Posicion::Posicion(): x(X_INICIAL), y(Y_INICIAL) {}
 

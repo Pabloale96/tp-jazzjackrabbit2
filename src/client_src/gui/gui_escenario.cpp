@@ -1,4 +1,4 @@
-#include "../../include/client_src/escenario.h"
+#include "../../include/client_src/gui/gui_escenario.h"
 
 Escenario::Escenario(Renderer& render): renderer(render) {}
 Escenario::~Escenario() {}

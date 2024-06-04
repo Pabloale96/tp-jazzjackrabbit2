@@ -1,4 +1,4 @@
-#include "../../include/server_src/game_personaje.h"
+#include "../../include/server_src/game/game_personaje.h"
 
 #include <iostream>
 

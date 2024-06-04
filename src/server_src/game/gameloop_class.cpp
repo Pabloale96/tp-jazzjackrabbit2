@@ -1,10 +1,10 @@
-#include "../../include/server_src/gameloop_class.h"
+#include "../../include/server_src/game/gameloop_class.h"
 
 #include <chrono>
 #include <iostream>
 #include <string>
 
-#include "../../include/server_src/game_state.h"
+#include "../../include/server_src/game/game_state.h"
 #include "../../include/common_src/queue.h"
 
 #define MAX_TAM_COLA 100
