@@ -179,18 +179,18 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
 
 void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
     std::vector<Platform> plataformas = game.obtener_plataformas();
-    msgEscenario escenario((uint16_t) plataformas.size());
+    msgEscenario msg_escenario(plataformas.size());
     
     if (was_closed) {
         return;
     }
-    socket_cliente.sendall(&escenario, sizeof(escenario), &was_closed);
+    socket_cliente.sendall(&msg_escenario, sizeof(msg_escenario), &was_closed);
     for (int i=0;i<plataformas.size();i++) {
-        msgPlataforma plataforma(plataformas[i]);
+        msgPlataforma msg_plataforma(plataformas[i]);
         if (was_closed) {
             return;
         }
-        socket_cliente.sendall(&plataforma, sizeof(plataforma), &was_closed);
+        socket_cliente.sendall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
     }
 }
 

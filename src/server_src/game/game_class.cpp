@@ -23,7 +23,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
     }
 
     Platform plataforma_inicial(0,0,ROTATE_0,XMAX,1,TYPE_1);
-    plataformas.emplace_back(plataforma_inicial);
+    plataformas.push_back(plataforma_inicial);
 
 }
 
