@@ -2,10 +2,10 @@
 #define STRUCTMSG_H
 
 #include <cstdint>
-#include <arpa/inet.h>   // para usar htons()
+
+#include <arpa/inet.h>  // para usar htons()
 
 #include "defines_msg.h"
-#include "game_state.h"
 #include "game_platform.h"
 #include "game_state.h"
 
@@ -47,16 +47,12 @@ struct msgPersonaje {
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
         personaje[POS_ARMA_PERSONAJE] = htons(pers.obtener_nombre_arma());
     }
-
 };
 
 struct msgEscenario {
     uint16_t cantidad_plataformas = 0;
-    
-    msgEscenario(const uint16_t& cantidad) {
-        cantidad_plataformas = htons(cantidad);
-    }
 
+    explicit msgEscenario(const uint16_t& cantidad) { cantidad_plataformas = htons(cantidad); }
 };
 
 struct msgPlataforma {
@@ -64,7 +60,7 @@ struct msgPlataforma {
 
     msgPlataforma() {}
 
-    msgPlataforma(const Platform& pla) {
+    explicit msgPlataforma(const Platform& pla) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
         plataforma[POS_TIPO_PLATAFORMA] = pla.obtener_tipo();

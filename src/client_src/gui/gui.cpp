@@ -100,7 +100,7 @@ void Gui::run() {
                     case SDLK_RIGHT:
                         msg_to_sent = msgAccion(MOVER_DERECHA, true);
                         client_commands.push(msg_to_sent);
-                        animacion = ANI_MOVER_DERECHA; // se ejecuta la animacion derecha
+                        animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
                         break;
                     case SDLK_LEFT:
                         // enviar mensaje mover izquierda 1

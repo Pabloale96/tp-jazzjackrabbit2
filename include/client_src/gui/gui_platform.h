@@ -7,7 +7,6 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "gui_frame.h"
 #include "../../common_src/defines_msg.h"
 
 #include "gui_frame.h"

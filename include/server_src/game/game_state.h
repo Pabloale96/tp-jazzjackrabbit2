@@ -34,7 +34,7 @@ public:
     int getSizePersonajes() { return diccionario_de_personajes.size(); }
 
     void setGameState(const uint8_t& state_partida) { jugando = (state_partida == 0x01); }
-    
+
     void pushPersonajes(uint16_t* msgpers) {
         Personaje personaje(msgpers);
         diccionario_de_personajes.emplace(personaje.obtener_personaje_id(), personaje);

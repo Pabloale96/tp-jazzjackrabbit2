@@ -57,15 +57,14 @@ bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataform
     }
     socket_cliente.recvall(&escenario, sizeof(escenario), &was_closed);
     msgPlataforma plataforma;
-    for (size_t i = 0; i < escenario.cantidad_plataformas; i++)
-    {
+    for (size_t i = 0; i < escenario.cantidad_plataformas; i++) {
         if (was_closed) {
             return false;
         }
         socket_cliente.recvall(&plataforma, sizeof(plataforma), &was_closed);
         vec_plataforma.emplace_back(plataforma);
     }
-    
+
 
     return true;
 }

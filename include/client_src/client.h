@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "client_protocol.h"
 #include "client_receiver.h"

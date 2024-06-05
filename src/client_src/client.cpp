@@ -6,7 +6,9 @@
 #include <sstream>
 #include <string>
 
-#define MAX_TAM_COLA 10
+#define MAX_TAM_COLA 1000
+#define ANCHO_RESOLUCION 800
+#define ALTO_RESOLUCION 600
 
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
@@ -16,7 +18,8 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
         receiver(protocolo_client, client_id, server_msg),
-        gui(0, 0, 800, 600, std::ref(client_off), std::ref(personaje), std::ref(client_commands)) {}
+        gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), std::ref(personaje),
+            std::ref(client_commands)) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -104,7 +107,7 @@ void Client::crear_personaje() {
         std::cout << "Error: No se pudo crear el personaje" << std::endl;
         return;
     }
-    //protocolo_client.recibir_escenario(plataformas);
+    // protocolo_client.recibir_escenario(plataformas);
     gui.start();
 }
 
@@ -197,8 +200,8 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-    //gui.setEscenario(plataforma);
-    // ***************** JUEGO *****************
+    // gui.setEscenario(plataforma);
+    //  ***************** JUEGO *****************
     iniciar_hilos();
 
     while (not client_off) {

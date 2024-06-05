@@ -36,7 +36,7 @@ public:
     explicit SpazGui(ClaseTexturas&);
     ~SpazGui();
 
-    void show(int, int, int);
+    void show(int, int, int) override;
 };
 
 
@@ -46,7 +46,7 @@ public:
     explicit JazzGui(ClaseTexturas&);
     ~JazzGui();
 
-    void show(int, int, int);
+    void show(int, int, int) override;
 };
 
 class LoriGui: public PersonajeGui {
@@ -55,6 +55,6 @@ public:
     explicit LoriGui(ClaseTexturas&);
     ~LoriGui();
 
-    void show(int, int, int);
+    void show(int, int, int) override;
 };
 #endif

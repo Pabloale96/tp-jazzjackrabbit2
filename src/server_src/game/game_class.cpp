@@ -22,9 +22,8 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
         enemigos[i]->set_enemigo_id(i + 1);
     }
 
-    Platform plataforma_inicial(0,0,ROTATE_0,XMAX,1,TYPE_1);
+    Platform plataforma_inicial(0, 0, ROTATE_0, XMAX, 1, TYPE_1);
     plataformas.emplace_back(plataforma_inicial);
-
 }
 
 std::unique_ptr<Enemigo> Game::crear_enemigo_aleatorio() {
@@ -137,8 +136,6 @@ void Game::borrar_personaje(uint16_t client_id) {
     }
 }
 
-std::vector<Platform> Game::obtener_plataformas(){
-    return plataformas;
-}
+std::vector<Platform> Game::obtener_plataformas() { return plataformas; }
 
 Game::~Game() {}
