@@ -104,6 +104,7 @@ void Client::crear_personaje() {
         std::cout << "Error: No se pudo crear el personaje" << std::endl;
         return;
     }
+    //protocolo_client.recibir_escenario(plataformas);
     gui.start();
 }
 
@@ -196,7 +197,7 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-
+    //gui.setEscenario(plataforma);
     // ***************** JUEGO *****************
     iniciar_hilos();
 

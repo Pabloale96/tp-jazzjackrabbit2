@@ -62,5 +62,4 @@
 #define LORI_DASH "loriDash"
 #define LORI_SPECIAL "loriSpecial"
 
-
 #endif

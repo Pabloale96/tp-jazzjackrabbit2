@@ -5,7 +5,7 @@
 #include <iostream>
 #include <memory>
 
-#include "defines_platform.h"
+#include "defines_msg.h"
 
 class Platform {
 private:

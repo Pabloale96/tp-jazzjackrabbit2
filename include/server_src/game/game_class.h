@@ -13,6 +13,9 @@
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 
+#define XMAX 200
+#define YMAX 200
+
 class Game {
 private:
     uint16_t partida_id;
@@ -43,6 +46,8 @@ public:
     void agregar_personaje(uint16_t client_id, const std::string& personaje);
 
     void borrar_personaje(uint16_t client_id);
+
+    std::vector<Platform> obtener_plataformas();
 
     ~Game();
 };

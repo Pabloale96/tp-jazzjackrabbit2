@@ -49,6 +49,8 @@ public:
     // Para poder recivir comandos
     bool recibir_respuesta(GameState& msg, uint16_t&);
 
+    bool recibir_escenario(std::vector<msgPlataforma>& plataforma);
+
     void cerrar_socket();
 
     // Destructor
@@ -56,3 +58,4 @@ public:
 };
 
 #endif
+

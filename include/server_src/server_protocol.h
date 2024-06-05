@@ -44,10 +44,11 @@ public:
 
     // Para poder enviar comandos
     void enviar_respuesta(GameState&, uint16_t, bool&);
-    void enviar_respuesta(msgGameState&, bool&);
 
     // Cierra el socket del cliente ordenadamente
     void cerrar_socket_cliente();
+
+    void enviar_escenario(Game&,bool&);
 
     // Destructor
     ~ProtocolServer();
