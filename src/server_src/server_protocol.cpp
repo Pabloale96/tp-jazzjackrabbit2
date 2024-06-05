@@ -166,15 +166,31 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
     if (was_closed) {
         return;
     }
-    socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
+    socket_cliente.sendall(&msg, sizeof(msg), &was_closed); 
 
-    msgPersonaje personaje;
     for (auto& pair: gameState.obtener_diccionario_de_personajes()) {
-        personaje = msgPersonaje(pair.first, pair.second);
+        msgPersonaje personaje(pair.first, pair.second);
         if (was_closed) {
             return;
         }
-        socket_cliente.sendall(&personaje, sizeof(personaje), &was_closed);
+        socket_cliente.sendall(&personaje, sizeof(personaje), &was_closed); 
+    }
+}
+
+void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
+    std::vector<Platform> plataformas = game.obtener_plataformas();
+    msgEscenario escenario((uint16_t) plataformas.size());
+    
+    if (was_closed) {
+        return;
+    }
+    socket_cliente.sendall(&escenario, sizeof(escenario), &was_closed);
+    for (int i=0;i<plataformas.size();i++) {
+        msgPlataforma plataforma(plataformas[i]);
+        if (was_closed) {
+            return;
+        }
+        socket_cliente.sendall(&plataforma, sizeof(plataforma), &was_closed);
     }
 }
 

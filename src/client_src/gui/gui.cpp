@@ -24,6 +24,7 @@ Gui::~Gui() {}
 
 void Gui::setGameState(GameState& gamestate, uint16_t client_id) {
 
+    // CONSULTAR:
     for (const auto& pair: gamestate.obtener_diccionario_de_personajes()) {
         if (pair.first == client_id) {
             posx = pair.second.obtener_posicion().get_posicion_x();
@@ -99,7 +100,7 @@ void Gui::run() {
                     case SDLK_RIGHT:
                         msg_to_sent = msgAccion(MOVER_DERECHA, true);
                         client_commands.push(msg_to_sent);
-                        animacion = ANI_MOVER_DERECHA;
+                        animacion = ANI_MOVER_DERECHA; // se ejecuta la animacion derecha
                         break;
                     case SDLK_LEFT:
                         // enviar mensaje mover izquierda 1

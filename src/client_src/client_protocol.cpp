@@ -49,6 +49,27 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     return true;
 }
 
+bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataforma) {
+
+    msgEscenario escenario(0);
+    if (was_closed) {
+        return false;
+    }
+    socket_cliente.recvall(&escenario, sizeof(escenario), &was_closed);
+    msgPlataforma plataforma;
+    for (size_t i = 0; i < escenario.cantidad_plataformas; i++)
+    {
+        if (was_closed) {
+            return false;
+        }
+        socket_cliente.recvall(&plataforma, sizeof(plataforma), &was_closed);
+        vec_plataforma.emplace_back(plataforma);
+    }
+    
+
+    return true;
+}
+
 bool ProtocolClient::unirse_a_partida() {
     uint8_t accion_serializada = UNIRSE_A_PARTIDA;
     if (was_closed) {

@@ -23,6 +23,7 @@ private:
     bool client_off = false;
     std::string personaje;
     uint16_t client_id;
+    std::vector<msgPlataforma> plataformas;
     Gui gui;
 
     std::string toLowercase(const std::string& str);
