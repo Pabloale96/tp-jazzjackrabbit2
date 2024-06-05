@@ -1,6 +1,11 @@
 #ifndef STRUCTMSG_H
 #define STRUCTMSG_H
 
+#define ACCION_NULA 0x00
+#define TOGGLE_OFF 0x00
+
+#define MSG_HEADER 0x06
+
 #include <cstdint>
 
 #include <arpa/inet.h>  // para usar htons()
@@ -10,22 +15,22 @@
 #include "game_state.h"
 
 struct msgAccion {
-    uint8_t accion = 0x00;
-    uint8_t toggle = 0x00;
+    uint8_t accion;
+    uint8_t toggle;
 
-    msgAccion(): accion(0x00), toggle(0x00) {}
+    msgAccion(): accion(ACCION_NULA), toggle(TOGGLE_OFF) {}
     msgAccion(uint8_t acc, uint8_t tog): accion(acc), toggle(tog) {}
 
 } __attribute__((packed));
 
 struct msgGameState {
-    uint8_t header = 0x06;  // la idea seria no editar esto.
+    uint8_t header;
     uint8_t state_partida;
     uint16_t client_id;
     // uint16_t tiempo;
-    uint16_t cantidad_personajes = 1;
+    uint16_t cantidad_personajes;
 
-    msgGameState() {}
+    msgGameState(): header(MSG_HEADER), cantidad_personajes(1) {}
 
     msgGameState(GameState& gameState, uint16_t client_id):
             state_partida(gameState.getJugando() ? 0x01 : 0x00),

@@ -201,6 +201,7 @@ void Client::jugar() {
     establecer_partida();
     crear_personaje();
     // gui.setEscenario(plataforma);
+
     //  ***************** JUEGO *****************
     iniciar_hilos();
 
