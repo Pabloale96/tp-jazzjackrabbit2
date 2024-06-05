@@ -18,6 +18,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
         receiver(protocolo_client, client_id, server_msg),
+        client_off(false),
         gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), std::ref(personaje),
             std::ref(client_commands)) {}
 
@@ -212,7 +213,7 @@ void Client::jugar() {
             // TODO: aca se debería de actualizar el render
             gui.setGameState(*respuesta, client_id);
 
-            if (respuesta->obtener_estado_de_la_partida() == false) {
+            if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
                 // TODO: aca se deberían de mostrar las estadísticas
                 mostrar_estadisticas(*respuesta);

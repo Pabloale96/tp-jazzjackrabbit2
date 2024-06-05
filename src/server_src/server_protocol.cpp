@@ -170,6 +170,7 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
 
     for (auto& pair: gameState.obtener_diccionario_de_personajes()) {
         msgPersonaje personaje(pair.first, pair.second);
+        
         if (was_closed) {
             return;
         }

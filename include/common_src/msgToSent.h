@@ -33,6 +33,7 @@ struct msgGameState {
     msgGameState(): header(MSG_HEADER), cantidad_personajes(1) {}
 
     msgGameState(GameState& gameState, uint16_t client_id):
+            header(MSG_HEADER),
             state_partida(gameState.getJugando() ? 0x01 : 0x00),
             client_id(htons(client_id)),
             cantidad_personajes(htons(gameState.getSizePersonajes())) {}
