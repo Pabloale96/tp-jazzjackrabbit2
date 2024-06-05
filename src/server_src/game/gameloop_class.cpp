@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "../../include/server_src/game/game_state.h"
 #include "../../include/common_src/queue.h"
+#include "../../include/server_src/game/game_state.h"
 
 #define MAX_TAM_COLA 100
 #define CINCO_LOOPS_POR_SEGUNDO 200
@@ -52,8 +52,8 @@ void GameLoop::run() {
     auto start_time = std::chrono::steady_clock::now();
     auto max_duration = std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA);
 
-    const std::chrono::nanoseconds rate_ns(static_cast<int>(
-            1e20 / RATE));  // TODO: cambiar a 1e9 (lo dejo grande para poder hacer puruebas)
+    // TODO: cambiar a 1e9 (lo dejo grande para poder hacer pruebas)
+    const std::chrono::nanoseconds rate_ns(static_cast<int>(1e20 / RATE));
     auto t_0 = std::chrono::high_resolution_clock::now();
 
     try {
@@ -104,7 +104,6 @@ void GameLoop::run() {
 }
 
 void GameLoop::broadcastear() {
-    // Todo: Game construite el gamestate
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
     nuevo_gamestate.imprimir_mensaje();

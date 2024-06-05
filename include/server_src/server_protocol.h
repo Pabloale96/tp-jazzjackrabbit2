@@ -48,7 +48,7 @@ public:
     // Cierra el socket del cliente ordenadamente
     void cerrar_socket_cliente();
 
-    void enviar_escenario(Game&,bool&);
+    void enviar_escenario(Game&, bool&);
 
     // Destructor
     ~ProtocolServer();

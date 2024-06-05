@@ -4,8 +4,8 @@
 #include <iostream>
 #include <utility>  // move()
 
-#include "../../include/server_src/server_aceptador.h"
 #include "../../include/common_src/sockets.h"
+#include "../../include/server_src/server_aceptador.h"
 
 #define MAX_TAM_COLA 10
 
@@ -23,6 +23,7 @@ Server::Server(const std::string& servname): aceptador(servname.c_str()) {
 }
 
 void Server::jugar() {
+    std::cout << "****  Server started. Press 'q' to quit  ****" << std::endl;
     while (!stop_flag && std::cin.get() != 'q') {
         // Loopeo hasta que encuentro un q o un ctrl+c
     }

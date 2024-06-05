@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "client_protocol.h"
 #include "client_receiver.h"
@@ -20,7 +21,7 @@ private:
     ClientSender sender;
     Queue<std::shared_ptr<GameState>> server_msg;
     ClientReceiver receiver;
-    bool client_off = false;
+    bool client_off;
     std::string personaje;
     uint16_t client_id;
     std::vector<msgPlataforma> plataformas;

@@ -8,8 +8,8 @@
 
 #include "game_enemigo.h"
 #include "game_personaje.h"
-#include "game_state.h"
 #include "game_platform.h"
+#include "game_state.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 

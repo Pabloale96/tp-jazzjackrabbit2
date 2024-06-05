@@ -8,12 +8,12 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
-#include "gui_clase_texturas.h"
 #include "game_state.h"
+#include "gui_clase_texturas.h"
+#include "gui_defines_frames.h"
 #include "msgToSent.h"
 #include "queue.h"
 #include "thread.h"
-#include "gui_defines_frames.h"
 
 #define RATE 15.0
 

@@ -10,8 +10,8 @@
 
 #include "gui_animaciones.h"
 #include "gui_clase_texturas.h"
-#include "gui_frame.h"
 #include "gui_defines_frames.h"
+#include "gui_frame.h"
 
 
 using SDL2pp::Renderer;
@@ -27,34 +27,34 @@ protected:
 public:
     explicit PersonajeGui(ClaseTexturas&);
     ~PersonajeGui();
-    virtual void show(int,int,int);
+    virtual void show(int, int, int);
 };
 
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas& );
+    explicit SpazGui(ClaseTexturas&);
     ~SpazGui();
 
-    void show(int,int,int);
+    void show(int, int, int) override;
 };
 
 
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas& );
+    explicit JazzGui(ClaseTexturas&);
     ~JazzGui();
 
-    void show(int,int,int);
+    void show(int, int, int) override;
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas& );
+    explicit LoriGui(ClaseTexturas&);
     ~LoriGui();
 
-    void show(int,int,int);
+    void show(int, int, int) override;
 };
 #endif

@@ -30,7 +30,27 @@ protected:
 
 public:
     Arma();
-    Arma(uint16_t municion, uint16_t nombre): municion(municion), nombre_arma(nombre) {}
+    Arma(uint16_t municion, uint16_t nombre) {
+        this->municion = municion;
+        this->nombre_arma = nombre;
+        switch (nombre) {
+            case 1:
+                this->vel_dis = VEL_DIS_ARMA1;
+                this->vel_proy = VEL_PROY_ARMA1;
+                this->dano = DANO_ARMA1;
+                break;
+            case 2:
+                this->vel_dis = VEL_DIS_ARMA2;
+                this->vel_proy = VEL_PROY_ARMA2;
+                this->dano = DANO_ARMA2;
+                break;
+            default:
+                this->vel_dis = VEL_DIS_INICIAL;
+                this->vel_proy = VEL_PROY_INICIAL;
+                this->dano = DANO_INICIAL;
+                break;
+        }
+    }
 
     uint8_t obtener_nombre_arma() const { return nombre_arma; }
 

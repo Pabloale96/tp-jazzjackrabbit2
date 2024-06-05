@@ -166,14 +166,15 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
     if (was_closed) {
         return;
     }
-    socket_cliente.sendall(&msg, sizeof(msg), &was_closed); 
+    socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 
     for (auto& pair: gameState.obtener_diccionario_de_personajes()) {
         msgPersonaje personaje(pair.first, pair.second);
+        
         if (was_closed) {
             return;
         }
-        socket_cliente.sendall(&personaje, sizeof(personaje), &was_closed); 
+        socket_cliente.sendall(&personaje, sizeof(personaje), &was_closed);
     }
 }
 

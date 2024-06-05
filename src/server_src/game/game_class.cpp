@@ -137,8 +137,6 @@ void Game::borrar_personaje(uint16_t client_id) {
     }
 }
 
-std::vector<Platform> Game::obtener_plataformas(){
-    return plataformas;
-}
+std::vector<Platform> Game::obtener_plataformas() { return plataformas; }
 
 Game::~Game() {}

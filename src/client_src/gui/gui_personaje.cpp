@@ -2,31 +2,30 @@
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas): texturas(texturas), animacion() {}
 
-PersonajeGui::~PersonajeGui(){}
+PersonajeGui::~PersonajeGui() {}
 
-void PersonajeGui::show(int posx,int posy,int animacion){}
+void PersonajeGui::show(int posx, int posy, int animacion) {}
 
 
 SpazGui::SpazGui(ClaseTexturas& texturas): PersonajeGui(texturas) {}
 
-SpazGui::~SpazGui(){}
+SpazGui::~SpazGui() {}
 
-void SpazGui::show(int posx,int posy,int animacion_actual){
-    switch (animacion_actual)
-    {
+void SpazGui::show(int posx, int posy, int animacion_actual) {
+    switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);
-            animacion.run(posx,posy,texturas.findFrame(std::string(SPAZ_STAND)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(SPAZ_STAND)));
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            animacion.run(posx,posy,texturas.findFrame(std::string(SPAZ_WALK)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(SPAZ_WALK)));
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            animacion.run(posx,posy,texturas.findFrame(std::string(SPAZ_WALK)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(SPAZ_WALK)));
             break;
-        
+
         default:
             break;
     }
@@ -34,25 +33,24 @@ void SpazGui::show(int posx,int posy,int animacion_actual){
 
 JazzGui::JazzGui(ClaseTexturas& texturas): PersonajeGui(texturas) {}
 
-JazzGui::~JazzGui(){}
+JazzGui::~JazzGui() {}
 
-void JazzGui::show(int posx,int posy,int animacion_actual){
+void JazzGui::show(int posx, int posy, int animacion_actual) {
 
-    switch (animacion_actual)
-    {
+    switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);
-            animacion.run(posx,posy,texturas.findFrame(std::string(JAZZ_STAND)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(JAZZ_STAND)));
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            animacion.run(posx,posy,texturas.findFrame(std::string(JAZZ_WALK)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(JAZZ_WALK)));
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            animacion.run(posx,posy,texturas.findFrame(std::string(JAZZ_WALK)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(JAZZ_WALK)));
             break;
-        
+
         default:
             break;
     }
@@ -60,24 +58,23 @@ void JazzGui::show(int posx,int posy,int animacion_actual){
 
 LoriGui::LoriGui(ClaseTexturas& texturas): PersonajeGui(texturas) {}
 
-LoriGui::~LoriGui(){}
+LoriGui::~LoriGui() {}
 
-void LoriGui::show(int posx,int posy,int animacion_actual){
-    switch (animacion_actual)
-    {
+void LoriGui::show(int posx, int posy, int animacion_actual) {
+    switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);
-            animacion.run(posx,posy,texturas.findFrame(std::string(LORI_STAND)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(LORI_STAND)));
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            animacion.run(posx,posy,texturas.findFrame(std::string(LORI_WALK)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(LORI_WALK)));
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            animacion.run(posx,posy,texturas.findFrame(std::string(LORI_WALK)));
+            animacion.run(posx, posy, texturas.findFrame(std::string(LORI_WALK)));
             break;
-        
+
         default:
             break;
     }

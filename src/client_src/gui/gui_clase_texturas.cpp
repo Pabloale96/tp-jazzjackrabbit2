@@ -1,18 +1,11 @@
 #include "../../include/client_src/gui/gui_clase_texturas.h"
 
 
+Texture& ClaseTexturas::jazz_text() { return jazz_tex; }
+Texture& ClaseTexturas::spaz_text() { return spaz_tex; }
+Texture& ClaseTexturas::lori_text() { return lori_tex; }
 
-Texture& ClaseTexturas::jazz_text(){
-    return jazz_tex;
-}
-Texture& ClaseTexturas::spaz_text(){
-    return spaz_tex;
-}
-Texture& ClaseTexturas::lori_text(){
-    return lori_tex;
-}
-
-std::vector<Frame>& ClaseTexturas::findFrame(std::string frame_string){
+std::vector<Frame>& ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
     return it->second;
 }
@@ -76,19 +69,20 @@ ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
 
 ClaseTexturas::~ClaseTexturas() {}
 
-void ClaseTexturas::addFrames(std::string key, std::vector<Frame> value) { frames_map[key] = value; }
+void ClaseTexturas::addFrames(std::string key, std::vector<Frame> value) {
+    frames_map[key] = value;
+}
 
 void ClaseTexturas::jazzStand() {
 
-    int x_frames[] = {2, 42, 81, 123, 163, 206, 252, 303, 353, 403, 448, 492,
-                        553, 580, 625, 670, 2, 50, 100, 150, 194, 233, 275, 
-                        313, 354, 394, 434};
+    int x_frames[] = {2,   42,  81, 123, 163, 206, 252, 303, 353, 403, 448, 492, 553, 580,
+                      625, 670, 2,  50,  100, 150, 194, 233, 275, 313, 354, 394, 434};
     int y_frames[] = {12, 12, 12, 12, 14, 16, 16, 20, 20, 20, 20, 20, 20, 20,
-                        20, 20, 71, 71, 67, 67, 65, 64, 63, 63, 64, 64, 63};
+                      20, 20, 71, 71, 67, 67, 65, 64, 63, 63, 64, 64, 63};
     int w_frames[] = {49, 49, 49, 49, 47, 45, 45, 41, 41, 41, 41, 41, 41, 41,
-                        41, 41, 41, 41, 45, 45, 47, 48, 49, 49, 48, 48, 49};
+                      41, 41, 41, 41, 45, 45, 47, 48, 49, 49, 48, 48, 49};
     int h_frames[] = {34, 34, 34, 34, 38, 37, 47, 42, 44, 38, 38, 38, 39, 39,
-                        39, 39, 43, 45, 46, 41, 37, 34, 35, 35, 35, 35, 35};
+                      39, 39, 43, 45, 46, 41, 37, 34, 35, 35, 35, 35, 35};
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
@@ -632,7 +626,7 @@ void ClaseTexturas::loriWalk() {
 void ClaseTexturas::loriJump() {
 
     int x_frames[] = {5, 39, 80, 122, 163, 206, 253, 298, 343, 385, 421, 458};
-    int y_frames[] = {889, 896, 897, 897, 898, 898, 898 ,894, 891, 891, 890, 890};
+    int y_frames[] = {889, 896, 897, 897, 898, 898, 898, 894, 891, 891, 890, 890};
     int w_frames[] = {55, 48, 48, 49, 47, 47, 47, 49, 51, 51, 51, 52};
     int h_frames[] = {31, 36, 34, 36, 41, 41, 40, 39, 35, 30, 30, 30};
 

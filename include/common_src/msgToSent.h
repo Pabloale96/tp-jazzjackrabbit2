@@ -1,32 +1,39 @@
 #ifndef STRUCTMSG_H
 #define STRUCTMSG_H
 
+#define ACCION_NULA 0x00
+#define TOGGLE_OFF 0x00
+
+#define MSG_HEADER 0x06
+
 #include <cstdint>
-#include <arpa/inet.h>   // para usar htons()
+
+#include <arpa/inet.h>  // para usar htons()
 
 #include "defines_msg.h"
-#include "game_state.h"
 #include "game_platform.h"
+#include "game_state.h"
 
 struct msgAccion {
-    uint8_t accion = 0x00;
-    uint8_t toggle = 0x00;
+    uint8_t accion;
+    uint8_t toggle;
 
-    msgAccion(): accion(0x00), toggle(0x00) {}
+    msgAccion(): accion(ACCION_NULA), toggle(TOGGLE_OFF) {}
     msgAccion(uint8_t acc, uint8_t tog): accion(acc), toggle(tog) {}
 
 } __attribute__((packed));
 
 struct msgGameState {
-    uint8_t header = 0x06;  // la idea seria no editar esto.
+    uint8_t header;
     uint8_t state_partida;
     uint16_t client_id;
     // uint16_t tiempo;
-    uint16_t cantidad_personajes = 1;
+    uint16_t cantidad_personajes;
 
-    msgGameState() {}
+    msgGameState(): header(MSG_HEADER), cantidad_personajes(1) {}
 
     msgGameState(GameState& gameState, uint16_t client_id):
+            header(MSG_HEADER),
             state_partida(gameState.getJugando() ? 0x01 : 0x00),
             client_id(htons(client_id)),
             cantidad_personajes(htons(gameState.getSizePersonajes())) {}
@@ -46,16 +53,12 @@ struct msgPersonaje {
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
         personaje[POS_ARMA_PERSONAJE] = htons(pers.obtener_nombre_arma());
     }
-
 };
 
 struct msgEscenario {
     uint16_t cantidad_plataformas = 0;
-    
-    msgEscenario(const uint16_t& cantidad) {
-        cantidad_plataformas = htons(cantidad);
-    }
 
+    explicit msgEscenario(const uint16_t& cantidad) { cantidad_plataformas = htons(cantidad); }
 };
 
 struct msgPlataforma {
@@ -63,7 +66,7 @@ struct msgPlataforma {
 
     msgPlataforma() {}
 
-    msgPlataforma(const Platform& pla) {
+    explicit msgPlataforma(const Platform& pla) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
         plataforma[POS_TIPO_PLATAFORMA] = pla.obtener_tipo();

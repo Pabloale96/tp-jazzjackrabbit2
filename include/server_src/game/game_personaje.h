@@ -5,9 +5,7 @@
 #include <string>
 #include <vector>
 
-
 #include "defines_msg.h"
-
 #include "game_arma.h"
 #include "game_posicion.h"
 
