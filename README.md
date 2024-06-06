@@ -66,4 +66,4 @@ pre-commit run --all-files
 ## Autores ✒️
 
 * **Camila Belén Sebellin** - 100.204 - [camiSebe](https://github.com/camiSebe)
-* **Paclo Martin Alejando** - 98.021 - [Pabloale96](https://github.com/Pabloale96)
+* **Pablo Martin Alejando** - 98.021 - [Pabloale96](https://github.com/Pabloale96)
