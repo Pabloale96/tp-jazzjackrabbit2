@@ -1,6 +1,6 @@
 # Jazz Jackrabbit 2
 
-![Image](docs/portada_juego.png)
+![Image](docs/portada_juego.jpg)
 
 ## Comenzando 🚀
 
