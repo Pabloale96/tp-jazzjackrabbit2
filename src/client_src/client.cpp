@@ -7,6 +7,7 @@
 #include <string>
 
 #define MAX_TAM_COLA 1000
+#define CLIENT_ID_NULO 0
 #define ANCHO_RESOLUCION 800
 #define ALTO_RESOLUCION 600
 
@@ -17,8 +18,9 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client, client_id, server_msg),
+        receiver(nullptr),
         client_off(false),
+        client_id(CLIENT_ID_NULO),
         gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), std::ref(personaje),
             std::ref(client_commands)) {}
 
@@ -92,9 +94,10 @@ void Client::imprimir_portada() {
 }
 
 void Client::imprimir_bienvenida() {
-    // TODO: Volver a poner la portada (la saco para testear)
     imprimir_portada();
     std::cout << "Bienvenido al juego!" << std::endl;
+    client_id = protocolo_client.recibir_id_jugador();
+    std::cout << "Su numero de jugador es: " << client_id << std::endl;
 }
 
 void Client::crear_personaje() {
@@ -191,8 +194,9 @@ std::string Client::toLowercase(const std::string& str) {
 }*/
 
 void Client::iniciar_hilos() {
+    receiver = std::make_unique<ClientReceiver>(protocolo_client, client_id, server_msg);
     sender.start();
-    receiver.start();
+    receiver->start();
 }
 
 void Client::jugar() {
@@ -239,10 +243,12 @@ Client::~Client() {
     client_commands.close();
     server_msg.close();
     protocolo_client.cerrar_socket();
+
     sender.stop();
-    receiver.stop();
+    receiver->stop();
     gui.stop();
+
     sender.join();
-    receiver.join();
+    receiver->join();
     gui.join();
 }

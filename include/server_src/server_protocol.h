@@ -20,6 +20,8 @@ public:
     // Constructor
     explicit ProtocolServer(Socket&& socket_cliente);
 
+    void enviar_id_jugador(uint16_t id_cliente, bool& was_closed);
+
     uint8_t crear_partida(bool& was_closed);
 
     void recibir_nombre_partida(std::string& nombre_partida, bool& was_closed);

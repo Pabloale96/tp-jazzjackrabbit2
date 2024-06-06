@@ -22,6 +22,12 @@
 ProtocolServer::ProtocolServer(Socket&& socket_cliente):
         socket_cliente(std::move(socket_cliente)) {}
 
+void ProtocolServer::enviar_id_jugador(uint16_t id_cliente, bool& was_closed) {
+    id_cliente = htons(id_cliente);
+    socket_cliente.sendall(&id_cliente, sizeof(uint16_t), &was_closed);
+}
+
+
 // ********************** PROTOCOLOS DE LOBBY **********************
 
 uint8_t ProtocolServer::crear_partida(bool& was_closed) {
@@ -170,7 +176,7 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
 
     for (auto& pair: gameState.obtener_diccionario_de_personajes()) {
         msgPersonaje personaje(pair.first, pair.second);
-        
+
         if (was_closed) {
             return;
         }

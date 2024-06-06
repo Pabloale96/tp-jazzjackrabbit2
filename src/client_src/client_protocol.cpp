@@ -14,6 +14,15 @@ ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& s
 
 bool ProtocolClient::obtener_estado_de_la_conexion() { return was_closed; }
 
+uint16_t ProtocolClient::recibir_id_jugador() {
+    uint16_t id_jugador;
+    if (was_closed) {
+        return 0;
+    }
+    socket_cliente.recvall(&id_jugador, sizeof(uint16_t), &was_closed);
+    return ntohs(id_jugador);
+}
+
 // ********************** PROTOCOLOS DE LOBBY **********************
 
 bool ProtocolClient::enviar_personaje(const std::string& personaje) {

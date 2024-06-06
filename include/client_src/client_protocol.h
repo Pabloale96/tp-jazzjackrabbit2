@@ -33,6 +33,8 @@ public:
     // Devuelve el estado de was_closed
     bool obtener_estado_de_la_conexion();
 
+    uint16_t recibir_id_jugador();
+
     bool crear_partida(std::string& nombre_partida);
 
     bool unirse_a_partida();

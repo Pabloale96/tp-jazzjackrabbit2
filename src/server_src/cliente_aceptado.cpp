@@ -18,7 +18,9 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente):
         server_msg(MAX_TAM_COLA),
         sender(protocolo_server, id_cliente, was_closed, server_msg),
         receiver(nullptr),
-        gameloop_id(PARTIDA_NO_ASIGNADA) {}
+        gameloop_id(PARTIDA_NO_ASIGNADA) {
+    protocolo_server.enviar_id_jugador(id_cliente, was_closed);
+}
 
 void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
     if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {
