@@ -1,19 +1,19 @@
 #include "../include/client_src/gui/gui.h"
 
 Gui::Gui(int x, int y, int w, int h, bool& client_off, std::string& personaje,
-         Queue<msgAccion>& client_commands):
+         Queue<msgAccion>& client_commands,std::vector<msgPlataforma>& msg_plataformas):
         posx(x),
         posy(y),
         w(w),
         h(h),
         client_off(client_off),
         personaje(personaje),
-        client_commands(client_commands) {}
+        client_commands(client_commands),
+        msg_plataformas(msg_plataformas) {}
 
 Gui::~Gui() {}
 
 void Gui::setGameState(GameState& gamestate, uint16_t client_id) {
-
     // CONSULTAR:
     for (const auto& pair: gamestate.obtener_diccionario_de_personajes()) {
         if (pair.first == client_id) {
@@ -22,14 +22,14 @@ void Gui::setGameState(GameState& gamestate, uint16_t client_id) {
         }
     }
 }
-void Gui::setEscenario(std::vector<msgPlataforma>& msg_plataformas) {    
+void Gui::setEscenario(ClaseTexturas & texturas) {    
     for (size_t i = 0; i < msg_plataformas.size(); i++)
     {
         PlatformGui plataforma(texturas,msg_plataformas[i]);
         plataformas.push_back(plataforma);
     }
-    
 }
+
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
@@ -39,6 +39,15 @@ void Gui::run() {
     SDL_DisplayMode displayMode;
     int monitorIndex = 1;
     
+    Window window{Window("SDL2pp demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE)};
+
+    Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
+
+    ClaseTexturas texturas{ClaseTexturas(renderer)};
+
+    setEscenario(texturas);
+
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
         jugador = std::make_unique<JazzGui>(texturas);

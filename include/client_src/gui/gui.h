@@ -19,7 +19,7 @@
 #include "gui_defines_frames.h"
 #include "msgToSent.h"
 #include "queue.h"
-#include "thread.h"
+#include "../../common_src/thread.h"
 
 #define RATE 15.0
 
@@ -42,24 +42,18 @@ private:
     bool& client_off;
     std::string& personaje;
     Queue<msgAccion>& client_commands;
+    std::vector<msgPlataforma>& msg_plataformas;
     std::vector<PlatformGui> plataformas;
 
     int screenWidth = 600;
     int screenHeight = 800;
-    
-    Window window{Window("SDL2pp demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE)};
-
-    Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
-
-    ClaseTexturas texturas{ClaseTexturas(renderer)};
 
 public:
-    Gui(int, int, int, int, bool&, std::string&, Queue<msgAccion>&);
+    Gui(int, int, int, int, bool&, std::string&, Queue<msgAccion>&,std::vector<msgPlataforma>&);
     ~Gui();
     void run() override;
     void setGameState(GameState&, uint16_t);
-    void setEscenario(std::vector<msgPlataforma>& );
+    void setEscenario(ClaseTexturas &);
 };
 
 #endif

@@ -21,8 +21,8 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         receiver(nullptr),
         client_off(false),
         client_id(CLIENT_ID_NULO),
-        gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), std::ref(personaje),
-            std::ref(client_commands)) {}
+        gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), 
+        std::ref(personaje),std::ref(client_commands),plataformas) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -208,13 +208,11 @@ void Client::iniciar_hilos() {
 void Client::jugar() {
 
     // ***************** LOBBY *****************
-    std::vector<msgPlataforma> plataformas;
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
     protocolo_client.recibir_escenario(plataformas);
-    //gui.setEscenario(plataformas);
-    //gui.start();
+    gui.start();
 
     // ***************** JUEGO *****************
     iniciar_hilos();
@@ -244,7 +242,6 @@ void Client::mostrar_estadisticas(const GameState& respuestas) const {
     respuesta.obtener_puntos() << std::endl;
     }*/
 }
-
 void Client::stop_hilos() {}
 
 Client::~Client() {
