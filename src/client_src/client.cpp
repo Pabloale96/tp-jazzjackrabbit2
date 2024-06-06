@@ -214,14 +214,14 @@ void Client::jugar() {
     // gui.setEscenario(plataforma);
     protocolo_client.recibir_escenario(plataformas);
     gui.start();
+
     // ***************** JUEGO *****************
     iniciar_hilos();
 
-    while (not client_off) {
+    while (!client_off) {
 
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
-            // TODO: aca se debería de actualizar el render
             gui.setGameState(*respuesta, client_id);
 
             if (respuesta->getJugando() == false) {

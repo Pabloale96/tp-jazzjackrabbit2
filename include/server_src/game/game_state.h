@@ -9,7 +9,6 @@
 #include "game_enemigo.h"
 #include "game_personaje.h"
 
-
 class GameState {
 private:
     uint16_t partida_id;
@@ -33,11 +32,18 @@ public:
 
     int getSizePersonajes() { return diccionario_de_personajes.size(); }
 
+    int get_cantidad_de_enemigos() { return diccionario_de_enemigos.size(); }
+
     void setGameState(const uint8_t& state_partida) { jugando = (state_partida == 0x01); }
 
     void pushPersonajes(uint16_t* msgpers) {
         Personaje personaje(msgpers);
         diccionario_de_personajes.emplace(personaje.obtener_personaje_id(), personaje);
+    }
+
+    void pushEnemigos(uint16_t* msgenem) {
+        Enemigo enemigo(msgenem);
+        diccionario_de_enemigos.emplace(enemigo.get_id_enemigo(), enemigo);
     }
 
     void imprimir_mensaje();

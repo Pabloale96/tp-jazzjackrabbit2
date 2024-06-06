@@ -28,6 +28,9 @@ public:
     // Inicializa vivo en true y las iteraciones en 0
     Enemigo();
 
+    // Constructor para el cliente
+    explicit Enemigo(uint16_t* datos_enemigo);
+
     void set_enemigo_id(uint16_t id_enemigo);
     void set_tipo_enemigo(TipoEnemigo tipo_enemigo);
     void set_posicion_enemigo(uint16_t x, uint16_t y);
