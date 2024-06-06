@@ -1,6 +1,10 @@
-# tp-jazzjackrabbit2
+# Jazz Jackrabbit 2
 
-## Para compilar y correr con cmake
+![Image](docs/portada_juego.jpg)
+
+## Comenzando 🚀
+
+### Pre-requisitos 📋
 
 Es necesario crear una carpeta build usando: `mkdir build`. (En caso de tenerla previamente, borrarla con `rm -r build` y luego crearla)
 
@@ -10,9 +14,7 @@ Una vez adentro de la carpeta build, se tiene que crear el archivo makefile usan
 
 Por ultimo se compila el programa con `make`
 
-Para ejecutar el servidor o cliente hay que estar en la carpeta build.
-
-## Para correr el TP
+Para ejecutar el servidor o cliente hay que estar en la carpeta build:
 
 Server:
 
@@ -46,9 +48,22 @@ Pasar el pre-commit:
 pre-commit run --all-files
 ```
 
-## Para correr los tests
+## Ejecutando las pruebas ⚙️
 
 ```shell
 ./testing/run_tests.sh ./ testing/casos/ multi-client no-valgrind  60 10 yes
 ./testing/compare_outputs.sh testing/casos testing/salidas
 ```
+
+## Construido con 🛠️
+
+* [C++](https://cplusplus.com)
+* [SDL2](https://www.libsdl.org/)
+* [Makefile](https://www.gnu.org/software/make/manual/make.html)
+* [CMake](https://cmake.org/)
+* [YAML](https://yaml.org/)
+
+## Autores ✒️
+
+* **Camila Belén Sebellin** - 100.204 - [camiSebe](https://github.com/camiSebe)
+* **Pablo Martin Alejando** - 98.021 - [Pabloale96](https://github.com/Pabloale96)
