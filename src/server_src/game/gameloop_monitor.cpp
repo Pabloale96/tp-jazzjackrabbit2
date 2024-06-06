@@ -23,8 +23,14 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
 // TODO: Mando el map en vez de pasarlo por referencia
 void GameloopMonitor::obtener_partidas_disponibles(
         std::map<uint16_t, std::string>& partidas_disponibles) {
+    
     std::unique_lock<std::mutex> lock(m);
     partidas_disponibles.clear();
+    std::cout << "Cantidad de partidas disponibles: " << diccionario_de_gameloops.size()
+              << std::endl;
+    if (diccionario_de_gameloops.empty()) {
+        return;
+    }
     for (const auto& pair: diccionario_de_gameloops) {
         uint16_t id = pair.first;
         GameLoop* gameLoop = pair.second;
@@ -52,6 +58,13 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
     std::unique_lock<std::mutex> lock(m);
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
     gameloop->borrar_cliente(client_id);
+    if (gameloop->obtener_cantidad_de_clientes() == 0) {
+        std::cout << "Borrando gameloop " << gameloop_id << std::endl;
+        diccionario_de_gameloops.erase(diccionario_de_gameloops.find(gameloop_id));
+        gameloop->stop();
+        gameloop->join();
+        delete gameloop;
+    }
 }
 
 GameloopMonitor::~GameloopMonitor() {

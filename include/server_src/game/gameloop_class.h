@@ -33,6 +33,8 @@ public:
 
     std::string obtener_nombre_partida();
 
+    uint16_t obtener_cantidad_de_clientes();
+
     // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();
 

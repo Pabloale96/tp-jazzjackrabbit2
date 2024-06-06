@@ -14,6 +14,8 @@ ServerReceiver::ServerReceiver(ProtocolServer& protocolo_server, bool& was_close
                                uint16_t cliente_id):
         protocolo_server(protocolo_server),
         was_closed(was_closed),
+        gameloop_monitor(gameloop_monitor),
+        gameloop_id(gameloop_id),
         cliente_id(cliente_id),
         client_commands(gameloop_monitor.obtener_queue_de_client_commands(gameloop_id)) {}
 
@@ -28,13 +30,14 @@ void ServerReceiver::run() {
                 break;
             }
         } catch (const LibError& err) {
-            // Si falla el receive, es porque el cliente cerró la conexion (o falló)
-            std::cout << "Cliente " << cliente_id << "se ha desconectado\n";
-            // TODO: gamelop, cerra este cliente/personaje
-            protocolo_server.cerrar_socket_cliente();
-            return;
+            // TODO: gameloop, cerra este cliente/personaje
+            //gameloop_monitor.borrar_cliente_de_gameloop(gameloop_id, cliente_id);
+            break;
         }
     }
+    std::cout << "Cerrando socket del cliente" << cliente_id << std::endl;
+    gameloop_monitor.borrar_cliente_de_gameloop(gameloop_id, cliente_id);
+    protocolo_server.cerrar_socket_cliente();
 }
 
 ServerReceiver::~ServerReceiver() {}

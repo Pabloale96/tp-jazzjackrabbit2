@@ -96,6 +96,7 @@ void ProtocolClient::recibir_partidas_disponibles(
     uint16_t cant_partidas;
     socket_cliente.recvall(&cant_partidas, sizeof(uint16_t), &was_closed);
     cant_partidas = ntohs(cant_partidas);
+    std::cout << "Cantidad de partidas: " << cant_partidas << std::endl;
     if (was_closed) {
         return;
     }

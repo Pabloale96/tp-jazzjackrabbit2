@@ -26,6 +26,8 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
 
 std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
 
+uint16_t GameLoop::obtener_cantidad_de_clientes() { return clients_id.size(); }
+
 Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
     return client_commands;
 }

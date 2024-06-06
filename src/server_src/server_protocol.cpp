@@ -49,10 +49,14 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
 void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
                                                  bool& was_closed) {
     std::map<uint16_t, std::string> partidas_disponibles;
+    std::cout << "Enviando partidas disponibles" << std::endl;
     gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
     uint16_t cant_partidas = partidas_disponibles.size();
+    std::cout << "Cantidad de partidas: " << cant_partidas << std::endl;
     cant_partidas = htons(cant_partidas);
+
     socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);
+    std::cout << "Enviando partidas" << std::endl;
     if (was_closed) {
         return;
     }

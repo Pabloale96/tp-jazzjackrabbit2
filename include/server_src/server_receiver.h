@@ -14,6 +14,8 @@ class ServerReceiver: public Thread {
 private:
     ProtocolServer& protocolo_server;
     bool& was_closed;
+    GameloopMonitor& gameloop_monitor;
+    uint16_t gameloop_id;
     uint16_t cliente_id;
     Queue<std::shared_ptr<Comando>>& client_commands;
 
