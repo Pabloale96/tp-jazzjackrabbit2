@@ -10,7 +10,7 @@
 #define MAX_TAM_COLA 100
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60  // 1 minuto TODO: agregar al yaml
-#define RATE 1000
+#define RATE 1000 // TODO: Ponerlo en 15
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    std::string& personaje):
