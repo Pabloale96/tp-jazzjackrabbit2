@@ -65,6 +65,10 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
             std::cout << " ** SE UNIO A LA PARTIDA CON id " << gameloop_id << " **" << std::endl;
             gameloop_monitor.obtener_gameloop(gameloop_id)
                     ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+
+            protocolo_server.enviar_escenario(
+                    (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
+
             gameloop_monitor.obtener_gameloop(gameloop_id)->agregar_cliente(id_cliente, personaje);
             receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed,
                                                         gameloop_monitor, gameloop_id, id_cliente);
