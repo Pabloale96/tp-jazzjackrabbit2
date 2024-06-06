@@ -36,27 +36,12 @@ void Gui::setGameState(GameState& gamestate, uint16_t client_id) {
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
-    SDL2pp::SDL sdl(SDL_INIT_VIDEO);
-    SDL2pp::SDLTTF ttf;
+    SDL sdl(SDL_INIT_VIDEO);
+    SDLTTF ttf;
 
     SDL_DisplayMode displayMode;
     int monitorIndex = 1;
-
-    int screenWidth = 600;
-    int screenHeight = 800;
-
-    SDL2pp::Window window("SDL2pp demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE);
-
-    SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    // crear clase para guardar todos los texturas:
-    // mapa que indixe por cada uno de la textura.
-    // {'jazz_walk': jazz_tex}
-    // se podria mandar los frame_vector.
-
-    ClaseTexturas texturas(renderer);
-
+    
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
         jugador = std::make_unique<JazzGui>(texturas);

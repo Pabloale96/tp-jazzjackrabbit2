@@ -52,6 +52,7 @@ struct msgPersonaje {
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
         personaje[POS_ARMA_PERSONAJE] = htons(pers.obtener_nombre_arma());
+        personaje[POS_TIPO_PERSONAJE] = htons(pers.obtener_tipo_personaje());
     }
 };
 

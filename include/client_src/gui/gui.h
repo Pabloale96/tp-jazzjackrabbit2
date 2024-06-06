@@ -21,6 +21,12 @@ using std::chrono::duration;
 using std::chrono::nanoseconds;
 using std::chrono::steady_clock;
 
+using SDL2pp::Renderer;
+using SDL2pp::Texture;
+using SDL2pp::Window;
+using SDL2pp::SDLTTF;
+using SDL2pp::SDL;
+
 class Gui: public Thread {
 private:
     int posx;
@@ -30,6 +36,16 @@ private:
     bool& client_off;
     std::string& personaje;
     Queue<msgAccion>& client_commands;
+
+    int screenWidth = 600;
+    int screenHeight = 800;
+    
+    Window window{Window("SDL2pp demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE)};
+
+    Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
+
+    ClaseTexturas texturas{ClaseTexturas(renderer)};
 
 public:
     Gui(int, int, int, int, bool&, std::string&, Queue<msgAccion>&);

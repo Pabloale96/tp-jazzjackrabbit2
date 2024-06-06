@@ -16,7 +16,7 @@
 class Personaje {
 
 private:
-    std::string tipo_personaje;
+    uint16_t tipo_personaje;
     uint16_t partida_id;
     uint16_t client_id;
     uint16_t puntos;
@@ -29,7 +29,7 @@ public:
 
     explicit Personaje(uint16_t* personaje);
 
-    void asignar_tipo_personaje(const std::string& tipo_personaje);
+    void asignar_tipo_personaje(const uint16_t& tipo_personaje);
 
     virtual bool mover(const std::string& direccion);
 
@@ -43,8 +43,6 @@ public:
 
     uint16_t obtener_personaje_id() const;
 
-    std::string obtener_tipo_personaje() const;
-
     uint16_t obtener_puntos() const;
 
     uint16_t obtener_vida() const;
@@ -52,6 +50,8 @@ public:
     uint8_t obtener_nombre_arma() const;
 
     uint16_t obtener_municion() const;
+
+    uint16_t obtener_tipo_personaje() const;
 
     virtual ~Personaje() = default;
 };

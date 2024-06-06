@@ -20,12 +20,13 @@ private:
     Texture& sprites;
     int pos_x;
     int pos_y;
-    int rotate = ROTATE_0;
+    int rotate;
     bool flip = false;
+    int type;
     Frame platform{Frame(renderer, sprites, 0, 2496, 500, 27)};
 
 public:
-    PlatformGui(Renderer&, Texture&, int, int);
+    PlatformGui(Renderer&, Texture&, int, int,int,bool,int);
     ~PlatformGui();
 
     void show(int, int);

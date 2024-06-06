@@ -11,7 +11,7 @@ class Platform {
 private:
     uint16_t pos_x;
     uint16_t pos_y;
-    uint16_t rotate = ROTATE_0;
+    uint16_t rotate;
     uint16_t width = 0;
     uint16_t height = 0;
     uint16_t type = 0;

@@ -20,7 +20,7 @@ Personaje::Personaje(uint16_t* datos_personajes):
         arma(datos_personajes[POS_MUNICION_PERSONAJE], datos_personajes[POS_ARMA_PERSONAJE]),
         posicion(datos_personajes[POS_POSX_PERSONAJE], datos_personajes[POS_POSY_PERSONAJE]) {}
 
-void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
+void Personaje::asignar_tipo_personaje(const uint16_t& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
@@ -47,7 +47,7 @@ uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 
 uint16_t Personaje::obtener_personaje_id() const { return client_id; }
 
-std::string Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
+uint16_t Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
 
 uint16_t Personaje::obtener_puntos() const { return puntos; }
 
@@ -58,7 +58,7 @@ uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
 uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("jazz");
+    asignar_tipo_personaje(static_cast<uint16_t>(TIPO_PERSONAJE::JAZZ));
 }
 
 void Jazz::punietazo_hacia_arriba() {
@@ -66,7 +66,7 @@ void Jazz::punietazo_hacia_arriba() {
 }
 
 Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("lori");
+    asignar_tipo_personaje(static_cast<uint16_t>(TIPO_PERSONAJE::LORI));
 }
 
 void Lori::patada_de_corto_alcance() {
@@ -74,7 +74,7 @@ void Lori::patada_de_corto_alcance() {
 }
 
 Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("spazz");
+    asignar_tipo_personaje(static_cast<uint16_t>(TIPO_PERSONAJE::SPAZZ));
 }
 
 void Spazz::patada_hacia_un_costado() {
