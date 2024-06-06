@@ -10,7 +10,7 @@
 #define MAX_TAM_COLA 100
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60  // 1 minuto TODO: agregar al yaml
-#define RATE 15
+#define RATE 1000
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    std::string& personaje):
@@ -21,7 +21,6 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         game(nuevo_gameloop_id, client_id, personaje) {
     clients_id.push_back(client_id);
     iniciar_partida();
-    broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
 std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
@@ -39,7 +38,6 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
 
 void GameLoop::agregar_cliente(uint16_t client_id, const std::string& personaje) {
     game.agregar_personaje(client_id, personaje);
-    broadcastear();  // Para que se vea la posicion inicial del personaje
 }
 
 Game& GameLoop::obtener_game() { return game; }

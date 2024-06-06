@@ -27,11 +27,11 @@ void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
         std::string nombre_partida;
         protocolo_server.recibir_nombre_partida(nombre_partida, was_closed);
         crear_partida(gameloop_monitor, nombre_partida);
+        protocolo_server.enviar_escenario(
+                (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
     } else {
         joinearse_a_una_partida(gameloop_monitor);
     }
-    protocolo_server.enviar_escenario(
-            (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
 }
 
 void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
@@ -44,7 +44,6 @@ void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                 gameloop_id, id_cliente);
-
     return;
 }
 
@@ -83,22 +82,25 @@ void ClienteAceptado::start() {
 }
 
 bool ClienteAceptado::is_dead() {
-    if ((receiver == nullptr || !receiver->is_alive()) || !sender.is_alive()) {
-        std::cout << "El cliente " << id_cliente << " murio" << std::endl;
+    if ((!receiver->is_alive()) || !sender.is_alive()) {
         return true;
     }
     return false;
 }
 
 void ClienteAceptado::stop() {
-    std::cout << "El cliente " << id_cliente << " se detiene" << std::endl;
-    server_msg.close();
-    if (!was_closed) {
-        protocolo_server.cerrar_socket_cliente();
-        was_closed = true;
+    try {
+        std::cout << "El cliente " << id_cliente << " se detiene" << std::endl;
+        server_msg.close();
+        if (!was_closed) {
+            protocolo_server.cerrar_socket_cliente();
+            was_closed = true;
+        }
+        sender.join();
+        receiver->join();
+    } catch (const std::exception& e) {
+        std::cerr << "Error al detener el cliente: " << e.what() << std::endl;
     }
-    sender.join();
-    receiver->join();
 }
 
 // Destructor
