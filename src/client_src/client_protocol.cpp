@@ -1,4 +1,4 @@
-#include "../../include/client_protocol.h"
+#include "../../include/client_src/client_protocol.h"
 
 #include <cstring>
 #include <iostream>
@@ -7,12 +7,21 @@
 #include <arpa/inet.h>   // para usar htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/protocol_utils.h"
+#include "../../include/common_src/protocol_utils.h"
 
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
 
 bool ProtocolClient::obtener_estado_de_la_conexion() { return was_closed; }
+
+uint16_t ProtocolClient::recibir_id_jugador() {
+    uint16_t id_jugador;
+    if (was_closed) {
+        return 0;
+    }
+    socket_cliente.recvall(&id_jugador, sizeof(uint16_t), &was_closed);
+    return ntohs(id_jugador);
+}
 
 // ********************** PROTOCOLOS DE LOBBY **********************
 
@@ -31,12 +40,19 @@ bool ProtocolClient::enviar_personaje(const std::string& personaje) {
     return true;
 }
 
-bool ProtocolClient::crear_partida(std::string& nombre_partida) {
+bool ProtocolClient::enviar_codigo_de_crear_partida() {
     uint8_t accion_serializada = CREAR_PARTIDA;
-    enviar_accion_serializada(accion_serializada, was_closed);
     if (was_closed) {
         return false;
     }
+    socket_cliente.sendall(&accion_serializada, sizeof(uint8_t), &was_closed);
+    if (was_closed) {
+        return false;
+    }
+    return true;
+}
+
+bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     uint8_t nombre_partida_len = nombre_partida.size();
     socket_cliente.sendall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
     if (was_closed) {
@@ -46,9 +62,33 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     return true;
 }
 
+bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataforma) {
+
+    msgEscenario escenario(0);
+    
+    uint16_t sizee =0;
+    if (was_closed) {
+        return false;
+    }
+    socket_cliente.recvall(&escenario, sizeof(escenario), &was_closed);
+    msgPlataforma plataforma;
+    for (size_t i = 0; i < htons(escenario.cantidad_plataformas); i++)
+    {
+        if (was_closed) {
+            return false;
+        }
+        socket_cliente.recvall(&plataforma, sizeof(plataforma), &was_closed);
+        vec_plataforma.emplace_back(plataforma);
+    }
+    return true;
+}
+
 bool ProtocolClient::unirse_a_partida() {
     uint8_t accion_serializada = UNIRSE_A_PARTIDA;
-    enviar_accion_serializada(accion_serializada, was_closed);
+    if (was_closed) {
+        return false;
+    }
+    socket_cliente.sendall(&accion_serializada, sizeof(uint8_t), &was_closed);
     if (was_closed) {
         return false;
     }
@@ -92,121 +132,30 @@ void ProtocolClient::enviar_id_partida(uint16_t id_partida) {
 
 // ********************** PROTOCOLOS DE JUEGO **********************
 
-void ProtocolClient::enviar_accion(TipoAccion accion) {
-    uint8_t accion_serializada;
-    switch (accion) {
-        case TipoAccion::Disparar:
-            accion_serializada = DISPARAR;
-            break;
-        case TipoAccion::MoverDerecha:
-            accion_serializada = MOVER_DERECHA;
-            break;
-        case TipoAccion::MoverDerechaRapido:
-            accion_serializada = MOVER_DERECHA_RAPIDO;
-            break;
-        case TipoAccion::MoverIzquierda:
-            accion_serializada = MOVER_IZQUIERDA;
-            break;
-        case TipoAccion::MoverIzquierdaRapido:
-            accion_serializada = MOVER_IZQUIERDA_RAPIDO;
-            break;
-        case TipoAccion::MoverArriba:
-            accion_serializada = MOVER_ARRIBA;
-            break;
-        case TipoAccion::MoverAbajo:
-            accion_serializada = MOVER_ABAJO;
-            break;
-        case TipoAccion::Saltar:
-            accion_serializada = SALTAR;
-            break;
-        default:
-            return;  // Acción no válida
-    }
-    enviar_accion_serializada(accion_serializada, was_closed);
-}
-
-void ProtocolClient::enviar_accion_serializada(uint8_t accion_serializada, bool& was_closed) {
+void ProtocolClient::enviar_accion(msgAccion& msg) {
     if (was_closed) {
         return;
     }
-    socket_cliente.sendall(&accion_serializada, sizeof(uint8_t), &was_closed);
+    socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-bool ProtocolClient::recibir_respuesta(ClientGameRespuesta& client_game_respuesta) {
+bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id) {
+    msgGameState msg;
     if (was_closed) {
         return false;
     }
-    uint8_t codigo_mensaje;
-    socket_cliente.recvall(&codigo_mensaje, sizeof(uint8_t), &was_closed);
-    if (was_closed) {
-        return false;
+    socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
+    gameState.setGameState(msg.state_partida);
+    client_id = msg.client_id;
+    msgPersonaje personaje;
+    for (size_t i = 0; i < msg.cantidad_personajes; i++) {
+        if (was_closed) {
+            return false;
+        }
+        socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
+        gameState.pushPersonajes(personaje.personaje);
     }
 
-    uint8_t estado_de_la_partida;
-    socket_cliente.recvall(&estado_de_la_partida, sizeof(uint8_t), &was_closed);
-    if (was_closed) {
-        return false;
-    }
-
-    int cant_personajes;
-    socket_cliente.recvall(&cant_personajes, sizeof(int), &was_closed);
-    cant_personajes = ntohs(cant_personajes);
-    if (was_closed) {
-        return false;
-    }
-    for (int i = 0; i < cant_personajes; i++) {
-        uint16_t id_personaje;
-        uint16_t posicion_x;
-        uint16_t posicion_y;
-        uint16_t puntos;
-        uint16_t vida;
-        uint16_t municion;
-        std::string nombre_arma;
-
-
-        // Probar hacer un wrapper tipo recvall_or_fail()
-        socket_cliente.recvall(&id_personaje, sizeof(uint16_t), &was_closed);
-        id_personaje = ntohs(id_personaje);
-        if (was_closed) {
-            return false;
-        }
-        socket_cliente.recvall(&posicion_x, sizeof(uint16_t), &was_closed);
-        posicion_x = ntohs(posicion_x);
-        if (was_closed) {
-            return false;
-        }
-        socket_cliente.recvall(&posicion_y, sizeof(uint16_t), &was_closed);
-        posicion_y = ntohs(posicion_y);
-        if (was_closed) {
-            return false;
-        }
-        socket_cliente.recvall(&puntos, sizeof(uint16_t), &was_closed);
-        puntos = ntohs(puntos);
-        if (was_closed) {
-            return false;
-        }
-        socket_cliente.recvall(&vida, sizeof(uint16_t), &was_closed);
-        vida = ntohs(vida);
-        if (was_closed) {
-            return false;
-        }
-        socket_cliente.recvall(&municion, sizeof(uint16_t), &was_closed);
-        municion = ntohs(municion);
-        if (was_closed) {
-            return false;
-        }
-        uint16_t nombre_arma_len;
-        socket_cliente.recvall(&nombre_arma_len, sizeof(uint16_t), &was_closed);
-        if (was_closed) {
-            return false;
-        }
-        nombre_arma.resize(nombre_arma_len);
-        socket_cliente.recvall(&nombre_arma[0], nombre_arma_len, &was_closed);
-
-        Respuesta respuesta_actual(estado_de_la_partida, id_personaje, posicion_x, posicion_y, puntos, vida, municion,
-                                   nombre_arma);
-        client_game_respuesta.agregar_respuesta(respuesta_actual);
-    }
     return true;
 }
 

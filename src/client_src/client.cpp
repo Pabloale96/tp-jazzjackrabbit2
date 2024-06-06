@@ -1,4 +1,4 @@
-#include "../../include/client.h"
+#include "../../include/client_src/client.h"
 
 #include <cctype>  // std::tolower()
 #include <iostream>
@@ -6,7 +6,10 @@
 #include <sstream>
 #include <string>
 
-#define MAX_TAM_COLA 10
+#define MAX_TAM_COLA 1000
+#define CLIENT_ID_NULO 0
+#define ANCHO_RESOLUCION 800
+#define ALTO_RESOLUCION 600
 
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
@@ -15,7 +18,11 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client, server_msg) {}
+        receiver(nullptr),
+        client_off(false),
+        client_id(CLIENT_ID_NULO),
+        gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), std::ref(personaje),
+            std::ref(client_commands)) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -87,13 +94,13 @@ void Client::imprimir_portada() {
 }
 
 void Client::imprimir_bienvenida() {
-    // TODO: Volver a poner la portada (la saco para testear)
     imprimir_portada();
     std::cout << "Bienvenido al juego!" << std::endl;
+    client_id = protocolo_client.recibir_id_jugador();
+    std::cout << "Su numero de jugador es: " << client_id << std::endl;
 }
 
 void Client::crear_personaje() {
-    std::string personaje;
     std::cout << "Ingrese el nombre del personaje que desea utilizar" << std::endl;
     std::cout << "  - Jazz (j)" << std::endl;
     std::cout << "  - Spazz (s)" << std::endl;
@@ -111,7 +118,10 @@ void Client::crear_partida() {
     std::string nombre_partida;
     std::cin.ignore();
     std::getline(std::cin, nombre_partida);
-    if (protocolo_client.crear_partida(nombre_partida) == false) {
+    if (protocolo_client.enviar_codigo_de_crear_partida() == false) {
+        std::cout << "Error: No se pudo enviar el código de crear partida" << std::endl;
+        return;
+    } else if (protocolo_client.crear_partida(nombre_partida) == false) {
         std::cout << "Error: No se pudo crear la partida" << std::endl;
         return;
     }
@@ -122,25 +132,29 @@ void Client::unirse_a_partida() {
         std::cout << "Error: No se pudo joinear a la partida" << std::endl;
         return;
     }
-    std::cout << "Estas son las partidas disponibles para unirse: " << std::endl;
+    std::cout << "Espere un momento mientras buscamos las partidas disponibles para unirse..." << std::endl;
     std::map<uint16_t, std::string> partidas_disponibles;
     protocolo_client.recibir_partidas_disponibles(partidas_disponibles);
     if (partidas_disponibles.empty()) {
         std::cout << "No hay partidas disponibles para unirse" << std::endl;
+        std::cout << "Creando una nueva partida..." << std::endl;
+        crear_partida();
         return;
-    }
-    for (const auto& pair: partidas_disponibles) {
-        std::cout << "   - ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
-    }
-    std::cout << "Ingrese el ID de la partida a la que desea unirse" << std::endl;
-    uint16_t id_partida;
-    while (std::cin >> id_partida) {
-        if (partidas_disponibles.find(id_partida) == partidas_disponibles.end()) {
-            std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
-            continue;
+    } else {
+        std::cout << "Estas son las partidas disponibles para unirse: " << std::endl;
+        for (const auto& pair: partidas_disponibles) {
+            std::cout << "   - ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
         }
-        protocolo_client.enviar_id_partida(id_partida);
-        return;
+        std::cout << "Ingrese el ID de la partida a la que desea unirse" << std::endl;
+        uint16_t id_partida;
+        while (std::cin >> id_partida) {
+            if (partidas_disponibles.find(id_partida) == partidas_disponibles.end()) {
+                std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
+                continue;
+            }
+            protocolo_client.enviar_id_partida(id_partida);
+            return;
+        }
     }
 }
 
@@ -171,7 +185,7 @@ std::string Client::toLowercase(const std::string& str) {
     return minusculas;
 }
 
-void Client::acciones_posibles() {
+/*void Client::acciones_posibles() {
     std::cout << "Acciones posibles:" << std::endl;
     std::cout << "  - Disparar (s)" << std::endl;
     std::cout << "  - Derecha (r)" << std::endl;
@@ -182,12 +196,12 @@ void Client::acciones_posibles() {
     std::cout << "  - Abajo (d)" << std::endl;
     std::cout << "  - Saltar (j)" << std::endl;
     std::cout << "  - Salir (q)" << std::endl;
-}
+}*/
 
 void Client::iniciar_hilos() {
+    receiver = std::make_unique<ClientReceiver>(protocolo_client, client_id, server_msg);
     sender.start();
-    receiver.start();
-    // gui.start();
+    receiver->start();
 }
 
 void Client::jugar() {
@@ -196,79 +210,37 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-
+    //gui.setEscenario(plataforma);
+    protocolo_client.recibir_escenario(plataformas);
+    gui.start();
     // ***************** JUEGO *****************
     iniciar_hilos();
-    acciones_posibles();
 
-    std::string accion_actual;
-    while (std::cin >> accion_actual) {
-        if (accion_actual == "q") {
-            return;
-        }
+    while (not client_off) {
 
-        std::shared_ptr<ClientGameRespuesta> respuesta = nullptr;
+        std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
             // TODO: aca se debería de actualizar el render
-            respuesta->imprimir_respuesta();
-            if (respuesta->obtener_estado_de_la_partida() == false) {
+            gui.setGameState(*respuesta, client_id);
+
+            if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
                 // TODO: aca se deberían de mostrar las estadísticas
                 mostrar_estadisticas(*respuesta);
                 return;
-            }    
+            }
         }
-
-        ejecutar_accion(accion_actual);
     }
 }
 
-void Client::ejecutar_accion(std::string& accion_actual) {
-    accion_actual = toLowercase(accion_actual);
-    if (accion_actual == "disparar" or accion_actual == "s") {
-        disparar();
-    } else if (accion_actual == "derecha" or accion_actual == "r") {
-        moverDerecha();
-    } else if (accion_actual == "izquierda" or accion_actual == "l") {
-        moverIzquierda();
-    } else if (accion_actual == "rapido derecha" or accion_actual == "fr") {
-        moverDerechaRapido();
-    } else if (accion_actual == "rapido izquierda" or accion_actual == "fl") {
-        moverIzquierdaRapido();
-    } else if (accion_actual == "arriba" or accion_actual == "u") {
-        moverArriba();
-    } else if (accion_actual == "abajo" or accion_actual == "d") {
-        moverAbajo();
-    } else if (accion_actual == "saltar" or accion_actual == "j") {
-        saltar();
-    } else {
-        std::cout << "Error: Acción no reconocida" << std::endl;
-    }
-}
-
-void Client::disparar() { client_commands.push(TipoAccion::Disparar); }
-
-void Client::moverDerecha() { client_commands.push(TipoAccion::MoverDerecha); }
-
-void Client::moverIzquierda() { client_commands.push(TipoAccion::MoverIzquierda); }
-
-void Client::moverArriba() { client_commands.push(TipoAccion::MoverArriba); }
-
-void Client::moverAbajo() { client_commands.push(TipoAccion::MoverAbajo); }
-
-void Client::saltar() { client_commands.push(TipoAccion::Saltar); }
-
-void Client::moverDerechaRapido() { client_commands.push(TipoAccion::MoverDerechaRapido); }
-
-void Client::moverIzquierdaRapido() { client_commands.push(TipoAccion::MoverIzquierdaRapido); }
-
-void Client::mostrar_estadisticas(const ClientGameRespuesta& respuestas) const {
+void Client::mostrar_estadisticas(const GameState& respuestas) const {
     // TODO: Habria q dejarla mas linda y que imprima en orden de puntos
     std::cout << "Estadísticas de la partida:" << std::endl;
     std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;
-    for (const auto& respuesta: respuestas.obtener_respuestas()) {
-        std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " << respuesta.obtener_puntos() << std::endl;
-    }
+    /*for (const auto& respuesta: respuestas.obtener_respuestas()) {
+        std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " <<
+    respuesta.obtener_puntos() << std::endl;
+    }*/
 }
 
 void Client::stop_hilos() {}
@@ -277,8 +249,12 @@ Client::~Client() {
     client_commands.close();
     server_msg.close();
     protocolo_client.cerrar_socket();
+
     sender.stop();
-    receiver.stop();
+    receiver->stop();
+    gui.stop();
+
     sender.join();
-    receiver.join();
+    receiver->join();
+    gui.join();
 }

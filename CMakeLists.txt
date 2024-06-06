@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(jazzJackrabbit2)
 
 # Find the SDL2pp library
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_mixer 2.6.3 REQUIRED)
+#find_package(SDL2 REQUIRED)
+#find_package(SDL2_image REQUIRED)
+#find_package(SDL2_mixer REQUIRED)
 
 # Find the yaml-cpp library
-find_package(yaml-cpp REQUIRED)
+#find_package(yaml-cpp REQUIRED)
 
 # set up SDL2pp library
 set(SDL2PP_WITH_IMAGE YES)
@@ -24,6 +24,13 @@ message("[INFO] La raiz del proyecto es ${PROJECT_SOURCE_DIR}")
 # Agrego ej3/include a la lista de directorios de includes
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+# Agregar subcarpetas a la lista de directorios de includes
+include_directories(${PROJECT_SOURCE_DIR}/include/client_src/gui)
+include_directories(${PROJECT_SOURCE_DIR}/include/server_src/game)
+include_directories(${PROJECT_SOURCE_DIR}/include/common_src)
+include_directories(${PROJECT_SOURCE_DIR}/include/client_src)
+include_directories(${PROJECT_SOURCE_DIR}/include/server_src)
+
 # Esta macro toma cada uno los parámetros y ejecuta *uic* sobre ellos
 # La aplicacion uic genera headers con la definición de los widgets
 # a partir de un archivo .ui
@@ -39,8 +46,12 @@ message("Headers generados: ${UIS_HEADERS}")
 
 add_executable(client
   src/client_src/client.cpp
-  src/client_src/game_respuesta.cpp
-  src/client_src/gui.cpp
+  src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_arma.cpp
+  src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_state.cpp
+  src/client_src/gui/gui.cpp
   src/client_src/main.cpp
   src/client_src/client_protocol.cpp
   src/client_src/client_receiver.cpp
@@ -49,28 +60,30 @@ add_executable(client
   src/common_src/resolver.cpp
   src/common_src/resolvererror.cpp
   src/common_src/sockets.cpp
-  src/elements/animaciones.cpp
-  src/elements/escenario.cpp
-  src/elements/personaje.cpp
-  src/elements/enemigos.cpp
-  src/elements/frame.cpp
-  src/elements/platform.cpp
+  src/client_src/gui/gui_animaciones.cpp
+  src/client_src/gui/gui_escenario.cpp
+  src/client_src/gui/gui_personaje.cpp
+  src/client_src/gui/gui_clase_texturas.cpp
+  src/client_src/gui/gui_enemigos.cpp
+  src/client_src/gui/gui_frame.cpp
+  src/client_src/gui/gui_platform.cpp
   ${UIS_HEADERS})
 
 add_executable(server
   src/server_src/cliente_aceptado.cpp
   src/server_src/server_aceptador.cpp
   src/server_src/server.cpp
-  src/server_src/game_arma.cpp
-  src/server_src/game_class.cpp
-  src/server_src/game_comandos.cpp
-  src/server_src/game_enemigo.cpp
-  src/server_src/game_personaje.cpp
-  src/server_src/game_posicion.cpp
-  src/server_src/game_state_monitor.cpp
-  src/server_src/game_state.cpp
-  src/server_src/gameloop_class.cpp
-  src/server_src/gameloop_monitor.cpp
+  src/server_src/game/game_arma.cpp
+  src/server_src/game/game_class.cpp
+  src/server_src/game/game_comandos.cpp
+  src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_platform.cpp
+  src/server_src/game/game_state_monitor.cpp
+  src/server_src/game/game_state.cpp
+  src/server_src/game/gameloop_class.cpp
+  src/server_src/game/gameloop_monitor.cpp
   src/server_src/server_protocol.cpp
   src/server_src/server_receiver.cpp
   src/server_src/server_sender.cpp
@@ -80,8 +93,6 @@ add_executable(server
   src/common_src/sockets.cpp
   src/server_src/main.cpp
   ${UIS_HEADERS})
-
-
 
 # Use the Widgets module from Qt 5.
 target_link_libraries(client PUBLIC SDL2pp)

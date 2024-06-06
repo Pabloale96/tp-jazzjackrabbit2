@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-#include "../../include/client.h"
-#include "../../include/liberror.h"
+#include "../../include/client_src/client.h"
+#include "../../include/common_src/liberror.h"
 
 #define SUCCESS 0
 #define ERROR 1

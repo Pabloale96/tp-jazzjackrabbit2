@@ -1,14 +1,14 @@
-#include "../../include/server_aceptador.h"
+#include "../../include/server_src/server_aceptador.h"
 
 #include <list>
 #include <utility>  // move()
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/cliente_aceptado.h"
-#include "../../include/gameloop_class.h"
-#include "../../include/liberror.h"
-#include "../../include/server_protocol.h"
+#include "../../include/common_src/liberror.h"
+#include "../../include/server_src/cliente_aceptado.h"
+#include "../../include/server_src/game/gameloop_class.h"
+#include "../../include/server_src/server_protocol.h"
 
 #define ID_CLIENTE_INICIAL 10
 

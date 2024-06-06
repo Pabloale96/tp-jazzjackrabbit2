@@ -1,12 +1,12 @@
-#include "../../include/cliente_aceptado.h"
+#include "../../include/server_src/cliente_aceptado.h"
 
 #include <utility>  // move()
 #include <vector>
 
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/protocol_utils.h"
-#include "../../include/sockets.h"
+#include "../../include/common_src/protocol_utils.h"
+#include "../../include/common_src/sockets.h"
 
 #define MAX_TAM_COLA 10
 #define PARTIDA_NO_ASIGNADA 0
@@ -16,9 +16,11 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente):
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
         server_msg(MAX_TAM_COLA),
-        sender(protocolo_server, was_closed, server_msg),
+        sender(protocolo_server, id_cliente, was_closed, server_msg),
         receiver(nullptr),
-        gameloop_id(PARTIDA_NO_ASIGNADA) {}
+        gameloop_id(PARTIDA_NO_ASIGNADA) {
+    protocolo_server.enviar_id_jugador(id_cliente, was_closed);
+}
 
 void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
     if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {
@@ -28,6 +30,7 @@ void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
     } else {
         joinearse_a_una_partida(gameloop_monitor);
     }
+    protocolo_server.enviar_escenario((gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()),was_closed);
 }
 
 void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
@@ -40,21 +43,31 @@ void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                 gameloop_id, id_cliente);
+    
     return;
 }
 
 void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) {
     try {
-        protocolo_server.enviar_partidas_disponibles(gameloop_monitor, was_closed);
-        uint16_t gameloop_id = protocolo_server.recibir_id_partida(was_closed);
-        std::string personaje;
-        protocolo_server.recibir_personaje(personaje, was_closed);
-        std::cout << " ** SE UNIO A LA PARTIDA CON id " << gameloop_id << " **" << std::endl;
-        gameloop_monitor.obtener_gameloop(gameloop_id)
-                ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
-        gameloop_monitor.obtener_gameloop(gameloop_id)->agregar_cliente(id_cliente, personaje);
-        receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
-                                                    gameloop_id, id_cliente);
+        if (protocolo_server.enviar_partidas_disponibles(gameloop_monitor, was_closed) == CREAR_PARTIDA) {
+            if (protocolo_server.crear_partida(was_closed) == CREAR_PARTIDA) {
+                    std::string nombre_partida;
+                    protocolo_server.recibir_nombre_partida(nombre_partida, was_closed);
+                    crear_partida(gameloop_monitor, nombre_partida);
+            } else {
+                std::cout << "Error al crear partida" << std::endl;
+            }
+        } else {
+            uint16_t gameloop_id = protocolo_server.recibir_id_partida(was_closed);
+            std::string personaje;
+            protocolo_server.recibir_personaje(personaje, was_closed);
+            std::cout << " ** SE UNIO A LA PARTIDA CON id " << gameloop_id << " **" << std::endl;
+            gameloop_monitor.obtener_gameloop(gameloop_id)
+                    ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+            gameloop_monitor.obtener_gameloop(gameloop_id)->agregar_cliente(id_cliente, personaje);
+            receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
+                                                        gameloop_id, id_cliente);
+        }
     } catch (const std::exception& e) {
         std::cerr << "Error al obtener partidas disponibles: " << e.what() << std::endl;
         throw;

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../../include/server.h"
+#include "../../include/server_src/server.h"
 
 #define SUCCESS 0
 #define ERROR 1
