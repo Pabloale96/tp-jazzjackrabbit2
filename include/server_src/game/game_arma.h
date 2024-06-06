@@ -23,7 +23,7 @@
 class Arma {
 protected:
     uint8_t nombre_arma;
-    uint16_t municion;
+    uint16_t cant_municiones;
     float vel_dis;
     float vel_proy;
     float dano;
@@ -31,7 +31,7 @@ protected:
 public:
     Arma();
     Arma(uint16_t municion, uint16_t nombre) {
-        this->municion = municion;
+        this->cant_municiones = municion;
         this->nombre_arma = nombre;
         switch (nombre) {
             case 1:
@@ -54,14 +54,14 @@ public:
 
     uint8_t obtener_nombre_arma() const { return nombre_arma; }
 
-    uint16_t obtener_municion() const { return municion; }
+    uint16_t obtener_municion() const { return cant_municiones; }
 
     void disminuir_municion() {
         if (nombre_arma == 0) {
             // El arma inicial tiene municion infinita
             return;
         } else {
-            municion--;
+            cant_municiones--;
         }
     }
 

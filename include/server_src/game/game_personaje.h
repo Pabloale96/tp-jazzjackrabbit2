@@ -8,7 +8,7 @@
 #include "defines_msg.h"
 #include "game_arma.h"
 #include "game_posicion.h"
-
+#include "game_municion.h"
 
 #define PUNTOS_INICIALES 0
 #define VIDA_INICIAL 10
@@ -23,6 +23,7 @@ private:
     uint16_t vida;
     Arma arma;
     Posicion posicion;
+    std::vector<Municion> municiones_disparadas;
 
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);

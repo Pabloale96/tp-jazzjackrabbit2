@@ -17,6 +17,7 @@ public:
 
 class Disparar: public Comando {
 public:
+    // TODO: Necesito la dirección en la q esta mirando
     void ejecutar(Game& game) override;
 };
 
