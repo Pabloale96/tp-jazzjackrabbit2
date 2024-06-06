@@ -155,6 +155,15 @@ bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id
         gameState.pushPersonajes(personaje.personaje);
     }
 
+    msgEnemigo enemigo;
+    for (size_t i = 0; i < msg.cantidad_enemigos; i++) {
+        if (was_closed) {
+            return false;
+        }
+        socket_cliente.recvall(&enemigo, sizeof(enemigo), &was_closed);
+        gameState.pushEnemigos(enemigo.enemigo);
+    }
+
     return true;
 }
 

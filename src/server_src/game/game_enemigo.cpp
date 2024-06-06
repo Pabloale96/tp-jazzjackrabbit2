@@ -1,6 +1,8 @@
 #include "../../include/server_src/game/game_enemigo.h"
 
 #include <iostream>
+
+#include "defines_msg.h"
 #define ITERACIONES_PARA_REVIVIR 15
 #define TIME_REVIVE_INICIAL 50
 
@@ -13,6 +15,11 @@ prob_municion(0.0f),
 prob_vida(0.0f)
 */
 {}
+
+Enemigo::Enemigo(uint16_t* datos_enemigo):
+        id_enemigo(datos_enemigo[POS_ID_ENEMIGO]),
+        tipo_enemigo(static_cast<TipoEnemigo>(datos_enemigo[POS_TIPO_ENEMIGO])),
+        posicion_enemigo(datos_enemigo[POS_POSX_ENEMIGO], datos_enemigo[POS_POSY_ENEMIGO]) {}
 
 void Enemigo::set_enemigo_id(uint16_t id_enemigo) { this->id_enemigo = id_enemigo; }
 void Enemigo::set_tipo_enemigo(TipoEnemigo tipo_enemigo) { this->tipo_enemigo = tipo_enemigo; }

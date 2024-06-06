@@ -29,6 +29,7 @@ struct msgGameState {
     uint16_t client_id;
     // uint16_t tiempo;
     uint16_t cantidad_personajes;
+    uint16_t cantidad_enemigos;
 
     msgGameState(): header(MSG_HEADER), cantidad_personajes(1) {}
 
@@ -36,7 +37,9 @@ struct msgGameState {
             header(MSG_HEADER),
             state_partida(gameState.getJugando() ? 0x01 : 0x00),
             client_id(htons(client_id)),
-            cantidad_personajes(htons(gameState.getSizePersonajes())) {}
+            cantidad_personajes(htons(gameState.getSizePersonajes())),
+            cantidad_enemigos(htons(gameState.get_cantidad_de_enemigos())) {}
+
 } __attribute__((packed));
 
 struct msgPersonaje {
@@ -52,6 +55,19 @@ struct msgPersonaje {
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
         personaje[POS_ARMA_PERSONAJE] = htons(pers.obtener_nombre_arma());
+    }
+};
+
+struct msgEnemigo {
+    uint16_t enemigo[SIZE_ARRAY_ENEMIGO] = {0};
+
+    msgEnemigo() {}
+
+    msgEnemigo(uint16_t id, const Enemigo& enemi) {
+        enemigo[POS_ID_ENEMIGO] = htons(id);
+        enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
+        enemigo[POS_POSX_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_x());
+        enemigo[POS_POSY_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_y());
     }
 };
 

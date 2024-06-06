@@ -187,6 +187,14 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
         }
         socket_cliente.sendall(&personaje, sizeof(personaje), &was_closed);
     }
+    for (auto& pair: gameState.obtener_diccionario_de_enemigos()) {
+        msgEnemigo enemigo(pair.first, pair.second);
+
+        if (was_closed) {
+            return;
+        }
+        socket_cliente.sendall(&enemigo, sizeof(enemigo), &was_closed);
+    }
 }
 
 void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
