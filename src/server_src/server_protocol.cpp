@@ -47,7 +47,7 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
 }
 
 uint8_t ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
-                                                 bool& was_closed) {
+                                                    bool& was_closed) {
     std::map<uint16_t, std::string> partidas_disponibles;
     gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
     uint16_t cant_partidas = partidas_disponibles.size();
@@ -192,12 +192,12 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
 void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
     std::vector<Platform> plataformas = game.obtener_plataformas();
     msgEscenario msg_escenario(plataformas.size());
-    
+
     if (was_closed) {
         return;
     }
     socket_cliente.sendall(&msg_escenario, sizeof(msg_escenario), &was_closed);
-    for (int i=0;i<plataformas.size();i++) {
+    for (int i = 0; i < plataformas.size(); i++) {
         msgPlataforma msg_plataforma(plataformas[i]);
         if (was_closed) {
             return;

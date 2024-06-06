@@ -65,15 +65,14 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
 bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataforma) {
 
     msgEscenario escenario(0);
-    
-    uint16_t sizee =0;
+
+    uint16_t size = 0;
     if (was_closed) {
         return false;
     }
     socket_cliente.recvall(&escenario, sizeof(escenario), &was_closed);
     msgPlataforma plataforma;
-    for (size_t i = 0; i < htons(escenario.cantidad_plataformas); i++)
-    {
+    for (size_t i = 0; i < htons(escenario.cantidad_plataformas); i++) {
         if (was_closed) {
             return false;
         }

@@ -52,8 +52,8 @@ Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_comman
 }
 
 void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id) {
-    // Este lock no hace falta porque obtener_gameloop ya tiene un lock (por lo que terminariamos en deadlock) 
-    // std::unique_lock<std::mutex> lock(m);
+    // Este lock no hace falta porque obtener_gameloop ya tiene un lock (por lo que terminariamos en
+    // deadlock) std::unique_lock<std::mutex> lock(m);
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
     std::unique_lock<std::mutex> lock(m);
     gameloop->borrar_cliente(client_id);
@@ -68,6 +68,7 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
 
 GameloopMonitor::~GameloopMonitor() {
     std::unique_lock<std::mutex> lock(m);
+    // cppcheck-suppress unassignedVariable
     for (auto& [id, gameloop]: diccionario_de_gameloops) {
         std::cout << "Borrando Partida " << id << std::endl;
         gameloop->stop();

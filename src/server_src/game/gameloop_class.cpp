@@ -78,7 +78,7 @@ void GameLoop::run() {
             }
             // TODO: Aca actualizo posiciones de enemigos:
             // game.actualizar_posiciones();
-            // broadcastear();
+            broadcastear();
 
             // Calculo tiempo para mantener el rate
             auto t_final = std::chrono::high_resolution_clock::now();

@@ -132,7 +132,8 @@ void Client::unirse_a_partida() {
         std::cout << "Error: No se pudo joinear a la partida" << std::endl;
         return;
     }
-    std::cout << "Espere un momento mientras buscamos las partidas disponibles para unirse..." << std::endl;
+    std::cout << "Espere un momento mientras buscamos las partidas disponibles para unirse..."
+              << std::endl;
     std::map<uint16_t, std::string> partidas_disponibles;
     protocolo_client.recibir_partidas_disponibles(partidas_disponibles);
     if (partidas_disponibles.empty()) {
@@ -210,7 +211,7 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-    //gui.setEscenario(plataforma);
+    // gui.setEscenario(plataforma);
     protocolo_client.recibir_escenario(plataformas);
     gui.start();
     // ***************** JUEGO *****************
