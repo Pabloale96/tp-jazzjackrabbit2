@@ -22,7 +22,8 @@ Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje
         enemigos[i]->set_enemigo_id(i + 1);
     }
 
-    Platform plataforma_inicial(0, 0, ROTATE_0, XMAX, 1, TYPE_1);
+    Platform plataforma_inicial(0, 0, static_cast<uint16_t>(ROTATE_PLATFORM::ROTATE_0),
+             XMAX, 1, static_cast<uint16_t>(TYPE_PLATFORM::TYPE_1));
     plataformas.push_back(plataforma_inicial);
 }
 

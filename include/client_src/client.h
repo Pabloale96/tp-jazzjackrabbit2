@@ -8,7 +8,7 @@
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
-#include "gui.h"
+#include "./gui/gui.h"
 #include "msgToSent.h"
 #include "sockets.h"
 
@@ -24,7 +24,6 @@ private:
     bool client_off;
     std::string personaje;
     uint16_t client_id;
-    std::vector<msgPlataforma> plataformas;
     Gui gui;
 
     std::string toLowercase(const std::string& str);

@@ -208,12 +208,13 @@ void Client::iniciar_hilos() {
 void Client::jugar() {
 
     // ***************** LOBBY *****************
+    std::vector<msgPlataforma> plataformas;
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-    // gui.setEscenario(plataforma);
     protocolo_client.recibir_escenario(plataformas);
-    gui.start();
+    //gui.setEscenario(plataformas);
+    //gui.start();
 
     // ***************** JUEGO *****************
     iniciar_hilos();
@@ -222,7 +223,7 @@ void Client::jugar() {
 
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
-            gui.setGameState(*respuesta, client_id);
+            //gui.setGameState(*respuesta, client_id);
 
             if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;

@@ -1,15 +1,5 @@
 #include "../include/client_src/gui/gui.h"
 
-#include <chrono>
-#include <exception>
-#include <iostream>
-#include <memory>
-#include <thread>
-
-#include "../include/client_src/gui/gui_escenario.h"
-#include "../include/client_src/gui/gui_personaje.h"
-#include "../include/common_src/protocol_utils.h"
-
 Gui::Gui(int x, int y, int w, int h, bool& client_off, std::string& personaje,
          Queue<msgAccion>& client_commands):
         posx(x),
@@ -32,7 +22,14 @@ void Gui::setGameState(GameState& gamestate, uint16_t client_id) {
         }
     }
 }
-
+void Gui::setEscenario(std::vector<msgPlataforma>& msg_plataformas) {    
+    for (size_t i = 0; i < msg_plataformas.size(); i++)
+    {
+        PlatformGui plataforma(texturas,msg_plataformas[i]);
+        plataformas.push_back(plataforma);
+    }
+    
+}
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
