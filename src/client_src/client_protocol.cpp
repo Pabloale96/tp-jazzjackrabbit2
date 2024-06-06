@@ -40,7 +40,7 @@ bool ProtocolClient::enviar_personaje(const std::string& personaje) {
     return true;
 }
 
-bool ProtocolClient::crear_partida(std::string& nombre_partida) {
+bool ProtocolClient::enviar_codigo_de_crear_partida() {
     uint8_t accion_serializada = CREAR_PARTIDA;
     if (was_closed) {
         return false;
@@ -49,6 +49,10 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     if (was_closed) {
         return false;
     }
+    return true;
+}
+
+bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     uint8_t nombre_partida_len = nombre_partida.size();
     socket_cliente.sendall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
     if (was_closed) {
@@ -96,7 +100,6 @@ void ProtocolClient::recibir_partidas_disponibles(
     uint16_t cant_partidas;
     socket_cliente.recvall(&cant_partidas, sizeof(uint16_t), &was_closed);
     cant_partidas = ntohs(cant_partidas);
-    std::cout << "Cantidad de partidas: " << cant_partidas << std::endl;
     if (was_closed) {
         return;
     }

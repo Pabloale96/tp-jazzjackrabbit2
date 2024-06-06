@@ -23,11 +23,8 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
 // TODO: Mando el map en vez de pasarlo por referencia
 void GameloopMonitor::obtener_partidas_disponibles(
         std::map<uint16_t, std::string>& partidas_disponibles) {
-    
     std::unique_lock<std::mutex> lock(m);
     partidas_disponibles.clear();
-    std::cout << "Cantidad de partidas disponibles: " << diccionario_de_gameloops.size()
-              << std::endl;
     if (diccionario_de_gameloops.empty()) {
         return;
     }
@@ -55,11 +52,13 @@ Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_comman
 }
 
 void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id) {
-    std::unique_lock<std::mutex> lock(m);
+    // Este lock no hace falta porque obtener_gameloop ya tiene un lock (por lo que terminariamos en deadlock) 
+    // std::unique_lock<std::mutex> lock(m);
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    std::unique_lock<std::mutex> lock(m);
     gameloop->borrar_cliente(client_id);
     if (gameloop->obtener_cantidad_de_clientes() == 0) {
-        std::cout << "Borrando gameloop " << gameloop_id << std::endl;
+        std::cout << "Partida " << gameloop_id << " borrada por no haber jugadores" << std::endl;
         diccionario_de_gameloops.erase(diccionario_de_gameloops.find(gameloop_id));
         gameloop->stop();
         gameloop->join();
@@ -69,8 +68,8 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
 
 GameloopMonitor::~GameloopMonitor() {
     std::unique_lock<std::mutex> lock(m);
-    // cppcheck-suppress unusedVariable
     for (auto& [id, gameloop]: diccionario_de_gameloops) {
+        std::cout << "Borrando Partida " << id << std::endl;
         gameloop->stop();
         gameloop->join();
         delete gameloop;

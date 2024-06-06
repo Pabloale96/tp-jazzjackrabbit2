@@ -78,7 +78,7 @@ void GameLoop::run() {
             }
             // TODO: Aca actualizo posiciones de enemigos:
             // game.actualizar_posiciones();
-            broadcastear();
+            // broadcastear();
 
             // Calculo tiempo para mantener el rate
             auto t_final = std::chrono::high_resolution_clock::now();
@@ -92,16 +92,15 @@ void GameLoop::run() {
             t_0 = std::chrono::high_resolution_clock::now();
         }
     } catch (const ClosedQueue&) {
-        std::cout << "GameLoop " << gameloop_id << " cerrado.\n";
         return;
     } catch (const std::exception& err) {
         if (!this->is_alive()) {
             return;
         } else {
-            std::cerr << "Unexpected exception in juego->run: " << err.what() << "\n";
+            std::cerr << "Unexpected exception in GameLoop->run: " << err.what() << "\n";
         }
     } catch (...) {
-        std::cerr << "Unexpected exception in juego->run: <unknown>\n";
+        std::cerr << "Unexpected exception in GameLoop->run: <unknown>\n";
     }
 }
 

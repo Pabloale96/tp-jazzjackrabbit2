@@ -35,6 +35,8 @@ public:
 
     uint16_t recibir_id_jugador();
 
+    bool enviar_codigo_de_crear_partida();
+
     bool crear_partida(std::string& nombre_partida);
 
     bool unirse_a_partida();

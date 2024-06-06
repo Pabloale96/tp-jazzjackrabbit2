@@ -118,7 +118,10 @@ void Client::crear_partida() {
     std::string nombre_partida;
     std::cin.ignore();
     std::getline(std::cin, nombre_partida);
-    if (protocolo_client.crear_partida(nombre_partida) == false) {
+    if (protocolo_client.enviar_codigo_de_crear_partida() == false) {
+        std::cout << "Error: No se pudo enviar el código de crear partida" << std::endl;
+        return;
+    } else if (protocolo_client.crear_partida(nombre_partida) == false) {
         std::cout << "Error: No se pudo crear la partida" << std::endl;
         return;
     }
@@ -129,25 +132,29 @@ void Client::unirse_a_partida() {
         std::cout << "Error: No se pudo joinear a la partida" << std::endl;
         return;
     }
-    std::cout << "Estas son las partidas disponibles para unirse: " << std::endl;
+    std::cout << "Espere un momento mientras buscamos las partidas disponibles para unirse..." << std::endl;
     std::map<uint16_t, std::string> partidas_disponibles;
     protocolo_client.recibir_partidas_disponibles(partidas_disponibles);
     if (partidas_disponibles.empty()) {
         std::cout << "No hay partidas disponibles para unirse" << std::endl;
+        std::cout << "Creando una nueva partida..." << std::endl;
+        crear_partida();
         return;
-    }
-    for (const auto& pair: partidas_disponibles) {
-        std::cout << "   - ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
-    }
-    std::cout << "Ingrese el ID de la partida a la que desea unirse" << std::endl;
-    uint16_t id_partida;
-    while (std::cin >> id_partida) {
-        if (partidas_disponibles.find(id_partida) == partidas_disponibles.end()) {
-            std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
-            continue;
+    } else {
+        std::cout << "Estas son las partidas disponibles para unirse: " << std::endl;
+        for (const auto& pair: partidas_disponibles) {
+            std::cout << "   - ID: " << pair.first << " - Nombre: " << pair.second << std::endl;
         }
-        protocolo_client.enviar_id_partida(id_partida);
-        return;
+        std::cout << "Ingrese el ID de la partida a la que desea unirse" << std::endl;
+        uint16_t id_partida;
+        while (std::cin >> id_partida) {
+            if (partidas_disponibles.find(id_partida) == partidas_disponibles.end()) {
+                std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
+                continue;
+            }
+            protocolo_client.enviar_id_partida(id_partida);
+            return;
+        }
     }
 }
 

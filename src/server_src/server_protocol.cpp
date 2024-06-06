@@ -46,19 +46,19 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
     socket_cliente.recvall(&nombre_partida[0], nombre_partida_len * sizeof(uint8_t), &was_closed);
 }
 
-void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
+uint8_t ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
                                                  bool& was_closed) {
     std::map<uint16_t, std::string> partidas_disponibles;
-    std::cout << "Enviando partidas disponibles" << std::endl;
     gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
     uint16_t cant_partidas = partidas_disponibles.size();
-    std::cout << "Cantidad de partidas: " << cant_partidas << std::endl;
     cant_partidas = htons(cant_partidas);
-
     socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);
-    std::cout << "Enviando partidas" << std::endl;
+    if (cant_partidas == 0) {
+        // Si no hay partidas disponibles, se pasa a crear partida
+        return CREAR_PARTIDA;
+    }
     if (was_closed) {
-        return;
+        return FALLO;
     }
     for (const auto& pair: partidas_disponibles) {
         uint16_t id = pair.first;
@@ -66,19 +66,20 @@ void ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monit
         socket_cliente.sendall(&id, sizeof(uint16_t), &was_closed);
 
         if (was_closed) {
-            return;
+            return FALLO;
         }
         std::string nombre_partida = pair.second;
         uint8_t nombre_partida_len = nombre_partida.size();
         socket_cliente.sendall(&nombre_partida_len, sizeof(uint8_t), &was_closed);
         if (was_closed) {
-            return;
+            return FALLO;
         }
         socket_cliente.sendall(nombre_partida.c_str(), nombre_partida_len, &was_closed);
         if (was_closed) {
-            return;
+            return FALLO;
         }
     }
+    return UNIRSE_A_PARTIDA;
 }
 
 uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
