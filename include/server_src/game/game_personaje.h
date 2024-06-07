@@ -66,25 +66,27 @@ public:
 
     uint16_t obtener_municion() const;
 
+    virtual void accion_especial() = 0;
+
     virtual ~Personaje() = default;
 };
 
 class Jazz: public Personaje {
 public:
     Jazz(uint16_t partida_id, uint16_t client_id);
-    void punietazo_hacia_arriba();
+    void accion_especial() override;
 };
 
 class Lori: public Personaje {
 public:
     Lori(uint16_t partida_id, uint16_t client_id);
-    void patada_de_corto_alcance();
+    void accion_especial() override;
 };
 
 class Spazz: public Personaje {
 public:
     Spazz(uint16_t partida_id, uint16_t client_id);
-    void patada_hacia_un_costado();
+    void accion_especial() override;
 };
 
 Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje);

@@ -20,6 +20,16 @@ void Disparar::ejecutar(Game& game) {
     }
 }
 
+// **** ACCION ESPECIAL ****
+AccionEspecial::AccionEspecial(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void AccionEspecial::ejecutar(Game& game) {
+    if (toggle) {
+        game.accion_especial(client_id);
+    }
+}
+
+
 // **** MOVER ****
 
 MoverDerecha::MoverDerecha(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}

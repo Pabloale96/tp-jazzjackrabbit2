@@ -81,6 +81,11 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
     }
 }
 
+void Game::accion_especial(uint16_t client_id) {
+    obtener_personaje(client_id).accion_especial();
+}
+
+
 void Game::actualizar_posiciones() {
     actualizar_personajes();
     actualizar_enemigos();
@@ -105,7 +110,6 @@ void Game::actualizar_enemigos() {
         }
     }
 }
-
 
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
     for (const auto& personaje: personajes) {

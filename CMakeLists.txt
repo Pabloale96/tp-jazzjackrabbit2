@@ -27,6 +27,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Agregar subcarpetas a la lista de directorios de includes
 include_directories(${PROJECT_SOURCE_DIR}/include/client_src/gui)
 include_directories(${PROJECT_SOURCE_DIR}/include/server_src/game)
+include_directories(${PROJECT_SOURCE_DIR}/include/common_src/catedra)
 include_directories(${PROJECT_SOURCE_DIR}/include/common_src)
 include_directories(${PROJECT_SOURCE_DIR}/include/client_src)
 include_directories(${PROJECT_SOURCE_DIR}/include/server_src)

@@ -86,7 +86,7 @@ Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
     asignar_tipo_personaje("jazz");
 }
 
-void Jazz::punietazo_hacia_arriba() {
+void Jazz::accion_especial() {
     obtener_posicion().mover("arriba");
     // TODO: Si toco un enemigo, realizo daño
 }
@@ -95,7 +95,7 @@ Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
     asignar_tipo_personaje("lori");
 }
 
-void Lori::patada_de_corto_alcance() {
+void Lori::accion_especial() {
     obtener_posicion().mover("arriba");
     // TODO: Si toco un enemigo, realizo daño
 }
@@ -104,7 +104,7 @@ Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, cli
     asignar_tipo_personaje("spazz");
 }
 
-void Spazz::patada_hacia_un_costado() {
+void Spazz::accion_especial() {
     obtener_direccion() == Direccion::DERECHA ? obtener_posicion().mover("derecha") :
                                                 obtener_posicion().mover("izquierda");
     // TODO: Si toco un enemigo, realizo daño

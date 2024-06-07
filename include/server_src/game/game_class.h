@@ -37,6 +37,8 @@ public:
 
     bool mover(const std::string& direccion, uint16_t client_id);
 
+    void accion_especial(uint16_t client_id);
+
     bool atacar_enemigo(uint16_t client_id);
 
     void actualizar_posiciones();
