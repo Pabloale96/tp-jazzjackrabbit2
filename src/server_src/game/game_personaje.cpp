@@ -9,7 +9,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         puntos(PUNTOS_INICIALES),
         vida(VIDA_INICIAL),
         arma(),
-        posicion(), 
+        posicion(),
         direccion(Direccion::CENTRO) {}
 
 Personaje::Personaje(uint16_t* datos_personajes):
@@ -24,6 +24,8 @@ Personaje::Personaje(uint16_t* datos_personajes):
 void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
+
+void Personaje::actualizar() {}
 
 void Personaje::setear_direccion(const std::string& direccion) {
     if (direccion == "derecha" || direccion == "derecha_rapido") {

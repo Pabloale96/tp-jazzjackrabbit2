@@ -12,8 +12,8 @@ enum class Direccion {
     DERECHA,
     IZQUIERDA,
     ARRIBA,
-    ABAJO, 
-    CENTRO // seria como idle
+    ABAJO,
+    CENTRO  // seria como idle
 };
 
 class Posicion {

@@ -81,6 +81,32 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
     }
 }
 
+void Game::actualizar_posiciones() {
+    actualizar_personajes();
+    actualizar_enemigos();
+}
+
+void Game::actualizar_personajes() {
+    for (auto& personaje: personajes) {
+        if (personaje) {
+            personaje->actualizar();
+        } else {
+            std::cerr << "ERROR en actualizar_personajes" << std::endl;
+        }
+    }
+}
+
+void Game::actualizar_enemigos() {
+    for (auto& enemigo: enemigos) {
+        if (enemigo) {
+            enemigo->actualizar();
+        } else {
+            std::cerr << "ERROR en actualizar_enemigos" << std::endl;
+        }
+    }
+}
+
+
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
     for (const auto& personaje: personajes) {
         if (personaje) {

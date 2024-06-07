@@ -23,7 +23,6 @@ private:
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
     std::list<uint16_t> clients_id;
-    // una lista de personajes por client id ?
 
 public:
     // Constructor

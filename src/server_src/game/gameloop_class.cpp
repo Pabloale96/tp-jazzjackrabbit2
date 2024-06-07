@@ -74,8 +74,7 @@ void GameLoop::run() {
                     comando->ejecutar(this->game);
                 }
             }
-            // TODO: Aca actualizo posiciones de enemigos:
-            // game.actualizar_posiciones();
+            game.actualizar_posiciones();
             broadcastear();
 
             // Calculo tiempo para mantener el rate

@@ -7,8 +7,8 @@
 
 #include "defines_msg.h"
 #include "game_arma.h"
-#include "game_posicion.h"
 #include "game_municion.h"
+#include "game_posicion.h"
 
 #define PUNTOS_INICIALES 0
 #define VIDA_INICIAL 10
@@ -32,6 +32,8 @@ public:
     explicit Personaje(uint16_t* personaje);
 
     void asignar_tipo_personaje(const std::string& tipo_personaje);
+
+    void actualizar();
 
     virtual bool mover(const std::string& direccion);
 

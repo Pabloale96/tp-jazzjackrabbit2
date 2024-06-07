@@ -39,6 +39,12 @@ public:
 
     bool atacar_enemigo(uint16_t client_id);
 
+    void actualizar_posiciones();
+
+    void actualizar_personajes();
+
+    void actualizar_enemigos();
+
     bool aumentar_iteraciones();
 
     void crear_nuevo_gamestate(GameState& gamestate);
