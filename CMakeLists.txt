@@ -77,6 +77,7 @@ add_executable(server
   src/server_src/game/game_class.cpp
   src/server_src/game/game_comandos.cpp
   src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_municion.cpp
   src/server_src/game/game_personaje.cpp
   src/server_src/game/game_posicion.cpp
   src/server_src/game/game_platform.cpp
