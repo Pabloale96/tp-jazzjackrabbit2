@@ -24,6 +24,7 @@ private:
     Arma arma;
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
+    Direccion direccion;
 
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
@@ -34,11 +35,15 @@ public:
 
     virtual bool mover(const std::string& direccion);
 
+    void setear_direccion(const std::string& direccion);
+
     void disminuir_vida(uint16_t danio);
 
     void disminuir_municion();
 
     Posicion obtener_posicion() const;
+
+    Direccion obtener_direccion() const;
 
     uint16_t obtener_partida_id() const;
 

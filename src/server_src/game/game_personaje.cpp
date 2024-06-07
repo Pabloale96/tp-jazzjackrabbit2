@@ -9,7 +9,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         puntos(PUNTOS_INICIALES),
         vida(VIDA_INICIAL),
         arma(),
-        posicion() {}
+        posicion(), 
+        direccion(Direccion::CENTRO) {}
 
 Personaje::Personaje(uint16_t* datos_personajes):
         tipo_personaje(),
@@ -22,6 +23,20 @@ Personaje::Personaje(uint16_t* datos_personajes):
 
 void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
+}
+
+void Personaje::setear_direccion(const std::string& direccion) {
+    if (direccion == "derecha" || direccion == "derecha_rapido") {
+        this->direccion = Direccion::DERECHA;
+    } else if (direccion == "izquierda" || direccion == "izquierda_rapido") {
+        this->direccion = Direccion::IZQUIERDA;
+    } else if (direccion == "arriba" || direccion == "saltar") {
+        this->direccion = Direccion::ARRIBA;
+    } else if (direccion == "abajo") {
+        this->direccion = Direccion::ABAJO;
+    } else {
+        this->direccion = Direccion::CENTRO;
+    }
 }
 
 bool Personaje::mover(const std::string& direccion) {
@@ -42,6 +57,8 @@ void Personaje::disminuir_vida(uint16_t danio) {
 void Personaje::disminuir_municion() { arma.disminuir_municion(); }
 
 Posicion Personaje::obtener_posicion() const { return posicion; }
+
+Direccion Personaje::obtener_direccion() const { return direccion; }
 
 uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 

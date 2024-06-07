@@ -8,6 +8,14 @@
 #define X_INICIAL 0
 #define Y_INICIAL 0
 
+enum class Direccion {
+    DERECHA,
+    IZQUIERDA,
+    ARRIBA,
+    ABAJO, 
+    CENTRO // seria como idle
+};
+
 class Posicion {
 
 private:
