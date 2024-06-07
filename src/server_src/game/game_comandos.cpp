@@ -4,9 +4,15 @@
 
 Comando::Comando(): toggle(false) {}
 
+Comando::Comando(uint16_t client_id, bool toggle): client_id(client_id), toggle(toggle) {}
+
 void Comando::set_client_id(uint16_t client_id) { this->client_id = client_id; }
 
 void Comando::set_toggle(bool toggle) { this->toggle = toggle; }
+
+// **** DISPARAR ****
+
+Disparar::Disparar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void Disparar::ejecutar(Game& game) {
     if (toggle) {
@@ -14,11 +20,18 @@ void Disparar::ejecutar(Game& game) {
     }
 }
 
+// **** MOVER ****
+
+MoverDerecha::MoverDerecha(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
 void MoverDerecha::ejecutar(Game& game) {
     if (toggle) {
         game.mover("derecha", client_id);
     }
 }
+
+MoverDerechaRapido::MoverDerechaRapido(uint16_t client_id, bool toggle):
+        Comando(client_id, toggle) {}
 
 void MoverDerechaRapido::ejecutar(Game& game) {
     if (toggle) {
@@ -26,11 +39,16 @@ void MoverDerechaRapido::ejecutar(Game& game) {
     }
 }
 
+MoverIzquierda::MoverIzquierda(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
 void MoverIzquierda::ejecutar(Game& game) {
     if (toggle) {
         game.mover("izquierda", client_id);
     }
 }
+
+MoverIzquierdaRapido::MoverIzquierdaRapido(uint16_t client_id, bool toggle):
+        Comando(client_id, toggle) {}
 
 void MoverIzquierdaRapido::ejecutar(Game& game) {
     if (toggle) {
@@ -38,18 +56,30 @@ void MoverIzquierdaRapido::ejecutar(Game& game) {
     }
 }
 
+// **** SALTAR ****
+
+Saltar::Saltar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
 void Saltar::ejecutar(Game& game) {
     if (toggle) {
         game.mover("saltar", client_id);
     }
 }
 
+
+// *** MOVER ARRIBA Y ABAJO ***
+
 // Arriba y abajo creo que no hay, sería saltar y agacharse?
+
+MoverArriba::MoverArriba(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
 void MoverArriba::ejecutar(Game& game) {
     if (toggle) {
         game.mover("arriba", client_id);
     }
 }
+
+MoverAbajo::MoverAbajo(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void MoverAbajo::ejecutar(Game& game) {
     if (toggle) {

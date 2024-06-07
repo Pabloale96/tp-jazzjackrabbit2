@@ -118,44 +118,31 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& 
     std::unique_ptr<Comando> comando = nullptr;
     switch (mensaje_recibido.accion) {
         case DISPARAR:
-            comando = std::make_unique<Disparar>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<Disparar>(cliente_id, mensaje_recibido.toggle);
+            return comando;
+        case ACCION_ESPECIAL:
+            comando = std::make_unique<AccionEspecial>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case MOVER_DERECHA:
-            comando = std::make_unique<MoverDerecha>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<MoverDerecha>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case MOVER_DERECHA_RAPIDO:
-            comando = std::make_unique<MoverDerechaRapido>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<MoverDerechaRapido>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case MOVER_IZQUIERDA:
-            comando = std::make_unique<MoverIzquierda>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<MoverIzquierda>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case MOVER_IZQUIERDA_RAPIDO:
-            comando = std::make_unique<MoverIzquierdaRapido>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<MoverIzquierdaRapido>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case MOVER_ARRIBA:
-            comando = std::make_unique<MoverArriba>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<MoverArriba>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case MOVER_ABAJO:
-            comando = std::make_unique<MoverAbajo>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<MoverAbajo>(cliente_id, mensaje_recibido.toggle);
             return comando;
         case SALTAR:
-            comando = std::make_unique<Saltar>();
-            comando->set_client_id(cliente_id);
-            comando->set_toggle(mensaje_recibido.toggle);
+            comando = std::make_unique<Saltar>(cliente_id, mensaje_recibido.toggle);
             return comando;
 
         default:

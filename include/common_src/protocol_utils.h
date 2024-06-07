@@ -16,6 +16,7 @@
 #define MOVER_ARRIBA 0x06
 #define MOVER_ABAJO 0x07
 #define SALTAR 0x08
+#define ACCION_ESPECIAL 0x09
 
 #define ARMA_INICIAL 0x01
 #define ARMA_SECUNDARIA 0x02

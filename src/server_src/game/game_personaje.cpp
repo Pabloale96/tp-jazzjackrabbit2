@@ -10,7 +10,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         vida(VIDA_INICIAL),
         arma(),
         posicion(),
-        direccion(Direccion::CENTRO) {}
+        direccion(Direccion::CENTRO),
+        intoxicado(false) {}
 
 Personaje::Personaje(uint16_t* datos_personajes):
         tipo_personaje(),
@@ -24,6 +25,10 @@ Personaje::Personaje(uint16_t* datos_personajes):
 void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
+
+void Personaje::intoxicar() { intoxicado = true; }
+
+bool Personaje::obtener_estado_intoxicado() { return intoxicado; }
 
 void Personaje::actualizar() {}
 
@@ -42,6 +47,7 @@ void Personaje::setear_direccion(const std::string& direccion) {
 }
 
 bool Personaje::mover(const std::string& direccion) {
+    setear_direccion(direccion);
     // TODO: Esto es reactivo
     return posicion.mover(direccion);
     // Deberia setear el toggle de movimiento
@@ -81,7 +87,8 @@ Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
 }
 
 void Jazz::punietazo_hacia_arriba() {
-    // TODO: Implementación del puñetazo hacia arriba
+    obtener_posicion().mover("arriba");
+    // TODO: Si toco un enemigo, realizo daño
 }
 
 Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
@@ -89,7 +96,8 @@ Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
 }
 
 void Lori::patada_de_corto_alcance() {
-    // TODO: Implementación de la patada de corto alcance
+    obtener_posicion().mover("arriba");
+    // TODO: Si toco un enemigo, realizo daño
 }
 
 Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
@@ -97,7 +105,9 @@ Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, cli
 }
 
 void Spazz::patada_hacia_un_costado() {
-    // TODO: Implementación de la patada hacia un costado
+    obtener_direccion() == Direccion::DERECHA ? obtener_posicion().mover("derecha") :
+                                                obtener_posicion().mover("izquierda");
+    // TODO: Si toco un enemigo, realizo daño
 }
 
 Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje) {

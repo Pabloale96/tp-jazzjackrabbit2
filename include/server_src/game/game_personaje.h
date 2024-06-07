@@ -25,6 +25,7 @@ private:
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
     Direccion direccion;
+    bool intoxicado;
 
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
@@ -32,6 +33,10 @@ public:
     explicit Personaje(uint16_t* personaje);
 
     void asignar_tipo_personaje(const std::string& tipo_personaje);
+
+    void intoxicar();
+
+    bool obtener_estado_intoxicado();
 
     void actualizar();
 
