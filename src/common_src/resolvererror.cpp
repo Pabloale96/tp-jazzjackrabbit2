@@ -1,6 +1,6 @@
 // Copyright 2024 Martin Di Paola
 
-#include "../../include/common_src/resolvererror.h"
+#include "../../include/common_src/catedra/resolvererror.h"
 
 #include <arpa/inet.h>
 #include <netdb.h>

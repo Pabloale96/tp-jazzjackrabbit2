@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "defines_msg.h"
 #include "protocol_utils.h"

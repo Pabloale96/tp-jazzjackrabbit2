@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../include/client_src/client_protocol.h"
-#include "../../include/common_src/liberror.h"
+#include "../../include/common_src/catedra/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
                                Queue<std::shared_ptr<GameState>>& server_msg):

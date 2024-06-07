@@ -76,23 +76,3 @@ void Saltar::ejecutar(Game& game) {
     }
 }
 
-
-// *** MOVER ARRIBA Y ABAJO ***
-
-// Arriba y abajo creo que no hay, sería saltar y agacharse?
-
-MoverArriba::MoverArriba(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
-
-void MoverArriba::ejecutar(Game& game) {
-    if (toggle) {
-        game.mover("arriba", client_id);
-    }
-}
-
-MoverAbajo::MoverAbajo(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
-
-void MoverAbajo::ejecutar(Game& game) {
-    if (toggle) {
-        game.mover("abajo", client_id);
-    }
-}
