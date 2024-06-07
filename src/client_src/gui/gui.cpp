@@ -131,7 +131,7 @@ void Gui::run() {
             std::unique_ptr<PersonajeGui> pers;
             int x = renderer.GetOutputWidth()/2 + SCALING_VALUE_PIXEL*(ntohs(personajes[i].personaje[POS_POSX_PERSONAJE]) - pos_x);
             int y = renderer.GetOutputHeight()/2 + SCALING_VALUE_PIXEL*(ntohs(personajes[i].personaje[POS_POSY_PERSONAJE]) - pos_y);
-            std::cout << "tipo personaje: "<< personajes[i].personaje[POS_TIPO_PERSONAJE]<< std::endl;
+            std::cout << "tipo personaje: "<< ntohs(personajes[i].personaje[POS_TIPO_PERSONAJE])<< std::endl;
             if (ntohs(personajes[i].personaje[POS_TIPO_PERSONAJE]) == static_cast<uint16_t>(TIPO_PERSONAJE::JAZZ)) {
                 pers = std::make_unique<JazzGui>(texturas,x,y);
                 pers->show(animacion);
