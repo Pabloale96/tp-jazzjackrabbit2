@@ -28,11 +28,11 @@ uint16_t ProtocolClient::recibir_id_jugador() {
 bool ProtocolClient::enviar_personaje(const std::string& personaje) {
     uint8_t personaje_serializado;
     if (personaje == "j") {
-        personaje_serializado = JAZZ;
+        personaje_serializado = static_cast<uint8_t>(personajes::JAZZ);
     } else if (personaje == "s") {
-        personaje_serializado = SPAZZ;
+        personaje_serializado = static_cast<uint8_t>(personajes::SPAZZ);
     } else if (personaje == "l") {
-        personaje_serializado = LORI;
+        personaje_serializado = static_cast<uint8_t>(personajes::LORI);
     } else {
         return false;  // Personaje no válido
     }

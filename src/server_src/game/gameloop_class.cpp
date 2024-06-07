@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "../../include/common_src/queue.h"
+#include "../../include/common_src/catedra/queue.h"
 #include "../../include/server_src/game/game_state.h"
 
 #define MAX_TAM_COLA 100
@@ -13,7 +13,7 @@
 #define RATE 1000                   // TODO: Ponerlo en 15
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
-                   std::string& personaje):
+                   uint8_t personaje):
         gameloop_id(nuevo_gameloop_id),
         nombre_partida(nombre_partida),
         jugando(false),
@@ -36,7 +36,7 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.agregar_queue(nueva_queue);
 }
 
-void GameLoop::agregar_cliente(uint16_t client_id, const std::string& personaje) {
+void GameLoop::agregar_cliente(uint16_t client_id, uint8_t personaje) {
     game.agregar_personaje(client_id, personaje);
 }
 

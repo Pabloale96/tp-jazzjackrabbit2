@@ -8,7 +8,7 @@
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_state.h"
 
-Game::Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje):
+Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {
     auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
     if (personaje_ptr) {
@@ -131,7 +131,7 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
     }
 }
 
-void Game::agregar_personaje(uint16_t client_id, const std::string& personaje) {
+void Game::agregar_personaje(uint16_t client_id, uint8_t personaje) {
     auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
     if (personaje_ptr) {
         personajes.push_back(std::unique_ptr<Personaje>(personaje_ptr));

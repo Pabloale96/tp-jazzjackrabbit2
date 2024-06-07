@@ -28,7 +28,7 @@ public:
     // Constructor
     // Crea una cola de comandos de clientes y un vector de 5 enemigos
     explicit GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
-                      std::string& personaje);
+                      uint8_t personaje);
 
     std::string obtener_nombre_partida();
 
@@ -42,7 +42,7 @@ public:
     void agregar_queue_server_msg_de_cliente_aceptado(
             Queue<std::shared_ptr<GameState>>& nueva_queue);
 
-    void agregar_cliente(uint16_t client_id, const std::string& personaje);
+    void agregar_cliente(uint16_t client_id, uint8_t personaje);
 
     Game& obtener_game();
 

@@ -89,15 +89,18 @@ uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
     return buffer;
 }
 
-void ProtocolServer::recibir_personaje(std::string& personaje, bool& was_closed) {
+uint8_t ProtocolServer::recibir_personaje(bool& was_closed) {
     uint8_t buffer = 0;
     socket_cliente.recvall(&buffer, sizeof(uint8_t), &was_closed);
-    if (buffer == JAZZ) {
-        personaje = "jazz";
-    } else if (buffer == SPAZZ) {
-        personaje = "spazz";
-    } else if (buffer == LORI) {
-        personaje = "lori";
+    switch (buffer) {
+        case static_cast<uint8_t>(personajes::JAZZ):
+            return static_cast<uint8_t>(personajes::JAZZ);
+        case static_cast<uint8_t>(personajes::SPAZZ):
+            return static_cast<uint8_t>(personajes::SPAZZ);
+        case static_cast<uint8_t>(personajes::LORI):
+            return static_cast<uint8_t>(personajes::LORI);
+        default:
+            return FALLO;
     }
 }
 
@@ -117,32 +120,31 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& 
 
     std::unique_ptr<Comando> comando = nullptr;
     switch (mensaje_recibido.accion) {
-        case DISPARAR:
-            comando = std::make_unique<Disparar>(cliente_id, mensaje_recibido.toggle);
-            return comando;
-        case ACCION_ESPECIAL:
-            comando = std::make_unique<AccionEspecial>(cliente_id, mensaje_recibido.toggle);
-            return comando;
-        case MOVER_DERECHA:
+        case static_cast<uint8_t>(acciones::MOVER_DERECHA):
             comando = std::make_unique<MoverDerecha>(cliente_id, mensaje_recibido.toggle);
             return comando;
-        case MOVER_DERECHA_RAPIDO:
+        case static_cast<uint8_t>(acciones::MOVER_DERECHA_RAPIDO):
             comando = std::make_unique<MoverDerechaRapido>(cliente_id, mensaje_recibido.toggle);
             return comando;
-        case MOVER_IZQUIERDA:
+        case static_cast<uint8_t>(acciones::MOVER_IZQUIERDA):
             comando = std::make_unique<MoverIzquierda>(cliente_id, mensaje_recibido.toggle);
             return comando;
-        case MOVER_IZQUIERDA_RAPIDO:
+        case static_cast<uint8_t>(acciones::MOVER_IZQUIERDA_RAPIDO):
             comando = std::make_unique<MoverIzquierdaRapido>(cliente_id, mensaje_recibido.toggle);
             return comando;
-        case MOVER_ARRIBA:
-            comando = std::make_unique<MoverArriba>(cliente_id, mensaje_recibido.toggle);
-            return comando;
-        case MOVER_ABAJO:
-            comando = std::make_unique<MoverAbajo>(cliente_id, mensaje_recibido.toggle);
-            return comando;
-        case SALTAR:
+        case static_cast<uint8_t>(acciones::SALTAR):
             comando = std::make_unique<Saltar>(cliente_id, mensaje_recibido.toggle);
+            return comando;
+
+        case static_cast<uint8_t>(acciones::DISPARAR):
+            comando = std::make_unique<Disparar>(cliente_id, mensaje_recibido.toggle);
+            return comando;
+        case static_cast<uint8_t>(acciones::ACCION_ESPECIAL):
+            comando = std::make_unique<AccionEspecial>(cliente_id, mensaje_recibido.toggle);
+            return comando;
+
+        case static_cast<uint8_t>(acciones::KILL_ALL):
+            comando = std::make_unique<KillAll>(cliente_id, mensaje_recibido.toggle);
             return comando;
 
         default:

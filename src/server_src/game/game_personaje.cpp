@@ -22,7 +22,7 @@ Personaje::Personaje(uint16_t* datos_personajes):
         arma(datos_personajes[POS_MUNICION_PERSONAJE], datos_personajes[POS_ARMA_PERSONAJE]),
         posicion(datos_personajes[POS_POSX_PERSONAJE], datos_personajes[POS_POSY_PERSONAJE]) {}
 
-void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
+void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
@@ -72,7 +72,7 @@ uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 
 uint16_t Personaje::obtener_personaje_id() const { return client_id; }
 
-std::string Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
+uint8_t Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
 
 uint16_t Personaje::obtener_puntos() const { return puntos; }
 
@@ -83,7 +83,7 @@ uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
 uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("jazz");
+    asignar_tipo_personaje(static_cast<uint8_t>(personajes::JAZZ));
 }
 
 void Jazz::accion_especial() {
@@ -92,7 +92,7 @@ void Jazz::accion_especial() {
 }
 
 Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("lori");
+    asignar_tipo_personaje(static_cast<uint8_t>(personajes::LORI));
 }
 
 void Lori::accion_especial() {
@@ -101,7 +101,7 @@ void Lori::accion_especial() {
 }
 
 Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("spazz");
+    asignar_tipo_personaje(static_cast<uint8_t>(personajes::SPAZZ));
 }
 
 void Spazz::accion_especial() {
@@ -110,12 +110,12 @@ void Spazz::accion_especial() {
     // TODO: Si toco un enemigo, realizo daño
 }
 
-Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje) {
-    if (personaje == "jazz") {
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje) {
+    if (personaje == static_cast<uint8_t>(personajes::JAZZ)) {
         return new Jazz(partida_id, client_id);
-    } else if (personaje == "lori") {
+    } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
         return new Lori(partida_id, client_id);
-    } else if (personaje == "spazz") {
+    } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
         return new Spazz(partida_id, client_id);
     } else {
         return nullptr;

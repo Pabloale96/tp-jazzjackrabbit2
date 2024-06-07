@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "defines_msg.h"
+#include "protocol_utils.h"
 #include "game_arma.h"
 #include "game_municion.h"
 #include "game_posicion.h"
@@ -16,7 +17,7 @@
 class Personaje {
 
 private:
-    std::string tipo_personaje;
+    uint8_t tipo_personaje;
     uint16_t partida_id;
     uint16_t client_id;
     uint16_t puntos;
@@ -32,7 +33,7 @@ public:
 
     explicit Personaje(uint16_t* personaje);
 
-    void asignar_tipo_personaje(const std::string& tipo_personaje);
+    void asignar_tipo_personaje(uint8_t tipo_personaje);
 
     void intoxicar();
 
@@ -56,7 +57,7 @@ public:
 
     uint16_t obtener_personaje_id() const;
 
-    std::string obtener_tipo_personaje() const;
+    uint8_t obtener_tipo_personaje() const;
 
     uint16_t obtener_puntos() const;
 
@@ -89,6 +90,6 @@ public:
     void accion_especial() override;
 };
 
-Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje);
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
 
 #endif

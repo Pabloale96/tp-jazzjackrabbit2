@@ -17,20 +17,6 @@ public:
     void set_toggle(bool toggle);
 };
 
-class Disparar: public Comando {
-public:
-    Disparar(uint16_t client_id, bool toggle);
-
-    // TODO: Necesito la dirección en la q esta mirando
-    void ejecutar(Game& game) override;
-};
-
-class AccionEspecial: public Comando {
-public:
-    AccionEspecial(uint16_t client_id, bool toggle);
-    void ejecutar(Game& game) override;
-};
-
 class MoverDerecha: public Comando {
 public:
     MoverDerecha(uint16_t client_id, bool toggle);
@@ -55,21 +41,30 @@ public:
     void ejecutar(Game& game) override;
 };
 
-class MoverArriba: public Comando {
-public:
-    MoverArriba(uint16_t client_id, bool toggle);
-    void ejecutar(Game& game) override;
-};
-
-class MoverAbajo: public Comando {
-public:
-    MoverAbajo(uint16_t client_id, bool toggle);
-    void ejecutar(Game& game) override;
-};
-
 class Saltar: public Comando {
 public:
     Saltar(uint16_t client_id, bool toggle);
+    void ejecutar(Game& game) override;
+};
+
+
+class Disparar: public Comando {
+public:
+    Disparar(uint16_t client_id, bool toggle);
+
+    // TODO: Necesito la dirección en la q esta mirando
+    void ejecutar(Game& game) override;
+};
+
+class AccionEspecial: public Comando {
+public:
+    AccionEspecial(uint16_t client_id, bool toggle);
+    void ejecutar(Game& game) override;
+};
+
+class KillAll : public Comando {
+public:
+    KillAll(uint16_t client_id, bool toggle);
     void ejecutar(Game& game) override;
 };
 

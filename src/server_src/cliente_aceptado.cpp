@@ -6,7 +6,7 @@
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
 #include "../../include/common_src/protocol_utils.h"
-#include "../../include/common_src/sockets.h"
+#include "../../include/common_src/catedra/sockets.h"
 
 #define MAX_TAM_COLA 10
 #define PARTIDA_NO_ASIGNADA 0
@@ -37,8 +37,7 @@ void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
 void ClienteAceptado::crear_partida(GameloopMonitor& gameloop_monitor,
                                     const std::string& nombre_partida) {
     std::cout << "** PARTIDA NUEVA CREADA CON NOMBRE: " << nombre_partida << " **" << std::endl;
-    std::string personaje;
-    protocolo_server.recibir_personaje(personaje, was_closed);
+    uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
     gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente, personaje);
     gameloop_monitor.obtener_gameloop(gameloop_id)
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
@@ -60,8 +59,7 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
             }
         } else {
             uint16_t gameloop_id = protocolo_server.recibir_id_partida(was_closed);
-            std::string personaje;
-            protocolo_server.recibir_personaje(personaje, was_closed);
+            uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
             std::cout << " ** SE UNIO A LA PARTIDA CON id " << gameloop_id << " **" << std::endl;
             gameloop_monitor.obtener_gameloop(gameloop_id)
                     ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);

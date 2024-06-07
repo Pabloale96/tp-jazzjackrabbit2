@@ -27,7 +27,7 @@ private:
     // Pared? Piso?
 
 public:
-    explicit Game(uint16_t partida_id, uint16_t client_id, const std::string& personaje);
+    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
 
     std::vector<std::unique_ptr<Personaje>>& obtener_vector_de_personajes();
 
@@ -51,7 +51,7 @@ public:
 
     void crear_nuevo_gamestate(GameState& gamestate);
 
-    void agregar_personaje(uint16_t client_id, const std::string& personaje);
+    void agregar_personaje(uint16_t client_id, uint8_t personaje);
 
     void borrar_personaje(uint16_t client_id);
 
