@@ -1,6 +1,8 @@
 #ifndef DEFINE_FRAMES_H
 #define DEFINE_FRAMES_H
 
+#define SCALING_VALUE_PIXEL 10
+
 #define ANI_STAND 0
 #define ANI_DISPARAR 1
 #define ANI_MOVER_DERECHA 2
@@ -10,6 +12,8 @@
 #define ANI_MOVER_ARRIBA 6
 #define ANI_MOVER_ABAJO 7
 #define ANI_SALTAR 8
+
+#define PLATFORM_BEACH_TYPE_1 "beachType1"
 
 #define SPAZ_STAND "spazStand"
 #define SPAZ_WALK "spazWalk"

@@ -23,17 +23,17 @@ private:
     int pos_y;
     int rotate;
     bool flip = false;
-    int type;
+    int type=0;
     int height;
     int width;
-    //Frame platform{Frame(renderer, sprites, 0, 2496, 500, 27)};
+    Frame platform;
 
 public:
     PlatformGui(ClaseTexturas&, int, int,int,bool,int,int,int);
     PlatformGui(ClaseTexturas&, const msgPlataforma&);
     ~PlatformGui();
 
-    void show(int, int);
+    void show();
 };
 
 #endif

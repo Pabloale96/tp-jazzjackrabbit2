@@ -1,6 +1,11 @@
 #include "../../include/client_src/gui/gui_escenario.h"
 
-Escenario::Escenario(Renderer& render): renderer(render) {}
+Escenario::Escenario(std::vector<PlatformGui>& plataformas): platforms(plataformas) {}
 Escenario::~Escenario() {}
 
-void Escenario::show(int dif_x, int dif_y) { }//platform1.show(dif_x, dif_y); }
+void Escenario::show() { 
+    for (size_t i = 0; i < platforms.size(); i++)
+    {
+        platforms[i].show();
+    }
+}

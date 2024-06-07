@@ -35,24 +35,27 @@ using SDL2pp::SDL;
 
 class Gui: public Thread {
 private:
-    int posx;
-    int posy;
-    int w;
-    int h;
+    int pos_x =0;
+    int pos_y =0;
+    int w=0;
+    int h=0;
     bool& client_off;
     std::string& personaje;
     Queue<msgAccion>& client_commands;
     std::vector<msgPlataforma>& msg_plataformas;
+    uint16_t & client_id;
     std::vector<PlatformGui> plataformas;
-
+    std::vector<msgPersonaje> personajes;
+    std::unique_ptr<PersonajeGui> jugador;
     int screenWidth = 600;
     int screenHeight = 800;
 
+
 public:
-    Gui(int, int, int, int, bool&, std::string&, Queue<msgAccion>&,std::vector<msgPlataforma>&);
+    Gui(int, int, int, int, bool&, std::string&, Queue<msgAccion>&,std::vector<msgPlataforma>&,uint16_t&);
     ~Gui();
     void run() override;
-    void setGameState(GameState&, uint16_t);
+    void setGameState(GameState&);
     void setEscenario(ClaseTexturas &);
 };
 

@@ -4,6 +4,7 @@
 Texture& ClaseTexturas::jazz_text() { return jazz_tex; }
 Texture& ClaseTexturas::spaz_text() { return spaz_tex; }
 Texture& ClaseTexturas::lori_text() { return lori_tex; }
+Texture& ClaseTexturas::beach_text() { return beach_tex; }
 
 std::vector<Frame>& ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
@@ -14,6 +15,9 @@ std::vector<Frame>& ClaseTexturas::findFrame(std::string frame_string) {
 // si se cambio el sprite:
 
 ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
+
+    this->plataformaTipo1();
+
     this->jazzWalk();
     this->jazzStand();
     this->jazzJump();
@@ -71,6 +75,20 @@ ClaseTexturas::~ClaseTexturas() {}
 
 void ClaseTexturas::addFrames(std::string key, std::vector<Frame> value) {
     frames_map[key] = value;
+}
+
+void ClaseTexturas::plataformaTipo1() {
+
+    int x_frame =0 ;
+    int y_frame =2496 ;
+    int w_frame =500 ;
+    int h_frame =27 ;
+
+    std::vector<Frame> frame_aux;
+    Frame frame(renderer, beach_tex);
+    frame.setFrame(x_frame, y_frame, h_frame, w_frame);
+    frame_aux.emplace_back(frame);
+    addFrames(PLATFORM_BEACH_TYPE_1, frame_aux);
 }
 
 void ClaseTexturas::jazzStand() {

@@ -17,24 +17,13 @@ using SDL2pp::Texture;
 
 class Escenario {
 private:
-    Renderer& renderer;
-    Surface beach{Surface(
-            IMG_PATH
-            "/beach.png")};  // inicializo cualquier cosa en total se pisa a crear un personaje
-    Texture sprites{Texture(
-            renderer,
-            beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0,
-                                               203)))};  // inicializo cualquier cosa en total se
-                                                         // pisa a crear un personaje
-
-
-    std::vector<PlatformGui> platforms;
+    std::vector<PlatformGui>& platforms;
 
 public:
-    explicit Escenario(Renderer&);
+    explicit Escenario(std::vector<PlatformGui>&);
     ~Escenario();
 
-    void show(int dif_x, int dif_y);
+    void show();
 };
 
 #endif

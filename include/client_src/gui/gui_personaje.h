@@ -22,39 +22,46 @@ using SDL2pp::Window;
 class PersonajeGui {
 protected:
     ClaseTexturas& texturas;
+    int pos_x;
+    int pos_y;
     Animacion animacion;
 
+
 public:
-    explicit PersonajeGui(ClaseTexturas&);
+    explicit PersonajeGui(ClaseTexturas&,int,int);
+    PersonajeGui(int,int);
     ~PersonajeGui();
-    virtual void show(int, int, int);
+    virtual void show(int);
 };
 
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas&);
+    explicit SpazGui(ClaseTexturas&,int,int);
+    SpazGui(int,int);
     ~SpazGui();
 
-    void show(int, int, int) override;
+    void show(int) override;
 };
 
 
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas&);
+    explicit JazzGui(ClaseTexturas&,int,int);
+    JazzGui(int,int);
     ~JazzGui();
 
-    void show(int, int, int) override;
+    void show(int) override;
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas&);
+    explicit LoriGui(ClaseTexturas&,int,int);
+    LoriGui(int,int);
     ~LoriGui();
 
-    void show(int, int, int) override;
+    void show(int) override;
 };
 #endif

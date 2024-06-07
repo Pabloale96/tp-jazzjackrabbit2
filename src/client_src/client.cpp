@@ -22,7 +22,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_off(false),
         client_id(CLIENT_ID_NULO),
         gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), 
-        std::ref(personaje),std::ref(client_commands),plataformas) {}
+        std::ref(personaje),std::ref(client_commands),plataformas,client_id) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -221,7 +221,7 @@ void Client::jugar() {
 
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
-            //gui.setGameState(*respuesta, client_id);
+            gui.setGameState(*respuesta);
 
             if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
