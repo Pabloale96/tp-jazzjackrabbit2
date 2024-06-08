@@ -31,6 +31,24 @@ enum class acciones: uint8_t {
     KILL_ALL = 0x08
 };
 
+enum class efectos: uint8_t {
+    IDLE = 0x01,
+
+    // Acciones comunes
+    DISPARANDO = 0x02,
+    CORRIENDO = 0x03,
+    CORRIENDO_RAPIDO = 0x04,
+    SALTANDO = 0x05,
+
+    // Estados
+    INTOXICADO = 0x06, 
+    HERIDO = 0x07,
+    MUERTO = 0x08,
+    
+    // Acciones especiales
+    ACCION_ESPECIAL = 0x09
+};
+
 enum class armas: uint8_t {
     ARMA_INICIAL = 0x01,
     ARMA_SECUNDARIA = 0x02

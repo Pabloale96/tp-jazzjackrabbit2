@@ -76,20 +76,20 @@ struct msgGameState {
 
 struct msgPersonaje {
     uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
+    uint8_t nombre_arma = 0;
+    uint8_t tipo_personaje = 0;   
 
     msgPersonaje() {}
 
-    msgPersonaje(uint16_t id, const Personaje& pers) {
+    msgPersonaje(uint16_t id, PersonajeCliente& pers) : nombre_arma(pers.obtener_tipo_arma()), tipo_personaje(pers.obtener_tipo_personaje()) {
         personaje[POS_ID_PERSONAJE] = htons(id);
-        personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());
-        personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());
+        personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion_x());
+        personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion_y());
         personaje[POS_PUNTOS_PERSONAJE] = htons(pers.obtener_puntos());
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
-        personaje[POS_ARMA_PERSONAJE] = htons(pers.obtener_nombre_arma());
-        // personaje[POS_TIPO_PERSONAJE] = htons((uint8_t) pers.obtener_tipo_personaje());
     }
-};
+} __attribute__((packed));
 
 struct msgEnemigo {
     uint16_t enemigo[SIZE_ARRAY_ENEMIGO] = {0};
@@ -102,7 +102,7 @@ struct msgEnemigo {
         enemigo[POS_POSX_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_x());
         enemigo[POS_POSY_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_y());
     }
-};
+} __attribute__((packed));
 
 struct msgEscenario {
     uint16_t cantidad_plataformas = 0;
@@ -123,7 +123,7 @@ struct msgPlataforma {
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();
         plataforma[POS_HEIGHT_PLATAFORM] = pla.obtener_height();
     }
-};
+} __attribute__((packed));
 
 
 #endif
