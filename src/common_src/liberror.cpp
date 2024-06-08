@@ -3,7 +3,7 @@
 #undef _GNU_SOURCE
 #undef GNU_SOURCE
 
-#include "../../include/common_src/liberror.h"
+#include "../../include/common_src/catedra/liberror.h"
 
 #include <cstdarg>
 #include <cstdio>

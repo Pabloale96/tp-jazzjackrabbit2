@@ -3,6 +3,8 @@
 
 #include <cstdint>
 
+#include <cstdint>
+
 #define CREAR_PARTIDA 0x01
 #define UNIRSE_A_PARTIDA 0x02
 

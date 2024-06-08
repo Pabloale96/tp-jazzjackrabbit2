@@ -3,7 +3,7 @@
 GameloopMonitor::GameloopMonitor(): gameloop_id(ID_GAMELOOP_INICIAL) {}
 
 uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t client_id,
-                                         std::string& personaje) {
+                                         uint8_t personaje) {
     try {
         std::unique_lock<std::mutex> lock(m);
         uint16_t nuevo_gameloop_id = gameloop_id;

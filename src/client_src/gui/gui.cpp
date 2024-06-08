@@ -76,7 +76,8 @@ void Gui::run() {
             if (event.type == SDL_QUIT) {
                 return;
             } else if (event.type == SDL_KEYDOWN) {
-                switch (event.key.keysym.sym ) {
+                msgAccion msg_to_sent(static_cast<uint8_t>(acciones::NULO), false);
+                switch (event.key.keysym.sym) {
                     case SDLK_ESCAPE:
                     case SDLK_q:
                         client_off = true;
@@ -88,7 +89,7 @@ void Gui::run() {
                     case SDLK_RIGHT:
                         if (animacion != ANI_MOVER_DERECHA)
                         {
-                            msg_to_sent = msgAccion(MOVER_DERECHA, true);
+                            msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
                             client_commands.push(msg_to_sent);
                             animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
                         }

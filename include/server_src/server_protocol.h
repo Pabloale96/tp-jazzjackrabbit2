@@ -28,7 +28,7 @@ public:
 
     uint8_t enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor, bool& was_closed);
 
-    void recibir_personaje(std::string& personaje, bool& was_closed);
+    uint8_t recibir_personaje(bool& was_closed);
 
     uint16_t recibir_id_partida(bool& was_closed);
 

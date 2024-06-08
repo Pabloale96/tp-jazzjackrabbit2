@@ -38,6 +38,7 @@ uint16_t Enemigo::get_vidas() const { return vidas; }
 uint16_t Enemigo::get_danio_al_jugador() const { return danio_al_jugador; }
 uint16_t Enemigo::get_puntos() const { return puntos; }
 
+void Enemigo::actualizar() {}
 
 void Enemigo::recibir_disparo() {
     if (esta_vivo()) {

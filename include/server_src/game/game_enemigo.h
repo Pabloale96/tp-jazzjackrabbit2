@@ -45,6 +45,8 @@ public:
     uint16_t get_danio_al_jugador() const;
     uint16_t get_puntos() const;
 
+    void actualizar();
+
     // reduce vida al enemigo
     void recibir_disparo();
 

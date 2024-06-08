@@ -2,21 +2,77 @@
 
 #include "../../include/server_src/game/game_class.h"
 
-bool Disparar::ejecutar(Game& game) { return game.atacar_enemigo(client_id); }
+Comando::Comando(): toggle(false) {}
 
-bool MoverDerecha::ejecutar(Game& game) { return game.mover("derecha", client_id); }
+Comando::Comando(uint16_t client_id, bool toggle): client_id(client_id), toggle(toggle) {}
 
-bool MoverDerechaRapido::ejecutar(Game& game) { return game.mover("derecha_rapido", client_id); }
+void Comando::set_client_id(uint16_t client_id) { this->client_id = client_id; }
 
-bool MoverIzquierda::ejecutar(Game& game) { return game.mover("izquierda", client_id); }
+void Comando::set_toggle(bool toggle) { this->toggle = toggle; }
 
-bool MoverIzquierdaRapido::ejecutar(Game& game) {
-    return game.mover("izquierda_rapido", client_id);
+// **** DISPARAR ****
+
+Disparar::Disparar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void Disparar::ejecutar(Game& game) {
+    if (toggle) {
+        game.atacar_enemigo(client_id);
+    }
 }
 
-bool Saltar::ejecutar(Game& game) { return game.mover("saltar", client_id); }
+// **** ACCION ESPECIAL ****
+AccionEspecial::AccionEspecial(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
-// Arriba y abajo creo que no hay, sería saltar y agacharse?
-bool MoverArriba::ejecutar(Game& game) { return game.mover("arriba", client_id); }
+void AccionEspecial::ejecutar(Game& game) {
+    if (toggle) {
+        game.accion_especial(client_id);
+    }
+}
 
-bool MoverAbajo::ejecutar(Game& game) { return game.mover("abajo", client_id); }
+
+// **** MOVER ****
+
+MoverDerecha::MoverDerecha(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void MoverDerecha::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("derecha", client_id);
+    }
+}
+
+MoverDerechaRapido::MoverDerechaRapido(uint16_t client_id, bool toggle):
+        Comando(client_id, toggle) {}
+
+void MoverDerechaRapido::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("derecha_rapido", client_id);
+    }
+}
+
+MoverIzquierda::MoverIzquierda(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void MoverIzquierda::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("izquierda", client_id);
+    }
+}
+
+MoverIzquierdaRapido::MoverIzquierdaRapido(uint16_t client_id, bool toggle):
+        Comando(client_id, toggle) {}
+
+void MoverIzquierdaRapido::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("izquierda_rapido", client_id);
+    }
+}
+
+// **** SALTAR ****
+
+Saltar::Saltar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void Saltar::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("saltar", client_id);
+    }
+}
+
