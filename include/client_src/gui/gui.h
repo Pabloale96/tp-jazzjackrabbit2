@@ -18,8 +18,8 @@
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "msgToSent.h"
-#include "queue.h"
-#include "../../common_src/thread.h"
+#include "../../common_src/catedra/queue.h"
+#include "../../common_src/catedra/thread.h"
 
 #define RATE 15.0
 
@@ -37,7 +37,7 @@ class Gui: public Thread {
 private:
     int pos_x =0;
     int pos_y =0;
-    std::map<uint16_t, Personaje> personajes;
+    std::map<uint16_t, std::shared_ptr<Personaje>> personajes;
     bool& client_off;
     std::string& personaje;
     Queue<msgAccion>& client_commands;
@@ -55,6 +55,7 @@ public:
     void run() override;
     void setGameState(GameState&);
     void setEscenario(ClaseTexturas &);
+    void eventManaged(int & );
 };
 
 #endif

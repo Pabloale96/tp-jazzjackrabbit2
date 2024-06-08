@@ -76,3 +76,12 @@ void Saltar::ejecutar(Game& game) {
     }
 }
 
+// **** Kill all ****
+
+KillAll::KillAll(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void KillAll::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("saltar", client_id);
+    }
+}

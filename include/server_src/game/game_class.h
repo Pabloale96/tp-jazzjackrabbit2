@@ -21,7 +21,7 @@ private:
     uint16_t partida_id;
     // TODO: Clase escenario que contenga a los personajes y enemigos ?
     // TODO: unorderedmap sería más rápido
-    std::vector<std::unique_ptr<Personaje>> personajes;
+    std::vector<std::shared_ptr<Personaje>> personajes;
     std::vector<std::unique_ptr<Enemigo>> enemigos;
     std::vector<Platform> plataformas;
     // Pared? Piso?
@@ -29,7 +29,7 @@ private:
 public:
     explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
 
-    std::vector<std::unique_ptr<Personaje>>& obtener_vector_de_personajes();
+    std::vector<std::shared_ptr<Personaje>>& obtener_vector_de_personajes();
 
     std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
 

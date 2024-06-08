@@ -26,6 +26,7 @@ private:
     uint16_t client_id;
     uint16_t puntos;
     uint16_t vida;
+    uint8_t animacion;
     Arma arma;
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
@@ -42,6 +43,8 @@ public:
     void intoxicar();
 
     bool obtener_estado_intoxicado();
+
+    uint8_t obtener_animacion();
 
     void actualizar();
 
@@ -79,18 +82,21 @@ public:
 class Jazz: public Personaje {
 public:
     Jazz(uint16_t partida_id, uint16_t client_id);
+    Jazz(msgPersonaje & personaje);
     void accion_especial() override;
 };
 
 class Lori: public Personaje {
 public:
     Lori(uint16_t partida_id, uint16_t client_id);
+    Lori(msgPersonaje & personaje);
     void accion_especial() override;
 };
 
 class Spazz: public Personaje {
 public:
     Spazz(uint16_t partida_id, uint16_t client_id);
+    Spazz(msgPersonaje & personaje);
     void accion_especial() override;
 };
 

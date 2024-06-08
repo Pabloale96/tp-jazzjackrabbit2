@@ -14,8 +14,8 @@ Gui::~Gui() {}
 
 void Gui::setGameState(GameState& gamestate) {
     personajes = gamestate.obtener_diccionario_de_personajes();
-    pos_x = gamestate.obtener_personaje(client_id).obtener_posicion().get_posicion_x();
-    pos_y = gamestate.obtener_personaje(client_id).obtener_posicion().get_posicion_y();
+    pos_x = gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_x();
+    pos_y = gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_y();
     personajes.erase(client_id);  
 }
 void Gui::setEscenario(ClaseTexturas & texturas) {    
@@ -26,6 +26,84 @@ void Gui::setEscenario(ClaseTexturas & texturas) {
     }
 }
 
+void Gui::eventManaged(int & animacion) {    
+
+    SDL_Event event;
+    // definir N it para las animaciones de frame.
+    // dividite por X de la diapos que mostro leo.
+    while (SDL_PollEvent(&event)) {
+        msgAccion msg_to_sent(0x00, false);
+        if (event.type == SDL_QUIT) {
+            return;
+        } else if (event.type == SDL_KEYDOWN) {
+            msgAccion msg_to_sent(static_cast<uint8_t>(acciones::NULO), false);
+            switch (event.key.keysym.sym) {
+                case SDLK_ESCAPE:
+                case SDLK_q:
+                    client_off = true;
+                    return;
+                case SDLK_s:
+                    // enviar mensajer atacar 1 ((16bytes) (16bytes) (16bytes))
+                    // push a client_commands
+                    return;
+                case SDLK_RIGHT:
+                    if (animacion != ANI_MOVER_DERECHA)
+                    {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
+                    }
+                    break;
+                case SDLK_LEFT:
+                    if (animacion != ANI_MOVER_IZQUIERDA)
+                    {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), true);
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_MOVER_IZQUIERDA;  // se ejecuta la animacion derecha
+                    }
+                    break;
+                case SDLK_UP:
+                    if (animacion != ANI_SALTAR)
+                    {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), true);
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
+                    }
+                    break;
+            }
+        } else if (event.type == SDL_KEYUP) {
+            switch (event.key.keysym.sym) {
+                case SDLK_RIGHT:
+                    if (animacion != ANI_STAND)
+                    {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                    }
+                    break;
+                case SDLK_LEFT:
+                    if (animacion != ANI_STAND)
+                    {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                    }
+                    break;
+                case SDLK_UP:
+                    if (animacion != ANI_STAND)
+                    {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
+                        client_commands.push(msg_to_sent);
+                        animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                    }
+                    break;
+            }
+        }
+    }
+}
+
+
+
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
@@ -35,7 +113,7 @@ void Gui::run() {
     SDL_DisplayMode displayMode;
     int monitorIndex = 1;
 
-    Window window{Window("SDL2pp demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+    Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                         screenHeight, screenWidth, SDL_WINDOW_RESIZABLE  | SDL_WINDOW_HIDDEN)};
 
     Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
@@ -68,97 +146,29 @@ void Gui::run() {
         int dif_x = 0;
         int dif_y = 0;
         prev_ticks = frame_ticks;
-        SDL_Event event;
-        // definir N it para las animaciones de frame.
-        // dividite por X de la diapos que mostro leo.
-        while (SDL_PollEvent(&event)) {
-            msgAccion msg_to_sent(0x00, false);
-            if (event.type == SDL_QUIT) {
-                return;
-            } else if (event.type == SDL_KEYDOWN) {
-                msgAccion msg_to_sent(static_cast<uint8_t>(acciones::NULO), false);
-                switch (event.key.keysym.sym) {
-                    case SDLK_ESCAPE:
-                    case SDLK_q:
-                        client_off = true;
-                        return;
-                    case SDLK_s:
-                        // enviar mensajer atacar 1 ((16bytes) (16bytes) (16bytes))
-                        // push a client_commands
-                        return;
-                    case SDLK_RIGHT:
-                        if (animacion != ANI_MOVER_DERECHA)
-                        {
-                            msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
-                            client_commands.push(msg_to_sent);
-                            animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
-                        }
-                        break;
-                    case SDLK_LEFT:
-                        if (animacion != ANI_MOVER_IZQUIERDA)
-                        {
-                            msg_to_sent = msgAccion(MOVER_IZQUIERDA, true);
-                            client_commands.push(msg_to_sent);
-                            animacion = ANI_MOVER_IZQUIERDA;  // se ejecuta la animacion derecha
-                        }
-                        break;
-                    case SDLK_UP:
-                        if (animacion != ANI_SALTAR)
-                        {
-                            msg_to_sent = msgAccion(SALTAR, true);
-                            client_commands.push(msg_to_sent);
-                            animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
-                        }
-                        break;
-                }
-            } else if (event.type == SDL_KEYUP) {
-                switch (event.key.keysym.sym) {
-                    case SDLK_RIGHT:
-                        if (animacion != ANI_STAND)
-                        {
-                            msg_to_sent = msgAccion(MOVER_DERECHA, false);
-                            client_commands.push(msg_to_sent);
-                            animacion = ANI_STAND;  // se ejecuta la animacion derecha
-                        }
-                        break;
-                    case SDLK_LEFT:
-                        if (animacion != ANI_STAND)
-                        {
-                            msg_to_sent = msgAccion(MOVER_IZQUIERDA, false);
-                            client_commands.push(msg_to_sent);
-                            animacion = ANI_STAND;  // se ejecuta la animacion derecha
-                        }
-                        break;
-                    case SDLK_UP:
-                        if (animacion != ANI_STAND)
-                        {
-                            msg_to_sent = msgAccion(SALTAR, false);
-                            client_commands.push(msg_to_sent);
-                            animacion = ANI_STAND;  // se ejecuta la animacion derecha
-                        }
-                        break;
-                }
-            }
-        }
 
+        this->eventManaged(animacion);
         // Clear the screen
         renderer.Clear();
         escenario.show();
 
+        //std::cout << "client id: " << client_id << std::endl;
+        //std::cout << "sizes personajes map: " << personajes.size() << std::endl;
+
         for (const auto& [_,personaje]: personajes) {
             std::unique_ptr<PersonajeGui> pers;
-            int x = renderer.GetOutputWidth()/2 + (personaje.obtener_posicion().get_posicion_x() - pos_x);
-            int y = renderer.GetOutputHeight()/2 + (personaje.obtener_posicion().get_posicion_y() - pos_y);
-            //std::cout << (unsigned)personaje.obtener_tipo_personaje() << std::endl;
-            if (personaje.obtener_tipo_personaje()== (uint8_t)personajes::JAZZ) {
+            int x = renderer.GetOutputWidth()/2 + (personaje->obtener_posicion().get_posicion_x() - pos_x);
+            int y = renderer.GetOutputHeight()/2 + (personaje->obtener_posicion().get_posicion_y() - pos_y);
+            //std::cout << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
+            if (personaje->obtener_tipo_personaje()== (uint8_t)personajes::JAZZ) {
                 pers = std::make_unique<JazzGui>(texturas,x,y);
-                pers->show(personaje.obtener_animacion());
-            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)personajes::SPAZZ) {
+                pers->show(personaje->obtener_animacion());
+            } else if (personaje->obtener_tipo_personaje()  == (uint8_t)personajes::SPAZZ) {
                 pers = std::make_unique<SpazGui>(texturas,x,y);
-                pers->show(personaje.obtener_animacion());
-            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)personajes::LORI) {
+                pers->show(personaje->obtener_animacion());
+            } else if (personaje->obtener_tipo_personaje()  == (uint8_t)personajes::LORI) {
                 pers = std::make_unique<LoriGui>(texturas,x,y);
-                pers->show(personaje.obtener_animacion());
+                pers->show(personaje->obtener_animacion());
             }
         }
         jugador->show(animacion);
@@ -175,6 +185,12 @@ void Gui::run() {
             std::this_thread::sleep_for(rest);
         }
         frame_start += rate_ns;
+
+        if (client_off)
+        {
+            return;
+        }
+        
     }
 }
 

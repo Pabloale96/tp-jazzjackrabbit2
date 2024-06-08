@@ -30,6 +30,8 @@ void Personaje::intoxicar() { intoxicado = true; }
 
 bool Personaje::obtener_estado_intoxicado() { return intoxicado; }
 
+uint8_t Personaje::obtener_animacion() { return animacion;}
+
 void Personaje::actualizar() {}
 
 void Personaje::setear_direccion(const std::string& direccion) {
@@ -86,6 +88,8 @@ Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::JAZZ));
 }
 
+Jazz::Jazz(msgPersonaje & personaje):Personaje(personaje){}
+
 void Jazz::accion_especial() {
     obtener_posicion().mover("arriba");
     // TODO: Si toco un enemigo, realizo daño
@@ -94,6 +98,8 @@ void Jazz::accion_especial() {
 Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::LORI));
 }
+
+Lori::Lori(msgPersonaje & personaje):Personaje(personaje){}
 
 void Lori::accion_especial() {
     obtener_posicion().mover("arriba");
@@ -104,6 +110,8 @@ Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, cli
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::SPAZZ));
 }
 
+Spazz::Spazz(msgPersonaje & personaje):Personaje(personaje){}
+
 void Spazz::accion_especial() {
     obtener_direccion() == Direccion::DERECHA ? obtener_posicion().mover("derecha") :
                                                 obtener_posicion().mover("izquierda");
@@ -113,7 +121,7 @@ void Spazz::accion_especial() {
 Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje) {
     if (personaje == static_cast<uint8_t>(personajes::JAZZ)) {
         return new Jazz(partida_id, client_id);
-    } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
+    } else if (personaje == static_cast<uint8_t>(personajes::SPAZZ)) {
         return new Lori(partida_id, client_id);
     } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
         return new Spazz(partida_id, client_id);
