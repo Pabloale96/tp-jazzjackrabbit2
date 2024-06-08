@@ -149,13 +149,13 @@ void Gui::run() {
             int x = renderer.GetOutputWidth()/2 + (personaje.obtener_posicion().get_posicion_x() - pos_x);
             int y = renderer.GetOutputHeight()/2 + (personaje.obtener_posicion().get_posicion_y() - pos_y);
             //std::cout << (unsigned)personaje.obtener_tipo_personaje() << std::endl;
-            if (personaje.obtener_tipo_personaje()== (uint8_t)TIPO_PERSONAJE::JAZZ) {
+            if (personaje.obtener_tipo_personaje()== (uint8_t)personajes::JAZZ) {
                 pers = std::make_unique<JazzGui>(texturas,x,y);
                 pers->show(personaje.obtener_animacion());
-            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)TIPO_PERSONAJE::SPAZZ) {
+            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)personajes::SPAZZ) {
                 pers = std::make_unique<SpazGui>(texturas,x,y);
                 pers->show(personaje.obtener_animacion());
-            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)TIPO_PERSONAJE::LORI) {
+            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)personajes::LORI) {
                 pers = std::make_unique<LoriGui>(texturas,x,y);
                 pers->show(personaje.obtener_animacion());
             }

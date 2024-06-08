@@ -92,11 +92,11 @@ uint16_t ProtocolServer::recibir_id_partida(bool& was_closed) {
 void ProtocolServer::recibir_personaje(std::string& personaje, bool& was_closed) {
     uint8_t buffer = 0;
     socket_cliente.recvall(&buffer, sizeof(uint8_t), &was_closed);
-    if (buffer == static_cast<uint16_t>(TIPO_PERSONAJE::JAZZ)) {
+    if (buffer == static_cast<uint16_t>(personajes::JAZZ)) {
         personaje = "jazz";
-    } else if (buffer == static_cast<uint16_t>(TIPO_PERSONAJE::SPAZZ)) {
+    } else if (buffer == static_cast<uint16_t>(personajes::SPAZZ)) {
         personaje = "spazz";
-    } else if (buffer == static_cast<uint16_t>(TIPO_PERSONAJE::LORI)) {
+    } else if (buffer == static_cast<uint16_t>(personajes::LORI)) {
         personaje = "lori";
     }
 }
