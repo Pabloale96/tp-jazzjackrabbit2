@@ -1,8 +1,12 @@
 #ifndef DEFINE_MSG_H
 #define DEFINE_MSG_H
 
+#define ANCHO_RESOLUCION 800
+#define ALTO_RESOLUCION 600
+
+
 // definiciones del arreglo de personaje
-#define SIZE_ARRAY_PERSONAJE 8
+#define SIZE_ARRAY_PERSONAJE 6
 #define POS_ID_PERSONAJE 0
 #define POS_POSX_PERSONAJE 1
 #define POS_POSY_PERSONAJE 2

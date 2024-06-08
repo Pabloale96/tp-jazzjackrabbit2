@@ -152,7 +152,7 @@ bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id
             return false;
         }
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
-        gameState.pushPersonajes(personaje.personaje);
+        gameState.pushPersonajes(personaje);
     }
 
     msgEnemigo enemigo;

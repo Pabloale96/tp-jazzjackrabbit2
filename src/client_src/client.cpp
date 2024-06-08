@@ -8,8 +8,7 @@
 
 #define MAX_TAM_COLA 1000
 #define CLIENT_ID_NULO 0
-#define ANCHO_RESOLUCION 800
-#define ALTO_RESOLUCION 600
+
 
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
@@ -21,8 +20,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         receiver(nullptr),
         client_off(false),
         client_id(CLIENT_ID_NULO),
-        gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), 
-        std::ref(personaje),std::ref(client_commands),plataformas,client_id) {}
+        gui(0, 0, std::ref(client_off), std::ref(personaje),std::ref(client_commands),plataformas,client_id) {}
 
 void Client::imprimir_portada() {
     std::cout

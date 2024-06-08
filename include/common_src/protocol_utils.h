@@ -4,13 +4,13 @@
 #define CREAR_PARTIDA 0x01
 #define UNIRSE_A_PARTIDA 0x02
 
-enum class TIPO_PERSONAJE: uint16_t {JAZZ=0,LORI=1,SPAZZ=2};
+enum class TIPO_PERSONAJE: uint8_t {JAZZ=0x00,LORI=0x01,SPAZZ=0x02};
 
 // los 3 modos que puede estar la plataforma:
-enum class ROTATE_PLATFORM: uint16_t {ROTATE_0=0,ROTATE_45=1,ROTATE_90=2};
+enum class ROTATE_PLATFORM: uint8_t {ROTATE_0=0,ROTATE_45=1,ROTATE_90=2};
 
 // tipo de plataforma usado de gui para la interfaz:
-enum class TYPE_PLATFORM: uint16_t{TYPE_1=0,TYPE_2=1,TYPE_3=2};
+enum class TYPE_PLATFORM: uint8_t{TYPE_1=0,TYPE_2=1,TYPE_3=2};
 
 
 #define DISPARAR 0x01

@@ -29,7 +29,10 @@ void SpazGui::show(int animacion_actual) {
             animacion.setFlip(true);
             animacion.run(pos_x, pos_y, texturas.findFrame(std::string(SPAZ_WALK)));
             break;
-
+        case ANI_SALTAR:
+            animacion.setFlip(true);
+            animacion.run(pos_x, pos_y, texturas.findFrame(std::string(SPAZ_JUMP)));
+            break;
         default:
             break;
     }
@@ -55,6 +58,10 @@ void JazzGui::show(int animacion_actual) {
             animacion.setFlip(true);
             animacion.run(pos_x, pos_y, texturas.findFrame(std::string(JAZZ_WALK)));
             break;
+        case ANI_SALTAR:
+            animacion.setFlip(true);
+            animacion.run(pos_x, pos_y, texturas.findFrame(std::string(JAZZ_JUMP)));
+            break;
         default:
             break;
     }
@@ -79,7 +86,10 @@ void LoriGui::show(int animacion_actual) {
             animacion.setFlip(true);
             animacion.run(pos_x, pos_y, texturas.findFrame(std::string(LORI_WALK)));
             break;
-
+        case ANI_SALTAR:
+            animacion.setFlip(true);
+            animacion.run(pos_x, pos_y, texturas.findFrame(std::string(LORI_JUMP)));
+            break;
         default:
             break;
     }

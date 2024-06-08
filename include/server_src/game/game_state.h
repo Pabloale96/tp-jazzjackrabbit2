@@ -9,6 +9,9 @@
 #include "game_enemigo.h"
 #include "game_personaje.h"
 
+
+struct msgPersonaje;
+
 class GameState {
 private:
     uint16_t partida_id;
@@ -36,7 +39,7 @@ public:
 
     void setGameState(const uint8_t& state_partida) { jugando = (state_partida == 0x01); }
 
-    void pushPersonajes(uint16_t* msgpers) {
+    void pushPersonajes( msgPersonaje & msgpers) {
         Personaje personaje(msgpers);
         diccionario_de_personajes.emplace(personaje.obtener_personaje_id(), personaje);
     }

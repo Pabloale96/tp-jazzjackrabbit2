@@ -10,9 +10,11 @@
 #include "game_arma.h"
 #include "game_posicion.h"
 
-
 #define PUNTOS_INICIALES 0
 #define VIDA_INICIAL 10
+
+
+struct msgPersonaje;
 
 class Personaje {
 
@@ -28,7 +30,7 @@ private:
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
 
-    explicit Personaje(uint16_t* personaje);
+    explicit Personaje(msgPersonaje & personaje);
 
     void asignar_tipo_personaje(const uint16_t& tipo_personaje);
 
@@ -52,7 +54,7 @@ public:
 
     uint16_t obtener_municion() const;
 
-    uint16_t obtener_tipo_personaje() const;
+    uint8_t obtener_tipo_personaje() const;
 
     virtual ~Personaje() = default;
 };

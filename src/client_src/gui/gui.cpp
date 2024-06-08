@@ -1,11 +1,9 @@
 #include "../include/client_src/gui/gui.h"
 
-Gui::Gui(int x, int y, int w, int h, bool& client_off, std::string& personaje,
+Gui::Gui(int x, int y, bool& client_off, std::string& personaje,
          Queue<msgAccion>& client_commands,std::vector<msgPlataforma>& msg_plataformas,uint16_t & ci):
         pos_x(x),
         pos_y(y),
-        w(w),
-        h(h),
         client_off(client_off),
         personaje(personaje),
         client_commands(client_commands),
@@ -15,16 +13,10 @@ Gui::Gui(int x, int y, int w, int h, bool& client_off, std::string& personaje,
 Gui::~Gui() {}
 
 void Gui::setGameState(GameState& gamestate) {
-    
-    for (const auto& pair: gamestate.obtener_diccionario_de_personajes()) {
-        if (pair.first == client_id) {
-            pos_x = pair.second.obtener_posicion().get_posicion_x();
-            pos_y = pair.second.obtener_posicion().get_posicion_y();
-        } else {
-            msgPersonaje personaje(pair.first,pair.second);
-            personajes.push_back(std::move(personaje));
-        }
-    }
+    personajes = gamestate.obtener_diccionario_de_personajes();
+    pos_x = gamestate.obtener_personaje(client_id).obtener_posicion().get_posicion_x();
+    pos_y = gamestate.obtener_personaje(client_id).obtener_posicion().get_posicion_y();
+    personajes.erase(client_id);  
 }
 void Gui::setEscenario(ClaseTexturas & texturas) {    
     for (size_t i = 0; i < msg_plataformas.size(); i++)
@@ -80,11 +72,10 @@ void Gui::run() {
         // definir N it para las animaciones de frame.
         // dividite por X de la diapos que mostro leo.
         while (SDL_PollEvent(&event)) {
+            msgAccion msg_to_sent(0x00, false);
             if (event.type == SDL_QUIT) {
                 return;
             } else if (event.type == SDL_KEYDOWN) {
-                msgAccion msg_to_sent(0x00, false);
-                
                 switch (event.key.keysym.sym ) {
                     case SDLK_ESCAPE:
                     case SDLK_q:
@@ -103,21 +94,47 @@ void Gui::run() {
                         }
                         break;
                     case SDLK_LEFT:
-                        // enviar mensaje mover izquierda 1
-                        // push a client_commands
-                        animacion = 2;
-                        dif_x += frame_delta * 0.2;
+                        if (animacion != ANI_MOVER_IZQUIERDA)
+                        {
+                            msg_to_sent = msgAccion(MOVER_IZQUIERDA, true);
+                            client_commands.push(msg_to_sent);
+                            animacion = ANI_MOVER_IZQUIERDA;  // se ejecuta la animacion derecha
+                        }
+                        break;
+                    case SDLK_UP:
+                        if (animacion != ANI_SALTAR)
+                        {
+                            msg_to_sent = msgAccion(SALTAR, true);
+                            client_commands.push(msg_to_sent);
+                            animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
+                        }
                         break;
                 }
             } else if (event.type == SDL_KEYUP) {
                 switch (event.key.keysym.sym) {
                     case SDLK_RIGHT:
-                        // enviar mensaje mover izquierda 0
-                        animacion = 0;
+                        if (animacion != ANI_STAND)
+                        {
+                            msg_to_sent = msgAccion(MOVER_DERECHA, false);
+                            client_commands.push(msg_to_sent);
+                            animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                        }
                         break;
                     case SDLK_LEFT:
-                        // enviar mensaje mover izquierda 0
-                        animacion = 0;
+                        if (animacion != ANI_STAND)
+                        {
+                            msg_to_sent = msgAccion(MOVER_IZQUIERDA, false);
+                            client_commands.push(msg_to_sent);
+                            animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                        }
+                        break;
+                    case SDLK_UP:
+                        if (animacion != ANI_STAND)
+                        {
+                            msg_to_sent = msgAccion(SALTAR, false);
+                            client_commands.push(msg_to_sent);
+                            animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                        }
                         break;
                 }
             }
@@ -126,24 +143,23 @@ void Gui::run() {
         // Clear the screen
         renderer.Clear();
         escenario.show();
-        for (size_t i = 0; i < personajes.size(); i++)
-        {
+
+        for (const auto& [_,personaje]: personajes) {
             std::unique_ptr<PersonajeGui> pers;
-            int x = renderer.GetOutputWidth()/2 + SCALING_VALUE_PIXEL*(ntohs(personajes[i].personaje[POS_POSX_PERSONAJE]) - pos_x);
-            int y = renderer.GetOutputHeight()/2 + SCALING_VALUE_PIXEL*(ntohs(personajes[i].personaje[POS_POSY_PERSONAJE]) - pos_y);
-            std::cout << "tipo personaje: "<< ntohs(personajes[i].personaje[POS_TIPO_PERSONAJE])<< std::endl;
-            if (ntohs(personajes[i].personaje[POS_TIPO_PERSONAJE]) == static_cast<uint16_t>(TIPO_PERSONAJE::JAZZ)) {
+            int x = renderer.GetOutputWidth()/2 + (personaje.obtener_posicion().get_posicion_x() - pos_x);
+            int y = renderer.GetOutputHeight()/2 + (personaje.obtener_posicion().get_posicion_y() - pos_y);
+            //std::cout << (unsigned)personaje.obtener_tipo_personaje() << std::endl;
+            if (personaje.obtener_tipo_personaje()== (uint8_t)TIPO_PERSONAJE::JAZZ) {
                 pers = std::make_unique<JazzGui>(texturas,x,y);
-                pers->show(animacion);
-            } else if (ntohs(personajes[i].personaje[POS_TIPO_PERSONAJE])  == static_cast<uint16_t>(TIPO_PERSONAJE::SPAZZ)) {
+                pers->show(personaje.obtener_animacion());
+            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)TIPO_PERSONAJE::SPAZZ) {
                 pers = std::make_unique<SpazGui>(texturas,x,y);
-                pers->show(animacion);
-            } else if (ntohs(personajes[i].personaje[POS_TIPO_PERSONAJE])  == static_cast<uint16_t>(TIPO_PERSONAJE::LORI)) {
+                pers->show(personaje.obtener_animacion());
+            } else if (personaje.obtener_tipo_personaje()  == (uint8_t)TIPO_PERSONAJE::LORI) {
                 pers = std::make_unique<LoriGui>(texturas,x,y);
-                pers->show(animacion);
+                pers->show(personaje.obtener_animacion());
             }
         }
-        
         jugador->show(animacion);
         renderer.Present();
 

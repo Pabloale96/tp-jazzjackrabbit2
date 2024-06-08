@@ -1,6 +1,6 @@
 #include "../../include/server_src/game/game_personaje.h"
 
-#include <iostream>
+#include "../../include/common_src/msgToSent.h"
 
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         tipo_personaje(),
@@ -11,14 +11,14 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         arma(),
         posicion() {}
 
-Personaje::Personaje(uint16_t* datos_personajes):
-        tipo_personaje(),
+Personaje::Personaje(msgPersonaje & personaje):
+        tipo_personaje(personaje.tipo_personaje),
         partida_id(partida_id),
-        client_id(datos_personajes[POS_ID_PERSONAJE]),
-        puntos(datos_personajes[POS_PUNTOS_PERSONAJE]),
-        vida(datos_personajes[POS_VIDA_PERSONAJE]),
-        arma(datos_personajes[POS_MUNICION_PERSONAJE], datos_personajes[POS_ARMA_PERSONAJE]),
-        posicion(datos_personajes[POS_POSX_PERSONAJE], datos_personajes[POS_POSY_PERSONAJE]) {}
+        client_id(personaje.personaje[POS_ID_PERSONAJE]),
+        puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
+        vida(personaje.personaje[POS_VIDA_PERSONAJE]),
+        arma(personaje.personaje[POS_MUNICION_PERSONAJE], personaje.tipo_arma),
+        posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]) {}
 
 void Personaje::asignar_tipo_personaje(const uint16_t& tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
@@ -47,7 +47,7 @@ uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 
 uint16_t Personaje::obtener_personaje_id() const { return client_id; }
 
-uint16_t Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
+uint8_t Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
 
 uint16_t Personaje::obtener_puntos() const { return puntos; }
 
