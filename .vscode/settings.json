@@ -63,6 +63,7 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "fstream": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "valarray": "cpp"
     }
 }

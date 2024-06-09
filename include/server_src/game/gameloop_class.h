@@ -14,6 +14,8 @@
 #include "queue.h"
 #include "thread.h"
 
+#include "../server_src/yaml_config.h"
+
 class GameLoop: public Thread {
 private:
     uint16_t gameloop_id;
