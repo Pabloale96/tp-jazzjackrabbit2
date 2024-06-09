@@ -29,11 +29,10 @@ private:
     Frame platform;
 
 public:
-    PlatformGui(ClaseTexturas&, int, int, int, bool, int, int, int);
     PlatformGui(ClaseTexturas&, const msgPlataforma&);
     ~PlatformGui();
 
-    void show();
+    void show(int dif_x, int dif_y);
 };
 
 #endif

@@ -76,6 +76,24 @@ void Saltar::ejecutar(Game& game) {
     }
 }
 
+
+Saltando::Saltando(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void Saltando::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("saltando", client_id);
+    }
+}
+
+Cayendo::Cayendo(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void Cayendo::ejecutar(Game& game) {
+    if (toggle) {
+        game.mover("cayendo", client_id);
+    }
+}
+
+
 // **** Kill all ****
 
 KillAll::KillAll(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}

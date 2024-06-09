@@ -78,11 +78,13 @@ struct msgPersonaje {
     uint8_t tipo_personaje = 0x00;
     uint8_t tipo_arma = 0x00;
     uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
+    uint16_t cantidad_balas = 0;
 
     msgPersonaje() {}
 
-    msgPersonaje(uint16_t id, Personaje& pers):
-            tipo_arma(pers.obtener_nombre_arma()), tipo_personaje(pers.obtener_tipo_personaje()) {
+    msgPersonaje(uint16_t id, Personaje& pers) :
+        tipo_personaje(pers.obtener_tipo_personaje()),
+        tipo_arma(pers.obtener_nombre_arma()) {
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());
@@ -91,6 +93,21 @@ struct msgPersonaje {
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
     }
 } __attribute__((packed));
+
+
+struct msgBalas {
+    uint8_t tipo_bala = 0x00;
+    uint16_t balas[SIZE_ARRAY_BALA] = {0};
+
+    msgBalas() {}
+
+    msgBalas(uint16_t id, Municion& muni):
+        tipo_bala(muni.obtener_tipo_bala()) {
+        balas[POS_POSX_BALA] = htons(muni.obtener_x());
+        balas[POS_POSY_BALA] = htons(muni.obtener_y());
+    }
+} __attribute__((packed));
+
 
 struct msgEnemigo {
     uint16_t enemigo[SIZE_ARRAY_ENEMIGO] = {0};
@@ -112,15 +129,15 @@ struct msgEscenario {
 } __attribute__((packed));
 
 struct msgPlataforma {
+    uint8_t tipo_plataforma = 0;
+    uint8_t rotate = (uint8_t) rot_platform::ROTATE_0;
     uint16_t plataforma[SIZE_ARRAY_PLATAFORMA] = {0};
 
     msgPlataforma() {}
 
-    explicit msgPlataforma(const Platform& pla) {
+    explicit msgPlataforma(const Platform& pla): tipo_plataforma(pla.obtener_tipo()),rotate(pla.obtener_rotate()) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
-        plataforma[POS_TIPO_PLATAFORMA] = pla.obtener_tipo();
-        plataforma[POS_ROTATE_PLATAFORM] = pla.obtener_rotate();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();
         plataforma[POS_HEIGHT_PLATAFORM] = pla.obtener_height();
     }

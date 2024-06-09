@@ -47,6 +47,19 @@ public:
     void ejecutar(Game& game) override;
 };
 
+class Saltando: public Comando {
+public:
+    Saltando(uint16_t client_id, bool toggle);
+    void ejecutar(Game& game) override;
+};
+
+class Cayendo: public Comando {
+public:
+    Cayendo(uint16_t client_id, bool toggle);
+    void ejecutar(Game& game) override;
+};
+
+
 
 class Disparar: public Comando {
 public:

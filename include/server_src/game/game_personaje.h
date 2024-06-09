@@ -31,7 +31,8 @@ private:
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
     Direccion direccion;
-    bool intoxicado;
+    std::vector<bool> estados;
+    std::vector<bool> acciones;
 
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
@@ -42,7 +43,7 @@ public:
 
     void intoxicar();
 
-    bool obtener_estado_intoxicado();
+    std::vector<bool>  obtener_estados();
 
     uint8_t obtener_animacion();
 

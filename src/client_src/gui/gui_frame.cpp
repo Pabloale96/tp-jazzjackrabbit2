@@ -15,10 +15,10 @@ void Frame::copy(bool flip, int pos_x, int pos_y) {
     sprite.SetAlphaMod(255);
     if (flip) {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                      Rect(pos_x, pos_y, 75, 75), 180.0, NullOpt, 2);
+                      Rect(pos_x, pos_y, vec_frames[2], vec_frames[3]), 180.0, NullOpt, 2);
     } else {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                      Rect(pos_x, pos_y, 75, 75));
+                      Rect(pos_x, pos_y, vec_frames[2], vec_frames[3]));
     }
 }
 
@@ -26,11 +26,10 @@ void Frame::copy(bool flip, int pos_x, int pos_y, int area_x, int area_y) {
     sprite.SetAlphaMod(255);
     if (flip) {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                      Rect(pos_x, pos_y, area_x, area_y), 180.0, NullOpt, 2);
+                      Rect(pos_x, renderer.GetOutputHeight() - pos_y - SCALING_VALUE_PIXEL*area_y, area_x, area_y), 180.0, NullOpt, 2);
     } else {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                      Rect(renderer.GetOutputWidth() - pos_x, renderer.GetOutputHeight() - pos_y,
-                           SCALING_VALUE_PIXEL * area_x, SCALING_VALUE_PIXEL * area_y));
+                      Rect(SCALING_VALUE_PIXEL*pos_x, renderer.GetOutputHeight() - SCALING_VALUE_PIXEL*pos_y - SCALING_VALUE_PIXEL*area_y, SCALING_VALUE_PIXEL*area_x, SCALING_VALUE_PIXEL*area_y));
     }
 }
 
