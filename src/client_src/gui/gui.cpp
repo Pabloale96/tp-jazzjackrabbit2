@@ -16,7 +16,7 @@ void Gui::setGameState(GameState& gamestate) {
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
     pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_x());
     pos_y = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_y());
-    dic_personajes.erase(client_id);  
+    dic_personajes.erase(client_id);
 }
 void Gui::setEscenario(ClaseTexturas& texturas) {
     for (size_t i = 0; i < msg_plataformas.size(); i++) {
@@ -24,8 +24,8 @@ void Gui::setEscenario(ClaseTexturas& texturas) {
         plataformas.push_back(plataforma);
     }
 }
- 
-void Gui::eventManaged(int & animacion) {    
+
+void Gui::eventManaged(int& animacion) {
 
     SDL_Event event;
     // definir N it para las animaciones de frame.
@@ -119,11 +119,14 @@ void Gui::run() {
 
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()-HEIGHT_PLATFORM_TYPE_1);
+        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1);
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()-HEIGHT_PLATFORM_TYPE_1);
+        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1);
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()-HEIGHT_PLATFORM_TYPE_1);
+        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1);
     }
 
     Escenario escenario(plataformas);
@@ -144,26 +147,27 @@ void Gui::run() {
         // Clear the screen
         renderer.Clear();
 
-        escenario.show( pos_x, pos_y);
-        for (const auto& [_,personaje]: dic_personajes) {
+        escenario.show(pos_x, pos_y);
+        for (const auto& [_, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
-            int x = (personaje->obtener_posicion().get_posicion_x() - pos_x)*SCALING_VALUE_PIXEL;
-            int y = (personaje->obtener_posicion().get_posicion_y() - pos_y)*SCALING_VALUE_PIXEL;
-            if (x <= (pos_x+renderer.GetOutputWidth()/2) || x<=(pos_x-renderer.GetOutputWidth()/2) ||
-                y <= (pos_y+renderer.GetOutputHeight()/2) || y<=(pos_y-renderer.GetOutputHeight()/2) )
-            {
-                if (personaje->obtener_tipo_personaje()== (uint8_t) personajes::JAZZ) {
-                    pers = std::make_unique<JazzGui>(texturas,x,y);
-                    //pers->show(animacion);//personaje->obtener_animacion());
-                } else if (personaje->obtener_tipo_personaje()  == (uint8_t) personajes::SPAZZ) {
-                    pers = std::make_unique<SpazGui>(texturas,x,y);
-                    //pers->show(animacion);//personaje->obtener_animacion());
-                } else if (personaje->obtener_tipo_personaje()  == (uint8_t) personajes::LORI) {
-                    pers = std::make_unique<LoriGui>(texturas,x,y);
-                    //pers->show(animacion);//personaje->obtener_animacion());
+            int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) * SCALING_VALUE_PIXEL;
+            int y = (personaje->obtener_posicion().get_posicion_y() - pos_y) * SCALING_VALUE_PIXEL;
+            if (x <= (pos_x + renderer.GetOutputWidth() / 2) ||
+                x <= (pos_x - renderer.GetOutputWidth() / 2) ||
+                y <= (pos_y + renderer.GetOutputHeight() / 2) ||
+                y <= (pos_y - renderer.GetOutputHeight() / 2)) {
+                if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
+                    pers = std::make_unique<JazzGui>(texturas, x, y);
+                    // pers->show(animacion);//personaje->obtener_animacion());
+                } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
+                    pers = std::make_unique<SpazGui>(texturas, x, y);
+                    // pers->show(animacion);//personaje->obtener_animacion());
+                } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::LORI) {
+                    pers = std::make_unique<LoriGui>(texturas, x, y);
+                    // pers->show(animacion);//personaje->obtener_animacion());
                 }
-                std::cout << "pos: ( " << x<<", "<<y<< ")" <<std::endl;
-                pers->show(ANI_STAND);//personaje->obtener_animacion());
+                std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
+                pers->show(ANI_STAND);  // personaje->obtener_animacion());
             }
         }
         jugador->show(animacion);

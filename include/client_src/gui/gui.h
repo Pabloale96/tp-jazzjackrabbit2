@@ -38,8 +38,8 @@ using SDL2pp::Window;
 class Gui: public Thread {
 private:
     // posicion del jugador:
-    int pos_x =0;
-    int pos_y =0;
+    int pos_x = 0;
+    int pos_y = 0;
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::map<uint16_t, std::shared_ptr<Personaje>> dic_personajes;
@@ -52,7 +52,7 @@ private:
 
     std::vector<msgPlataforma>& msg_plataformas;
 
-    uint16_t & client_id;
+    uint16_t& client_id;
 
     std::vector<PlatformGui> plataformas;
 
@@ -68,8 +68,8 @@ public:
     ~Gui();
     void run() override;
     void setGameState(GameState&);
-    void setEscenario(ClaseTexturas &);
-    void eventManaged(int &);
+    void setEscenario(ClaseTexturas&);
+    void eventManaged(int&);
 };
 
 #endif

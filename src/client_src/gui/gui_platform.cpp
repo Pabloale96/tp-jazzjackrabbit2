@@ -14,5 +14,5 @@ PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma& msg):
 PlatformGui::~PlatformGui() {}
 
 void PlatformGui::show(int dif_x, int dif_y) {
-    platform.copy(flip, pos_x-dif_x, pos_y-dif_y, width, height);
+    platform.copy(flip, pos_x - dif_x, pos_y - dif_y, width, height);
 }

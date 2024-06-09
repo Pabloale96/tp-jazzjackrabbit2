@@ -60,7 +60,6 @@ public:
 };
 
 
-
 class Disparar: public Comando {
 public:
     Disparar(uint16_t client_id, bool toggle);

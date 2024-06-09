@@ -27,15 +27,13 @@ void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
-void Personaje::intoxicar() { }//intoxicado = true; }
+void Personaje::intoxicar() {}  // intoxicado = true; }
 
 std::vector<bool> Personaje::obtener_estados() { return estados; }
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 
-void Personaje::actualizar() { 
-
-}
+void Personaje::actualizar() {}
 
 void Personaje::setear_direccion(const std::string& direccion) {
     if (direccion == "derecha" || direccion == "derecha_rapido") {

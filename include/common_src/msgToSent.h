@@ -82,9 +82,8 @@ struct msgPersonaje {
 
     msgPersonaje() {}
 
-    msgPersonaje(uint16_t id, Personaje& pers) :
-        tipo_personaje(pers.obtener_tipo_personaje()),
-        tipo_arma(pers.obtener_nombre_arma()) {
+    msgPersonaje(uint16_t id, Personaje& pers):
+            tipo_personaje(pers.obtener_tipo_personaje()), tipo_arma(pers.obtener_nombre_arma()) {
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());
@@ -101,8 +100,7 @@ struct msgBalas {
 
     msgBalas() {}
 
-    msgBalas(uint16_t id, Municion& muni):
-        tipo_bala(muni.obtener_tipo_bala()) {
+    msgBalas(uint16_t id, Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
         balas[POS_POSX_BALA] = htons(muni.obtener_x());
         balas[POS_POSY_BALA] = htons(muni.obtener_y());
     }
@@ -130,12 +128,13 @@ struct msgEscenario {
 
 struct msgPlataforma {
     uint8_t tipo_plataforma = 0;
-    uint8_t rotate = (uint8_t) rot_platform::ROTATE_0;
+    uint8_t rotate = (uint8_t)rot_platform::ROTATE_0;
     uint16_t plataforma[SIZE_ARRAY_PLATAFORMA] = {0};
 
     msgPlataforma() {}
 
-    explicit msgPlataforma(const Platform& pla): tipo_plataforma(pla.obtener_tipo()),rotate(pla.obtener_rotate()) {
+    explicit msgPlataforma(const Platform& pla):
+            tipo_plataforma(pla.obtener_tipo()), rotate(pla.obtener_rotate()) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();

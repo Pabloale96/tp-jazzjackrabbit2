@@ -79,10 +79,10 @@ void ClaseTexturas::addFrames(std::string key, std::vector<Frame> value) {
 
 void ClaseTexturas::plataformaTipo1() {
 
-    int x_frame =0 ;
-    int y_frame =2560 ;
-    int w_frame =29 ;
-    int h_frame =192 ;
+    int x_frame = 0;
+    int y_frame = 2560;
+    int w_frame = 29;
+    int h_frame = 192;
 
     std::vector<Frame> frame_aux;
     Frame frame(renderer, beach_tex);

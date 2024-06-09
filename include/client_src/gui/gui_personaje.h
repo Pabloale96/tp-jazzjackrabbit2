@@ -28,7 +28,7 @@ protected:
 
 
 public:
-    explicit PersonajeGui(ClaseTexturas&,int,int);
+    explicit PersonajeGui(ClaseTexturas&, int, int);
     ~PersonajeGui();
     virtual void show(int);
 };
@@ -36,7 +36,7 @@ public:
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas&,int,int);
+    explicit SpazGui(ClaseTexturas&, int, int);
     ~SpazGui();
 
     void show(int) override;
@@ -46,7 +46,7 @@ public:
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas&,int,int);
+    explicit JazzGui(ClaseTexturas&, int, int);
     ~JazzGui();
 
     void show(int) override;
@@ -55,7 +55,7 @@ public:
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas&,int,int);
+    explicit LoriGui(ClaseTexturas&, int, int);
     ~LoriGui();
 
     void show(int) override;

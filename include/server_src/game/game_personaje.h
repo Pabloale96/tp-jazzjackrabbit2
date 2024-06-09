@@ -43,7 +43,7 @@ public:
 
     void intoxicar();
 
-    std::vector<bool>  obtener_estados();
+    std::vector<bool> obtener_estados();
 
     uint8_t obtener_animacion();
 
