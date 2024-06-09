@@ -35,16 +35,28 @@ using SDL2pp::SDL;
 
 class Gui: public Thread {
 private:
+    // posicion del jugador:
     int pos_x =0;
     int pos_y =0;
+
+    // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::map<uint16_t, std::shared_ptr<Personaje>> personajes;
+
     bool& client_off;
+
     std::string& personaje;
+
     Queue<msgAccion>& client_commands;
+
     std::vector<msgPlataforma>& msg_plataformas;
+
     uint16_t & client_id;
+
     std::vector<PlatformGui> plataformas;
+
     std::unique_ptr<PersonajeGui> jugador;
+
+    // tamanio de la pantalla:
     int screenWidth = 600;
     int screenHeight = 800;
 

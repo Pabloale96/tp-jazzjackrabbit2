@@ -9,6 +9,7 @@
 #include <SDL2pp/SDL2pp.hh>
 
 #include "gui_defines_frames.h"
+#include "protocol_utils.h"
 
 using SDL2pp::NullOpt;
 using SDL2pp::Rect;

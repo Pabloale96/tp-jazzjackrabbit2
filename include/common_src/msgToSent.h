@@ -111,15 +111,15 @@ struct msgEscenario {
 }__attribute__((packed));
 
 struct msgPlataforma {
+    uint8_t tipo_plataforma = 0;
+    uint8_t rotate = (uint8_t) rot_platform::ROTATE_0;
     uint16_t plataforma[SIZE_ARRAY_PLATAFORMA] = {0};
 
     msgPlataforma() {}
 
-    explicit msgPlataforma(const Platform& pla) {
+    explicit msgPlataforma(const Platform& pla): tipo_plataforma(pla.obtener_tipo()),rotate(pla.obtener_rotate()) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
-        plataforma[POS_TIPO_PLATAFORMA] = pla.obtener_tipo();
-        plataforma[POS_ROTATE_PLATAFORM] = pla.obtener_rotate();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();
         plataforma[POS_HEIGHT_PLATAFORM] = pla.obtener_height();
     }

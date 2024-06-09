@@ -102,8 +102,6 @@ void Gui::eventManaged(int & animacion) {
     }
 }
 
-
-
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
@@ -124,11 +122,11 @@ void Gui::run() {
 
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()/2);
+        jugador = std::make_unique<JazzGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()-HEIGHT_PLATFORM_TYPE_1);
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()/2);
+        jugador = std::make_unique<SpazGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()-HEIGHT_PLATFORM_TYPE_1);
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()/2);
+        jugador = std::make_unique<LoriGui>(texturas,renderer.GetOutputWidth()/2,renderer.GetOutputHeight()-HEIGHT_PLATFORM_TYPE_1);
     }
 
     Escenario escenario(plataformas);
@@ -151,10 +149,6 @@ void Gui::run() {
         // Clear the screen
         renderer.Clear();
         escenario.show();
-
-        //std::cout << "client id: " << client_id << std::endl;
-        //std::cout << "sizes personajes map: " << personajes.size() << std::endl;
-
         for (const auto& [_,personaje]: personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = renderer.GetOutputWidth()/2 + (personaje->obtener_posicion().get_posicion_x() - pos_x);

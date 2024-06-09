@@ -11,7 +11,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         arma(),
         posicion(),
         direccion(Direccion::CENTRO),
-        intoxicado(false) {}
+        estados() {}
 
 Personaje::Personaje(msgPersonaje & personaje):
         tipo_personaje(personaje.tipo_personaje),
@@ -26,9 +26,9 @@ void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
-void Personaje::intoxicar() { intoxicado = true; }
+void Personaje::intoxicar() { }//intoxicado = true; }
 
-bool Personaje::obtener_estado_intoxicado() { return intoxicado; }
+std::vector<bool> Personaje::obtener_estados() { return estados; }
 
 uint8_t Personaje::obtener_animacion() { return animacion;}
 

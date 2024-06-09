@@ -1,8 +1,6 @@
 #ifndef DEFINE_FRAMES_H
 #define DEFINE_FRAMES_H
 
-#define SCALING_VALUE_PIXEL 10
-
 #define ANI_STAND 0
 #define ANI_DISPARAR 1
 #define ANI_MOVER_DERECHA 2

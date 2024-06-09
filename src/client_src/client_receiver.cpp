@@ -21,11 +21,11 @@ void ClientReceiver::run() {
         } catch (const ClosedQueue&) {
             return;
         } catch (const LibError& err) {
-            std::cerr << "Fallo el receive en ClientSender->run: " << err.what() << "\n";
-        } catch (const std::exception& err) {
             if (protocolo_cliente.obtener_estado_de_la_conexion()) {
                 return;
             }
+            std::cerr << "Fallo el receive en ClientSender->run: " << err.what() << "\n";
+        } catch (const std::exception& err) {
             if (!this->is_alive()) {
                 return;
             }
