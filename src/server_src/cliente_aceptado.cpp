@@ -88,12 +88,8 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
 */
 
 void ClienteAceptado::start(GameloopMonitor& gameloop_monitor) {
-    std::cout << "El cliente " << id_cliente << " INICIA" << std::endl;
     lobby.start();
-    std::cout << "El cliente " << id_cliente << " PASO el lobby" << std::endl;
-
     sender.start();
-    std::cout << "El cliente " << id_cliente << " PASO el SENDER" << std::endl;
 }
 
 bool ClienteAceptado::is_dead() {
