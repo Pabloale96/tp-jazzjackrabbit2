@@ -13,6 +13,7 @@
 #include "server_sender.h"
 #include "sockets.h"
 #include "thread.h"
+#include "../../include/server_src/lobby.h"
 
 class ClienteAceptado {
 private:
@@ -21,8 +22,9 @@ private:
     bool was_closed;
     Queue<std::shared_ptr<GameState>> server_msg;
     ServerSender sender;
-    std::unique_ptr<ServerReceiver> receiver;
+    std::shared_ptr<ServerReceiver> receiver;
     uint16_t gameloop_id;
+    Lobby lobby;
 
 public:
     // Constructor
@@ -33,7 +35,7 @@ public:
     // Agrega la cola de mensajes del servidor al juego
     ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monitor_de_partidas);
 
-    void lobby(GameloopMonitor& gameloop_monitor);
+    // void lobby(GameloopMonitor& gameloop_monitor);
 
     void establecer_partida(GameloopMonitor& gameloop_monitor);
 

@@ -71,6 +71,7 @@ add_executable(client
   ${UIS_HEADERS})
 
 add_executable(server
+  src/server_src/lobby.cpp
   src/server_src/cliente_aceptado.cpp
   src/server_src/server_aceptador.cpp
   src/server_src/server.cpp

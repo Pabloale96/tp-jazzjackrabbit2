@@ -23,6 +23,7 @@ void Aceptador::run() {
             ClienteAceptado* cliente_nuevo = new ClienteAceptado(std::move(socket_cliente), monitor_de_partidas);
             lista_clientes.push_back(cliente_nuevo);
             lista_clientes.back()->start(monitor_de_partidas);
+            std::cout << "** PASO TODOS LOS STARTS **" << std::endl;
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
                 // TODO: ahora el monitor de gameloops tiene que cerrar los gameloops
@@ -32,7 +33,7 @@ void Aceptador::run() {
                 return;
             }
         }
-        limpiar_clientes_que_terminaron(lista_clientes);
+        // limpiar_clientes_que_terminaron(lista_clientes);
     }
 }
 
