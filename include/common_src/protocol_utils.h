@@ -46,14 +46,15 @@ enum class efectos : uint8_t {
     CORRIENDO = 0x03,
     CORRIENDO_RAPIDO = 0x04,
     SALTANDO = 0x05,
+    CAYENDO = 0x06,
 
     // Estados
-    INTOXICADO = 0x06,
-    HERIDO = 0x07,
-    MUERTO = 0x08,
+    INTOXICADO = 0x07,
+    HERIDO = 0x08,
+    MUERTO = 0x09,
 
     // Acciones especiales
-    ACCION_ESPECIAL = 0x09
+    ACCION_ESPECIAL = 0x10
 };
 
 enum class armas : uint8_t { ARMA_INICIAL = 0x01, ARMA_SECUNDARIA = 0x02 };
