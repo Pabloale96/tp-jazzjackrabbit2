@@ -29,7 +29,8 @@ void Frame::copy(bool flip, int pos_x, int pos_y, int area_x, int area_y) {
                       Rect(pos_x, pos_y, area_x, area_y), 180.0, NullOpt, 2);
     } else {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                      Rect(renderer.GetOutputWidth() - pos_x, renderer.GetOutputHeight() - pos_y, SCALING_VALUE_PIXEL*area_x, SCALING_VALUE_PIXEL*area_y));
+                      Rect(renderer.GetOutputWidth() - pos_x, renderer.GetOutputHeight() - pos_y,
+                           SCALING_VALUE_PIXEL * area_x, SCALING_VALUE_PIXEL * area_y));
     }
 }
 

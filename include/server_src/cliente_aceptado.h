@@ -5,6 +5,8 @@
 #include <memory>
 #include <string>
 
+#include "../../include/server_src/lobby.h"
+
 #include "gameloop_class.h"
 #include "gameloop_monitor.h"
 #include "queue.h"
@@ -13,7 +15,6 @@
 #include "server_sender.h"
 #include "sockets.h"
 #include "thread.h"
-#include "../../include/server_src/lobby.h"
 
 class ClienteAceptado {
 private:

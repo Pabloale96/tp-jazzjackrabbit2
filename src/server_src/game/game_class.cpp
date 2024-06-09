@@ -22,8 +22,8 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         enemigos[i]->set_enemigo_id(i + 1);
     }
 
-    Platform plataforma_inicial(0, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
-             XMAX, 1, static_cast<uint16_t>(platform::TYPE_1));
+    Platform plataforma_inicial(0, 0, static_cast<uint16_t>(rot_platform::ROTATE_0), XMAX, 1,
+                                static_cast<uint16_t>(platform::TYPE_1));
     plataformas.push_back(plataforma_inicial);
 }
 
@@ -82,9 +82,7 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
     }
 }
 
-void Game::accion_especial(uint16_t client_id) {
-    obtener_personaje(client_id).accion_especial();
-}
+void Game::accion_especial(uint16_t client_id) { obtener_personaje(client_id).accion_especial(); }
 
 
 void Game::actualizar_posiciones() {

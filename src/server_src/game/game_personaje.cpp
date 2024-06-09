@@ -13,14 +13,15 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         direccion(Direccion::CENTRO),
         intoxicado(false) {}
 
-Personaje::Personaje(msgPersonaje & personaje):
+Personaje::Personaje(msgPersonaje& personaje):
         tipo_personaje(personaje.tipo_personaje),
         partida_id(partida_id),
         client_id(personaje.personaje[POS_ID_PERSONAJE]),
         puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
         vida(personaje.personaje[POS_VIDA_PERSONAJE]),
         arma(personaje.personaje[POS_MUNICION_PERSONAJE], personaje.tipo_arma),
-        posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]) {}
+        posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]) {
+}
 
 void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
@@ -30,7 +31,7 @@ void Personaje::intoxicar() { intoxicado = true; }
 
 bool Personaje::obtener_estado_intoxicado() { return intoxicado; }
 
-uint8_t Personaje::obtener_animacion() { return animacion;}
+uint8_t Personaje::obtener_animacion() { return animacion; }
 
 void Personaje::actualizar() {}
 
@@ -88,7 +89,7 @@ Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::JAZZ));
 }
 
-Jazz::Jazz(msgPersonaje & personaje):Personaje(personaje){}
+Jazz::Jazz(msgPersonaje& personaje): Personaje(personaje) {}
 
 void Jazz::accion_especial() {
     obtener_posicion().mover("arriba");
@@ -99,7 +100,7 @@ Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::LORI));
 }
 
-Lori::Lori(msgPersonaje & personaje):Personaje(personaje){}
+Lori::Lori(msgPersonaje& personaje): Personaje(personaje) {}
 
 void Lori::accion_especial() {
     obtener_posicion().mover("arriba");
@@ -110,7 +111,7 @@ Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, cli
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::SPAZZ));
 }
 
-Spazz::Spazz(msgPersonaje & personaje):Personaje(personaje){}
+Spazz::Spazz(msgPersonaje& personaje): Personaje(personaje) {}
 
 void Spazz::accion_especial() {
     obtener_direccion() == Direccion::DERECHA ? obtener_posicion().mover("derecha") :

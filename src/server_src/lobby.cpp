@@ -1,14 +1,16 @@
 #include "../server_src/lobby.h"
 
-Lobby::Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor, uint16_t gameloop_id , uint16_t id_cliente, Queue<std::shared_ptr<GameState>>& server_msg, std::shared_ptr<ServerReceiver>& receiver) :
-    protocolo_server(protocolo_server),
-    was_closed(was_closed),
-    gameloop_monitor(gameloop_monitor), 
-    gameloop_id(gameloop_id),
-    id_cliente(id_cliente),
-    server_msg(server_msg),
-    receiver(receiver) {
-    }
+Lobby::Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor,
+             uint16_t gameloop_id, uint16_t id_cliente,
+             Queue<std::shared_ptr<GameState>>& server_msg,
+             std::shared_ptr<ServerReceiver>& receiver):
+        protocolo_server(protocolo_server),
+        was_closed(was_closed),
+        gameloop_monitor(gameloop_monitor),
+        gameloop_id(gameloop_id),
+        id_cliente(id_cliente),
+        server_msg(server_msg),
+        receiver(receiver) {}
 
 void Lobby::run() {
     std::cout << "El jugador " << id_cliente << " ha ingresado al lobby" << std::endl;
@@ -35,8 +37,7 @@ void Lobby::establecer_partida(GameloopMonitor& gameloop_monitor) {
     }
 }
 
-void Lobby::crear_partida(GameloopMonitor& gameloop_monitor,
-                                    const std::string& nombre_partida) {
+void Lobby::crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida) {
     std::cout << "** PARTIDA NUEVA CREADA CON NOMBRE: " << nombre_partida << " **" << std::endl;
     uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
     gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente, personaje);

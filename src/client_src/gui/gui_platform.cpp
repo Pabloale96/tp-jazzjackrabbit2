@@ -1,6 +1,6 @@
 #include "../../include/client_src/gui/gui_platform.h"
 
-PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma & msg):
+PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma& msg):
         texturas(texturas),
         pos_x(msg.plataforma[POS_POSX_PLATAFORMA]),
         pos_y(msg.plataforma[POS_POSY_PLATAFORMA]),
@@ -13,6 +13,4 @@ PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma & msg):
 
 PlatformGui::~PlatformGui() {}
 
-void PlatformGui::show() {
-    platform.copy(flip, pos_x, pos_y, width, height);
-}
+void PlatformGui::show() { platform.copy(flip, pos_x, pos_y, width, height); }

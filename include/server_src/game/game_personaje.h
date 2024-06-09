@@ -2,15 +2,15 @@
 #define _GAME_PERSONAJE_H_
 
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 #include "defines_msg.h"
-#include "protocol_utils.h"
 #include "game_arma.h"
 #include "game_municion.h"
 #include "game_posicion.h"
+#include "protocol_utils.h"
 
 #define PUNTOS_INICIALES 0
 #define VIDA_INICIAL 10
@@ -36,7 +36,7 @@ private:
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
 
-    explicit Personaje(msgPersonaje & personaje);
+    explicit Personaje(msgPersonaje& personaje);
 
     void asignar_tipo_personaje(uint8_t tipo_personaje);
 
@@ -82,21 +82,21 @@ public:
 class Jazz: public Personaje {
 public:
     Jazz(uint16_t partida_id, uint16_t client_id);
-    Jazz(msgPersonaje & personaje);
+    explicit Jazz(msgPersonaje& personaje);
     void accion_especial() override;
 };
 
 class Lori: public Personaje {
 public:
     Lori(uint16_t partida_id, uint16_t client_id);
-    Lori(msgPersonaje & personaje);
+    explicit Lori(msgPersonaje& personaje);
     void accion_especial() override;
 };
 
 class Spazz: public Personaje {
 public:
     Spazz(uint16_t partida_id, uint16_t client_id);
-    Spazz(msgPersonaje & personaje);
+    explicit Spazz(msgPersonaje& personaje);
     void accion_especial() override;
 };
 

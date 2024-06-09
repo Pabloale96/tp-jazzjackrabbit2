@@ -11,9 +11,7 @@
 #include "../../include/server_src/server_protocol.h"
 
 Aceptador::Aceptador(const std::string& servname):
-        socket_server(servname.c_str()),
-        was_closed_aceptador(false),
-        monitor_de_partidas() {}
+        socket_server(servname.c_str()), was_closed_aceptador(false), monitor_de_partidas() {}
 
 void Aceptador::run() {
     std::list<ClienteAceptado> lista_clientes;

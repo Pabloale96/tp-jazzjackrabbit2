@@ -17,20 +17,24 @@ bool Posicion::mover(const std::string& direccion) {
     // TODO: No se si habrá que checkear los bordes del tablero
     if (direccion == "derecha") {
         this->x++;
-        if (x>=200) x=0;
+        if (x >= 200)
+            x = 0;
         return true;
     } else if (direccion == "derecha_rapido") {
         // TODO: Capaz habría que chequear cuánto aumenta el mover rápido
-        if (x>=200) x=0;
+        if (x >= 200)
+            x = 0;
         this->x += 2;
         return true;
     } else if (direccion == "izquierda") {
         this->x--;
-        if (x<0) x=200;
+        if (x < 0)
+            x = 200;
         return true;
     } else if (direccion == "izquierda_rapido") {
         // TODO: Capaz habría que chequear cuánto aumenta el mover rápido
-        if (x<0) x=200;
+        if (x < 0)
+            x = 200;
         return true;
     } else if (direccion == "arriba") {
         this->y++;
