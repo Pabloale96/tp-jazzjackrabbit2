@@ -14,8 +14,7 @@ class Aceptador: public Thread {
 private:
     Socket socket_server;
     std::atomic<bool> was_closed_aceptador;
-    GameloopMonitor monitor_diccionario_de_gameloops;
-    uint16_t client_id;
+    GameloopMonitor monitor_de_partidas;
 
 public:
     // Constructor
