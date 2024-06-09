@@ -1,6 +1,6 @@
 #include "../../include/server_src/server_sender.h"
 
-#include "../../include/common_src/liberror.h"
+#include "../../include/common_src/catedra/liberror.h"
 #include "../../include/server_src/server_protocol.h"
 
 #define MATAR 0x04

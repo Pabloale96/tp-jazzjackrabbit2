@@ -11,6 +11,8 @@
 #include "thread.h"
 
 class ServerReceiver: public Thread {
+
+// TODO: Modo Lobby
 private:
     ProtocolServer& protocolo_server;
     bool& was_closed;

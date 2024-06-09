@@ -1,6 +1,6 @@
 // Copyright 2024 Martin Di Paola
 
-#include "../../include/common_src/sockets.h"
+#include "../../include/common_src/catedra/sockets.h"
 
 #include <stdexcept>
 
@@ -14,8 +14,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../../include/common_src/liberror.h"
-#include "../../include/common_src/resolver.h"
+#include "../../include/common_src/catedra/liberror.h"
+#include "../../include/common_src/catedra/resolver.h"
 
 Socket::Socket(const char* hostname, const char* servname) {
     Resolver resolver(hostname, servname, false);

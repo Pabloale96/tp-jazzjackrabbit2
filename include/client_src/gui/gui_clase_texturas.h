@@ -24,12 +24,16 @@ private:
     Surface jazz{Surface(IMG_PATH "/jazz.png")};
     Surface spaz{Surface(IMG_PATH "/spaz.png")};
     Surface lori{Surface(IMG_PATH "/lori.png")};
+    Surface beach{Surface(IMG_PATH"/beach.png")};
+                                                         
     Texture jazz_tex{Texture(renderer,
                              jazz.SetColorKey(true, SDL_MapRGB(jazz.Get()->format, 44, 102, 150)))};
     Texture spaz_tex{Texture(renderer,
                              spaz.SetColorKey(true, SDL_MapRGB(spaz.Get()->format, 44, 102, 150)))};
     Texture lori_tex{Texture(renderer,
                              lori.SetColorKey(true, SDL_MapRGB(lori.Get()->format, 44, 102, 150)))};
+    Texture beach_tex{Texture(renderer,
+                             beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0, 203)))};
 
     std::map<std::string, std::vector<Frame>> frames_map;
 
@@ -41,10 +45,19 @@ public:
     Texture& jazz_text();
     Texture& spaz_text();
     Texture& lori_text();
+    Texture& beach_text();
 
     std::vector<Frame>& findFrame(std::string);
 
+    void addFrames(std::string, std::vector<Frame>);
+    void addFrames(int, Frame);
+
     // Definiciones de frames:
+
+    void plataformaTipo1();
+    //void plataformaTipo2();
+    //void plataformaTipo3();
+
     void loriStand();
     void loriWalk();
     void loriJump();
@@ -95,8 +108,6 @@ public:
     void spazStopShootAndFalling();
     void spazDash();
     void spazSpecial();
-
-    void addFrames(std::string, std::vector<Frame>);
 };
 
 #endif

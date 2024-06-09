@@ -28,11 +28,11 @@ uint16_t ProtocolClient::recibir_id_jugador() {
 bool ProtocolClient::enviar_personaje(const std::string& personaje) {
     uint8_t personaje_serializado;
     if (personaje == "j") {
-        personaje_serializado = JAZZ;
+        personaje_serializado = static_cast<uint8_t>(personajes::JAZZ);
     } else if (personaje == "s") {
-        personaje_serializado = SPAZZ;
+        personaje_serializado = static_cast<uint8_t>(personajes::SPAZZ);
     } else if (personaje == "l") {
-        personaje_serializado = LORI;
+        personaje_serializado = static_cast<uint8_t>(personajes::LORI);
     } else {
         return false;  // Personaje no válido
     }
@@ -147,16 +147,16 @@ bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id
     gameState.setGameState(msg.state_partida);
     client_id = msg.client_id;
     msgPersonaje personaje;
-    for (size_t i = 0; i < msg.cantidad_personajes; i++) {
+    for (size_t i = 0; i < ntohs(msg.cantidad_personajes); i++) {
         if (was_closed) {
             return false;
         }
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
-        gameState.pushPersonajes(personaje.personaje);
+        gameState.pushPersonajes(personaje);
     }
 
     msgEnemigo enemigo;
-    for (size_t i = 0; i < msg.cantidad_enemigos; i++) {
+    for (size_t i = 0; i < ntohs(msg.cantidad_enemigos); i++) {
         if (was_closed) {
             return false;
         }

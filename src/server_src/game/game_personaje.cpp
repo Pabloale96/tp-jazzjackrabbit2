@@ -1,6 +1,6 @@
 #include "../../include/server_src/game/game_personaje.h"
 
-#include <iostream>
+#include "../../include/common_src/msgToSent.h"
 
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         tipo_personaje(),
@@ -9,22 +9,47 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         puntos(PUNTOS_INICIALES),
         vida(VIDA_INICIAL),
         arma(),
-        posicion() {}
+        posicion(),
+        direccion(Direccion::CENTRO),
+        intoxicado(false) {}
 
-Personaje::Personaje(uint16_t* datos_personajes):
-        tipo_personaje(),
+Personaje::Personaje(msgPersonaje & personaje):
+        tipo_personaje(personaje.tipo_personaje),
         partida_id(partida_id),
-        client_id(datos_personajes[POS_ID_PERSONAJE]),
-        puntos(datos_personajes[POS_PUNTOS_PERSONAJE]),
-        vida(datos_personajes[POS_VIDA_PERSONAJE]),
-        arma(datos_personajes[POS_MUNICION_PERSONAJE], datos_personajes[POS_ARMA_PERSONAJE]),
-        posicion(datos_personajes[POS_POSX_PERSONAJE], datos_personajes[POS_POSY_PERSONAJE]) {}
+        client_id(personaje.personaje[POS_ID_PERSONAJE]),
+        puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
+        vida(personaje.personaje[POS_VIDA_PERSONAJE]),
+        arma(personaje.personaje[POS_MUNICION_PERSONAJE], personaje.tipo_arma),
+        posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]) {}
 
-void Personaje::asignar_tipo_personaje(const std::string& tipo_personaje) {
+void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
+void Personaje::intoxicar() { intoxicado = true; }
+
+bool Personaje::obtener_estado_intoxicado() { return intoxicado; }
+
+uint8_t Personaje::obtener_animacion() { return animacion;}
+
+void Personaje::actualizar() {}
+
+void Personaje::setear_direccion(const std::string& direccion) {
+    if (direccion == "derecha" || direccion == "derecha_rapido") {
+        this->direccion = Direccion::DERECHA;
+    } else if (direccion == "izquierda" || direccion == "izquierda_rapido") {
+        this->direccion = Direccion::IZQUIERDA;
+    } else if (direccion == "arriba" || direccion == "saltar") {
+        this->direccion = Direccion::ARRIBA;
+    } else if (direccion == "abajo") {
+        this->direccion = Direccion::ABAJO;
+    } else {
+        this->direccion = Direccion::CENTRO;
+    }
+}
+
 bool Personaje::mover(const std::string& direccion) {
+    setear_direccion(direccion);
     // TODO: Esto es reactivo
     return posicion.mover(direccion);
     // Deberia setear el toggle de movimiento
@@ -43,11 +68,13 @@ void Personaje::disminuir_municion() { arma.disminuir_municion(); }
 
 Posicion Personaje::obtener_posicion() const { return posicion; }
 
+Direccion Personaje::obtener_direccion() const { return direccion; }
+
 uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 
 uint16_t Personaje::obtener_personaje_id() const { return client_id; }
 
-std::string Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
+uint8_t Personaje::obtener_tipo_personaje() const { return tipo_personaje; }
 
 uint16_t Personaje::obtener_puntos() const { return puntos; }
 
@@ -58,35 +85,45 @@ uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
 uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("jazz");
+    asignar_tipo_personaje(static_cast<uint8_t>(personajes::JAZZ));
 }
 
-void Jazz::punietazo_hacia_arriba() {
-    // TODO: Implementación del puñetazo hacia arriba
+Jazz::Jazz(msgPersonaje & personaje):Personaje(personaje){}
+
+void Jazz::accion_especial() {
+    obtener_posicion().mover("arriba");
+    // TODO: Si toco un enemigo, realizo daño
 }
 
 Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("lori");
+    asignar_tipo_personaje(static_cast<uint8_t>(personajes::LORI));
 }
 
-void Lori::patada_de_corto_alcance() {
-    // TODO: Implementación de la patada de corto alcance
+Lori::Lori(msgPersonaje & personaje):Personaje(personaje){}
+
+void Lori::accion_especial() {
+    obtener_posicion().mover("arriba");
+    // TODO: Si toco un enemigo, realizo daño
 }
 
 Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
-    asignar_tipo_personaje("spazz");
+    asignar_tipo_personaje(static_cast<uint8_t>(personajes::SPAZZ));
 }
 
-void Spazz::patada_hacia_un_costado() {
-    // TODO: Implementación de la patada hacia un costado
+Spazz::Spazz(msgPersonaje & personaje):Personaje(personaje){}
+
+void Spazz::accion_especial() {
+    obtener_direccion() == Direccion::DERECHA ? obtener_posicion().mover("derecha") :
+                                                obtener_posicion().mover("izquierda");
+    // TODO: Si toco un enemigo, realizo daño
 }
 
-Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje) {
-    if (personaje == "jazz") {
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje) {
+    if (personaje == static_cast<uint8_t>(personajes::JAZZ)) {
         return new Jazz(partida_id, client_id);
-    } else if (personaje == "lori") {
+    } else if (personaje == static_cast<uint8_t>(personajes::SPAZZ)) {
         return new Lori(partida_id, client_id);
-    } else if (personaje == "spazz") {
+    } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
         return new Spazz(partida_id, client_id);
     } else {
         return nullptr;

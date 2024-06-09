@@ -4,7 +4,7 @@
 #include <iostream>
 #include <utility>  // move()
 
-#include "../../include/common_src/sockets.h"
+#include "../../include/common_src/catedra/sockets.h"
 #include "../../include/server_src/server_aceptador.h"
 
 #define MAX_TAM_COLA 10

@@ -8,8 +8,7 @@
 
 #define MAX_TAM_COLA 1000
 #define CLIENT_ID_NULO 0
-#define ANCHO_RESOLUCION 800
-#define ALTO_RESOLUCION 600
+
 
 Client::Client(const std::string& hostname, const std::string& servicio):
         hostname(hostname),
@@ -21,8 +20,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         receiver(nullptr),
         client_off(false),
         client_id(CLIENT_ID_NULO),
-        gui(0, 0, ANCHO_RESOLUCION, ALTO_RESOLUCION, std::ref(client_off), std::ref(personaje),
-            std::ref(client_commands)) {}
+        gui(0, 0, std::ref(client_off), std::ref(personaje),std::ref(client_commands),plataformas,client_id) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -211,7 +209,6 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-    // gui.setEscenario(plataforma);
     protocolo_client.recibir_escenario(plataformas);
     gui.start();
 
@@ -222,7 +219,7 @@ void Client::jugar() {
 
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
-            gui.setGameState(*respuesta, client_id);
+            gui.setGameState(*respuesta);
 
             if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
@@ -243,7 +240,6 @@ void Client::mostrar_estadisticas(const GameState& respuestas) const {
     respuesta.obtener_puntos() << std::endl;
     }*/
 }
-
 void Client::stop_hilos() {}
 
 Client::~Client() {

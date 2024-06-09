@@ -4,34 +4,53 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "defines_msg.h"
+#include "protocol_utils.h"
 #include "game_arma.h"
+#include "game_municion.h"
 #include "game_posicion.h"
-
 
 #define PUNTOS_INICIALES 0
 #define VIDA_INICIAL 10
 
+
+struct msgPersonaje;
+
 class Personaje {
 
 private:
-    std::string tipo_personaje;
+    uint8_t tipo_personaje;
     uint16_t partida_id;
     uint16_t client_id;
     uint16_t puntos;
     uint16_t vida;
+    uint8_t animacion;
     Arma arma;
     Posicion posicion;
+    std::vector<Municion> municiones_disparadas;
+    Direccion direccion;
+    bool intoxicado;
 
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
 
-    explicit Personaje(uint16_t* personaje);
+    explicit Personaje(msgPersonaje & personaje);
 
-    void asignar_tipo_personaje(const std::string& tipo_personaje);
+    void asignar_tipo_personaje(uint8_t tipo_personaje);
+
+    void intoxicar();
+
+    bool obtener_estado_intoxicado();
+
+    uint8_t obtener_animacion();
+
+    void actualizar();
 
     virtual bool mover(const std::string& direccion);
+
+    void setear_direccion(const std::string& direccion);
 
     void disminuir_vida(uint16_t danio);
 
@@ -39,11 +58,13 @@ public:
 
     Posicion obtener_posicion() const;
 
+    Direccion obtener_direccion() const;
+
     uint16_t obtener_partida_id() const;
 
     uint16_t obtener_personaje_id() const;
 
-    std::string obtener_tipo_personaje() const;
+    uint8_t obtener_tipo_personaje() const;
 
     uint16_t obtener_puntos() const;
 
@@ -53,27 +74,32 @@ public:
 
     uint16_t obtener_municion() const;
 
+    virtual void accion_especial() = 0;
+
     virtual ~Personaje() = default;
 };
 
 class Jazz: public Personaje {
 public:
     Jazz(uint16_t partida_id, uint16_t client_id);
-    void punietazo_hacia_arriba();
+    Jazz(msgPersonaje & personaje);
+    void accion_especial() override;
 };
 
 class Lori: public Personaje {
 public:
     Lori(uint16_t partida_id, uint16_t client_id);
-    void patada_de_corto_alcance();
+    Lori(msgPersonaje & personaje);
+    void accion_especial() override;
 };
 
 class Spazz: public Personaje {
 public:
     Spazz(uint16_t partida_id, uint16_t client_id);
-    void patada_hacia_un_costado();
+    Spazz(msgPersonaje & personaje);
+    void accion_especial() override;
 };
 
-Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, const std::string& personaje);
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
 
 #endif

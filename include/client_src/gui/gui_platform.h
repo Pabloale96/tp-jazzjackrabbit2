@@ -8,6 +8,8 @@
 #include <SDL2pp/SDL2pp.hh>
 
 #include "../../common_src/defines_msg.h"
+#include "gui_clase_texturas.h"
+#include "../../common_src/msgToSent.h"
 
 #include "gui_frame.h"
 
@@ -16,19 +18,22 @@ using SDL2pp::Texture;
 
 class PlatformGui {
 private:
-    Renderer& renderer;
-    Texture& sprites;
+    ClaseTexturas& texturas;
     int pos_x;
     int pos_y;
-    int rotate = ROTATE_0;
+    int rotate;
     bool flip = false;
-    Frame platform{Frame(renderer, sprites, 0, 2496, 500, 27)};
+    int type=0;
+    int height;
+    int width;
+    Frame platform;
 
 public:
-    PlatformGui(Renderer&, Texture&, int, int);
+    PlatformGui(ClaseTexturas&, int, int,int,bool,int,int,int);
+    PlatformGui(ClaseTexturas&, const msgPlataforma&);
     ~PlatformGui();
 
-    void show(int, int);
+    void show();
 };
 
 #endif

@@ -8,6 +8,8 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
+#include "gui_defines_frames.h"
+
 using SDL2pp::NullOpt;
 using SDL2pp::Rect;
 using SDL2pp::Renderer;
