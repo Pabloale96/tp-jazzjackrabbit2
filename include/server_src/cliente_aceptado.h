@@ -5,6 +5,8 @@
 #include <memory>
 #include <string>
 
+#include "../../include/server_src/lobby.h"
+
 #include "gameloop_class.h"
 #include "gameloop_monitor.h"
 #include "queue.h"
@@ -21,8 +23,9 @@ private:
     bool was_closed;
     Queue<std::shared_ptr<GameState>> server_msg;
     ServerSender sender;
-    std::unique_ptr<ServerReceiver> receiver;
+    std::shared_ptr<ServerReceiver> receiver;
     uint16_t gameloop_id;
+    Lobby lobby;
 
 public:
     // Constructor
@@ -31,7 +34,9 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
-    ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente);
+    ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monitor_de_partidas);
+
+    // void lobby(GameloopMonitor& gameloop_monitor);
 
     void establecer_partida(GameloopMonitor& gameloop_monitor);
 
@@ -39,8 +44,8 @@ public:
 
     void joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
 
-    // Inicia el sender y el receiver
-    void start();
+    // Inicia el lobby, el sender y el receiver
+    void start(GameloopMonitor& gameloop_monitor);
 
     // Devuelve true si el receiver o el sender estan muertos
     bool is_dead();

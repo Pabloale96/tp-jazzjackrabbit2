@@ -9,17 +9,17 @@
 
 #include <arpa/inet.h>  // para usar htons()
 
-#include "protocol_utils.h"
 #include "defines_msg.h"
 #include "game_platform.h"
 #include "game_state.h"
+#include "protocol_utils.h"
 
 struct msgAccion {
     uint8_t accion;
     uint8_t toggle;
 
     msgAccion(): accion(static_cast<uint8_t>(acciones::NULO)), toggle(TOGGLE_OFF) {}
-    msgAccion(uint8_t acc, uint8_t tog) : toggle(tog) {
+    msgAccion(uint8_t acc, uint8_t tog): toggle(tog) {
         switch (static_cast<acciones>(acc)) {
             case acciones::NULO:
                 accion = static_cast<uint8_t>(acciones::NULO);
@@ -126,7 +126,7 @@ struct msgEscenario {
     uint16_t cantidad_plataformas = 0;
 
     explicit msgEscenario(const uint16_t& cantidad) { cantidad_plataformas = htons(cantidad); }
-}__attribute__((packed));
+} __attribute__((packed));
 
 struct msgPlataforma {
     uint8_t tipo_plataforma = 0;

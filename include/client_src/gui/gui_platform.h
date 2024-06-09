@@ -8,9 +8,9 @@
 #include <SDL2pp/SDL2pp.hh>
 
 #include "../../common_src/defines_msg.h"
-#include "gui_clase_texturas.h"
 #include "../../common_src/msgToSent.h"
 
+#include "gui_clase_texturas.h"
 #include "gui_frame.h"
 
 using SDL2pp::Renderer;
@@ -23,7 +23,7 @@ private:
     int pos_y;
     int rotate;
     bool flip = false;
-    int type=0;
+    int type = 0;
     int height;
     int width;
     Frame platform;

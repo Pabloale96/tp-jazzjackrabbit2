@@ -100,9 +100,7 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
     }
 }
 
-void Game::accion_especial(uint16_t client_id) {
-    obtener_personaje(client_id).accion_especial();
-}
+void Game::accion_especial(uint16_t client_id) { obtener_personaje(client_id).accion_especial(); }
 
 
 void Game::actualizar_posiciones() {

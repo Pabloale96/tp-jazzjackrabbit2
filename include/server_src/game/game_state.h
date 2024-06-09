@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 
 #include "game_enemigo.h"
@@ -39,7 +40,7 @@ public:
 
     void setGameState(const uint8_t& state_partida) { jugando = (state_partida == 0x01); }
 
-    void pushPersonajes( msgPersonaje & msgpers);
+    void pushPersonajes(msgPersonaje& msgpers);
 
     void pushEnemigos(uint16_t* msgenem) {
         Enemigo enemigo(msgenem);

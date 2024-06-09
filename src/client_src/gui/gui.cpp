@@ -1,7 +1,7 @@
 #include "../include/client_src/gui/gui.h"
 
-Gui::Gui(int x, int y, bool& client_off, std::string& personaje,
-         Queue<msgAccion>& client_commands,std::vector<msgPlataforma>& msg_plataformas,uint16_t & ci):
+Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion>& client_commands,
+         std::vector<msgPlataforma>& msg_plataformas, uint16_t& ci):
         pos_x(x),
         pos_y(y),
         client_off(client_off),
@@ -18,10 +18,9 @@ void Gui::setGameState(GameState& gamestate) {
     pos_y = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_y());
     dic_personajes.erase(client_id);  
 }
-void Gui::setEscenario(ClaseTexturas & texturas) {    
-    for (size_t i = 0; i < msg_plataformas.size(); i++)
-    {
-        PlatformGui plataforma(texturas,msg_plataformas[i]);
+void Gui::setEscenario(ClaseTexturas& texturas) {
+    for (size_t i = 0; i < msg_plataformas.size(); i++) {
+        PlatformGui plataforma(texturas, msg_plataformas[i]);
         plataformas.push_back(plataforma);
     }
 }
@@ -47,24 +46,23 @@ void Gui::eventManaged(int & animacion) {
                     // push a client_commands
                     return;
                 case SDLK_RIGHT:
-                    if (animacion != ANI_MOVER_DERECHA)
-                    {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
+                    if (animacion != ANI_MOVER_DERECHA) {
+                        msg_to_sent =
+                                msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
                     }
                     break;
                 case SDLK_LEFT:
-                    if (animacion != ANI_MOVER_IZQUIERDA)
-                    {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), true);
+                    if (animacion != ANI_MOVER_IZQUIERDA) {
+                        msg_to_sent =
+                                msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_MOVER_IZQUIERDA;  // se ejecuta la animacion derecha
                     }
                     break;
                 case SDLK_UP:
-                    if (animacion != ANI_SALTAR)
-                    {
+                    if (animacion != ANI_SALTAR) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
@@ -74,24 +72,23 @@ void Gui::eventManaged(int & animacion) {
         } else if (event.type == SDL_KEYUP) {
             switch (event.key.keysym.sym) {
                 case SDLK_RIGHT:
-                    if (animacion != ANI_STAND)
-                    {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
+                    if (animacion != ANI_STAND) {
+                        msg_to_sent =
+                                msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_STAND;  // se ejecuta la animacion derecha
                     }
                     break;
                 case SDLK_LEFT:
-                    if (animacion != ANI_STAND)
-                    {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
+                    if (animacion != ANI_STAND) {
+                        msg_to_sent =
+                                msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_STAND;  // se ejecuta la animacion derecha
                     }
                     break;
                 case SDLK_UP:
-                    if (animacion != ANI_STAND)
-                    {
+                    if (animacion != ANI_STAND) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_STAND;  // se ejecuta la animacion derecha
@@ -112,12 +109,12 @@ void Gui::run() {
     int monitorIndex = 1;
 
     Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                        screenHeight, screenWidth, SDL_WINDOW_RESIZABLE  | SDL_WINDOW_HIDDEN)};
+                         screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
 
     Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
 
     ClaseTexturas texturas{ClaseTexturas(renderer)};
-    
+
     setEscenario(texturas);
 
     std::unique_ptr<PersonajeGui> jugador;
@@ -134,7 +131,7 @@ void Gui::run() {
     int animacion = ANI_STAND;
 
     auto frame_start = steady_clock::now();
-    
+
 
     unsigned int prev_ticks = SDL_GetTicks();
     window.Show();
@@ -184,11 +181,9 @@ void Gui::run() {
         }
         frame_start += rate_ns;
 
-        if (client_off)
-        {
+        if (client_off) {
             return;
         }
-        
     }
 }
 

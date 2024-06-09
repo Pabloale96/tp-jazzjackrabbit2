@@ -1,6 +1,16 @@
 #include "../../include/server_src/game/gameloop_monitor.h"
 
-GameloopMonitor::GameloopMonitor(): gameloop_id(ID_GAMELOOP_INICIAL) {}
+#define ID_CLIENTE_INICIAL 10
+
+GameloopMonitor::GameloopMonitor():
+        gameloop_id(ID_GAMELOOP_INICIAL), id_cliente(ID_CLIENTE_INICIAL) {}
+
+uint16_t GameloopMonitor::crear_nuevo_id_cliente() {
+    std::unique_lock<std::mutex> lock(m);
+    uint16_t nuevo_id_cliente = id_cliente;
+    id_cliente++;
+    return nuevo_id_cliente;
+}
 
 uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t client_id,
                                          uint8_t personaje) {

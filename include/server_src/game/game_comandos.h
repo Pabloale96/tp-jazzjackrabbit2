@@ -75,7 +75,7 @@ public:
     void ejecutar(Game& game) override;
 };
 
-class KillAll : public Comando {
+class KillAll: public Comando {
 public:
     KillAll(uint16_t client_id, bool toggle);
     void ejecutar(Game& game) override;

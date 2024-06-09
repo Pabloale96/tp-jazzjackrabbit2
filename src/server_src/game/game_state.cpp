@@ -18,7 +18,7 @@ std::map<uint16_t, Enemigo>& GameState::obtener_diccionario_de_enemigos() {
     return diccionario_de_enemigos;
 }
 
-std::shared_ptr<Personaje>&  GameState::obtener_personaje(uint16_t client_id) {
+std::shared_ptr<Personaje>& GameState::obtener_personaje(uint16_t client_id) {
     auto it = diccionario_de_personajes.find(client_id);
     if (it != diccionario_de_personajes.end()) {
         return std::ref(it->second);
@@ -26,11 +26,10 @@ std::shared_ptr<Personaje>&  GameState::obtener_personaje(uint16_t client_id) {
     throw std::out_of_range("No se encontró el personaje en gamestate");
 }
 
-void GameState::pushPersonajes( msgPersonaje & msgpers) {
+void GameState::pushPersonajes(msgPersonaje& msgpers) {
     std::shared_ptr<Personaje> personaje;
     uint8_t tipo = msgpers.tipo_personaje;
-    switch (tipo)
-    {
+    switch (tipo) {
         case static_cast<uint8_t>(personajes::JAZZ):
             personaje = std::make_unique<Jazz>(msgpers);
             break;

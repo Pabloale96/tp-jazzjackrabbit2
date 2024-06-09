@@ -65,8 +65,6 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
 bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataforma) {
 
     msgEscenario escenario(0);
-
-    uint16_t size = 0;
     if (was_closed) {
         return false;
     }
