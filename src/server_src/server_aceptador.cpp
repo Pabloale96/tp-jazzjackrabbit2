@@ -10,25 +10,19 @@
 #include "../../include/server_src/game/gameloop_class.h"
 #include "../../include/server_src/server_protocol.h"
 
-#define ID_CLIENTE_INICIAL 10
-
 Aceptador::Aceptador(const std::string& servname):
         socket_server(servname.c_str()),
         was_closed_aceptador(false),
-        monitor_diccionario_de_gameloops(),
-        client_id(ID_CLIENTE_INICIAL) {}
+        monitor_de_partidas() {}
 
 void Aceptador::run() {
-    std::list<ClienteAceptado> lista_clientes;
+    std::list<ClienteAceptado*> lista_clientes;
     while (!was_closed_aceptador) {
         try {
             Socket socket_cliente = socket_server.accept();
-            std::cout << "** NUEVO JUGADOR INGRESO AL SERVER - ID: " << std::to_string(client_id)
-                      << " **" << std::endl;
-            lista_clientes.emplace_back(std::move(socket_cliente), client_id);
-            lista_clientes.back().establecer_partida(monitor_diccionario_de_gameloops);
-            lista_clientes.back().start();
-            client_id++;
+            ClienteAceptado* cliente_nuevo = new ClienteAceptado(std::move(socket_cliente), monitor_de_partidas);
+            lista_clientes.push_back(cliente_nuevo);
+            lista_clientes.back()->start(monitor_de_partidas);
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
                 // TODO: ahora el monitor de gameloops tiene que cerrar los gameloops
@@ -42,10 +36,10 @@ void Aceptador::run() {
     }
 }
 
-void Aceptador::limpiar_clientes_que_terminaron(std::list<ClienteAceptado>& lista_clientes) {
+void Aceptador::limpiar_clientes_que_terminaron(std::list<ClienteAceptado*>& lista_clientes) {
     auto it = lista_clientes.begin();
     while (it != lista_clientes.end()) {
-        if (it->is_dead()) {
+        if ((*it)->is_dead()) {
             it = lista_clientes.erase(it);
         } else {
             ++it;

@@ -11,15 +11,26 @@
 #define MAX_TAM_COLA 10
 #define PARTIDA_NO_ASIGNADA 0
 
-ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, uint16_t id_cliente):
-        id_cliente(id_cliente),
+ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monitor_de_partidas):
+        id_cliente(monitor_de_partidas.crear_nuevo_id_cliente()),
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
         server_msg(MAX_TAM_COLA),
         sender(protocolo_server, id_cliente, was_closed, server_msg),
         receiver(nullptr),
         gameloop_id(PARTIDA_NO_ASIGNADA) {
-    protocolo_server.enviar_id_jugador(id_cliente, was_closed);
+            std::cout << "** NUEVO JUGADOR INGRESO AL SERVER - ID: " << std::to_string(id_cliente)
+                      << " **" << std::endl;
+        }
+
+void ClienteAceptado::lobby(GameloopMonitor& gameloop_monitor) {
+    try {
+        protocolo_server.enviar_id_jugador(id_cliente, was_closed);
+        establecer_partida(gameloop_monitor);
+    } catch (const std::exception& e) {
+        std::cerr << "Error en el lobby: " << e.what() << std::endl;
+        throw;
+    }
 }
 
 void ClienteAceptado::establecer_partida(GameloopMonitor& gameloop_monitor) {
@@ -78,7 +89,8 @@ void ClienteAceptado::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor)
     return;
 }
 
-void ClienteAceptado::start() {
+void ClienteAceptado::start(GameloopMonitor& gameloop_monitor) {
+    lobby(gameloop_monitor);
     receiver->start();
     sender.start();
 }

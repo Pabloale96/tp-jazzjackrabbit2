@@ -18,9 +18,12 @@ private:
     std::mutex m;
     uint16_t gameloop_id;
     std::map<uint16_t, GameLoop*> diccionario_de_gameloops;
+    uint16_t id_cliente;
 
 public:
     GameloopMonitor();
+
+    uint16_t crear_nuevo_id_cliente();
 
     uint16_t crear_gameloop(std::string nombre_partida, uint16_t client_id, uint8_t personaje);
 
