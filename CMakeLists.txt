@@ -7,7 +7,7 @@ project(jazzJackrabbit2)
 #find_package(SDL2_mixer REQUIRED)
 
 # Find the yaml-cpp library
-#find_package(yaml-cpp REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 # set up SDL2pp library
 set(SDL2PP_WITH_IMAGE YES)
@@ -75,6 +75,7 @@ add_executable(server
   src/server_src/cliente_aceptado.cpp
   src/server_src/server_aceptador.cpp
   src/server_src/server.cpp
+  src/server_src/yaml_config.cpp
   src/server_src/game/game_arma.cpp
   src/server_src/game/game_class.cpp
   src/server_src/game/game_comandos.cpp
@@ -99,7 +100,7 @@ add_executable(server
 
 # Use the Widgets module from Qt 5.
 target_link_libraries(client PUBLIC SDL2pp)
-#target_link_libraries(server PUBLIC Qt5::Widgets SDL2pp)
+target_link_libraries(server PUBLIC yaml-cpp::yaml-cpp)
 
 # CPack setup
 include(CPack)

@@ -7,8 +7,6 @@
 #include "../../include/common_src/catedra/sockets.h"
 #include "../../include/server_src/server_aceptador.h"
 
-#define MAX_TAM_COLA 10
-
 volatile sig_atomic_t stop_flag = 0;
 
 void signal_handler(int signal) {

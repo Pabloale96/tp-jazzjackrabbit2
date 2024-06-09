@@ -26,7 +26,7 @@ protected:
     uint16_t cant_municiones;
     float vel_dis;
     float vel_proy;
-    float dano;
+    uint16_t dano;
 
 public:
     Arma();

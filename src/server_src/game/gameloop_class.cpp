@@ -71,7 +71,8 @@ void GameLoop::run() {
             }
 
 
-            while (client_commands.try_pop(comando));
+            while (client_commands.try_pop(comando)) {}
+
             if (comando) {
                 comando->ejecutar(this->game);
             }
