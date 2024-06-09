@@ -10,7 +10,8 @@
 #define MAX_TAM_COLA 100
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60  // 1 minuto TODO: agregar al yaml
-#define RATE 1000                   // TODO: Ponerlo en 15
+#define RATE 15                   // TODO: Ponerlo en 15
+#define SCALE_TIME 1e9
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    uint8_t personaje):
@@ -53,7 +54,7 @@ void GameLoop::run() {
     auto max_duration = std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA);
 
     // TODO: cambiar a 1e9 (lo dejo grande para poder hacer pruebas)
-    const std::chrono::nanoseconds rate_ns(static_cast<int>(1e20 / RATE));
+    const std::chrono::nanoseconds rate_ns(static_cast<int>(SCALE_TIME / RATE));
     auto t_0 = std::chrono::high_resolution_clock::now();
 
     try {

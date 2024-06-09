@@ -22,6 +22,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         enemigos[i]->set_enemigo_id(i + 1);
     }
 
+    // Se setea los valores del esceneario: 
 
     for (size_t i = 0; i < XMAX; i++)
     {
@@ -30,9 +31,17 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         plataformas.push_back(plataforma_inicial);
     }
 
-    Platform plataforma_inicial(70, 40, static_cast<uint16_t>(rot_platform::ROTATE_0),
+    Platform plataforma0(70, 40, static_cast<uint16_t>(rot_platform::ROTATE_0),
             WIDTH_PLATFORM_TYPE_1/SCALING_VALUE_PIXEL, HEIGHT_PLATFORM_TYPE_1/SCALING_VALUE_PIXEL, static_cast<uint16_t>(platform::TYPE_1));
-    plataformas.push_back(plataforma_inicial);
+    plataformas.push_back(plataforma0);
+
+    Platform platadorma45(70, 40, static_cast<uint16_t>(rot_platform::ROTATE_45),
+            WIDTH_PLATFORM_TYPE_1/SCALING_VALUE_PIXEL, HEIGHT_PLATFORM_TYPE_1/SCALING_VALUE_PIXEL, static_cast<uint16_t>(platform::TYPE_1));
+    plataformas.push_back(platadorma45);
+
+    Platform plataforma90(70, 40, static_cast<uint16_t>(rot_platform::ROTATE_90),
+            WIDTH_PLATFORM_TYPE_1/SCALING_VALUE_PIXEL, HEIGHT_PLATFORM_TYPE_1/SCALING_VALUE_PIXEL, static_cast<uint16_t>(platform::TYPE_1));
+    plataformas.push_back(plataforma90);
 
 }
 

@@ -78,6 +78,7 @@ struct msgPersonaje {
     uint8_t tipo_personaje = 0x00;
     uint8_t tipo_arma = 0x00;
     uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
+    uint16_t cantidad_balas = 0;
 
     msgPersonaje() {}
 
@@ -92,6 +93,21 @@ struct msgPersonaje {
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
     }
 } __attribute__((packed));
+
+
+struct msgBalas {
+    uint8_t tipo_bala = 0x00;
+    uint16_t balas[SIZE_ARRAY_BALA] = {0};
+
+    msgBalas() {}
+
+    msgBalas(uint16_t id, Municion& muni):
+        tipo_bala(muni.obtener_tipo_bala()) {
+        balas[POS_POSX_BALA] = htons(muni.obtener_x());
+        balas[POS_POSY_BALA] = htons(muni.obtener_y());
+    }
+} __attribute__((packed));
+
 
 struct msgEnemigo {
     uint16_t enemigo[SIZE_ARRAY_ENEMIGO] = {0};

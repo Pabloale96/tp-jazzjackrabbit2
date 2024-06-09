@@ -155,13 +155,13 @@ void Gui::run() {
             if (x <= (pos_x+renderer.GetOutputWidth()/2) || x<=(pos_x-renderer.GetOutputWidth()/2) ||
                 y <= (pos_y+renderer.GetOutputHeight()/2) || y<=(pos_y-renderer.GetOutputHeight()/2) )
             {
-                if (personaje->obtener_tipo_personaje()== (uint8_t)personajes::JAZZ) {
+                if (personaje->obtener_tipo_personaje()== (uint8_t) personajes::JAZZ) {
                     pers = std::make_unique<JazzGui>(texturas,x,y);
                     //pers->show(animacion);//personaje->obtener_animacion());
-                } else if (personaje->obtener_tipo_personaje()  == (uint8_t)personajes::SPAZZ) {
+                } else if (personaje->obtener_tipo_personaje()  == (uint8_t) personajes::SPAZZ) {
                     pers = std::make_unique<SpazGui>(texturas,x,y);
                     //pers->show(animacion);//personaje->obtener_animacion());
-                } else if (personaje->obtener_tipo_personaje()  == (uint8_t)personajes::LORI) {
+                } else if (personaje->obtener_tipo_personaje()  == (uint8_t) personajes::LORI) {
                     pers = std::make_unique<LoriGui>(texturas,x,y);
                     //pers->show(animacion);//personaje->obtener_animacion());
                 }
