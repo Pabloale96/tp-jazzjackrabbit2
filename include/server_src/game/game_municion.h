@@ -12,11 +12,11 @@ private:
 public:
     Municion(uint16_t x, uint16_t y, Direccion direccion);
 
-    void obtener_tipo_bala(){return tipo_bala;}
+    uint8_t obtener_tipo_bala(){return tipo_bala;}
 
-    void obtener_x(){return posicion.get_posicion_x();}
+    uint16_t obtener_x(){return posicion.get_posicion_x();}
 
-    void obtener_y(){return posicion.get_posicion_y();}
+    uint16_t obtener_y(){return posicion.get_posicion_y();}
 };
 
 #endif
