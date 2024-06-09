@@ -57,6 +57,7 @@ void GameLoop::run() {
     auto t_0 = std::chrono::high_resolution_clock::now();
 
     try {
+        std::shared_ptr<Comando> comando;
         while (true) {
             // Calculo el tiempo para ver si corto por tiempo limite
             auto current_time = std::chrono::steady_clock::now();
@@ -68,12 +69,12 @@ void GameLoop::run() {
                 break;
             }
 
-            std::shared_ptr<Comando> comando;
-            while (client_commands.try_pop(comando)) {
-                if (comando) {
-                    comando->ejecutar(this->game);
-                }
+            
+            while (client_commands.try_pop(comando));
+            if (comando) {
+                comando->ejecutar(this->game);
             }
+
             game.actualizar_posiciones();
             broadcastear();
 

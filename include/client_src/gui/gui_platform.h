@@ -32,7 +32,7 @@ public:
     PlatformGui(ClaseTexturas&, const msgPlataforma&);
     ~PlatformGui();
 
-    void show();
+    void show(int dif_x, int dif_y);
 };
 
 #endif

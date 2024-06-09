@@ -32,16 +32,18 @@ std::vector<bool> Personaje::obtener_estados() { return estados; }
 
 uint8_t Personaje::obtener_animacion() { return animacion;}
 
-void Personaje::actualizar() {}
+void Personaje::actualizar() { 
+
+}
 
 void Personaje::setear_direccion(const std::string& direccion) {
     if (direccion == "derecha" || direccion == "derecha_rapido") {
         this->direccion = Direccion::DERECHA;
     } else if (direccion == "izquierda" || direccion == "izquierda_rapido") {
         this->direccion = Direccion::IZQUIERDA;
-    } else if (direccion == "arriba" || direccion == "saltar") {
+    } else if (direccion == "arriba" || direccion == "saltar" || direccion == "saltando") {
         this->direccion = Direccion::ARRIBA;
-    } else if (direccion == "abajo") {
+    } else if (direccion == "abajo" || direccion == "cayendo") {
         this->direccion = Direccion::ABAJO;
     } else {
         this->direccion = Direccion::CENTRO;
@@ -122,9 +124,9 @@ Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t pers
     if (personaje == static_cast<uint8_t>(personajes::JAZZ)) {
         return new Jazz(partida_id, client_id);
     } else if (personaje == static_cast<uint8_t>(personajes::SPAZZ)) {
-        return new Lori(partida_id, client_id);
-    } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
         return new Spazz(partida_id, client_id);
+    } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
+        return new Lori(partida_id, client_id);
     } else {
         return nullptr;
     }

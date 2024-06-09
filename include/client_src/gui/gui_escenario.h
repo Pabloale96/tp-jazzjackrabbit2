@@ -23,7 +23,7 @@ public:
     explicit Escenario(std::vector<PlatformGui>&);
     ~Escenario();
 
-    void show();
+    void show(int dif_x, int dif_y);
 };
 
 #endif

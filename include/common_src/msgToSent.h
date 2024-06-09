@@ -81,7 +81,9 @@ struct msgPersonaje {
 
     msgPersonaje() {}
 
-    msgPersonaje(uint16_t id, Personaje& pers) : tipo_arma(pers.obtener_nombre_arma()), tipo_personaje(pers.obtener_tipo_personaje()) {
+    msgPersonaje(uint16_t id, Personaje& pers) :
+        tipo_personaje(pers.obtener_tipo_personaje()),
+        tipo_arma(pers.obtener_nombre_arma()) {
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());

@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "../../common_src/defines_msg.h"
+
 #define X_INICIAL 0
 #define Y_INICIAL 0
 

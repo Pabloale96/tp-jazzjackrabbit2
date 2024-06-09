@@ -13,9 +13,6 @@
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 
-#define XMAX 200
-#define YMAX 200
-
 class Game {
 private:
     uint16_t partida_id;

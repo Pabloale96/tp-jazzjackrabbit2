@@ -40,7 +40,7 @@ private:
     int pos_y =0;
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
-    std::map<uint16_t, std::shared_ptr<Personaje>> personajes;
+    std::map<uint16_t, std::shared_ptr<Personaje>> dic_personajes;
 
     bool& client_off;
 
@@ -67,7 +67,7 @@ public:
     void run() override;
     void setGameState(GameState&);
     void setEscenario(ClaseTexturas &);
-    void eventManaged(int & );
+    void eventManaged(int &);
 };
 
 #endif
