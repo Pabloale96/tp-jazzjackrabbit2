@@ -16,7 +16,7 @@ Disparar::Disparar(uint16_t client_id, bool toggle): Comando(client_id, toggle) 
 
 void Disparar::ejecutar(Game& game) {
     if (toggle) {
-        game.atacar_enemigo(client_id);
+        // game.atacar_enemigo(client_id);
     }
 }
 

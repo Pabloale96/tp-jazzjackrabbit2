@@ -6,29 +6,21 @@
 #include <string>
 #include <vector>
 
-#include "game_enemigo.h"
+#include "game_escenario.h"
 #include "game_personaje.h"
-#include "game_platform.h"
 #include "game_state.h"
-
-#define NUMERO_INICIAL_ENEMIGOS 5
 
 class Game {
 private:
     uint16_t partida_id;
-    // TODO: Clase escenario que contenga a los personajes y enemigos ?
     // TODO: unorderedmap sería más rápido
     std::vector<std::shared_ptr<Personaje>> personajes;
-    std::vector<std::unique_ptr<Enemigo>> enemigos;
-    std::vector<Platform> plataformas;
-    // Pared? Piso?
+    GameEscenario escenario;
 
 public:
     explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
 
     std::vector<std::shared_ptr<Personaje>>& obtener_vector_de_personajes();
-
-    std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
 
     Personaje& obtener_personaje(uint16_t client_id);
 
@@ -36,13 +28,13 @@ public:
 
     void accion_especial(uint16_t client_id);
 
-    bool atacar_enemigo(uint16_t client_id);
+    bool atacar_enemigo(uint16_t client_id, uint16_t id_enemigo);
 
     void actualizar_posiciones();
 
     void actualizar_personajes();
 
-    void actualizar_enemigos();
+    void actualizar_escenario();
 
     bool aumentar_iteraciones();
 
@@ -52,7 +44,7 @@ public:
 
     void borrar_personaje(uint16_t client_id);
 
-    std::vector<Platform> obtener_plataformas();
+    GameEscenario& obtener_escenario();
 
     ~Game();
 };

@@ -187,7 +187,7 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
 }
 
 void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
-    std::vector<Platform> plataformas = game.obtener_plataformas();
+    std::vector<Platform> plataformas = game.obtener_escenario().obtener_plataformas();
     msgEscenario msg_escenario(plataformas.size());
 
     if (was_closed) {
