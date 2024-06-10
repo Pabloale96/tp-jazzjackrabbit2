@@ -1,8 +1,8 @@
 #ifndef DEFINE_MSG_H
 #define DEFINE_MSG_H
 
-#define XMAX 200
-#define YMAX 200
+#define XMAX 199
+#define YMAX 199
 
 #define ANCHO_RESOLUCION 800
 #define ALTO_RESOLUCION 600

@@ -75,7 +75,7 @@ struct msgGameState {
 } __attribute__((packed));
 
 struct msgPersonaje {
-    uint8_t tipo_personaje = 0x00;
+    uint8_t tipo_personaje;
     uint8_t tipo_arma = 0x00;
     uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
     uint16_t cantidad_balas = 0;

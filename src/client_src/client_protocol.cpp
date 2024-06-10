@@ -146,6 +146,7 @@ bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id
     client_id = msg.client_id;
     msgPersonaje personaje;
     for (size_t i = 0; i < ntohs(msg.cantidad_personajes); i++) {
+        // std::cout << "Recibiendo personaje" << std::endl;
         if (was_closed) {
             return false;
         }

@@ -60,9 +60,6 @@ public:
     // Broadcastea un mensaje a todos los clientes
     void broadcastear();
 
-    // Duerme el hilo por 200 segundos
-    void dormir();
-
     void borrar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<GameState>>& queue);
 
     void borrar_cliente(uint16_t client_id);

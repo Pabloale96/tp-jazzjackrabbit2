@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string>
 
-#define MAX_TAM_COLA 1000
+#define MAX_TAM_COLA 10000
 #define CLIENT_ID_NULO 0
 
 

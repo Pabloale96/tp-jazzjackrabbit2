@@ -40,7 +40,8 @@ void GameState::pushPersonajes(msgPersonaje& msgpers) {
             personaje = std::make_unique<Lori>(msgpers);
             break;
         default:
-            break;
+            std::cerr << "Error: Tipo de personaje no válido" << std::endl;
+            return;
     }
 
     diccionario_de_personajes.emplace(personaje->obtener_personaje_id(), std::move(personaje));
@@ -51,12 +52,13 @@ void GameState::imprimir_mensaje() {
     for (const auto& pair: diccionario_de_personajes) {
         const std::shared_ptr<Personaje>& personaje = pair.second;
         std::cout << " >> Personaje " << personaje->obtener_personaje_id() << " :" << std::endl;
+        std::cout << "     - Tipo: " << (unsigned) personaje->obtener_tipo_personaje() << std::endl;
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
         std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
         std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
-        std::cout << "     - Arma: " << personaje->obtener_nombre_arma() << std::endl;
+        std::cout << "     - Arma: " << (unsigned) personaje->obtener_nombre_arma() << std::endl;
     }
 
     for (const auto& pair: diccionario_de_enemigos) {

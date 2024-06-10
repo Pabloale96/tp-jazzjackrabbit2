@@ -7,11 +7,11 @@
 #include "../../include/common_src/catedra/queue.h"
 #include "../../include/server_src/game/game_state.h"
 
-#define MAX_TAM_COLA 100
+#define MAX_TAM_COLA 10000
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60
-#define RATE 15 
-#define SCALE_TIME 1e9
+#define RATE 1 
+#define SCALE_TIME 1e20
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    uint8_t personaje):
@@ -50,7 +50,7 @@ void GameLoop::terminar_partida() { jugando = false; }
 bool GameLoop::obtener_estado_de_partida() { return jugando; }
 
 void GameLoop::run() {
-    auto start_time = std::chrono::steady_clock::now();
+    auto start_time = std::chrono::high_resolution_clock::now();
     auto max_duration = std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA);
 
     // auto max_duration = std::chrono::minutes(minutos_de_partida);
@@ -63,7 +63,7 @@ void GameLoop::run() {
         std::shared_ptr<Comando> comando;
         while (true) {
             // Calculo el tiempo para ver si corto por tiempo limite
-            auto current_time = std::chrono::steady_clock::now();
+            auto current_time = std::chrono::high_resolution_clock::now();
             if (current_time - start_time > max_duration) {
                 terminar_partida();
                 broadcastear();
@@ -86,12 +86,13 @@ void GameLoop::run() {
             auto t_final = std::chrono::high_resolution_clock::now();
             auto duracion = std::chrono::duration_cast<std::chrono::nanoseconds>(t_final - t_0);
             auto rest = rate_ns - duracion;
-            if (rest.count() > 0) {
+            if (rest.count() < 0) {
+                auto behind = -rest;
+                auto lost = behind - behind % rate_ns;
+                t_0 += lost;
+            } else {
                 std::this_thread::sleep_for(rest);
             }
-
-            // Reseteo el tiempo
-            t_0 = std::chrono::high_resolution_clock::now();
         }
     } catch (const ClosedQueue&) {
         return;
@@ -111,11 +112,6 @@ void GameLoop::broadcastear() {
     game.crear_nuevo_gamestate(nuevo_gamestate);
     nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
-}
-
-void GameLoop::dormir() {
-    auto milliseconds_to_sleep = std::chrono::milliseconds(CINCO_LOOPS_POR_SEGUNDO);
-    std::this_thread::sleep_for(milliseconds_to_sleep);
 }
 
 void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(

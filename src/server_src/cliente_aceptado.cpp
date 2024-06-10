@@ -8,7 +8,7 @@
 #include "../../include/common_src/catedra/sockets.h"
 #include "../../include/common_src/protocol_utils.h"
 
-#define MAX_TAM_COLA 10
+#define MAX_TAM_COLA 10000
 #define PARTIDA_NO_ASIGNADA 0
 
 ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monitor_de_partidas):
