@@ -8,13 +8,13 @@
 #include <string>
 #include <vector>
 
+#include "../server_src/yaml_config.h"
+
 #include "game_class.h"
 #include "game_comandos.h"
 #include "game_state_monitor.h"
 #include "queue.h"
 #include "thread.h"
-
-#include "../server_src/yaml_config.h"
 
 class GameLoop: public Thread {
 private:

@@ -15,15 +15,14 @@ ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& clie
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            auto gameState = std::make_shared<GameState>(0, true);
-            if (false == protocolo_cliente.recibir_respuesta(*gameState, client_id))
-            {
-                std::cerr << "Ahh shit, Here we go again"<< "\n";
-                return;
-            }
-            server_msg.push(gameState);
+            GameState gameState = protocolo_cliente.recibir_respuesta(client_id);
+
+            server_msg.push(std::make_shared<GameState>(
+                    std::move(gameState)));  // Como use unique_ptr por la herencia, tengo q
+                                             // convertirlo a shared_ptr
         } catch (const ClosedQueue&) {
-            std::cerr << "Se cerro la queue de server_msg en el ClientReceiver"<< "\n";
+            std::cerr << "Se cerro la queue de server_msg en el ClientReceiver"
+                      << "\n";
             return;
         } catch (const LibError& err) {
             if (protocolo_cliente.obtener_estado_de_la_conexion()) {

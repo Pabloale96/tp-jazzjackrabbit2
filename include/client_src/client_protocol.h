@@ -51,7 +51,7 @@ public:
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    bool recibir_respuesta(GameState& msg, uint16_t&);
+    GameState recibir_respuesta(uint16_t& client_id);
 
     bool recibir_escenario(std::vector<msgPlataforma>& plataforma);
 

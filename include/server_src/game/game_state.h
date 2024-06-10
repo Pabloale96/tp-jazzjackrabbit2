@@ -42,6 +42,8 @@ public:
 
     void pushPersonajes(msgPersonaje& msgpers);
 
+    void imprimir_cliente();
+
     void pushEnemigos(uint16_t* msgenem) {
         Enemigo enemigo(msgenem);
         diccionario_de_enemigos.emplace(enemigo.get_id_enemigo(), enemigo);

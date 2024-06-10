@@ -15,7 +15,8 @@ void ClientSender::run() {
                 break;
             }
         } catch (const ClosedQueue&) {
-            std::cerr << "Se cerro la queue de client_commands en el ClientSender"<< "\n";
+            std::cerr << "Se cerro la queue de client_commands en el ClientSender"
+                      << "\n";
             return;
         } catch (const LibError& err) {
             std::cerr << "Fallo el send en ClientSender->run: " << err.what() << "\n";

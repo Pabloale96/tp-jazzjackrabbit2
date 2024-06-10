@@ -1,10 +1,11 @@
 #ifndef YAML_CONFIG_H
 #define YAML_CONFIG_H
 
-#include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include <yaml-cpp/yaml.h>
 
 struct ArmaConfig {
     uint16_t municion;
@@ -38,7 +39,7 @@ struct GameConfig {
 
 class YAMLConfig {
 public:
-    YAMLConfig(const std::string& filename);
+    explicit YAMLConfig(const std::string& filename);
     void loadConfig();
     GameConfig getConfig() const;
 

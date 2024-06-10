@@ -16,10 +16,10 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
 Personaje::Personaje(msgPersonaje& personaje):
         tipo_personaje(personaje.tipo_personaje),
         partida_id(partida_id),
-        client_id(personaje.personaje[POS_ID_PERSONAJE]),
+        client_id(ntohs(personaje.personaje[POS_ID_PERSONAJE])),
         puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
-        vida(personaje.personaje[POS_VIDA_PERSONAJE]),
-        arma(personaje.personaje[POS_MUNICION_PERSONAJE], personaje.tipo_arma),
+        vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
+        arma(ntohs(personaje.personaje[POS_MUNICION_PERSONAJE]), personaje.tipo_arma),
         posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]) {
 }
 

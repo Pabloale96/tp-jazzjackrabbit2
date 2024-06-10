@@ -3,7 +3,8 @@
 
 #define TOGGLE_OFF 0x00
 
-#define MSG_HEADER 0x09
+#define MSG_HEADER 0x06
+#define TIPO_PERSONAJE_NULO 0x00
 
 #include <cstdint>
 
@@ -63,7 +64,12 @@ struct msgGameState {
     uint16_t cantidad_personajes;
     uint16_t cantidad_enemigos;
 
-    msgGameState(): header(MSG_HEADER),state_partida(0x00),client_id(0x00),cantidad_personajes(0x01),cantidad_enemigos(0x00) {}
+    msgGameState():
+            header(MSG_HEADER),
+            state_partida(0x00),
+            client_id(0x00),
+            cantidad_personajes(0x01),
+            cantidad_enemigos(0x00) {}
 
     msgGameState(GameState& gameState, uint16_t client_id):
             header(MSG_HEADER),
@@ -71,16 +77,14 @@ struct msgGameState {
             client_id(htons(client_id)),
             cantidad_personajes(htons(gameState.getSizePersonajes())),
             cantidad_enemigos(htons(gameState.get_cantidad_de_enemigos())) {}
-
-} __attribute__((packed));
+};
 
 struct msgPersonaje {
-    uint8_t tipo_personaje=0x09;
-    uint8_t tipo_arma = 0x00;
+    uint8_t tipo_personaje;
+    uint8_t tipo_arma;
     uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
-    uint16_t cantidad_balas = 0;
 
-    msgPersonaje():tipo_personaje(0x09),tipo_arma(0x00),personaje({0}),cantidad_balas(0x00) {}
+    msgPersonaje(): tipo_personaje(TIPO_PERSONAJE_NULO), tipo_arma(0x00) {}
 
     msgPersonaje(uint16_t id, Personaje& pers):
             tipo_personaje(pers.obtener_tipo_personaje()), tipo_arma(pers.obtener_nombre_arma()) {
@@ -91,7 +95,7 @@ struct msgPersonaje {
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
     }
-} __attribute__((packed));
+};
 
 
 struct msgBalas {
@@ -118,7 +122,7 @@ struct msgEnemigo {
         enemigo[POS_POSX_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_x());
         enemigo[POS_POSY_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_y());
     }
-} __attribute__((packed));
+};
 
 struct msgEscenario {
     uint16_t cantidad_plataformas = 0;

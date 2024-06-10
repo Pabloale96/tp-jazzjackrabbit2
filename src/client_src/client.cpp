@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string>
 
-#define MAX_TAM_COLA 10000
+#define MAX_TAM_COLA 100000
 #define CLIENT_ID_NULO 0
 
 
@@ -221,6 +221,7 @@ void Client::jugar() {
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
             gui.setGameState(*respuesta);
+            respuesta->imprimir_cliente();
 
             if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;

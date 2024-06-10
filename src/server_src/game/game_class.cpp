@@ -24,15 +24,13 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
 
     // Se setea los valores del esceneario:
 
-    //for (size_t i = 0; i < XMAX; i+=WIDTH_PLATFORM_TYPE_1/ SCALING_VALUE_PIXEL) {
-        Platform plataforma_inicial(0, 0,
-                                    static_cast<uint16_t>(rot_platform::ROTATE_0),
-                                    WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                    HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                    static_cast<uint16_t>(platform::TYPE_1));
-        plataformas.push_back(plataforma_inicial);
+    // for (size_t i = 0; i < XMAX; i+=WIDTH_PLATFORM_TYPE_1/ SCALING_VALUE_PIXEL) {
+    Platform plataforma_inicial(0, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
+                                WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
+                                HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
+                                static_cast<uint16_t>(platform::TYPE_1));
+    plataformas.push_back(plataforma_inicial);
     //}
-
 }
 
 std::unique_ptr<Enemigo> Game::crear_enemigo_aleatorio() {

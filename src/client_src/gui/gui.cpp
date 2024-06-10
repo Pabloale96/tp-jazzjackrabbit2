@@ -31,11 +31,10 @@ void Gui::eventManaged(int& animacion) {
     // definir N it para las animaciones de frame.
     // dividite por X de la diapos que mostro leo.
     while (SDL_PollEvent(&event)) {
-        msgAccion msg_to_sent(0x00, false);
+        msgAccion msg_to_sent;
         if (event.type == SDL_QUIT) {
             return;
         } else if (event.type == SDL_KEYDOWN) {
-            msgAccion msg_to_sent(static_cast<uint8_t>(acciones::NULO), false);
             switch (event.key.keysym.sym) {
                 case SDLK_ESCAPE:
                 case SDLK_q:
@@ -106,7 +105,7 @@ void Gui::run() {
     SDLTTF ttf;
 
     SDL_DisplayMode displayMode;
-    int monitorIndex = 1;
+    // int monitorIndex = 1;
 
     Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
@@ -148,6 +147,7 @@ void Gui::run() {
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
+        // cpp-check-suppress unusedVariable
         for (const auto& [_, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) * SCALING_VALUE_PIXEL;
@@ -166,7 +166,7 @@ void Gui::run() {
                     pers = std::make_unique<LoriGui>(texturas, x, y);
                     // pers->show(animacion);//personaje->obtener_animacion());
                 }
-                //std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
+                // std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
                 pers->show(ANI_STAND);  // personaje->obtener_animacion());
             }
         }
