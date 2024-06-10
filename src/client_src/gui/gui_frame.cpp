@@ -6,7 +6,7 @@ Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
         renderer(renderer), sprite(sprite), vec_frames{x, y, w, h} {
 
 
-    //this->setFrame(x, y, w, h);
+    // this->setFrame(x, y, w, h);
 }
 
 

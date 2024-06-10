@@ -9,6 +9,7 @@
 #include "defines_msg.h"
 #include "game_arma.h"
 #include "game_municion.h"
+#include "game_personaje_estado.h"
 #include "game_posicion.h"
 #include "protocol_utils.h"
 
@@ -31,7 +32,7 @@ private:
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
     Direccion direccion;
-    std::vector<bool> estados;
+    EstadoPersonaje estados;
     std::vector<bool> acciones;
 
 public:

@@ -11,8 +11,8 @@
 #include <arpa/inet.h>   // htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
-#include "../../include/common_src/protocol_utils.h"
 #include "../../include/common_src/catedra/liberror.h"
+#include "../../include/common_src/protocol_utils.h"
 
 #define MUERTO 0x04
 #define REVIVIO 0x05
