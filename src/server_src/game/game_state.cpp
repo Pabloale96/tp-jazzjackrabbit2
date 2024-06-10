@@ -29,6 +29,7 @@ std::shared_ptr<Personaje>& GameState::obtener_personaje(uint16_t client_id) {
 void GameState::pushPersonajes(msgPersonaje& msgpers) {
     std::shared_ptr<Personaje> personaje;
     uint8_t tipo = msgpers.tipo_personaje;
+    std::cout << (unsigned) tipo << std::endl;
     switch (tipo) {
         case static_cast<uint8_t>(personajes::JAZZ):
             personaje = std::make_unique<Jazz>(msgpers);

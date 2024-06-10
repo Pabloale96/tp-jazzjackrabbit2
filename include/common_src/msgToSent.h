@@ -3,7 +3,7 @@
 
 #define TOGGLE_OFF 0x00
 
-#define MSG_HEADER 0x06
+#define MSG_HEADER 0x09
 
 #include <cstdint>
 
@@ -63,7 +63,7 @@ struct msgGameState {
     uint16_t cantidad_personajes;
     uint16_t cantidad_enemigos;
 
-    msgGameState(): header(MSG_HEADER), cantidad_personajes(1) {}
+    msgGameState(): header(MSG_HEADER),state_partida(0x00),client_id(0x00),cantidad_personajes(0x01),cantidad_enemigos(0x00) {}
 
     msgGameState(GameState& gameState, uint16_t client_id):
             header(MSG_HEADER),
@@ -75,12 +75,12 @@ struct msgGameState {
 } __attribute__((packed));
 
 struct msgPersonaje {
-    uint8_t tipo_personaje;
+    uint8_t tipo_personaje=0x09;
     uint8_t tipo_arma = 0x00;
     uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
     uint16_t cantidad_balas = 0;
 
-    msgPersonaje() {}
+    msgPersonaje():tipo_personaje(0x09),tipo_arma(0x00),personaje({0}),cantidad_balas(0x00) {}
 
     msgPersonaje(uint16_t id, Personaje& pers):
             tipo_personaje(pers.obtener_tipo_personaje()), tipo_arma(pers.obtener_nombre_arma()) {

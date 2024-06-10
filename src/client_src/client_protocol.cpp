@@ -141,9 +141,23 @@ bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id
     if (was_closed) {
         return false;
     }
-    socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
+    int bytes = socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
+
+    if (bytes == 0)
+    {
+        return false;
+    }
+    
+
+    std::cout<< "header: " << (unsigned) msg.header << std::endl;
+    std::cout<< "state partida: " << (unsigned) msg.state_partida << std::endl;
+    std::cout<< "client id: " << (unsigned) ntohs(msg.client_id) << std::endl;
+    std::cout<< "cantidad personajes: " << (unsigned) ntohs(msg.cantidad_personajes) << std::endl;
+    std::cout<< "cantidad enemigos: " << (unsigned)ntohs(msg.cantidad_enemigos) << std::endl;
+
+    std::cout<< "bytes: " << bytes << std::endl;
     gameState.setGameState(msg.state_partida);
-    client_id = msg.client_id;
+    client_id =  ntohs(msg.client_id);
     msgPersonaje personaje;
     for (size_t i = 0; i < ntohs(msg.cantidad_personajes); i++) {
         // std::cout << "Recibiendo personaje" << std::endl;
@@ -151,6 +165,7 @@ bool ProtocolClient::recibir_respuesta(GameState& gameState, uint16_t& client_id
             return false;
         }
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
+        std::cout<< "Tipo en protocol: " << (unsigned) personaje.tipo_personaje << std::endl;
         gameState.pushPersonajes(personaje);
     }
 

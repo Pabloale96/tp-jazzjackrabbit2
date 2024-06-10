@@ -16,15 +16,21 @@ void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
             auto gameState = std::make_shared<GameState>(0, true);
-            protocolo_cliente.recibir_respuesta(*gameState, client_id);
+            if (false == protocolo_cliente.recibir_respuesta(*gameState, client_id))
+            {
+                std::cerr << "Ahh shit, Here we go again"<< "\n";
+                return;
+            }
             server_msg.push(gameState);
         } catch (const ClosedQueue&) {
+            std::cerr << "Se cerro la queue de server_msg en el ClientReceiver"<< "\n";
             return;
         } catch (const LibError& err) {
             if (protocolo_cliente.obtener_estado_de_la_conexion()) {
                 return;
             }
-            std::cerr << "Fallo el receive en ClientSender->run: " << err.what() << "\n";
+            std::cerr << "Fallo el receive en ClientReceiver->run: " << err.what() << "\n";
+            return;
         } catch (const std::exception& err) {
             if (!this->is_alive()) {
                 return;

@@ -166,7 +166,7 @@ void Gui::run() {
                     pers = std::make_unique<LoriGui>(texturas, x, y);
                     // pers->show(animacion);//personaje->obtener_animacion());
                 }
-                std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
+                //std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
                 pers->show(ANI_STAND);  // personaje->obtener_animacion());
             }
         }
