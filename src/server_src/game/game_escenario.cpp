@@ -1,7 +1,8 @@
 #include "game_escenario.h"
-#include "protocol_utils.h"
 
 #include <random>
+
+#include "protocol_utils.h"
 
 GameEscenario::GameEscenario(): enemigos(NUMERO_INICIAL_ENEMIGOS) {
 
@@ -13,7 +14,7 @@ GameEscenario::GameEscenario(): enemigos(NUMERO_INICIAL_ENEMIGOS) {
 
     // Agrego 5 monedas y 1 zanahoria en la primera plataforma
     for (size_t i = 0; i < MONEDAS_PRIMERA_PLATAFORMA; ++i) {
-        Moneda moneda(i+1, 0);
+        Moneda moneda(i + 1, 0);
         collectibles.push_back(std::make_unique<Moneda>(moneda));
     }
     Zanahoria zanahoria(6, 0);
@@ -90,20 +91,16 @@ bool GameEscenario::aumentar_iteraciones() {
 void GameEscenario::actualizar_collectibles() {
     for (auto& collectible: collectibles) {
         if (collectible) {
-            //collectible->actualizar();
+            // collectible->actualizar();
         } else {
             std::cerr << "ERROR en actualizar_collectibles" << std::endl;
         }
     }
 }
 
-std::vector<std::unique_ptr<Enemigo>>& GameEscenario::obtener_enemigos() {
-    return enemigos;
-}
+std::vector<std::unique_ptr<Enemigo>>& GameEscenario::obtener_enemigos() { return enemigos; }
 
-std::vector<Platform>& GameEscenario::obtener_plataformas() {
-    return plataformas;
-}
+std::vector<Platform>& GameEscenario::obtener_plataformas() { return plataformas; }
 
 std::vector<std::unique_ptr<Collectible>>& GameEscenario::obtener_collectibles() {
     return collectibles;

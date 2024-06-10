@@ -194,7 +194,7 @@ void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
         return;
     }
     socket_cliente.sendall(&msg_escenario, sizeof(msg_escenario), &was_closed);
-    for (int i = 0; i < plataformas.size(); i++) {
+    for (uint16_t i = 0; i < plataformas.size(); i++) {
         msgPlataforma msg_plataforma(plataformas[i]);
         if (was_closed) {
             return;

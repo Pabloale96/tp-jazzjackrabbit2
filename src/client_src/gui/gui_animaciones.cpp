@@ -10,7 +10,7 @@ void Animacion::setFlip(bool flip) { this->flip = flip; }
 void Animacion::run(int pos_x, int pos_y, std::vector<Frame>& frames) {
     frames[scr_x].copy(flip, pos_x, pos_y - frames[scr_x].getH());
     scr_x++;
-    if (scr_x == frames.size())
+    if (static_cast<std::vector<Frame>::size_type>(scr_x) == frames.size())
         scr_x = 0;
 }
 /*

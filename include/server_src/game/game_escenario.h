@@ -1,12 +1,12 @@
 #ifndef _SERVER_GAME_ESCENARIO_H_
 #define _SERVER_GAME_ESCENARIO_H_
 
-#include <vector>
 #include <memory>
+#include <vector>
 
+#include "game_collectible.h"
 #include "game_enemigo.h"
 #include "game_platform.h"
-#include "game_collectible.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 #define MONEDAS_PRIMERA_PLATAFORMA 5

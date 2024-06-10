@@ -15,7 +15,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
 
 Personaje::Personaje(msgPersonaje& personaje):
         tipo_personaje(personaje.tipo_personaje),
-        partida_id(partida_id),
+        partida_id(0),
         client_id(ntohs(personaje.personaje[POS_ID_PERSONAJE])),
         puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
         vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
