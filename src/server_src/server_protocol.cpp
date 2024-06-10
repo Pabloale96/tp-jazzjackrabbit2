@@ -12,6 +12,7 @@
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
 #include "../../include/common_src/protocol_utils.h"
+#include "../../include/common_src/catedra/liberror.h"
 
 #define MUERTO 0x04
 #define REVIVIO 0x05
@@ -204,7 +205,11 @@ void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
 }
 
 void ProtocolServer::cerrar_socket_cliente() {
-    socket_cliente.shutdown(SHUT_RDWR);
+    try {
+        socket_cliente.shutdown(SHUT_RDWR);
+    } catch (const LibError& err) {
+        // Si ya estaba cerrado, no hago nada
+    }
     socket_cliente.close();
 }
 
