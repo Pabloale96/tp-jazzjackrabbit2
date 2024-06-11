@@ -10,8 +10,8 @@
 #define MAX_TAM_COLA 10000
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60
-#define RATE 60
-#define SCALE_TIME 1e9
+#define RATE 60         // 60
+#define SCALE_TIME 1e9  // 1e9
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    uint8_t personaje):
@@ -72,14 +72,17 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {}
-
+            while (client_commands.try_pop(comando)) {
+                // if (comando) {
+                //     comando->ejecutar(this->game);
+                // }
+            }
             if (comando) {
                 comando->ejecutar(this->game);
                 // broadcastear();
             }
 
-            game.actualizar_posiciones();
+            game.actualizar();
             broadcastear();
 
             // Calculo tiempo para mantener el rate

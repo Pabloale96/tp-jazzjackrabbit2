@@ -21,14 +21,13 @@ void ClientReceiver::run() {
                     std::move(gameState)));  // Como use unique_ptr por la herencia, tengo q
                                              // convertirlo a shared_ptr
         } catch (const ClosedQueue&) {
-            std::cerr << "Se cerro la queue de server_msg en el ClientReceiver"
-                      << "\n";
             return;
         } catch (const LibError& err) {
             if (protocolo_cliente.obtener_estado_de_la_conexion()) {
                 return;
             }
             std::cerr << "Fallo el receive en ClientReceiver->run: " << err.what() << "\n";
+            // TODO: Si el cliente cerro la conexión, no debería seguir intentando recibir
             return;
         } catch (const std::exception& err) {
             if (!this->is_alive()) {

@@ -30,7 +30,7 @@ public:
 
     bool atacar_enemigo(uint16_t client_id, uint16_t id_enemigo);
 
-    void actualizar_posiciones();
+    void actualizar();
 
     void actualizar_personajes();
 

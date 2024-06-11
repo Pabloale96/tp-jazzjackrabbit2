@@ -12,13 +12,14 @@
 class Animacion {
 private:
     bool flip = false;
-    int contador = 0; 
+    int contador = 0;
 
 public:
     Animacion();
     ~Animacion();
 
-    void run(int pos_x, int pos_y, int speed,std::vector<Frame>& frames, std::vector<Frame>::iterator & it);
+    void run(int pos_x, int pos_y, int speed, std::vector<Frame>& frames,
+             std::vector<Frame>::iterator& it);
     void setFlip(bool);
 };
 

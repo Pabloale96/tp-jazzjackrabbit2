@@ -33,6 +33,7 @@ void Gui::eventManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador) {
     while (SDL_PollEvent(&event)) {
         msgAccion msg_to_sent;
         if (event.type == SDL_QUIT) {
+            client_off = true;
             return;
         } else if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.sym) {
@@ -124,19 +125,16 @@ void Gui::run() {
 
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() /2,
+        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2,
                                             texturas.findFrame(std::string(JAZZ_STAND)));
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() /2,
+        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2,
                                             texturas.findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() /2,
+        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2,
                                             texturas.findFrame(std::string(LORI_STAND)));
     }
 

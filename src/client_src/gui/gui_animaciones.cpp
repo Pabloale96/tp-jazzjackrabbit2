@@ -8,12 +8,13 @@ Animacion::Animacion() {}
 void Animacion::setFlip(bool flip) { this->flip = flip; }
 
 
-void Animacion::run(int pos_x, int pos_y,int speed,std::vector<Frame>& frames, std::vector<Frame>::iterator & it) {
+void Animacion::run(int pos_x, int pos_y, int speed, std::vector<Frame>& frames,
+                    std::vector<Frame>::iterator& it) {
     if (it == frames.end()) {
         it = frames.begin();
     }
-    it->copy(flip, pos_x, pos_y); 
-    if(contador % speed == 0){
+    it->copy(flip, pos_x, pos_y);
+    if (contador % speed == 0) {
         it++;
     }
     contador++;

@@ -19,20 +19,20 @@ SpazGui::~SpazGui() {}
 void SpazGui::show(int animacion_actual) {
     switch (animacion_actual) {
         case ANI_STAND:
-            animacion.setFlip(false);j
-            animacion.run(pos_x, pos_y,5, frames, it);
+            animacion.setFlip(false);
+            animacion.run(pos_x, pos_y, 5, frames, it);
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            animacion.run(pos_x, pos_y,5, frames, it);
+            animacion.run(pos_x, pos_y, 5, frames, it);
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            animacion.run(pos_x, pos_y,5, frames, it);
+            animacion.run(pos_x, pos_y, 5, frames, it);
             break;
         case ANI_SALTAR:
             animacion.setFlip(true);
-            animacion.run(pos_x, pos_y,5, frames, it);
+            animacion.run(pos_x, pos_y, 5, frames, it);
             break;
         default:
             break;
@@ -69,19 +69,19 @@ void JazzGui::show(int animacion_actual) {
     switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         case ANI_SALTAR:
             animacion.setFlip(true);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         default:
             break;
@@ -117,19 +117,19 @@ void LoriGui::show(int animacion_actual) {
     switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         case ANI_SALTAR:
             animacion.setFlip(true);
-            animacion.run(pos_x, pos_y,2, frames, it);
+            animacion.run(pos_x, pos_y, 2, frames, it);
             break;
         default:
             break;
