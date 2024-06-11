@@ -16,7 +16,12 @@ Disparar::Disparar(uint16_t client_id, bool toggle): Comando(client_id, toggle) 
 
 void Disparar::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setDisparando(true);
         // game.atacar_enemigo(client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setDisparando(false);
+        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
     }
 }
 
@@ -25,7 +30,12 @@ AccionEspecial::AccionEspecial(uint16_t client_id, bool toggle): Comando(client_
 
 void AccionEspecial::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setAccionEspecial(true);
         game.accion_especial(client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setAccionEspecial(false);
+        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
     }
 }
 
@@ -36,7 +46,12 @@ MoverDerecha::MoverDerecha(uint16_t client_id, bool toggle): Comando(client_id, 
 
 void MoverDerecha::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setCorriendo(true);
         game.mover("derecha", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setCorriendo(false);
+        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
     }
 }
 
@@ -45,7 +60,12 @@ MoverDerechaRapido::MoverDerechaRapido(uint16_t client_id, bool toggle):
 
 void MoverDerechaRapido::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(true);
         game.mover("derecha_rapido", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(false);
+        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
     }
 }
 
@@ -53,7 +73,12 @@ MoverIzquierda::MoverIzquierda(uint16_t client_id, bool toggle): Comando(client_
 
 void MoverIzquierda::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setCorriendo(true);
         game.mover("izquierda", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setCorriendo(false);
+        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
     }
 }
 
@@ -62,7 +87,12 @@ MoverIzquierdaRapido::MoverIzquierdaRapido(uint16_t client_id, bool toggle):
 
 void MoverIzquierdaRapido::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(true);
         game.mover("izquierda_rapido", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(false);
+        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
     }
 }
 
@@ -72,7 +102,11 @@ Saltar::Saltar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void Saltar::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setSaltando(true);
         game.mover("saltar", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setSaltando(false);
     }
 }
 
@@ -81,7 +115,11 @@ Saltando::Saltando(uint16_t client_id, bool toggle): Comando(client_id, toggle) 
 
 void Saltando::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setSaltando(true);
         game.mover("saltando", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setSaltando(false);
     }
 }
 
@@ -89,7 +127,11 @@ Cayendo::Cayendo(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void Cayendo::ejecutar(Game& game) {
     if (toggle) {
+        game.obtener_personaje(client_id).obtener_estados().reset();
+        game.obtener_personaje(client_id).obtener_estados().setCayendo(true);
         game.mover("cayendo", client_id);
+    } else {
+        game.obtener_personaje(client_id).obtener_estados().setCayendo(false);
     }
 }
 

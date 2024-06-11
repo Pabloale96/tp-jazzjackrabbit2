@@ -70,7 +70,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
         std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
     }
-
+/*
     for (const auto& pair: diccionario_de_enemigos) {
         const Enemigo& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo.get_id_enemigo() << " :" << std::endl;
@@ -79,6 +79,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Puntos: " << enemigo.get_puntos() << std::endl;
         std::cout << "     - Vida: " << enemigo.get_vidas() << std::endl;
     }
+*/
 }
 
 

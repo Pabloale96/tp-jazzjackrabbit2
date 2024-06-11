@@ -75,8 +75,6 @@ void Personaje::setear_direccion(const std::string& direccion) {
 
 bool Personaje::mover(const std::string& direccion) {
     setear_direccion(direccion);
-    estados.setIdle(false);
-    estados.setCorriendo(true);
     return posicion.mover(direccion);
 }
 
