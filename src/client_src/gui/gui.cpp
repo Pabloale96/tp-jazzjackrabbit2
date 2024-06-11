@@ -25,7 +25,7 @@ void Gui::setEscenario(ClaseTexturas& texturas) {
     }
 }
 
-void Gui::eventManaged(int& animacion) {
+void Gui::eventManaged(int& animacion,std::unique_ptr<PersonajeGui> & jugador) {
 
     SDL_Event event;
     // definir N it para las animaciones de frame.
@@ -50,6 +50,7 @@ void Gui::eventManaged(int& animacion) {
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
+                        jugador->setFrames(animacion);
                     }
                     break;
                 case SDLK_LEFT:
@@ -58,6 +59,7 @@ void Gui::eventManaged(int& animacion) {
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_MOVER_IZQUIERDA;  // se ejecuta la animacion derecha
+                        jugador->setFrames(animacion);
                     }
                     break;
                 case SDLK_UP:
@@ -65,6 +67,7 @@ void Gui::eventManaged(int& animacion) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
+                        jugador->setFrames(animacion);
                     }
                     break;
             }
@@ -76,6 +79,7 @@ void Gui::eventManaged(int& animacion) {
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                        jugador->setFrames(animacion);
                     }
                     break;
                 case SDLK_LEFT:
@@ -84,6 +88,7 @@ void Gui::eventManaged(int& animacion) {
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                        jugador->setFrames(animacion);
                     }
                     break;
                 case SDLK_UP:
@@ -91,6 +96,7 @@ void Gui::eventManaged(int& animacion) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_STAND;  // se ejecuta la animacion derecha
+                        jugador->setFrames(animacion);
                     }
                     break;
             }
@@ -118,14 +124,20 @@ void Gui::run() {
 
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1);
+        jugador = std::make_unique<JazzGui>(texturas,
+                                            renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1,
+                                            texturas.findFrame(std::string(JAZZ_STAND)));
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1);
+        jugador = std::make_unique<SpazGui>(texturas,
+                                            renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1,
+                                            texturas.findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1);
+        jugador = std::make_unique<LoriGui>(texturas,
+                                            renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1,
+                                            texturas.findFrame(std::string(LORI_STAND)));
     }
 
     Escenario escenario(plataformas);
@@ -142,13 +154,13 @@ void Gui::run() {
         unsigned int frame_delta = frame_ticks - prev_ticks;
         prev_ticks = frame_ticks;
 
-        this->eventManaged(animacion);
+        this->eventManaged(animacion,jugador);
         // Clear the screen
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
-        // cpp-check-suppress unusedVariable
-        for (const auto& [_, personaje]: dic_personajes) {
+        // cppcheck-suppress unusedVariable
+        /*for (const auto& [_, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) * SCALING_VALUE_PIXEL;
             int y = (personaje->obtener_posicion().get_posicion_y() - pos_y) * SCALING_VALUE_PIXEL;
@@ -157,19 +169,19 @@ void Gui::run() {
                 y <= (pos_y + renderer.GetOutputHeight() / 2) ||
                 y <= (pos_y - renderer.GetOutputHeight() / 2)) {
                 if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
-                    pers = std::make_unique<JazzGui>(texturas, x, y);
+                    pers = std::make_unique<JazzGui>(texturas,x, y,texturas.findFrame(std::string(JAZZ_STAND)));
                     // pers->show(animacion);//personaje->obtener_animacion());
                 } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
-                    pers = std::make_unique<SpazGui>(texturas, x, y);
+                    pers = std::make_unique<SpazGui>(texturas,x, y,texturas.findFrame(std::string(SPAZ_STAND)));
                     // pers->show(animacion);//personaje->obtener_animacion());
                 } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::LORI) {
-                    pers = std::make_unique<LoriGui>(texturas, x, y);
+                    pers = std::make_unique<LoriGui>(texturas,x, y,texturas.findFrame(std::string(LORI_STAND)));
                     // pers->show(animacion);//personaje->obtener_animacion());
                 }
                 // std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
                 pers->show(ANI_STAND);  // personaje->obtener_animacion());
             }
-        }
+        }*/
         jugador->show(animacion);
         renderer.Present();
 
@@ -180,9 +192,8 @@ void Gui::run() {
             auto behind = -rest;
             auto lost = behind - behind % rate_ns;
             frame_start += lost;
-        } else {
-            std::this_thread::sleep_for(rest);
         }
+        std::this_thread::sleep_for(rest);
         frame_start += rate_ns;
 
         if (client_off) {

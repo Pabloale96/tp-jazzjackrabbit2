@@ -25,39 +25,46 @@ protected:
     int pos_x;
     int pos_y;
     Animacion animacion;
+    std::vector<Frame>& frames;
+    std::vector<Frame>::iterator it;
+    
 
 
 public:
-    explicit PersonajeGui(ClaseTexturas&, int, int);
+    explicit PersonajeGui(ClaseTexturas&, int, int,std::vector<Frame>&);
     ~PersonajeGui();
     virtual void show(int);
+    virtual void setFrames(int);
 };
 
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas&, int, int);
+    explicit SpazGui(ClaseTexturas&, int, int,std::vector<Frame>&);
     ~SpazGui();
 
     void show(int) override;
+    virtual void setFrames(int);
 };
 
 
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas&, int, int);
+    explicit JazzGui(ClaseTexturas&, int, int,std::vector<Frame>&);
     ~JazzGui();
 
     void show(int) override;
+    virtual void setFrames(int);
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas&, int, int);
+    explicit LoriGui(ClaseTexturas&, int, int,std::vector<Frame>&);
     ~LoriGui();
 
     void show(int) override;
+    virtual void setFrames(int);
 };
 #endif

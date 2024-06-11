@@ -4,42 +4,24 @@
 #include <iostream>
 #include <vector>
 
-class Estado {
-
+class EstadoPersonaje {
 private:
-public:
-    Estado();
-    virtual void run();  // la joda es hacer directamente estado->run.
-};
+    bool idle;
+    bool corriendo;
+    bool corriendo_muy_rapido;
+    bool saltando;
+    bool cayendo;
+    bool disparando;
+    bool accion_especial;
 
-class Normal: public Estado {
-public:
-    Normal();
-    void run() override;
-};
+    bool recibiendo_danio;
+    bool muerto;
 
-class Intoxicado: public Estado {
-public:
-    Intoxicado();
-    void run() override;
-};
+    bool intoxicado;
 
-class Impacto: public Estado {
 public:
-    Impacto();
-    void run() override;
-};
-
-class Muerte: public Estado {
-public:
-    Muerte();
-    void run() override;
-};
-
-class RecibirDanio: public Estado {
-public:
-    RecibirDanio();
-    void run() override;
+    EstadoPersonaje(/* args */){} // <---- Sacar {} cuando este el cpp
+    ~EstadoPersonaje(){}  // <---- Sacar {} cuando este el cpp
 };
 
 #endif

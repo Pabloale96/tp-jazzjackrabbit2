@@ -16,6 +16,8 @@ add_subdirectory(SDL2pp)
 
 # add compilation flags
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -pedantic-errors -O0 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L")
+
 add_definitions(-DIMG_PATH="${PROJECT_SOURCE_DIR}/img")
 include_directories(${SDL2PP_INCLUDE_DIRS})
 
@@ -80,6 +82,7 @@ add_executable(server
   src/server_src/game/game_class.cpp
   src/server_src/game/game_comandos.cpp
   src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_escenario.cpp
   src/server_src/game/game_municion.cpp
   src/server_src/game/game_personaje.cpp
   src/server_src/game/game_posicion.cpp

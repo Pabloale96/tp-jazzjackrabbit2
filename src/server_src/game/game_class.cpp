@@ -2,52 +2,18 @@
 
 #include <algorithm>  // find_if()
 #include <memory>
-#include <random>
 #include <string>
 
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_state.h"
 
 Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
-        partida_id(partida_id), enemigos(NUMERO_INICIAL_ENEMIGOS) {
+        partida_id(partida_id), escenario() {
     auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {
         throw std::runtime_error("Tipo de personaje desconocido");
-    }
-
-    for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
-        enemigos[i] = crear_enemigo_aleatorio();
-        enemigos[i]->set_enemigo_id(i + 1);
-    }
-
-    // Se setea los valores del esceneario:
-
-    // for (size_t i = 0; i < XMAX; i+=WIDTH_PLATFORM_TYPE_1/ SCALING_VALUE_PIXEL) {
-    Platform plataforma_inicial(0, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
-                                WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                static_cast<uint16_t>(platform::TYPE_1));
-    plataformas.push_back(plataforma_inicial);
-    //}
-}
-
-std::unique_ptr<Enemigo> Game::crear_enemigo_aleatorio() {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distrib(0, 2);
-
-    int tipoEnemigo = distrib(gen);
-    switch (tipoEnemigo) {
-        case 0:
-            return std::make_unique<Enemigo1>();
-        case 1:
-            return std::make_unique<Enemigo2>();
-        case 2:
-            return std::make_unique<Enemigo3>();
-        default:
-            throw std::runtime_error("Tipo de enemigo desconocido");
     }
 }
 
@@ -66,18 +32,11 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
     }
 }
 
-bool Game::atacar_enemigo(uint16_t client_id) {
+bool Game::atacar_enemigo(uint16_t client_id, uint16_t id_enemigo) {
     if (obtener_personaje(client_id).obtener_municion() == 0) {
         return false;
     }
-    for (auto& enemigo: enemigos) {
-        if (enemigo->esta_vivo()) {
-            enemigo->recibir_disparo();
-            obtener_personaje(client_id).disminuir_municion();
-            return true;
-        }
-    }
-    return false;
+    return escenario.atacar_enemigo(id_enemigo);
 }
 
 bool Game::mover(const std::string& direccion, uint16_t client_id) {
@@ -93,7 +52,7 @@ void Game::accion_especial(uint16_t client_id) { obtener_personaje(client_id).ac
 
 void Game::actualizar_posiciones() {
     actualizar_personajes();
-    actualizar_enemigos();
+    actualizar_escenario();
 }
 
 void Game::actualizar_personajes() {
@@ -106,15 +65,7 @@ void Game::actualizar_personajes() {
     }
 }
 
-void Game::actualizar_enemigos() {
-    for (auto& enemigo: enemigos) {
-        if (enemigo) {
-            enemigo->actualizar();
-        } else {
-            std::cerr << "ERROR en actualizar_enemigos" << std::endl;
-        }
-    }
-}
+void Game::actualizar_escenario() { return escenario.actualizar_escenario(); }
 
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
     for (const auto& personaje: personajes) {
@@ -126,7 +77,7 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
         }
     }
 
-    for (auto& enemigo: enemigos) {
+    for (auto& enemigo: escenario.obtener_enemigos()) {
         if (enemigo) {
             gamestate.obtener_diccionario_de_enemigos().insert(
                     std::make_pair(enemigo->get_id_enemigo(), *enemigo));
@@ -145,18 +96,6 @@ void Game::agregar_personaje(uint16_t client_id, uint8_t personaje) {
     }
 }
 
-bool Game::aumentar_iteraciones() {
-    for (auto& enemigo: enemigos) {
-        if (!enemigo->esta_vivo()) {
-            enemigo->aumentar_iteraciones();
-            if (enemigo->esta_vivo()) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 void Game::borrar_personaje(uint16_t client_id) {
     auto it = std::find_if(personajes.begin(), personajes.end(),
                            [client_id](const std::shared_ptr<Personaje>& personaje) {
@@ -171,6 +110,6 @@ void Game::borrar_personaje(uint16_t client_id) {
     }
 }
 
-std::vector<Platform> Game::obtener_plataformas() { return plataformas; }
+GameEscenario& Game::obtener_escenario() { return escenario; }
 
 Game::~Game() {}

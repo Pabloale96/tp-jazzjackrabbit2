@@ -1,6 +1,5 @@
 #include "../../include/client_src/gui/gui_clase_texturas.h"
 
-
 Texture& ClaseTexturas::jazz_text() { return jazz_tex; }
 Texture& ClaseTexturas::spaz_text() { return spaz_tex; }
 Texture& ClaseTexturas::lori_text() { return lori_tex; }
@@ -85,8 +84,7 @@ void ClaseTexturas::plataformaTipo1() {
     int h_frame = 192;
 
     std::vector<Frame> frame_aux;
-    Frame frame(renderer, beach_tex);
-    frame.setFrame(x_frame, y_frame, h_frame, w_frame);
+    Frame frame(renderer, beach_tex, x_frame, y_frame, w_frame, h_frame);
     frame_aux.emplace_back(frame);
     addFrames(PLATFORM_BEACH_TYPE_1, frame_aux);
 }
@@ -104,8 +102,7 @@ void ClaseTexturas::jazzStand() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_STAND, frame_aux);
@@ -120,8 +117,7 @@ void ClaseTexturas::jazzWalk() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_WALK, frame_aux);
@@ -137,8 +133,7 @@ void ClaseTexturas::jazzJump() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_JUMP, frame_aux);
@@ -153,8 +148,7 @@ void ClaseTexturas::jazzRunning() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_RUN, frame_aux);
@@ -169,8 +163,7 @@ void ClaseTexturas::jazzJumpAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_JUMPANDMOVE, frame_aux);
@@ -185,8 +178,7 @@ void ClaseTexturas::jazzIntoxicated() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_INTOXICATED, frame_aux);
@@ -201,8 +193,7 @@ void ClaseTexturas::jazzHurt() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_HURT, frame_aux);
@@ -217,8 +208,7 @@ void ClaseTexturas::jazzShoot() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_SHOOT, frame_aux);
@@ -233,8 +223,7 @@ void ClaseTexturas::jazzStopShoot() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_STOPSHOOT, frame_aux);
@@ -249,8 +238,7 @@ void ClaseTexturas::jazzShootUp() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_SHOOTUP, frame_aux);
@@ -265,8 +253,7 @@ void ClaseTexturas::jazzShootAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_SHOOTANDMOVE, frame_aux);
@@ -281,8 +268,7 @@ void ClaseTexturas::jazzStopShootAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_STOPSHOOTANDMOVE, frame_aux);
@@ -297,8 +283,7 @@ void ClaseTexturas::jazzShootAndFalling() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_SHOOTANDFALLING, frame_aux);
@@ -313,8 +298,7 @@ void ClaseTexturas::jazzStopShootAndFalling() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_STOPSHOOTANDFALLING, frame_aux);
@@ -329,8 +313,7 @@ void ClaseTexturas::jazzDash() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_DASH, frame_aux);
@@ -345,8 +328,7 @@ void ClaseTexturas::jazzSpecial() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, jazz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, jazz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(JAZZ_SPECIAL, frame_aux);
@@ -361,8 +343,7 @@ void ClaseTexturas::spazStand() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_STAND, frame_aux);
@@ -377,8 +358,7 @@ void ClaseTexturas::spazWalk() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_WALK, frame_aux);
@@ -393,8 +373,7 @@ void ClaseTexturas::spazJump() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_JUMP, frame_aux);
@@ -409,8 +388,7 @@ void ClaseTexturas::spazRunning() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_RUN, frame_aux);
@@ -425,8 +403,7 @@ void ClaseTexturas::spazJumpAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_JUMPANDMOVE, frame_aux);
@@ -441,8 +418,7 @@ void ClaseTexturas::spazIntoxicated() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_INTOXICATED, frame_aux);
@@ -457,8 +433,7 @@ void ClaseTexturas::spazHurt() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_HURT, frame_aux);
@@ -473,8 +448,7 @@ void ClaseTexturas::spazShoot() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_SHOOT, frame_aux);
@@ -489,8 +463,7 @@ void ClaseTexturas::spazStopShoot() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_STOPSHOOT, frame_aux);
@@ -505,8 +478,7 @@ void ClaseTexturas::spazShootUp() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_SHOOTUP, frame_aux);
@@ -521,8 +493,7 @@ void ClaseTexturas::spazShootAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_SHOOTANDMOVE, frame_aux);
@@ -537,8 +508,7 @@ void ClaseTexturas::spazStopShootAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_STOPSHOOTANDMOVE, frame_aux);
@@ -553,8 +523,7 @@ void ClaseTexturas::spazShootAndFalling() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_SHOOTANDFALLING, frame_aux);
@@ -569,8 +538,7 @@ void ClaseTexturas::spazStopShootAndFalling() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_STOPSHOOTANDFALLING, frame_aux);
@@ -585,8 +553,7 @@ void ClaseTexturas::spazDash() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_DASH, frame_aux);
@@ -601,8 +568,7 @@ void ClaseTexturas::spazSpecial() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, spaz_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, spaz_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(SPAZ_SPECIAL, frame_aux);
@@ -618,8 +584,7 @@ void ClaseTexturas::loriStand() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_STAND, frame_aux);
@@ -634,8 +599,7 @@ void ClaseTexturas::loriWalk() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_WALK, frame_aux);
@@ -650,8 +614,7 @@ void ClaseTexturas::loriJump() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_JUMP, frame_aux);
@@ -666,8 +629,7 @@ void ClaseTexturas::loriRunning() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_RUN, frame_aux);
@@ -682,8 +644,7 @@ void ClaseTexturas::loriJumpAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_JUMPANDMOVE, frame_aux);
@@ -698,8 +659,7 @@ void ClaseTexturas::loriIntoxicated() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_INTOXICATED, frame_aux);
@@ -714,8 +674,7 @@ void ClaseTexturas::loriHurt() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_HURT, frame_aux);
@@ -730,8 +689,7 @@ void ClaseTexturas::loriShoot() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_SHOOT, frame_aux);
@@ -746,8 +704,7 @@ void ClaseTexturas::loriStopShoot() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_STOPSHOOT, frame_aux);
@@ -762,8 +719,7 @@ void ClaseTexturas::loriShootUp() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_SHOOTUP, frame_aux);
@@ -778,8 +734,7 @@ void ClaseTexturas::loriShootAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_SHOOTANDMOVE, frame_aux);
@@ -794,8 +749,7 @@ void ClaseTexturas::loriStopShootAndMove() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_STOPSHOOTANDMOVE, frame_aux);
@@ -810,8 +764,7 @@ void ClaseTexturas::loriShootAndFalling() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_SHOOTANDFALLING, frame_aux);
@@ -826,8 +779,7 @@ void ClaseTexturas::loriStopShootAndFalling() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_STOPSHOOTANDFALLING, frame_aux);
@@ -842,8 +794,7 @@ void ClaseTexturas::loriDash() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_DASH, frame_aux);
@@ -858,8 +809,7 @@ void ClaseTexturas::loriSpecial() {
 
     std::vector<Frame> frame_aux;
     for (size_t i = 0; i < (sizeof(x_frames) / sizeof(x_frames[0])); i++) {
-        Frame frame(renderer, lori_tex);
-        frame.setFrame(x_frames[i], y_frames[i], h_frames[i], w_frames[i]);
+        Frame frame(renderer, lori_tex, x_frames[i], y_frames[i], w_frames[i], h_frames[i]);
         frame_aux.emplace_back(frame);
     }
     addFrames(LORI_SPECIAL, frame_aux);

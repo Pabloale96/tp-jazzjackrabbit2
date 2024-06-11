@@ -9,8 +9,8 @@
 ServerSender::ServerSender(ProtocolServer& protocolo_server, uint16_t cliente_id, bool& was_closed,
                            Queue<std::shared_ptr<GameState>>& server_msg):
         protocolo_server(protocolo_server),
-        cliente_id(cliente_id),
         was_closed(was_closed),
+        cliente_id(cliente_id),
         server_msg(server_msg) {}
 
 void ServerSender::run() {

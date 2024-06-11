@@ -15,7 +15,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
 
 Personaje::Personaje(msgPersonaje& personaje):
         tipo_personaje(personaje.tipo_personaje),
-        partida_id(partida_id),
+        partida_id(0),
         client_id(ntohs(personaje.personaje[POS_ID_PERSONAJE])),
         puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
         vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
@@ -29,7 +29,7 @@ void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
 
 void Personaje::intoxicar() {}  // intoxicado = true; }
 
-std::vector<bool> Personaje::obtener_estados() { return estados; }
+EstadoPersonaje Personaje::obtener_estados() { return estados; }
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 

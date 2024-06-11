@@ -23,7 +23,7 @@
 #include "gui_personaje.h"
 #include "msgToSent.h"
 
-#define RATE 15.0
+#define RATE 15
 
 using std::chrono::duration;
 using std::chrono::nanoseconds;
@@ -69,7 +69,7 @@ public:
     void run() override;
     void setGameState(GameState&);
     void setEscenario(ClaseTexturas&);
-    void eventManaged(int&);
+    void eventManaged(int& ,std::unique_ptr<PersonajeGui> & );
 };
 
 #endif

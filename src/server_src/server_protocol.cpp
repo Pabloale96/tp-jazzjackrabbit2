@@ -11,6 +11,7 @@
 #include <arpa/inet.h>   // htons()
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
+#include "../../include/common_src/catedra/liberror.h"
 #include "../../include/common_src/protocol_utils.h"
 
 #define MUERTO 0x04
@@ -187,14 +188,14 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
 }
 
 void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
-    std::vector<Platform> plataformas = game.obtener_plataformas();
+    std::vector<Platform> plataformas = game.obtener_escenario().obtener_plataformas();
     msgEscenario msg_escenario(plataformas.size());
 
     if (was_closed) {
         return;
     }
     socket_cliente.sendall(&msg_escenario, sizeof(msg_escenario), &was_closed);
-    for (int i = 0; i < plataformas.size(); i++) {
+    for (uint16_t i = 0; i < plataformas.size(); i++) {
         msgPlataforma msg_plataforma(plataformas[i]);
         if (was_closed) {
             return;
@@ -204,7 +205,11 @@ void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
 }
 
 void ProtocolServer::cerrar_socket_cliente() {
-    socket_cliente.shutdown(SHUT_RDWR);
+    try {
+        socket_cliente.shutdown(SHUT_RDWR);
+    } catch (const LibError& err) {
+        // Si ya estaba cerrado, no hago nada
+    }
     socket_cliente.close();
 }
 
