@@ -23,7 +23,7 @@
 #include "gui_personaje.h"
 #include "msgToSent.h"
 
-#define RATE 15
+#define RATE 60
 
 using std::chrono::duration;
 using std::chrono::nanoseconds;
