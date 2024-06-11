@@ -19,7 +19,7 @@ SpazGui::~SpazGui() {}
 void SpazGui::show(int animacion_actual) {
     switch (animacion_actual) {
         case ANI_STAND:
-            animacion.setFlip(false);j
+            animacion.setFlip(false);
             animacion.run(pos_x, pos_y,5, frames, it);
             break;
         case ANI_MOVER_DERECHA:

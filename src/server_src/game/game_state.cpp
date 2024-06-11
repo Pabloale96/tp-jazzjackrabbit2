@@ -53,6 +53,7 @@ void GameState::imprimir_cliente() {
         std::cout << " >> Personaje " << personaje->obtener_personaje_id() << " :" << std::endl;
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
+        std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;          
     }
 }
 
@@ -65,10 +66,10 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
-        std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
-        std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
-        std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
-        std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
+    //    std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
+    //    std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
+    //    std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
+    //    std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
     }
 /*
     for (const auto& pair: diccionario_de_enemigos) {

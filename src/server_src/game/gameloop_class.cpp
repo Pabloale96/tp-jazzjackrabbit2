@@ -72,14 +72,16 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {}
-
+            while (client_commands.try_pop(comando)) {
+                //if (comando) {
+                //    comando->ejecutar(this->game);
+                //}
+            }
             if (comando) {
                 comando->ejecutar(this->game);
-                // broadcastear();
             }
 
-            game.actualizar_posiciones();
+            game.actualizar();
             broadcastear();
 
             // Calculo tiempo para mantener el rate
