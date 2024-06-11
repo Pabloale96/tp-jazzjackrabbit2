@@ -33,6 +33,7 @@ void Gui::eventManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador) {
     while (SDL_PollEvent(&event)) {
         msgAccion msg_to_sent;
         if (event.type == SDL_QUIT) {
+            client_off = true;
             return;
         } else if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.sym) {
