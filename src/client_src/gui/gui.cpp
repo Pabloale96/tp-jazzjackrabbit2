@@ -124,19 +124,16 @@ void Gui::run() {
 
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() /2,
+        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2,
                                             texturas.findFrame(std::string(JAZZ_STAND)));
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() /2,
+        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2,
                                             texturas.findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() /2,
+        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2,
                                             texturas.findFrame(std::string(LORI_STAND)));
     }
 

@@ -7,7 +7,7 @@
 #define TIPO_PERSONAJE_NULO 0x00
 
 #include <cstdint>
-#include <cstring> // para usar memset()
+#include <cstring>  // para usar memset()
 
 #include <arpa/inet.h>  // para usar htons()
 

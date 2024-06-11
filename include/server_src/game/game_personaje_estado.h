@@ -147,7 +147,7 @@ public:
             case 6:
                 setCayendo(true);
                 break;
-            case 7: 
+            case 7:
                 setIntoxicado(true);
                 break;
             case 8:
