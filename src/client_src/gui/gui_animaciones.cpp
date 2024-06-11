@@ -3,9 +3,10 @@
 
 Animacion::~Animacion() {}
 
-Animacion::Animacion(){}
+Animacion::Animacion() {}
 
 void Animacion::setFlip(bool flip) { this->flip = flip; }
+
 
 void Animacion::run(int pos_x, int pos_y,int speed,std::vector<Frame>& frames, std::vector<Frame>::iterator & it) {
     if (it == frames.end()) {
@@ -16,5 +17,4 @@ void Animacion::run(int pos_x, int pos_y,int speed,std::vector<Frame>& frames, s
         it++;
     }
     contador++;
-    
 }

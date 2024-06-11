@@ -20,8 +20,98 @@ private:
     bool intoxicado;
 
 public:
-    EstadoPersonaje(/* args */){} // <---- Sacar {} cuando este el cpp
-    ~EstadoPersonaje(){}  // <---- Sacar {} cuando este el cpp
+    EstadoPersonaje() {
+        idle = true;
+        corriendo = false;
+        corriendo_muy_rapido = false;
+        saltando = false;
+        cayendo = false;
+        disparando = false;
+        accion_especial = false;
+
+        recibiendo_danio = false;
+        muerto = false;
+
+        intoxicado = false;
+    }
+
+    void setIdle(bool value) { idle = value; }
+
+    bool getIdle() { return idle; }
+
+    void setCorriendo(bool value) { corriendo = value; }
+
+    bool getCorriendo() { return corriendo; }
+
+    void setCorriendoMuyRapido(bool value) { corriendo_muy_rapido = value; }
+
+    bool getCorriendoMuyRapido() { return corriendo_muy_rapido; }
+
+    void setSaltando(bool value) { saltando = value; }
+
+    bool getSaltando() { return saltando; }
+
+    void setCayendo(bool value) { cayendo = value; }
+
+    bool getCayendo() { return cayendo; }
+
+    void setDisparando(bool value) {
+        if (esta_intoxicado() == true) {
+            disparando = false;
+        } else {
+            disparando = value;
+        }
+    }
+
+    bool getDisparando() { return disparando; }
+
+    void setAccionEspecial(bool value) { accion_especial = value; }
+
+    bool getAccionEspecial() { return accion_especial; }
+
+    void setRecibiendoDanio(bool value) { recibiendo_danio = value; }
+
+    bool getRecibiendoDanio() { return recibiendo_danio; }
+
+    void setMuerto(bool value) { muerto = value; }
+
+    bool getMuerto() { return muerto; }
+
+    void setIntoxicado(bool value) { intoxicado = value; }
+
+    bool esta_intoxicado() { return intoxicado; }
+
+    void reset() {
+        idle = false;
+        corriendo = false;
+        corriendo_muy_rapido = false;
+        saltando = false;
+        cayendo = false;
+        disparando = false;
+        accion_especial = false;
+
+        recibiendo_danio = false;
+        muerto = false;
+
+        intoxicado = false;
+    }
+
+    void obtener_estado(std::vector<bool>& estados) {
+        estados.push_back(idle);
+        estados.push_back(corriendo);
+        estados.push_back(corriendo_muy_rapido);
+        estados.push_back(saltando);
+        estados.push_back(cayendo);
+        estados.push_back(disparando);
+        estados.push_back(accion_especial);
+
+        estados.push_back(recibiendo_danio);
+        estados.push_back(muerto);
+
+        estados.push_back(intoxicado);
+    }
+
+    ~EstadoPersonaje() {}
 };
 
 #endif

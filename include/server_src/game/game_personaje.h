@@ -32,8 +32,10 @@ private:
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
     Direccion direccion;
-    EstadoPersonaje estados;
     std::vector<bool> acciones;
+
+protected:
+    EstadoPersonaje estados;
 
 public:
     explicit Personaje(uint16_t partida_id, uint16_t client_id);
@@ -45,6 +47,8 @@ public:
     void intoxicar();
 
     EstadoPersonaje obtener_estados();
+
+    uint8_t obtener_estado_actual();
 
     uint8_t obtener_animacion();
 
