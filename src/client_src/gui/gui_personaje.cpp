@@ -1,9 +1,9 @@
 #include "../../include/client_src/gui/gui_personaje.h"
 
-PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy,std::vector<Frame>& frames):
+PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, std::vector<Frame>& frames):
         texturas(texturas), pos_x(posx), pos_y(posy), frames(frames) {
-            it = frames.begin();
-        }
+    it = frames.begin();
+}
 
 PersonajeGui::~PersonajeGui() {}
 
@@ -11,7 +11,7 @@ void PersonajeGui::show(int animacion) {}
 
 void PersonajeGui::setFrames(int animacion_actual) {}
 
-SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy,std::vector<Frame>& frames): 
+SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, std::vector<Frame>& frames):
         PersonajeGui(texturas, posx, posy, frames) {}
 
 SpazGui::~SpazGui() {}
@@ -59,8 +59,8 @@ void SpazGui::setFrames(int animacion_actual) {
     }
 }
 
-JazzGui::JazzGui(ClaseTexturas& texturas, int posx, int posy,std::vector<Frame>& frames): 
-    PersonajeGui(texturas, posx, posy, frames) {}
+JazzGui::JazzGui(ClaseTexturas& texturas, int posx, int posy, std::vector<Frame>& frames):
+        PersonajeGui(texturas, posx, posy, frames) {}
 
 JazzGui::~JazzGui() {}
 
@@ -108,8 +108,8 @@ void JazzGui::setFrames(int animacion_actual) {
     }
 }
 
-LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy,std::vector<Frame>& frames)
-        : PersonajeGui(texturas, posx, posy, frames) {}
+LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy, std::vector<Frame>& frames):
+        PersonajeGui(texturas, posx, posy, frames) {}
 
 LoriGui::~LoriGui() {}
 
@@ -140,7 +140,7 @@ void LoriGui::show(int animacion_actual) {
 void LoriGui::setFrames(int animacion_actual) {
     switch (animacion_actual) {
         case ANI_STAND:
-            frames =std::ref(texturas.findFrame(std::string(LORI_STAND)));
+            frames = std::ref(texturas.findFrame(std::string(LORI_STAND)));
             it = frames.begin();
             break;
         case ANI_MOVER_IZQUIERDA:

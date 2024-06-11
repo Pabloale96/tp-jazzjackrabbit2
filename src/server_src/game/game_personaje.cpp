@@ -27,9 +27,33 @@ void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
     this->tipo_personaje = tipo_personaje;
 }
 
-void Personaje::intoxicar() {}  // intoxicado = true; }
+void Personaje::intoxicar() { estados.setIntoxicado(true); }
 
 EstadoPersonaje Personaje::obtener_estados() { return estados; }
+
+uint8_t Personaje::obtener_estado_actual() {
+    if (estados.esta_intoxicado()) {
+        return (uint8_t)efectos::INTOXICADO;
+    } else if (estados.getIdle()) {
+        return (uint8_t)efectos::IDLE;
+    } else if (estados.getCorriendo()) {
+        return (uint8_t)efectos::CORRIENDO;
+    } else if (estados.getCorriendoMuyRapido()) {
+        return (uint8_t)efectos::CORRIENDO_RAPIDO;
+    } else if (estados.getSaltando()) {
+        return (uint8_t)efectos::SALTANDO;
+    } else if (estados.getCayendo()) {
+        return (uint8_t)efectos::CAYENDO;
+    } else if (estados.getDisparando()) {
+        return (uint8_t)efectos::DISPARANDO;
+    } else if (estados.getAccionEspecial()) {
+        return (uint8_t)efectos::ACCION_ESPECIAL;
+    } else if (estados.getMuerto()) {
+        return (uint8_t)efectos::MUERTO;
+    } else {
+        return (uint8_t)efectos::IDLE;
+    }
+}
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 
@@ -51,10 +75,9 @@ void Personaje::setear_direccion(const std::string& direccion) {
 
 bool Personaje::mover(const std::string& direccion) {
     setear_direccion(direccion);
-    // TODO: Esto es reactivo
+    estados.setIdle(false);
+    estados.setCorriendo(true);
     return posicion.mover(direccion);
-    // Deberia setear el toggle de movimiento
-    // y siempre hago el update
 }
 
 void Personaje::disminuir_vida(uint16_t danio) {
@@ -92,6 +115,7 @@ Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
 Jazz::Jazz(msgPersonaje& personaje): Personaje(personaje) {}
 
 void Jazz::accion_especial() {
+    this->estados.setAccionEspecial(true);
     obtener_posicion().mover("arriba");
     // TODO: Si toco un enemigo, realizo daño
 }
@@ -103,6 +127,7 @@ Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, clien
 Lori::Lori(msgPersonaje& personaje): Personaje(personaje) {}
 
 void Lori::accion_especial() {
+    this->estados.setAccionEspecial(true);
     obtener_posicion().mover("arriba");
     // TODO: Si toco un enemigo, realizo daño
 }
@@ -114,6 +139,7 @@ Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, cli
 Spazz::Spazz(msgPersonaje& personaje): Personaje(personaje) {}
 
 void Spazz::accion_especial() {
+    this->estados.setAccionEspecial(true);
     obtener_direccion() == Direccion::DERECHA ? obtener_posicion().mover("derecha") :
                                                 obtener_posicion().mover("izquierda");
     // TODO: Si toco un enemigo, realizo daño

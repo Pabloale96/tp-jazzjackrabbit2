@@ -17,7 +17,7 @@ public:
     Animacion();
     ~Animacion();
 
-    void run(int pos_x, int pos_y,std::vector<Frame>& frames, std::vector<Frame>::iterator & it);
+    void run(int pos_x, int pos_y, std::vector<Frame>& frames, std::vector<Frame>::iterator& it);
     void setFlip(bool);
 };
 

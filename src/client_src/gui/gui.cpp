@@ -25,7 +25,7 @@ void Gui::setEscenario(ClaseTexturas& texturas) {
     }
 }
 
-void Gui::eventManaged(int& animacion,std::unique_ptr<PersonajeGui> & jugador) {
+void Gui::eventManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador) {
 
     SDL_Event event;
     // definir N it para las animaciones de frame.
@@ -124,18 +124,15 @@ void Gui::run() {
 
     std::unique_ptr<PersonajeGui> jugador;
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
+        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1,
                                             texturas.findFrame(std::string(JAZZ_STAND)));
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
+        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1,
                                             texturas.findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas,
-                                            renderer.GetOutputWidth() / 2,
+        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() - HEIGHT_PLATFORM_TYPE_1,
                                             texturas.findFrame(std::string(LORI_STAND)));
     }
@@ -154,12 +151,11 @@ void Gui::run() {
         unsigned int frame_delta = frame_ticks - prev_ticks;
         prev_ticks = frame_ticks;
 
-        this->eventManaged(animacion,jugador);
+        this->eventManaged(animacion, jugador);
         // Clear the screen
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
-        // cppcheck-suppress unusedVariable
         /*for (const auto& [_, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) * SCALING_VALUE_PIXEL;
@@ -169,13 +165,16 @@ void Gui::run() {
                 y <= (pos_y + renderer.GetOutputHeight() / 2) ||
                 y <= (pos_y - renderer.GetOutputHeight() / 2)) {
                 if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
-                    pers = std::make_unique<JazzGui>(texturas,x, y,texturas.findFrame(std::string(JAZZ_STAND)));
+                    pers = std::make_unique<JazzGui>(texturas,x,
+        y,texturas.findFrame(std::string(JAZZ_STAND)));
                     // pers->show(animacion);//personaje->obtener_animacion());
                 } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
-                    pers = std::make_unique<SpazGui>(texturas,x, y,texturas.findFrame(std::string(SPAZ_STAND)));
+                    pers = std::make_unique<SpazGui>(texturas,x,
+        y,texturas.findFrame(std::string(SPAZ_STAND)));
                     // pers->show(animacion);//personaje->obtener_animacion());
                 } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::LORI) {
-                    pers = std::make_unique<LoriGui>(texturas,x, y,texturas.findFrame(std::string(LORI_STAND)));
+                    pers = std::make_unique<LoriGui>(texturas,x,
+        y,texturas.findFrame(std::string(LORI_STAND)));
                     // pers->show(animacion);//personaje->obtener_animacion());
                 }
                 // std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
