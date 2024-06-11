@@ -9,19 +9,15 @@
 
 #include "gui_frame.h"
 
-using SDL2pp::Renderer;
-using SDL2pp::Texture;
-
 class Animacion {
 private:
     bool flip = false;
-    int scr_x = 0;
 
 public:
     Animacion();
     ~Animacion();
 
-    void run(int, int, std::vector<Frame>&);
+    void run(int pos_x, int pos_y,std::vector<Frame>& frames, std::vector<Frame>::iterator & it);
     void setFlip(bool);
 };
 
