@@ -29,7 +29,7 @@ void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
 
 void Personaje::intoxicar() {}  // intoxicado = true; }
 
-std::vector<bool> Personaje::obtener_estados() { return estados; }
+EstadoPersonaje Personaje::obtener_estados() { return estados; }
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 

@@ -44,7 +44,7 @@ public:
 
     void intoxicar();
 
-    std::vector<bool> obtener_estados();
+    EstadoPersonaje obtener_estados();
 
     uint8_t obtener_animacion();
 

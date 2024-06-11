@@ -20,6 +20,8 @@ private:
     bool intoxicado;
 
 public:
-    EstadoPersonaje(/* args */);
-    ~EstadoPersonaje();
+    EstadoPersonaje(/* args */){} // <---- Sacar {} cuando este el cpp
+    ~EstadoPersonaje(){}  // <---- Sacar {} cuando este el cpp
 };
+
+#endif
