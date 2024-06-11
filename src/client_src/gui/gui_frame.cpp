@@ -13,10 +13,6 @@ Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
 Frame::~Frame() {}
 
 void Frame::copy(bool flip, int pos_x, int pos_y) {
-    std::cout << "vec_frames[0] "<< vec_frames[0] << std::endl;
-    std::cout << "vec_frames[1] "<< vec_frames[1] << std::endl;
-    std::cout << "vec_frames[2] "<< vec_frames[2] << std::endl;
-    std::cout << "vec_frames[3] "<< vec_frames[3] << std::endl;
     sprite.SetAlphaMod(255);
     if (flip) {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
