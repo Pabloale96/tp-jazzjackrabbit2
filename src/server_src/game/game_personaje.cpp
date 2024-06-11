@@ -20,7 +20,9 @@ Personaje::Personaje(msgPersonaje& personaje):
         puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
         vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
         arma(ntohs(personaje.personaje[POS_MUNICION_PERSONAJE]), personaje.tipo_arma),
-        posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]) {
+        posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]), 
+        estados() {
+            estados.setear_estado_respuesta(personaje.estado);
 }
 
 void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
@@ -29,7 +31,7 @@ void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {
 
 void Personaje::intoxicar() { estados.setIntoxicado(true); }
 
-EstadoPersonaje Personaje::obtener_estados() { return estados; }
+EstadoPersonaje& Personaje::obtener_estados() { return estados; }
 
 uint8_t Personaje::obtener_estado_actual() {
     if (estados.esta_intoxicado()) {

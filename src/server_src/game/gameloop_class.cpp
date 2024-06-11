@@ -10,8 +10,8 @@
 #define MAX_TAM_COLA 10000
 #define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60
-#define RATE 60
-#define SCALE_TIME 1e9
+#define RATE 1 // 60
+#define SCALE_TIME 1e20 // 1e9
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                    uint8_t personaje):
@@ -79,6 +79,7 @@ void GameLoop::run() {
             }
             if (comando) {
                 comando->ejecutar(this->game);
+                //broadcastear();
             }
 
             game.actualizar();
@@ -112,7 +113,7 @@ void GameLoop::run() {
 void GameLoop::broadcastear() {
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    nuevo_gamestate.imprimir_mensaje();
+    //nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 

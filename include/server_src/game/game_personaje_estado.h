@@ -111,6 +111,60 @@ public:
         estados.push_back(intoxicado);
     }
 
+    void getAll() {
+        std::cout << "idle: " << idle << std::endl;
+        std::cout << "corriendo: " << corriendo << std::endl;
+        std::cout << "corriendo_muy_rapido: " << corriendo_muy_rapido << std::endl;
+        std::cout << "saltando: " << saltando << std::endl;
+        std::cout << "cayendo: " << cayendo << std::endl;
+        std::cout << "disparando: " << disparando << std::endl;
+        std::cout << "accion_especial: " << accion_especial << std::endl;
+
+        std::cout << "recibiendo_danio: " << recibiendo_danio << std::endl;
+        std::cout << "muerto: " << muerto << std::endl;
+
+        std::cout << "intoxicado: " << intoxicado << std::endl;
+    }
+
+    void setear_estado_respuesta(uint8_t estado_recibido) {
+        reset();
+        switch (estado_recibido) {
+            case 1:
+                setIdle(true);
+                break;
+            case 2:
+                setDisparando(true);
+                break;
+            case 3:
+                setCorriendo(true);
+                break;
+            case 4:
+                setCorriendoMuyRapido(true);
+                break;
+            case 5:
+                setSaltando(true);
+                break;
+            case 6:
+                setCayendo(true);
+                break;
+            case 7: 
+                setIntoxicado(true);
+                break;
+            case 8:
+                setRecibiendoDanio(true);
+                break;
+            case 9:
+                setMuerto(true);
+                break;
+            case 10:
+                setAccionEspecial(true);
+                break;
+            default:
+                std::cout << "Estado no reconocido" << std::endl;
+                break;
+        }
+    }
+
     ~EstadoPersonaje() {}
 };
 

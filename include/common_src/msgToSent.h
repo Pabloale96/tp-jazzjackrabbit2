@@ -7,6 +7,7 @@
 #define TIPO_PERSONAJE_NULO 0x00
 
 #include <cstdint>
+#include <cstring> // para usar memset()
 
 #include <arpa/inet.h>  // para usar htons()
 
@@ -60,35 +61,46 @@ struct msgGameState {
     uint8_t header;
     uint8_t state_partida;
     uint16_t client_id;
-    // uint16_t tiempo;
     uint16_t cantidad_personajes;
     uint16_t cantidad_enemigos;
 
-    msgGameState():
-            header(MSG_HEADER),
-            state_partida(0x00),
-            client_id(0x00),
-            cantidad_personajes(0x01),
-            cantidad_enemigos(0x00) {}
+    msgGameState() {
+        memset(this, 0, sizeof(*this));
+        header = MSG_HEADER;
+        state_partida = 0x00;
+        client_id = 0x00;
+        cantidad_personajes = 0x01;
+        cantidad_enemigos = 0x00;
+    }
 
-    msgGameState(GameState& gameState, uint16_t client_id):
-            header(MSG_HEADER),
-            state_partida(gameState.getJugando() ? 0x01 : 0x00),
-            client_id(htons(client_id)),
-            cantidad_personajes(htons(gameState.getSizePersonajes())),
-            cantidad_enemigos(htons(gameState.get_cantidad_de_enemigos())) {}
+    msgGameState(GameState& gameState, uint16_t client_id) {
+        memset(this, 0, sizeof(*this));
+        header = MSG_HEADER;
+        state_partida = gameState.getJugando() ? 0x01 : 0x00;
+        this->client_id = htons(client_id);
+        cantidad_personajes = htons(gameState.getSizePersonajes());
+        cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
+    }
 };
 
 struct msgPersonaje {
     uint8_t tipo_personaje;
     uint8_t tipo_arma;
     uint8_t estado;
-    uint16_t personaje[SIZE_ARRAY_PERSONAJE] = {0};
+    uint16_t personaje[SIZE_ARRAY_PERSONAJE];
 
-    msgPersonaje(): tipo_personaje(TIPO_PERSONAJE_NULO), tipo_arma(0x00), estado(static_cast<uint8_t>(efectos::IDLE)) {}
+    msgPersonaje() {
+        memset(this, 0, sizeof(*this));
+        tipo_personaje = TIPO_PERSONAJE_NULO;
+        tipo_arma = 0x00;
+        estado = static_cast<uint8_t>(efectos::IDLE);
+    }
 
-    msgPersonaje(uint16_t id, Personaje& pers):
-            tipo_personaje(pers.obtener_tipo_personaje()), tipo_arma(pers.obtener_nombre_arma()), estado(pers.obtener_estado_actual()) {
+    msgPersonaje(uint16_t id, Personaje& pers) {
+        memset(this, 0, sizeof(*this));
+        tipo_personaje = pers.obtener_tipo_personaje();
+        tipo_arma = pers.obtener_nombre_arma();
+        estado = pers.obtener_estado_actual();
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());

@@ -46,7 +46,7 @@ public:
 
     void intoxicar();
 
-    EstadoPersonaje obtener_estados();
+    EstadoPersonaje& obtener_estados();
 
     uint8_t obtener_estado_actual();
 
