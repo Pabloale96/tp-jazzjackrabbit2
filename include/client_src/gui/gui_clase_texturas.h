@@ -49,6 +49,9 @@ public:
 
     std::vector<Frame>& findFrame(std::string);
 
+    void add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
+                           int frame_count, Texture& textura_del_personaje, const std::string& key);
+
     void addFrames(std::string, std::vector<Frame>);
     void addFrames(int, Frame);
 
