@@ -98,7 +98,9 @@ void Personaje::disminuir_vida(uint16_t danio) {
 }
 
 void Personaje::disparar() {
-    municiones_disparadas.emplace_back(obtener_posicion().get_posicion_x(), obtener_posicion().get_posicion_y(), obtener_direccion(), arma.obtener_nombre_arma(), generar_id_bala());
+    municiones_disparadas.emplace_back(obtener_posicion().get_posicion_x(),
+                                       obtener_posicion().get_posicion_y(), obtener_direccion(),
+                                       arma.obtener_nombre_arma(), generar_id_bala());
 }
 
 void Personaje::eliminar_bala(uint16_t id_bala) {

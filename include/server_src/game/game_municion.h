@@ -11,7 +11,7 @@ private:
     uint16_t id;
 
 public:
-    Municion(uint16_t x,  uint16_t y, Direccion direccion, uint8_t tipo_bala, uint16_t id);
+    Municion(uint16_t x, uint16_t y, Direccion direccion, uint8_t tipo_bala, uint16_t id);
 
     uint8_t obtener_tipo_bala();
 
@@ -26,7 +26,6 @@ public:
     void mover();
 
     uint16_t obtener_id();
-
 };
 
 #endif

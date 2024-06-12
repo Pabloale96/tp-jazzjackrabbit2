@@ -3,8 +3,8 @@
 
 #include <exception>
 #include <iostream>
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
 

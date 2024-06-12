@@ -40,8 +40,8 @@ void Frame::copy(bool flip, int pos_x, int pos_y, int area_x, int area_y) {
 }
 
 void Frame::copyTest() {
-            renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                      Rect(renderer.GetOutputWidth()/2, renderer.GetOutputHeight()/2, 75, 75));
+    renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
+                  Rect(renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2, 75, 75));
 }
 
 

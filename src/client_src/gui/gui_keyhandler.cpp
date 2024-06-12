@@ -1,16 +1,16 @@
 #include "../../include/client_src/gui/gui_keyhandler.h"
 
 
-KeyboardHandler::KeyboardHandler(){}
+KeyboardHandler::KeyboardHandler() {}
 
 
-
-bool KeyboardHandler::checkKeyPress(SDL_Keycode key){
-        const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-        return currentKeyStates[key];
+bool KeyboardHandler::checkKeyPress(SDL_Keycode key) {
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+    return currentKeyStates[key];
 }
 
-bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador,Queue<msgAccion>& client_commands) {
+bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador,
+                                      Queue<msgAccion>& client_commands) {
 
     SDL_Event event;
     // definir N it para las animaciones de frame.
@@ -22,14 +22,15 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                 case SDLK_q:
                     return true;
                 case SDLK_RIGHT:
-                    if ((this->checkKeyPress(SDL_SCANCODE_LCTRL)||this->checkKeyPress(SDL_SCANCODE_RCTRL)) && animacion != ANI_RUN_DERECHA)
-                    {
-                        msg_to_sent =
-                                msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA_RAPIDO), true);
+                    if ((this->checkKeyPress(SDL_SCANCODE_LCTRL) ||
+                         this->checkKeyPress(SDL_SCANCODE_RCTRL)) &&
+                        animacion != ANI_RUN_DERECHA) {
+                        msg_to_sent = msgAccion(
+                                static_cast<uint8_t>(acciones::MOVER_DERECHA_RAPIDO), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_RUN_DERECHA;  // se ejecuta la animacion derecha
                         jugador->setFrames(animacion);
-                    }else if (animacion != ANI_MOVER_DERECHA) {
+                    } else if (animacion != ANI_MOVER_DERECHA) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
                         client_commands.push(msg_to_sent);
@@ -38,10 +39,11 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                     }
                     break;
                 case SDLK_LEFT:
-                    if ((this->checkKeyPress(SDL_SCANCODE_LCTRL)||this->checkKeyPress(SDL_SCANCODE_RCTRL)) && animacion != ANI_RUN_IZQUIERDA)
-                    {
-                        msg_to_sent =
-                                msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA_RAPIDO), true);
+                    if ((this->checkKeyPress(SDL_SCANCODE_LCTRL) ||
+                         this->checkKeyPress(SDL_SCANCODE_RCTRL)) &&
+                        animacion != ANI_RUN_IZQUIERDA) {
+                        msg_to_sent = msgAccion(
+                                static_cast<uint8_t>(acciones::MOVER_IZQUIERDA_RAPIDO), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_RUN_IZQUIERDA;  // se ejecuta la animacion derecha
                         jugador->setFrames(animacion);
@@ -54,14 +56,13 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                     }
                     break;
                 case SDLK_UP:
-                    if (this->checkKeyPress(SDL_SCANCODE_A) && animacion != ANI_SALTAR_SHOOT)
-                    {
+                    if (this->checkKeyPress(SDL_SCANCODE_A) && animacion != ANI_SALTAR_SHOOT) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::SALTAR_DISPARANDO), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_SALTAR_SHOOT;  // se ejecuta la animacion derecha
                         jugador->setFrames(animacion);
-                    }else if (animacion != ANI_SALTAR) {
+                    } else if (animacion != ANI_SALTAR) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
@@ -70,7 +71,8 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                     break;
                 case SDLK_s:
                     if (animacion != ANI_ESPECIAL) {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::ACCION_ESPECIAL), true);
+                        msg_to_sent =
+                                msgAccion(static_cast<uint8_t>(acciones::ACCION_ESPECIAL), true);
                         client_commands.push(msg_to_sent);
                         animacion = ANI_ESPECIAL;  // se ejecuta la animacion derecha
                         jugador->setFrames(animacion);

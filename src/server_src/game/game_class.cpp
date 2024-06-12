@@ -61,9 +61,9 @@ void Game::chequear_colisiones() {
         for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
             for (auto& bala: personaje->obtener_balas()) {
                 if (bala.obtener_posicion() == enemigo->get_posicion_enemigo()) {
-                    if (bala.obtener_tipo_bala() == (uint8_t) armas::ARMA_INICIAL) {
+                    if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
                         enemigo->recibir_disparo(DANO_INICIAL);
-                    } else if (bala.obtener_tipo_bala() == (uint8_t) armas::ARMA_SECUNDARIA) {
+                    } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_SECUNDARIA) {
                         enemigo->recibir_disparo(DANO_ARMA1);
                     }
                     personaje->eliminar_bala(bala.obtener_id());
@@ -74,10 +74,10 @@ void Game::chequear_colisiones() {
             if (personaje->obtener_posicion() == collectible->obtener_posicion()) {
                 // TODO: Implementar collectibles
                 std::cout << "COLLECTIBLE" << std::endl;
-                //personaje->aumentar_municion();
-                //personaje->aumentar_vida();
-                //personaje->aumentar_puntos();
-                //collectible->desaparecer();
+                // personaje->aumentar_municion();
+                // personaje->aumentar_vida();
+                // personaje->aumentar_puntos();
+                // collectible->desaparecer();
             }
         }
     }

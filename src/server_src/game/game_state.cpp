@@ -66,18 +66,16 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
-            std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
-            std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
-            std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
-            std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() <<
-            std::endl;
+        std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
+        std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
+        std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
+        std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
     }
     for (const auto& pair: diccionario_de_enemigos) {
         const Enemigo& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo.get_id_enemigo() << " :" << std::endl;
-        std::cout << "     - Posición: (" << enemigo.get_posicion_enemigo().get_posicion_x() <<
-    ", "
-                    << enemigo.get_posicion_enemigo().get_posicion_y() << ")." << std::endl;
+        std::cout << "     - Posición: (" << enemigo.get_posicion_enemigo().get_posicion_x() << ", "
+                  << enemigo.get_posicion_enemigo().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Puntos: " << enemigo.get_puntos() << std::endl;
         std::cout << "     - Vida: " << enemigo.get_vidas() << std::endl;
     }

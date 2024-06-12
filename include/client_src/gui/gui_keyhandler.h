@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <exception>
 #include <iostream>
+#include <memory>
 #include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
@@ -27,10 +28,9 @@ private:
 public:
     KeyboardHandler();
 
-    bool keyBoardManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador,Queue<msgAccion>& );
+    bool keyBoardManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador, Queue<msgAccion>&);
 
-    bool checkKeyPress(SDL_Keycode );
-
+    bool checkKeyPress(SDL_Keycode);
 };
 
 #endif

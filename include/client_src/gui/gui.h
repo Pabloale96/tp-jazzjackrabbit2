@@ -20,9 +20,9 @@
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "gui_escenario.h"
+#include "gui_keyhandler.h"
 #include "gui_personaje.h"
 #include "msgToSent.h"
-#include "gui_keyhandler.h"
 
 #define RATE 60
 
