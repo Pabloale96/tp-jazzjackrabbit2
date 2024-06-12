@@ -3,7 +3,7 @@
 Frame::Frame(Renderer& renderer, Texture& sprite): renderer(renderer), sprite(sprite) {}
 
 Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
-        renderer(renderer), sprite(sprite), vec_frames{x, y, w, h} {
+        renderer(renderer), sprite(sprite), vec_frames{x, y, h, w} {
 
 
     // this->setFrame(x, y, w, h);

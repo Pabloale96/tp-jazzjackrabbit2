@@ -5,6 +5,7 @@
 #include <exception>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -35,7 +36,7 @@ private:
     Texture beach_tex{Texture(
             renderer, beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0, 203)))};
 
-    std::map<std::string, std::vector<Frame>> frames_map;
+    std::map<std::string, std::shared_ptr<std::vector<Frame>>> frames_map;
 
 public:
     explicit ClaseTexturas(Renderer& render);
@@ -47,12 +48,12 @@ public:
     Texture& lori_text();
     Texture& beach_text();
 
-    std::vector<Frame>& findFrame(std::string);
+    std::shared_ptr<std::vector<Frame>> findFrame(std::string);
 
     void add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                            int frame_count, Texture& textura_del_personaje, const std::string& key);
 
-    void addFrames(std::string, std::vector<Frame>);
+    void addFrames(std::string, std::shared_ptr<std::vector<Frame>>);
     void addFrames(int, Frame);
 
     // Definiciones de frames:

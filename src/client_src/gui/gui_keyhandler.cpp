@@ -22,7 +22,7 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                 case SDLK_q:
                     return true;
                 case SDLK_RIGHT:
-                    if ((this->checkKeyPress(SDLK_LCTRL)||this->checkKeyPress(SDLK_RCTRL)) && animacion != ANI_RUN_DERECHA)
+                    if ((this->checkKeyPress(SDL_SCANCODE_LCTRL)||this->checkKeyPress(SDL_SCANCODE_RCTRL)) && animacion != ANI_RUN_DERECHA)
                     {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA_RAPIDO), true);
@@ -38,7 +38,7 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                     }
                     break;
                 case SDLK_LEFT:
-                    if ((this->checkKeyPress(SDLK_LCTRL)||this->checkKeyPress(SDLK_RCTRL)) && animacion != ANI_RUN_IZQUIERDA)
+                    if ((this->checkKeyPress(SDL_SCANCODE_LCTRL)||this->checkKeyPress(SDL_SCANCODE_RCTRL)) && animacion != ANI_RUN_IZQUIERDA)
                     {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA_RAPIDO), true);
@@ -54,7 +54,7 @@ bool KeyboardHandler::keyBoardManaged(int& animacion, std::unique_ptr<PersonajeG
                     }
                     break;
                 case SDLK_UP:
-                    if (this->checkKeyPress(SDLK_a) && animacion != ANI_SALTAR_SHOOT)
+                    if (this->checkKeyPress(SDL_SCANCODE_A) && animacion != ANI_SALTAR_SHOOT)
                     {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::SALTAR_DISPARANDO), true);
