@@ -44,7 +44,6 @@ void GameEscenario::crear_enemigo_aleatorio(uint16_t id_enemigo) {
     std::uniform_int_distribution<> distrib(0, 2);
 
     int tipoEnemigo = distrib(gen);
-    std::cout << "Creando enemigo tipo " << tipoEnemigo << std::endl;
     switch (tipoEnemigo) {
         case 0:
             enemigos.push_back(std::make_unique<Enemigo1>(id_enemigo));
