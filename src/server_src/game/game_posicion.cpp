@@ -60,3 +60,7 @@ bool Posicion::mover(const std::string& direccion) {
 uint16_t Posicion::get_posicion_x() { return this->x; }
 
 uint16_t Posicion::get_posicion_y() { return this->y; }
+
+bool Posicion::operator==(const Posicion& otro) const {
+    return this->x == otro.x && this->y == otro.y;
+}

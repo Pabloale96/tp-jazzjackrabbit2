@@ -37,6 +37,8 @@ public:
     uint16_t get_posicion_x();
 
     uint16_t get_posicion_y();
+
+    bool operator==(const Posicion& otro) const;
 };
 
 #endif

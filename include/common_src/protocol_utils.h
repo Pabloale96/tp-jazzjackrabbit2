@@ -33,9 +33,10 @@ enum class acciones : uint8_t {
     //    >> Ataques
     DISPARAR = 0x06,
     ACCION_ESPECIAL = 0x07,
+    SALTAR_DISPARANDO = 0X08,
 
     // Cheats
-    KILL_ALL = 0x08
+    KILL_ALL = 0x09
 };
 
 enum class efectos : uint8_t {

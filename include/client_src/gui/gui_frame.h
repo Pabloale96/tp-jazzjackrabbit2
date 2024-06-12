@@ -29,6 +29,7 @@ public:
     ~Frame();
     void copy(bool, int, int);
     void copy(bool, int, int, int, int);
+    void copyTest();
     void setFrame(int, int, int, int);
     int getX();
     int getY();

@@ -9,7 +9,7 @@ PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma& msg):
         type(msg.tipo_plataforma),
         height(msg.plataforma[POS_HEIGHT_PLATAFORM]),
         width(msg.plataforma[POS_WIDTH_PLATAFORMA]),
-        platform(texturas.findFrame(PLATFORM_BEACH_TYPE_1)[0]) {}
+        platform(texturas.findFrame(PLATFORM_BEACH_TYPE_1)->at(0)) {}
 
 PlatformGui::~PlatformGui() {}
 

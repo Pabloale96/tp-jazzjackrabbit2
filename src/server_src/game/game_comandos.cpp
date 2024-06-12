@@ -18,7 +18,7 @@ void Disparar::ejecutar(Game& game) {
     if (toggle) {
         game.obtener_personaje(client_id).obtener_estados().reset();
         game.obtener_personaje(client_id).obtener_estados().setDisparando(true);
-        // game.atacar_enemigo(client_id);
+        game.disparar_municion(client_id);
     } else {
         game.obtener_personaje(client_id).obtener_estados().setDisparando(false);
         game.obtener_personaje(client_id).obtener_estados().setIdle(true);

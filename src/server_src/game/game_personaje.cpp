@@ -2,6 +2,8 @@
 
 #include "../../include/common_src/msgToSent.h"
 
+#define ID_BALA_INICIAL 0
+
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         tipo_personaje(),
         partida_id(partida_id),
@@ -10,6 +12,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         vida(VIDA_INICIAL),
         arma(),
         posicion(),
+        bala_id(ID_BALA_INICIAL),
         direccion(Direccion::CENTRO),
         estados() {}
 
@@ -59,7 +62,11 @@ uint8_t Personaje::obtener_estado_actual() {
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 
-void Personaje::actualizar() {}
+void Personaje::actualizar() {
+    for (auto& municion: municiones_disparadas) {
+        municion.mover();
+    }
+}
 
 void Personaje::setear_direccion(const std::string& direccion) {
     if (direccion == "derecha" || direccion == "derecha_rapido") {
@@ -83,10 +90,29 @@ bool Personaje::mover(const std::string& direccion) {
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {
         vida -= danio;
+        estados.setRecibiendoDanio(true);
     } else {
         vida = 0;
+        estados.setMuerto(true);
     }
 }
+
+void Personaje::disparar() {
+    municiones_disparadas.emplace_back(obtener_posicion().get_posicion_x(),
+                                       obtener_posicion().get_posicion_y(), obtener_direccion(),
+                                       arma.obtener_nombre_arma(), generar_id_bala());
+}
+
+void Personaje::eliminar_bala(uint16_t id_bala) {
+    for (auto it = municiones_disparadas.begin(); it != municiones_disparadas.end(); ++it) {
+        if (it->obtener_id() == id_bala) {
+            municiones_disparadas.erase(it);
+            break;
+        }
+    }
+}
+
+std::vector<Municion> Personaje::obtener_balas() const { return municiones_disparadas; }
 
 void Personaje::disminuir_municion() { arma.disminuir_municion(); }
 
@@ -105,6 +131,8 @@ uint16_t Personaje::obtener_puntos() const { return puntos; }
 uint16_t Personaje::obtener_vida() const { return vida; }
 
 uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
+
+uint16_t Personaje::generar_id_bala() { return bala_id++; }
 
 uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 

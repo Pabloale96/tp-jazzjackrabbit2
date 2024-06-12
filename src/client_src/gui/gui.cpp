@@ -25,94 +25,14 @@ void Gui::setEscenario(ClaseTexturas& texturas) {
     }
 }
 
-void Gui::eventManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador) {
-
-    SDL_Event event;
-    // definir N it para las animaciones de frame.
-    // dividite por X de la diapos que mostro leo.
-    while (SDL_PollEvent(&event)) {
-        msgAccion msg_to_sent;
-        if (event.type == SDL_QUIT) {
-            client_off = true;
-            return;
-        } else if (event.type == SDL_KEYDOWN) {
-            switch (event.key.keysym.sym) {
-                case SDLK_ESCAPE:
-                case SDLK_q:
-                    client_off = true;
-                    return;
-                case SDLK_s:
-                    // enviar mensajer atacar 1 ((16bytes) (16bytes) (16bytes))
-                    // push a client_commands
-                    return;
-                case SDLK_RIGHT:
-                    if (animacion != ANI_MOVER_DERECHA) {
-                        msg_to_sent =
-                                msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
-                        client_commands.push(msg_to_sent);
-                        animacion = ANI_MOVER_DERECHA;  // se ejecuta la animacion derecha
-                        jugador->setFrames(animacion);
-                    }
-                    break;
-                case SDLK_LEFT:
-                    if (animacion != ANI_MOVER_IZQUIERDA) {
-                        msg_to_sent =
-                                msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), true);
-                        client_commands.push(msg_to_sent);
-                        animacion = ANI_MOVER_IZQUIERDA;  // se ejecuta la animacion derecha
-                        jugador->setFrames(animacion);
-                    }
-                    break;
-                case SDLK_UP:
-                    if (animacion != ANI_SALTAR) {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), true);
-                        client_commands.push(msg_to_sent);
-                        animacion = ANI_SALTAR;  // se ejecuta la animacion derecha
-                        jugador->setFrames(animacion);
-                    }
-                    break;
-            }
-        } else if (event.type == SDL_KEYUP) {
-            switch (event.key.keysym.sym) {
-                case SDLK_RIGHT:
-                    if (animacion != ANI_STAND) {
-                        msg_to_sent =
-                                msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
-                        client_commands.push(msg_to_sent);
-                        animacion = ANI_STAND;  // se ejecuta la animacion derecha
-                        jugador->setFrames(animacion);
-                    }
-                    break;
-                case SDLK_LEFT:
-                    if (animacion != ANI_STAND) {
-                        msg_to_sent =
-                                msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
-                        client_commands.push(msg_to_sent);
-                        animacion = ANI_STAND;  // se ejecuta la animacion derecha
-                        jugador->setFrames(animacion);
-                    }
-                    break;
-                case SDLK_UP:
-                    if (animacion != ANI_STAND) {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
-                        client_commands.push(msg_to_sent);
-                        animacion = ANI_STAND;  // se ejecuta la animacion derecha
-                        jugador->setFrames(animacion);
-                    }
-                    break;
-            }
-        }
-    }
-}
-
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
     SDL sdl(SDL_INIT_VIDEO);
     SDLTTF ttf;
 
-    SDL_DisplayMode displayMode;
-    // int monitorIndex = 1;
+    // SDL_DisplayMode displayMode;
+    //  int monitorIndex = 1;
 
     Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
@@ -124,35 +44,33 @@ void Gui::run() {
     setEscenario(texturas);
 
     std::unique_ptr<PersonajeGui> jugador;
+    std::shared_ptr<std::vector<Frame>> frames;
     if (personaje == "j") {
+        frames = texturas.findFrame(std::string(JAZZ_STAND));
         jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2,
-                                            texturas.findFrame(std::string(JAZZ_STAND)));
+                                            renderer.GetOutputHeight() / 2, frames);
     } else if (personaje == "s") {
+        frames = texturas.findFrame(std::string(SPAZ_STAND));
         jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2,
-                                            texturas.findFrame(std::string(SPAZ_STAND)));
+                                            renderer.GetOutputHeight() / 2, frames);
     } else if (personaje == "l") {
+        frames = texturas.findFrame(std::string(LORI_STAND));
         jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2,
-                                            texturas.findFrame(std::string(LORI_STAND)));
+                                            renderer.GetOutputHeight() / 2, frames);
     }
 
     Escenario escenario(plataformas);
+
+    KeyboardHandler keyhandler;
 
     int animacion = ANI_STAND;
 
     auto frame_start = steady_clock::now();
 
-
-    unsigned int prev_ticks = SDL_GetTicks();
     window.Show();
     while (1) {
-        unsigned int frame_ticks = SDL_GetTicks();
-        unsigned int frame_delta = frame_ticks - prev_ticks;
-        prev_ticks = frame_ticks;
 
-        this->eventManaged(animacion, jugador);
+        client_off = keyhandler.keyBoardManaged(animacion, jugador, client_commands);
         // Clear the screen
         renderer.Clear();
 

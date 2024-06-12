@@ -28,7 +28,9 @@ public:
 
     void accion_especial(uint16_t client_id);
 
-    bool atacar_enemigo(uint16_t client_id, uint16_t id_enemigo);
+    bool disparar_municion(uint16_t client_id);
+
+    void chequear_colisiones();
 
     void actualizar();
 
