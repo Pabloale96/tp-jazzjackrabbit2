@@ -20,6 +20,12 @@ private:
 public:
     GameEscenario();
 
+    void cargar_plataformas();
+
+    void cargar_enemigos();
+
+    void cargar_collectibles();
+
     std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
 
     void actualizar_escenario();

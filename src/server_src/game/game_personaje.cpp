@@ -4,6 +4,9 @@
 
 #define ID_BALA_INICIAL 0
 
+#define POS_X_INICIAL 1
+#define POS_Y_INICIAL 1
+
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         tipo_personaje(),
         partida_id(partida_id),
@@ -11,7 +14,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         puntos(PUNTOS_INICIALES),
         vida(VIDA_INICIAL),
         arma(),
-        posicion(),
+        posicion(POS_X_INICIAL,POS_Y_INICIAL),
         bala_id(ID_BALA_INICIAL),
         direccion(Direccion::CENTRO),
         estados() {}
