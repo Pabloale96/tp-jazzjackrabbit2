@@ -70,8 +70,6 @@ public:
     void run() override;
     void setGameState(GameState&);
     void setEscenario(ClaseTexturas&);
-    void eventManaged(int&, std::unique_ptr<PersonajeGui>&);
-    bool checkKeyPress(SDL_Keycode );
 };
 
 #endif

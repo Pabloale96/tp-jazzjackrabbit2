@@ -5,7 +5,7 @@ Texture& ClaseTexturas::spaz_text() { return spaz_tex; }
 Texture& ClaseTexturas::lori_text() { return lori_tex; }
 Texture& ClaseTexturas::beach_text() { return beach_tex; }
 
-std::vector<Frame>& ClaseTexturas::findFrame(std::string frame_string) {
+std::shared_ptr<std::vector<Frame>> ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
     return it->second;
 }
@@ -72,18 +72,18 @@ ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
 
 ClaseTexturas::~ClaseTexturas() {}
 
-void ClaseTexturas::addFrames(std::string key, std::vector<Frame> value) {
+void ClaseTexturas::addFrames(std::string key,  std::shared_ptr<std::vector<Frame>> value) {
     frames_map[key] = value;
 }
 
 void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                                       int frame_count, Texture& textura_del_personaje,
                                       const std::string& key) {
-    std::vector<Frame> frame_aux;
+    std::shared_ptr<std::vector<Frame>> frame_aux= std::make_shared<std::vector<Frame>>();
     for (int i = 0; i < frame_count; i++) {
         Frame frame(renderer, textura_del_personaje, x_frames[i], y_frames[i], w_frames[i],
                     h_frames[i]);
-        frame_aux.emplace_back(frame);
+        frame_aux->emplace_back(frame);
     }
     addFrames(key, frame_aux);
 }
@@ -95,9 +95,9 @@ void ClaseTexturas::plataformaTipo1() {
     int w_frame = 29;
     int h_frame = 192;
 
-    std::vector<Frame> frame_aux;
+    std::shared_ptr<std::vector<Frame>> frame_aux= std::make_shared<std::vector<Frame>>();
     Frame frame(renderer, beach_tex, x_frame, y_frame, w_frame, h_frame);
-    frame_aux.emplace_back(frame);
+    frame_aux->emplace_back(frame);
     addFrames(PLATFORM_BEACH_TYPE_1, frame_aux);
 }
 
