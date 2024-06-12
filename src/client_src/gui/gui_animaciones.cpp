@@ -13,7 +13,8 @@ void Animacion::run(int pos_x, int pos_y, int speed, std::vector<Frame>& frames,
     if (it == frames.end()) {
         it = frames.begin();
     }
-    it->copy(flip, pos_x, pos_y);
+    //it->copy(flip, pos_x, pos_y);
+    it->copyTest();
     if (contador % speed == 0) {
         it++;
     }

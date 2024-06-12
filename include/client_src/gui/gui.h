@@ -22,6 +22,7 @@
 #include "gui_escenario.h"
 #include "gui_personaje.h"
 #include "msgToSent.h"
+#include "gui_keyhandler.h"
 
 #define RATE 60
 
@@ -70,6 +71,7 @@ public:
     void setGameState(GameState&);
     void setEscenario(ClaseTexturas&);
     void eventManaged(int&, std::unique_ptr<PersonajeGui>&);
+    bool checkKeyPress(SDL_Keycode );
 };
 
 #endif

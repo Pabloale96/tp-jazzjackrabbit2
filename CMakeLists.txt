@@ -64,6 +64,7 @@ add_executable(client
   src/common_src/resolvererror.cpp
   src/common_src/sockets.cpp
   src/client_src/gui/gui_animaciones.cpp
+  src/client_src/gui/gui_keyhandler.cpp
   src/client_src/gui/gui_escenario.cpp
   src/client_src/gui/gui_personaje.cpp
   src/client_src/gui/gui_clase_texturas.cpp
