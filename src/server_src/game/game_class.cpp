@@ -17,7 +17,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
     }
 }
 
-std::vector<std::shared_ptr<Personaje>>& Game::obtener_vector_de_personajes() { return personajes; }
+std::vector<std::shared_ptr<Personaje>>& Game::obtener_vector_de_personajes() { return personajes.get_vector(); }
 
 Personaje& Game::obtener_personaje(uint16_t client_id) {
     auto it = std::find_if(personajes.begin(), personajes.end(),

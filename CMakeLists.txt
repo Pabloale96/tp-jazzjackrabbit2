@@ -60,10 +60,10 @@ add_executable(client
   src/client_src/client_protocol.cpp
   src/client_src/client_receiver.cpp
   src/client_src/client_sender.cpp
-  src/common_src/liberror.cpp
-  src/common_src/resolver.cpp
-  src/common_src/resolvererror.cpp
-  src/common_src/sockets.cpp
+  src/common_src/catedra/liberror.cpp
+  src/common_src/catedra/resolver.cpp
+  src/common_src/catedra/resolvererror.cpp
+  src/common_src/catedra/sockets.cpp
   src/client_src/gui/gui_animaciones.cpp
   src/client_src/gui/gui_keyhandler.cpp
   src/client_src/gui/gui_escenario.cpp
@@ -96,10 +96,11 @@ add_executable(server
   src/server_src/server_protocol.cpp
   src/server_src/server_receiver.cpp
   src/server_src/server_sender.cpp
-  src/common_src/liberror.cpp
-  src/common_src/resolver.cpp
-  src/common_src/resolvererror.cpp
-  src/common_src/sockets.cpp
+  src/common_src/catedra/liberror.cpp
+  src/common_src/catedra/resolver.cpp
+  src/common_src/catedra/resolvererror.cpp
+  src/common_src/catedra/sockets.cpp
+  src/common_src/vector_monitor.cpp
   src/server_src/main.cpp
   ${UIS_HEADERS})
 

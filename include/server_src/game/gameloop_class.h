@@ -15,6 +15,7 @@
 #include "game_state_monitor.h"
 #include "queue.h"
 #include "thread.h"
+#include "lista_monitor.h"
 
 class GameLoop: public Thread {
 private:
@@ -24,7 +25,7 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
-    std::list<uint16_t> clients_id;
+    ListaMonitor<uint16_t> clients_id;
 
 public:
     // Constructor

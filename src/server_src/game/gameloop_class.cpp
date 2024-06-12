@@ -39,6 +39,7 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
 
 void GameLoop::agregar_cliente(uint16_t client_id, uint8_t personaje) {
     game.agregar_personaje(client_id, personaje);
+    clients_id.push_back(client_id);
 }
 
 Game& GameLoop::obtener_game() { return game; }

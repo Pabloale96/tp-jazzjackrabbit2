@@ -9,12 +9,13 @@
 #include "game_escenario.h"
 #include "game_personaje.h"
 #include "game_state.h"
+#include "vector_monitor.h"
 
 class Game {
 private:
     uint16_t partida_id;
     // TODO: unorderedmap sería más rápido
-    std::vector<std::shared_ptr<Personaje>> personajes;
+    VectorMonitor<std::shared_ptr<Personaje>> personajes;
     GameEscenario escenario;
 
 public:
