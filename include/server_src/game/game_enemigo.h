@@ -48,7 +48,7 @@ public:
     void actualizar();
 
     // reduce vida al enemigo
-    void recibir_disparo();
+    void recibir_disparo(uint8_t danio);
 
     // Aumenta las iteraciones del enemigo. Si llega a 15 llama a revivir_enemigo
     void aumentar_iteraciones();

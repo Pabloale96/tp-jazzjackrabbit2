@@ -32,11 +32,13 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
     }
 }
 
-bool Game::atacar_enemigo(uint16_t client_id, uint16_t id_enemigo) {
+bool Game::disparar_municion(uint16_t client_id) {
     if (obtener_personaje(client_id).obtener_municion() == 0) {
         return false;
+    } else {
+        obtener_personaje(client_id).disparar();
+        return true;
     }
-    return escenario.atacar_enemigo(id_enemigo);
 }
 
 bool Game::mover(const std::string& direccion, uint16_t client_id) {
@@ -49,8 +51,40 @@ bool Game::mover(const std::string& direccion, uint16_t client_id) {
 
 void Game::accion_especial(uint16_t client_id) { obtener_personaje(client_id).accion_especial(); }
 
+void Game::chequear_colisiones() {
+    for (auto& personaje: this->personajes) {
+        for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
+            if (personaje->obtener_posicion() == enemigo->get_posicion_enemigo()) {
+                personaje->disminuir_vida(enemigo->get_danio_al_jugador());
+            }
+        }
+        for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
+            for (auto& bala: personaje->obtener_balas()) {
+                if (bala.obtener_posicion() == enemigo->get_posicion_enemigo()) {
+                    if (bala.obtener_tipo_bala() == (uint8_t) armas::ARMA_INICIAL) {
+                        enemigo->recibir_disparo(DANO_INICIAL);
+                    } else if (bala.obtener_tipo_bala() == (uint8_t) armas::ARMA_SECUNDARIA) {
+                        enemigo->recibir_disparo(DANO_ARMA1);
+                    }
+                    personaje->eliminar_bala(bala.obtener_id());
+                }
+            }
+        }
+        for (auto& collectible: obtener_escenario().obtener_collectibles()) {
+            if (personaje->obtener_posicion() == collectible->obtener_posicion()) {
+                // TODO: Implementar collectibles
+                std::cout << "COLLECTIBLE" << std::endl;
+                //personaje->aumentar_municion();
+                //personaje->aumentar_vida();
+                //personaje->aumentar_puntos();
+                //collectible->desaparecer();
+            }
+        }
+    }
+}
 
 void Game::actualizar() {
+    chequear_colisiones();
     actualizar_personajes();
     actualizar_escenario();
 }

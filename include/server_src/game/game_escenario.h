@@ -22,8 +22,6 @@ public:
 
     std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
 
-    bool atacar_enemigo(uint16_t id_enemigo);
-
     void actualizar_escenario();
 
     void actualizar_enemigos();

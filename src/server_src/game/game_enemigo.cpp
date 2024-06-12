@@ -41,11 +41,17 @@ uint16_t Enemigo::get_vidas() const { return vidas; }
 uint16_t Enemigo::get_danio_al_jugador() const { return danio_al_jugador; }
 uint16_t Enemigo::get_puntos() const { return puntos; }
 
-void Enemigo::actualizar() {}
+void Enemigo::actualizar() {
+    // segun en que direccion esta, llamar a mover
 
-void Enemigo::recibir_disparo() {
-    if (esta_vivo()) {
-        vidas--;
+    // Si el enemigo esta muerto, aumenta las iteraciones para revivir
+}
+
+void Enemigo::recibir_disparo(uint8_t danio) {
+    if (vidas > danio) {
+        vidas -= danio;
+    } else {
+        vidas = 0;
     }
 }
 

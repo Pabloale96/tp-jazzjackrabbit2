@@ -51,16 +51,6 @@ std::unique_ptr<Enemigo> GameEscenario::crear_enemigo_aleatorio() {
     }
 }
 
-bool GameEscenario::atacar_enemigo(uint16_t id_enemigo) {
-    for (auto& enemigo: enemigos) {
-        if (enemigo->get_id_enemigo() == id_enemigo) {
-            enemigo->recibir_disparo();
-            return true;
-        }
-    }
-    return false;
-}
-
 void GameEscenario::actualizar_escenario() {
     actualizar_enemigos();
     actualizar_collectibles();

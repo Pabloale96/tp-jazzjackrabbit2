@@ -31,6 +31,7 @@ private:
     Arma arma;
     Posicion posicion;
     std::vector<Municion> municiones_disparadas;
+    uint16_t bala_id;
     Direccion direccion;
     std::vector<bool> acciones;
 
@@ -79,6 +80,14 @@ public:
     uint8_t obtener_nombre_arma() const;
 
     uint16_t obtener_municion() const;
+
+    uint16_t generar_id_bala();
+
+    std::vector<Municion> obtener_balas() const;
+
+    void disparar();
+
+    void eliminar_bala(uint16_t id_bala);
 
     virtual void accion_especial() = 0;
 
