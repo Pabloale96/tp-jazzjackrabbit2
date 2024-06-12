@@ -26,7 +26,7 @@ private:
 public:
     // Constructor
     // Inicializa vivo en true y las iteraciones en 0
-    Enemigo();
+    explicit Enemigo(uint16_t id_enemigo);
 
     // Constructor para el cliente
     explicit Enemigo(uint16_t* datos_enemigo);
@@ -67,7 +67,7 @@ public:
 // ************  ENEMIGO 1 ("nombre")  ************
 class Enemigo1: public Enemigo {
 public:
-    Enemigo1();
+    Enemigo1(uint16_t id);
 
     // Revive al enemigo
     void revivir_enemigo() override;
@@ -77,7 +77,7 @@ public:
 // ************  ENEMIGO 2 ("nombre")  ************
 class Enemigo2: public Enemigo {
 public:
-    Enemigo2();
+    Enemigo2(uint16_t id);
 
     // Revive al enemigo
     void revivir_enemigo() override;
@@ -87,7 +87,7 @@ public:
 // ************  ENEMIGO 3 ("nombre")  ************
 class Enemigo3: public Enemigo {
 public:
-    Enemigo3();
+    Enemigo3(uint16_t id);
 
     // Revive al enemigo
     void revivir_enemigo() override;

@@ -14,6 +14,8 @@ private:
  
 public:
     VectorMonitor() = default;
+
+    explicit VectorMonitor(size_t initial_size);
  
     void push_back(const T& value);
  
