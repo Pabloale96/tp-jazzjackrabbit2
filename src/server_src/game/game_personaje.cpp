@@ -92,7 +92,19 @@ void Personaje::actualizar() {
     }
 }
 
-void Personaje::mover() { posicion.mover(this->velocidad); }
+void Personaje::mover() {
+    posicion.mover(this->velocidad);
+    if (obtener_estados().getSaltando()) {
+        // Si estaba saltando, ahora esta cayendo
+        obtener_estados().setSaltando(false);
+        obtener_estados().setCayendo(true);
+        this->obtener_velocidad().caer();
+        this->mover();
+        obtener_estados().setCayendo(false);
+        obtener_estados().setIdle(true);
+        obtener_velocidad().idle();
+    }
+}
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {
@@ -134,7 +146,7 @@ void Personaje::disminuir_municion() { arma.disminuir_municion(); }
 
 Posicion Personaje::obtener_posicion() const { return posicion; }
 
-Velocidad Personaje::obtener_velocidad() const { return velocidad; }
+Velocidad& Personaje::obtener_velocidad() { return velocidad; }
 
 uint16_t Personaje::obtener_partida_id() const { return partida_id; }
 

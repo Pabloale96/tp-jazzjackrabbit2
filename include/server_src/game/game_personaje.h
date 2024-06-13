@@ -60,15 +60,13 @@ public:
 
     virtual void mover();
 
-    Velocidad obtener_velocidad() const;
+    Velocidad& obtener_velocidad();
 
     void disminuir_vida(uint16_t danio);
 
     void disminuir_municion();
 
     Posicion obtener_posicion() const;
-
-    Direccion obtener_direccion() const;
 
     uint16_t obtener_partida_id() const;
 

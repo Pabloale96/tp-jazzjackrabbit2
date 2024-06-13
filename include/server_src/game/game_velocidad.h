@@ -16,9 +16,9 @@ public:
 
     Velocidad(int velocidad_x, int velocidad_y);
 
-    uint8_t obtener_velocidad_x() const;
+    int obtener_velocidad_x() const;
 
-    uint8_t obtener_velocidad_y() const;
+    int obtener_velocidad_y() const;
 
     void setear_velocidad_x(uint8_t velocidad_x);
 

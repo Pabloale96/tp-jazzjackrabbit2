@@ -4,11 +4,11 @@ Velocidad::Velocidad(): velocidad_x(0), velocidad_y(0)  {}
 
 Velocidad::Velocidad(int velocidad_x, int velocidad_y): velocidad_x(velocidad_x), velocidad_y(velocidad_y) {}
 
-uint8_t Velocidad::obtener_velocidad_x() const {
+int Velocidad::obtener_velocidad_x() const {
     return velocidad_x;
 }
 
-uint8_t Velocidad::obtener_velocidad_y() const {
+int Velocidad::obtener_velocidad_y() const {
     return velocidad_y;
 }
 
