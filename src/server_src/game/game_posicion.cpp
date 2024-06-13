@@ -42,7 +42,7 @@ bool Posicion::mover(const std::string& direccion) {
         if (y >= YMAX)
             y = YMAX;
         return true;
-    } else if (direccion == "abajo") {
+    } else if (direccion == "abajo" || direccion == "cayendo") {
         this->y--;
         if (y >= YMAX)
             y = YMAX;

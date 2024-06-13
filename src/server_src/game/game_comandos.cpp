@@ -105,6 +105,9 @@ void Saltar::ejecutar(Game& game) {
         game.obtener_personaje(client_id).obtener_estados().reset();
         game.obtener_personaje(client_id).obtener_estados().setSaltando(true);
         game.mover("saltar", client_id);
+        // game.obtener_personaje(client_id).obtener_estados().setSaltando(false);
+        // game.obtener_personaje(client_id).obtener_estados().setCayendo(true);
+        // game.mover("cayendo", client_id);
     } else {
         game.obtener_personaje(client_id).obtener_estados().setSaltando(false);
     }

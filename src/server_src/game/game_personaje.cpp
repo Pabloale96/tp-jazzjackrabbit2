@@ -101,6 +101,7 @@ void Personaje::disminuir_vida(uint16_t danio) {
 }
 
 void Personaje::disparar() {
+    estados.setDisparando(true);
     municiones_disparadas.emplace_back(obtener_posicion().get_posicion_x(),
                                        obtener_posicion().get_posicion_y(), obtener_direccion(),
                                        arma.obtener_nombre_arma(), generar_id_bala());
