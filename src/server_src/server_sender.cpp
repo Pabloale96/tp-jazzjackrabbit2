@@ -19,6 +19,7 @@ void ServerSender::run() {
             std::shared_ptr<GameState> gameState = server_msg.pop();
             protocolo_server.enviar_respuesta(*gameState, cliente_id, was_closed);
         } catch (const ClosedQueue&) {
+            std::cout << "ServerSender cerrado\n";
             return;
         } catch (const LibError& err) {
             std::cerr << "Fallo el send en ServerSender->run: " << err.what() << "\n";

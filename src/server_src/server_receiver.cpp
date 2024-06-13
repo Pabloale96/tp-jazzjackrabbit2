@@ -30,8 +30,6 @@ void ServerReceiver::run() {
                 break;
             }
         } catch (const LibError& err) {
-            // TODO: gameloop, cerra este cliente/personaje
-            // gameloop_monitor.borrar_cliente_de_gameloop(gameloop_id, cliente_id);
             break;
         }
     }

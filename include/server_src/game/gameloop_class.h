@@ -37,6 +37,8 @@ public:
 
     uint16_t obtener_cantidad_de_clientes();
 
+    bool no_hay_clientes();
+
     // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();
 
