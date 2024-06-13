@@ -20,15 +20,12 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         jugando(false),
         client_commands(MAX_TAM_COLA),
         game(nuevo_gameloop_id, client_id, personaje) {
-    clients_id.push_back(client_id);
     iniciar_partida();
 }
 
+uint16_t GameLoop::obtener_gameloop_id() { return gameloop_id; }
+
 std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
-
-uint16_t GameLoop::obtener_cantidad_de_clientes() { return (uint16_t)clients_id.size(); }
-
-bool GameLoop::no_hay_clientes() { return clients_id.empty(); }
 
 Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
     return client_commands;
@@ -41,7 +38,6 @@ void GameLoop::agregar_queue_server_msg_de_cliente_aceptado(
 
 void GameLoop::agregar_cliente(uint16_t client_id, uint8_t personaje) {
     game.agregar_personaje(client_id, personaje);
-    clients_id.push_back(client_id);
 }
 
 Game& GameLoop::obtener_game() { return game; }
@@ -112,7 +108,7 @@ void GameLoop::run() {
 void GameLoop::broadcastear() {
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    // nuevo_gamestate.imprimir_mensaje();
+    nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 
@@ -123,8 +119,9 @@ void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
 
 void GameLoop::borrar_cliente(uint16_t client_id) {
     game.borrar_personaje(client_id);
-    clients_id.remove(client_id);
 }
+
+size_t GameLoop::cantidad_de_clientes() { return game.obtener_cantidad_de_personajes(); }
 
 void GameLoop::stop() { client_commands.close(); }
 

@@ -13,7 +13,6 @@
 #include "game_class.h"
 #include "game_comandos.h"
 #include "game_state_monitor.h"
-#include "lista_monitor.h"
 #include "queue.h"
 #include "thread.h"
 
@@ -25,7 +24,6 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
-    ListaMonitor<uint16_t> clients_id;
 
 public:
     // Constructor
@@ -33,11 +31,9 @@ public:
     explicit GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                       uint8_t personaje);
 
+    uint16_t obtener_gameloop_id();
+
     std::string obtener_nombre_partida();
-
-    uint16_t obtener_cantidad_de_clientes();
-
-    bool no_hay_clientes();
 
     // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();
@@ -66,6 +62,8 @@ public:
     void borrar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<GameState>>& queue);
 
     void borrar_cliente(uint16_t client_id);
+
+    size_t cantidad_de_clientes();
 
     // Cierra la cola de comandos de clientes
     // Cierra las colas de mensajes de los clientes

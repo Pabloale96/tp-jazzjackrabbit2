@@ -34,6 +34,8 @@ Personaje& Game::obtener_personaje(uint16_t client_id) {
     }
 }
 
+size_t Game::obtener_cantidad_de_personajes() { return personajes.size(); }
+
 bool Game::disparar_municion(uint16_t client_id) {
     if (obtener_personaje(client_id).obtener_municion() == 0) {
         return false;

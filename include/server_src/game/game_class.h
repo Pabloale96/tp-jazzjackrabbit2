@@ -25,6 +25,8 @@ public:
 
     Personaje& obtener_personaje(uint16_t client_id);
 
+    size_t obtener_cantidad_de_personajes();
+
     bool mover(const std::string& direccion, uint16_t client_id);
 
     void accion_especial(uint16_t client_id);
