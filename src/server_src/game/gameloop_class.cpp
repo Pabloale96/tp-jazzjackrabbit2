@@ -26,7 +26,7 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
 
 std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
 
-uint16_t GameLoop::obtener_cantidad_de_clientes() { return (uint16_t) clients_id.size(); }
+uint16_t GameLoop::obtener_cantidad_de_clientes() { return (uint16_t)clients_id.size(); }
 
 bool GameLoop::no_hay_clientes() { return clients_id.empty(); }
 
@@ -76,13 +76,9 @@ void GameLoop::run() {
             }
 
             while (client_commands.try_pop(comando)) {
-                // if (comando) {
-                //     comando->ejecutar(this->game);
-                // }
-            }
-            if (comando) {
-                comando->ejecutar(this->game);
-                // broadcastear();
+                if (comando) {
+                    comando->ejecutar(this->game);
+                }
             }
 
             game.actualizar();
@@ -116,7 +112,7 @@ void GameLoop::run() {
 void GameLoop::broadcastear() {
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    //nuevo_gamestate.imprimir_mensaje();
+    // nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 

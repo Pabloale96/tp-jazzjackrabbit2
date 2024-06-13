@@ -54,6 +54,7 @@ add_executable(client
   src/server_src/game/game_enemigo.cpp
   src/server_src/game/game_arma.cpp
   src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_velocidad.cpp
   src/server_src/game/game_state.cpp
   src/client_src/gui/gui.cpp
   src/client_src/main.cpp
@@ -86,6 +87,7 @@ add_executable(server
   src/server_src/game/game_enemigo.cpp
   src/server_src/game/game_escenario.cpp
   src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_velocidad.cpp
   src/server_src/game/game_municion.cpp
   src/server_src/game/game_posicion.cpp
   src/server_src/game/game_platform.cpp

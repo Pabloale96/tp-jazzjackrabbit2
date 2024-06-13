@@ -6,12 +6,12 @@
 class Municion {
 private:
     Posicion posicion;
-    Direccion direccion;
+    Velocidad velocidad;
     uint8_t tipo_bala;
     uint16_t id;
 
 public:
-    Municion(uint16_t x, uint16_t y, Direccion direccion, uint8_t tipo_bala, uint16_t id);
+    Municion(uint16_t x, uint16_t y, int velocidad_x, uint8_t tipo_bala, uint16_t id);
 
     uint8_t obtener_tipo_bala();
 
@@ -19,7 +19,7 @@ public:
 
     uint16_t obtener_y();
 
-    Direccion obtener_direccion();
+    Velocidad obtener_velocidad();
 
     Posicion obtener_posicion();
 

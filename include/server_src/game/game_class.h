@@ -49,6 +49,8 @@ public:
 
     GameEscenario& obtener_escenario();
 
+    void cheat_matar_todos_los_enemigos();
+
     ~Game();
 };
 

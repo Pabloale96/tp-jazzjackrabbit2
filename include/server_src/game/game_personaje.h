@@ -11,6 +11,7 @@
 #include "game_municion.h"
 #include "game_personaje_estado.h"
 #include "game_posicion.h"
+#include "game_velocidad.h"
 #include "protocol_utils.h"
 
 #define PUNTOS_INICIALES 0
@@ -22,18 +23,20 @@ struct msgPersonaje;
 class Personaje {
 
 private:
-    uint8_t tipo_personaje;
     uint16_t partida_id;
     uint16_t client_id;
+    uint8_t tipo_personaje;
     uint16_t puntos;
     uint16_t vida;
+
     uint8_t animacion;
+
     Arma arma;
-    Posicion posicion;
     std::vector<Municion> municiones_disparadas;
     uint16_t bala_id;
-    Direccion direccion;
-    std::vector<bool> acciones;
+
+    Posicion posicion;
+    Velocidad velocidad;
 
 protected:
     EstadoPersonaje estados;
@@ -55,9 +58,9 @@ public:
 
     void actualizar();
 
-    virtual bool mover(const std::string& direccion);
+    virtual void mover();
 
-    void setear_direccion(const std::string& direccion);
+    Velocidad obtener_velocidad() const;
 
     void disminuir_vida(uint16_t danio);
 

@@ -17,7 +17,9 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
     }
 }
 
-std::vector<std::shared_ptr<Personaje>>& Game::obtener_vector_de_personajes() { return personajes.get_vector(); }
+std::vector<std::shared_ptr<Personaje>>& Game::obtener_vector_de_personajes() {
+    return personajes.get_vector();
+}
 
 Personaje& Game::obtener_personaje(uint16_t client_id) {
     auto it = std::find_if(personajes.begin(), personajes.end(),
@@ -41,21 +43,16 @@ bool Game::disparar_municion(uint16_t client_id) {
     }
 }
 
-bool Game::mover(const std::string& direccion, uint16_t client_id) {
-    if (obtener_personaje(client_id).mover(direccion)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-void Game::accion_especial(uint16_t client_id) { obtener_personaje(client_id).accion_especial(); }
-
 void Game::chequear_colisiones() {
     for (auto& personaje: this->personajes) {
         for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
             if (personaje->obtener_posicion() == enemigo->get_posicion_enemigo()) {
-                personaje->disminuir_vida(enemigo->get_danio_al_jugador());
+                if (personaje->obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
+                    // Todas las acciones especalies causan la muerte del enemigo al tocarlo
+                    enemigo->matar();
+                } else {
+                    personaje->disminuir_vida(enemigo->get_danio_al_jugador());
+                }
             }
         }
         for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
@@ -145,5 +142,11 @@ void Game::borrar_personaje(uint16_t client_id) {
 }
 
 GameEscenario& Game::obtener_escenario() { return escenario; }
+
+void Game::cheat_matar_todos_los_enemigos() {
+    for (auto& enemigo: escenario.obtener_enemigos()) {
+        enemigo->matar();
+    }
+}
 
 Game::~Game() {}

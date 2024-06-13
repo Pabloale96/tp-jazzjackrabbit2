@@ -25,7 +25,7 @@ void GameEscenario::cargar_plataformas() {
 void GameEscenario::cargar_enemigos() {
     // Creo los enemigos iniciales
     for (uint16_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
-        crear_enemigo_aleatorio(i+1);
+        crear_enemigo_aleatorio(i + 1);
     }
 }
 
@@ -96,7 +96,9 @@ void GameEscenario::actualizar_collectibles() {
     }
 }
 
-std::vector<std::shared_ptr<Enemigo>>& GameEscenario::obtener_enemigos() { return enemigos.get_vector(); }
+std::vector<std::shared_ptr<Enemigo>>& GameEscenario::obtener_enemigos() {
+    return enemigos.get_vector();
+}
 
 std::vector<Platform>& GameEscenario::obtener_plataformas() { return plataformas; }
 

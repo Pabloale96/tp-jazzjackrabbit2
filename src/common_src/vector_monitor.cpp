@@ -1,11 +1,11 @@
 #include "../../include/common_src/vector_monitor.h"
 
-#include "../../include/server_src/game/game_personaje.h"
-#include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_collectible.h"
+#include "../../include/server_src/game/game_enemigo.h"
+#include "../../include/server_src/game/game_personaje.h"
 
 template <typename T>
-VectorMonitor<T>::VectorMonitor(size_t initial_size) : vector_comun(initial_size) {}
+VectorMonitor<T>::VectorMonitor(size_t initial_size): vector_comun(initial_size) {}
 
 template <typename T>
 void VectorMonitor<T>::push_back(const T& value) {

@@ -2,31 +2,31 @@
 #define _VECTOR_MONITOR_H_
 
 #include <iostream>
-#include <vector>
-#include <mutex>
 #include <memory>
- 
+#include <mutex>
+#include <vector>
+
 template <typename T>
 class VectorMonitor {
 private:
-    mutable std::mutex m; // Si no pongo mutable no puedo usar lock en metodos const
+    mutable std::mutex m;  // Si no pongo mutable no puedo usar lock en metodos const
     std::vector<T> vector_comun;
- 
+
 public:
     VectorMonitor() = default;
 
     explicit VectorMonitor(size_t initial_size);
- 
+
     void push_back(const T& value);
- 
+
     T at(size_t index) const;
- 
+
     void clear();
- 
+
     size_t size() const;
- 
+
     bool empty() const;
- 
+
     T operator[](size_t index) const;
 
     void remove(size_t index);

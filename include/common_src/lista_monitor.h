@@ -9,7 +9,7 @@
 template <typename T>
 class ListaMonitor {
 private:
-    mutable std::mutex m; // Si no pongo mutable no puedo usar lock en metodos const
+    mutable std::mutex m;  // Si no pongo mutable no puedo usar lock en metodos const
     std::list<T> lista_comun;
 
 public:

@@ -13,9 +13,9 @@
 #include "game_class.h"
 #include "game_comandos.h"
 #include "game_state_monitor.h"
+#include "lista_monitor.h"
 #include "queue.h"
 #include "thread.h"
-#include "lista_monitor.h"
 
 class GameLoop: public Thread {
 private:
