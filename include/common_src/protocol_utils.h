@@ -55,7 +55,15 @@ enum class efectos : uint8_t {
     MUERTO = 0x09,
 
     // Acciones especiales
-    ACCION_ESPECIAL = 0x10
+    ACCION_ESPECIAL = 0x10,
+
+    // Combinaciones
+    //      con disparar
+    DISPARANDO_CORRIENDO = 0x11,
+    DISPARANDO_SALTANDO = 0x12,
+    DISPARANDO_CAYENDO = 0x13,
+    //      con correr
+    CORRIENDO_SALTANDO = 0x14
 };
 
 enum class armas : uint8_t { ARMA_INICIAL = 0x01, ARMA_SECUNDARIA = 0x02 };

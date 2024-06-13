@@ -9,12 +9,13 @@
 #include "game_escenario.h"
 #include "game_personaje.h"
 #include "game_state.h"
+#include "vector_monitor.h"
 
 class Game {
 private:
     uint16_t partida_id;
     // TODO: unorderedmap sería más rápido
-    std::vector<std::shared_ptr<Personaje>> personajes;
+    VectorMonitor<std::shared_ptr<Personaje>> personajes;
     GameEscenario escenario;
 
 public:
@@ -23,6 +24,8 @@ public:
     std::vector<std::shared_ptr<Personaje>>& obtener_vector_de_personajes();
 
     Personaje& obtener_personaje(uint16_t client_id);
+
+    size_t obtener_cantidad_de_personajes();
 
     bool mover(const std::string& direccion, uint16_t client_id);
 
@@ -47,6 +50,8 @@ public:
     void borrar_personaje(uint16_t client_id);
 
     GameEscenario& obtener_escenario();
+
+    void cheat_matar_todos_los_enemigos();
 
     ~Game();
 };

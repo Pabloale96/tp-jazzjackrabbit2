@@ -11,47 +11,53 @@ void Comando::set_client_id(uint16_t client_id) { this->client_id = client_id; }
 void Comando::set_toggle(bool toggle) { this->toggle = toggle; }
 
 // **** DISPARAR ****
-
 Disparar::Disparar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void Disparar::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setDisparando(true);
-        game.disparar_municion(client_id);
+        personaje.obtener_estados().setDisparando(true);
+        personaje.disparar();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setDisparando(false);
-        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
+        personaje.obtener_estados().setDisparando(false);
+        // No lo seteo en idle devuelta, porque capaz estaba corriendo o saltando
     }
 }
+
 
 // **** ACCION ESPECIAL ****
 AccionEspecial::AccionEspecial(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void AccionEspecial::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setAccionEspecial(true);
-        game.accion_especial(client_id);
+        personaje.obtener_estados().reset();
+        personaje.obtener_estados().setAccionEspecial(true);
+        personaje.accion_especial();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setAccionEspecial(false);
-        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
+        personaje.obtener_estados().setAccionEspecial(false);
+        personaje.obtener_estados().setIdle(true);
+        personaje.obtener_velocidad().idle();
     }
 }
 
 
 // **** MOVER ****
-
 MoverDerecha::MoverDerecha(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void MoverDerecha::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setCorriendo(true);
-        game.mover("derecha", client_id);
+        personaje.obtener_estados().reset();
+        personaje.obtener_estados().setCorriendo(true);
+        personaje.obtener_velocidad().correrDerecha();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setCorriendo(false);
-        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
+        personaje.obtener_estados().setCorriendo(false);
+        personaje.obtener_estados().setIdle(true);
+        personaje.obtener_velocidad().idle();
     }
 }
 
@@ -59,26 +65,32 @@ MoverDerechaRapido::MoverDerechaRapido(uint16_t client_id, bool toggle):
         Comando(client_id, toggle) {}
 
 void MoverDerechaRapido::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(true);
-        game.mover("derecha_rapido", client_id);
+        personaje.obtener_estados().reset();
+        personaje.obtener_estados().setCorriendoMuyRapido(true);
+        personaje.obtener_velocidad().correrDerechaRapido();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(false);
-        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
+        personaje.obtener_estados().setCorriendoMuyRapido(false);
+        personaje.obtener_estados().setIdle(true);
+        personaje.obtener_velocidad().idle();
     }
 }
 
 MoverIzquierda::MoverIzquierda(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void MoverIzquierda::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setCorriendo(true);
-        game.mover("izquierda", client_id);
+        personaje.obtener_estados().reset();
+        personaje.obtener_estados().setCorriendo(true);
+        personaje.obtener_velocidad().correrIzquierda();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setCorriendo(false);
-        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
+        personaje.obtener_estados().setCorriendo(false);
+        personaje.obtener_estados().setIdle(true);
+        personaje.obtener_velocidad().idle();
     }
 }
 
@@ -86,13 +98,16 @@ MoverIzquierdaRapido::MoverIzquierdaRapido(uint16_t client_id, bool toggle):
         Comando(client_id, toggle) {}
 
 void MoverIzquierdaRapido::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(true);
-        game.mover("izquierda_rapido", client_id);
+        personaje.obtener_estados().reset();
+        personaje.obtener_estados().setCorriendoMuyRapido(true);
+        personaje.obtener_velocidad().correrIzquierdaRapido();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setCorriendoMuyRapido(false);
-        game.obtener_personaje(client_id).obtener_estados().setIdle(true);
+        personaje.obtener_estados().setCorriendoMuyRapido(false);
+        personaje.obtener_estados().setIdle(true);
+        personaje.obtener_velocidad().idle();
     }
 }
 
@@ -101,47 +116,26 @@ void MoverIzquierdaRapido::ejecutar(Game& game) {
 Saltar::Saltar(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void Saltar::ejecutar(Game& game) {
+    // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
+    Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setSaltando(true);
-        game.mover("saltar", client_id);
+        personaje.obtener_estados().reset();
+        personaje.obtener_estados().setSaltando(true);
+        personaje.obtener_velocidad().saltar();
     } else {
-        game.obtener_personaje(client_id).obtener_estados().setSaltando(false);
-    }
-}
+        personaje.obtener_estados().setSaltando(false);
+        personaje.obtener_estados().setIdle(true);
+        personaje.obtener_velocidad().idle();
 
-
-Saltando::Saltando(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
-
-void Saltando::ejecutar(Game& game) {
-    if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setSaltando(true);
-        game.mover("saltando", client_id);
-    } else {
-        game.obtener_personaje(client_id).obtener_estados().setSaltando(false);
-    }
-}
-
-Cayendo::Cayendo(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
-
-void Cayendo::ejecutar(Game& game) {
-    if (toggle) {
-        game.obtener_personaje(client_id).obtener_estados().reset();
-        game.obtener_personaje(client_id).obtener_estados().setCayendo(true);
-        game.mover("cayendo", client_id);
-    } else {
-        game.obtener_personaje(client_id).obtener_estados().setCayendo(false);
     }
 }
 
 
 // **** Kill all ****
-
 KillAll::KillAll(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void KillAll::ejecutar(Game& game) {
     if (toggle) {
-        game.mover("saltar", client_id);
+        game.cheat_matar_todos_los_enemigos();
     }
 }

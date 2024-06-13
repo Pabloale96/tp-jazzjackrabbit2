@@ -24,8 +24,8 @@ class Arma {
 protected:
     uint8_t nombre_arma;
     uint16_t cant_municiones;
-    float vel_dis;
-    float vel_proy;
+    uint16_t vel_dis;
+    uint16_t vel_proy;
     uint16_t dano;
 
 public:
@@ -55,6 +55,10 @@ public:
     uint8_t obtener_nombre_arma() const { return nombre_arma; }
 
     uint16_t obtener_municion() const { return cant_municiones; }
+
+    uint16_t obtener_vel_dis() const { return vel_dis; }
+
+    uint16_t obtener_vel_proy() const { return vel_proy; }
 
     void disminuir_municion() {
         if (nombre_arma == 0) {

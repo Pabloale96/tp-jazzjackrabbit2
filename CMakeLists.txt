@@ -54,16 +54,17 @@ add_executable(client
   src/server_src/game/game_enemigo.cpp
   src/server_src/game/game_arma.cpp
   src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_velocidad.cpp
   src/server_src/game/game_state.cpp
   src/client_src/gui/gui.cpp
   src/client_src/main.cpp
   src/client_src/client_protocol.cpp
   src/client_src/client_receiver.cpp
   src/client_src/client_sender.cpp
-  src/common_src/liberror.cpp
-  src/common_src/resolver.cpp
-  src/common_src/resolvererror.cpp
-  src/common_src/sockets.cpp
+  src/common_src/catedra/liberror.cpp
+  src/common_src/catedra/resolver.cpp
+  src/common_src/catedra/resolvererror.cpp
+  src/common_src/catedra/sockets.cpp
   src/client_src/gui/gui_animaciones.cpp
   src/client_src/gui/gui_keyhandler.cpp
   src/client_src/gui/gui_escenario.cpp
@@ -86,6 +87,7 @@ add_executable(server
   src/server_src/game/game_enemigo.cpp
   src/server_src/game/game_escenario.cpp
   src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_velocidad.cpp
   src/server_src/game/game_municion.cpp
   src/server_src/game/game_posicion.cpp
   src/server_src/game/game_platform.cpp
@@ -96,10 +98,11 @@ add_executable(server
   src/server_src/server_protocol.cpp
   src/server_src/server_receiver.cpp
   src/server_src/server_sender.cpp
-  src/common_src/liberror.cpp
-  src/common_src/resolver.cpp
-  src/common_src/resolvererror.cpp
-  src/common_src/sockets.cpp
+  src/common_src/catedra/liberror.cpp
+  src/common_src/catedra/resolver.cpp
+  src/common_src/catedra/resolvererror.cpp
+  src/common_src/catedra/sockets.cpp
+  src/common_src/vector_monitor.cpp
   src/server_src/main.cpp
   ${UIS_HEADERS})
 
