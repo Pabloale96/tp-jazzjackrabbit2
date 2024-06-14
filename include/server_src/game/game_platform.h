@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "defines_msg.h"
+#include "protocol_utils.h"
 
 class Platform {
 private:
@@ -26,6 +27,12 @@ public:
     uint16_t obtener_rotate() const;
     uint16_t obtener_width() const;
     uint16_t obtener_height() const;
+
+    // Funciones para detectar colisiones
+    uint16_t getBottom() const;
+    uint16_t getTop() const;
+    uint16_t getLeft() const;
+    uint16_t getRight() const;
 };
 
 #endif

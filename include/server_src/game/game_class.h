@@ -35,6 +35,20 @@ public:
 
     void chequear_colisiones();
 
+    void chequear_colisiones_personaje_con_plataforma(Personaje& personaje);
+
+    bool colision_horizontal(const Personaje& personaje, const Platform& plataforma);
+
+    bool colision_vertical(const Personaje& personaje, const Platform& plataforma);
+
+    bool colision_diagonal(const Personaje& personaje, const Platform& plataforma);
+
+    void chequear_colisiones_personaje_con_enemigo(Personaje& personaje);
+
+    void chequear_colisiones_balas_con_enemigos(Personaje& personaje);
+
+    void chequear_colisiones_personaje_con_collectible(Personaje& personaje);
+
     void actualizar();
 
     void actualizar_personajes();

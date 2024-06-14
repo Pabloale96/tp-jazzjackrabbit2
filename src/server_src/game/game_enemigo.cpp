@@ -81,7 +81,7 @@ bool Enemigo::esta_vivo() {
 
 // ************  ENEMIGO 1 ("nombre")  ************
 #define POS_x_INICIAL_ENEMIGO_1 5
-#define POS_y_INICIAL_ENEMIGO_1 0
+#define POS_y_INICIAL_ENEMIGO_1 1
 #define VIDAS_ENEMIGO_1 1
 #define DANIO_ENEMIGO_1 1
 #define PUNTOS_ENEMIGO_1 1
@@ -103,7 +103,7 @@ void Enemigo1::revivir_enemigo() {
 
 // ************  ENEMIGO 2 ("nombre")  ************
 #define POS_x_INICIAL_ENEMIGO_2 15
-#define POS_y_INICIAL_ENEMIGO_2 0
+#define POS_y_INICIAL_ENEMIGO_2 1
 #define VIDAS_ENEMIGO_2 2
 #define DANIO_ENEMIGO_2 2
 #define PUNTOS_ENEMIGO_2 2

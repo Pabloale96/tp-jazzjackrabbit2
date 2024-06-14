@@ -18,7 +18,7 @@ void GameEscenario::cargar_plataformas() {
     Platform plataforma_inicial(0, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
                                 WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
                                 HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                static_cast<uint16_t>(platform::TYPE_1));
+                                static_cast<uint16_t>(platform::HORIZONTAL));
     //}
 }
 
