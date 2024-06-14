@@ -126,7 +126,6 @@ void Saltar::ejecutar(Game& game) {
         personaje.obtener_estados().setSaltando(false);
         personaje.obtener_estados().setIdle(true);
         personaje.obtener_velocidad().idle();
-
     }
 }
 
