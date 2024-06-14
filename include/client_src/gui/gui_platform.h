@@ -21,7 +21,6 @@ private:
     ClaseTexturas& texturas;
     int pos_x;
     int pos_y;
-    int rotate;
     bool flip = false;
     int type = 0;
     int height;
@@ -33,6 +32,7 @@ public:
     ~PlatformGui();
 
     void show(int dif_x, int dif_y);
+    float rotateToFloat();
 };
 
 #endif

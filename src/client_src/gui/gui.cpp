@@ -48,15 +48,15 @@ void Gui::run() {
     if (personaje == "j") {
         frames = texturas.findFrame(std::string(JAZZ_STAND));
         jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, frames);
+                                            renderer.GetOutputHeight() / 2, 4, frames); // 4 ponerlo como define
     } else if (personaje == "s") {
         frames = texturas.findFrame(std::string(SPAZ_STAND));
         jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, frames);
+                                            renderer.GetOutputHeight() / 2, 4, frames);
     } else if (personaje == "l") {
         frames = texturas.findFrame(std::string(LORI_STAND));
         jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, frames);
+                                            renderer.GetOutputHeight() / 2, 4, frames);
     }
 
     Escenario escenario(plataformas);
@@ -106,7 +106,7 @@ void Gui::run() {
                 }
             }
         }*/
-        jugador->show(animacion);
+        jugador->show();
         renderer.Present();
 
         auto frame_end = steady_clock::now();

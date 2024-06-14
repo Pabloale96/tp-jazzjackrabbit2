@@ -17,10 +17,10 @@ void GameEscenario::cargar_plataformas() {
     // Se setea los valores del esceneario:
 
     for (size_t i = 0; i < XMAX; i+=WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X) {
-        Platform plataforma_inicial(i, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
+        Platform plataforma_inicial(i, 0,
                                 WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
                                 HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
-                                static_cast<uint16_t>(platform::TYPE_1), false);
+                                static_cast<uint16_t>(platform::HORIZONTAL), false);
         plataformas.push_back(plataforma_inicial);
     }
     std::vector<int> x_plataforma_horizontales = {20,20,60,100,130,170,180,180};
@@ -28,10 +28,10 @@ void GameEscenario::cargar_plataformas() {
 
     for (size_t i = 0; i<  x_plataforma_horizontales.size(); i++)
     {      
-        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i], static_cast<uint16_t>(rot_platform::ROTATE_0),
+        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i],
                                 WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
                                 HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
-                                static_cast<uint16_t>(platform::TYPE_1),false);
+                                static_cast<uint16_t>(platform::HORIZONTAL),false);
         plataformas.push_back(plataforma);
     }
 
@@ -40,10 +40,10 @@ void GameEscenario::cargar_plataformas() {
 
     for (size_t i = 0; i<  x_plataforma_horizontales.size(); i++)
     {      
-        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i], static_cast<uint16_t>(rot_platform::ROTATE_45),
+        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i],
                                 WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
                                 HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
-                                static_cast<uint16_t>(platform::TYPE_1),false);
+                                static_cast<uint16_t>(platform::DIAGONAL),false);
         plataformas.push_back(plataforma);
     }
 
