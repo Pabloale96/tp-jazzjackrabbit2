@@ -55,6 +55,7 @@ add_executable(client
   src/server_src/game/game_posicion.cpp
   src/server_src/game/game_state.cpp
   src/client_src/gui/gui.cpp
+  src/client_src/gui/gui_monitor.cpp
   src/client_src/main.cpp
   src/client_src/client_protocol.cpp
   src/client_src/client_receiver.cpp

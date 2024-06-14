@@ -5,7 +5,7 @@ PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma& msg):
         pos_x(msg.plataforma[POS_POSX_PLATAFORMA]),
         pos_y(msg.plataforma[POS_POSY_PLATAFORMA]),
         rotate(msg.rotate),
-        flip(false),
+        flip(msg.plataforma[POS_FLIP_PLATAFORMA]),
         type(msg.tipo_plataforma),
         height(msg.plataforma[POS_HEIGHT_PLATAFORM]),
         width(msg.plataforma[POS_WIDTH_PLATAFORMA]),

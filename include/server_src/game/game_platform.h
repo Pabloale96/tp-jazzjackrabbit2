@@ -15,9 +15,10 @@ private:
     uint16_t width = 0;
     uint16_t height = 0;
     uint16_t type = 0;
+    bool flip =false;
 
 public:
-    Platform(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t);
+    Platform(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t,bool);
     ~Platform();
 
     uint16_t obtener_posicion_x() const;
@@ -26,6 +27,7 @@ public:
     uint16_t obtener_rotate() const;
     uint16_t obtener_width() const;
     uint16_t obtener_height() const;
+    bool obtener_flip() const;
 };
 
 #endif

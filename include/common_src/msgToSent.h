@@ -156,6 +156,7 @@ struct msgPlataforma {
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();
         plataforma[POS_HEIGHT_PLATAFORM] = pla.obtener_height();
+        plataforma[POS_FLIP_PLATAFORMA] = pla.obtener_flip();
     }
 } __attribute__((packed));
 

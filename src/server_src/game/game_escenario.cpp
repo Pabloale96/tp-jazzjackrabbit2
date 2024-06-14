@@ -24,13 +24,37 @@ GameEscenario::GameEscenario(): enemigos(NUMERO_INICIAL_ENEMIGOS) {
     // Creo las plataformas iniciales
     // Se setea los valores del esceneario:
 
-    // for (size_t i = 0; i < XMAX; i+=WIDTH_PLATFORM_TYPE_1/ SCALING_VALUE_PIXEL) {
-    Platform plataforma_inicial(0, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
-                                WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL,
-                                static_cast<uint16_t>(platform::TYPE_1));
-    plataformas.push_back(plataforma_inicial);
-    //}
+    for (size_t i = 0; i < XMAX; i+=WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X) {
+        Platform plataforma_inicial(i, 0, static_cast<uint16_t>(rot_platform::ROTATE_0),
+                                WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
+                                HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
+                                static_cast<uint16_t>(platform::TYPE_1), false);
+        plataformas.push_back(plataforma_inicial);
+    }
+    std::vector<int> x_plataforma_horizontales = {20,20,60,100,130,170,180,180};
+    std::vector<int> y_plataforma_horizontales = {3,8,11,5,11,1,8,11};
+
+    for (size_t i = 0; i<  x_plataforma_horizontales.size(); i++)
+    {      
+        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i], static_cast<uint16_t>(rot_platform::ROTATE_0),
+                                WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
+                                HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
+                                static_cast<uint16_t>(platform::TYPE_1),false);
+        plataformas.push_back(plataforma);
+    }
+
+    std::vector<int> x_plataforma_diagonales = {80,160};
+    std::vector<int> y_plataforma_diagonales = {6,9};
+
+    for (size_t i = 0; i<  x_plataforma_horizontales.size(); i++)
+    {      
+        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i], static_cast<uint16_t>(rot_platform::ROTATE_45),
+                                WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
+                                HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
+                                static_cast<uint16_t>(platform::TYPE_1),false);
+        plataformas.push_back(plataforma);
+    }
+
 }
 
 std::unique_ptr<Enemigo> GameEscenario::crear_enemigo_aleatorio() {

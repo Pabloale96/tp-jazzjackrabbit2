@@ -9,7 +9,8 @@
 #define HEIGHT_PLATFORM_TYPE_1 29
 #define WIDTH_PLATFORM_TYPE_1 192
 
-#define SCALING_VALUE_PIXEL 10
+#define SCALING_VALUE_PIXEL_X 10
+#define SCALING_VALUE_PIXEL_Y 29
 
 // los 3 modos que puede estar la plataforma:
 enum class rot_platform : uint8_t { ROTATE_0 = 0, ROTATE_45 = 1, ROTATE_90 = 2 };
