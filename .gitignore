@@ -54,6 +54,4 @@ compare_outputs.sh
 run_tests.sh
 
 # Visual Studio Code
-/.vscode
-.vscode/*
-!.vscode/settings.json
+.vscode/

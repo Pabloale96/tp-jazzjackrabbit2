@@ -47,7 +47,7 @@ bool Game::disparar_municion(uint16_t client_id) {
 
 void Game::chequear_colisiones() {
     for (auto& personaje: this->personajes) {
-        chequear_colisiones_personaje_con_enemigo(*personaje);
+        chequear_colisiones_personaje_con_plataforma(*personaje);
         chequear_colisiones_personaje_con_enemigo(*personaje);
         chequear_colisiones_balas_con_enemigos(*personaje);
         chequear_colisiones_personaje_con_collectible(*personaje);
