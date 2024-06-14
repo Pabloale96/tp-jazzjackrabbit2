@@ -28,7 +28,7 @@ public:
     Frame(Renderer&, Texture&, int, int, int, int);
     ~Frame();
     void copy(bool, int, int);
-    void copy(bool, int, int, int, int);
+    void copy(float, int, int, int, int);
     void copyTest();
     void setFrame(int, int, int, int);
     int getX();

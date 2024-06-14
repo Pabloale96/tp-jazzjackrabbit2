@@ -24,45 +24,43 @@ protected:
     ClaseTexturas& texturas;
     int pos_x;
     int pos_y;
+    int speed=0;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>>& frames;
     std::vector<Frame>::iterator it;
 
 
 public:
-    explicit PersonajeGui(ClaseTexturas&, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit PersonajeGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~PersonajeGui();
-    virtual void show(int);
-    virtual void setFrames(int);
+    void show();
+    virtual void setFrames(int,int);
 };
 
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas&, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit SpazGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~SpazGui();
 
-    void show(int) override;
-    virtual void setFrames(int) override;
+    void setFrames(int,int) override;
 };
 
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas&, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit JazzGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~JazzGui();
 
-    void show(int) override;
-    virtual void setFrames(int) override;
+    void setFrames(int,int) override;
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas&, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit LoriGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~LoriGui();
 
-    void show(int) override;
-    virtual void setFrames(int) override;
+    void setFrames(int,int) override;
 };
 #endif

@@ -12,19 +12,18 @@ class Platform {
 private:
     uint16_t pos_x;
     uint16_t pos_y;
-    uint16_t rotate;
     uint16_t width = 0;
     uint16_t height = 0;
     uint16_t type = 0;
+    bool flip =false;
 
 public:
-    Platform(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t);
+    Platform(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t,bool);
     ~Platform();
 
     uint16_t obtener_posicion_x() const;
     uint16_t obtener_posicion_y() const;
     uint16_t obtener_tipo() const;
-    uint16_t obtener_rotate() const;
     uint16_t obtener_width() const;
     uint16_t obtener_height() const;
 

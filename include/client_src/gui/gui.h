@@ -42,6 +42,8 @@ private:
     int pos_x = 0;
     int pos_y = 0;
 
+    std::mutex m;
+
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::map<uint16_t, std::shared_ptr<Personaje>> dic_personajes;
 
