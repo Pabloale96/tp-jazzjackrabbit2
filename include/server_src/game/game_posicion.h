@@ -30,12 +30,14 @@ public:
     Posicion(uint16_t x, uint16_t y): x(x), y(y) {}
 
     void set_posicion(uint16_t x, uint16_t y);
+    void set_posicion_en_x(uint16_t x);
+    void set_posicion_en_y(uint16_t y);
 
     void mover(const Velocidad& velocidad);
 
-    uint16_t get_posicion_x();
+    uint16_t get_posicion_x() const;
 
-    uint16_t get_posicion_y();
+    uint16_t get_posicion_y() const;
 
     bool operator==(const Posicion& otro) const;
 };

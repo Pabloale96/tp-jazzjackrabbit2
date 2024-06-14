@@ -7,10 +7,14 @@ void Posicion::set_posicion(uint16_t x, uint16_t y) {
     this->y = y;
 }
 
-void Posicion::mover(const Velocidad& velocidad) {
-    //std::cout << "ANTES DE MOVER: (" << x << " ," << y << " )" << std::endl;
+void Posicion::set_posicion_en_x(uint16_t x) { this->x = x; }
+void Posicion::set_posicion_en_y(uint16_t y) { this->y = y; }
 
-    //std::cout << "Velocidad EN MOVER: " << velocidad.obtener_velocidad_x() << "  || " << velocidad.obtener_velocidad_y() << std::endl;
+void Posicion::mover(const Velocidad& velocidad) {
+    // std::cout << "ANTES DE MOVER: (" << x << " ," << y << " )" << std::endl;
+
+    // std::cout << "Velocidad EN MOVER: " << velocidad.obtener_velocidad_x() << "  || " <<
+    // velocidad.obtener_velocidad_y() << std::endl;
 
     this->x += velocidad.obtener_velocidad_x();
     if (x >= XMAX) {
@@ -24,12 +28,12 @@ void Posicion::mover(const Velocidad& velocidad) {
         y = 0;
     }
 
-    //std::cout << "DESPUES DE MOVER: (" << x << " ," << y << " )" << std::endl;
+    // std::cout << "DESPUES DE MOVER: (" << x << " ," << y << " )" << std::endl;
 }
 
-uint16_t Posicion::get_posicion_x() { return this->x; }
+uint16_t Posicion::get_posicion_x() const { return this->x; }
 
-uint16_t Posicion::get_posicion_y() { return this->y; }
+uint16_t Posicion::get_posicion_y() const { return this->y; }
 
 bool Posicion::operator==(const Posicion& otro) const {
     return this->x == otro.x && this->y == otro.y;

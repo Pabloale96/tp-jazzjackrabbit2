@@ -37,7 +37,7 @@ public:
 
     void borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id);
 
-    void borrar_partida_si_esta_vacia(GameLoop* gameloop); 
+    void borrar_partida_si_esta_vacia(GameLoop* gameloop);
 
     ~GameloopMonitor();
 };

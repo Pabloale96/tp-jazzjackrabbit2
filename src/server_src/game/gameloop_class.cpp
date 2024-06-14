@@ -71,9 +71,7 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {
-
-            }
+            while (client_commands.try_pop(comando)) {}
             if (comando) {
                 comando->ejecutar(this->game);
             }
@@ -119,9 +117,7 @@ void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.borrar_queue(queue);
 }
 
-void GameLoop::borrar_cliente(uint16_t client_id) {
-    game.borrar_personaje(client_id);
-}
+void GameLoop::borrar_cliente(uint16_t client_id) { game.borrar_personaje(client_id); }
 
 size_t GameLoop::cantidad_de_clientes() { return game.obtener_cantidad_de_personajes(); }
 

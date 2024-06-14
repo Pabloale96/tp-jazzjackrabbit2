@@ -21,6 +21,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
 
         posicion(POS_X_INICIAL, POS_Y_INICIAL),
         velocidad(),
+        ancho(1),
+        alto(1),
 
         estados() {}
 
@@ -164,6 +166,12 @@ uint16_t Personaje::generar_id_bala() { return bala_id++; }
 
 uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 
+uint16_t Personaje::getBottom() const { return posicion.get_posicion_y() + alto; }
+uint16_t Personaje::getTop() const { return posicion.get_posicion_y(); }
+uint16_t Personaje::getLeft() const { return posicion.get_posicion_x(); }
+uint16_t Personaje::getRight() const { return posicion.get_posicion_x() + ancho; }
+
+uint16_t Personaje::obtener_ancho() const { return ancho; }
 
 // ************  JAZZ  ************
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {

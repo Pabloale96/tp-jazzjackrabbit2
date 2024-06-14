@@ -73,8 +73,10 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
 
 void GameloopMonitor::borrar_partida_si_esta_vacia(GameLoop* gameloop) {
     if (gameloop->cantidad_de_clientes() == 0) {
-        std::cout << "Partida " << gameloop->obtener_gameloop_id() << " será borrada por no haber jugadores" << std::endl;
-        diccionario_de_gameloops.erase(diccionario_de_gameloops.find(gameloop->obtener_gameloop_id()));
+        std::cout << "Partida " << gameloop->obtener_gameloop_id()
+                  << " será borrada por no haber jugadores" << std::endl;
+        diccionario_de_gameloops.erase(
+                diccionario_de_gameloops.find(gameloop->obtener_gameloop_id()));
         gameloop->stop();
         gameloop->join();
         delete gameloop;

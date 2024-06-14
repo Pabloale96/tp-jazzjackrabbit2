@@ -15,7 +15,7 @@
 enum class rot_platform : uint8_t { ROTATE_0 = 0, ROTATE_45 = 1, ROTATE_90 = 2 };
 
 // tipo de plataforma usado de gui para la interfaz:
-enum class platform : uint8_t { TYPE_1 = 0, TYPE_2 = 1, TYPE_3 = 2 };
+enum class platform : uint8_t { HORIZONTAL = 0, DIAGONAL = 1, VERTICAL = 2 };
 
 enum class personajes : uint8_t { JAZZ = 0x01, SPAZZ = 0x02, LORI = 0x03 };
 

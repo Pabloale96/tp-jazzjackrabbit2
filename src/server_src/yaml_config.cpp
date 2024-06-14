@@ -11,10 +11,10 @@ void YAMLConfig::loadConfig() {
 
         config.arma_inicial.municion = configNode["MUNICION_ARMA_INICIAL_INFINITA"].as<uint16_t>();
         // std::cout << "Municion arma inicial: " << config.arma_inicial.municion << std::endl;
-        config.arma_inicial.vel_dis = configNode["VEL_DIS_INICIAL"].as<float>();
+        config.arma_inicial.vel_dis = configNode["VEL_DIS_INICIAL"].as<int>();
         // std::cout << "Velocidad disparo arma inicial: " << config.arma_inicial.vel_dis <<
         // std::endl;
-        config.arma_inicial.vel_proy = configNode["VEL_PROY_INICIAL"].as<float>();
+        config.arma_inicial.vel_proy = configNode["VEL_PROY_INICIAL"].as<int>();
         // std::cout << "Velocidad proyectil arma inicial: " << config.arma_inicial.vel_proy <<
         // std::endl;
         config.arma_inicial.dano = configNode["DANO_INICIAL"].as<uint16_t>();

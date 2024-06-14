@@ -9,8 +9,8 @@
 
 struct ArmaConfig {
     uint16_t municion;
-    float vel_dis;
-    float vel_proy;
+    int vel_dis;
+    int vel_proy;
     uint16_t dano;
 };
 
