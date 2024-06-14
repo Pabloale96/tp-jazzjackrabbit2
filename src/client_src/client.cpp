@@ -185,19 +185,6 @@ std::string Client::toLowercase(const std::string& str) {
     return minusculas;
 }
 
-/*void Client::acciones_posibles() {
-    std::cout << "Acciones posibles:" << std::endl;
-    std::cout << "  - Disparar (s)" << std::endl;
-    std::cout << "  - Derecha (r)" << std::endl;
-    std::cout << "  - Derecha rápido (fr)" << std::endl;
-    std::cout << "  - Izquierda (l)" << std::endl;
-    std::cout << "  - Izquierda rápido (fl)" << std::endl;
-    std::cout << "  - Arriba (u)" << std::endl;
-    std::cout << "  - Abajo (d)" << std::endl;
-    std::cout << "  - Saltar (j)" << std::endl;
-    std::cout << "  - Salir (q)" << std::endl;
-}*/
-
 void Client::iniciar_hilos() {
     receiver = std::make_unique<ClientReceiver>(protocolo_client, client_id, server_msg);
     sender.start();
@@ -221,7 +208,7 @@ void Client::jugar() {
         std::shared_ptr<GameState> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
             gui.setGameState(*respuesta);
-            //respuesta->imprimir_cliente();
+            respuesta->imprimir_cliente();
 
             if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;

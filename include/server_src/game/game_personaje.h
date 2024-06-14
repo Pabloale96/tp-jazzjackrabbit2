@@ -11,6 +11,7 @@
 #include "game_municion.h"
 #include "game_personaje_estado.h"
 #include "game_posicion.h"
+#include "game_velocidad.h"
 #include "protocol_utils.h"
 
 #define PUNTOS_INICIALES 0
@@ -22,17 +23,22 @@ struct msgPersonaje;
 class Personaje {
 
 private:
-    uint8_t tipo_personaje;
     uint16_t partida_id;
     uint16_t client_id;
+    uint8_t tipo_personaje;
     uint16_t puntos;
     uint16_t vida;
+
     uint8_t animacion;
+
     Arma arma;
-    Posicion posicion;
     std::vector<Municion> municiones_disparadas;
-    Direccion direccion;
-    std::vector<bool> acciones;
+    uint16_t bala_id;
+
+    Posicion posicion;
+    Velocidad velocidad;
+    uint16_t ancho;
+    uint16_t alto;
 
 protected:
     EstadoPersonaje estados;
@@ -54,17 +60,15 @@ public:
 
     void actualizar();
 
-    virtual bool mover(const std::string& direccion);
+    virtual void mover();
 
-    void setear_direccion(const std::string& direccion);
+    Velocidad& obtener_velocidad();
 
     void disminuir_vida(uint16_t danio);
 
     void disminuir_municion();
 
     Posicion obtener_posicion() const;
-
-    Direccion obtener_direccion() const;
 
     uint16_t obtener_partida_id() const;
 
@@ -80,7 +84,22 @@ public:
 
     uint16_t obtener_municion() const;
 
+    uint16_t generar_id_bala();
+
+    std::vector<Municion> obtener_balas() const;
+
+    void disparar();
+
+    void eliminar_bala(uint16_t id_bala);
+
     virtual void accion_especial() = 0;
+
+    uint16_t getBottom() const;
+    uint16_t getTop() const;
+    uint16_t getLeft() const;
+    uint16_t getRight() const;
+
+    uint16_t obtener_ancho() const;
 
     virtual ~Personaje() = default;
 };

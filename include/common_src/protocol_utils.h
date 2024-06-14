@@ -16,7 +16,7 @@
 enum class rot_platform : uint8_t { ROTATE_0 = 0, ROTATE_45 = 1, ROTATE_90 = 2 };
 
 // tipo de plataforma usado de gui para la interfaz:
-enum class platform : uint8_t { TYPE_1 = 0, TYPE_2 = 1, TYPE_3 = 2 };
+enum class platform : uint8_t { HORIZONTAL = 0, DIAGONAL = 1, VERTICAL = 2 };
 
 enum class personajes : uint8_t { JAZZ = 0x01, SPAZZ = 0x02, LORI = 0x03 };
 
@@ -56,7 +56,15 @@ enum class efectos : uint8_t {
     MUERTO = 0x09,
 
     // Acciones especiales
-    ACCION_ESPECIAL = 0x10
+    ACCION_ESPECIAL = 0x10,
+
+    // Combinaciones
+    //      con disparar
+    DISPARANDO_CORRIENDO = 0x11,
+    DISPARANDO_SALTANDO = 0x12,
+    DISPARANDO_CAYENDO = 0x13,
+    //      con correr
+    CORRIENDO_SALTANDO = 0x14
 };
 
 enum class armas : uint8_t { ARMA_INICIAL = 0x01, ARMA_SECUNDARIA = 0x02 };

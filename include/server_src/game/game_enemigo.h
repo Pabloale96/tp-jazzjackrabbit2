@@ -13,6 +13,7 @@ private:
     uint16_t id_enemigo;
     TipoEnemigo tipo_enemigo;
     Posicion posicion_enemigo;
+    Velocidad velocidad_enemigo;
 
     unsigned int iteraciones;
 
@@ -26,7 +27,7 @@ private:
 public:
     // Constructor
     // Inicializa vivo en true y las iteraciones en 0
-    Enemigo();
+    explicit Enemigo(uint16_t id_enemigo);
 
     // Constructor para el cliente
     explicit Enemigo(uint16_t* datos_enemigo);
@@ -48,10 +49,12 @@ public:
     void actualizar();
 
     // reduce vida al enemigo
-    void recibir_disparo();
+    void recibir_disparo(uint8_t danio);
 
     // Aumenta las iteraciones del enemigo. Si llega a 15 llama a revivir_enemigo
     void aumentar_iteraciones();
+
+    void matar();
 
     // Revive al enemigo
     virtual void revivir_enemigo();
@@ -67,7 +70,7 @@ public:
 // ************  ENEMIGO 1 ("nombre")  ************
 class Enemigo1: public Enemigo {
 public:
-    Enemigo1();
+    explicit Enemigo1(uint16_t id);
 
     // Revive al enemigo
     void revivir_enemigo() override;
@@ -77,7 +80,7 @@ public:
 // ************  ENEMIGO 2 ("nombre")  ************
 class Enemigo2: public Enemigo {
 public:
-    Enemigo2();
+    explicit Enemigo2(uint16_t id);
 
     // Revive al enemigo
     void revivir_enemigo() override;
@@ -87,7 +90,7 @@ public:
 // ************  ENEMIGO 3 ("nombre")  ************
 class Enemigo3: public Enemigo {
 public:
-    Enemigo3();
+    explicit Enemigo3(uint16_t id);
 
     // Revive al enemigo
     void revivir_enemigo() override;

@@ -8,7 +8,8 @@
 #define ITERACIONES_PARA_REVIVIR 15
 #define TIME_REVIVE_INICIAL 50
 
-Enemigo::Enemigo():
+Enemigo::Enemigo(uint16_t id_enemigo):
+        id_enemigo(id_enemigo),
         iteraciones(0)
 // cppcheck-suppress readability/multiline_comment
 /*
@@ -41,11 +42,17 @@ uint16_t Enemigo::get_vidas() const { return vidas; }
 uint16_t Enemigo::get_danio_al_jugador() const { return danio_al_jugador; }
 uint16_t Enemigo::get_puntos() const { return puntos; }
 
-void Enemigo::actualizar() {}
+void Enemigo::actualizar() {
+    // segun en que direccion esta, llamar a mover
 
-void Enemigo::recibir_disparo() {
-    if (esta_vivo()) {
-        vidas--;
+    // Si el enemigo esta muerto, aumenta las iteraciones para revivir
+}
+
+void Enemigo::recibir_disparo(uint8_t danio) {
+    if (vidas > danio) {
+        vidas -= danio;
+    } else {
+        vidas = 0;
     }
 }
 
@@ -60,6 +67,8 @@ void Enemigo::aumentar_iteraciones() {
     }
 }
 
+void Enemigo::matar() { vidas = 0; }
+
 void Enemigo::revivir_enemigo() {}
 
 bool Enemigo::esta_vivo() {
@@ -72,13 +81,13 @@ bool Enemigo::esta_vivo() {
 
 // ************  ENEMIGO 1 ("nombre")  ************
 #define POS_x_INICIAL_ENEMIGO_1 5
-#define POS_y_INICIAL_ENEMIGO_1 0
+#define POS_y_INICIAL_ENEMIGO_1 1
 #define VIDAS_ENEMIGO_1 1
 #define DANIO_ENEMIGO_1 1
 #define PUNTOS_ENEMIGO_1 1
 
 // Enemigo1 constructor
-Enemigo1::Enemigo1() {
+Enemigo1::Enemigo1(uint16_t id): Enemigo(id) {
     set_tipo_enemigo(TipoEnemigo::ENEMIGO1);
     set_posicion_enemigo(POS_x_INICIAL_ENEMIGO_1, POS_y_INICIAL_ENEMIGO_1);
     set_vidas(VIDAS_ENEMIGO_1);
@@ -94,13 +103,13 @@ void Enemigo1::revivir_enemigo() {
 
 // ************  ENEMIGO 2 ("nombre")  ************
 #define POS_x_INICIAL_ENEMIGO_2 15
-#define POS_y_INICIAL_ENEMIGO_2 0
+#define POS_y_INICIAL_ENEMIGO_2 1
 #define VIDAS_ENEMIGO_2 2
 #define DANIO_ENEMIGO_2 2
 #define PUNTOS_ENEMIGO_2 2
 
 // Enemigo2 constructor
-Enemigo2::Enemigo2() {
+Enemigo2::Enemigo2(uint16_t id): Enemigo(id) {
     set_tipo_enemigo(TipoEnemigo::ENEMIGO2);
     set_posicion_enemigo(POS_x_INICIAL_ENEMIGO_2, POS_y_INICIAL_ENEMIGO_2);
     set_vidas(VIDAS_ENEMIGO_2);
@@ -122,7 +131,7 @@ void Enemigo2::revivir_enemigo() {
 #define PUNTOS_ENEMIGO_3 3
 
 // Enemigo3 constructor
-Enemigo3::Enemigo3() {
+Enemigo3::Enemigo3(uint16_t id): Enemigo(id) {
     set_tipo_enemigo(TipoEnemigo::ENEMIGO3);
     set_posicion_enemigo(POS_x_INICIAL_ENEMIGO_3, POS_y_INICIAL_ENEMIGO_3);
     set_vidas(VIDAS_ENEMIGO_3);

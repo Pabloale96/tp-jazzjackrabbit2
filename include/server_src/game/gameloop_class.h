@@ -24,7 +24,6 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
-    std::list<uint16_t> clients_id;
 
 public:
     // Constructor
@@ -32,9 +31,9 @@ public:
     explicit GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
                       uint8_t personaje);
 
-    std::string obtener_nombre_partida();
+    uint16_t obtener_gameloop_id();
 
-    uint16_t obtener_cantidad_de_clientes();
+    std::string obtener_nombre_partida();
 
     // Devuelve la cola de comandos de clientes
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands();
@@ -63,6 +62,8 @@ public:
     void borrar_queue_server_msg_de_cliente_aceptado(Queue<std::shared_ptr<GameState>>& queue);
 
     void borrar_cliente(uint16_t client_id);
+
+    size_t cantidad_de_clientes();
 
     // Cierra la cola de comandos de clientes
     // Cierra las colas de mensajes de los clientes

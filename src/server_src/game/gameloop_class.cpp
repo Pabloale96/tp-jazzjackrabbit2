@@ -20,13 +20,12 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         jugando(false),
         client_commands(MAX_TAM_COLA),
         game(nuevo_gameloop_id, client_id, personaje) {
-    clients_id.push_back(client_id);
     iniciar_partida();
 }
 
-std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
+uint16_t GameLoop::obtener_gameloop_id() { return gameloop_id; }
 
-uint16_t GameLoop::obtener_cantidad_de_clientes() { return clients_id.size(); }
+std::string GameLoop::obtener_nombre_partida() { return nombre_partida; }
 
 Queue<std::shared_ptr<Comando>>& GameLoop::obtener_queue_de_client_commands() {
     return client_commands;
@@ -72,15 +71,11 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {
-                // if (comando) {
-                //     comando->ejecutar(this->game);
-                // }
-            }
+            while (client_commands.try_pop(comando)) {}
             if (comando) {
                 comando->ejecutar(this->game);
-                // broadcastear();
             }
+
 
             game.actualizar();
             broadcastear();
@@ -122,10 +117,9 @@ void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
     monitor_lista_de_queues_server_msg.borrar_queue(queue);
 }
 
-void GameLoop::borrar_cliente(uint16_t client_id) {
-    game.borrar_personaje(client_id);
-    clients_id.remove(client_id);
-}
+void GameLoop::borrar_cliente(uint16_t client_id) { game.borrar_personaje(client_id); }
+
+size_t GameLoop::cantidad_de_clientes() { return game.obtener_cantidad_de_personajes(); }
 
 void GameLoop::stop() { client_commands.close(); }
 

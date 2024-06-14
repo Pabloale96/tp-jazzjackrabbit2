@@ -10,7 +10,7 @@ void GameStateMonitor::agregar_queue(Queue<std::shared_ptr<GameState>>& nueva_qu
 }
 
 void GameStateMonitor::broadcastear(const GameState& msg) {
-    std::unique_lock<std::mutex> lck(m);
+    std::unique_lock<std::mutex> lock(m);
     for (size_t i = 0; i < vector_de_server_msg.size(); ++i) {
         try {
             vector_de_server_msg[i]->try_push(std::make_shared<GameState>(msg));

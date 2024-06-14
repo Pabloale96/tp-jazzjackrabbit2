@@ -22,6 +22,7 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
         GameLoop* nuevo_gameloop =
                 new GameLoop(nuevo_gameloop_id, nombre_partida, client_id, personaje);
         nuevo_gameloop->start();
+        std::cout << "Partida " << nuevo_gameloop_id << " creada" << std::endl;
         diccionario_de_gameloops.insert(std::make_pair(nuevo_gameloop_id, nuevo_gameloop));
         return nuevo_gameloop_id;
     } catch (const std::exception& e) {
@@ -65,11 +66,17 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
     // Este lock no hace falta porque obtener_gameloop ya tiene un lock (por lo que terminariamos en
     // deadlock) std::unique_lock<std::mutex> lock(m);
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
-    std::unique_lock<std::mutex> lock(m);
     gameloop->borrar_cliente(client_id);
-    if (gameloop->obtener_cantidad_de_clientes() == 0) {
-        std::cout << "Partida " << gameloop_id << " borrada por no haber jugadores" << std::endl;
-        diccionario_de_gameloops.erase(diccionario_de_gameloops.find(gameloop_id));
+    std::unique_lock<std::mutex> lock(m);
+    borrar_partida_si_esta_vacia(gameloop);
+}
+
+void GameloopMonitor::borrar_partida_si_esta_vacia(GameLoop* gameloop) {
+    if (gameloop->cantidad_de_clientes() == 0) {
+        std::cout << "Partida " << gameloop->obtener_gameloop_id()
+                  << " será borrada por no haber jugadores" << std::endl;
+        diccionario_de_gameloops.erase(
+                diccionario_de_gameloops.find(gameloop->obtener_gameloop_id()));
         gameloop->stop();
         gameloop->join();
         delete gameloop;

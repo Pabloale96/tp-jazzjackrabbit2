@@ -72,14 +72,14 @@ ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
 
 ClaseTexturas::~ClaseTexturas() {}
 
-void ClaseTexturas::addFrames(std::string key,  std::shared_ptr<std::vector<Frame>> value) {
+void ClaseTexturas::addFrames(std::string key, std::shared_ptr<std::vector<Frame>> value) {
     frames_map[key] = value;
 }
 
 void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                                       int frame_count, Texture& textura_del_personaje,
                                       const std::string& key) {
-    std::shared_ptr<std::vector<Frame>> frame_aux= std::make_shared<std::vector<Frame>>();
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
     for (int i = 0; i < frame_count; i++) {
         Frame frame(renderer, textura_del_personaje, x_frames[i], y_frames[i], w_frames[i],
                     h_frames[i]);
@@ -95,7 +95,7 @@ void ClaseTexturas::plataformaTipo1() {
     int w_frame = 29;
     int h_frame = 192;
 
-    std::shared_ptr<std::vector<Frame>> frame_aux= std::make_shared<std::vector<Frame>>();
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
     Frame frame(renderer, beach_tex, x_frame, y_frame, w_frame, h_frame);
     frame_aux->emplace_back(frame);
     addFrames(PLATFORM_BEACH_TYPE_1, frame_aux);
@@ -353,7 +353,7 @@ void ClaseTexturas::spazIntoxicated() {
 
     int x_frames[] = {4, 48, 92, 136, 184, 231, 279, 320};
     int y_frames[] = {2067, 2067, 2067, 2067, 2067, 2067, 2067, 2067};
-    int w_frames[] = {51, 51, 51, 51, 51, 51, 51, 51}; 
+    int w_frames[] = {51, 51, 51, 51, 51, 51, 51, 51};
     int h_frames[] = {36, 34, 36, 36, 38, 37, 31, 34};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
@@ -367,7 +367,7 @@ void ClaseTexturas::spazHurt() {
     int y_frames[] = {2916, 2916, 2916, 2916, 2916, 2916, 2916, 2916, 2916, 2916, 2916};
     int w_frames[] = {62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62};
     int h_frames[] = {40, 40, 44, 58, 69, 65, 62, 54, 57, 50, 41};
-    
+
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
     add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, spaz_tex, SPAZ_HURT);
@@ -378,7 +378,7 @@ void ClaseTexturas::spazShoot() {
     int x_frames[] = {5, 56};
     int y_frames[] = {504, 504};
     int w_frames[] = {45, 45};
-    int h_frames[] = {45,  40};
+    int h_frames[] = {45, 40};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
     add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, spaz_tex, SPAZ_SHOOT);
@@ -398,10 +398,10 @@ void ClaseTexturas::spazStopShoot() {
 
 void ClaseTexturas::spazShootUp() {
 
-    int x_frames[] = {95,136};
-    int y_frames[] = {600,600};
-    int w_frames[] = {59,59};
-    int h_frames[] = {36,36};
+    int x_frames[] = {95, 136};
+    int y_frames[] = {600, 600};
+    int w_frames[] = {59, 59};
+    int h_frames[] = {36, 36};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
     add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, spaz_tex, SPAZ_SHOOTUP);

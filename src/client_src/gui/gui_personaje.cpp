@@ -1,6 +1,7 @@
 #include "../../include/client_src/gui/gui_personaje.h"
 
-PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, std::shared_ptr<std::vector<Frame>>& frames):
+PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy,
+                           std::shared_ptr<std::vector<Frame>>& frames):
         texturas(texturas), pos_x(posx), pos_y(posy), frames(frames) {
     it = frames->begin();
 }
@@ -11,7 +12,8 @@ void PersonajeGui::show(int animacion) {}
 
 void PersonajeGui::setFrames(int animacion_actual) {}
 
-SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, std::shared_ptr<std::vector<Frame>>& frames):
+SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy,
+                 std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, frames) {}
 
 SpazGui::~SpazGui() {}
@@ -23,7 +25,11 @@ void SpazGui::show(int animacion_actual) {
 void SpazGui::setFrames(int animacion_actual) {
     switch (animacion_actual) {
         case ANI_STAND:
+<<<<<<< HEAD
             animacion.setFlip(false);
+=======
+            std::cout << "Entro: " << animacion_actual << std::endl;
+>>>>>>> main
             frames = texturas.findFrame(std::string(SPAZ_STAND));
             it = frames->begin();
             break;
@@ -67,7 +73,8 @@ void SpazGui::setFrames(int animacion_actual) {
     }
 }
 
-JazzGui::JazzGui(ClaseTexturas& texturas, int posx, int posy, std::shared_ptr<std::vector<Frame>>& frames):
+JazzGui::JazzGui(ClaseTexturas& texturas, int posx, int posy,
+                 std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, frames) {}
 
 JazzGui::~JazzGui() {}
@@ -123,7 +130,8 @@ void JazzGui::setFrames(int animacion_actual) {
     }
 }
 
-LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy, std::shared_ptr<std::vector<Frame>>& frames):
+LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy,
+                 std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, frames) {}
 
 LoriGui::~LoriGui() {}

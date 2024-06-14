@@ -30,8 +30,8 @@ void Gui::run() {
     SDL sdl(SDL_INIT_VIDEO);
     SDLTTF ttf;
 
-    //SDL_DisplayMode displayMode;
-    // int monitorIndex = 1;
+    // SDL_DisplayMode displayMode;
+    //  int monitorIndex = 1;
 
     Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
@@ -48,18 +48,15 @@ void Gui::run() {
     if (personaje == "j") {
         frames = texturas.findFrame(std::string(JAZZ_STAND));
         jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2,
-                                            frames);
+                                            renderer.GetOutputHeight() / 2, frames);
     } else if (personaje == "s") {
         frames = texturas.findFrame(std::string(SPAZ_STAND));
         jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2,
-                                            frames);
+                                            renderer.GetOutputHeight() / 2, frames);
     } else if (personaje == "l") {
         frames = texturas.findFrame(std::string(LORI_STAND));
         jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2,
-                                            frames);
+                                            renderer.GetOutputHeight() / 2, frames);
     }
 
     Escenario escenario(plataformas);

@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../../common_src/defines_msg.h"
+#include "../../server_src/game/game_velocidad.h"
 
 #define X_INICIAL 0
 #define Y_INICIAL 0
@@ -29,14 +30,16 @@ public:
     Posicion(uint16_t x, uint16_t y): x(x), y(y) {}
 
     void set_posicion(uint16_t x, uint16_t y);
+    void set_posicion_en_x(uint16_t x);
+    void set_posicion_en_y(uint16_t y);
 
-    // void mover(int x, int y);
+    void mover(const Velocidad& velocidad);
 
-    bool mover(const std::string& direccion);
+    uint16_t get_posicion_x() const;
 
-    uint16_t get_posicion_x();
+    uint16_t get_posicion_y() const;
 
-    uint16_t get_posicion_y();
+    bool operator==(const Posicion& otro) const;
 };
 
 #endif

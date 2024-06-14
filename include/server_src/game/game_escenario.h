@@ -7,22 +7,27 @@
 #include "game_collectible.h"
 #include "game_enemigo.h"
 #include "game_platform.h"
+#include "vector_monitor.h"
 
 #define NUMERO_INICIAL_ENEMIGOS 5
 #define MONEDAS_PRIMERA_PLATAFORMA 5
 
 class GameEscenario {
 private:
-    std::vector<std::unique_ptr<Enemigo>> enemigos;
+    VectorMonitor<std::shared_ptr<Enemigo>> enemigos;
     std::vector<Platform> plataformas;
-    std::vector<std::unique_ptr<Collectible>> collectibles;
+    VectorMonitor<std::shared_ptr<Collectible>> collectibles;
 
 public:
     GameEscenario();
 
-    std::unique_ptr<Enemigo> crear_enemigo_aleatorio();
+    void cargar_plataformas();
 
-    bool atacar_enemigo(uint16_t id_enemigo);
+    void cargar_enemigos();
+
+    void cargar_collectibles();
+
+    void crear_enemigo_aleatorio(uint16_t id_enemigo);
 
     void actualizar_escenario();
 
@@ -32,11 +37,11 @@ public:
 
     void actualizar_collectibles();
 
-    std::vector<std::unique_ptr<Enemigo>>& obtener_enemigos();
+    std::vector<std::shared_ptr<Enemigo>>& obtener_enemigos();
 
     std::vector<Platform>& obtener_plataformas();
 
-    std::vector<std::unique_ptr<Collectible>>& obtener_collectibles();
+    std::vector<std::shared_ptr<Collectible>>& obtener_collectibles();
 
     ~GameEscenario();
 };

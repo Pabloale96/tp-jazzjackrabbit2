@@ -4,22 +4,14 @@
 
 #include "protocol_utils.h"
 
-GameEscenario::GameEscenario(): enemigos(NUMERO_INICIAL_ENEMIGOS) {
+GameEscenario::GameEscenario() {
+    std::cout << "Creando escenario" << std::endl;
+    cargar_plataformas();
+    cargar_enemigos();
+    cargar_collectibles();
+}
 
-    // Creo los enemigos iniciales
-    for (size_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
-        enemigos[i] = crear_enemigo_aleatorio();
-        enemigos[i]->set_enemigo_id(i + 1);
-    }
-
-    // Agrego 5 monedas y 1 zanahoria en la primera plataforma
-    for (size_t i = 0; i < MONEDAS_PRIMERA_PLATAFORMA; ++i) {
-        Moneda moneda(i + 1, 0);
-        collectibles.push_back(std::make_unique<Moneda>(moneda));
-    }
-    Zanahoria zanahoria(6, 0);
-    collectibles.push_back(std::make_unique<Zanahoria>(zanahoria));
-
+void GameEscenario::cargar_plataformas() {
 
     // Creo las plataformas iniciales
     // Se setea los valores del esceneario:
@@ -57,7 +49,24 @@ GameEscenario::GameEscenario(): enemigos(NUMERO_INICIAL_ENEMIGOS) {
 
 }
 
-std::unique_ptr<Enemigo> GameEscenario::crear_enemigo_aleatorio() {
+
+void GameEscenario::cargar_enemigos() {
+    // Creo los enemigos iniciales
+    for (uint16_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
+        crear_enemigo_aleatorio(i + 1);
+    }
+}
+
+void GameEscenario::cargar_collectibles() {
+    for (size_t i = 0; i < MONEDAS_PRIMERA_PLATAFORMA; ++i) {
+        Moneda moneda(i + 1, 0);
+        collectibles.push_back(std::make_unique<Moneda>(moneda));
+    }
+    Zanahoria zanahoria(6, 0);
+    collectibles.push_back(std::make_unique<Zanahoria>(zanahoria));
+}
+
+void GameEscenario::crear_enemigo_aleatorio(uint16_t id_enemigo) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(0, 2);
@@ -65,24 +74,17 @@ std::unique_ptr<Enemigo> GameEscenario::crear_enemigo_aleatorio() {
     int tipoEnemigo = distrib(gen);
     switch (tipoEnemigo) {
         case 0:
-            return std::make_unique<Enemigo1>();
+            enemigos.push_back(std::make_unique<Enemigo1>(id_enemigo));
+            return;
         case 1:
-            return std::make_unique<Enemigo2>();
+            enemigos.push_back(std::make_unique<Enemigo2>(id_enemigo));
+            return;
         case 2:
-            return std::make_unique<Enemigo3>();
+            enemigos.push_back(std::make_unique<Enemigo3>(id_enemigo));
+            return;
         default:
             throw std::runtime_error("Tipo de enemigo desconocido");
     }
-}
-
-bool GameEscenario::atacar_enemigo(uint16_t id_enemigo) {
-    for (auto& enemigo: enemigos) {
-        if (enemigo->get_id_enemigo() == id_enemigo) {
-            enemigo->recibir_disparo();
-            return true;
-        }
-    }
-    return false;
 }
 
 void GameEscenario::actualizar_escenario() {
@@ -122,12 +124,14 @@ void GameEscenario::actualizar_collectibles() {
     }
 }
 
-std::vector<std::unique_ptr<Enemigo>>& GameEscenario::obtener_enemigos() { return enemigos; }
+std::vector<std::shared_ptr<Enemigo>>& GameEscenario::obtener_enemigos() {
+    return enemigos.get_vector();
+}
 
 std::vector<Platform>& GameEscenario::obtener_plataformas() { return plataformas; }
 
-std::vector<std::unique_ptr<Collectible>>& GameEscenario::obtener_collectibles() {
-    return collectibles;
+std::vector<std::shared_ptr<Collectible>>& GameEscenario::obtener_collectibles() {
+    return collectibles.get_vector();
 }
 
 GameEscenario::~GameEscenario() = default;
