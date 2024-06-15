@@ -9,9 +9,6 @@
 #include "game_platform.h"
 #include "vector_monitor.h"
 
-#define NUMERO_INICIAL_ENEMIGOS 5
-#define MONEDAS_PRIMERA_PLATAFORMA 5
-
 class GameEscenario {
 private:
     VectorMonitor<std::shared_ptr<Enemigo>> enemigos;

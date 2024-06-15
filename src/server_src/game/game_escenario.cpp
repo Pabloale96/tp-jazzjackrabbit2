@@ -45,16 +45,21 @@ void GameEscenario::cargar_plataformas() {
     }
 }
 
-
 void GameEscenario::cargar_enemigos() {
-    // Creo los enemigos iniciales
-    for (uint16_t i = 0; i < NUMERO_INICIAL_ENEMIGOS; ++i) {
-        crear_enemigo_aleatorio(i + 1);
-    }
+    // Las coordenadas (x,y) se basan en el diseño del escenario en /docs/disenio_nivel.png
+    enemigos.push_back(std::make_unique<Enemigo1>(1, 26, 8));
+    enemigos.push_back(std::make_unique<Enemigo1>(2, 38, 28));
+    enemigos.push_back(std::make_unique<Enemigo1>(3, 70, 33));
+
+    enemigos.push_back(std::make_unique<Enemigo2>(4, 25, 24));
+    enemigos.push_back(std::make_unique<Enemigo2>(5, 56, 31));
+
+    enemigos.push_back(std::make_unique<Enemigo3>(6, 59, 19));
+    enemigos.push_back(std::make_unique<Enemigo3>(7, 9, 38));
 }
 
 void GameEscenario::cargar_collectibles() {
-    for (size_t i = 0; i < MONEDAS_PRIMERA_PLATAFORMA; ++i) {
+    for (size_t i = 0; i < 5; ++i) {
         Moneda moneda(i + 1, 0);
         collectibles.push_back(std::make_unique<Moneda>(moneda));
     }
@@ -62,6 +67,7 @@ void GameEscenario::cargar_collectibles() {
     collectibles.push_back(std::make_unique<Zanahoria>(zanahoria));
 }
 
+/*
 void GameEscenario::crear_enemigo_aleatorio(uint16_t id_enemigo) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
@@ -82,6 +88,7 @@ void GameEscenario::crear_enemigo_aleatorio(uint16_t id_enemigo) {
             throw std::runtime_error("Tipo de enemigo desconocido");
     }
 }
+*/
 
 void GameEscenario::actualizar_escenario() {
     actualizar_enemigos();

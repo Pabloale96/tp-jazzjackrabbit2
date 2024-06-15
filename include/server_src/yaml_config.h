@@ -15,11 +15,20 @@ struct ArmaConfig {
 };
 
 struct EnemigoConfig {
-    uint16_t pos_x;
-    uint16_t pos_y;
     uint16_t vidas;
     uint16_t danio;
     uint16_t puntos;
+    float proba_droppear_municion;
+    float proba_droppear_vida;
+    uint8_t segundos_para_revivir;
+};
+
+struct PersonajeConfig {
+    uint16_t pos_x;
+    uint16_t pos_y;
+    uint16_t vidas;
+    uint16_t puntos;
+    uint8_t segundos_para_revivir;
 };
 
 struct GameConfig {
@@ -29,24 +38,26 @@ struct GameConfig {
     ArmaConfig arma2;
     uint16_t puntos_gemas;
     uint16_t puntos_monedas;
-    int numero_inicial_enemigos;
-    std::vector<EnemigoConfig> enemigos;
-    uint16_t puntos_iniciales;
-    uint16_t vida_inicial;
-    uint16_t x_inicial;
-    uint16_t y_inicial;
+    uint16_t vidas_zanahorias;
+    EnemigoConfig enemigo_1;
+    EnemigoConfig enemigo_2;
+    EnemigoConfig enemigo_3;
+    PersonajeConfig personaje;
 };
 
 class YAMLConfig {
-public:
-    explicit YAMLConfig(const std::string& filename);
-    void loadConfig();
-    GameConfig getConfig() const;
-
 private:
     std::string filename;
-    GameConfig config;
-};
+    static GameConfig config;
 
+    explicit YAMLConfig(const std::string& filename);
+    YAMLConfig(const YAMLConfig&) = delete;
+    YAMLConfig& operator=(const YAMLConfig&) = delete;
+
+public:
+    static YAMLConfig& getInstance(const std::string& filename);
+    void loadConfig();
+    static GameConfig& getConfig();
+};
 
 #endif

@@ -55,3 +55,6 @@ run_tests.sh
 
 # Visual Studio Code
 .vscode/
+
+# SDL2pp 
+/SDL2pp

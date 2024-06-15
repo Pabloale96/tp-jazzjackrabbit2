@@ -1,9 +1,9 @@
 #include "../../include/common_src/vector_monitor.h"
 
+#include "../../include/common_src/msgToSent.h"
 #include "../../include/server_src/game/game_collectible.h"
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_personaje.h"
-#include "../../include/common_src/msgToSent.h"
 
 template <typename T>
 VectorMonitor<T>::VectorMonitor(size_t initial_size): vector_comun(initial_size) {}

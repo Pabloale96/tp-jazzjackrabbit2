@@ -6,11 +6,13 @@
 
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_state.h"
+#include "../../include/server_src/yaml_config.h"
 
-Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
-           std::chrono::seconds duracion_de_la_partida):
+Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         partida_id(partida_id), escenario() {
-    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje, duracion_de_la_partida);
+    auto personaje_ptr = crear_personaje(
+            partida_id, client_id, personaje,
+            std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida)) * 60);
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {
@@ -146,9 +148,9 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
         for (auto& bala: personaje.obtener_balas()) {
             if (bala.obtener_posicion() == enemigo->get_posicion_enemigo()) {
                 if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
-                    enemigo->recibir_disparo(DANO_INICIAL);
-                } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_SECUNDARIA) {
-                    enemigo->recibir_disparo(DANO_ARMA1);
+                    enemigo->recibir_disparo(YAMLConfig::getConfig().arma_inicial.dano);
+                } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_1) {
+                    enemigo->recibir_disparo(YAMLConfig::getConfig().arma1.dano);
                 }
                 personaje.eliminar_bala(bala.obtener_id());
             }

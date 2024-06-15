@@ -12,8 +12,8 @@ Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion
 
 Gui::~Gui() {}
 
-void Gui::setGameState(GameStateMonitorClient & gamestate) {
-    
+void Gui::setGameState(GameStateMonitorClient& gamestate) {
+
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
     pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_x());
     pos_y = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_y());

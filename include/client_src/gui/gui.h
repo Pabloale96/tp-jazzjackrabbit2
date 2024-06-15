@@ -40,7 +40,7 @@ using SDL2pp::Window;
 
 class Gui: public Thread {
 private:
-    //mutable std::mutex m;  // Si no pongo mutable no puedo usar lock en metodos const
+    // mutable std::mutex m;  // Si no pongo mutable no puedo usar lock en metodos const
 
     // posicion del jugador:
     int pos_x = 0;
@@ -72,7 +72,7 @@ public:
     Gui(int, int, bool&, std::string&, Queue<msgAccion>&, VectorMonitor<msgPlataforma>&, uint16_t);
     ~Gui();
     void run() override;
-    void setGameState(GameStateMonitorClient& );
+    void setGameState(GameStateMonitorClient&);
     void setEscenario(ClaseTexturas&);
 };
 

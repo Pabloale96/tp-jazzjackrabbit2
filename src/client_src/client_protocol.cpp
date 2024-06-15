@@ -137,7 +137,7 @@ void ProtocolClient::enviar_accion(msgAccion& msg) {
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-void ProtocolClient::recibir_respuesta(GameStateMonitorClient & gameState,uint16_t& client_id) {
+void ProtocolClient::recibir_respuesta(GameStateMonitorClient& gameState, uint16_t& client_id) {
     msgGameState msg;
     if (was_closed) {
         // return nullptr;

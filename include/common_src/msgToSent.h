@@ -102,8 +102,8 @@ struct msgPersonaje {
         tipo_arma = pers.obtener_nombre_arma();
         estado = pers.obtener_estado_actual();
         personaje[POS_ID_PERSONAJE] = htons(id);
-        personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());
-        personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());
+        personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());  // *100
+        personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());  // *100
         personaje[POS_PUNTOS_PERSONAJE] = htons(pers.obtener_puntos());
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());

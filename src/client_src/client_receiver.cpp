@@ -15,11 +15,11 @@ ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& clie
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            std::shared_ptr<GameStateMonitorClient> gamestate; 
-            protocolo_cliente.recibir_respuesta(*gamestate,client_id);
+            std::shared_ptr<GameStateMonitorClient> gamestate;
+            protocolo_cliente.recibir_respuesta(*gamestate, client_id);
 
             server_msg.push(std::move(gamestate));
-        
+
         } catch (const ClosedQueue&) {
             return;
         } catch (const LibError& err) {
