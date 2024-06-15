@@ -1,25 +1,26 @@
 #include "../../include/server_src/game/game_arma.h"
+#include "../../include/server_src/yaml_config.h"
 
 // Arma es la clase arma Inicial, a medida que vaya ganando, pasará a tener las otras armas
 Arma::Arma():
         nombre_arma(0x01),
-        cant_municiones(MUNICION_ARMA_INICIAL_INFINITA),
-        vel_dis(VEL_DIS_INICIAL),
-        vel_proy(VEL_PROY_INICIAL),
-        dano(DANO_INICIAL) {}
+        cant_municiones(YAMLConfig::getConfig().arma_inicial.municion),
+        vel_dis(YAMLConfig::getConfig().arma_inicial.vel_dis),
+        vel_proy(YAMLConfig::getConfig().arma_inicial.vel_proy),
+        dano(YAMLConfig::getConfig().arma_inicial.dano) {}
 
 Arma1::Arma1() {
     nombre_arma = 0x02;
-    cant_municiones = MUNICION_ARMA1;
-    vel_dis = VEL_DIS_ARMA1;
-    vel_proy = VEL_PROY_ARMA1;
-    dano = DANO_ARMA1;
+    cant_municiones = YAMLConfig::getConfig().arma1.municion;
+    vel_dis = YAMLConfig::getConfig().arma_inicial.vel_dis;
+    vel_proy = YAMLConfig::getConfig().arma_inicial.vel_proy;
+    dano = YAMLConfig::getConfig().arma_inicial.dano;
 }
 
 Arma2::Arma2() {
     nombre_arma = 0x03;
-    cant_municiones = MUNICION_ARMA2;
-    vel_dis = VEL_DIS_ARMA2;
-    vel_proy = VEL_PROY_ARMA2;
-    dano = DANO_ARMA2;
+    cant_municiones = YAMLConfig::getConfig().arma2.municion;
+    vel_dis = YAMLConfig::getConfig().arma2.vel_dis;
+    vel_proy = YAMLConfig::getConfig().arma2.vel_proy;
+    dano = YAMLConfig::getConfig().arma2.dano;
 }
