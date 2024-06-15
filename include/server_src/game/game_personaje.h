@@ -32,7 +32,7 @@ private:
 
     uint8_t animacion;
 
-    Arma arma;
+    std::unique_ptr<Arma> arma;
     std::vector<Municion> municiones_disparadas;
     uint16_t bala_id;
 
@@ -101,6 +101,8 @@ public:
     void disparar();
 
     void eliminar_bala(uint16_t id_bala);
+
+    void cambiar_arma(std::unique_ptr<Arma> nueva_arma);
 
     virtual void accion_especial() = 0;
 

@@ -1,6 +1,7 @@
 #include "../../include/server_src/game/game_personaje.h"
 
 #include "../../include/common_src/msgToSent.h"
+#include "../../include/server_src/yaml_config.h"
 
 #define ID_BALA_INICIAL 0
 
@@ -20,7 +21,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
         puntos(PUNTOS_INICIALES),
         vida(VIDA_INICIAL),
 
-        arma(),
+        arma(std::make_unique<ArmaInicial>()),
         bala_id(ID_BALA_INICIAL),
 
         posicion(POS_X_INICIAL, POS_Y_INICIAL),
@@ -41,7 +42,8 @@ Personaje::Personaje(msgPersonaje& personaje):
         puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
         vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
 
-        arma(ntohs(personaje.personaje[POS_MUNICION_PERSONAJE]), personaje.tipo_arma),
+        arma(arma->crear_arma(ntohs(personaje.personaje[POS_MUNICION_PERSONAJE]),
+                              personaje.tipo_arma)),
 
         posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]),
         estados() {
@@ -150,19 +152,21 @@ void Personaje::disminuir_vida(uint16_t danio) {
 }
 
 void Personaje::disparar() {
-    if (arma.obtener_municion() == 0) {
+    if (arma->obtener_municion() == 0) {
         return;
     } else {
-        arma.disminuir_municion();
-        int vel_dis_con_direccion_personaje = arma.obtener_vel_dis();
+        arma->disminuir_municion();
+        int vel_dis_con_direccion_personaje = arma->obtener_vel_dis();
         if (this->obtener_velocidad().obtener_velocidad_x() < 0) {
             vel_dis_con_direccion_personaje *= -1;
         }
         municiones_disparadas.emplace_back(
                 obtener_posicion().get_posicion_x(), obtener_posicion().get_posicion_y(),
-                vel_dis_con_direccion_personaje, arma.obtener_nombre_arma(), generar_id_bala());
+                vel_dis_con_direccion_personaje, arma->obtener_nombre_arma(), generar_id_bala());
     }
 }
+
+void Personaje::cambiar_arma(std::unique_ptr<Arma> nueva_arma) { arma = std::move(nueva_arma); }
 
 void Personaje::eliminar_bala(uint16_t id_bala) {
     for (auto it = municiones_disparadas.begin(); it != municiones_disparadas.end(); ++it) {
@@ -175,7 +179,7 @@ void Personaje::eliminar_bala(uint16_t id_bala) {
 
 std::vector<Municion> Personaje::obtener_balas() const { return municiones_disparadas; }
 
-void Personaje::disminuir_municion() { arma.disminuir_municion(); }
+void Personaje::disminuir_municion() { arma->disminuir_municion(); }
 
 Posicion Personaje::obtener_posicion() const { return posicion; }
 
@@ -191,11 +195,11 @@ uint16_t Personaje::obtener_puntos() const { return puntos; }
 
 uint16_t Personaje::obtener_vida() const { return vida; }
 
-uint16_t Personaje::obtener_municion() const { return arma.obtener_municion(); }
+uint16_t Personaje::obtener_municion() const { return arma->obtener_municion(); }
 
 uint16_t Personaje::generar_id_bala() { return bala_id++; }
 
-uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
+uint8_t Personaje::obtener_nombre_arma() const { return arma->obtener_nombre_arma(); }
 
 std::chrono::seconds Personaje::obtener_tiempo_restante_de_partida() const {
     return tiempo_restante_de_partida;

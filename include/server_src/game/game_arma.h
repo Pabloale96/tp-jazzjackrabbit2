@@ -1,24 +1,8 @@
-#ifndef _GAME_ARMA_H_
-#define _GAME_ARMA_H_
+#ifndef GAME_ARMA_H
+#define GAME_ARMA_H
 
-#include <iostream>
-#include <string>
-#include <vector>
-
-#define MUNICION_ARMA_INICIAL_INFINITA 10000
-#define VEL_DIS_INICIAL 0
-#define VEL_PROY_INICIAL 0
-#define DANO_INICIAL 0
-
-#define MUNICION_ARMA1 10
-#define VEL_DIS_ARMA1 10
-#define VEL_PROY_ARMA1 10
-#define DANO_ARMA1 10
-
-#define MUNICION_ARMA2 20
-#define VEL_DIS_ARMA2 20
-#define VEL_PROY_ARMA2 20
-#define DANO_ARMA2 20
+#include <cstdint>
+#include <memory>
 
 class Arma {
 protected:
@@ -29,57 +13,41 @@ protected:
     uint16_t dano;
 
 public:
-    Arma();
-    Arma(uint16_t municion, uint16_t nombre) {
-        this->cant_municiones = municion;
-        this->nombre_arma = nombre;
-        switch (nombre) {
-            case 1:
-                this->vel_dis = VEL_DIS_ARMA1;
-                this->vel_proy = VEL_PROY_ARMA1;
-                this->dano = DANO_ARMA1;
-                break;
-            case 2:
-                this->vel_dis = VEL_DIS_ARMA2;
-                this->vel_proy = VEL_PROY_ARMA2;
-                this->dano = DANO_ARMA2;
-                break;
-            default:
-                this->vel_dis = VEL_DIS_INICIAL;
-                this->vel_proy = VEL_PROY_INICIAL;
-                this->dano = DANO_INICIAL;
-                break;
-        }
-    }
+    Arma(uint16_t municion, uint8_t nombre, uint16_t vel_dis, uint16_t vel_proy, uint16_t dano);
 
-    uint8_t obtener_nombre_arma() const { return nombre_arma; }
+    uint8_t obtener_nombre_arma() const;
 
-    uint16_t obtener_municion() const { return cant_municiones; }
+    uint16_t obtener_municion() const;
 
-    uint16_t obtener_vel_dis() const { return vel_dis; }
+    void set_municion(uint16_t municion);
 
-    uint16_t obtener_vel_proy() const { return vel_proy; }
+    uint16_t obtener_vel_dis() const;
 
-    void disminuir_municion() {
-        if (nombre_arma == 0) {
-            // El arma inicial tiene municion infinita
-            return;
-        } else {
-            cant_municiones--;
-        }
-    }
+    uint16_t obtener_vel_proy() const;
+
+    void disminuir_municion();
+
+    std::unique_ptr<Arma> crear_arma(uint16_t municion, uint8_t nombre);
 
     virtual ~Arma() = default;
+};
+
+class ArmaInicial: public Arma {
+public:
+    ArmaInicial();
+    explicit ArmaInicial(uint16_t municion);
 };
 
 class Arma1: public Arma {
 public:
     Arma1();
+    explicit Arma1(uint16_t municion);
 };
 
 class Arma2: public Arma {
 public:
     Arma2();
+    explicit Arma2(uint16_t municion);
 };
 
 #endif

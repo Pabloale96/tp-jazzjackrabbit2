@@ -47,36 +47,6 @@ include_directories(${PROJECT_BINARY_DIR}/include)
 
 message("Headers generados: ${UIS_HEADERS}")
 
-add_executable(client
-  src/client_src/client.cpp
-  src/client_src/gameState_monitor.cpp
-  src/server_src/game/game_personaje.cpp
-  src/server_src/game/game_municion.cpp
-  src/server_src/game/game_enemigo.cpp
-  src/server_src/game/game_arma.cpp
-  src/server_src/game/game_posicion.cpp
-  src/server_src/game/game_velocidad.cpp
-  src/server_src/game/game_state.cpp
-  src/client_src/gui/gui.cpp
-  src/client_src/main.cpp
-  src/common_src/vector_monitor.cpp
-  src/client_src/client_protocol.cpp
-  src/client_src/client_receiver.cpp
-  src/client_src/client_sender.cpp
-  src/common_src/catedra/liberror.cpp
-  src/common_src/catedra/resolver.cpp
-  src/common_src/catedra/resolvererror.cpp
-  src/common_src/catedra/sockets.cpp
-  src/client_src/gui/gui_animaciones.cpp
-  src/client_src/gui/gui_keyhandler.cpp
-  src/client_src/gui/gui_escenario.cpp
-  src/client_src/gui/gui_personaje.cpp
-  src/client_src/gui/gui_clase_texturas.cpp
-  src/client_src/gui/gui_enemigos.cpp
-  src/client_src/gui/gui_frame.cpp
-  src/client_src/gui/gui_platform.cpp
-  ${UIS_HEADERS})
-
 add_executable(server
   src/server_src/lobby.cpp
   src/server_src/cliente_aceptado.cpp
@@ -106,6 +76,36 @@ add_executable(server
   src/common_src/catedra/sockets.cpp
   src/common_src/vector_monitor.cpp
   src/server_src/main.cpp
+  ${UIS_HEADERS})
+
+add_executable(client
+  src/client_src/client.cpp
+  src/client_src/gameState_monitor.cpp
+  src/server_src/game/game_personaje.cpp
+  src/server_src/game/game_municion.cpp
+  src/server_src/game/game_enemigo.cpp
+  src/server_src/game/game_arma.cpp
+  src/server_src/game/game_posicion.cpp
+  src/server_src/game/game_velocidad.cpp
+  src/server_src/game/game_state.cpp
+  src/client_src/gui/gui.cpp
+  src/client_src/main.cpp
+  src/common_src/vector_monitor.cpp
+  src/client_src/client_protocol.cpp
+  src/client_src/client_receiver.cpp
+  src/client_src/client_sender.cpp
+  src/common_src/catedra/liberror.cpp
+  src/common_src/catedra/resolver.cpp
+  src/common_src/catedra/resolvererror.cpp
+  src/common_src/catedra/sockets.cpp
+  src/client_src/gui/gui_animaciones.cpp
+  src/client_src/gui/gui_keyhandler.cpp
+  src/client_src/gui/gui_escenario.cpp
+  src/client_src/gui/gui_personaje.cpp
+  src/client_src/gui/gui_clase_texturas.cpp
+  src/client_src/gui/gui_enemigos.cpp
+  src/client_src/gui/gui_frame.cpp
+  src/client_src/gui/gui_platform.cpp
   ${UIS_HEADERS})
 
 # Use the Widgets module from Qt 5.
