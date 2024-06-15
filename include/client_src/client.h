@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../common_src/vector_monitor.h"
+
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
@@ -15,7 +16,6 @@
 
 class Client {
 private:
-
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;

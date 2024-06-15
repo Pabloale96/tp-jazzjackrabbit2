@@ -34,9 +34,10 @@ float PlatformGui::rotateToFloat() {
 
 void PlatformGui::show(int dif_x, int dif_y) {
     float rotate = this->rotateToFloat();
-    if((pos_x - dif_x < 30 && pos_x - dif_x >-30)||
-            (pos_y- dif_y < 14 && pos_y - dif_y >-14)){
-        platform.copy(rotate, (pos_x-dif_x)*SCALING_VALUE_PIXEL_X, abs(pos_y-dif_y)*SCALING_VALUE_PIXEL_Y,
-                 width*SCALING_VALUE_PIXEL_X, height*SCALING_VALUE_PIXEL_Y);
+    if ((pos_x - dif_x < 30 && pos_x - dif_x > -30) ||
+        (pos_y - dif_y < 14 && pos_y - dif_y > -14)) {
+        platform.copy(rotate, (pos_x - dif_x) * SCALING_VALUE_PIXEL_X,
+                      abs(pos_y - dif_y) * SCALING_VALUE_PIXEL_Y, width * SCALING_VALUE_PIXEL_X,
+                      height * SCALING_VALUE_PIXEL_Y);
     }
 }

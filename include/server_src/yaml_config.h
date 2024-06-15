@@ -50,7 +50,7 @@ private:
     std::string filename;
     static GameConfig config;
 
-    YAMLConfig(const std::string& filename);
+    explicit YAMLConfig(const std::string& filename);
     YAMLConfig(const YAMLConfig&) = delete;
     YAMLConfig& operator=(const YAMLConfig&) = delete;
 

@@ -1,12 +1,13 @@
 #ifndef __CLIENT_GAME_STATE_MONITOR_H__
 #define __CLIENT_GAME_STATE_MONITOR_H__
 
+#include <map>
 #include <memory>
 #include <vector>
 
 #include "game_state.h"
-#include "queue.h"
 #include "msgToSent.h"
+#include "queue.h"
 
 class GameStateMonitorClient {
 private:
@@ -24,9 +25,9 @@ public:
 
     void setGameState(const uint8_t& state_partida);
 
-    void pushPersonajes(msgPersonaje &);
+    void pushPersonajes(msgPersonaje&);
 
-    void pushEnemigos(uint16_t *);
+    void pushEnemigos(uint16_t*);
 
     bool getJugando();
 

@@ -206,7 +206,7 @@ void Client::jugar() {
     while (!client_off) {
 
         std::shared_ptr<GameStateMonitorClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {        
+        while (server_msg.try_pop(respuesta)) {
             gui.setGameState(*respuesta);
             // respuesta->imprimir_cliente();
 

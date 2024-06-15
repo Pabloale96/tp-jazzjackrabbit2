@@ -6,9 +6,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "msgToSent.h"
 #include "../common_src/vector_monitor.h"
+
 #include "gameState_monitor.h"
+#include "msgToSent.h"
 #include "sockets.h"
 
 enum class TipoAccion : char {
