@@ -15,10 +15,6 @@
 #include "game_velocidad.h"
 #include "protocol_utils.h"
 
-#define PUNTOS_INICIALES 0
-#define VIDA_INICIAL 10
-
-
 struct msgPersonaje;
 
 class Personaje {

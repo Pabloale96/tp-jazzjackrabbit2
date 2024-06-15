@@ -18,8 +18,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
         partida_id(partida_id),
         client_id(client_id),
         tipo_personaje(),
-        puntos(PUNTOS_INICIALES),
-        vida(VIDA_INICIAL),
+        puntos(YAMLConfig::getConfig().personaje.puntos),
+        vida(YAMLConfig::getConfig().personaje.vidas),
 
         arma(std::make_unique<ArmaInicial>()),
         bala_id(ID_BALA_INICIAL),
@@ -108,7 +108,7 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
         estados.setMuerto(true);
         duracion_muerto++;
         if (duracion_muerto == std::chrono::seconds(SEGUNDOS_PARA_REVIVIR)) {
-            vida = VIDA_INICIAL;
+            vida = YAMLConfig::getConfig().personaje.vidas;
             estados.setMuerto(false);
             estados.reset();
             estados.setIdle(true);
