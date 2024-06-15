@@ -6,11 +6,12 @@
 
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_state.h"
+#include "../../include/server_src/yaml_config.h"
 
-Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
-           std::chrono::seconds duracion_de_la_partida):
+Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         partida_id(partida_id), escenario() {
-    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje, duracion_de_la_partida);
+    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje,
+                                         std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida))*60);
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {

@@ -19,8 +19,7 @@ private:
     GameEscenario escenario;
 
 public:
-    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
-                  std::chrono::seconds duracion_de_la_partida);
+    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
 
     std::vector<std::shared_ptr<Personaje>>& obtener_vector_de_personajes();
 

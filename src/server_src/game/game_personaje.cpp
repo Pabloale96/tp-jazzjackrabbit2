@@ -99,8 +99,8 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     for (auto& municion: municiones_disparadas) {
         municion.mover();
-    }    
-    
+    }
+
     if (vida == 0) {
         velocidad.idle();
         estados.setMuerto(true);
@@ -137,9 +137,7 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
     this->tiempo_restante_de_partida = tiempo_restante_de_partida;
 }
 
-void Personaje::mover() {
-    posicion.mover(this->velocidad);
-}
+void Personaje::mover() { posicion.mover(this->velocidad); }
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {
