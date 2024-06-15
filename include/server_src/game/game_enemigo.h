@@ -15,14 +15,12 @@ private:
     Posicion posicion_enemigo;
     Velocidad velocidad_enemigo;
 
-    unsigned int iteraciones;
-
     uint16_t vidas;
     uint16_t danio_al_jugador;
     uint16_t puntos;
-    // int time_revive;
-    // float prob_municion;
-    // float prob_vida;
+    int time_revive;
+    float prob_municion;
+    float prob_vida;
 
 public:
     // Constructor
@@ -38,6 +36,9 @@ public:
     void set_vidas(uint16_t vidas);
     void set_danio_al_jugador(uint16_t danio_al_jugador);
     void set_puntos(uint16_t puntos);
+    void set_time_revive(int time_revive);
+    void set_prob_municion(float prob_municion);
+    void set_prob_vida(float prob_vida);
 
     uint16_t get_id_enemigo() const;
     TipoEnemigo get_tipo_enemigo() const;
@@ -70,7 +71,7 @@ public:
 // ************  ENEMIGO 1 ("nombre")  ************
 class Enemigo1: public Enemigo {
 public:
-    explicit Enemigo1(uint16_t id);
+    explicit Enemigo1(uint16_t id, uint16_t x, uint16_t y);
 
     // Revive al enemigo
     void revivir_enemigo() override;
@@ -80,7 +81,7 @@ public:
 // ************  ENEMIGO 2 ("nombre")  ************
 class Enemigo2: public Enemigo {
 public:
-    explicit Enemigo2(uint16_t id);
+    explicit Enemigo2(uint16_t id, uint16_t x, uint16_t y);
 
     // Revive al enemigo
     void revivir_enemigo() override;
@@ -90,7 +91,7 @@ public:
 // ************  ENEMIGO 3 ("nombre")  ************
 class Enemigo3: public Enemigo {
 public:
-    explicit Enemigo3(uint16_t id);
+    explicit Enemigo3(uint16_t id, uint16_t x, uint16_t y);
 
     // Revive al enemigo
     void revivir_enemigo() override;

@@ -130,6 +130,16 @@ void Saltar::ejecutar(Game& game) {
 }
 
 
+// **** CAMBIAR DE ARMA ****
+CambiarArma::CambiarArma(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void CambiarArma::ejecutar(Game& game) {
+    if (toggle) {
+        game.obtener_personaje(client_id).cambiar_arma();
+    }
+}
+
+
 // **** Kill all ****
 KillAll::KillAll(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 

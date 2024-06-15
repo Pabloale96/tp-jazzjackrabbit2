@@ -5,10 +5,7 @@
 #include <vector>
 
 #include "game_posicion.h"
-
-#define PUNTOS_GEMAS 100
-#define PUNTOS_MONEDAS 50
-#define VIDAS_ZANAHORIA 5
+#include "../../include/server_src/yaml_config.h"
 
 class Collectible {
 private:
@@ -31,7 +28,7 @@ private:
     uint16_t puntos;
 
 public:
-    Gema(uint16_t x, uint16_t y): Collectible(x, y), puntos(PUNTOS_GEMAS) {}
+    Gema(uint16_t x, uint16_t y): Collectible(x, y), puntos(YAMLConfig::getConfig().puntos_gemas) {}
 
     uint16_t obtener_puntos() const { return puntos; }
 };
@@ -41,7 +38,7 @@ private:
     uint16_t puntos;
 
 public:
-    Moneda(uint16_t x, uint16_t y): Collectible(x, y), puntos(PUNTOS_MONEDAS) {}
+    Moneda(uint16_t x, uint16_t y): Collectible(x, y), puntos(YAMLConfig::getConfig().puntos_monedas) {}
 
     uint16_t obtener_puntos() const { return puntos; }
 };
@@ -51,7 +48,7 @@ private:
     uint16_t vidas;
 
 public:
-    Zanahoria(uint16_t x, uint16_t y): Collectible(x, y), vidas(VIDAS_ZANAHORIA) {}
+    Zanahoria(uint16_t x, uint16_t y): Collectible(x, y), vidas(YAMLConfig::getConfig().vidas_zanahorias) {}
 
     uint16_t obtener_vidas() const { return vidas; }
 };

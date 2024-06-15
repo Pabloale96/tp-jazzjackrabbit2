@@ -1,26 +1,58 @@
 #include "../../include/server_src/game/game_arma.h"
+
+#include "../../include/common_src/protocol_utils.h"
 #include "../../include/server_src/yaml_config.h"
 
-// Arma es la clase arma Inicial, a medida que vaya ganando, pasará a tener las otras armas
-Arma::Arma():
-        nombre_arma(0x01),
-        cant_municiones(YAMLConfig::getConfig().arma_inicial.municion),
-        vel_dis(YAMLConfig::getConfig().arma_inicial.vel_dis),
-        vel_proy(YAMLConfig::getConfig().arma_inicial.vel_proy),
-        dano(YAMLConfig::getConfig().arma_inicial.dano) {}
+Arma::Arma(uint16_t municion, uint8_t nombre, uint16_t vel_dis, uint16_t vel_proy, uint16_t dano):
+        nombre_arma(nombre),
+        cant_municiones(municion),
+        vel_dis(vel_dis),
+        vel_proy(vel_proy),
+        dano(dano) {}
 
-Arma1::Arma1() {
-    nombre_arma = 0x02;
-    cant_municiones = YAMLConfig::getConfig().arma1.municion;
-    vel_dis = YAMLConfig::getConfig().arma_inicial.vel_dis;
-    vel_proy = YAMLConfig::getConfig().arma_inicial.vel_proy;
-    dano = YAMLConfig::getConfig().arma_inicial.dano;
+uint8_t Arma::obtener_nombre_arma() const { return nombre_arma; }
+
+uint16_t Arma::obtener_municion() const { return cant_municiones; }
+
+uint16_t Arma::obtener_vel_dis() const { return vel_dis; }
+
+uint16_t Arma::obtener_vel_proy() const { return vel_proy; }
+
+void Arma::disminuir_municion() {
+    if (nombre_arma != 0) {
+        cant_municiones--;
+    }
 }
 
-Arma2::Arma2() {
-    nombre_arma = 0x03;
-    cant_municiones = YAMLConfig::getConfig().arma2.municion;
-    vel_dis = YAMLConfig::getConfig().arma2.vel_dis;
-    vel_proy = YAMLConfig::getConfig().arma2.vel_proy;
-    dano = YAMLConfig::getConfig().arma2.dano;
+std::unique_ptr<Arma> Arma::crear_arma(uint16_t municion, uint8_t nombre) {
+    switch (nombre) {
+        case 1:
+            return std::make_unique<Arma1>(municion);
+        case 2:
+            return std::make_unique<Arma2>(municion);
+        default:
+            return std::make_unique<ArmaInicial>(municion);
+    }
 }
+
+ArmaInicial::ArmaInicial():
+        Arma(YAMLConfig::getConfig().arma_inicial.municion, (uint8_t)armas::ARMA_INICIAL,
+             YAMLConfig::getConfig().arma_inicial.vel_dis,
+             YAMLConfig::getConfig().arma_inicial.vel_proy,
+             YAMLConfig::getConfig().arma_inicial.dano) {}
+
+ArmaInicial::ArmaInicial(uint16_t municion): ArmaInicial() { set_municion(municion); }
+
+Arma1::Arma1():
+        Arma(YAMLConfig::getConfig().arma1.municion, (uint8_t)armas::ARMA_1,
+             YAMLConfig::getConfig().arma1.vel_dis, YAMLConfig::getConfig().arma1.vel_proy,
+             YAMLConfig::getConfig().arma1.dano) {}
+
+Arma1::Arma1(uint16_t municion): Arma1() { set_municion(municion); }
+
+Arma2::Arma2():
+        Arma(YAMLConfig::getConfig().arma2.municion, (uint8_t)armas::ARMA_2,
+             YAMLConfig::getConfig().arma2.vel_dis, YAMLConfig::getConfig().arma2.vel_proy,
+             YAMLConfig::getConfig().arma2.dano) {}
+
+Arma2::Arma2(uint16_t municion): Arma2() { set_municion(municion); }

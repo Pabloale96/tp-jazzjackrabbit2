@@ -148,9 +148,9 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
         for (auto& bala: personaje.obtener_balas()) {
             if (bala.obtener_posicion() == enemigo->get_posicion_enemigo()) {
                 if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
-                    enemigo->recibir_disparo(DANO_INICIAL);
-                } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_SECUNDARIA) {
-                    enemigo->recibir_disparo(DANO_ARMA1);
+                    enemigo->recibir_disparo(YAMLConfig::getConfig().arma_inicial.dano);
+                } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_1) {
+                    enemigo->recibir_disparo(YAMLConfig::getConfig().arma1.dano);
                 }
                 personaje.eliminar_bala(bala.obtener_id());
             }

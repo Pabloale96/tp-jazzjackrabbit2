@@ -15,10 +15,6 @@
 #include "game_velocidad.h"
 #include "protocol_utils.h"
 
-#define PUNTOS_INICIALES 0
-#define VIDA_INICIAL 10
-
-
 struct msgPersonaje;
 
 class Personaje {
@@ -32,7 +28,7 @@ private:
 
     uint8_t animacion;
 
-    Arma arma;
+    std::unique_ptr<Arma> arma;
     std::vector<Municion> municiones_disparadas;
     uint16_t bala_id;
 
@@ -101,6 +97,8 @@ public:
     void disparar();
 
     void eliminar_bala(uint16_t id_bala);
+
+    void cambiar_arma();
 
     virtual void accion_especial() = 0;
 
