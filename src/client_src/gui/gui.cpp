@@ -50,7 +50,8 @@ void Gui::run() {
     if (personaje == "j") {
         frames = texturas.findFrame(std::string(JAZZ_STAND));
         jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, 4, frames); // 4 ponerlo como define
+                                            renderer.GetOutputHeight() / 2, 4,
+                                            frames);  // 4 ponerlo como define
     } else if (personaje == "s") {
         frames = texturas.findFrame(std::string(SPAZ_STAND));
         jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
@@ -83,16 +84,15 @@ void Gui::run() {
             if(personaje->obtener_personaje_id() != client_id) {
                 std::cout << "Entro personaje"<<std::endl;
                 std::unique_ptr<PersonajeGui> pers;
-                int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) * SCALING_VALUE_PIXEL;
-                int y = (personaje->obtener_posicion().get_posicion_y() - pos_y) * SCALING_VALUE_PIXEL;
-                if (x <= (pos_x + renderer.GetOutputWidth() / 2) ||
-                    x <= (pos_x - renderer.GetOutputWidth() / 2) ||
-                    y <= (pos_y + renderer.GetOutputHeight() / 2) ||
-                    y <= (pos_y - renderer.GetOutputHeight() / 2)) {
-                    std::cout << "tipo: " <<(unsigned) personaje->obtener_tipo_personaje() << std::endl;
-                    if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
-                        frames_personajes = texturas.findFrame(std::string(JAZZ_STAND));
-                        pers = std::make_unique<JazzGui>(texturas, x, y, frames_personajes);
+                int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) *
+        SCALING_VALUE_PIXEL; int y = (personaje->obtener_posicion().get_posicion_y() - pos_y) *
+        SCALING_VALUE_PIXEL; if (x <= (pos_x + renderer.GetOutputWidth() / 2) || x <= (pos_x -
+        renderer.GetOutputWidth() / 2) || y <= (pos_y + renderer.GetOutputHeight() / 2) || y <=
+        (pos_y - renderer.GetOutputHeight() / 2)) { std::cout << "tipo: " <<(unsigned)
+        personaje->obtener_tipo_personaje() << std::endl; if (personaje->obtener_tipo_personaje() ==
+        (uint8_t)personajes::JAZZ) { frames_personajes =
+        texturas.findFrame(std::string(JAZZ_STAND)); pers = std::make_unique<JazzGui>(texturas, x,
+        y, frames_personajes);
                         // pers->show(animacion);//personaje->obtener_animacion());
                     } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
                         frames_personajes = texturas.findFrame(std::string(SPAZ_STAND));

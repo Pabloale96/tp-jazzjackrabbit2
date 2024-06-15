@@ -8,11 +8,9 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, int spee
 
 PersonajeGui::~PersonajeGui() {}
 
-void PersonajeGui::show() {
-    animacion.run(pos_x, pos_y, speed, frames, it);
-}
+void PersonajeGui::show() { animacion.run(pos_x, pos_y, speed, frames, it); }
 
-void PersonajeGui::setFrames(int animacion_actual,int spe) {}
+void PersonajeGui::setFrames(int animacion_actual, int spe) {}
 
 SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
@@ -20,7 +18,7 @@ SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, int speed,
 
 SpazGui::~SpazGui() {}
 
-void SpazGui::setFrames(int animacion_actual,int spe) {
+void SpazGui::setFrames(int animacion_actual, int spe) {
     switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);
@@ -142,7 +140,7 @@ LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy, int speed,
 
 LoriGui::~LoriGui() {}
 
-void LoriGui::setFrames(int animacion_actual,int spe) {
+void LoriGui::setFrames(int animacion_actual, int spe) {
     switch (animacion_actual) {
         case ANI_STAND:
             animacion.setFlip(false);

@@ -24,7 +24,7 @@ protected:
     ClaseTexturas& texturas;
     int pos_x;
     int pos_y;
-    int speed=0;
+    int speed = 0;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>>& frames;
     std::vector<Frame>::iterator it;
@@ -34,7 +34,7 @@ public:
     explicit PersonajeGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~PersonajeGui();
     void show();
-    virtual void setFrames(int,int);
+    virtual void setFrames(int, int);
 };
 
 class SpazGui: public PersonajeGui {
@@ -43,7 +43,7 @@ public:
     explicit SpazGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~SpazGui();
 
-    void setFrames(int,int) override;
+    void setFrames(int, int) override;
 };
 
 class JazzGui: public PersonajeGui {
@@ -52,7 +52,7 @@ public:
     explicit JazzGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~JazzGui();
 
-    void setFrames(int,int) override;
+    void setFrames(int, int) override;
 };
 
 class LoriGui: public PersonajeGui {
@@ -61,6 +61,6 @@ public:
     explicit LoriGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~LoriGui();
 
-    void setFrames(int,int) override;
+    void setFrames(int, int) override;
 };
 #endif

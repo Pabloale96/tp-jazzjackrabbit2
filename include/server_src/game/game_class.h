@@ -19,7 +19,8 @@ private:
     GameEscenario escenario;
 
 public:
-    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
+    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
+                  std::chrono::seconds duracion_de_la_partida);
 
     std::vector<std::shared_ptr<Personaje>>& obtener_vector_de_personajes();
 
@@ -49,9 +50,9 @@ public:
 
     void chequear_colisiones_personaje_con_collectible(Personaje& personaje);
 
-    void actualizar();
+    void actualizar(std::chrono::seconds tiempo_restante_de_partida);
 
-    void actualizar_personajes();
+    void actualizar_personajes(std::chrono::seconds tiempo_restante_de_partida);
 
     void actualizar_escenario();
 
@@ -59,7 +60,8 @@ public:
 
     void crear_nuevo_gamestate(GameState& gamestate);
 
-    void agregar_personaje(uint16_t client_id, uint8_t personaje);
+    void agregar_personaje(uint16_t client_id, uint8_t personaje,
+                           std::chrono::seconds tiempo_restante_de_partida);
 
     void borrar_personaje(uint16_t client_id);
 

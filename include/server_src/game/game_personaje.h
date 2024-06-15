@@ -1,6 +1,7 @@
 #ifndef _GAME_PERSONAJE_H_
 #define _GAME_PERSONAJE_H_
 
+#include <chrono>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -40,11 +41,16 @@ private:
     uint16_t ancho;
     uint16_t alto;
 
+    std::chrono::seconds tiempo_restante_de_partida;
+    std::chrono::seconds duracion_del_salto;
+    std::chrono::seconds duracion_muerto;
+
 protected:
     EstadoPersonaje estados;
 
 public:
-    explicit Personaje(uint16_t partida_id, uint16_t client_id);
+    explicit Personaje(uint16_t partida_id, uint16_t client_id,
+                       std::chrono::seconds tiempo_restante_de_partida);
 
     explicit Personaje(msgPersonaje& personaje);
 
@@ -58,7 +64,9 @@ public:
 
     uint8_t obtener_animacion();
 
-    void actualizar();
+    void actualizar(std::chrono::seconds tiempo_restante_de_partida);
+
+    void set_tiempo_restante_de_partida(std::chrono::seconds tiempo_restante_de_partida);
 
     virtual void mover();
 
@@ -84,6 +92,8 @@ public:
 
     uint16_t obtener_municion() const;
 
+    std::chrono::seconds obtener_tiempo_restante_de_partida() const;
+
     uint16_t generar_id_bala();
 
     std::vector<Municion> obtener_balas() const;
@@ -106,25 +116,26 @@ public:
 
 class Jazz: public Personaje {
 public:
-    Jazz(uint16_t partida_id, uint16_t client_id);
+    Jazz(uint16_t partida_id, uint16_t client_id, std::chrono::seconds tiempo_restante_de_partida);
     explicit Jazz(msgPersonaje& personaje);
     void accion_especial() override;
 };
 
 class Lori: public Personaje {
 public:
-    Lori(uint16_t partida_id, uint16_t client_id);
+    Lori(uint16_t partida_id, uint16_t client_id, std::chrono::seconds tiempo_restante_de_partida);
     explicit Lori(msgPersonaje& personaje);
     void accion_especial() override;
 };
 
 class Spazz: public Personaje {
 public:
-    Spazz(uint16_t partida_id, uint16_t client_id);
+    Spazz(uint16_t partida_id, uint16_t client_id, std::chrono::seconds tiempo_restante_de_partida);
     explicit Spazz(msgPersonaje& personaje);
     void accion_especial() override;
 };
 
-Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
+                           std::chrono::seconds tiempo_restante_de_partida);
 
 #endif
