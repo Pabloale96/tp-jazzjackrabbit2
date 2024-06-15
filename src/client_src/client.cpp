@@ -205,8 +205,8 @@ void Client::jugar() {
 
     while (!client_off) {
 
-        std::shared_ptr<GameState> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {
+        std::shared_ptr<GameStateMonitorClient> respuesta = nullptr;
+        while (server_msg.try_pop(respuesta)) {        
             gui.setGameState(*respuesta);
             //respuesta->imprimir_cliente();
 
@@ -220,7 +220,7 @@ void Client::jugar() {
     }
 }
 
-void Client::mostrar_estadisticas(const GameState& respuestas) const {
+void Client::mostrar_estadisticas(const GameStateMonitorClient& respuestas) const {
     // TODO: Habria q dejarla mas linda y que imprima en orden de puntos
     std::cout << "Estadísticas de la partida:" << std::endl;
     std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;

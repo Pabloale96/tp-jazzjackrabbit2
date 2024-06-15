@@ -14,7 +14,10 @@
 
 #include "../../common_src/catedra/queue.h"
 #include "../../common_src/catedra/thread.h"
-#include "./common_src/protocol_utils.h"
+#include "../../common_src/protocol_utils.h"
+#include "../../common_src/vector_monitor.h"
+
+#include "../gameState_monitor.h"
 
 #include "game_state.h"
 #include "gui_clase_texturas.h"
@@ -38,11 +41,11 @@ using SDL2pp::Window;
 
 class Gui: public Thread {
 private:
+    //mutable std::mutex m;  // Si no pongo mutable no puedo usar lock en metodos const
+
     // posicion del jugador:
     int pos_x = 0;
     int pos_y = 0;
-
-    std::mutex m;
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::map<uint16_t, std::shared_ptr<Personaje>> dic_personajes;
@@ -53,7 +56,7 @@ private:
 
     Queue<msgAccion>& client_commands;
 
-    std::vector<msgPlataforma>& msg_plataformas;
+    VectorMonitor<msgPlataforma>& msg_plataformas;
 
     uint16_t& client_id;
 
@@ -67,10 +70,10 @@ private:
 
 
 public:
-    Gui(int, int, bool&, std::string&, Queue<msgAccion>&, std::vector<msgPlataforma>&, uint16_t&);
+    Gui(int, int, bool&, std::string&, Queue<msgAccion>&, VectorMonitor<msgPlataforma>&, uint16_t);
     ~Gui();
     void run() override;
-    void setGameState(GameState&);
+    void setGameState(GameStateMonitorClient& );
     void setEscenario(ClaseTexturas&);
 };
 

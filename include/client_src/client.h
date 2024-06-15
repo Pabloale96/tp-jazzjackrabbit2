@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "../common_src/vector_monitor.h"
 #include "client_protocol.h"
 #include "client_receiver.h"
 #include "client_sender.h"
@@ -14,17 +15,18 @@
 
 class Client {
 private:
+
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;
     Queue<msgAccion> client_commands;
     ClientSender sender;
-    Queue<std::shared_ptr<GameState>> server_msg;
+    Queue<std::shared_ptr<GameStateMonitorClient>> server_msg;
     std::unique_ptr<ClientReceiver> receiver;
     bool client_off;
     std::string personaje;
     uint16_t client_id;
-    std::vector<msgPlataforma> plataformas;
+    VectorMonitor<msgPlataforma> plataformas;
     Gui gui;
 
     std::string toLowercase(const std::string& str);
@@ -43,7 +45,7 @@ private:
 
     void iniciar_hilos();
 
-    void mostrar_estadisticas(const GameState& respuestas) const;
+    void mostrar_estadisticas(const GameStateMonitorClient& respuestas) const;
 
 public:
     // Constructor
