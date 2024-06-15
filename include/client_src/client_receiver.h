@@ -8,6 +8,7 @@
 #include "gameState_monitor.h"
 #include "queue.h"
 #include "thread.h"
+#include "gamestate_client_monitor.h"
 
 class ClientReceiver: public Thread {
 private:

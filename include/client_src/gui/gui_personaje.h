@@ -12,6 +12,7 @@
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "gui_frame.h"
+#include "msgToSent.h"
 
 
 using SDL2pp::Renderer;
@@ -21,17 +22,23 @@ using SDL2pp::Window;
 
 class PersonajeGui {
 protected:
-    ClaseTexturas& texturas;
+    std::shared_ptr<ClaseTexturas> texturas;
     int pos_x;
     int pos_y;
+    uint8_t tipo;
     int speed = 0;
+    uint8_t estado;
     Animacion animacion;
-    std::shared_ptr<std::vector<Frame>>& frames;
+    std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
 
 
 public:
-    explicit PersonajeGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    PersonajeGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    PersonajeGui(msgPersonaje&);
+    int obtener_posicion_x() {return pos_x;}
+    int obtener_posicion_y() {return pos_y;}
+    uint8_t obtener_tipo_personaje() {return tipo;}
     ~PersonajeGui();
     void show();
     virtual void setFrames(int, int);
@@ -40,7 +47,8 @@ public:
 class SpazGui: public PersonajeGui {
 private:
 public:
-    explicit SpazGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    SpazGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    SpazGui(msgPersonaje&);
     ~SpazGui();
 
     void setFrames(int, int) override;
@@ -49,18 +57,20 @@ public:
 class JazzGui: public PersonajeGui {
 private:
 public:
-    explicit JazzGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    JazzGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    JazzGui(msgPersonaje&);
     ~JazzGui();
 
-    void setFrames(int, int) override;
+    void setFrames(int,int) override;
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    explicit LoriGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    LoriGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    LoriGui(msgPersonaje&);
     ~LoriGui();
 
-    void setFrames(int, int) override;
+    void setFrames(int,int) override;
 };
 #endif

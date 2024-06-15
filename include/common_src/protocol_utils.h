@@ -20,6 +20,8 @@ enum class enemigos : uint8_t { ENEMIGO1 = 0, ENEMIGO2 = 1, ENEMIGO3 = 2 };
 
 enum class personajes : uint8_t { JAZZ = 0x01, SPAZZ = 0x02, LORI = 0x03 };
 
+enum class TipoEnemigo { ENEMIGO1, ENEMIGO2, ENEMIGO3 };
+
 enum class acciones : uint8_t {
 
     NULO = 0x00,

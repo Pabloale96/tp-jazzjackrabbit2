@@ -4,8 +4,8 @@
 #include <cstdint>
 
 #include "game_posicion.h"
+#include "protocol_utils.h"
 
-enum class TipoEnemigo { ENEMIGO1, ENEMIGO2, ENEMIGO3 };
 
 class Enemigo {
 

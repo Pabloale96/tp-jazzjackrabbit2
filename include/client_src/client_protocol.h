@@ -7,9 +7,7 @@
 #include <vector>
 
 #include "../common_src/vector_monitor.h"
-
-#include "gameState_monitor.h"
-#include "msgToSent.h"
+#include "gamestate_client_monitor.h"
 #include "sockets.h"
 
 enum class TipoAccion : char {
