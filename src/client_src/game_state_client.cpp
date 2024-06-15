@@ -10,7 +10,8 @@ GameStateClient::GameStateClient(uint16_t partida_id, bool jugando):
 
 bool GameStateClient::obtener_estado_de_la_partida() { return jugando; }
 
-std::map<uint16_t, std::shared_ptr<PersonajeGui>>& GameStateClient::obtener_diccionario_de_personajes() {
+std::map<uint16_t, std::shared_ptr<PersonajeGui>>&
+        GameStateClient::obtener_diccionario_de_personajes() {
     return diccionario_de_personajes;
 }
 

@@ -34,11 +34,12 @@ protected:
 
 
 public:
-    PersonajeGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    PersonajeGui(msgPersonaje&);
-    int obtener_posicion_x() {return pos_x;}
-    int obtener_posicion_y() {return pos_y;}
-    uint8_t obtener_tipo_personaje() {return tipo;}
+    PersonajeGui(std::shared_ptr<ClaseTexturas>, int, int, int,
+                 std::shared_ptr<std::vector<Frame>>&);
+    explicit PersonajeGui(msgPersonaje&);
+    int obtener_posicion_x() { return pos_x; }
+    int obtener_posicion_y() { return pos_y; }
+    uint8_t obtener_tipo_personaje() { return tipo; }
     ~PersonajeGui();
     void show();
     virtual void setFrames(int, int);
@@ -48,7 +49,7 @@ class SpazGui: public PersonajeGui {
 private:
 public:
     SpazGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    SpazGui(msgPersonaje&);
+    explicit SpazGui(msgPersonaje&);
     ~SpazGui();
 
     void setFrames(int, int) override;
@@ -58,19 +59,19 @@ class JazzGui: public PersonajeGui {
 private:
 public:
     JazzGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    JazzGui(msgPersonaje&);
+    explicit JazzGui(msgPersonaje&);
     ~JazzGui();
 
-    void setFrames(int,int) override;
+    void setFrames(int, int) override;
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
     LoriGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    LoriGui(msgPersonaje&);
+    explicit LoriGui(msgPersonaje&);
     ~LoriGui();
 
-    void setFrames(int,int) override;
+    void setFrames(int, int) override;
 };
 #endif

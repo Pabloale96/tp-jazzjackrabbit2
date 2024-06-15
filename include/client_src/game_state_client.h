@@ -1,13 +1,15 @@
 #ifndef __GAMESTATE_CLIENT_H__
 #define __GAMESTATE_CLIENT_H__
 
+#include <map>
 #include <memory>
 #include <vector>
 
-#include "gui/gui_personaje.h"
 #include "gui/gui_enemigos.h"
-#include "queue.h"
+#include "gui/gui_personaje.h"
+
 #include "msgToSent.h"
+#include "queue.h"
 
 class GameStateClient {
 private:

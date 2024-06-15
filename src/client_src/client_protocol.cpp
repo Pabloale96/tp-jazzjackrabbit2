@@ -148,7 +148,7 @@ void ProtocolClient::recibir_respuesta(GameStateMonitorClient& gameState, uint16
 
     uint16_t cant_iteraciones_personaje = ntohs(msg.cantidad_personajes);
     msgPersonaje personaje;
-    std::cout<<"cant_iteraciones_personaje: "<<cant_iteraciones_personaje<<std::endl;
+    std::cout << "cant_iteraciones_personaje: " << cant_iteraciones_personaje << std::endl;
     for (uint16_t i = 0; i < cant_iteraciones_personaje; i++) {
         if (was_closed) {
             // return nullptr;

@@ -1,19 +1,19 @@
 #include "../../include/client_src/gui/gui_personaje.h"
 
-PersonajeGui::PersonajeGui(std::shared_ptr<ClaseTexturas>texturas, int posx, int posy, int speed,
+PersonajeGui::PersonajeGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
         texturas(texturas), pos_x(posx), pos_y(posy), speed(speed), frames(frames) {
     it = frames->begin();
 }
 PersonajeGui::PersonajeGui(msgPersonaje& personaje):
-        //puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
-        //vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
+        // puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
+        // vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
         texturas(),
-        pos_x(personaje.personaje[POS_POSX_PERSONAJE]), 
+        pos_x(personaje.personaje[POS_POSX_PERSONAJE]),
         pos_y(personaje.personaje[POS_POSY_PERSONAJE]),
         tipo(personaje.tipo_personaje),
-        frames(nullptr){}
-        //estados() {}
+        frames(nullptr) {}
+// estados() {}
 
 PersonajeGui::~PersonajeGui() {}
 
@@ -21,11 +21,11 @@ void PersonajeGui::show() { animacion.run(pos_x, pos_y, speed, frames, it); }
 
 void PersonajeGui::setFrames(int animacion_actual, int spe) {}
 
-SpazGui::SpazGui(std::shared_ptr<ClaseTexturas>texturas, int posx, int posy, int speed,
+SpazGui::SpazGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, speed, frames) {}
 
-SpazGui::SpazGui(msgPersonaje& msg):PersonajeGui(msg){}
+SpazGui::SpazGui(msgPersonaje& msg): PersonajeGui(msg) {}
 SpazGui::~SpazGui() {}
 
 void SpazGui::setFrames(int animacion_actual, int spe) {
@@ -83,11 +83,11 @@ void SpazGui::setFrames(int animacion_actual, int spe) {
     }
 }
 
-JazzGui::JazzGui(std::shared_ptr<ClaseTexturas>texturas, int posx, int posy, int speed,
+JazzGui::JazzGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, speed, frames) {}
 
-JazzGui::JazzGui(msgPersonaje& msg):PersonajeGui(msg){}
+JazzGui::JazzGui(msgPersonaje& msg): PersonajeGui(msg) {}
 JazzGui::~JazzGui() {}
 
 void JazzGui::setFrames(int animacion_actual, int spe) {
@@ -145,11 +145,11 @@ void JazzGui::setFrames(int animacion_actual, int spe) {
     }
 }
 
-LoriGui::LoriGui(std::shared_ptr<ClaseTexturas>texturas, int posx, int posy, int speed,
+LoriGui::LoriGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, speed, frames) {}
 
-LoriGui::LoriGui(msgPersonaje& msg):PersonajeGui(msg){}
+LoriGui::LoriGui(msgPersonaje& msg): PersonajeGui(msg) {}
 LoriGui::~LoriGui() {}
 
 void LoriGui::setFrames(int animacion_actual, int spe) {

@@ -4,11 +4,11 @@
 
 #include <arpa/inet.h>
 
-#include "defines_msg.h"
 #include "../../include/server_src/yaml_config.h"
 
-Enemigo::Enemigo(uint16_t id_enemigo):
-        id_enemigo(id_enemigo) {}
+#include "defines_msg.h"
+
+Enemigo::Enemigo(uint16_t id_enemigo): id_enemigo(id_enemigo) {}
 
 Enemigo::Enemigo(uint16_t* datos_enemigo):
         id_enemigo(ntohs(datos_enemigo[POS_ID_ENEMIGO])),
@@ -98,7 +98,6 @@ Enemigo1::Enemigo1(uint16_t id, uint16_t x, uint16_t y): Enemigo(id) {
     set_time_revive(YAMLConfig::getConfig().enemigo_1.segundos_para_revivir);
     set_prob_municion(YAMLConfig::getConfig().enemigo_1.proba_droppear_municion);
     set_prob_vida(YAMLConfig::getConfig().enemigo_1.proba_droppear_vida);
-
 }
 
 void Enemigo1::revivir_enemigo() {

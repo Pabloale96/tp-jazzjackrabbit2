@@ -3,12 +3,12 @@
 
 #include <exception>
 #include <iostream>
-#include <arpa/inet.h>  // para usar htons()
 
 #include <SDL2pp/SDL2pp.hh>
+#include <arpa/inet.h>  // para usar htons()
 
-#include "gui_animaciones.h"
 #include "defines_msg.h"
+#include "gui_animaciones.h"
 #include "protocol_utils.h"
 
 class EnemigosGui {
@@ -20,9 +20,9 @@ private:
     Animacion enemigo;
 
 public:
-    EnemigosGui(uint16_t *);
+    explicit EnemigosGui(uint16_t*);
     ~EnemigosGui();
-    uint16_t get_id_enemigo() {return id;}
+    uint16_t get_id_enemigo() { return id; }
 };
 
 #endif

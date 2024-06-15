@@ -16,7 +16,6 @@
 #include "../../common_src/catedra/thread.h"
 #include "../../common_src/protocol_utils.h"
 #include "../../common_src/vector_monitor.h"
-
 #include "../gamestate_client_monitor.h"
 
 #include "gui_clase_texturas.h"

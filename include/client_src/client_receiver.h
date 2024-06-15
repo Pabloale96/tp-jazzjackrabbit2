@@ -5,10 +5,10 @@
 #include <string>
 
 #include "client_protocol.h"
-#include "gameState_monitor.h"
+#include "game_state_monitor.h"
+#include "gamestate_client_monitor.h"
 #include "queue.h"
 #include "thread.h"
-#include "gamestate_client_monitor.h"
 
 class ClientReceiver: public Thread {
 private:
