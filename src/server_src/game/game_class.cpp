@@ -9,20 +9,13 @@
 
 Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
            std::chrono::seconds duracion_de_la_partida):
-        partida_id(partida_id),
-        escenario(),
-        tiempo_restante_de_partida(duracion_de_la_partida),
-        tiempo_para_caer(0) {
-    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
+        partida_id(partida_id), escenario() {
+    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje, duracion_de_la_partida);
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {
         throw std::runtime_error("Tipo de personaje desconocido");
     }
-}
-
-void Game::set_tiempo_restante_de_partida(std::chrono::seconds tiempo) {
-    tiempo_restante_de_partida = tiempo;
 }
 
 std::vector<std::shared_ptr<Personaje>>& Game::obtener_vector_de_personajes() {
@@ -176,16 +169,16 @@ void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
     }
 }
 
-void Game::actualizar() {
-    actualizar_personajes();
+void Game::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
+    actualizar_personajes(tiempo_restante_de_partida);
     chequear_colisiones();
     actualizar_escenario();
 }
 
-void Game::actualizar_personajes() {
+void Game::actualizar_personajes(std::chrono::seconds tiempo_restante_de_partida) {
     for (auto& personaje: personajes) {
         if (personaje) {
-            personaje->actualizar();
+            personaje->actualizar(tiempo_restante_de_partida);
         } else {
             std::cerr << "ERROR en actualizar_personajes" << std::endl;
         }
@@ -214,8 +207,10 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
     }
 }
 
-void Game::agregar_personaje(uint16_t client_id, uint8_t personaje) {
-    auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
+void Game::agregar_personaje(uint16_t client_id, uint8_t personaje,
+                             std::chrono::seconds tiempo_restante_de_partida) {
+    auto personaje_ptr =
+            crear_personaje(partida_id, client_id, personaje, tiempo_restante_de_partida);
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {

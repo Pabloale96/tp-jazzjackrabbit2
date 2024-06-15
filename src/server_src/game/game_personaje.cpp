@@ -9,7 +9,8 @@
 #define VEL_X_INICIAL 0
 #define VEL_Y_INICIAL 0
 
-Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
+Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
+                     std::chrono::seconds tiempo_restante_de_partida):
         partida_id(partida_id),
         client_id(client_id),
         tipo_personaje(),
@@ -23,6 +24,9 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id):
         velocidad(),
         ancho(1),
         alto(1),
+
+        tiempo_restante_de_partida(tiempo_restante_de_partida),
+        duracion_del_salto(0),
 
         estados() {}
 
@@ -87,11 +91,16 @@ uint8_t Personaje::obtener_estado_actual() {
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 
-void Personaje::actualizar() {
+void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
+    set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     this->mover();
     for (auto& municion: municiones_disparadas) {
         municion.mover();
     }
+}
+
+void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_restante_de_partida) {
+    this->tiempo_restante_de_partida = tiempo_restante_de_partida;
 }
 
 void Personaje::mover() {
@@ -166,6 +175,10 @@ uint16_t Personaje::generar_id_bala() { return bala_id++; }
 
 uint8_t Personaje::obtener_nombre_arma() const { return arma.obtener_nombre_arma(); }
 
+std::chrono::seconds Personaje::obtener_tiempo_restante_de_partida() const {
+    return tiempo_restante_de_partida;
+}
+
 uint16_t Personaje::getBottom() const { return posicion.get_posicion_y() + alto; }
 uint16_t Personaje::getTop() const { return posicion.get_posicion_y(); }
 uint16_t Personaje::getLeft() const { return posicion.get_posicion_x(); }
@@ -174,7 +187,9 @@ uint16_t Personaje::getRight() const { return posicion.get_posicion_x() + ancho;
 uint16_t Personaje::obtener_ancho() const { return ancho; }
 
 // ************  JAZZ  ************
-Jazz::Jazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
+Jazz::Jazz(uint16_t partida_id, uint16_t client_id,
+           std::chrono::seconds tiempo_restante_de_partida):
+        Personaje(partida_id, client_id, tiempo_restante_de_partida) {
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::JAZZ));
 }
 
@@ -189,7 +204,9 @@ void Jazz::accion_especial() {  // Punietazo hacia arriba
 
 
 // ************  LORI  ************
-Lori::Lori(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
+Lori::Lori(uint16_t partida_id, uint16_t client_id,
+           std::chrono::seconds tiempo_restante_de_partida):
+        Personaje(partida_id, client_id, tiempo_restante_de_partida) {
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::LORI));
 }
 
@@ -203,7 +220,9 @@ void Lori::accion_especial() {  // Patada de corto alcance
 
 
 // ************  SPAZZ  ************
-Spazz::Spazz(uint16_t partida_id, uint16_t client_id): Personaje(partida_id, client_id) {
+Spazz::Spazz(uint16_t partida_id, uint16_t client_id,
+             std::chrono::seconds tiempo_restante_de_partida):
+        Personaje(partida_id, client_id, tiempo_restante_de_partida) {
     asignar_tipo_personaje(static_cast<uint8_t>(personajes::SPAZZ));
 }
 
@@ -215,13 +234,14 @@ void Spazz::accion_especial() {  // Patada hacia un costado
     obtener_velocidad().setear_velocidad_y(0);
 }
 
-Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje) {
+Personaje* crear_personaje(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
+                           std::chrono::seconds tiempo_restante_de_partida) {
     if (personaje == static_cast<uint8_t>(personajes::JAZZ)) {
-        return new Jazz(partida_id, client_id);
+        return new Jazz(partida_id, client_id, tiempo_restante_de_partida);
     } else if (personaje == static_cast<uint8_t>(personajes::SPAZZ)) {
-        return new Spazz(partida_id, client_id);
+        return new Spazz(partida_id, client_id, tiempo_restante_de_partida);
     } else if (personaje == static_cast<uint8_t>(personajes::LORI)) {
-        return new Lori(partida_id, client_id);
+        return new Lori(partida_id, client_id, tiempo_restante_de_partida);
     } else {
         return nullptr;
     }
