@@ -24,6 +24,7 @@ private:
     Queue<std::shared_ptr<Comando>> client_commands;
     GameStateMonitor monitor_lista_de_queues_server_msg;
     Game game;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
 
 public:
     // Constructor
@@ -55,6 +56,8 @@ public:
     void terminar_partida();
 
     bool obtener_estado_de_partida();
+
+    std::chrono::seconds obtener_tiempo_restante();
 
     // Broadcastea un mensaje a todos los clientes
     void broadcastear();
