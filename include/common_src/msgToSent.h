@@ -150,8 +150,7 @@ struct msgPlataforma {
 
     msgPlataforma() {}
 
-    explicit msgPlataforma(const Platform& pla):
-            tipo_plataforma(pla.obtener_tipo()) {
+    explicit msgPlataforma(const Platform& pla): tipo_plataforma(pla.obtener_tipo()) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();

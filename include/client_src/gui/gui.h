@@ -19,7 +19,6 @@
 
 #include "../gamestate_client_monitor.h"
 
-#include "game_state.h"
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "gui_escenario.h"

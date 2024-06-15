@@ -25,7 +25,7 @@ protected:
     std::shared_ptr<ClaseTexturas> texturas;
     int pos_x;
     int pos_y;
-    int speed=0;
+    int speed = 0;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
@@ -38,7 +38,7 @@ public:
     int obtener_posicion_y() {return pos_y;}
     ~PersonajeGui();
     void show();
-    virtual void setFrames(int,int);
+    virtual void setFrames(int, int);
 };
 
 class SpazGui: public PersonajeGui {
@@ -48,7 +48,7 @@ public:
     SpazGui(msgPersonaje&);
     ~SpazGui();
 
-    void setFrames(int,int) override;
+    void setFrames(int, int) override;
 };
 
 class JazzGui: public PersonajeGui {

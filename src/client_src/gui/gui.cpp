@@ -50,7 +50,8 @@ void Gui::run() {
     if (personaje == "j") {
         frames = texturas->findFrame(std::string(JAZZ_STAND));
         jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, 4, frames); // 4 ponerlo como define
+                                            renderer.GetOutputHeight() / 2, 4,
+                                            frames);  // 4 ponerlo como define
     } else if (personaje == "s") {
         frames = texturas->findFrame(std::string(SPAZ_STAND));
         jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,

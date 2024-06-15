@@ -1,7 +1,7 @@
 #include "../../include/server_src/game/game_platform.h"
 
-Platform::Platform(uint16_t pos_x, uint16_t pos_y, uint16_t width, uint16_t height,
-                   uint16_t type, bool flip):
+Platform::Platform(uint16_t pos_x, uint16_t pos_y, uint16_t width, uint16_t height, uint16_t type,
+                   bool flip):
         pos_x(pos_x), pos_y(pos_y), width(width), height(height), type(type), flip(flip) {}
 
 Platform::~Platform() {}
