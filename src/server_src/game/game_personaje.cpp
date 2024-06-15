@@ -9,6 +9,9 @@
 #define VEL_X_INICIAL 0
 #define VEL_Y_INICIAL 0
 
+#define SEGUNDOS_DE_SALTO 1
+#define SEGUNDOS_PARA_REVIVIR 5
+
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
                      std::chrono::seconds tiempo_restante_de_partida):
         partida_id(partida_id),
@@ -27,6 +30,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
 
         tiempo_restante_de_partida(tiempo_restante_de_partida),
         duracion_del_salto(0),
+        duracion_muerto(0),
 
         estados() {}
 
@@ -93,9 +97,39 @@ uint8_t Personaje::obtener_animacion() { return animacion; }
 
 void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
-    this->mover();
     for (auto& municion: municiones_disparadas) {
         municion.mover();
+    }    
+    
+    if (vida == 0) {
+        velocidad.idle();
+        estados.setMuerto(true);
+        duracion_muerto++;
+        if (duracion_muerto == std::chrono::seconds(SEGUNDOS_PARA_REVIVIR)) {
+            vida = VIDA_INICIAL;
+            estados.setMuerto(false);
+            estados.reset();
+            estados.setIdle(true);
+            duracion_muerto = std::chrono::seconds(0);
+        }
+        return;
+    }
+
+    if (!estados.getMuerto()) {
+        while (estados.getSaltando()) {
+            if (duracion_del_salto == std::chrono::seconds(SEGUNDOS_DE_SALTO)) {
+                duracion_del_salto = std::chrono::seconds(0);
+                estados.setSaltando(false);
+                estados.setCayendo(true);
+                velocidad.caer();
+                this->mover();
+                estados.reset();
+                velocidad.idle();
+            } else {
+                duracion_del_salto++;
+            }
+        }
+        this->mover();
     }
 }
 
@@ -105,16 +139,6 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
 
 void Personaje::mover() {
     posicion.mover(this->velocidad);
-    if (obtener_estados().getSaltando()) {
-        // Si estaba saltando, ahora esta cayendo
-        obtener_estados().setSaltando(false);
-        obtener_estados().setCayendo(true);
-        this->obtener_velocidad().caer();
-        this->mover();
-        obtener_estados().setCayendo(false);
-        obtener_estados().setIdle(true);
-        obtener_velocidad().idle();
-    }
 }
 
 void Personaje::disminuir_vida(uint16_t danio) {
