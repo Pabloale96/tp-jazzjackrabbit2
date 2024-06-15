@@ -4,23 +4,23 @@
 #include <memory>
 #include <vector>
 
-#include "game_state.h"
+#include "game_state_client.h"
 #include "queue.h"
 #include "msgToSent.h"
 
 class GameStateMonitorClient {
 private:
     std::mutex m;
-    GameState gamestate;
+    GameStateClient gamestate;
 
 public:
     GameStateMonitorClient();
 
-    std::map<uint16_t, std::shared_ptr<Personaje>> obtener_diccionario_de_personajes();
+    std::map<uint16_t, std::shared_ptr<PersonajeGui>>& obtener_diccionario_de_personajes();
 
-    std::map<uint16_t, Enemigo> obtener_diccionario_de_enemigos();
+    std::map<uint16_t, EnemigosGui>& obtener_diccionario_de_enemigos();
 
-    std::shared_ptr<Personaje>& obtener_personaje(uint16_t client_id);
+    std::shared_ptr<PersonajeGui>& obtener_personaje(uint16_t client_id);
 
     void setGameState(const uint8_t& state_partida);
 

@@ -7,7 +7,7 @@
 #include "client_protocol.h"
 #include "queue.h"
 #include "thread.h"
-#include "gameState_monitor.h"
+#include "gamestate_client_monitor.h"
 
 class ClientReceiver: public Thread {
 private:

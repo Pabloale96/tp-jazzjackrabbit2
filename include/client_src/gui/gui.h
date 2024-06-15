@@ -17,7 +17,7 @@
 #include "../../common_src/protocol_utils.h"
 #include "../../common_src/vector_monitor.h"
 
-#include "../gameState_monitor.h"
+#include "../gamestate_client_monitor.h"
 
 #include "game_state.h"
 #include "gui_clase_texturas.h"
@@ -48,7 +48,7 @@ private:
     int pos_y = 0;
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
-    std::map<uint16_t, std::shared_ptr<Personaje>> dic_personajes;
+    std::map<uint16_t, std::shared_ptr<PersonajeGui>> dic_personajes;
 
     bool& client_off;
 

@@ -49,14 +49,8 @@ message("Headers generados: ${UIS_HEADERS}")
 
 add_executable(client
   src/client_src/client.cpp
-  src/client_src/gameState_monitor.cpp
-  src/server_src/game/game_personaje.cpp
-  src/server_src/game/game_municion.cpp
-  src/server_src/game/game_enemigo.cpp
-  src/server_src/game/game_arma.cpp
-  src/server_src/game/game_posicion.cpp
-  src/server_src/game/game_velocidad.cpp
-  src/server_src/game/game_state.cpp
+  src/client_src/gamestate_client_monitor.cpp
+  src/client_src/game_state_client.cpp
   src/client_src/gui/gui.cpp
   src/client_src/main.cpp
   src/common_src/vector_monitor.cpp
