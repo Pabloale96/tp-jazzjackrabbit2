@@ -35,7 +35,7 @@ enum class acciones : uint8_t {
     DISPARAR = 0x06,
     ACCION_ESPECIAL = 0x07,
     SALTAR_DISPARANDO = 0X08,
-    
+
     //   >> Cambio de armas
     CAMBIAR_ARMA = 0x09,
 

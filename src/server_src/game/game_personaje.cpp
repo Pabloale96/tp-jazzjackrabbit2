@@ -166,7 +166,16 @@ void Personaje::disparar() {
     }
 }
 
-void Personaje::cambiar_arma(std::unique_ptr<Arma> nueva_arma) { arma = std::move(nueva_arma); }
+void Personaje::cambiar_arma() {
+    if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_INICIAL)) {
+        arma = std::make_unique<Arma1>();
+    // El orden es: arma inicial -> arma 1 -> arma 2
+    // } else if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)) {
+    //    arma = std::make_unique<Arma2>();
+    } else {
+        arma = std::make_unique<ArmaInicial>();
+    }
+}
 
 void Personaje::eliminar_bala(uint16_t id_bala) {
     for (auto it = municiones_disparadas.begin(); it != municiones_disparadas.end(); ++it) {

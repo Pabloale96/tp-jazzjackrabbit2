@@ -102,7 +102,7 @@ public:
 
     void eliminar_bala(uint16_t id_bala);
 
-    void cambiar_arma(std::unique_ptr<Arma> nueva_arma);
+    void cambiar_arma();
 
     virtual void accion_especial() = 0;
 

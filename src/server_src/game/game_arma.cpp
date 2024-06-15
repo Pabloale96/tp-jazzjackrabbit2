@@ -41,24 +41,18 @@ ArmaInicial::ArmaInicial():
              YAMLConfig::getConfig().arma_inicial.vel_proy,
              YAMLConfig::getConfig().arma_inicial.dano) {}
 
-ArmaInicial::ArmaInicial(uint16_t municion): ArmaInicial() {
-    set_municion(municion);
-}
+ArmaInicial::ArmaInicial(uint16_t municion): ArmaInicial() { set_municion(municion); }
 
-Arma1::Arma1(): Arma(YAMLConfig::getConfig().arma1.municion, (uint8_t)armas::ARMA_1,
-             YAMLConfig::getConfig().arma1.vel_dis,
-             YAMLConfig::getConfig().arma1.vel_proy,
+Arma1::Arma1():
+        Arma(YAMLConfig::getConfig().arma1.municion, (uint8_t)armas::ARMA_1,
+             YAMLConfig::getConfig().arma1.vel_dis, YAMLConfig::getConfig().arma1.vel_proy,
              YAMLConfig::getConfig().arma1.dano) {}
 
-Arma1::Arma1(uint16_t municion): Arma1() {
-    set_municion(municion);
-}
+Arma1::Arma1(uint16_t municion): Arma1() { set_municion(municion); }
 
-Arma2::Arma2(): Arma(YAMLConfig::getConfig().arma2.municion, (uint8_t)armas::ARMA_2,
-             YAMLConfig::getConfig().arma2.vel_dis,
-             YAMLConfig::getConfig().arma2.vel_proy,
+Arma2::Arma2():
+        Arma(YAMLConfig::getConfig().arma2.municion, (uint8_t)armas::ARMA_2,
+             YAMLConfig::getConfig().arma2.vel_dis, YAMLConfig::getConfig().arma2.vel_proy,
              YAMLConfig::getConfig().arma2.dano) {}
 
-Arma2::Arma2(uint16_t municion): Arma2() {
-    set_municion(municion);
-}
+Arma2::Arma2(uint16_t municion): Arma2() { set_municion(municion); }
