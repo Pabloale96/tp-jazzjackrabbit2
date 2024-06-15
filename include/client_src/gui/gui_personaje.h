@@ -56,7 +56,7 @@ private:
 public:
     explicit JazzGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~JazzGui();
-    JazzGui(msgPersonaje&);
+
     void setFrames(int,int) override;
 };
 
@@ -65,7 +65,7 @@ private:
 public:
     explicit LoriGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     ~LoriGui();
-    LoriGui(msgPersonaje&);
+
     void setFrames(int,int) override;
 };
 #endif
