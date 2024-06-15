@@ -8,7 +8,6 @@
 #include "../../include/server_src/game/game_state.h"
 
 #define MAX_TAM_COLA 10000
-#define CINCO_LOOPS_POR_SEGUNDO 200
 #define CANT_MAX_SEG_DE_PARTIDA 60
 #define RATE 60         // 60
 #define SCALE_TIME 1e9  // 1e9
@@ -19,7 +18,9 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         nombre_partida(nombre_partida),
         jugando(false),
         client_commands(MAX_TAM_COLA),
-        game(nuevo_gameloop_id, client_id, personaje) {
+        game(nuevo_gameloop_id, client_id, personaje,
+             std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA)),
+        start_time(std::chrono::high_resolution_clock::now()) {
     iniciar_partida();
 }
 
@@ -63,7 +64,9 @@ void GameLoop::run() {
         while (true) {
             // Calculo el tiempo para ver si corto por tiempo limite
             auto current_time = std::chrono::high_resolution_clock::now();
-            if (current_time - start_time > max_duration) {
+            auto tiempo_restante = obtener_tiempo_restante();
+
+            if (tiempo_restante.count() <= 0) {
                 terminar_partida();
                 broadcastear();
                 std::cout << "Partida " << gameloop_id
@@ -91,6 +94,7 @@ void GameLoop::run() {
             } else {
                 std::this_thread::sleep_for(rest);
             }
+            t_0 = std::chrono::high_resolution_clock::now();
         }
     } catch (const ClosedQueue&) {
         return;
@@ -103,6 +107,12 @@ void GameLoop::run() {
     } catch (...) {
         std::cerr << "Unexpected exception in GameLoop->run: <unknown>\n";
     }
+}
+
+std::chrono::seconds GameLoop::obtener_tiempo_restante() {
+    auto current_time = std::chrono::high_resolution_clock::now();
+    auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time);
+    return std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA) - elapsed_time;
 }
 
 void GameLoop::broadcastear() {

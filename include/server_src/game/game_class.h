@@ -17,9 +17,14 @@ private:
     // TODO: unorderedmap sería más rápido
     VectorMonitor<std::shared_ptr<Personaje>> personajes;
     GameEscenario escenario;
+    std::chrono::seconds tiempo_restante_de_partida;
+    std::chrono::seconds tiempo_para_caer;
 
 public:
-    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
+    explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
+                  std::chrono::seconds duracion_de_la_partida);
+
+    void set_tiempo_restante_de_partida(std::chrono::seconds tiempo);
 
     std::vector<std::shared_ptr<Personaje>>& obtener_vector_de_personajes();
 

@@ -7,14 +7,22 @@
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_state.h"
 
-Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
-        partida_id(partida_id), escenario() {
+Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje,
+           std::chrono::seconds duracion_de_la_partida):
+        partida_id(partida_id),
+        escenario(),
+        tiempo_restante_de_partida(duracion_de_la_partida),
+        tiempo_para_caer(0) {
     auto personaje_ptr = crear_personaje(partida_id, client_id, personaje);
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {
         throw std::runtime_error("Tipo de personaje desconocido");
     }
+}
+
+void Game::set_tiempo_restante_de_partida(std::chrono::seconds tiempo) {
+    tiempo_restante_de_partida = tiempo;
 }
 
 std::vector<std::shared_ptr<Personaje>>& Game::obtener_vector_de_personajes() {
