@@ -5,13 +5,10 @@
 
 #define ID_BALA_INICIAL 0
 
-#define POS_X_INICIAL 1
-#define POS_Y_INICIAL 1
 #define VEL_X_INICIAL 0
 #define VEL_Y_INICIAL 0
 
 #define SEGUNDOS_DE_SALTO 1
-#define SEGUNDOS_PARA_REVIVIR 5
 
 Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
                      std::chrono::seconds tiempo_restante_de_partida):
@@ -24,7 +21,7 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
         arma(std::make_unique<ArmaInicial>()),
         bala_id(ID_BALA_INICIAL),
 
-        posicion(POS_X_INICIAL, POS_Y_INICIAL),
+        posicion(YAMLConfig::getConfig().personaje.pos_x, YAMLConfig::getConfig().personaje.pos_y),
         velocidad(),
         ancho(1),
         alto(1),
@@ -107,7 +104,7 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
         velocidad.idle();
         estados.setMuerto(true);
         duracion_muerto++;
-        if (duracion_muerto == std::chrono::seconds(SEGUNDOS_PARA_REVIVIR)) {
+        if (duracion_muerto == std::chrono::seconds(YAMLConfig::getConfig().personaje.segundos_para_revivir)) {
             vida = YAMLConfig::getConfig().personaje.vidas;
             estados.setMuerto(false);
             estados.reset();
