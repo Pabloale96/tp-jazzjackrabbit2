@@ -198,10 +198,10 @@ void Client::jugar() {
     establecer_partida();
     crear_personaje();
     protocolo_client.recibir_escenario(plataformas);
-    gui.start();
 
     // ***************** JUEGO *****************
     iniciar_hilos();
+    gui.start();
 
     while (!client_off) {
 

@@ -11,6 +11,7 @@ PersonajeGui::PersonajeGui(msgPersonaje& personaje):
         texturas(),
         pos_x(personaje.personaje[POS_POSX_PERSONAJE]), 
         pos_y(personaje.personaje[POS_POSY_PERSONAJE]),
+        tipo(personaje.tipo_personaje),
         frames(nullptr){}
         //estados() {}
 

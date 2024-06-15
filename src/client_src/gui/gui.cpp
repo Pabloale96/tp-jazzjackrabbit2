@@ -17,6 +17,7 @@ void Gui::setGameState(GameStateMonitorClient & gamestate) {
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
     pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_x());
     pos_y = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_y());
+    dic_personajes.erase(client_id);
 }
 
 void Gui::setEscenario(ClaseTexturas& texturas) {
@@ -52,8 +53,6 @@ void Gui::run() {
         jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
                                             frames);  // 4 ponerlo como define
-                                            renderer.GetOutputHeight() / 2, 4,
-                                            frames);  // 4 ponerlo como define
     } else if (personaje == "s") {
         frames = texturas->findFrame(std::string(SPAZ_STAND));
         jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
@@ -80,37 +79,28 @@ void Gui::run() {
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
-        /*for (const auto& [_, personaje]: dic_personajes) {
-            std::cout << "client id per "<<personaje->obtener_personaje_id()<<std::endl;
-            std::cout << "client id: "<<client_id<<std::endl;
-            if(personaje->obtener_personaje_id() != client_id) {
-                std::cout << "Entro personaje"<<std::endl;
+        //std::cout<<"size: "<<dic_personajes.size()<<std::endl;
+        for (const auto& [_, personaje]: dic_personajes) {
                 std::unique_ptr<PersonajeGui> pers;
-                int x = (personaje->obtener_posicion().get_posicion_x() - pos_x) * SCALING_VALUE_PIXEL;
-                int y = (personaje->obtener_posicion().get_posicion_y() - pos_y) * SCALING_VALUE_PIXEL;
+                int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;
+                int y = (personaje->obtener_posicion_y() - pos_y) * SCALING_VALUE_PIXEL_Y;
                 if (x <= (pos_x + renderer.GetOutputWidth() / 2) ||
                     x <= (pos_x - renderer.GetOutputWidth() / 2) ||
                     y <= (pos_y + renderer.GetOutputHeight() / 2) ||
                     y <= (pos_y - renderer.GetOutputHeight() / 2)) {
-                    std::cout << "tipo: " <<(unsigned) personaje->obtener_tipo_personaje() << std::endl;
                     if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
                         frames_personajes = texturas->findFrame(std::string(JAZZ_STAND));
-                        pers = std::make_unique<JazzGui>(texturas, x, y, frames_personajes);
-                        // pers->show(animacion);//personaje->obtener_animacion());
+                        pers = std::make_unique<JazzGui>(texturas, x, y,5, frames_personajes);
                     } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
                         frames_personajes = texturas->findFrame(std::string(SPAZ_STAND));
-                        pers = std::make_unique<SpazGui>(texturas, x, y, frames_personajes);
-                        // pers->show(animacion);//personaje->obtener_animacion());
+                        pers = std::make_unique<SpazGui>(texturas, x, y,5, frames_personajes);
                     } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::LORI) {
                         frames_personajes = texturas->findFrame(std::string(LORI_STAND));
-                        pers = std::make_unique<LoriGui>(texturas, x, y, frames_personajes);
-                        // pers->show(animacion);//personaje->obtener_animacion());
+                        pers = std::make_unique<LoriGui>(texturas, x, y,5, frames_personajes);
                     }
-                    std::cout << "pos: ( " << x << ", " << y << ")" << std::endl;
-                    pers->show(ANI_STAND);  // personaje->obtener_animacion());
+                    pers->show();  // personaje->obtener_animacion());
                 }
-            }
-        }*/
+        }
         jugador->show();
         renderer.Present();
 
