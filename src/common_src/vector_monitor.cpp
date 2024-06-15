@@ -3,6 +3,7 @@
 #include "../../include/server_src/game/game_collectible.h"
 #include "../../include/server_src/game/game_enemigo.h"
 #include "../../include/server_src/game/game_personaje.h"
+#include "../../include/common_src/msgToSent.h"
 
 template <typename T>
 VectorMonitor<T>::VectorMonitor(size_t initial_size): vector_comun(initial_size) {}
@@ -97,3 +98,4 @@ typename std::vector<T>::iterator VectorMonitor<T>::erase(typename std::vector<T
 template class VectorMonitor<std::shared_ptr<Personaje>>;
 template class VectorMonitor<std::shared_ptr<Enemigo>>;
 template class VectorMonitor<std::shared_ptr<Collectible>>;
+template class VectorMonitor<msgPlataforma>;

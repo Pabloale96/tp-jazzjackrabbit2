@@ -26,9 +26,7 @@ void Frame::copy(bool flip, int pos_x, int pos_y) {
 void Frame::copy(float rotate, int pos_x, int pos_y, int area_x, int area_y) {
     sprite.SetAlphaMod(255);
     renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                  Rect(renderer.GetOutputWidth() - pos_x, renderer.GetOutputHeight() - pos_y,
-                       area_x, area_y),
-                  rotate, NullOpt, 2);
+                    Rect(renderer.GetOutputWidth()/2 - pos_x, renderer.GetOutputHeight()/2- pos_y, area_x, area_y), rotate, NullOpt, 2);
 }
 
 void Frame::copyTest() {

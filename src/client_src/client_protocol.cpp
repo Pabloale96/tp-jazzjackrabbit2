@@ -9,6 +9,7 @@
 
 #include "../../include/common_src/protocol_utils.h"
 
+
 ProtocolClient::ProtocolClient(const std::string& hostname, const std::string& servicio):
         socket_cliente(hostname.c_str(), servicio.c_str()), was_closed(false) {}
 
@@ -62,7 +63,7 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     return true;
 }
 
-bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataforma) {
+bool ProtocolClient::recibir_escenario(VectorMonitor<msgPlataforma>& vec_plataforma) {
 
     msgEscenario escenario(0);
     if (was_closed) {
@@ -75,7 +76,7 @@ bool ProtocolClient::recibir_escenario(std::vector<msgPlataforma>& vec_plataform
             return false;
         }
         socket_cliente.recvall(&plataforma, sizeof(plataforma), &was_closed);
-        vec_plataforma.emplace_back(plataforma);
+        vec_plataforma.push_back(plataforma);
     }
     return true;
 }
@@ -136,8 +137,7 @@ void ProtocolClient::enviar_accion(msgAccion& msg) {
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-GameState ProtocolClient::recibir_respuesta(uint16_t& client_id) {
-    GameState gameState(0, true);
+void ProtocolClient::recibir_respuesta(GameStateMonitorClient & gameState,uint16_t& client_id) {
     msgGameState msg;
     if (was_closed) {
         // return nullptr;
@@ -165,8 +165,6 @@ GameState ProtocolClient::recibir_respuesta(uint16_t& client_id) {
         socket_cliente.recvall(&enemigo, sizeof(enemigo), &was_closed);
         gameState.pushEnemigos(enemigo.enemigo);
     }
-
-    return gameState;
 }
 
 void ProtocolClient::cerrar_socket() {

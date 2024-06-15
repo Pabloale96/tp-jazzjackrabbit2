@@ -1,7 +1,7 @@
 #include "../include/client_src/gui/gui.h"
 
 Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion>& client_commands,
-         std::vector<msgPlataforma>& msg_plataformas, uint16_t& ci):
+         VectorMonitor<msgPlataforma>& msg_plataformas, uint16_t ci):
         pos_x(x),
         pos_y(y),
         client_off(client_off),
@@ -12,11 +12,13 @@ Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion
 
 Gui::~Gui() {}
 
-void Gui::setGameState(GameState& gamestate) {
+void Gui::setGameState(GameStateMonitorClient & gamestate) {
+    
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
     pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_x());
     pos_y = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion().get_posicion_y());
 }
+
 void Gui::setEscenario(ClaseTexturas& texturas) {
     for (size_t i = 0; i < msg_plataformas.size(); i++) {
         PlatformGui plataforma(texturas, msg_plataformas[i]);
@@ -40,7 +42,7 @@ void Gui::run() {
 
     ClaseTexturas texturas{ClaseTexturas(renderer)};
 
-    setEscenario(texturas);
+    this->setEscenario(texturas);
 
     std::unique_ptr<PersonajeGui> jugador;
     std::shared_ptr<std::vector<Frame>> frames;
