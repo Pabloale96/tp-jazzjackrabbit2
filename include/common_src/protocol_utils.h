@@ -16,7 +16,7 @@
 enum class platform : uint8_t { HORIZONTAL = 0, DIAGONAL = 1, VERTICAL = 2 };
 
 // tipo de enemigos usado de gui para la interfaz:
-enum class enemidos : uint8_t { ENEMIGO1 = 0, ENEMIGO2 = 1, ENEMIGO3 = 2 };
+enum class enemigos : uint8_t { ENEMIGO1 = 0, ENEMIGO2 = 1, ENEMIGO3 = 2 };
 
 enum class personajes : uint8_t { JAZZ = 0x01, SPAZZ = 0x02, LORI = 0x03 };
 
