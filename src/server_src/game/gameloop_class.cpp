@@ -18,8 +18,7 @@ GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint
         nombre_partida(nombre_partida),
         jugando(false),
         client_commands(MAX_TAM_COLA),
-        game(nuevo_gameloop_id, client_id, personaje,
-             std::chrono::seconds(CANT_MAX_SEG_DE_PARTIDA)),
+        game(nuevo_gameloop_id, client_id, personaje),
         start_time(std::chrono::high_resolution_clock::now()) {
     iniciar_partida();
 }
@@ -112,7 +111,7 @@ std::chrono::seconds GameLoop::obtener_tiempo_restante() {
 void GameLoop::broadcastear() {
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    nuevo_gamestate.imprimir_mensaje();
+    //nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 

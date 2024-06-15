@@ -16,7 +16,7 @@ int main(int argc, char const* argv[]) {
         }
 
         std::string yaml_file = YAML_FILE;
-        YAMLConfig config(yaml_file);
+        YAMLConfig& config = YAMLConfig::getInstance(yaml_file);
         config.loadConfig();
 
         std::string servname = PORT_ARG;
