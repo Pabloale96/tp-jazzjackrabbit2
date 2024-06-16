@@ -1,36 +1,39 @@
 #include "../../include/client_src/gui/gui_coleccionables.h"
 
-Collecionables::Collecionables(int x, int y):pos_x(x),pos_y(y){}
-Collecionables::~Collecionables(){}
+Colecionables::Colecionables(ClaseTexturas & texturas, int x, int y):
+    texturas(texturas),
+    pos_x(x),
+    pos_y(y){}
+Colecionables::~Colecionables(){}
 
-void Collecionables::show(){
+void Colecionables::show(){
     animacion.run(pos_x, pos_y, speed, frames, it);
 }
 
-Municion::Municion( int x, int y):Collecionables(x,y){
+MunicionGui::MunicionGui( ClaseTexturas & texturas, int x, int y):Colecionables(texturas,x,y){
     frames = texturas.findFrame(ZANAHORIA);
-    it = frames.begin();
+    it = frames->begin();
     speed =5;
 }
-Municion::~Municion(){}
+MunicionGui::~MunicionGui(){}
 
-Zanahoria::Zanahoria(int x, int y):Collecionables(x,y){
+Zanahoria::Zanahoria(ClaseTexturas & texturas, int x, int y):Colecionables(texturas,x,y){
     frames = texturas.findFrame(ZANAHORIA);
-    it = frames.begin();
+    it = frames->begin();
     speed =5;
 }
 Zanahoria::~Zanahoria(){}
 
-Moneda::Moneda(int x, int y):Collecionables(x,y){
+Moneda::Moneda(ClaseTexturas & texturas, int x, int y):Colecionables(texturas,x,y){
     frames = texturas.findFrame(MONEDA);
-    it = frames.begin();
+    it = frames->begin();
     speed =5;
 }
 Moneda::~Moneda(){}
 
-Gema::Gema(int x, int y):Collecionables(x,y){
+Gema::Gema(ClaseTexturas & texturas, int x, int y):Colecionables(texturas,x,y){
     frames = texturas.findFrame(GEMA);
-    it = frames.begin();
+    it = frames->begin();
     speed =5;
 }
 Gema::~Gema(){}

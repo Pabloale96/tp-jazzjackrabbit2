@@ -176,7 +176,7 @@ void ClaseTexturas::enemigo1() {
     int h_frames[] = {62, 52, 44, 67, 52, 51, 59, 59, 62, 60, 70, 73};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
-    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO1);
+    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO1_GUI);
 }
 
 void ClaseTexturas::enemigo2() {
@@ -187,7 +187,7 @@ void ClaseTexturas::enemigo2() {
     int h_frames[] = {67, 63, 70, 73, 78, 75, 75, 73, 71, 68, 67, 72, 73, 73, 80, 83};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
-    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO2);
+    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO2_GUI);
 }
 
 void ClaseTexturas::enemigo3() {
@@ -198,7 +198,7 @@ void ClaseTexturas::enemigo3() {
     int h_frames[] = {62, 57, 64, 63, 59, 42, 24, 60};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
-    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO3);
+    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO3_GUI);
 }
 
 void ClaseTexturas::plataformaTipo1() {

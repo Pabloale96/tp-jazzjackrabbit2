@@ -22,7 +22,7 @@ private:
     Queue<msgAccion> client_commands;
     ClientSender sender;
     Queue<std::shared_ptr<GameStateClient>> server_msg;
-    std::unique_ptr<ClientReceiver> receiver;
+    ClientReceiver receiver;
     bool client_off;
     std::string personaje;
     uint16_t client_id;

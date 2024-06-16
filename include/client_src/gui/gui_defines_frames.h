@@ -14,9 +14,9 @@
 #define ANI_ESPECIAL 10
 
 
-#define ENEMIGO1 "enemigo1"
-#define ENEMIGO2 "enemigo2"
-#define ENEMIGO3 "enemigo3"
+#define ENEMIGO1_GUI "enemigo1"
+#define ENEMIGO2_GUI "enemigo2"
+#define ENEMIGO3_GUI "enemigo3"
 
 #define ZANAHORIA "zanahoria"
 #define MONEDA "moneda"

@@ -20,8 +20,9 @@ using SDL2pp::Surface;
 using SDL2pp::Texture;
 using SDL2pp::Window;
 
-class Collecionables {
+class Colecionables {
 protected:
+    ClaseTexturas & texturas;
     int pos_x;
     int pos_y;
     int speed;
@@ -29,39 +30,38 @@ protected:
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
 
-
 public:
-    Collecionables(int, int);
-    ~Collecionables();
+    Colecionables(ClaseTexturas & texturas, int x, int y);
+    ~Colecionables();
     void show();
 };
 
-class Municion: public Collecionables {
+class MunicionGui: public Colecionables {
 private:
 public:
-    Municion(int, int);
-    ~Municion();
+    MunicionGui(ClaseTexturas & texturas, int x, int y);
+    ~MunicionGui();
 
 };
 
-class Zanahoria: public Collecionables {
+class Zanahoria: public Colecionables {
 private:
 public:
-    Zanahoria(int, int);
+    Zanahoria(ClaseTexturas & texturas, int x, int y);
     ~Zanahoria();
 };
 
-class Moneda: public Collecionables {
+class Moneda: public Colecionables {
 private:
 public:
-    Moneda(int, int);
+    Moneda(ClaseTexturas & texturas, int x, int y);
     ~Moneda();
 };
 
-class Gema: public Collecionables {
+class Gema: public Colecionables {
 private:
 public:
-    Gema(int, int);
+    Gema(ClaseTexturas & texturas, int x, int y);
     ~Gema();
 };
 #endif

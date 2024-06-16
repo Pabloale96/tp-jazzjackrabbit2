@@ -15,9 +15,9 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         servicio(servicio),
         protocolo_client(hostname.c_str(), servicio.c_str()),
         client_commands(MAX_TAM_COLA),
-        sender(protocolo_client, client_commands),
+        sender(std::ref(protocolo_client), client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(nullptr),
+        receiver(std::ref(protocolo_client), client_id, server_msg),
         client_off(false),
         client_id(CLIENT_ID_NULO),
         gui(0, 0, std::ref(client_off), std::ref(personaje), std::ref(client_commands), plataformas,
@@ -186,9 +186,8 @@ std::string Client::toLowercase(const std::string& str) {
 }
 
 void Client::iniciar_hilos() {
-    receiver = std::make_unique<ClientReceiver>(protocolo_client, client_id, server_msg);
+    receiver.start();
     sender.start();
-    receiver->start();
 }
 
 void Client::jugar() {
@@ -237,10 +236,10 @@ Client::~Client() {
     protocolo_client.cerrar_socket();
 
     sender.stop();
-    receiver->stop();
+    receiver.stop();
     gui.stop();
 
     sender.join();
-    receiver->join();
+    receiver.join();
     gui.join();
 }

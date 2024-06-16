@@ -8,17 +8,22 @@
 #include <arpa/inet.h>  // para usar htons()
 
 #include "defines_msg.h"
+#include "gui_clase_texturas.h"
 #include "gui_animaciones.h"
 #include "protocol_utils.h"
 #include "msgToSent.h"
 
 class EnemigosGui {
-private:
+protected:
+    std::shared_ptr<ClaseTexturas> texturas;
     uint16_t id=0x00;
     uint16_t tipo=0x00;
     uint16_t pos_x=0x0000;
     uint16_t pos_y=0x0000;
+    int speed =0;
     Animacion enemigo;
+    std::shared_ptr<std::vector<Frame>> frames;
+    std::vector<Frame>::iterator it;
 
 public:
     EnemigosGui(){}
