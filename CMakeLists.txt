@@ -65,6 +65,8 @@ add_executable(client
   src/client_src/gui/gui_keyhandler.cpp
   src/client_src/gui/gui_escenario.cpp
   src/client_src/gui/gui_personaje.cpp
+  src/client_src/gui/gui_balas.cpp
+  src/client_src/gui/gui_coleccionables.cpp
   src/client_src/gui/gui_clase_texturas.cpp
   src/client_src/gui/gui_enemigos.cpp
   src/client_src/gui/gui_frame.cpp
