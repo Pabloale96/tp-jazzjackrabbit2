@@ -137,24 +137,27 @@ void ProtocolClient::enviar_accion(msgAccion& msg) {
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-void ProtocolClient::recibir_respuesta(GameStateMonitorClient& gameState, uint16_t& client_id) {
+std::unique_ptr<GameStateClient> ProtocolClient::recibir_respuesta( uint16_t& client_id) {
+    std::unique_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>(true);
+    
     msgGameState msg;
     if (was_closed) {
         // return nullptr;
     }
-    socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
-    gameState.setGameState(msg.state_partida);
-    client_id = ntohs(msg.client_id);
 
+    socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
+
+    gameState->setGameState(msg.state_partida);
+    client_id = ntohs(msg.client_id);
     uint16_t cant_iteraciones_personaje = ntohs(msg.cantidad_personajes);
     msgPersonaje personaje;
-    std::cout<<"cant_iteraciones_personaje: "<<cant_iteraciones_personaje<<std::endl;
     for (uint16_t i = 0; i < cant_iteraciones_personaje; i++) {
         if (was_closed) {
             // return nullptr;
         }
+        
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
-        gameState.pushPersonajes(personaje);
+        gameState->pushPersonajes(personaje);
     }
 
     uint16_t cant_iteraciones_enemigos = ntohs(msg.cantidad_enemigos);
@@ -164,7 +167,41 @@ void ProtocolClient::recibir_respuesta(GameStateMonitorClient& gameState, uint16
             // return nullptr;
         }
         socket_cliente.recvall(&enemigo, sizeof(enemigo), &was_closed);
-        gameState.pushEnemigos(enemigo.enemigo);
+        gameState->pushEnemigos(enemigo);
+    }
+    return gameState;
+}
+
+
+void ProtocolClient::recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id) {    
+    msgGameState msg;
+    if (was_closed) {
+        // return nullptr;
+    }
+
+    socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
+
+    gameState->setGameState(msg.state_partida);
+    client_id = ntohs(msg.client_id);
+    uint16_t cant_iteraciones_personaje = ntohs(msg.cantidad_personajes);
+    msgPersonaje personaje;
+    for (uint16_t i = 0; i < cant_iteraciones_personaje; i++) {
+        if (was_closed) {
+            // return nullptr;
+        }
+        
+        socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
+        gameState->pushPersonajes(personaje);
+    }
+
+    uint16_t cant_iteraciones_enemigos = ntohs(msg.cantidad_enemigos);
+    msgEnemigo enemigo;
+    for (uint16_t i = 0; i < cant_iteraciones_enemigos; i++) {
+        if (was_closed) {
+            // return nullptr;
+        }
+        socket_cliente.recvall(&enemigo, sizeof(enemigo), &was_closed);
+        gameState->pushEnemigos(enemigo);
     }
 }
 

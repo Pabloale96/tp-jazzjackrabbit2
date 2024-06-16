@@ -16,8 +16,7 @@
 #include "../../common_src/catedra/thread.h"
 #include "../../common_src/protocol_utils.h"
 #include "../../common_src/vector_monitor.h"
-
-#include "../gamestate_client_monitor.h"
+#include "../game_state_client.h"
 
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
@@ -72,7 +71,7 @@ public:
     Gui(int, int, bool&, std::string&, Queue<msgAccion>&, VectorMonitor<msgPlataforma>&, uint16_t);
     ~Gui();
     void run() override;
-    void setGameState(GameStateMonitorClient&);
+    void setGameState(GameStateClient&);
     void setEscenario(ClaseTexturas&);
 };
 

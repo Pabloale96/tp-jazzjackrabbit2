@@ -26,6 +26,8 @@ private:
     Surface spaz{Surface(IMG_PATH "/spaz.png")};
     Surface lori{Surface(IMG_PATH "/lori.png")};
     Surface beach{Surface(IMG_PATH "/beach.png")};
+    Surface enemigos{Surface(IMG_PATH "/enemigos.png")};
+    Surface items{Surface(IMG_PATH "/items.png")};
 
     Texture jazz_tex{Texture(renderer,
                              jazz.SetColorKey(true, SDL_MapRGB(jazz.Get()->format, 44, 102, 150)))};
@@ -35,6 +37,12 @@ private:
                              lori.SetColorKey(true, SDL_MapRGB(lori.Get()->format, 44, 102, 150)))};
     Texture beach_tex{Texture(
             renderer, beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0, 203)))};
+
+    Texture enemigos_tex{Texture(renderer,
+                             enemigos.SetColorKey(true, SDL_MapRGB(enemigos.Get()->format, 44, 102, 150)))};
+
+    Texture items_tex{Texture(renderer,
+                             items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 44, 102, 150)))};
 
     std::map<std::string, std::shared_ptr<std::vector<Frame>>> frames_map;
 
@@ -54,9 +62,20 @@ public:
                            int frame_count, Texture& textura_del_personaje, const std::string& key);
 
     void addFrames(std::string, std::shared_ptr<std::vector<Frame>>);
-    void addFrames(int, Frame);
 
     // Definiciones de frames:
+
+    void enemigo1();
+    void enemigo2();
+    void enemigo3();
+
+    void zanahoria();
+    void municion();
+    void moneda();
+    void gema();
+    void balas1();
+    void balas2();
+
 
     void plataformaTipo1();
     // void plataformaTipo2();

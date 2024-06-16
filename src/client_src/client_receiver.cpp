@@ -9,17 +9,20 @@
 #include "../../include/common_src/catedra/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
-                               Queue<std::shared_ptr<GameStateMonitorClient>>& server_msg):
+                               Queue<std::shared_ptr<GameStateClient>>& server_msg):
         protocolo_cliente(protocolo_cliente), client_id(client_id), server_msg(server_msg) {}
 
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            std::shared_ptr<GameStateMonitorClient> gamestate;
-            protocolo_cliente.recibir_respuesta(*gamestate, client_id);
+            std::unique_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>();
+            protocolo_cliente.recibir_respuesta(gameState,client_id);
+            server_msg.push(std::shared_ptr<GameStateClient>(
+                    std::move(gameState)));
 
-            server_msg.push(std::move(gamestate));
-
+            //std::unique_ptr<GameStateClient> gamestate = protocolo_cliente.recibir_respuesta(client_id);
+            //server_msg.push(std::move(gamestate));
+            
         } catch (const ClosedQueue&) {
             return;
         } catch (const LibError& err) {

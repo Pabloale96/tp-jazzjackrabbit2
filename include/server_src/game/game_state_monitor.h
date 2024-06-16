@@ -21,6 +21,7 @@ public:
 
     void borrar_queue(Queue<std::shared_ptr<GameState>>& queue);
 
+
     ~GameStateMonitor();
 };
 

@@ -14,6 +14,8 @@ uint8_t Arma::obtener_nombre_arma() const { return nombre_arma; }
 
 uint16_t Arma::obtener_municion() const { return cant_municiones; }
 
+void Arma::set_municion(uint16_t municion) { cant_municiones = municion; }
+
 uint16_t Arma::obtener_vel_dis() const { return vel_dis; }
 
 uint16_t Arma::obtener_vel_proy() const { return vel_proy; }

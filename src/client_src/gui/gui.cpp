@@ -12,7 +12,7 @@ Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion
 
 Gui::~Gui() {}
 
-void Gui::setGameState(GameStateMonitorClient& gamestate) {
+void Gui::setGameState(GameStateClient& gamestate) {
 
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
     pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_x());
@@ -79,27 +79,27 @@ void Gui::run() {
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
-        //std::cout<<"size: "<<dic_personajes.size()<<std::endl;
+        // std::cout<<"size: "<<dic_personajes.size()<<std::endl;
         for (const auto& [_, personaje]: dic_personajes) {
-                std::unique_ptr<PersonajeGui> pers;
-                int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;
-                int y = (personaje->obtener_posicion_y() - pos_y) * SCALING_VALUE_PIXEL_Y;
-                if (x <= (pos_x + renderer.GetOutputWidth() / 2) ||
-                    x <= (pos_x - renderer.GetOutputWidth() / 2) ||
-                    y <= (pos_y + renderer.GetOutputHeight() / 2) ||
-                    y <= (pos_y - renderer.GetOutputHeight() / 2)) {
-                    if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
-                        frames_personajes = texturas->findFrame(std::string(JAZZ_STAND));
-                        pers = std::make_unique<JazzGui>(texturas, x, y,5, frames_personajes);
-                    } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
-                        frames_personajes = texturas->findFrame(std::string(SPAZ_STAND));
-                        pers = std::make_unique<SpazGui>(texturas, x, y,5, frames_personajes);
-                    } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::LORI) {
-                        frames_personajes = texturas->findFrame(std::string(LORI_STAND));
-                        pers = std::make_unique<LoriGui>(texturas, x, y,5, frames_personajes);
-                    }
-                    pers->show();  // personaje->obtener_animacion());
+            std::unique_ptr<PersonajeGui> pers;
+            int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;
+            int y = (personaje->obtener_posicion_y() - pos_y) * SCALING_VALUE_PIXEL_Y;
+            if (x <= (pos_x + renderer.GetOutputWidth() / 2) ||
+                x <= (pos_x - renderer.GetOutputWidth() / 2) ||
+                y <= (pos_y + renderer.GetOutputHeight() / 2) ||
+                y <= (pos_y - renderer.GetOutputHeight() / 2)) {
+                if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
+                    frames_personajes = texturas->findFrame(std::string(JAZZ_STAND));
+                    pers = std::make_unique<JazzGui>(texturas, x, y, 5, frames_personajes);
+                } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::SPAZZ) {
+                    frames_personajes = texturas->findFrame(std::string(SPAZ_STAND));
+                    pers = std::make_unique<SpazGui>(texturas, x, y, 5, frames_personajes);
+                } else if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::LORI) {
+                    frames_personajes = texturas->findFrame(std::string(LORI_STAND));
+                    pers = std::make_unique<LoriGui>(texturas, x, y, 5, frames_personajes);
                 }
+                pers->show();  // personaje->obtener_animacion());
+            }
         }
         jugador->show();
         renderer.Present();
@@ -120,4 +120,3 @@ void Gui::run() {
         }
     }
 }
-

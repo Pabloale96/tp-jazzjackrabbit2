@@ -104,7 +104,8 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
         velocidad.idle();
         estados.setMuerto(true);
         duracion_muerto++;
-        if (duracion_muerto == std::chrono::seconds(YAMLConfig::getConfig().personaje.segundos_para_revivir)) {
+        if (duracion_muerto ==
+            std::chrono::seconds(YAMLConfig::getConfig().personaje.segundos_para_revivir)) {
             vida = YAMLConfig::getConfig().personaje.vidas;
             estados.setMuerto(false);
             estados.reset();
@@ -166,9 +167,9 @@ void Personaje::disparar() {
 void Personaje::cambiar_arma() {
     if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_INICIAL)) {
         arma = std::make_unique<Arma1>();
-    // El orden es: arma inicial -> arma 1 -> arma 2
-    // } else if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)) {
-    //    arma = std::make_unique<Arma2>();
+        // El orden es: arma inicial -> arma 1 -> arma 2
+        // } else if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)) {
+        //    arma = std::make_unique<Arma2>();
     } else {
         arma = std::make_unique<ArmaInicial>();
     }

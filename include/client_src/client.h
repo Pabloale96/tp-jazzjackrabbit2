@@ -21,7 +21,7 @@ private:
     ProtocolClient protocolo_client;
     Queue<msgAccion> client_commands;
     ClientSender sender;
-    Queue<std::shared_ptr<GameStateMonitorClient>> server_msg;
+    Queue<std::shared_ptr<GameStateClient>> server_msg;
     std::unique_ptr<ClientReceiver> receiver;
     bool client_off;
     std::string personaje;
@@ -45,7 +45,7 @@ private:
 
     void iniciar_hilos();
 
-    void mostrar_estadisticas(const GameStateMonitorClient& respuestas) const;
+    void mostrar_estadisticas(const GameStateClient& respuestas) const;
 
 public:
     // Constructor

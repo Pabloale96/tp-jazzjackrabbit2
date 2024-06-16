@@ -55,7 +55,7 @@ struct msgAccion {
                 break;
         }
     }
-} __attribute__((packed));
+}__attribute__((packed));
 
 struct msgGameState {
     uint8_t header;
@@ -81,7 +81,7 @@ struct msgGameState {
         cantidad_personajes = htons(gameState.getSizePersonajes());
         cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
     }
-};
+}__attribute__((packed));
 
 struct msgPersonaje {
     uint8_t tipo_personaje;
@@ -100,7 +100,7 @@ struct msgPersonaje {
         memset(this, 0, sizeof(*this));
         tipo_personaje = pers.obtener_tipo_personaje();
         tipo_arma = pers.obtener_nombre_arma();
-        estado = pers.obtener_estado_actual();
+        estado = pers.obtener_estado_actual(); // accion -->animacion
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());  // *100
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());  // *100
@@ -108,7 +108,7 @@ struct msgPersonaje {
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
     }
-};
+}__attribute__((packed));
 
 
 struct msgBalas {
@@ -121,7 +121,7 @@ struct msgBalas {
         balas[POS_POSX_BALA] = htons(muni.obtener_x());
         balas[POS_POSY_BALA] = htons(muni.obtener_y());
     }
-} __attribute__((packed));
+}__attribute__((packed));
 
 
 struct msgEnemigo {
@@ -135,13 +135,13 @@ struct msgEnemigo {
         enemigo[POS_POSX_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_x());
         enemigo[POS_POSY_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_y());
     }
-};
+}__attribute__((packed));
 
 struct msgEscenario {
     uint16_t cantidad_plataformas = 0;
 
     explicit msgEscenario(const uint16_t& cantidad) { cantidad_plataformas = htons(cantidad); }
-} __attribute__((packed));
+}__attribute__((packed));
 
 struct msgPlataforma {
     uint8_t tipo_plataforma = 0;
@@ -156,7 +156,7 @@ struct msgPlataforma {
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();
         plataforma[POS_HEIGHT_PLATAFORM] = pla.obtener_height();
     }
-} __attribute__((packed));
+}__attribute__((packed));
 
 
 #endif

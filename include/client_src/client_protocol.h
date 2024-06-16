@@ -7,7 +7,8 @@
 #include <vector>
 
 #include "../common_src/vector_monitor.h"
-#include "gamestate_client_monitor.h"
+
+#include "game_state_client.h"
 #include "sockets.h"
 
 enum class TipoAccion : char {
@@ -52,7 +53,8 @@ public:
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    void recibir_respuesta(GameStateMonitorClient&, uint16_t& client_id);
+    std::unique_ptr<GameStateClient> recibir_respuesta( uint16_t& client_id);
+    void recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id);
 
     bool recibir_escenario(VectorMonitor<msgPlataforma>& plataforma);
 

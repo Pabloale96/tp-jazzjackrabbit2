@@ -105,6 +105,7 @@ void GameEscenario::actualizar_enemigos() {
     }
 }
 
+/*
 bool GameEscenario::aumentar_iteraciones() {
     for (auto& enemigo: enemigos) {
         if (!enemigo->esta_vivo()) {
@@ -116,6 +117,7 @@ bool GameEscenario::aumentar_iteraciones() {
     }
     return false;
 }
+*/
 
 void GameEscenario::actualizar_collectibles() {
     for (auto& collectible: collectibles) {

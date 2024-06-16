@@ -49,7 +49,7 @@ message("Headers generados: ${UIS_HEADERS}")
 
 add_executable(client
   src/client_src/client.cpp
-  src/client_src/gamestate_client_monitor.cpp
+  src/client_src/dict_monitor.cpp
   src/client_src/game_state_client.cpp
   src/client_src/gui/gui.cpp
   src/client_src/main.cpp
