@@ -221,7 +221,7 @@ void Client::jugar() {
     // ***************** JUEGO *****************
     std::cout << "Comienza la partida!" << std::endl;
     iniciar_hilos();
-    
+
     gui.start();
 
     while (!client_off) {

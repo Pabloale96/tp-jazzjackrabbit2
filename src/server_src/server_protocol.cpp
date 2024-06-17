@@ -139,7 +139,7 @@ bool ProtocolServer::confirmar_fin_lobby(bool& was_closed) {
     }
     socket_cliente.sendall(&fin, sizeof(fin), &was_closed);
 
-    
+
     std::cout << "El jugador esta saliendo del lobby" << std::endl;
     return true;
 }

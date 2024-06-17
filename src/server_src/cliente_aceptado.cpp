@@ -16,7 +16,7 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monit
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
         server_msg(MAX_TAM_COLA),
-        lobby_off(false),        
+        lobby_off(false),
         sender(protocolo_server, id_cliente, was_closed, server_msg, lobby_off),
         receiver(nullptr),
         gameloop_id(PARTIDA_NO_ASIGNADA),
@@ -32,7 +32,7 @@ void ClienteAceptado::start(GameloopMonitor& gameloop_monitor) {
     } catch (const std::exception& e) {
         std::cerr << "Error al iniciar el cliente: " << e.what() << std::endl;
         return;
-    }        
+    }
     sender.start();
 }
 

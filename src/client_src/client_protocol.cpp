@@ -86,23 +86,22 @@ bool ProtocolClient::confirmar_fin_lobby() {
     uint8_t confirmacion = 1;
     socket_cliente.sendall(&confirmacion, sizeof(uint8_t), &was_closed);
     std::cout << "Enviando confirmacion de carga de escenario correcta " << std::endl;
-    if (was_closed) {
-        return false;
-    }
-    
+
     uint8_t fin_lobby = 0;
     if (was_closed) {
-        std::cout << "Error: conexión cerrada antes de confirmar fin de creacion de escenario" << std::endl;
+        std::cout << "Error: conexión cerrada antes de confirmar fin de creacion de escenario"
+                  << std::endl;
         return false;
     }
     socket_cliente.recvall(&fin_lobby, sizeof(uint8_t), &was_closed);
     std::cout << "Recibiendo confirmacion de carga de escenario correcta " << std::endl;
-    if (fin_lobby != (uint8_t) 1) {
-        std::cout << (unsigned) fin_lobby << std::endl;
+    if (fin_lobby != (uint8_t)1) {
+        std::cout << (unsigned)fin_lobby << std::endl;
         return false;
     }
     if (was_closed) {
-        std::cout << "Error: conexión cerrada antes de confirmar fin de creacion de escenario" << std::endl;
+        std::cout << "Error: conexión cerrada antes de confirmar fin de creacion de escenario"
+                  << std::endl;
         return false;
     }
 
