@@ -26,7 +26,7 @@ private:
     bool client_off;
     std::string personaje;
     uint16_t client_id;
-    VectorMonitor<msgPlataforma> plataformas;
+    VectorMonitor<std::shared_ptr<PlatformGui>>plataformas;
     Gui gui;
 
     std::string toLowercase(const std::string& str);
@@ -42,6 +42,10 @@ private:
     void crear_partida();
 
     void unirse_a_partida();
+
+    void crear_escenario();
+
+    bool cerrar_lobby();
 
     void iniciar_hilos();
 

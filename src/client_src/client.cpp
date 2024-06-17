@@ -20,8 +20,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         receiver(protocolo_client, client_id, server_msg),
         client_off(false),
         client_id(CLIENT_ID_NULO),
-        gui(0, 0, std::ref(client_off), std::ref(personaje), std::ref(client_commands), plataformas,
-            client_id) {}
+        gui(0, 0, client_off, personaje, client_commands, plataformas, client_id) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -190,22 +189,44 @@ void Client::iniciar_hilos() {
     sender.start();
 }
 
+void Client::crear_escenario() {
+    if (protocolo_client.recibir_escenario(plataformas) == false) {
+        std::cout << "Error: No se pudo recibir el escenario" << std::endl;
+        return;
+    }
+}
+
+bool Client::cerrar_lobby() {
+    if (protocolo_client.confirmar_fin_lobby() == false) {
+        std::cout << "Error: No se pudo completar correctamente el inicio del juego. Por favor "
+                     "cierre y vuelva a intentarlo. "
+                  << std::endl;
+        return false;
+    }
+    return true;
+}
+
 void Client::jugar() {
 
     // ***************** LOBBY *****************
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-    protocolo_client.recibir_escenario(plataformas);
+    crear_escenario();
+    if (cerrar_lobby() == false) {
+        return;
+    }
 
     // ***************** JUEGO *****************
+    std::cout << "Comienza la partida!" << std::endl;
     iniciar_hilos();
+
     gui.start();
 
     while (!client_off) {
 
         std::shared_ptr<GameStateClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {
+        while (server_msg.try_pop(respuesta)) {;
             gui.setGameState(*respuesta);
             // respuesta->imprimir_cliente();
 

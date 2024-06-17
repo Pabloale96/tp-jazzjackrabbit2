@@ -38,11 +38,12 @@ private:
     Texture beach_tex{Texture(
             renderer, beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0, 203)))};
 
-    Texture enemigos_tex{Texture(renderer,
-                             enemigos.SetColorKey(true, SDL_MapRGB(enemigos.Get()->format, 44, 102, 150)))};
+    Texture enemigos_tex{
+            Texture(renderer,
+                    enemigos.SetColorKey(true, SDL_MapRGB(enemigos.Get()->format, 44, 102, 150)))};
 
-    Texture items_tex{Texture(renderer,
-                             items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 44, 102, 150)))};
+    Texture items_tex{Texture(
+            renderer, items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 44, 102, 150)))};
 
     std::map<std::string, std::shared_ptr<std::vector<Frame>>> frames_map;
 

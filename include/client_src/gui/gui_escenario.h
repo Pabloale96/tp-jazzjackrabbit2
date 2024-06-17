@@ -10,6 +10,7 @@
 
 #include "gui_frame.h"
 #include "gui_platform.h"
+#include "vector_monitor.h"
 
 using SDL2pp::Renderer;
 using SDL2pp::Surface;
@@ -17,10 +18,10 @@ using SDL2pp::Texture;
 
 class Escenario {
 private:
-    std::vector<PlatformGui>& platforms;
+    VectorMonitor<std::shared_ptr<PlatformGui>>& platforms;
 
 public:
-    explicit Escenario(std::vector<PlatformGui>&);
+    explicit Escenario(VectorMonitor<std::shared_ptr<PlatformGui>>&);
     ~Escenario();
 
     void show(int dif_x, int dif_y);

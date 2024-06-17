@@ -33,7 +33,7 @@ public:
 
     std::vector<T>& get_vector();
 
-    // MNeotodos para poder iterar sobre el vector
+    // Metodos para poder iterar sobre el vector
     typename std::vector<T>::iterator begin();
     typename std::vector<T>::iterator end();
     typename std::vector<T>::const_iterator begin() const;

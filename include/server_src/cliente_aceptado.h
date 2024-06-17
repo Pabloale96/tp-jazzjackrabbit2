@@ -22,6 +22,7 @@ private:
     ProtocolServer protocolo_server;
     bool was_closed;
     Queue<std::shared_ptr<GameState>> server_msg;
+    std::atomic<bool> lobby_off;
     ServerSender sender;
     std::shared_ptr<ServerReceiver> receiver;
     uint16_t gameloop_id;

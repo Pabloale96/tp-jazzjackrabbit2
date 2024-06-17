@@ -3,14 +3,13 @@
 
 #include <map>
 #include <memory>
+#include <utility>
 #include <vector>
 
-
-#include "dict_monitor.h"
 #include "gui/gui_enemigos.h"
 #include "gui/gui_personaje.h"
 
-
+#include "dict_monitor.h"
 #include "msgToSent.h"
 #include "queue.h"
 
@@ -41,13 +40,13 @@ public:
 
     int get_cantidad_de_enemigos() { return diccionario_de_enemigos.size(); }
 
-    void setGameState(const uint8_t& state_partida) { 
-        if(state_partida == 0x01) {
+    void setGameState(const uint8_t& state_partida) {
+        if (state_partida == 0x01) {
             jugando = true;
         } else {
             jugando = false;
         }
-        //jugando = ((unsigned) state_partida == 0x01); 
+        // jugando = ((unsigned) state_partida == 0x01);
     }
 
     void pushPersonajes(msgPersonaje& msgpers);
@@ -57,15 +56,15 @@ public:
         diccionario_de_enemigos.emplace(enemigo.get_id_enemigo(), enemigo);
     }
 
-        // Prohibir la copia
+    // Prohibir la copia
     GameStateClient(const GameStateClient&) = delete;
     GameStateClient& operator=(const GameStateClient&) = delete;
 
     // Permitir el movimiento
-    GameStateClient(GameStateClient&& other) noexcept
-        : jugando(other.jugando),
-          diccionario_de_personajes(std::move(other.diccionario_de_personajes)),
-          diccionario_de_enemigos(std::move(other.diccionario_de_enemigos)) {}
+    GameStateClient(GameStateClient&& other) noexcept:
+            jugando(other.jugando),
+            diccionario_de_personajes(std::move(other.diccionario_de_personajes)),
+            diccionario_de_enemigos(std::move(other.diccionario_de_enemigos)) {}
 
     GameStateClient& operator=(GameStateClient&& other) noexcept {
         if (this != &other) {

@@ -2,6 +2,7 @@
 #define __PROTOCOL_CLIENT_H__
 
 #include <map>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -9,6 +10,7 @@
 #include "../common_src/vector_monitor.h"
 
 #include "game_state_client.h"
+#include "gui/gui_platform.h"
 #include "sockets.h"
 
 enum class TipoAccion : char {
@@ -49,14 +51,15 @@ public:
 
     void enviar_id_partida(uint16_t id_partida);
 
+    bool recibir_escenario(VectorMonitor<std::shared_ptr<PlatformGui>>& plataforma);
+
+    bool confirmar_fin_lobby();
+
     // Recibe del cliente la accion para serializar y enviar al server
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    std::unique_ptr<GameStateClient> recibir_respuesta( uint16_t& client_id);
     void recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id);
-
-    bool recibir_escenario(VectorMonitor<msgPlataforma>& plataforma);
 
     void cerrar_socket();
 

@@ -23,13 +23,13 @@ private:
     float prob_vida;
 
 public:
-    // Constructor
-    // Inicializa vivo en true y las iteraciones en 0
+    // Constructor para el servidor
     explicit Enemigo(uint16_t id_enemigo);
 
     // Constructor para el cliente
     explicit Enemigo(uint16_t* datos_enemigo);
 
+    // Setters
     void set_enemigo_id(uint16_t id_enemigo);
     void set_tipo_enemigo(TipoEnemigo tipo_enemigo);
     void set_posicion_enemigo(uint16_t x, uint16_t y);
@@ -40,6 +40,7 @@ public:
     void set_prob_municion(float prob_municion);
     void set_prob_vida(float prob_vida);
 
+    // Getters
     uint16_t get_id_enemigo() const;
     TipoEnemigo get_tipo_enemigo() const;
     Posicion get_posicion_enemigo() const;
@@ -47,20 +48,25 @@ public:
     uint16_t get_danio_al_jugador() const;
     uint16_t get_puntos() const;
 
+    // Actualiza la posicion del enemigo
     void actualizar();
+
+    // Mueve al enemigo
+    void mover();
 
     // reduce vida al enemigo
     void recibir_disparo(uint8_t danio);
 
-    // Aumenta las iteraciones del enemigo. Si llega a 15 llama a revivir_enemigo
+    // Aumenta las iteraciones del enemigo. Si llega a time_revive llama a revivir_enemigo
     void aumentar_iteraciones();
 
+    // Pone vidas en 0
     void matar();
 
-    // Revive al enemigo
+    // Revive al enemigo dependiendo de su tipo
     virtual void revivir_enemigo();
 
-    // Devuelve true si el enemigo esta vivo
+    // Devuelve true si el enemigo tiene vidas
     bool esta_vivo();
 
     // Destructor

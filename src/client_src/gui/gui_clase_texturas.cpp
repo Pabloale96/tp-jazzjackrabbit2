@@ -128,7 +128,7 @@ void ClaseTexturas::balas2() {
 
 void ClaseTexturas::zanahoria() {
 
-    int x_frames[] = {807, 835, 862, 883, 901, 939, 967, 993, 1015, 1033 };
+    int x_frames[] = {807, 835, 862, 883, 901, 939, 967, 993, 1015, 1033};
     int y_frames[] = {1163, 1163, 1163, 1163, 1163, 1163, 1163, 1163, 1163, 1163};
     int w_frames[] = {34, 34, 34, 34, 34, 34, 34, 34, 34, 34};
     int h_frames[] = {25, 23, 18, 15, 34, 25, 23, 18, 15, 34};
@@ -158,9 +158,12 @@ void ClaseTexturas::gema() {
 }
 void ClaseTexturas::moneda() {
 
-    int x_frames[] = {484, 510, 535, 558, 577, 592, 602, 617, 636, 660, 686, 712, 738, 762, 781, 796, 806, 820, 838, 861};
-    int y_frames[] = {1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220};
-    int w_frames[] = {23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23};
+    int x_frames[] = {484, 510, 535, 558, 577, 592, 602, 617, 636, 660,
+                      686, 712, 738, 762, 781, 796, 806, 820, 838, 861};
+    int y_frames[] = {1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220,
+                      1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220, 1220};
+    int w_frames[] = {23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+                      23, 23, 23, 23, 23, 23, 23, 23, 23, 23};
     int h_frames[] = {23, 22, 20, 16, 12, 7, 12, 16, 21, 23, 23, 23, 21, 16, 12, 7, 12, 16, 21, 21};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
@@ -176,18 +179,22 @@ void ClaseTexturas::enemigo1() {
     int h_frames[] = {62, 52, 44, 67, 52, 51, 59, 59, 62, 60, 70, 73};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
-    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO1_GUI);
+    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex,
+                      ENEMIGO1_GUI);
 }
 
 void ClaseTexturas::enemigo2() {
 
-    int x_frames[] = {728, 800, 872, 947, 30, 111, 192, 274, 358, 434, 506, 579, 663, 746, 826, 914};
-    int y_frames[] = {662, 662, 662, 662, 700, 700, 700, 700, 700, 700, 700, 700, 700, 700, 700, 700};
+    int x_frames[] = {728, 800, 872, 947, 30,  111, 192, 274,
+                      358, 434, 506, 579, 663, 746, 826, 914};
+    int y_frames[] = {662, 662, 662, 662, 700, 700, 700, 700,
+                      700, 700, 700, 700, 700, 700, 700, 700};
     int w_frames[] = {33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33};
     int h_frames[] = {67, 63, 70, 73, 78, 75, 75, 73, 71, 68, 67, 72, 73, 73, 80, 83};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
-    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO2_GUI);
+    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex,
+                      ENEMIGO2_GUI);
 }
 
 void ClaseTexturas::enemigo3() {
@@ -198,7 +205,8 @@ void ClaseTexturas::enemigo3() {
     int h_frames[] = {62, 57, 64, 63, 59, 42, 24, 60};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
-    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex, ENEMIGO3_GUI);
+    add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, enemigos_tex,
+                      ENEMIGO3_GUI);
 }
 
 void ClaseTexturas::plataformaTipo1() {

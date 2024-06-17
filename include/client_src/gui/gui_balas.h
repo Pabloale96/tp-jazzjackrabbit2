@@ -24,7 +24,7 @@ class BalasGui {
 protected:
     int pos_x;
     int pos_y;
-    int speed=5;
+    int speed = 5;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
     Animacion animacion;
