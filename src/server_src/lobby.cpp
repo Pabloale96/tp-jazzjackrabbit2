@@ -3,14 +3,15 @@
 Lobby::Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor,
              uint16_t gameloop_id, uint16_t id_cliente,
              Queue<std::shared_ptr<GameState>>& server_msg,
-             std::shared_ptr<ServerReceiver>& receiver):
+             std::shared_ptr<ServerReceiver>& receiver, std::atomic<bool>& lobby_off):
         protocolo_server(protocolo_server),
         was_closed(was_closed),
         gameloop_monitor(gameloop_monitor),
         gameloop_id(gameloop_id),
         id_cliente(id_cliente),
         server_msg(server_msg),
-        receiver(receiver) {}
+        receiver(receiver), 
+        lobby_off(lobby_off) {}
 
 void Lobby::run() {
     std::cout << "El jugador " << id_cliente << " ha ingresado al lobby" << std::endl;
@@ -21,6 +22,8 @@ void Lobby::run() {
             std::cout << "Error en la confirmacion del fin del lobby" << std::endl;
             throw std::runtime_error("Error en la confirmacion del fin del lobby");
         }
+        lobby_off = true;      
+        std::cout << "El jugador " << id_cliente << " tiene lobby " << lobby_off << std::endl;  
         receiver->start();
     } catch (const std::exception& e) {
         std::cerr << "Error en el lobby: " << e.what() << std::endl;

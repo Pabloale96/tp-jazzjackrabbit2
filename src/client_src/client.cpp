@@ -221,20 +221,7 @@ void Client::jugar() {
     // ***************** JUEGO *****************
     std::cout << "Comienza la partida!" << std::endl;
     iniciar_hilos();
-    /*
-    while (!client_off) {
-        std::shared_ptr<GameStateClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {
-            //gui.setGameState(*respuesta);
-            //respuesta->imprimir_cliente();
-
-            if (respuesta->getJugando() == false) {
-                std::cout << "La partida ha finalizado" << std::endl;
-            }
-        }
-    }
-    return;
-
+    
     gui.start();
 
     while (!client_off) {
@@ -252,7 +239,6 @@ void Client::jugar() {
             }
         }
     }
-    */
 }
 
 void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
