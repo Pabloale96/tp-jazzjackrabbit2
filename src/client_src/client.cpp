@@ -151,6 +151,7 @@ void Client::unirse_a_partida() {
                 std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
                 continue;
             }
+            std::cout << "id partida: "<< static_cast<int>(id_partida)<<std::endl;
             protocolo_client.enviar_id_partida(id_partida);
             return;
         }

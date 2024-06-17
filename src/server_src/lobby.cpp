@@ -45,15 +45,6 @@ void Lobby::establecer_partida(GameloopMonitor& gameloop_monitor) {
     } else {
         joinearse_a_una_partida(gameloop_monitor);
     }
-    try
-    {
-        protocolo_server.enviar_escenario(
-                (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
-    }
-    catch(const ErrorEnviarDatos& err)
-    {
-        throw ErrorEnviarDatos();
-    }
 }
 
 void Lobby::crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida) {
@@ -64,6 +55,8 @@ void Lobby::crear_partida(GameloopMonitor& gameloop_monitor, const std::string& 
             ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                 gameloop_id, id_cliente);
+    protocolo_server.enviar_escenario(
+            (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
     return;
 }
 
@@ -79,15 +72,17 @@ void Lobby::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) {
                 std::cout << "Error al crear partida" << std::endl;
             }
         } else {
-            uint16_t gameloop_id = protocolo_server.recibir_id_partida(was_closed);
+            uint16_t gameloop_id = ntohs(protocolo_server.recibir_id_partida(was_closed));
             uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
             std::cout << " ** SE UNIO A LA PARTIDA CON id " << gameloop_id << " **" << std::endl;
             gameloop_monitor.obtener_gameloop(gameloop_id)
                     ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
-        
             gameloop_monitor.obtener_gameloop(gameloop_id)->agregar_cliente(id_cliente, personaje);
             receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed,
                                                         gameloop_monitor, gameloop_id, id_cliente);
+            protocolo_server.enviar_escenario(
+                    (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
+
         }
     } catch (const std::exception& e) {
         std::cerr << "Error al obtener partidas disponibles: " << e.what() << std::endl;
