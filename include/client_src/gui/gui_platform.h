@@ -24,6 +24,8 @@ private:
     int type = 0;
     int height;
     int width;
+    int w_window;
+    int h_window;
     std::shared_ptr<Frame> platform;
 
 public:
@@ -32,7 +34,12 @@ public:
 
     void show(int dif_x, int dif_y);
     float rotateToFloat();
-    void setFrame(std::shared_ptr<Frame>&);
+    void setFrame(std::shared_ptr<Frame>&,int ,int );
+
+    int getW() {return width;}
+    int getH() {return height;}
+    int getX() {return pos_x;}
+    int getY() {return pos_y;}
 };
 
 #endif

@@ -9,7 +9,7 @@
 #define HEIGHT_PLATFORM_TYPE_1 29
 #define WIDTH_PLATFORM_TYPE_1 192
 
-#define SCALING_VALUE_PIXEL_X 10
+#define SCALING_VALUE_PIXEL_X 50
 #define SCALING_VALUE_PIXEL_Y 29
 
 // tipo de plataforma usado de gui para la interfaz:

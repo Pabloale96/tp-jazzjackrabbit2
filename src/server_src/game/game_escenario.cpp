@@ -16,18 +16,28 @@ void GameEscenario::cargar_plataformas() {
     // Creo las plataformas iniciales
     // Se setea los valores del esceneario:
 
-    //std::vector<int> x_horizontales = {0, 15, 22, 33, 53, 75};
-    //std::vector<int> y_horizontales = {0, 2, 7, 5, 15, };
-    //std::vector<int> w_horizontales = {15, 5, 10, 11, 16};
+    std::vector<int> x_horizontales = {0, 15, 22, 33, 53, 75, 81, 84, 87, 0, 16, 33, 47, 65, 78, 8, 23, 27, 30, 33, 48};
+    std::vector<int> y_horizontales = {0, 2, 7, 5, 15, 8, 12, 15, 18, 11, 23, 27, 30, 32, 34, 45, 36, 41, 43, 46, 47};
+    std::vector<int> w_horizontales = {15, 5, 10, 11, 16, 24, 13, 7, 1, 11, 17, 11, 18, 11, 21, 6, 23, 18, 7, 1, 47};
 
-
-    /*
-    for (size_t i = 0; i < XMAX; i += WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X) {
-        Platform plataforma_inicial(i, 0, WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
+    for (size_t i = 0; i < x_horizontales.size(); i ++) {
+        Platform plataforma_inicial(x_horizontales[i], y_horizontales[i], w_horizontales[i],
                                     HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
                                     static_cast<uint16_t>(platform::HORIZONTAL), false);
         plataformas.push_back(plataforma_inicial);
     }
+
+    std::vector<int> x_verticales = {15, 33, 53, 33, 65};
+    std::vector<int> y_verticales = {0, 5, 13, 23, 30};
+    std::vector<int> w_verticales = {3, 2, 2, 4, 32};
+
+    for (size_t i = 0; i < x_verticales.size(); i ++) {
+        Platform plataforma_inicial(x_verticales[i], y_verticales[i], w_verticales[i],
+                                    HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
+                                    static_cast<uint16_t>(platform::VERTICAL), false);
+        plataformas.push_back(plataforma_inicial);
+    }
+    /*
     std::vector<int> x_plataforma_horizontales = {20, 20, 60, 100, 130, 170, 180, 180};
     std::vector<int> y_plataforma_horizontales = {3, 8, 11, 5, 11, 1, 8, 11};
 

@@ -11,8 +11,10 @@ PlatformGui::PlatformGui(const msgPlataforma& msg):
 
 PlatformGui::~PlatformGui() {}
 
-void PlatformGui::setFrame(std::shared_ptr<Frame>& frame_plat) {
+void PlatformGui::setFrame(std::shared_ptr<Frame>& frame_plat, int width, int heigth) {
     platform=frame_plat;
+    w_window = width;
+    h_window = heigth;
 }
 
 float PlatformGui::rotateToFloat() {
@@ -37,10 +39,10 @@ float PlatformGui::rotateToFloat() {
 
 void PlatformGui::show(int dif_x, int dif_y) {
     float rotate = this->rotateToFloat();
-    if ((pos_x - dif_x < 30 && pos_x - dif_x > -30) ||
-        (pos_y - dif_y < 14 && pos_y - dif_y > -14)) {
-        platform->copy(rotate, (pos_x - dif_x) * SCALING_VALUE_PIXEL_X,
-                      abs(pos_y - dif_y) * SCALING_VALUE_PIXEL_Y, width * SCALING_VALUE_PIXEL_X,
+    if (((dif_x - pos_x)  < 30 && (dif_x - pos_x)  > -30) ||
+        ((dif_y - pos_y) < 14 && (dif_y - pos_y) > -14)) {
+        platform->copy(rotate, (dif_x - pos_x) * SCALING_VALUE_PIXEL_X +w_window/2,
+                      (dif_y - pos_y) * SCALING_VALUE_PIXEL_Y+h_window/2, width * SCALING_VALUE_PIXEL_X,
                       height * SCALING_VALUE_PIXEL_Y);
     }
 }

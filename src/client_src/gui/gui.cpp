@@ -62,7 +62,7 @@ void Gui::run() {
     for (size_t i = 0; i < plataformas.size(); i++)
     {
         std::shared_ptr<Frame> beach = std::make_shared<Frame>(texturas->findFrame(std::string(PLATFORM_BEACH_TYPE_1))->at(0));
-        plataformas[i]->setFrame(beach);
+        plataformas[i]->setFrame(beach,screenWidth,screenHeight);
     }
     
     std::cout << "size plataformas: "<<plataformas.size()<<std::endl;
