@@ -8,7 +8,12 @@
 
 #include "defines_msg.h"
 
-Enemigo::Enemigo(uint16_t id_enemigo): id_enemigo(id_enemigo) {}
+#define VELOCIDAD_EN_x 1
+#define VELOCIDAD_EN_y 0
+
+// Todos los enemigos tienen la misma velocidad y arrancan para la derecha
+Enemigo::Enemigo(uint16_t id_enemigo):
+        id_enemigo(id_enemigo), velocidad_enemigo(VELOCIDAD_EN_x, VELOCIDAD_EN_y) {}
 
 Enemigo::Enemigo(uint16_t* datos_enemigo):
         id_enemigo(ntohs(datos_enemigo[POS_ID_ENEMIGO])),
@@ -52,6 +57,12 @@ void Enemigo::actualizar() {
     // segun en que direccion esta, llamar a mover
 
     // Si el enemigo esta muerto, aumenta las iteraciones para revivir
+}
+
+void Enemigo::mover() {
+    // Mover enemigo
+    // Si llega a la pared, cambiar de direccion
+    // Si llega al borde de la pantalla, cambiar de direccion
 }
 
 void Enemigo::recibir_disparo(uint8_t danio) {
