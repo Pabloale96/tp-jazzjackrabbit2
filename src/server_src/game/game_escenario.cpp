@@ -16,6 +16,12 @@ void GameEscenario::cargar_plataformas() {
     // Creo las plataformas iniciales
     // Se setea los valores del esceneario:
 
+    //std::vector<int> x_horizontales = {0, 15, 22, 33, 53, 75};
+    //std::vector<int> y_horizontales = {0, 2, 7, 5, 15, };
+    //std::vector<int> w_horizontales = {15, 5, 10, 11, 16};
+
+
+    /*
     for (size_t i = 0; i < XMAX; i += WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X) {
         Platform plataforma_inicial(i, 0, WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
                                     HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
@@ -43,6 +49,7 @@ void GameEscenario::cargar_plataformas() {
                             static_cast<uint16_t>(platform::DIAGONAL), false);
         plataformas.push_back(plataforma);
     }
+    */
 }
 
 void GameEscenario::cargar_enemigos() {

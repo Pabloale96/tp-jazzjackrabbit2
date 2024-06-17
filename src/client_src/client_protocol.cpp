@@ -153,8 +153,8 @@ void ProtocolClient::recibir_partidas_disponibles(
 }
 
 void ProtocolClient::enviar_id_partida(uint16_t id_partida) {
-    id_partida = htons(id_partida);
-    socket_cliente.sendall(&id_partida, sizeof(uint16_t), &was_closed);
+    uint16_t partida = id_partida;
+    socket_cliente.sendall(&partida, sizeof(uint16_t), &was_closed);
 }
 
 // ********************** PROTOCOLOS DE JUEGO **********************
