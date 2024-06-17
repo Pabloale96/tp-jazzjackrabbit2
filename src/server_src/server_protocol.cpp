@@ -12,6 +12,7 @@
 #include <sys/socket.h>  // para usar el flag para hacer shutdown del socket
 
 #include "../../include/common_src/catedra/liberror.h"
+#include "../../include/common_src/excepciones.h"
 #include "../../include/common_src/protocol_utils.h"
 
 #define MUERTO 0x04
@@ -202,6 +203,9 @@ void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
         }
         socket_cliente.sendall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
     }
+    uint8_t respuesta = 0xFF;
+    socket_cliente.recvall(&respuesta,sizeof(respues),was_closed)
+    if (respuesta != 0xFF) throw ErrorEnviarDatos();
 }
 
 void ProtocolServer::cerrar_socket_cliente() {

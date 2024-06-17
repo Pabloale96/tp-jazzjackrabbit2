@@ -86,21 +86,21 @@ struct msgGameState {
 struct msgPersonaje {
     uint8_t tipo_personaje;
     uint8_t tipo_arma;
-    uint8_t estado;
+    //uint8_t estado;
     uint16_t personaje[SIZE_ARRAY_PERSONAJE];
 
     msgPersonaje() {
         memset(this, 0, sizeof(*this));
         tipo_personaje = TIPO_PERSONAJE_NULO;
         tipo_arma = 0x00;
-        estado = static_cast<uint8_t>(efectos::IDLE);
+        //estado = static_cast<uint8_t>(efectos::IDLE);
     }
 
     msgPersonaje(uint16_t id, Personaje& pers) {
         memset(this, 0, sizeof(*this));
         tipo_personaje = pers.obtener_tipo_personaje();
         tipo_arma = pers.obtener_nombre_arma();
-        estado = pers.obtener_estado_actual(); // accion -->animacion
+        //estado = pers.obtener_estado_actual(); // accion -->animacion
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());  // *100
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());  // *100

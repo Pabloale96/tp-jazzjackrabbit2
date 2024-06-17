@@ -78,6 +78,7 @@ bool ProtocolClient::recibir_escenario(VectorMonitor<msgPlataforma>& vec_platafo
         socket_cliente.recvall(&plataforma, sizeof(plataforma), &was_closed);
         vec_plataforma.push_back(plataforma);
     }
+    // aca mando un FF
     return true;
 }
 

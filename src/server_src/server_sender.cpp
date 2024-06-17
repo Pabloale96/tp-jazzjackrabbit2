@@ -1,6 +1,7 @@
 #include "../../include/server_src/server_sender.h"
 
 #include "../../include/common_src/catedra/liberror.h"
+#include "../../include/common_src/excepciones.h"
 #include "../../include/server_src/server_protocol.h"
 
 #define MATAR 0x04
@@ -18,6 +19,9 @@ void ServerSender::run() {
         try {
             std::shared_ptr<GameState> gameState = server_msg.pop();
             protocolo_server.enviar_respuesta(*gameState, cliente_id, was_closed);
+        } catch (const ErrorEnviarDatos&) {
+            std::cout << "Error al envio de los datos\n";
+            return;
         } catch (const ClosedQueue&) {
             std::cout << "ServerSender cerrado\n";
             return;
