@@ -13,6 +13,20 @@
 #define ANI_SALTAR_SHOOT 9
 #define ANI_ESPECIAL 10
 
+
+#define ENEMIGO1_GUI "enemigo1"
+#define ENEMIGO2_GUI "enemigo2"
+#define ENEMIGO3_GUI "enemigo3"
+
+#define ZANAHORIA "zanahoria"
+#define MONEDA "moneda"
+#define GEMA "gema"
+
+#define MUNICION "municion"
+#define BALA1 "bala1"
+#define BALA2 "bala2"
+
+
 #define PLATFORM_BEACH_TYPE_1 "beachType1"
 
 #define SPAZ_STAND "spazStand"

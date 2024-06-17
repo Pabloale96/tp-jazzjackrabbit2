@@ -6,7 +6,6 @@
 
 #include "client_protocol.h"
 #include "game_state_monitor.h"
-#include "gamestate_client_monitor.h"
 #include "queue.h"
 #include "thread.h"
 
@@ -14,12 +13,12 @@ class ClientReceiver: public Thread {
 private:
     ProtocolClient& protocolo_cliente;
     uint16_t& client_id;
-    Queue<std::shared_ptr<GameStateMonitorClient>>& server_msg;
+    Queue<std::shared_ptr<GameStateClient>>& server_msg;
 
 public:
     // Constructor
     ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
-                   Queue<std::shared_ptr<GameStateMonitorClient>>& server_msg);
+                   Queue<std::shared_ptr<GameStateClient>>& server_msg);
 
     void run() override;
 

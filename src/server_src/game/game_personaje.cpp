@@ -44,7 +44,7 @@ Personaje::Personaje(msgPersonaje& personaje):
 
         posicion(personaje.personaje[POS_POSX_PERSONAJE], personaje.personaje[POS_POSY_PERSONAJE]),
         estados() {
-    estados.setear_estado_respuesta(personaje.estado);
+    //estados.setear_estado_respuesta(personaje.estado);
 }
 
 void Personaje::asignar_tipo_personaje(uint8_t tipo_personaje) {

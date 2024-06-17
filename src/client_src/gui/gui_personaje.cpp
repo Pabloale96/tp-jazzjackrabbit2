@@ -6,11 +6,11 @@ PersonajeGui::PersonajeGui(std::shared_ptr<ClaseTexturas> texturas, int posx, in
     it = frames->begin();
 }
 PersonajeGui::PersonajeGui(msgPersonaje& personaje):
-        // puntos(personaje.personaje[POS_PUNTOS_PERSONAJE]),
-        // vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE])),
-        texturas(),
-        pos_x(personaje.personaje[POS_POSX_PERSONAJE]),
-        pos_y(personaje.personaje[POS_POSY_PERSONAJE]),
+        // puntos(ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
+        // vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
+        texturas(nullptr),
+        pos_x(ntohs(personaje.personaje[POS_POSX_PERSONAJE])),
+        pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE])),
         tipo(personaje.tipo_personaje),
         frames(nullptr) {}
 // estados() {}

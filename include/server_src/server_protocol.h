@@ -20,6 +20,7 @@ public:
     // Constructor
     explicit ProtocolServer(Socket&& socket_cliente);
 
+    //                   **** LOBBY ****
     void enviar_id_jugador(uint16_t id_cliente, bool& was_closed);
 
     uint8_t crear_partida(bool& was_closed);
@@ -32,8 +33,12 @@ public:
 
     uint16_t recibir_id_partida(bool& was_closed);
 
-    // Como no se cuantas acciones me va a mandar el cliente, itero hasta que
-    // termine el receive
+    void enviar_escenario(Game&, bool&);
+
+    bool confirmar_fin_lobby(bool& was_closed);
+
+
+    //                      **** JUEGO ****
     void recibir_acciones_serializadas(bool& was_closed, msgAccion& mensaje_recibido);
 
     // Recibe las acciones del cliente, las deserializa y se las devuelve al
@@ -49,8 +54,6 @@ public:
 
     // Cierra el socket del cliente ordenadamente
     void cerrar_socket_cliente();
-
-    void enviar_escenario(Game&, bool&);
 
     // Destructor
     ~ProtocolServer();

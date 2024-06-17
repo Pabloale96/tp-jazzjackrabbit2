@@ -21,12 +21,12 @@ private:
     ProtocolClient protocolo_client;
     Queue<msgAccion> client_commands;
     ClientSender sender;
-    Queue<std::shared_ptr<GameStateMonitorClient>> server_msg;
-    std::unique_ptr<ClientReceiver> receiver;
+    Queue<std::shared_ptr<GameStateClient>> server_msg;
+    ClientReceiver receiver;
     bool client_off;
     std::string personaje;
     uint16_t client_id;
-    VectorMonitor<msgPlataforma> plataformas;
+    VectorMonitor<std::shared_ptr<PlatformGui>>plataformas;
     Gui gui;
 
     std::string toLowercase(const std::string& str);
@@ -43,9 +43,13 @@ private:
 
     void unirse_a_partida();
 
+    void crear_escenario();
+
+    bool cerrar_lobby();
+
     void iniciar_hilos();
 
-    void mostrar_estadisticas(const GameStateMonitorClient& respuestas) const;
+    void mostrar_estadisticas(const GameStateClient& respuestas) const;
 
 public:
     // Constructor

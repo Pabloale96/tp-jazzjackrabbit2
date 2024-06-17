@@ -16,8 +16,9 @@
 #include "../../common_src/catedra/thread.h"
 #include "../../common_src/protocol_utils.h"
 #include "../../common_src/vector_monitor.h"
-#include "../gamestate_client_monitor.h"
+#include "../game_state_client.h"
 
+#include "vector_monitor.h"
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "gui_escenario.h"
@@ -54,11 +55,11 @@ private:
 
     Queue<msgAccion>& client_commands;
 
-    VectorMonitor<msgPlataforma>& msg_plataformas;
+    //VectorMonitor<msgPlataforma>& msg_plataformas;
 
     uint16_t& client_id;
 
-    std::vector<PlatformGui> plataformas;
+    VectorMonitor<std::shared_ptr<PlatformGui>> & plataformas;
 
     std::unique_ptr<PersonajeGui> jugador;
 
@@ -68,10 +69,10 @@ private:
 
 
 public:
-    Gui(int, int, bool&, std::string&, Queue<msgAccion>&, VectorMonitor<msgPlataforma>&, uint16_t);
+    Gui(int, int, bool&, std::string&, Queue<msgAccion>&, VectorMonitor<std::shared_ptr<PlatformGui>>&, uint16_t&);
     ~Gui();
     void run() override;
-    void setGameState(GameStateMonitorClient&);
+    void setGameState(GameStateClient&);
     void setEscenario(ClaseTexturas&);
 };
 

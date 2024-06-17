@@ -17,11 +17,10 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(nullptr),
+        receiver(protocolo_client, client_id, server_msg),
         client_off(false),
         client_id(CLIENT_ID_NULO),
-        gui(0, 0, std::ref(client_off), std::ref(personaje), std::ref(client_commands), plataformas,
-            client_id) {}
+        gui(0, 0, client_off, personaje, client_commands, plataformas, client_id) {}
 
 void Client::imprimir_portada() {
     std::cout
@@ -186,9 +185,25 @@ std::string Client::toLowercase(const std::string& str) {
 }
 
 void Client::iniciar_hilos() {
-    receiver = std::make_unique<ClientReceiver>(protocolo_client, client_id, server_msg);
+    receiver.start();
     sender.start();
-    receiver->start();
+}
+
+void Client::crear_escenario() {
+    if (protocolo_client.recibir_escenario(plataformas) == false) {
+        std::cout << "Error: No se pudo recibir el escenario" << std::endl;
+        return;
+    }
+}
+
+bool Client::cerrar_lobby() {
+    if (protocolo_client.confirmar_fin_lobby() == false) {
+        std::cout << "Error: No se pudo completar correctamente el inicio del juego. Por favor "
+                     "cierre y vuelva a intentarlo. "
+                  << std::endl;
+        return false;
+    }
+    return true;
 }
 
 void Client::jugar() {
@@ -197,16 +212,21 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
-    protocolo_client.recibir_escenario(plataformas);
+    crear_escenario();
+    if (cerrar_lobby() == false) {
+        return;
+    }
 
     // ***************** JUEGO *****************
+    std::cout << "Comienza la partida!" << std::endl;
     iniciar_hilos();
+
     gui.start();
 
     while (!client_off) {
 
-        std::shared_ptr<GameStateMonitorClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {
+        std::shared_ptr<GameStateClient> respuesta = nullptr;
+        while (server_msg.try_pop(respuesta)) {;
             gui.setGameState(*respuesta);
             // respuesta->imprimir_cliente();
 
@@ -220,7 +240,7 @@ void Client::jugar() {
     }
 }
 
-void Client::mostrar_estadisticas(const GameStateMonitorClient& respuestas) const {
+void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
     // TODO: Habria q dejarla mas linda y que imprima en orden de puntos
     std::cout << "Estadísticas de la partida:" << std::endl;
     std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;
@@ -237,10 +257,10 @@ Client::~Client() {
     protocolo_client.cerrar_socket();
 
     sender.stop();
-    receiver->stop();
+    receiver.stop();
     gui.stop();
 
     sender.join();
-    receiver->join();
+    receiver.join();
     gui.join();
 }

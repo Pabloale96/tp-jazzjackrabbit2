@@ -18,21 +18,21 @@ using SDL2pp::Texture;
 
 class PlatformGui {
 private:
-    ClaseTexturas& texturas;
     int pos_x;
     int pos_y;
     bool flip = false;
     int type = 0;
     int height;
     int width;
-    Frame platform;
+    std::shared_ptr<Frame> platform;
 
 public:
-    PlatformGui(ClaseTexturas&, const msgPlataforma&);
+    PlatformGui(const msgPlataforma&);
     ~PlatformGui();
 
     void show(int dif_x, int dif_y);
     float rotateToFloat();
+    void setFrame(std::shared_ptr<Frame>&);
 };
 
 #endif

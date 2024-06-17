@@ -1,18 +1,18 @@
 #include "../include/client_src/gui/gui.h"
 
 Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion>& client_commands,
-         VectorMonitor<msgPlataforma>& msg_plataformas, uint16_t ci):
+         VectorMonitor<std::shared_ptr<PlatformGui>>& plataformas, uint16_t& ci):
         pos_x(x),
         pos_y(y),
         client_off(client_off),
         personaje(personaje),
         client_commands(client_commands),
-        msg_plataformas(msg_plataformas),
+        plataformas(plataformas),
         client_id(ci) {}
 
 Gui::~Gui() {}
 
-void Gui::setGameState(GameStateMonitorClient& gamestate) {
+void Gui::setGameState(GameStateClient& gamestate) {
 
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
     pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_x());
@@ -20,12 +20,7 @@ void Gui::setGameState(GameStateMonitorClient& gamestate) {
     dic_personajes.erase(client_id);
 }
 
-void Gui::setEscenario(ClaseTexturas& texturas) {
-    for (size_t i = 0; i < msg_plataformas.size(); i++) {
-        PlatformGui plataforma(texturas, msg_plataformas[i]);
-        plataformas.push_back(plataforma);
-    }
-}
+
 
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
@@ -43,7 +38,7 @@ void Gui::run() {
 
     auto texturas = std::make_shared<ClaseTexturas>(renderer);
 
-    this->setEscenario(*texturas);
+    //this->setEscenario(*texturas);
 
     std::unique_ptr<PersonajeGui> jugador;
     std::shared_ptr<std::vector<Frame>> frames;
@@ -63,6 +58,14 @@ void Gui::run() {
                                             renderer.GetOutputHeight() / 2, 4, frames);
     }
 
+
+    for (size_t i = 0; i < plataformas.size(); i++)
+    {
+        std::shared_ptr<Frame> beach = std::make_shared<Frame>(texturas->findFrame(std::string(PLATFORM_BEACH_TYPE_1))->at(0));
+        plataformas[i]->setFrame(beach);
+    }
+    
+
     Escenario escenario(plataformas);
 
     KeyboardHandler keyhandler;
@@ -79,8 +82,7 @@ void Gui::run() {
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
-        // std::cout<<"size: "<<dic_personajes.size()<<std::endl;
-        for (const auto& [_, personaje]: dic_personajes) {
+        for (const auto& [id, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;
             int y = (personaje->obtener_posicion_y() - pos_y) * SCALING_VALUE_PIXEL_Y;

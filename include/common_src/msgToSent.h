@@ -81,7 +81,7 @@ struct msgGameState {
         cantidad_personajes = htons(gameState.getSizePersonajes());
         cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
     }
-};
+} __attribute__((packed));
 
 struct msgPersonaje {
     uint8_t tipo_personaje;
@@ -100,7 +100,7 @@ struct msgPersonaje {
         memset(this, 0, sizeof(*this));
         tipo_personaje = pers.obtener_tipo_personaje();
         tipo_arma = pers.obtener_nombre_arma();
-        estado = pers.obtener_estado_actual();
+        estado = pers.obtener_estado_actual();  // accion -->animacion
         personaje[POS_ID_PERSONAJE] = htons(id);
         personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());  // *100
         personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());  // *100
@@ -108,7 +108,7 @@ struct msgPersonaje {
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
     }
-};
+} __attribute__((packed));
 
 
 struct msgBalas {
@@ -135,7 +135,7 @@ struct msgEnemigo {
         enemigo[POS_POSX_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_x());
         enemigo[POS_POSY_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_y());
     }
-};
+} __attribute__((packed));
 
 struct msgEscenario {
     uint16_t cantidad_plataformas = 0;
