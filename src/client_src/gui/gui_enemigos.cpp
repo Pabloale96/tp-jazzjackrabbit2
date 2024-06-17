@@ -10,23 +10,23 @@ EnemigosGui::EnemigosGui(msgEnemigo& msg):
 EnemigosGui::~EnemigosGui() {}
 
 
-EnemigoGui1::EnemigoGui1(msgEnemigo& msg):EnemigosGui(msg){
-        frames = texturas->findFrame(ENEMIGO1_GUI);
-        it = frames->begin();
-        speed =5;
+EnemigoGui1::EnemigoGui1(msgEnemigo& msg): EnemigosGui(msg) {
+    frames = texturas->findFrame(ENEMIGO1_GUI);
+    it = frames->begin();
+    speed = 5;
 }
-EnemigoGui1::~EnemigoGui1(){}
+EnemigoGui1::~EnemigoGui1() {}
 
-EnemigoGui2::EnemigoGui2(msgEnemigo& msg):EnemigosGui(msg){
-        frames = texturas->findFrame(ENEMIGO2_GUI);
-        it = frames->begin();
-        speed =5;
+EnemigoGui2::EnemigoGui2(msgEnemigo& msg): EnemigosGui(msg) {
+    frames = texturas->findFrame(ENEMIGO2_GUI);
+    it = frames->begin();
+    speed = 5;
 }
-EnemigoGui2::~EnemigoGui2(){}
+EnemigoGui2::~EnemigoGui2() {}
 
-EnemigoGui3::EnemigoGui3(msgEnemigo& msg):EnemigosGui(msg){
-        frames = texturas->findFrame(ENEMIGO3_GUI);
-        it = frames->begin();
-        speed =5;
+EnemigoGui3::EnemigoGui3(msgEnemigo& msg): EnemigosGui(msg) {
+    frames = texturas->findFrame(ENEMIGO3_GUI);
+    it = frames->begin();
+    speed = 5;
 }
-EnemigoGui3::~EnemigoGui3(){}
+EnemigoGui3::~EnemigoGui3() {}

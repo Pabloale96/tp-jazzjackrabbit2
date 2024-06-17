@@ -26,7 +26,12 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monit
 }
 
 void ClienteAceptado::start(GameloopMonitor& gameloop_monitor) {
-    lobby.start();
+    try {
+        lobby.start();
+    } catch (const std::exception& e) {
+        std::cerr << "Error al iniciar el cliente: " << e.what() << std::endl;
+        return;
+    }        
     sender.start();
 }
 

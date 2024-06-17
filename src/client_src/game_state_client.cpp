@@ -5,16 +5,15 @@
 
 #include "../../common_src/msgToSent.h"
 
-GameStateClient::GameStateClient(bool jugando):
-    jugando(jugando){}
+GameStateClient::GameStateClient(bool jugando): jugando(jugando) {}
 
-GameStateClient::GameStateClient():
-    jugando(true){}
+GameStateClient::GameStateClient(): jugando(true) {}
 
 
 bool GameStateClient::obtener_estado_de_la_partida() { return jugando; }
 
-std::map<uint16_t, std::shared_ptr<PersonajeGui>>& GameStateClient::obtener_diccionario_de_personajes() {
+std::map<uint16_t, std::shared_ptr<PersonajeGui>>&
+        GameStateClient::obtener_diccionario_de_personajes() {
     return diccionario_de_personajes.obtener_diccionario();
 }
 
@@ -48,7 +47,8 @@ void GameStateClient::pushPersonajes(msgPersonaje& msgpers) {
             return;
     }
 
-    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]), std::move(personaje));
+    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]),
+                                      std::move(personaje));
 }
 
 GameStateClient::~GameStateClient() {}

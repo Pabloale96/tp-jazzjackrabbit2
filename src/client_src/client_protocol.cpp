@@ -81,6 +81,34 @@ bool ProtocolClient::recibir_escenario(VectorMonitor<msgPlataforma>& vec_platafo
     return true;
 }
 
+bool ProtocolClient::confirmar_fin_lobby() {
+    // Hago una especie de handshake para asegurar que esten sincronizados cliente y servidor
+    uint8_t confirmacion = 1;
+    socket_cliente.sendall(&confirmacion, sizeof(uint8_t), &was_closed);
+    std::cout << "Enviando confirmacion de carga de escenario correcta " << std::endl;
+    if (was_closed) {
+        return false;
+    }
+    
+    uint8_t fin_lobby = 0;
+    if (was_closed) {
+        std::cout << "Error: conexión cerrada antes de confirmar fin de creacion de escenario" << std::endl;
+        return false;
+    }
+    socket_cliente.recvall(&fin_lobby, sizeof(uint8_t), &was_closed);
+    std::cout << "Recibiendo confirmacion de carga de escenario correcta " << std::endl;
+    if (fin_lobby != (uint8_t) 1) {
+        std::cout << (unsigned) fin_lobby << std::endl;
+        return false;
+    }
+    if (was_closed) {
+        std::cout << "Error: conexión cerrada antes de confirmar fin de creacion de escenario" << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
 bool ProtocolClient::unirse_a_partida() {
     uint8_t accion_serializada = UNIRSE_A_PARTIDA;
     if (was_closed) {
@@ -137,9 +165,9 @@ void ProtocolClient::enviar_accion(msgAccion& msg) {
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-std::unique_ptr<GameStateClient> ProtocolClient::recibir_respuesta( uint16_t& client_id) {
+std::unique_ptr<GameStateClient> ProtocolClient::recibir_respuesta(uint16_t& client_id) {
     std::unique_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>(true);
-    
+
     msgGameState msg;
     if (was_closed) {
         // return nullptr;
@@ -155,7 +183,7 @@ std::unique_ptr<GameStateClient> ProtocolClient::recibir_respuesta( uint16_t& cl
         if (was_closed) {
             // return nullptr;
         }
-        
+
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
         gameState->pushPersonajes(personaje);
     }
@@ -173,7 +201,8 @@ std::unique_ptr<GameStateClient> ProtocolClient::recibir_respuesta( uint16_t& cl
 }
 
 
-void ProtocolClient::recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id) {    
+void ProtocolClient::recibir_respuesta(std::unique_ptr<GameStateClient>& gameState,
+                                       uint16_t& client_id) {
     msgGameState msg;
     if (was_closed) {
         // return nullptr;
@@ -189,7 +218,7 @@ void ProtocolClient::recibir_respuesta(std::unique_ptr<GameStateClient>& gameSta
         if (was_closed) {
             // return nullptr;
         }
-        
+
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
         gameState->pushPersonajes(personaje);
     }

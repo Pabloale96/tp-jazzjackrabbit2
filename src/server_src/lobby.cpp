@@ -17,6 +17,10 @@ void Lobby::run() {
     try {
         protocolo_server.enviar_id_jugador(id_cliente, was_closed);
         establecer_partida(gameloop_monitor);
+        if (protocolo_server.confirmar_fin_lobby(was_closed) == false) {
+            std::cout << "Error en la confirmacion del fin del lobby" << std::endl;
+            throw std::runtime_error("Error en la confirmacion del fin del lobby");
+        }
         receiver->start();
     } catch (const std::exception& e) {
         std::cerr << "Error en el lobby: " << e.what() << std::endl;

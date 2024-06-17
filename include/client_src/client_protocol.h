@@ -2,6 +2,7 @@
 #define __PROTOCOL_CLIENT_H__
 
 #include <map>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -49,14 +50,17 @@ public:
 
     void enviar_id_partida(uint16_t id_partida);
 
+    bool recibir_escenario(VectorMonitor<msgPlataforma>& plataforma);
+
+    bool confirmar_fin_lobby();
+
     // Recibe del cliente la accion para serializar y enviar al server
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    std::unique_ptr<GameStateClient> recibir_respuesta( uint16_t& client_id);
-    void recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id);
+    std::unique_ptr<GameStateClient> recibir_respuesta(uint16_t& client_id);
 
-    bool recibir_escenario(VectorMonitor<msgPlataforma>& plataforma);
+    void recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id);
 
     void cerrar_socket();
 

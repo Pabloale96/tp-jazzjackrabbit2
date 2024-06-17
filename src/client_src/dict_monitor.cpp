@@ -1,10 +1,10 @@
 #include "../../include/client_src/dict_monitor.h"
 
-#include "../../include/client_src/gui/gui_personaje.h"
 #include "../../include/client_src/gui/gui_enemigos.h"
+#include "../../include/client_src/gui/gui_personaje.h"
 
 template <typename T>
-DictMonitor<T>::DictMonitor(){}
+DictMonitor<T>::DictMonitor() {}
 
 template <typename T>
 std::map<uint16_t, T>& DictMonitor<T>::obtener_diccionario() {
@@ -13,7 +13,7 @@ std::map<uint16_t, T>& DictMonitor<T>::obtener_diccionario() {
 }
 
 template <typename T>
-int DictMonitor<T>::size(){
+int DictMonitor<T>::size() {
     std::unique_lock<std::mutex> lock(m);
     return dict.size();
 }
@@ -27,20 +27,20 @@ typename std::map<uint16_t, T>::iterator DictMonitor<T>::find(uint16_t client_id
 template <typename T>
 void DictMonitor<T>::emplace(uint16_t id, T value) {
     std::unique_lock<std::mutex> lock(m);
-    dict.emplace(id,value);
+    dict.emplace(id, value);
 }
 
 template <typename T>
-DictMonitor<T>::~DictMonitor(){}
+DictMonitor<T>::~DictMonitor() {}
 
 template <typename T>
-typename std::map<uint16_t, T>::iterator  DictMonitor<T>::end(){
+typename std::map<uint16_t, T>::iterator DictMonitor<T>::end() {
     std::unique_lock<std::mutex> lock(m);
     return dict.end();
 }
 
 template <typename T>
-typename std::map<uint16_t, T>::iterator  DictMonitor<T>::begin(){
+typename std::map<uint16_t, T>::iterator DictMonitor<T>::begin() {
     std::unique_lock<std::mutex> lock(m);
     return dict.begin();
 }
@@ -52,7 +52,7 @@ void DictMonitor<T>::erase(uint16_t client_id) {
 }
 
 template <typename T>
-void DictMonitor<T>::setDict(DictMonitor<T>& other){
+void DictMonitor<T>::setDict(DictMonitor<T>& other) {
     if (this != &other) {  // Evita autoasignación
         dict = other.obtener_diccionario();
     }

@@ -43,6 +43,10 @@ private:
 
     void unirse_a_partida();
 
+    void crear_escenario();
+
+    bool cerrar_lobby();
+
     void iniciar_hilos();
 
     void mostrar_estadisticas(const GameStateClient& respuestas) const;

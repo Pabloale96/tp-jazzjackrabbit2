@@ -16,13 +16,13 @@ void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
             std::unique_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>();
-            protocolo_cliente.recibir_respuesta(gameState,client_id);
-            server_msg.push(std::shared_ptr<GameStateClient>(
-                    std::move(gameState)));
+            protocolo_cliente.recibir_respuesta(gameState, client_id);
+            server_msg.push(std::shared_ptr<GameStateClient>(std::move(gameState)));
 
-            //std::unique_ptr<GameStateClient> gamestate = protocolo_cliente.recibir_respuesta(client_id);
-            //server_msg.push(std::move(gamestate));
-            
+            // std::unique_ptr<GameStateClient> gamestate =
+            // protocolo_cliente.recibir_respuesta(client_id);
+            // server_msg.push(std::move(gamestate));
+
         } catch (const ClosedQueue&) {
             return;
         } catch (const LibError& err) {

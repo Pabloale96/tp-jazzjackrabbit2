@@ -1,10 +1,11 @@
 #ifndef __DIC_MONITOR_H__
 #define __DIC_MONITOR_H__
 
+#include <atomic>
 #include <map>
 #include <memory>
+#include <utility>
 #include <vector>
-#include <atomic>
 
 #include "msgToSent.h"
 #include "queue.h"
@@ -38,14 +39,14 @@ public:
     DictMonitor& operator=(const DictMonitor&) = delete;
 
     DictMonitor(DictMonitor&& other) noexcept {
-        std::lock_guard<std::mutex> lock(other.m); // Lock this mutex
+        std::lock_guard<std::mutex> lock(other.m);  // Lock this mutex
         dict = std::move(other.dict);
     }
 
     DictMonitor& operator=(DictMonitor&& other) noexcept {
         if (this != &other) {
-            std::lock_guard<std::mutex> lock(m); // Lock this mutex
-            std::lock_guard<std::mutex> other_lock(other.m); 
+            std::lock_guard<std::mutex> lock(m);  // Lock this mutex
+            std::lock_guard<std::mutex> other_lock(other.m);
             dict = std::move(other.dict);
         }
         return *this;

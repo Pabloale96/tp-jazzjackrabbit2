@@ -105,6 +105,45 @@ uint8_t ProtocolServer::recibir_personaje(bool& was_closed) {
     }
 }
 
+void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
+    std::vector<Platform> plataformas = game.obtener_escenario().obtener_plataformas();
+    msgEscenario msg_escenario(plataformas.size());
+
+    if (was_closed) {
+        return;
+    }
+    socket_cliente.sendall(&msg_escenario, sizeof(msg_escenario), &was_closed);
+    for (uint16_t i = 0; i < plataformas.size(); i++) {
+        msgPlataforma msg_plataforma(plataformas[i]);
+        if (was_closed) {
+            return;
+        }
+        socket_cliente.sendall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
+    }
+}
+
+bool ProtocolServer::confirmar_fin_lobby(bool& was_closed) {
+    uint8_t confirmacion = 0;
+    if (was_closed) {
+        return false;
+    }
+    socket_cliente.recvall(&confirmacion, sizeof(uint8_t), &was_closed);
+    if (confirmacion != 1) {
+        std::cout << "Error en la confirmacion del cliente" << std::endl;
+        return false;
+    }
+
+    uint8_t fin = 1;
+    if (was_closed) {
+        return false;
+    }
+    socket_cliente.sendall(&fin, sizeof(fin), &was_closed);
+
+    
+    std::cout << "El jugador esta saliendo del lobby" << std::endl;
+    return true;
+}
+
 // ********************** PROTOCOLOS DE JUEGO **********************
 
 void ProtocolServer::recibir_acciones_serializadas(bool& was_closed, msgAccion& mensaje_recibido) {
@@ -184,23 +223,6 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
             return;
         }
         socket_cliente.sendall(&enemigo, sizeof(enemigo), &was_closed);
-    }
-}
-
-void ProtocolServer::enviar_escenario(Game& game, bool& was_closed) {
-    std::vector<Platform> plataformas = game.obtener_escenario().obtener_plataformas();
-    msgEscenario msg_escenario(plataformas.size());
-
-    if (was_closed) {
-        return;
-    }
-    socket_cliente.sendall(&msg_escenario, sizeof(msg_escenario), &was_closed);
-    for (uint16_t i = 0; i < plataformas.size(); i++) {
-        msgPlataforma msg_plataforma(plataformas[i]);
-        if (was_closed) {
-            return;
-        }
-        socket_cliente.sendall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
     }
 }
 
