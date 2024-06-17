@@ -15,8 +15,8 @@ Gui::~Gui() {}
 void Gui::setGameState(GameStateClient& gamestate) {
 
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
-    pos_x = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_x());
-    pos_y = ntohs(gamestate.obtener_personaje(client_id)->obtener_posicion_y());
+    pos_x = gamestate.obtener_personaje(client_id)->obtener_posicion_x();
+    pos_y = gamestate.obtener_personaje(client_id)->obtener_posicion_y();
     dic_personajes.erase(client_id);
 }
 
@@ -65,6 +65,7 @@ void Gui::run() {
         plataformas[i]->setFrame(beach);
     }
     
+    std::cout << "size plataformas: "<<plataformas.size()<<std::endl;
 
     Escenario escenario(plataformas);
 
