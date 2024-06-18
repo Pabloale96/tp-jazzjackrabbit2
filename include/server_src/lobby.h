@@ -17,12 +17,11 @@ private:
     uint16_t id_cliente;
     Queue<std::shared_ptr<GameState>>& server_msg;
     std::shared_ptr<ServerReceiver>& receiver;
-    std::atomic<bool>& lobby_off;
 
 public:
     Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor,
           uint16_t gameloop_id, uint16_t id_cliente, Queue<std::shared_ptr<GameState>>& server_msg,
-          std::shared_ptr<ServerReceiver>& receiver, std::atomic<bool>& lobby_off);
+          std::shared_ptr<ServerReceiver>& receiver);
 
     void run() override;
 

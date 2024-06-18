@@ -58,7 +58,8 @@ Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_comman
     return obtener_gameloop(gameloop_id)->obtener_queue_de_client_commands();
 }
 
-void GameloopMonitor::agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id, uint8_t personaje) {
+void GameloopMonitor::agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id,
+                                                  uint8_t personaje) {
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
     gameloop->agregar_cliente(client_id, personaje);
 }

@@ -15,12 +15,11 @@ private:
     bool& was_closed;
     uint16_t cliente_id;
     Queue<std::shared_ptr<GameState>>& server_msg;
-    std::atomic<bool>& lobby_off;
 
 public:
     // Constructor
     ServerSender(ProtocolServer& protocolo_server, uint16_t id_cliente, bool& was_closed,
-                 Queue<std::shared_ptr<GameState>>& server_msg, std::atomic<bool>& lobby_off);
+                 Queue<std::shared_ptr<GameState>>& server_msg);
 
     void run() override;
 };

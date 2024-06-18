@@ -5,15 +5,14 @@
 Lobby::Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor,
              uint16_t gameloop_id, uint16_t id_cliente,
              Queue<std::shared_ptr<GameState>>& server_msg,
-             std::shared_ptr<ServerReceiver>& receiver, std::atomic<bool>& lobby_off):
+             std::shared_ptr<ServerReceiver>& receiver):
         protocolo_server(protocolo_server),
         was_closed(was_closed),
         gameloop_monitor(gameloop_monitor),
         gameloop_id(gameloop_id),
         id_cliente(id_cliente),
         server_msg(server_msg),
-        receiver(receiver),
-        lobby_off(lobby_off) {}
+        receiver(receiver) {}
 
 void Lobby::run() {
     std::cout << "El jugador " << id_cliente << " ha ingresado al lobby" << std::endl;
@@ -24,7 +23,6 @@ void Lobby::run() {
             std::cout << "Error en la confirmacion del fin del lobby" << std::endl;
             throw std::runtime_error("Error en la confirmacion del fin del lobby");
         }
-        lobby_off = true;
         receiver->start();
     } catch (const ErrorEnviarDatos&) {
         std::cerr << "Error en el envio de escenario " << std::endl;
@@ -54,7 +52,8 @@ void Lobby::establecer_partida(GameloopMonitor& gameloop_monitor) {
             (gameloop_monitor.obtener_gameloop(id_partida)->obtener_game()), was_closed);
 }
 
-uint16_t Lobby::crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida) {
+uint16_t Lobby::crear_partida(GameloopMonitor& gameloop_monitor,
+                              const std::string& nombre_partida) {
     std::cout << "** PARTIDA NUEVA CREADA CON NOMBRE: " << nombre_partida << " **" << std::endl;
     uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
     gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente, personaje);
@@ -76,7 +75,8 @@ uint16_t Lobby::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) {
         } else {
             uint16_t gameloop_id = ntohs(protocolo_server.recibir_id_partida(was_closed));
             uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
-            std::cout << " ** SE UNIO A LA PARTIDA CON GAMELOOP ID " << gameloop_id << " **" << std::endl;
+            std::cout << " ** SE UNIO A LA PARTIDA CON GAMELOOP ID " << gameloop_id << " **"
+                      << std::endl;
             gameloop_monitor.agregar_queue_server_msg_de_cliente_aceptado(gameloop_id, server_msg);
             gameloop_monitor.agregar_cliente_al_gameloop(gameloop_id, id_cliente, personaje);
             return gameloop_id;

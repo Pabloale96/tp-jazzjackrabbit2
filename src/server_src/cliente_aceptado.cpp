@@ -16,19 +16,20 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monit
         protocolo_server(std::move(socket_cliente)),
         was_closed(false),
         server_msg(MAX_TAM_COLA),
-        lobby_off(false),
-        sender(protocolo_server, id_cliente, was_closed, server_msg, lobby_off),
+        sender(protocolo_server, id_cliente, was_closed, server_msg),
         receiver(nullptr),
         gameloop_id(PARTIDA_NO_ASIGNADA),
         lobby(protocolo_server, was_closed, monitor_de_partidas, gameloop_id, id_cliente,
-              server_msg, receiver, lobby_off) {
+              server_msg, receiver) {
     std::cout << "** NUEVO JUGADOR INGRESO AL SERVER - ID: " << std::to_string(id_cliente) << " **"
               << std::endl;
+    lobby.start();
 }
 
-void ClienteAceptado::start(GameloopMonitor& gameloop_monitor) {
+void ClienteAceptado::start() {
     try {
-        lobby.start();
+        lobby.stop();
+        lobby.join();
     } catch (const std::exception& e) {
         std::cerr << "Error al iniciar el cliente: " << e.what() << std::endl;
         return;
@@ -49,8 +50,10 @@ bool ClienteAceptado::is_dead() {
 
 void ClienteAceptado::stop() {
     try {
-        lobby.stop();
-        lobby.join();
+        if (lobby.is_alive()) {
+            lobby.stop();
+            lobby.join();
+        }
         std::cout << "El cliente " << id_cliente << " se detiene" << std::endl;
         server_msg.close();
         if (!was_closed) {

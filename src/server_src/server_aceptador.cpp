@@ -19,7 +19,7 @@ void Aceptador::run() {
         try {
             Socket socket_cliente = socket_server.accept();
             lista_clientes.emplace_back(std::move(socket_cliente), monitor_de_partidas);
-            lista_clientes.back().start(monitor_de_partidas);
+            lista_clientes.back().start();
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
                 // Gameloop monitor en su destructor cierra todos los gameloops
