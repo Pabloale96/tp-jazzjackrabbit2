@@ -50,7 +50,6 @@ void GameloopMonitor::obtener_partidas_disponibles(
 
 GameLoop* GameloopMonitor::obtener_gameloop(uint16_t gameloop_id) {
     std::unique_lock<std::mutex> lock(m);
-    std::cout << "gameloop id: "<< gameloop_id<<std::endl;
     auto it = diccionario_de_gameloops.find(gameloop_id);
     if (it == diccionario_de_gameloops.end()) {
         throw std::out_of_range("No se encontró el GameLoop ID");

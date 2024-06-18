@@ -25,11 +25,10 @@ void Lobby::run() {
             throw std::runtime_error("Error en la confirmacion del fin del lobby");
         }
         lobby_off = true;
-        std::cout << "El jugador " << id_cliente << " tiene lobby " << lobby_off << std::endl;
         receiver->start();
     } catch (const ErrorEnviarDatos&) {
         std::cerr << "Error en el envio de escenario " << std::endl;
-        throw; 
+        throw;
     } catch (const std::exception& e) {
         std::cerr << "Error en el lobby: " << e.what() << std::endl;
         throw;
@@ -82,7 +81,6 @@ void Lobby::joinearse_a_una_partida(GameloopMonitor& gameloop_monitor) {
                                                         gameloop_monitor, gameloop_id, id_cliente);
             protocolo_server.enviar_escenario(
                     (gameloop_monitor.obtener_gameloop(gameloop_id)->obtener_game()), was_closed);
-
         }
     } catch (const std::exception& e) {
         std::cerr << "Error al obtener partidas disponibles: " << e.what() << std::endl;

@@ -178,6 +178,7 @@ void Game::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
 }
 
 void Game::actualizar_personajes(std::chrono::seconds tiempo_restante_de_partida) {
+    std::lock_guard<std::mutex> lock(m);
     for (auto& personaje: personajes) {
         if (personaje) {
             personaje->actualizar(tiempo_restante_de_partida);
@@ -211,6 +212,7 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
 
 void Game::agregar_personaje(uint16_t client_id, uint8_t personaje,
                              std::chrono::seconds tiempo_restante_de_partida) {
+    std::lock_guard<std::mutex> lock(m);
     auto personaje_ptr =
             crear_personaje(partida_id, client_id, personaje, tiempo_restante_de_partida);
     if (personaje_ptr) {
@@ -221,6 +223,7 @@ void Game::agregar_personaje(uint16_t client_id, uint8_t personaje,
 }
 
 void Game::borrar_personaje(uint16_t client_id) {
+    std::lock_guard<std::mutex> lock(m);
     auto it = std::find_if(personajes.begin(), personajes.end(),
                            [client_id](const std::shared_ptr<Personaje>& personaje) {
                                return personaje->obtener_personaje_id() == client_id;

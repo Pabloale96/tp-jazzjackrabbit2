@@ -84,7 +84,7 @@ void GameLoop::run() {
                 auto behind = -rest;
                 auto lost = behind - behind % rate_ns;
                 t_0 += lost;
-            } 
+            }
             // Fix de leo ?
             std::this_thread::sleep_for(rest);
             t_0 += rate_ns;

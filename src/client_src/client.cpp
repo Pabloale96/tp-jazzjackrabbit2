@@ -105,6 +105,11 @@ void Client::crear_personaje() {
     std::cout << "  - Lori (l)" << std::endl;
     std::cin >> personaje;
     personaje = toLowercase(personaje);
+    while (personaje != "j" && personaje != "s" && personaje != "l") {
+        std::cout << "Error: Personaje no válido. Intente nuevamente" << std::endl;
+        std::cin >> personaje;
+        personaje = toLowercase(personaje);
+    }
     if (protocolo_client.enviar_personaje(personaje) == false) {
         std::cout << "Error: No se pudo crear el personaje" << std::endl;
         return;
@@ -151,7 +156,7 @@ void Client::unirse_a_partida() {
                 std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
                 continue;
             }
-            std::cout << "id partida: "<< static_cast<int>(id_partida)<<std::endl;
+            std::cout << "id partida: " << static_cast<int>(id_partida) << std::endl;
             protocolo_client.enviar_id_partida(id_partida);
             return;
         }
@@ -213,6 +218,7 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
+    std::cout << "Aguarda unos minutos mientras se completa el escenario..." << std::endl;
     crear_escenario();
     if (cerrar_lobby() == false) {
         return;
@@ -227,16 +233,15 @@ void Client::jugar() {
     while (!client_off) {
 
         std::shared_ptr<GameStateClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {;
-            gui.setGameState(*respuesta);
-            // respuesta->imprimir_cliente();
+        while (server_msg.try_pop(respuesta)) {}
+        gui.setGameState(*respuesta);
+        // respuesta->imprimir_cliente();
 
-            if (respuesta->getJugando() == false) {
-                std::cout << "La partida ha finalizado" << std::endl;
-                // TODO: aca se deberían de mostrar las estadísticas
-                mostrar_estadisticas(*respuesta);
-                return;
-            }
+        if (respuesta->getJugando() == false) {
+            std::cout << "La partida ha finalizado" << std::endl;
+            // TODO: aca se deberían de mostrar las estadísticas
+            mostrar_estadisticas(*respuesta);
+            return;
         }
     }
 }

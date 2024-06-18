@@ -16,9 +16,9 @@ void GameEscenario::cargar_plataformas() {
     // Creo las plataformas iniciales
     // Se setea los valores del esceneario:
 
-    //std::vector<int> x_horizontales = {0, 15, 22, 33, 53, 75};
-    //std::vector<int> y_horizontales = {0, 2, 7, 5, 15, };
-    //std::vector<int> w_horizontales = {15, 5, 10, 11, 16};
+    // std::vector<int> x_horizontales = {0, 15, 22, 33, 53, 75};
+    // std::vector<int> y_horizontales = {0, 2, 7, 5, 15, };
+    // std::vector<int> w_horizontales = {15, 5, 10, 11, 16};
 
 
     /*
