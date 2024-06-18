@@ -25,9 +25,7 @@ ClienteAceptado::ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monit
               << std::endl;
 }
 
-void ClienteAceptado::start() {
-    lobby.start();
-}
+void ClienteAceptado::start() { lobby.start(); }
 
 bool ClienteAceptado::is_dead() {
     if (receiver == nullptr && lobby.is_alive()) {

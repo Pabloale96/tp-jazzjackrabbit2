@@ -12,7 +12,8 @@ Lobby::Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor
         gameloop_id(gameloop_id),
         id_cliente(id_cliente),
         server_msg(server_msg),
-        receiver(receiver), sender(sender) {}
+        receiver(receiver),
+        sender(sender) {}
 
 void Lobby::run() {
     std::cout << "El jugador " << id_cliente << " ha ingresado al lobby" << std::endl;

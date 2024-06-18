@@ -34,6 +34,7 @@ void ServerReceiver::run() {
         }
     }
     std::cout << "El cliente " << cliente_id << " se ha desconectado" << std::endl;
+    // gameloop_monitor.push(borrar_tal_cliente);
     gameloop_monitor.borrar_cliente_de_gameloop(gameloop_id, cliente_id);
     protocolo_server.cerrar_socket_cliente();
 }

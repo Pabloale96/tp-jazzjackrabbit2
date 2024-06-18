@@ -15,8 +15,10 @@ void ClientSender::run() {
                 break;
             }
         } catch (const ClosedQueue&) {
+            // se cerro client commands
             return;
         } catch (const LibError& err) {
+            // Si el cliente cerro la conexión, no debería seguir intentando recibir
             std::cerr << "Fallo el send en ClientSender->run: " << err.what() << "\n";
             return;
         }
