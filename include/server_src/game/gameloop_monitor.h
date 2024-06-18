@@ -27,7 +27,7 @@ public:
 
     uint16_t crear_gameloop(std::string nombre_partida, uint16_t client_id, uint8_t personaje);
 
-    void obtener_partidas_disponibles(std::map<uint16_t, std::string>& partidas_disponibles);
+    std::map<uint16_t, std::string> obtener_partidas_disponibles();
 
     void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id);
 

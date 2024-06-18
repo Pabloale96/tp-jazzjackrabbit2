@@ -31,14 +31,9 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
     }
 }
 
-// TODO: Mando el map en vez de pasarlo por referencia
-void GameloopMonitor::obtener_partidas_disponibles(
-        std::map<uint16_t, std::string>& partidas_disponibles) {
+std::map<uint16_t, std::string> GameloopMonitor::obtener_partidas_disponibles() {
     std::unique_lock<std::mutex> lock(m);
-    partidas_disponibles.clear();
-    if (diccionario_de_gameloops.empty()) {
-        return;
-    }
+    std::map<uint16_t, std::string> partidas_disponibles;
     for (const auto& pair: diccionario_de_gameloops) {
         uint16_t id = pair.first;
         GameLoop* gameLoop = pair.second;
@@ -46,6 +41,7 @@ void GameloopMonitor::obtener_partidas_disponibles(
             partidas_disponibles[id] = gameLoop->obtener_nombre_partida();
         }
     }
+    return partidas_disponibles;
 }
 
 GameLoop* GameloopMonitor::obtener_gameloop(uint16_t gameloop_id) {
