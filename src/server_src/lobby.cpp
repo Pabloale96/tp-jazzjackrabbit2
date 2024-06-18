@@ -50,8 +50,7 @@ void Lobby::crear_partida(GameloopMonitor& gameloop_monitor, const std::string& 
     std::cout << "** PARTIDA NUEVA CREADA CON NOMBRE: " << nombre_partida << " **" << std::endl;
     uint8_t personaje = protocolo_server.recibir_personaje(was_closed);
     gameloop_id = gameloop_monitor.crear_gameloop(nombre_partida, id_cliente, personaje);
-    gameloop_monitor.obtener_gameloop(gameloop_id)
-            ->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+    gameloop_monitor.agregar_queue_server_msg_de_cliente_aceptado(gameloop_id, server_msg);
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                 gameloop_id, id_cliente);
     protocolo_server.enviar_escenario(

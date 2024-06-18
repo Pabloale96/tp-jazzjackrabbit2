@@ -80,6 +80,7 @@ void Gui::run() {
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
+        // cppcheck-suppress unusedVariable
         for (const auto& [id, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;

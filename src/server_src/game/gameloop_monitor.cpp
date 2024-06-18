@@ -58,6 +58,13 @@ Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_comman
     return obtener_gameloop(gameloop_id)->obtener_queue_de_client_commands();
 }
 
+void GameloopMonitor::agregar_queue_server_msg_de_cliente_aceptado(
+        uint16_t gameloop_id, Queue<std::shared_ptr<GameState>>& server_msg) {
+    GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    gameloop->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+    return;
+}
+
 void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id) {
     // Este lock no hace falta porque obtener_gameloop ya tiene un lock (por lo que terminariamos en
     // deadlock) std::unique_lock<std::mutex> lock(m);
