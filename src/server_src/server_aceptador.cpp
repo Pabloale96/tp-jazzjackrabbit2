@@ -26,7 +26,7 @@ void Aceptador::run() {
                 return;
             }
         }
-        // limpiar_clientes_que_terminaron(lista_clientes);
+        limpiar_clientes_que_terminaron(lista_clientes);
     }
 }
 
@@ -34,6 +34,7 @@ void Aceptador::limpiar_clientes_que_terminaron(std::list<ClienteAceptado>& list
     auto it = lista_clientes.begin();
     while (it != lista_clientes.end()) {
         if (it->is_dead()) {
+            std::cout << "Se ha encontrado un cliente desconectado" << std::endl;
             it = lista_clientes.erase(it);
         } else {
             ++it;

@@ -233,15 +233,16 @@ void Client::jugar() {
     while (!client_off) {
 
         std::shared_ptr<GameStateClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {}
-        gui.setGameState(*respuesta);
-        // respuesta->imprimir_cliente();
+        while (server_msg.try_pop(respuesta)) {
+            gui.setGameState(*respuesta);
+            // respuesta->imprimir_cliente();
 
-        if (respuesta->getJugando() == false) {
-            std::cout << "La partida ha finalizado" << std::endl;
-            // TODO: aca se deberían de mostrar las estadísticas
-            mostrar_estadisticas(*respuesta);
-            return;
+            if (respuesta->getJugando() == false) {
+                std::cout << "La partida ha finalizado" << std::endl;
+                // TODO: aca se deberían de mostrar las estadísticas
+                mostrar_estadisticas(*respuesta);
+                return;
+            }
         }
     }
 }

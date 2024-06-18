@@ -37,7 +37,11 @@ void ClienteAceptado::start(GameloopMonitor& gameloop_monitor) {
 }
 
 bool ClienteAceptado::is_dead() {
-    if ((!receiver->is_alive()) || !sender.is_alive()) {
+    if (receiver == nullptr && sender.is_alive()) {
+        // std::cout << "No murio, esta en el lobby" << std::endl;
+        return false;
+    }
+    if (!receiver->is_alive() || !sender.is_alive()) {
         return true;
     }
     return false;
