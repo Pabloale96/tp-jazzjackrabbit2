@@ -28,9 +28,9 @@ public:
 
     void establecer_partida(GameloopMonitor& gameloop_monitor);
 
-    void crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida);
+    uint16_t crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida);
 
-    void joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
+    uint16_t joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
 
     ~Lobby();
 };

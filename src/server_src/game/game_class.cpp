@@ -162,7 +162,7 @@ void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
     for (auto& collectible: obtener_escenario().obtener_collectibles()) {
         if (personaje.obtener_posicion() == collectible->obtener_posicion()) {
             // TODO: Implementar collectibles
-            std::cout << "COLLECTIBLE" << std::endl;
+            // std::cout << "COLLECTIBLE" << std::endl;
             // personaje->aumentar_municion();
             // personaje->aumentar_vida();
             // personaje->aumentar_puntos();

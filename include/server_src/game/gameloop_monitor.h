@@ -29,7 +29,7 @@ public:
 
     std::map<uint16_t, std::string> obtener_partidas_disponibles();
 
-    void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id);
+    void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id, uint8_t personaje);
 
     GameLoop* obtener_gameloop(uint16_t gameloop_id);
 
