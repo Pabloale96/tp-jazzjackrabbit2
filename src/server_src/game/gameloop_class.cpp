@@ -84,10 +84,10 @@ void GameLoop::run() {
                 auto behind = -rest;
                 auto lost = behind - behind % rate_ns;
                 t_0 += lost;
-            } else {
-                std::this_thread::sleep_for(rest);
-            }
-            t_0 = std::chrono::high_resolution_clock::now();
+            } 
+            // Fix de leo ?
+            std::this_thread::sleep_for(rest);
+            t_0 += rate_ns;
         }
     } catch (const ClosedQueue&) {
         return;

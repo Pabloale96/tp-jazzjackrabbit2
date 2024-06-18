@@ -22,10 +22,7 @@ void Aceptador::run() {
             lista_clientes.back().start(monitor_de_partidas);
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
-                // TODO: ahora el monitor de gameloops tiene que cerrar los gameloops
-                // game_loop.stop();
-                // game_loop.join();
-                // clean all
+                // Gameloop monitor en su destructor cierra todos los gameloops
                 return;
             }
         }
