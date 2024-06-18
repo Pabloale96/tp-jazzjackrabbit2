@@ -22,7 +22,6 @@ private:
     ProtocolServer protocolo_server;
     bool was_closed;
     Queue<std::shared_ptr<GameState>> server_msg;
-    std::atomic<bool> lobby_off;
     ServerSender sender;
     std::shared_ptr<ServerReceiver> receiver;
     uint16_t gameloop_id;
@@ -35,6 +34,7 @@ public:
     // Crea una cola de mensajes del servidor para el cliente
     // Crea un sender y un receiver con el protocolo server y el juego
     // Agrega la cola de mensajes del servidor al juego
+    // Inicia el lobby
     ClienteAceptado(Socket&& socket_cliente, GameloopMonitor& monitor_de_partidas);
 
     // void lobby(GameloopMonitor& gameloop_monitor);
@@ -45,8 +45,8 @@ public:
 
     void joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
 
-    // Inicia el lobby, el sender y el receiver
-    void start(GameloopMonitor& gameloop_monitor);
+    // cierra el lobby, e inicia el sender
+    void start();
 
     // Devuelve true si el receiver o el sender estan muertos
     bool is_dead();

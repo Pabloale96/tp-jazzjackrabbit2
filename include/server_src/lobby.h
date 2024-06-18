@@ -6,6 +6,7 @@
 
 #include "server_protocol.h"
 #include "server_receiver.h"
+#include "server_sender.h"
 #include "thread.h"
 
 class Lobby: public Thread {
@@ -17,20 +18,20 @@ private:
     uint16_t id_cliente;
     Queue<std::shared_ptr<GameState>>& server_msg;
     std::shared_ptr<ServerReceiver>& receiver;
-    std::atomic<bool>& lobby_off;
+    ServerSender& sender;
 
 public:
     Lobby(ProtocolServer& protocolo_server, bool& was_closed, GameloopMonitor& gameloop_monitor,
           uint16_t gameloop_id, uint16_t id_cliente, Queue<std::shared_ptr<GameState>>& server_msg,
-          std::shared_ptr<ServerReceiver>& receiver, std::atomic<bool>& lobby_off);
+          std::shared_ptr<ServerReceiver>& receiver, ServerSender& sender);
 
     void run() override;
 
     void establecer_partida(GameloopMonitor& gameloop_monitor);
 
-    void crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida);
+    uint16_t crear_partida(GameloopMonitor& gameloop_monitor, const std::string& nombre_partida);
 
-    void joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
+    uint16_t joinearse_a_una_partida(GameloopMonitor& gameloop_monitor);
 
     ~Lobby();
 };

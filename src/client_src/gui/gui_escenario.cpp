@@ -1,6 +1,7 @@
 #include "../../include/client_src/gui/gui_escenario.h"
 
-Escenario::Escenario(VectorMonitor<std::shared_ptr<PlatformGui>>& plataformas): platforms(plataformas) {}
+Escenario::Escenario(VectorMonitor<std::shared_ptr<PlatformGui>>& plataformas):
+        platforms(plataformas) {}
 Escenario::~Escenario() {}
 
 void Escenario::show(int dif_x, int dif_y) {

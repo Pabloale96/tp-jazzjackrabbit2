@@ -17,6 +17,7 @@ private:
     // TODO: unorderedmap sería más rápido
     VectorMonitor<std::shared_ptr<Personaje>> personajes;
     GameEscenario escenario;
+    std::mutex m;
 
 public:
     explicit Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje);
