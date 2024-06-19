@@ -22,22 +22,22 @@ enum class Direccion {
 class Posicion {
 
 private:
-    uint16_t x;
-    uint16_t y;
+    float x;
+    float y;
 
 public:
     Posicion();
-    Posicion(uint16_t x, uint16_t y): x(x), y(y) {}
+    Posicion(float x, float y): x(x), y(y) {}
 
-    void set_posicion(uint16_t x, uint16_t y);
-    void set_posicion_en_x(uint16_t x);
-    void set_posicion_en_y(uint16_t y);
+    void set_posicion(float x, float y);
+    void set_posicion_en_x(float x);
+    void set_posicion_en_y(float y);
 
     void mover(const Velocidad& velocidad);
 
-    uint16_t get_posicion_x() const;
+    float get_posicion_x() const;
 
-    uint16_t get_posicion_y() const;
+    float get_posicion_y() const;
 
     bool operator==(const Posicion& otro) const;
 };

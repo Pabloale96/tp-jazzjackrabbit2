@@ -180,7 +180,7 @@ void Client::jugar() {
         std::shared_ptr<GameStateClient> respuesta = nullptr;
         while (server_msg.try_pop(respuesta)) {
             gui.setGameState(*respuesta);
-            // respuesta->imprimir_cliente();
+            respuesta->imprimir_cliente();
 
             if (respuesta->getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;

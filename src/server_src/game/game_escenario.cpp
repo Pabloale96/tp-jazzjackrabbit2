@@ -54,15 +54,15 @@ void GameEscenario::cargar_plataformas() {
 
 void GameEscenario::cargar_enemigos() {
     // Las coordenadas (x,y) se basan en el diseño del escenario en /docs/disenio_nivel.png
-    enemigos.push_back(std::make_unique<Enemigo1>(1, 26, 8));
-    enemigos.push_back(std::make_unique<Enemigo1>(2, 38, 28));
-    enemigos.push_back(std::make_unique<Enemigo1>(3, 70, 33));
+    enemigos.push_back(std::make_unique<Enemigo1>(1.0f, 26.0f, 8.0f));
+    enemigos.push_back(std::make_unique<Enemigo1>(2.0f, 38.0f, 28.0f));
+    enemigos.push_back(std::make_unique<Enemigo1>(3.0f, 70.0f, 33.0f));
 
-    enemigos.push_back(std::make_unique<Enemigo2>(4, 25, 24));
-    enemigos.push_back(std::make_unique<Enemigo2>(5, 56, 31));
+    enemigos.push_back(std::make_unique<Enemigo2>(4.0f, 25.0f, 24.0f));
+    enemigos.push_back(std::make_unique<Enemigo2>(5.0f, 56.0f, 31));
 
-    enemigos.push_back(std::make_unique<Enemigo3>(6, 59, 19));
-    enemigos.push_back(std::make_unique<Enemigo3>(7, 9, 38));
+    enemigos.push_back(std::make_unique<Enemigo3>(6.0f, 59.0f, 19.0f));
+    enemigos.push_back(std::make_unique<Enemigo3>(7.0f, 9.0f, 38.0f));
 }
 
 void GameEscenario::cargar_collectibles() {
