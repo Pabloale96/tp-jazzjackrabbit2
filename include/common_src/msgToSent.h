@@ -103,8 +103,10 @@ struct msgPersonaje {
         estado = pers.obtener_estado_actual();  // accion -->animacion
         personaje[POS_ID_PERSONAJE] = htons(id);
         // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales
-        personaje[POS_POSX_PERSONAJE] = htons((uint16_t) ((pers.obtener_posicion().get_posicion_x())*100));
-        personaje[POS_POSY_PERSONAJE] = htons((uint16_t) ((pers.obtener_posicion().get_posicion_y())*100));
+        personaje[POS_POSX_PERSONAJE] =
+                htons((uint16_t)((pers.obtener_posicion().get_posicion_x()) * 100));
+        personaje[POS_POSY_PERSONAJE] =
+                htons((uint16_t)((pers.obtener_posicion().get_posicion_y()) * 100));
         personaje[POS_PUNTOS_PERSONAJE] = htons(pers.obtener_puntos());
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
@@ -134,8 +136,10 @@ struct msgEnemigo {
         enemigo[POS_ID_ENEMIGO] = htons(id);
         enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
         // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales
-        enemigo[POS_POSX_ENEMIGO] = htons((uint16_t) ((enemi.get_posicion_enemigo().get_posicion_x())*100));
-        enemigo[POS_POSY_ENEMIGO] = htons((uint16_t) ((enemi.get_posicion_enemigo().get_posicion_y())*100));
+        enemigo[POS_POSX_ENEMIGO] =
+                htons((uint16_t)((enemi.get_posicion_enemigo().get_posicion_x()) * 100));
+        enemigo[POS_POSY_ENEMIGO] =
+                htons((uint16_t)((enemi.get_posicion_enemigo().get_posicion_y()) * 100));
     }
 } __attribute__((packed));
 

@@ -15,8 +15,8 @@ Gui::~Gui() {}
 void Gui::setGameState(GameStateClient& gamestate) {
 
     dic_personajes = gamestate.obtener_diccionario_de_personajes();
-    pos_x = ((float) gamestate.obtener_personaje(client_id)->obtener_posicion_x())/100;
-    pos_y = ((float) gamestate.obtener_personaje(client_id)->obtener_posicion_y())/100;
+    pos_x = ((float)gamestate.obtener_personaje(client_id)->obtener_posicion_x()) / 100;
+    pos_y = ((float)gamestate.obtener_personaje(client_id)->obtener_posicion_y()) / 100;
     dic_personajes.erase(client_id);
 }
 

@@ -1,8 +1,8 @@
 #include "../../include/client_src/client.h"
 
 #include <cctype>  // std::tolower()
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
