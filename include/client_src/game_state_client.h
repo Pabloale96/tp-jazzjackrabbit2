@@ -75,6 +75,17 @@ public:
         return *this;
     }
 
+    void imprimir_cliente() {
+        for (const auto& pair: diccionario_de_personajes) {
+            const std::shared_ptr<PersonajeGui>& personaje = pair.second;
+            std::cout << " >> Personaje "<< std::endl;
+            std::cout << "     - Posición: (" << personaje->obtener_posicion_x() << ", "
+                      << personaje->obtener_posicion_y() << ")." << std::endl;
+            std::cout << "     - Estado: " << (unsigned) personaje->obtener_estado_actual() << std::endl;
+            std::cout << "     - Tipo: " << (unsigned) personaje->obtener_tipo_personaje() << std::endl;
+        }
+    }
+
     ~GameStateClient();
 };
 

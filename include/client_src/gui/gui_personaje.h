@@ -39,6 +39,7 @@ public:
     explicit PersonajeGui(msgPersonaje&);
     int obtener_posicion_x() { return pos_x; }
     int obtener_posicion_y() { return pos_y; }
+    uint8_t obtener_estado_actual() { return estado; }
     uint8_t obtener_tipo_personaje() { return tipo; }
     ~PersonajeGui();
     void show();
