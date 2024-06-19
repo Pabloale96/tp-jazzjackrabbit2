@@ -2,6 +2,7 @@
 
 #include <cctype>  // std::tolower()
 #include <iostream>
+#include <fstream>
 #include <map>
 #include <sstream>
 #include <string>
@@ -23,72 +24,16 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         gui(0, 0, client_off, personaje, client_commands, plataformas, client_id) {}
 
 void Client::imprimir_portada() {
-    std::cout
-            << "╔════════════════════════════════════════════════════════════════════════════════╗"
-            << std::endl;
-    std::cout
-            << "║                                                                                ║"
-            << std::endl;
-    std::cout
-            << "║                       ██╗ █████╗ ███████╗███████╗                              ║"
-            << std::endl;
-    std::cout
-            << "║                       ██║██╔══██╗╚══███╔╝╚══███╔╝                              ║"
-            << std::endl;
-    std::cout
-            << "║                       ██║███████║  ███╔╝   ███╔╝                               ║"
-            << std::endl;
-    std::cout
-            << "║                  ██   ██║██╔══██║ ███╔╝   ███╔╝                                ║"
-            << std::endl;
-    std::cout
-            << "║                  ╚█████╔╝██║  ██║███████╗███████╗                              ║"
-            << std::endl;
-    std::cout
-            << "║                   ╚════╝ ╚═╝  ╚═╝╚══════╝╚══════╝                              ║"
-            << std::endl;
-    std::cout
-            << "║       ██╗ █████╗  ██████╗██╗  ██╗██████╗  █████╗ ██████╗ ██████╗ ██╗████████╗  ║"
-            << std::endl;
-    std::cout
-            << "║       ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║╚══██╔══╝  ║"
-            << std::endl;
-    std::cout
-            << "║       ██║███████║██║     █████╔╝ ██████╔╝███████║██████╔╝██████╔╝██║   ██║     ║"
-            << std::endl;
-    std::cout
-            << "║  ██   ██║██╔══██║██║     ██╔═██╗ ██╔══██╗██╔══██║██╔══██╗██╔══██╗██║   ██║     ║"
-            << std::endl;
-    std::cout
-            << "║  ╚█████╔╝██║  ██║╚██████╗██║  ██╗██║  ██║██║  ██║██████╔╝██████╔╝██║   ██║     ║"
-            << std::endl;
-    std::cout
-            << "║   ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═════╝ ╚═╝   ╚═╝     ║"
-            << std::endl;
-    std::cout
-            << "║                                  ██████╗                                       ║"
-            << std::endl;
-    std::cout
-            << "║                                  ╚════██╗                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                   █████╔╝                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                  ██╔═══╝                                       ║"
-            << std::endl;
-    std::cout
-            << "║                                  ███████╗                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                  ╚══════╝                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                                                                ║"
-            << std::endl;
-    std::cout
-            << "╚════════════════════════════════════════════════════════════════════════════════╝"
-            << std::endl;
+    std::ifstream file("../docs/portada.txt");
+    if (file.is_open()) {
+        std::string line;
+        while (getline(file, line)) {
+            std::cout << line << std::endl;
+        }
+        file.close();
+    } else {
+        std::cerr << "No se pudo abrir el archivo 'portada.txt'" << std::endl;
+    }
 }
 
 void Client::imprimir_bienvenida() {
