@@ -13,7 +13,7 @@ private:
     uint16_t pos_x;
     uint16_t pos_y;
     uint16_t width = 0;
-    uint16_t height = 0;
+    uint16_t height = 1;
     uint8_t type = 0;
     bool flip = false;
 

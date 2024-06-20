@@ -61,34 +61,39 @@ void Game::chequear_colisiones_personaje_con_plataforma(Personaje& personaje) {
     for (const auto& plataforma: obtener_escenario().obtener_plataformas()) {
         bool colision = false;
         switch (plataforma.obtener_tipo()) {
-            case (uint16_t)platform::HORIZONTAL:
+            case (uint8_t)platform::HORIZONTAL:
                 colision = colision_horizontal(personaje, plataforma);
                 if (colision) {
-                    personaje.obtener_posicion().set_posicion_en_y(plataforma.getTop());
+                    std::cout << "COLISION HORIZONTAL" << std::endl;
+                    personaje.setear_posicion_en_y(plataforma.getTop());
                     personaje.obtener_velocidad().setear_velocidad_y(0);
                 }
                 break;
 
-            case (uint16_t)platform::VERTICAL:
-                colision = colision_vertical(personaje, plataforma);
-                if (colision) {
-                    if (personaje.obtener_velocidad().obtener_velocidad_x() > 0) {
-                        // estaba corriendo hacia la derecha
-                        personaje.obtener_posicion().set_posicion_en_x(plataforma.getRight());
-                    } else {
-                        // estaba corriendo hacia la izquierda
-                        personaje.obtener_posicion().set_posicion_en_x(plataforma.getLeft());
+            case (uint8_t)platform::VERTICAL:
+                if (personaje.obtener_velocidad().obtener_velocidad_x() > 0) {
+                    // estaba corriendo hacia la derecha
+                    colision = colision_vertical_por_izquierda(personaje, plataforma);
+                    if (colision) {
+                        personaje.setear_posicion_en_x(plataforma.getLeft());
                     }
-                    personaje.obtener_velocidad().setear_velocidad_x(0);
+                } else {
+                    // estaba corriendo hacia la izquierda
+                    colision = colision_vertical_por_derecha(personaje, plataforma);
+                    if (colision) {
+                        std::cout << "COLISION VERTICAL DERECHA" << std::endl;
+                        personaje.setear_posicion_en_x(plataforma.getBottom());
+                    }
                 }
+                personaje.obtener_velocidad().setear_velocidad_x(0);
                 break;
 
-            case (uint16_t)platform::DIAGONAL:
+            case (uint8_t)platform::DIAGONAL:
                 colision = colision_diagonal(personaje, plataforma);
                 if (colision) {
                     // Si toca la plataforma diagonal, me muevo hacia arriba
                     // TODO: Implementar movimiento diagonal
-                    personaje.obtener_posicion().set_posicion_en_y(plataforma.getTop());
+                    personaje.setear_posicion_en_y(plataforma.getTop());
                     personaje.obtener_velocidad().setear_velocidad_y(0);
                 }
                 break;
@@ -103,11 +108,22 @@ bool Game::colision_horizontal(const Personaje& personaje, const Platform& plata
            personaje.getTop() < plataforma.getBottom();
 }
 
-bool Game::colision_vertical(const Personaje& personaje, const Platform& plataforma) {
-    return personaje.getRight() > plataforma.getLeft() &&
-           personaje.getLeft() < plataforma.getRight() &&
-           personaje.getBottom() > plataforma.getTop() &&
-           personaje.getTop() < plataforma.getBottom();
+bool Game::colision_vertical_por_izquierda(const Personaje& personaje, const Platform& plataforma) {
+    if(personaje.getRight() >= plataforma.getLeft() && personaje.getTop() <= plataforma.getTop() && personaje.getBottom() <= plataforma.getBottom()) {
+        // std::cout << "COLISION VERTICAL IZQUIERDA" << std::endl;
+        return true;
+    }
+    return false;
+}
+
+bool Game::colision_vertical_por_derecha(const Personaje& personaje, const Platform& plataforma) {
+    // personaje.getLeft() >= plataforma.getRight()
+    // && personaje.getBottom() <= plataforma.getBottom()
+    if(personaje.getBottom() >= plataforma.getBottom() && personaje.getTop() <= plataforma.getTop()){ 
+        // std::cout << "COLISION VERTICAL DERECHA" << std::endl;
+        return true;
+    }
+    return false;
 }
 
 bool Game::colision_diagonal(const Personaje& personaje, const Platform& plataforma) {

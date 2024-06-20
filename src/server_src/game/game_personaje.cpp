@@ -23,8 +23,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
 
         posicion(YAMLConfig::getConfig().personaje.pos_x, YAMLConfig::getConfig().personaje.pos_y),
         velocidad(),
-        ancho(1),
-        alto(1),
+        ancho(1.0f),
+        alto(1.0f),
 
         tiempo_restante_de_partida(tiempo_restante_de_partida),
         duracion_del_salto(0),
@@ -212,12 +212,21 @@ std::chrono::seconds Personaje::obtener_tiempo_restante_de_partida() const {
     return tiempo_restante_de_partida;
 }
 
-uint16_t Personaje::getBottom() const { return posicion.get_posicion_y() + alto; }
-uint16_t Personaje::getTop() const { return posicion.get_posicion_y(); }
-uint16_t Personaje::getLeft() const { return posicion.get_posicion_x(); }
-uint16_t Personaje::getRight() const { return posicion.get_posicion_x() + ancho; }
+float Personaje::getBottom() const { return posicion.get_posicion_y(); }
+float Personaje::getTop() const { return posicion.get_posicion_y() + alto; }
+float Personaje::getLeft() const { return posicion.get_posicion_x(); }
+float Personaje::getRight() const { return posicion.get_posicion_x() + ancho; }
 
-uint16_t Personaje::obtener_ancho() const { return ancho; }
+float Personaje::obtener_ancho() const { return ancho; }
+
+void Personaje::setear_posicion_en_x(float x) {
+    posicion.set_posicion_en_x(x);
+}
+
+void Personaje::setear_posicion_en_y(float y) {
+    posicion.set_posicion_en_y(y);
+}
+
 
 // ************  JAZZ  ************
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id,

@@ -65,12 +65,18 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
+        std::cout << "TOP: " << personaje->getTop() << std::endl;
+        std::cout << "LEFT: " << personaje->getLeft() << std::endl;
+        std::cout << "RIGHT: " << personaje->getRight() << std::endl;
+        std::cout << "BOTTOM: " << personaje->getBottom() << std::endl;
+        /*
         std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
         std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
         std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
         std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
         std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
         std::cout << "     - Balas disparadas: " << personaje->obtener_balas().size() << std::endl;
+        */
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }

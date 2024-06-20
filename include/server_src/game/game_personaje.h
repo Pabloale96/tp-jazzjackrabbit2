@@ -34,8 +34,8 @@ private:
 
     Posicion posicion;
     Velocidad velocidad;
-    uint16_t ancho;
-    uint16_t alto;
+    float ancho;
+    float alto;
 
     std::chrono::seconds tiempo_restante_de_partida;
     std::chrono::seconds duracion_del_salto;
@@ -102,12 +102,15 @@ public:
 
     virtual void accion_especial() = 0;
 
-    uint16_t getBottom() const;
-    uint16_t getTop() const;
-    uint16_t getLeft() const;
-    uint16_t getRight() const;
+    float getBottom() const;
+    float getTop() const;
+    float getLeft() const;
+    float getRight() const;
 
-    uint16_t obtener_ancho() const;
+    float obtener_ancho() const;
+
+    void setear_posicion_en_x(float x);
+    void setear_posicion_en_y(float y);
 
     virtual ~Personaje() = default;
 };

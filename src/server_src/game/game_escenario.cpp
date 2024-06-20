@@ -47,11 +47,13 @@ void GameEscenario::cargar_plataformas() {
     std::vector<int> flip_diagonales = {false, true,  true,  false, true,
                                         true,  false, false, false, true};
 
+/*
     for (size_t i = 0; i < x_diagonales.size(); i++) {
         Platform plataforma_inicial(x_diagonales[i], y_diagonales[i], w_diagonales[i], 1,
                                     static_cast<uint16_t>(platform::DIAGONAL), flip_diagonales[i]);
         plataformas.push_back(plataforma_inicial);
     }
+*/
 }
 
 void GameEscenario::cargar_enemigos() {

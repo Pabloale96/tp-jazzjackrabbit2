@@ -42,6 +42,10 @@ public:
 
     bool colision_vertical(const Personaje& personaje, const Platform& plataforma);
 
+    bool colision_vertical_por_izquierda(const Personaje& personaje, const Platform& plataforma);
+
+    bool colision_vertical_por_derecha(const Personaje& personaje, const Platform& plataforma);
+
     bool colision_diagonal(const Personaje& personaje, const Platform& plataforma);
 
     void chequear_colisiones_personaje_con_enemigo(Personaje& personaje);

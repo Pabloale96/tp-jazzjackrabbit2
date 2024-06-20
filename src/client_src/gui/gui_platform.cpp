@@ -80,6 +80,7 @@ void PlatformGui::show(int dif_x, int dif_y, int i) {
 
     // Comprobar si la plataforma está dentro de la ventana
     if (this->checkIsInWindow(dif_x * SCALING_VALUE_PIXEL_X, dif_y * SCALING_VALUE_PIXEL_Y)) {
+        /*
         std::cout << "Se imprime la plataforma " << i << " con posicion:" << std::endl;
         std::cout << "(pos_x, pos_y, width, height)"
                   << "(" << pos_x << " , " << pos_y << " , " << width << " , " << height << ")"
@@ -87,6 +88,7 @@ void PlatformGui::show(int dif_x, int dif_y, int i) {
         std::cout << "(porsicion_x, posicion_y, width_sc, height_sc)"
                   << "(" << posicion_x << " , " << posicion_y_invertida << " , " << width_sc
                   << " , " << height_sc << ")" << std::endl;
+        */
         if (rotate == 0) {
             platform->copy(rotate, posicion_x, posicion_y_invertida, width_sc, height_sc);
         } else if (rotate == 90) {
@@ -94,8 +96,8 @@ void PlatformGui::show(int dif_x, int dif_y, int i) {
                            height_sc, width_sc);
         } else {
             // Calcular la nueva posición después de la rotación
-            std::cout << "Se imprime la plataforma " << i << " con posicion:" << std::endl;
-            std::cout << "rotacion:" << rotate << std::endl;
+            //std::cout << "Se imprime la plataforma " << i << " con posicion:" << std::endl;
+            //std::cout << "rotacion:" << rotate << std::endl;
             double rad = rotate * M_PI / 180.0;
             double offsetX = width * (1 - cos(rad));
             double offsetY =
