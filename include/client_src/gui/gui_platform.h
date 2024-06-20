@@ -32,9 +32,10 @@ public:
     PlatformGui(const msgPlataforma&);
     ~PlatformGui();
 
-    void show(int dif_x, int dif_y);
+    void show(int dif_x, int dif_y,int);
     float rotateToFloat();
-    void setFrame(std::shared_ptr<Frame>&,int ,int );
+    void setFrame(std::shared_ptr<Frame>&,int ,int);
+    bool checkIsInWindow(int ,int);
 
     int getW() {return width;}
     int getH() {return height;}

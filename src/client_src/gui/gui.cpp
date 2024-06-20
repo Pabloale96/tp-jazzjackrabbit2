@@ -1,6 +1,6 @@
 #include "../include/client_src/gui/gui.h"
 
-Gui::Gui(int x, int y, bool& client_off, std::string& personaje, Queue<msgAccion>& client_commands,
+Gui::Gui(int x, int y, std::atomic<bool>& client_off, std::string& personaje, Queue<msgAccion>& client_commands,
          VectorMonitor<std::shared_ptr<PlatformGui>>& plataformas, uint16_t& ci):
         pos_x(x),
         pos_y(y),
@@ -38,7 +38,7 @@ void Gui::run() {
 
     auto texturas = std::make_shared<ClaseTexturas>(renderer);
 
-    //this->setEscenario(*texturas);
+    //Ventana ventana(pos_x,pos_y,screenHeight, screenWidth);
 
     std::unique_ptr<PersonajeGui> jugador;
     std::shared_ptr<std::vector<Frame>> frames;
@@ -87,10 +87,8 @@ void Gui::run() {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;
             int y = (personaje->obtener_posicion_y() - pos_y) * SCALING_VALUE_PIXEL_Y;
-            if (x <= (pos_x + renderer.GetOutputWidth() / 2) ||
-                x <= (pos_x - renderer.GetOutputWidth() / 2) ||
-                y <= (pos_y + renderer.GetOutputHeight() / 2) ||
-                y <= (pos_y - renderer.GetOutputHeight() / 2)) {
+            if (abs(x -pos_x) <= ( renderer.GetOutputWidth() / 2) &&
+                abs(y-pos_y) <= ( renderer.GetOutputHeight() / 2)) {
                 if (personaje->obtener_tipo_personaje() == (uint8_t)personajes::JAZZ) {
                     frames_personajes = texturas->findFrame(std::string(JAZZ_STAND));
                     pers = std::make_unique<JazzGui>(texturas, x, y, 5, frames_personajes);

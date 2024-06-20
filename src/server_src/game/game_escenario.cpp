@@ -4,6 +4,8 @@
 
 #include "protocol_utils.h"
 
+#define CALCULO_HIPO(X, Y) (sqrt((X)*(X) + (Y)*(Y)))
+
 GameEscenario::GameEscenario() {
     std::cout << "Creando escenario" << std::endl;
     cargar_plataformas();
@@ -21,45 +23,31 @@ void GameEscenario::cargar_plataformas() {
     std::vector<int> w_horizontales = {15, 5, 10, 11, 16, 24, 13, 7, 1, 11, 17, 11, 18, 11, 21, 6, 23, 18, 7, 1, 47};
 
     for (size_t i = 0; i < x_horizontales.size(); i ++) {
-        Platform plataforma_inicial(x_horizontales[i], y_horizontales[i], w_horizontales[i],
-                                    HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
+        Platform plataforma_inicial(x_horizontales[i], y_horizontales[i], w_horizontales[i], 1,
                                     static_cast<uint16_t>(platform::HORIZONTAL), false);
         plataformas.push_back(plataforma_inicial);
     }
 
     std::vector<int> x_verticales = {15, 33, 53, 33, 65};
-    std::vector<int> y_verticales = {0, 5, 13, 23, 30};
-    std::vector<int> w_verticales = {3, 2, 2, 4, 32};
+    std::vector<int> y_verticales = {3, 5, 13, 23, 30};
+    std::vector<int> h_verticales = {3, 2, 2, 4, 32};
 
     for (size_t i = 0; i < x_verticales.size(); i ++) {
-        Platform plataforma_inicial(x_verticales[i], y_verticales[i], w_verticales[i],
-                                    HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
+        Platform plataforma_inicial(x_verticales[i], y_verticales[i], 1, h_verticales[i],
                                     static_cast<uint16_t>(platform::VERTICAL), false);
         plataformas.push_back(plataforma_inicial);
     }
-    /*
-    std::vector<int> x_plataforma_horizontales = {20, 20, 60, 100, 130, 170, 180, 180};
-    std::vector<int> y_plataforma_horizontales = {3, 8, 11, 5, 11, 1, 8, 11};
 
-    for (size_t i = 0; i < x_plataforma_horizontales.size(); i++) {
-        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i],
-                            WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
-                            HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
-                            static_cast<uint16_t>(platform::HORIZONTAL), false);
-        plataformas.push_back(plataforma);
+    std::vector<int> x_diagonales = {3, 1, 7, 23, 19, 44, 75, 23, 16, 76, 44, 49, 41};
+    std::vector<int> y_diagonales = {33, 38, 14, 36, 3, 5, 8, 26 , 6, 32, 27, 33, 40};
+    std::vector<int> w_diagonales = {5, 10, 13, 13, 4, 11, 10, 10, 7, 3, 4, 4, 10};
+    std::vector<int> flip_diagonales = {false, true, true, false, true, true, false, false,false,true};
+
+    for (size_t i = 0; i < x_diagonales.size(); i ++) {
+        Platform plataforma_inicial(x_diagonales[i], y_diagonales[i], w_diagonales[i], 1,
+                                    static_cast<uint16_t>(platform::DIAGONAL), flip_diagonales[i]);
+        plataformas.push_back(plataforma_inicial);
     }
-
-    std::vector<int> x_plataforma_diagonales = {80, 160};
-    std::vector<int> y_plataforma_diagonales = {6, 9};
-
-    for (size_t i = 0; i < x_plataforma_horizontales.size(); i++) {
-        Platform plataforma(x_plataforma_horizontales[i], y_plataforma_horizontales[i],
-                            WIDTH_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_X,
-                            HEIGHT_PLATFORM_TYPE_1 / SCALING_VALUE_PIXEL_Y,
-                            static_cast<uint16_t>(platform::DIAGONAL), false);
-        plataformas.push_back(plataforma);
-    }
-    */
 }
 
 void GameEscenario::cargar_enemigos() {
