@@ -4,7 +4,7 @@
 
 #include "protocol_utils.h"
 
-#define CALCULO_HIPO(X, Y) (sqrt((X)*(X) + (Y)*(Y)))
+#define CALCULO_HIPO(X, Y) (sqrt((X) * (X) + (Y) * (Y)))
 
 GameEscenario::GameEscenario() {
     std::cout << "Creando escenario" << std::endl;
@@ -18,11 +18,14 @@ void GameEscenario::cargar_plataformas() {
     // Creo las plataformas iniciales
     // Se setea los valores del esceneario:
 
-    std::vector<int> x_horizontales = {0, 15, 22, 33, 53, 75, 81, 84, 87, 0, 16, 33, 47, 65, 78, 8, 23, 27, 30, 33, 48};
-    std::vector<int> y_horizontales = {0, 2, 7, 5, 15, 8, 12, 15, 18, 11, 23, 27, 30, 32, 34, 45, 36, 41, 43, 46, 47};
-    std::vector<int> w_horizontales = {15, 5, 10, 11, 16, 24, 13, 7, 1, 11, 17, 11, 18, 11, 21, 6, 23, 18, 7, 1, 47};
+    std::vector<int> x_horizontales = {0,  15, 22, 33, 53, 75, 81, 84, 87, 0, 16,
+                                       33, 47, 65, 78, 8,  23, 27, 30, 33, 48};
+    std::vector<int> y_horizontales = {0,  2,  7,  5,  15, 8,  12, 15, 18, 11, 23,
+                                       27, 30, 32, 34, 45, 36, 41, 43, 46, 47};
+    std::vector<int> w_horizontales = {15, 5,  10, 11, 16, 24, 13, 7, 1, 11, 17,
+                                       11, 18, 11, 21, 6,  23, 18, 7, 1, 47};
 
-    for (size_t i = 0; i < x_horizontales.size(); i ++) {
+    for (size_t i = 0; i < x_horizontales.size(); i++) {
         Platform plataforma_inicial(x_horizontales[i], y_horizontales[i], w_horizontales[i], 1,
                                     static_cast<uint16_t>(platform::HORIZONTAL), false);
         plataformas.push_back(plataforma_inicial);
@@ -32,18 +35,19 @@ void GameEscenario::cargar_plataformas() {
     std::vector<int> y_verticales = {3, 5, 13, 23, 30};
     std::vector<int> h_verticales = {3, 2, 2, 4, 32};
 
-    for (size_t i = 0; i < x_verticales.size(); i ++) {
+    for (size_t i = 0; i < x_verticales.size(); i++) {
         Platform plataforma_inicial(x_verticales[i], y_verticales[i], 1, h_verticales[i],
                                     static_cast<uint16_t>(platform::VERTICAL), false);
         plataformas.push_back(plataforma_inicial);
     }
 
     std::vector<int> x_diagonales = {3, 1, 7, 23, 19, 44, 75, 23, 16, 76, 44, 49, 41};
-    std::vector<int> y_diagonales = {33, 38, 14, 36, 3, 5, 8, 26 , 6, 32, 27, 33, 40};
+    std::vector<int> y_diagonales = {33, 38, 14, 36, 3, 5, 8, 26, 6, 32, 27, 33, 40};
     std::vector<int> w_diagonales = {5, 10, 13, 13, 4, 11, 10, 10, 7, 3, 4, 4, 10};
-    std::vector<int> flip_diagonales = {false, true, true, false, true, true, false, false,false,true};
+    std::vector<int> flip_diagonales = {false, true,  true,  false, true,
+                                        true,  false, false, false, true};
 
-    for (size_t i = 0; i < x_diagonales.size(); i ++) {
+    for (size_t i = 0; i < x_diagonales.size(); i++) {
         Platform plataforma_inicial(x_diagonales[i], y_diagonales[i], w_diagonales[i], 1,
                                     static_cast<uint16_t>(platform::DIAGONAL), flip_diagonales[i]);
         plataformas.push_back(plataforma_inicial);

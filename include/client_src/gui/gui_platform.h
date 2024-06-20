@@ -32,15 +32,15 @@ public:
     explicit PlatformGui(const msgPlataforma&);
     ~PlatformGui();
 
-    void show(int dif_x, int dif_y,int);
+    void show(int dif_x, int dif_y, int);
     float rotateToFloat();
-    void setFrame(std::shared_ptr<Frame>&,int ,int);
-    bool checkIsInWindow(int ,int);
+    void setFrame(std::shared_ptr<Frame>&, int, int);
+    bool checkIsInWindow(int, int);
 
-    int getW() {return width;}
-    int getH() {return height;}
-    int getX() {return pos_x;}
-    int getY() {return pos_y;}
+    int getW() { return width; }
+    int getH() { return height; }
+    int getX() { return pos_x; }
+    int getY() { return pos_y; }
 };
 
 #endif

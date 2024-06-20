@@ -69,11 +69,13 @@ private:
     int screenHeight = 800;
 
 
-    //Ventana ventana(pos_x,pos_y,screenHeight, screenWidth,XMAX*SCALING_VALUE_PIXEL_X,YMAX*SCALING_VALUE_PIXEL_y);
+    // Ventana ventana(pos_x,pos_y,screenHeight,
+    // screenWidth,XMAX*SCALING_VALUE_PIXEL_X,YMAX*SCALING_VALUE_PIXEL_y);
 
 
 public:
-    Gui(int, int, std::atomic<bool>&, std::string&, Queue<msgAccion>&, VectorMonitor<std::shared_ptr<PlatformGui>>&, uint16_t&);
+    Gui(int, int, std::atomic<bool>&, std::string&, Queue<msgAccion>&,
+        VectorMonitor<std::shared_ptr<PlatformGui>>&, uint16_t&);
     ~Gui();
     void run() override;
     void setGameState(GameStateClient&);
