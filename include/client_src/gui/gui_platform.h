@@ -29,7 +29,7 @@ private:
     std::shared_ptr<Frame> platform;
 
 public:
-    PlatformGui(const msgPlataforma&);
+    explicit PlatformGui(const msgPlataforma&);
     ~PlatformGui();
 
     void show(int dif_x, int dif_y,int);

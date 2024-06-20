@@ -63,7 +63,8 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     return true;
 }
 
-bool ProtocolClient::recibir_escenario(VectorMonitor<std::shared_ptr<PlatformGui>>& vec_plataforma) {
+bool ProtocolClient::recibir_escenario(
+        VectorMonitor<std::shared_ptr<PlatformGui>>& vec_plataforma) {
 
     msgEscenario escenario(0);
     if (was_closed) {
@@ -76,7 +77,7 @@ bool ProtocolClient::recibir_escenario(VectorMonitor<std::shared_ptr<PlatformGui
             return false;
         }
         socket_cliente.recvall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
-        std::shared_ptr<PlatformGui> plataforma=std::make_shared<PlatformGui>(msg_plataforma);
+        std::shared_ptr<PlatformGui> plataforma = std::make_shared<PlatformGui>(msg_plataforma);
         vec_plataforma.push_back(plataforma);
     }
 
@@ -87,7 +88,7 @@ bool ProtocolClient::confirmar_fin_lobby() {
     // Hago una especie de handshake para asegurar que esten sincronizados cliente y servidor
     uint8_t confirmacion = 1;
     socket_cliente.sendall(&confirmacion, sizeof(uint8_t), &was_closed);
-    std::cout << "Enviando confirmacion de carga de escenario correcta " << std::endl;
+    // std::cout << "Enviando confirmacion de carga de escenario correcta " << std::endl;
 
     uint8_t fin_lobby = 0;
     if (was_closed) {
@@ -96,7 +97,7 @@ bool ProtocolClient::confirmar_fin_lobby() {
         return false;
     }
     socket_cliente.recvall(&fin_lobby, sizeof(uint8_t), &was_closed);
-    std::cout << "Recibiendo confirmacion de carga de escenario correcta " << std::endl;
+    // std::cout << "Recibiendo confirmacion de carga de escenario correcta " << std::endl;
     if (fin_lobby != (uint8_t)1) {
         std::cout << (unsigned)fin_lobby << std::endl;
         return false;

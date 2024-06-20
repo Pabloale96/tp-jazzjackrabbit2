@@ -8,9 +8,9 @@
 #include <vector>
 
 #include "../common_src/vector_monitor.h"
+#include "gui/gui_platform.h"
 
 #include "game_state_client.h"
-#include "gui/gui_platform.h"
 #include "sockets.h"
 
 enum class TipoAccion : char {

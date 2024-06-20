@@ -21,12 +21,21 @@ sudo apt install -y build-essential cmake git libasound2-dev libpulse-dev libaud
                     libtiff-dev libwebp-dev libfreetype6-dev libfluidsynth-dev \
                     libmodplug-dev libvorbis-dev libmpg123-dev libopusfile-dev
 
+# clone the yaml-cpp repository
+git clone https://github.com/jbeder/yaml-cpp.git
+cd yaml-cpp
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
+sudo make install
+
 # Create a directory for the SDL2 source code
 mkdir ~/sdl2-src
 cd ~/sdl2-src
 
 # Clone SDL2 repository
-git clone https://github.com/libsdl-org/SDL.git
+git clone https://github.com/libsdl-org/SDL.git --branch release-2.30.4
 cd SDL
 mkdir build
 cd build
@@ -36,7 +45,7 @@ sudo make install
 
 # Clone SDL2_mixer repository
 cd ~/sdl2-src
-git clone https://github.com/libsdl-org/SDL_mixer.git
+git clone https://github.com/libsdl-org/SDL_mixer.git --branch release-2.8.0
 cd SDL_mixer
 mkdir build
 cd build
@@ -46,7 +55,7 @@ sudo make install
 
 # Clone SDL2_ttf repository
 cd ~/sdl2-src
-git clone https://github.com/libsdl-org/SDL_ttf.git
+git clone https://github.com/libsdl-org/SDL_ttf.git --branch release-2.22.0
 cd SDL_ttf
 mkdir build
 cd build
@@ -56,7 +65,7 @@ sudo make install
 
 # Clone SDL2_image repository
 cd ~/sdl2-src
-git clone https://github.com/libsdl-org/SDL_image.git
+git clone https://github.com/libsdl-org/SDL_image.git --branch release-2.8.2
 cd SDL_image
 mkdir build
 cd build
@@ -67,6 +76,7 @@ sudo make install
 # Clean up
 cd ~
 rm -rf ~/sdl2-src
+rm -rf yaml-cpp
 
 # Update the dynamic linker run-time bindings
 sudo ldconfig
@@ -78,4 +88,4 @@ cd build
 cmake ..
 make
 
-echo "Instalación completada
+echo "Instalación completa"

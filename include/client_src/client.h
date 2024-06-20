@@ -26,7 +26,7 @@ private:
     std::atomic<bool> client_off;
     std::string personaje;
     uint16_t client_id;
-    VectorMonitor<std::shared_ptr<PlatformGui>>plataformas;
+    VectorMonitor<std::shared_ptr<PlatformGui>> plataformas;
     Gui gui;
 
     std::string toLowercase(const std::string& str);

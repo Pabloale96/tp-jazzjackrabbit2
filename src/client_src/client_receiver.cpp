@@ -25,8 +25,14 @@ void ClientReceiver::run() {
             if (protocolo_cliente.obtener_estado_de_la_conexion()) {
                 return;
             }
+
+            // Si el cliente cerro la conexión, no debería seguir intentando recibir
+            if (this->is_alive()) {
+                std::cout << "Te has desconectado del juego" << std::endl;
+                // hay q avisarle al sender q cierre
+                return;
+            }
             std::cerr << "Fallo el receive en ClientReceiver->run: " << err.what() << "\n";
-            // TODO: Si el cliente cerro la conexión, no debería seguir intentando recibir
             return;
         } catch (const std::exception& err) {
             if (!this->is_alive()) {

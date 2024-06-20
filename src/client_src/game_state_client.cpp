@@ -47,7 +47,7 @@ void GameStateClient::pushPersonajes(msgPersonaje& msgpers) {
             return;
     }
 
-    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]),personaje);
+    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]), personaje);
 }
 
 GameStateClient::~GameStateClient() {}

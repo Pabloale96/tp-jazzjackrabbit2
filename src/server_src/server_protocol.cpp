@@ -50,8 +50,8 @@ void ProtocolServer::recibir_nombre_partida(std::string& nombre_partida, bool& w
 
 uint8_t ProtocolServer::enviar_partidas_disponibles(GameloopMonitor& gameloop_monitor,
                                                     bool& was_closed) {
-    std::map<uint16_t, std::string> partidas_disponibles;
-    gameloop_monitor.obtener_partidas_disponibles(partidas_disponibles);
+    std::map<uint16_t, std::string> partidas_disponibles =
+            gameloop_monitor.obtener_partidas_disponibles();
     uint16_t cant_partidas = partidas_disponibles.size();
     cant_partidas = htons(cant_partidas);
     socket_cliente.sendall(&cant_partidas, sizeof(uint16_t), &was_closed);

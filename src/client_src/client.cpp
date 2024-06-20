@@ -2,6 +2,7 @@
 
 #include <cctype>  // std::tolower()
 #include <iostream>
+#include <fstream>
 #include <map>
 #include <sstream>
 #include <string>
@@ -23,72 +24,16 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         gui(0, 0, client_off, personaje, client_commands, plataformas, client_id) {}
 
 void Client::imprimir_portada() {
-    std::cout
-            << "╔════════════════════════════════════════════════════════════════════════════════╗"
-            << std::endl;
-    std::cout
-            << "║                                                                                ║"
-            << std::endl;
-    std::cout
-            << "║                       ██╗ █████╗ ███████╗███████╗                              ║"
-            << std::endl;
-    std::cout
-            << "║                       ██║██╔══██╗╚══███╔╝╚══███╔╝                              ║"
-            << std::endl;
-    std::cout
-            << "║                       ██║███████║  ███╔╝   ███╔╝                               ║"
-            << std::endl;
-    std::cout
-            << "║                  ██   ██║██╔══██║ ███╔╝   ███╔╝                                ║"
-            << std::endl;
-    std::cout
-            << "║                  ╚█████╔╝██║  ██║███████╗███████╗                              ║"
-            << std::endl;
-    std::cout
-            << "║                   ╚════╝ ╚═╝  ╚═╝╚══════╝╚══════╝                              ║"
-            << std::endl;
-    std::cout
-            << "║       ██╗ █████╗  ██████╗██╗  ██╗██████╗  █████╗ ██████╗ ██████╗ ██╗████████╗  ║"
-            << std::endl;
-    std::cout
-            << "║       ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║╚══██╔══╝  ║"
-            << std::endl;
-    std::cout
-            << "║       ██║███████║██║     █████╔╝ ██████╔╝███████║██████╔╝██████╔╝██║   ██║     ║"
-            << std::endl;
-    std::cout
-            << "║  ██   ██║██╔══██║██║     ██╔═██╗ ██╔══██╗██╔══██║██╔══██╗██╔══██╗██║   ██║     ║"
-            << std::endl;
-    std::cout
-            << "║  ╚█████╔╝██║  ██║╚██████╗██║  ██╗██║  ██║██║  ██║██████╔╝██████╔╝██║   ██║     ║"
-            << std::endl;
-    std::cout
-            << "║   ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═════╝ ╚═╝   ╚═╝     ║"
-            << std::endl;
-    std::cout
-            << "║                                  ██████╗                                       ║"
-            << std::endl;
-    std::cout
-            << "║                                  ╚════██╗                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                   █████╔╝                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                  ██╔═══╝                                       ║"
-            << std::endl;
-    std::cout
-            << "║                                  ███████╗                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                  ╚══════╝                                      ║"
-            << std::endl;
-    std::cout
-            << "║                                                                                ║"
-            << std::endl;
-    std::cout
-            << "╚════════════════════════════════════════════════════════════════════════════════╝"
-            << std::endl;
+    std::ifstream file("../docs/portada.txt");
+    if (file.is_open()) {
+        std::string line;
+        while (getline(file, line)) {
+            std::cout << line << std::endl;
+        }
+        file.close();
+    } else {
+        std::cerr << "No se pudo abrir el archivo 'portada.txt'" << std::endl;
+    }
 }
 
 void Client::imprimir_bienvenida() {
@@ -105,6 +50,11 @@ void Client::crear_personaje() {
     std::cout << "  - Lori (l)" << std::endl;
     std::cin >> personaje;
     personaje = toLowercase(personaje);
+    while (personaje != "j" && personaje != "s" && personaje != "l") {
+        std::cout << "Error: Personaje no válido. Intente nuevamente" << std::endl;
+        std::cin >> personaje;
+        personaje = toLowercase(personaje);
+    }
     if (protocolo_client.enviar_personaje(personaje) == false) {
         std::cout << "Error: No se pudo crear el personaje" << std::endl;
         return;
@@ -151,7 +101,7 @@ void Client::unirse_a_partida() {
                 std::cout << "Error: ID de partida no válido. Intente nuevamente" << std::endl;
                 continue;
             }
-            std::cout << "id partida: "<< static_cast<int>(id_partida)<<std::endl;
+            std::cout << "id partida: " << static_cast<int>(id_partida) << std::endl;
             protocolo_client.enviar_id_partida(id_partida);
             return;
         }
@@ -213,6 +163,7 @@ void Client::jugar() {
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
+    std::cout << "Aguarda unos minutos mientras se completa el escenario..." << std::endl;
     crear_escenario();
     if (cerrar_lobby() == false) {
         return;
@@ -227,7 +178,7 @@ void Client::jugar() {
     while (!client_off) {
 
         std::shared_ptr<GameStateClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {;
+        while (server_msg.try_pop(respuesta)) {
             gui.setGameState(*respuesta);
             // respuesta->imprimir_cliente();
 

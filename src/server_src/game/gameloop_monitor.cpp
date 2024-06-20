@@ -31,14 +31,9 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
     }
 }
 
-// TODO: Mando el map en vez de pasarlo por referencia
-void GameloopMonitor::obtener_partidas_disponibles(
-        std::map<uint16_t, std::string>& partidas_disponibles) {
+std::map<uint16_t, std::string> GameloopMonitor::obtener_partidas_disponibles() {
     std::unique_lock<std::mutex> lock(m);
-    partidas_disponibles.clear();
-    if (diccionario_de_gameloops.empty()) {
-        return;
-    }
+    std::map<uint16_t, std::string> partidas_disponibles;
     for (const auto& pair: diccionario_de_gameloops) {
         uint16_t id = pair.first;
         GameLoop* gameLoop = pair.second;
@@ -46,6 +41,7 @@ void GameloopMonitor::obtener_partidas_disponibles(
             partidas_disponibles[id] = gameLoop->obtener_nombre_partida();
         }
     }
+    return partidas_disponibles;
 }
 
 GameLoop* GameloopMonitor::obtener_gameloop(uint16_t gameloop_id) {
@@ -60,6 +56,19 @@ GameLoop* GameloopMonitor::obtener_gameloop(uint16_t gameloop_id) {
 Queue<std::shared_ptr<Comando>>& GameloopMonitor::obtener_queue_de_client_commands(
         uint16_t gameloop_id) {
     return obtener_gameloop(gameloop_id)->obtener_queue_de_client_commands();
+}
+
+void GameloopMonitor::agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id,
+                                                  uint8_t personaje) {
+    GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    gameloop->agregar_cliente(client_id, personaje);
+}
+
+void GameloopMonitor::agregar_queue_server_msg_de_cliente_aceptado(
+        uint16_t gameloop_id, Queue<std::shared_ptr<GameState>>& server_msg) {
+    GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    gameloop->agregar_queue_server_msg_de_cliente_aceptado(server_msg);
+    return;
 }
 
 void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id) {

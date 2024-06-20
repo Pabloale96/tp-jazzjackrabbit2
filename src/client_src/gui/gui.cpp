@@ -21,7 +21,6 @@ void Gui::setGameState(GameStateClient& gamestate) {
 }
 
 
-
 void Gui::run() {
     const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
 
@@ -64,8 +63,6 @@ void Gui::run() {
         std::shared_ptr<Frame> beach = std::make_shared<Frame>(texturas->findFrame(std::string(PLATFORM_BEACH_TYPE_1))->at(0));
         plataformas[i]->setFrame(beach,screenWidth,screenHeight);
     }
-    
-    std::cout << "size plataformas: "<<plataformas.size()<<std::endl;
 
     Escenario escenario(plataformas);
 
@@ -83,6 +80,7 @@ void Gui::run() {
         renderer.Clear();
 
         escenario.show(pos_x, pos_y);
+        // cppcheck-suppress unusedVariable
         for (const auto& [id, personaje]: dic_personajes) {
             std::unique_ptr<PersonajeGui> pers;
             int x = (personaje->obtener_posicion_x() - pos_x) * SCALING_VALUE_PIXEL_X;

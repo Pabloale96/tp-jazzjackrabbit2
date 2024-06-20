@@ -9,7 +9,7 @@
 
 #define MAX_TAM_COLA 10000
 #define CANT_MAX_SEG_DE_PARTIDA 60
-#define RATE 60         // 60
+#define RATE 200        // 60
 #define SCALE_TIME 1e9  // 1e9
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
@@ -84,10 +84,10 @@ void GameLoop::run() {
                 auto behind = -rest;
                 auto lost = behind - behind % rate_ns;
                 t_0 += lost;
-            } else {
-                std::this_thread::sleep_for(rest);
             }
-            t_0 = std::chrono::high_resolution_clock::now();
+            // Fix de leo ?
+            std::this_thread::sleep_for(rest);
+            t_0 += rate_ns;
         }
     } catch (const ClosedQueue&) {
         return;

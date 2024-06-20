@@ -19,17 +19,14 @@ void Aceptador::run() {
         try {
             Socket socket_cliente = socket_server.accept();
             lista_clientes.emplace_back(std::move(socket_cliente), monitor_de_partidas);
-            lista_clientes.back().start(monitor_de_partidas);
+            lista_clientes.back().start();
         } catch (const std::exception& err) {
             if (!is_alive() or was_closed_aceptador) {
-                // TODO: ahora el monitor de gameloops tiene que cerrar los gameloops
-                // game_loop.stop();
-                // game_loop.join();
-                // clean all
+                // Gameloop monitor en su destructor cierra todos los gameloops
                 return;
             }
         }
-        // limpiar_clientes_que_terminaron(lista_clientes);
+        limpiar_clientes_que_terminaron(lista_clientes);
     }
 }
 
@@ -37,6 +34,7 @@ void Aceptador::limpiar_clientes_que_terminaron(std::list<ClienteAceptado>& list
     auto it = lista_clientes.begin();
     while (it != lista_clientes.end()) {
         if (it->is_dead()) {
+            std::cout << "Se ha encontrado un cliente desconectado" << std::endl;
             it = lista_clientes.erase(it);
         } else {
             ++it;

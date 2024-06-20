@@ -18,7 +18,6 @@
 #include "../../common_src/vector_monitor.h"
 #include "../game_state_client.h"
 
-#include "vector_monitor.h"
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "gui_escenario.h"
@@ -26,6 +25,7 @@
 #include "gui_personaje.h"
 //#include "gui_ventana.h"
 #include "msgToSent.h"
+#include "vector_monitor.h"
 
 #define RATE 60
 
@@ -56,11 +56,11 @@ private:
 
     Queue<msgAccion>& client_commands;
 
-    //VectorMonitor<msgPlataforma>& msg_plataformas;
+    // VectorMonitor<msgPlataforma>& msg_plataformas;
 
     uint16_t& client_id;
 
-    VectorMonitor<std::shared_ptr<PlatformGui>> & plataformas;
+    VectorMonitor<std::shared_ptr<PlatformGui>>& plataformas;
 
     std::unique_ptr<PersonajeGui> jugador;
 

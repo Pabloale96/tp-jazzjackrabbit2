@@ -27,13 +27,16 @@ public:
 
     uint16_t crear_gameloop(std::string nombre_partida, uint16_t client_id, uint8_t personaje);
 
-    void obtener_partidas_disponibles(std::map<uint16_t, std::string>& partidas_disponibles);
+    std::map<uint16_t, std::string> obtener_partidas_disponibles();
 
-    void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id);
+    void agregar_cliente_al_gameloop(uint16_t gameloop_id, uint16_t client_id, uint8_t personaje);
 
     GameLoop* obtener_gameloop(uint16_t gameloop_id);
 
     Queue<std::shared_ptr<Comando>>& obtener_queue_de_client_commands(uint16_t gameloop_id);
+
+    void agregar_queue_server_msg_de_cliente_aceptado(
+            uint16_t gameloop_id, Queue<std::shared_ptr<GameState>>& server_msg);
 
     void borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t client_id);
 
