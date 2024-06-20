@@ -10,7 +10,7 @@ Gui::Gui(Queue<msgAccion>& client_commands, std::unique_ptr<PersonajeGui> & juga
 
 Gui::~Gui() {}
 
-bool Gui::run() {
+bool Gui::run(int h_window, int w_window) {
     
     bool client_off = keyhandler.keyBoardManaged( jugador, client_commands);
 
@@ -18,7 +18,7 @@ bool Gui::run() {
         return true;
     }
 
-    escenario.show(jugador->obtener_posicion_x(), jugador->obtener_posicion_y());
+    escenario.show(jugador->obtener_posicion_x(), jugador->obtener_posicion_y(),h_window,w_window);
     // cppcheck-suppress unusedVariable
     // Poner todo en una clase de enemigos para hacer enemigos ->show()
     /*for (const auto& [id, personaje]: gamestate->obtener_diccionario_de_personajes()) {

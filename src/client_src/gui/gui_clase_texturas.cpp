@@ -211,10 +211,10 @@ void ClaseTexturas::enemigo3() {
 
 void ClaseTexturas::plataformaTipo1() {
 
-    int x_frame = 0;
-    int y_frame = 2560;
-    int w_frame = 29;
-    int h_frame = 192;
+    int x_frame = 64;
+    int y_frame = 64;
+    int w_frame = 16;
+    int h_frame = 160;
 
     std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
     Frame frame(renderer, beach_tex, x_frame, y_frame, w_frame, h_frame);

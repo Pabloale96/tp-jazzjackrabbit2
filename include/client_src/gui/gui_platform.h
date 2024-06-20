@@ -30,8 +30,15 @@ public:
     explicit PlatformGui(ClaseTexturas &,const msgPlataforma&);
     ~PlatformGui();
 
-    void show(int dif_x, int dif_y);
+    void show(int dif_x, int dif_y,int h_window, int w_window,int);
     float rotateToFloat();
+    void setFrame(std::shared_ptr<Frame>&,int ,int);
+    bool checkIsInWindow(int ,int, int, int);
+
+    int getW() {return width;}
+    int getH() {return height;}
+    int getX() {return pos_x;}
+    int getY() {return pos_y;}
 };
 
 #endif

@@ -196,7 +196,7 @@ void Client::jugar() {
             auto frame_start = steady_clock::now();
 
             renderer.Clear();
-            client_off = gui.run();
+            client_off = gui.run(screenHeight, screenWidth);
             if(client_off) {
                 return;
             }

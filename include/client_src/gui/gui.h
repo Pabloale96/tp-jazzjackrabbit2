@@ -13,6 +13,7 @@
 #include "gui_escenario.h"
 #include "gui_keyhandler.h"
 #include "gui_personaje.h"
+//#include "gui_ventana.h"
 #include "msgToSent.h"
 #include "vector_monitor.h"
 
@@ -35,7 +36,7 @@ public:
     Gui(Queue<msgAccion>& client_commands, std::unique_ptr<PersonajeGui> & jugador,
         std::shared_ptr<GameStateClient> & gamestate, std::vector<PlatformGui>& plataformas);
     ~Gui();
-    bool run();
+    bool run(int h_window, int w_window);
 };
 
 #endif
