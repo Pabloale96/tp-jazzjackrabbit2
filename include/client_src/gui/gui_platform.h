@@ -24,15 +24,14 @@ private:
     int type = 0;
     int height;
     int width;
-    std::shared_ptr<Frame> platform;
+    std::shared_ptr<std::vector<Frame>> & platform;
 
 public:
-    explicit PlatformGui(const msgPlataforma&);
+    explicit PlatformGui(ClaseTexturas &,const msgPlataforma&);
     ~PlatformGui();
 
     void show(int dif_x, int dif_y);
     float rotateToFloat();
-    void setFrame(std::shared_ptr<Frame>&);
 };
 
 #endif

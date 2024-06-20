@@ -1,80 +1,120 @@
 #include "../../include/client_src/gui/gui_personaje.h"
 
-PersonajeGui::PersonajeGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
+PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
         texturas(texturas), pos_x(posx), pos_y(posy), speed(speed), frames(frames) {
     it = frames->begin();
 }
-PersonajeGui::PersonajeGui(msgPersonaje& personaje):
+PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         // puntos(ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
         // vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
-        texturas(nullptr),
+        texturas(texturas),
         pos_x(ntohs(personaje.personaje[POS_POSX_PERSONAJE])),
         pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE])),
         tipo(personaje.tipo_personaje),
         frames(nullptr) {}
 // estados() {}
+void PersonajeGui::setAccion(uint8_t accion){
+    switch (accion) {
+        case (uint8_t) acciones::NULO:
+            this->estado = ANI_STAND;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::MOVER_DERECHA:
+            this->estado = ANI_MOVER_DERECHA;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::MOVER_DERECHA_RAPIDO:
+            this->estado = ANI_RUN_DERECHA;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::MOVER_IZQUIERDA:
+            this->estado = ANI_MOVER_IZQUIERDA;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::MOVER_IZQUIERDA_RAPIDO:
+            this->estado = ANI_RUN_IZQUIERDA;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::SALTAR:
+            this->estado = ANI_SALTAR;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::DISPARAR:
+            this->estado = ANI_DISPARAR;
+            this->setFrames(5);
+            break;
+        case (uint8_t) acciones::ACCION_ESPECIAL:
+            this->estado = ANI_ESPECIAL;
+            this->setFrames(5);
+            break;
+        default:
+            break;
+    }
+}
 
 PersonajeGui::~PersonajeGui() {}
 
 void PersonajeGui::show() { animacion.run(pos_x, pos_y, speed, frames, it); }
 
-void PersonajeGui::setFrames(int animacion_actual, int spe) {}
+void PersonajeGui::setFrames(int spe) {}
 
-SpazGui::SpazGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
+SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, speed, frames) {}
 
-SpazGui::SpazGui(msgPersonaje& msg): PersonajeGui(msg) {}
+SpazGui::SpazGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg) {
+    this->setAccion(msg.estado);
+}
 SpazGui::~SpazGui() {}
 
-void SpazGui::setFrames(int animacion_actual, int spe) {
-    switch (animacion_actual) {
+void SpazGui::setFrames(int spe) {
+    switch (estado) {
         case ANI_STAND:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(SPAZ_STAND));
+            frames = texturas.findFrame(std::string(SPAZ_STAND));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(SPAZ_WALK));
+            frames = texturas.findFrame(std::string(SPAZ_WALK));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(true);
-            frames = texturas->findFrame(std::string(SPAZ_WALK));
+            frames = texturas.findFrame(std::string(SPAZ_WALK));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_SALTAR:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(SPAZ_JUMP));
+            frames = texturas.findFrame(std::string(SPAZ_JUMP));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_DISPARAR:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(SPAZ_SHOOT));
+            frames = texturas.findFrame(std::string(SPAZ_SHOOT));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_RUN_IZQUIERDA:
             animacion.setFlip(true);
-            frames = texturas->findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_RUN));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_RUN_DERECHA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_RUN));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_ESPECIAL:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(SPAZ_SPECIAL));
+            frames = texturas.findFrame(std::string(SPAZ_SPECIAL));
             it = frames->begin();
             speed = spe;
             break;
@@ -83,60 +123,62 @@ void SpazGui::setFrames(int animacion_actual, int spe) {
     }
 }
 
-JazzGui::JazzGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
+JazzGui::JazzGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, speed, frames) {}
 
-JazzGui::JazzGui(msgPersonaje& msg): PersonajeGui(msg) {}
+JazzGui::JazzGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg) {
+    this->setAccion(msg.estado);
+}
 JazzGui::~JazzGui() {}
 
-void JazzGui::setFrames(int animacion_actual, int spe) {
-    switch (animacion_actual) {
+void JazzGui::setFrames(int spe) {
+    switch (estado) {
         case ANI_STAND:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_STAND));
+            frames = texturas.findFrame(std::string(JAZZ_STAND));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_WALK));
+            frames = texturas.findFrame(std::string(JAZZ_WALK));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_WALK));
+            frames = texturas.findFrame(std::string(JAZZ_WALK));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_SALTAR:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_JUMP));
+            frames = texturas.findFrame(std::string(JAZZ_JUMP));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_DISPARAR:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_SHOOT));
+            frames = texturas.findFrame(std::string(JAZZ_SHOOT));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_RUN_IZQUIERDA:
             animacion.setFlip(true);
-            frames = texturas->findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_RUN));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_RUN_DERECHA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_RUN));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_ESPECIAL:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(JAZZ_SPECIAL));
+            frames = texturas.findFrame(std::string(JAZZ_SPECIAL));
             it = frames->begin();
             speed = spe;
             break;
@@ -145,60 +187,62 @@ void JazzGui::setFrames(int animacion_actual, int spe) {
     }
 }
 
-LoriGui::LoriGui(std::shared_ptr<ClaseTexturas> texturas, int posx, int posy, int speed,
+LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                  std::shared_ptr<std::vector<Frame>>& frames):
         PersonajeGui(texturas, posx, posy, speed, frames) {}
 
-LoriGui::LoriGui(msgPersonaje& msg): PersonajeGui(msg) {}
+LoriGui::LoriGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg) {
+    this->setAccion(msg.estado);
+}
 LoriGui::~LoriGui() {}
 
-void LoriGui::setFrames(int animacion_actual, int spe) {
-    switch (animacion_actual) {
+void LoriGui::setFrames(int spe) {
+    switch (estado) {
         case ANI_STAND:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_STAND));
+            frames = texturas.findFrame(std::string(LORI_STAND));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_MOVER_DERECHA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_WALK));
+            frames = texturas.findFrame(std::string(LORI_WALK));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_MOVER_IZQUIERDA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_WALK));
+            frames = texturas.findFrame(std::string(LORI_WALK));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_SALTAR:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_JUMP));
+            frames = texturas.findFrame(std::string(LORI_JUMP));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_DISPARAR:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_SHOOT));
+            frames = texturas.findFrame(std::string(LORI_SHOOT));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_RUN_IZQUIERDA:
             animacion.setFlip(true);
-            frames = texturas->findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_RUN));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_RUN_DERECHA:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_RUN));
             it = frames->begin();
             speed = spe;
             break;
         case ANI_ESPECIAL:
             animacion.setFlip(false);
-            frames = texturas->findFrame(std::string(LORI_SPECIAL));
+            frames = texturas.findFrame(std::string(LORI_SPECIAL));
             it = frames->begin();
             speed = spe;
             break;

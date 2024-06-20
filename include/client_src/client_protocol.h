@@ -9,6 +9,7 @@
 
 #include "../common_src/vector_monitor.h"
 #include "gui/gui_platform.h"
+#include "gui/gui_clase_texturas.h"
 
 #include "game_state_client.h"
 #include "sockets.h"
@@ -51,7 +52,7 @@ public:
 
     void enviar_id_partida(uint16_t id_partida);
 
-    bool recibir_escenario(VectorMonitor<std::shared_ptr<PlatformGui>>& plataforma);
+    bool recibir_escenario(ClaseTexturas & texturas, std::vector<PlatformGui>& plataforma);
 
     bool confirmar_fin_lobby();
 
@@ -59,7 +60,7 @@ public:
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    void recibir_respuesta(std::unique_ptr<GameStateClient>& gameState, uint16_t& client_id);
+    void recibir_respuesta(ClaseTexturas & texturas, std::shared_ptr<GameStateClient>& gameState, uint16_t& client_id);
 
     void cerrar_socket();
 

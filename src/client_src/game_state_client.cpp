@@ -12,16 +12,16 @@ GameStateClient::GameStateClient(): jugando(true) {}
 
 bool GameStateClient::obtener_estado_de_la_partida() { return jugando; }
 
-std::map<uint16_t, std::shared_ptr<PersonajeGui>>&
+std::map<uint16_t, PersonajeGui>&
         GameStateClient::obtener_diccionario_de_personajes() {
-    return diccionario_de_personajes.obtener_diccionario();
+    return diccionario_de_personajes;
 }
 
 std::map<uint16_t, EnemigosGui>& GameStateClient::obtener_diccionario_de_enemigos() {
-    return diccionario_de_enemigos.obtener_diccionario();
+    return diccionario_de_enemigos;
 }
 
-std::shared_ptr<PersonajeGui>& GameStateClient::obtener_personaje(uint16_t client_id) {
+PersonajeGui& GameStateClient::obtener_personaje(uint16_t client_id) {
     auto it = diccionario_de_personajes.find(client_id);
     if (it != diccionario_de_personajes.end()) {
         return std::ref(it->second);
@@ -29,25 +29,25 @@ std::shared_ptr<PersonajeGui>& GameStateClient::obtener_personaje(uint16_t clien
     throw std::out_of_range("No se encontró el personaje en gamestate");
 }
 
-void GameStateClient::pushPersonajes(msgPersonaje& msgpers) {
+void GameStateClient::pushPersonajes(ClaseTexturas & texturas, msgPersonaje& msgpers) {
     std::shared_ptr<PersonajeGui> personaje;
     uint8_t tipo = msgpers.tipo_personaje;
     switch (tipo) {
         case static_cast<uint8_t>(personajes::JAZZ):
-            personaje = std::make_shared<JazzGui>(msgpers);
+            personaje = std::make_shared<JazzGui>(texturas,msgpers);
             break;
         case static_cast<uint8_t>(personajes::SPAZZ):
-            personaje = std::make_shared<SpazGui>(msgpers);
+            personaje = std::make_shared<SpazGui>(texturas,msgpers);
             break;
         case static_cast<uint8_t>(personajes::LORI):
-            personaje = std::make_shared<LoriGui>(msgpers);
+            personaje = std::make_shared<LoriGui>(texturas,msgpers);
             break;
         default:
             std::cerr << "Error: Tipo de personaje no válido" << std::endl;
             return;
     }
 
-    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]), personaje);
+    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]), *personaje);
 }
 
 GameStateClient::~GameStateClient() {}

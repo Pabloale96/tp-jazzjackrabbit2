@@ -18,10 +18,9 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         client_commands(MAX_TAM_COLA),
         sender(protocolo_client, client_commands),
         server_msg(MAX_TAM_COLA),
-        receiver(protocolo_client, client_id, server_msg),
-        client_off(false),
+        receiver(protocolo_client, client_id, server_msg, texturas),
         client_id(CLIENT_ID_NULO),
-        gui(0, 0, client_off, personaje, client_commands, plataformas, client_id) {}
+        gui(client_commands, jugador, gamestate,plataformas) {}
 
 void Client::imprimir_portada() {
     std::ifstream file("../docs/portada.txt");
@@ -44,6 +43,7 @@ void Client::imprimir_bienvenida() {
 }
 
 void Client::crear_personaje() {
+    std::string personaje;
     std::cout << "Ingrese el nombre del personaje que desea utilizar" << std::endl;
     std::cout << "  - Jazz (j)" << std::endl;
     std::cout << "  - Spazz (s)" << std::endl;
@@ -58,6 +58,19 @@ void Client::crear_personaje() {
     if (protocolo_client.enviar_personaje(personaje) == false) {
         std::cout << "Error: No se pudo crear el personaje" << std::endl;
         return;
+    }
+    if (personaje == "j") {
+        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2, 4,
+                                            texturas.findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
+    } else if (personaje == "s") {
+        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2, 4,
+                                            texturas.findFrame(std::string(SPAZ_STAND)));
+    } else if (personaje == "l") {
+        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
+                                            renderer.GetOutputHeight() / 2, 4,
+                                            texturas.findFrame(std::string(LORI_STAND)));
     }
 }
 
@@ -141,7 +154,7 @@ void Client::iniciar_hilos() {
 }
 
 void Client::crear_escenario() {
-    if (protocolo_client.recibir_escenario(plataformas) == false) {
+    if (protocolo_client.recibir_escenario(texturas,plataformas) == false) {
         std::cout << "Error: No se pudo recibir el escenario" << std::endl;
         return;
     }
@@ -160,6 +173,9 @@ bool Client::cerrar_lobby() {
 void Client::jugar() {
 
     // ***************** LOBBY *****************
+    SDL sdl(SDL_INIT_VIDEO);
+    SDLTTF ttf;
+    const nanoseconds rate_ns(static_cast<int>(1e9 / RATE));
     imprimir_bienvenida();
     establecer_partida();
     crear_personaje();
@@ -172,22 +188,37 @@ void Client::jugar() {
     // ***************** JUEGO *****************
     std::cout << "Comienza la partida!" << std::endl;
     iniciar_hilos();
+    window.Show();
 
-    gui.start();
+    bool client_off = false;
+    while (!client_off){
+        while (server_msg.try_pop(gamestate) ) {
+            auto frame_start = steady_clock::now();
 
-    while (!client_off) {
-
-        std::shared_ptr<GameStateClient> respuesta = nullptr;
-        while (server_msg.try_pop(respuesta)) {
-            gui.setGameState(*respuesta);
-            // respuesta->imprimir_cliente();
-
-            if (respuesta->getJugando() == false) {
-                std::cout << "La partida ha finalizado" << std::endl;
-                // TODO: aca se deberían de mostrar las estadísticas
-                mostrar_estadisticas(*respuesta);
+            renderer.Clear();
+            client_off = gui.run();
+            if(client_off) {
                 return;
             }
+            renderer.Present();
+
+            if (gamestate->getJugando() == false) {
+                std::cout << "La partida ha finalizado" << std::endl;
+                // TODO: aca se deberían de mostrar las estadísticas
+                mostrar_estadisticas(*gamestate);
+                return;
+            }
+            
+            auto frame_end = steady_clock::now();
+            auto rest = rate_ns - (frame_end - frame_start);
+
+            if (rest.count() < 0) {
+                auto behind = -rest;
+                auto lost = behind - behind % rate_ns;
+                frame_start += lost;
+            }
+            std::this_thread::sleep_for(rest);
+            frame_start += rate_ns;
         }
     }
 }
@@ -210,9 +241,7 @@ Client::~Client() {
 
     sender.stop();
     receiver.stop();
-    gui.stop();
 
     sender.join();
     receiver.join();
-    gui.join();
 }

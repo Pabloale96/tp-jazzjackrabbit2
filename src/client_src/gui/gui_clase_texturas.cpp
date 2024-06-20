@@ -5,7 +5,7 @@ Texture& ClaseTexturas::spaz_text() { return spaz_tex; }
 Texture& ClaseTexturas::lori_text() { return lori_tex; }
 Texture& ClaseTexturas::beach_text() { return beach_tex; }
 
-std::shared_ptr<std::vector<Frame>> ClaseTexturas::findFrame(std::string frame_string) {
+std::shared_ptr<std::vector<Frame>>& ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
     return it->second;
 }
@@ -88,8 +88,8 @@ ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
 
 ClaseTexturas::~ClaseTexturas() {}
 
-void ClaseTexturas::addFrames(std::string key, std::shared_ptr<std::vector<Frame>> value) {
-    frames_map[key] = value;
+void ClaseTexturas::addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>> & frame){
+    frames_map.emplace(key, frame);
 }
 
 void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,

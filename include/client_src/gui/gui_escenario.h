@@ -18,10 +18,10 @@ using SDL2pp::Texture;
 
 class Escenario {
 private:
-    VectorMonitor<std::shared_ptr<PlatformGui>>& platforms;
+    std::vector<PlatformGui>& platforms;
 
 public:
-    explicit Escenario(VectorMonitor<std::shared_ptr<PlatformGui>>&);
+    explicit Escenario(std::vector<PlatformGui>&);
     ~Escenario();
 
     void show(int dif_x, int dif_y);

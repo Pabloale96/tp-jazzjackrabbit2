@@ -22,7 +22,7 @@ using SDL2pp::Window;
 
 class PersonajeGui {
 protected:
-    std::shared_ptr<ClaseTexturas> texturas;
+    ClaseTexturas& texturas;
     int pos_x;
     int pos_y;
     uint8_t tipo;
@@ -34,45 +34,47 @@ protected:
 
 
 public:
-    PersonajeGui(std::shared_ptr<ClaseTexturas>, int, int, int,
+    PersonajeGui(ClaseTexturas&, int, int, int,
                  std::shared_ptr<std::vector<Frame>>&);
-    explicit PersonajeGui(msgPersonaje&);
-    int obtener_posicion_x() { return pos_x; }
-    int obtener_posicion_y() { return pos_y; }
-    uint8_t obtener_estado_actual() { return estado; }
-    uint8_t obtener_tipo_personaje() { return tipo; }
+    explicit PersonajeGui(ClaseTexturas&, msgPersonaje&);
+    int obtener_posicion_x() const{ return pos_x; }
+    int obtener_posicion_y() const{ return pos_y; }
+    uint8_t obtener_estado_actual() const{ return estado; }
+    uint8_t obtener_tipo_personaje() const{ return tipo; }
     ~PersonajeGui();
     void show();
-    virtual void setFrames(int, int);
+    virtual void setFrames(int);
+    void setAccion(uint8_t estado);
+    
 };
 
 class SpazGui: public PersonajeGui {
 private:
 public:
-    SpazGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    explicit SpazGui(msgPersonaje&);
+    SpazGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit SpazGui(ClaseTexturas&, msgPersonaje&);
     ~SpazGui();
 
-    void setFrames(int, int) override;
+    void setFrames(int) override;
 };
 
 class JazzGui: public PersonajeGui {
 private:
 public:
-    JazzGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    explicit JazzGui(msgPersonaje&);
+    JazzGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit JazzGui(ClaseTexturas&, msgPersonaje&);
     ~JazzGui();
 
-    void setFrames(int, int) override;
+    void setFrames(int) override;
 };
 
 class LoriGui: public PersonajeGui {
 private:
 public:
-    LoriGui(std::shared_ptr<ClaseTexturas>, int, int, int, std::shared_ptr<std::vector<Frame>>&);
-    explicit LoriGui(msgPersonaje&);
+    LoriGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
+    explicit LoriGui(ClaseTexturas&, msgPersonaje&);
     ~LoriGui();
 
-    void setFrames(int, int) override;
+    void setFrames(int) override;
 };
 #endif
