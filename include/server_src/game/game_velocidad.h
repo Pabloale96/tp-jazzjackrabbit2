@@ -3,26 +3,26 @@
 
 #include <cstdint>
 
-#define VELOCIDAD_NORMAL 1
-#define VELOCIDAD_RAPIDA 2
+const float VELOCIDAD_NORMAL = 0.1f;
+const float VELOCIDAD_RAPIDA = 0.2f;
 
 class Velocidad {
 private:
-    int velocidad_x;
-    int velocidad_y;
+    float velocidad_x;
+    float velocidad_y;
 
 public:
     Velocidad();
 
-    Velocidad(int velocidad_x, int velocidad_y);
+    Velocidad(float velocidad_x, float velocidad_y);
 
-    int obtener_velocidad_x() const;
+    float obtener_velocidad_x() const;
 
-    int obtener_velocidad_y() const;
+    float obtener_velocidad_y() const;
 
-    void setear_velocidad_x(uint8_t velocidad_x);
+    void setear_velocidad_x(float velocidad_x);
 
-    void setear_velocidad_y(uint8_t velocidad_y);
+    void setear_velocidad_y(float velocidad_y);
 
     void idle();
 

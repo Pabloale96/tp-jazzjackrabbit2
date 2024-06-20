@@ -8,9 +8,6 @@
 
 #include "defines_msg.h"
 
-#define VELOCIDAD_EN_x 1
-#define VELOCIDAD_EN_y 0
-
 // Todos los enemigos tienen la misma velocidad y arrancan para la derecha
 Enemigo::Enemigo(uint16_t id_enemigo):
         id_enemigo(id_enemigo), velocidad_enemigo(VELOCIDAD_EN_x, VELOCIDAD_EN_y) {}
@@ -25,7 +22,7 @@ void Enemigo::set_enemigo_id(uint16_t id_enemigo) { this->id_enemigo = id_enemig
 
 void Enemigo::set_tipo_enemigo(TipoEnemigo tipo_enemigo) { this->tipo_enemigo = tipo_enemigo; }
 
-void Enemigo::set_posicion_enemigo(uint16_t x, uint16_t y) { posicion_enemigo.set_posicion(x, y); }
+void Enemigo::set_posicion_enemigo(float x, float y) { posicion_enemigo.set_posicion(x, y); }
 
 void Enemigo::set_vidas(uint16_t vidas) { this->vidas = vidas; }
 
@@ -100,7 +97,7 @@ bool Enemigo::esta_vivo() {
 
 // ************  ENEMIGO 1 ("nombre")  ************
 // Enemigo1 constructor
-Enemigo1::Enemigo1(uint16_t id, uint16_t x, uint16_t y): Enemigo(id) {
+Enemigo1::Enemigo1(uint16_t id, float x, float y): Enemigo(id) {
     set_tipo_enemigo(TipoEnemigo::ENEMIGO1);
     set_posicion_enemigo(x, y);
     set_vidas(YAMLConfig::getConfig().enemigo_1.vidas);
@@ -119,7 +116,7 @@ void Enemigo1::revivir_enemigo() {
 
 // ************  ENEMIGO 2 ("nombre")  ************
 // Enemigo2 constructor
-Enemigo2::Enemigo2(uint16_t id, uint16_t x, uint16_t y): Enemigo(id) {
+Enemigo2::Enemigo2(uint16_t id, float x, float y): Enemigo(id) {
     set_tipo_enemigo(TipoEnemigo::ENEMIGO2);
     set_posicion_enemigo(x, y);
     set_vidas(YAMLConfig::getConfig().enemigo_2.vidas);
@@ -138,7 +135,7 @@ void Enemigo2::revivir_enemigo() {
 
 // ************  ENEMIGO 3 ("VOLADOR")  ************
 // Enemigo3 constructor
-Enemigo3::Enemigo3(uint16_t id, uint16_t x, uint16_t y): Enemigo(id) {
+Enemigo3::Enemigo3(uint16_t id, float x, float y): Enemigo(id) {
     set_tipo_enemigo(TipoEnemigo::ENEMIGO3);
     set_posicion_enemigo(x, y);
     set_vidas(YAMLConfig::getConfig().enemigo_3.vidas);

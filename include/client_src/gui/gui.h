@@ -44,8 +44,8 @@ private:
     // mutable std::mutex m;  // Si no pongo mutable no puedo usar lock en metodos const
 
     // posicion del jugador:
-    int pos_x = 0;
-    int pos_y = 0;
+    float pos_x = 0;
+    float pos_y = 0;
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::map<uint16_t, std::shared_ptr<PersonajeGui>> dic_personajes;

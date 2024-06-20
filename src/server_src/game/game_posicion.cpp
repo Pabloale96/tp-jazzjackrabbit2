@@ -2,13 +2,13 @@
 
 Posicion::Posicion(): x(X_INICIAL), y(Y_INICIAL) {}
 
-void Posicion::set_posicion(uint16_t x, uint16_t y) {
+void Posicion::set_posicion(float x, float y) {
     this->x = x;
     this->y = y;
 }
 
-void Posicion::set_posicion_en_x(uint16_t x) { this->x = x; }
-void Posicion::set_posicion_en_y(uint16_t y) { this->y = y; }
+void Posicion::set_posicion_en_x(float x) { this->x = x; }
+void Posicion::set_posicion_en_y(float y) { this->y = y; }
 
 void Posicion::mover(const Velocidad& velocidad) {
     // std::cout << "ANTES DE MOVER: (" << x << " ," << y << " )" << std::endl;
@@ -31,9 +31,9 @@ void Posicion::mover(const Velocidad& velocidad) {
     // std::cout << "DESPUES DE MOVER: (" << x << " ," << y << " )" << std::endl;
 }
 
-uint16_t Posicion::get_posicion_x() const { return this->x; }
+float Posicion::get_posicion_x() const { return this->x; }
 
-uint16_t Posicion::get_posicion_y() const { return this->y; }
+float Posicion::get_posicion_y() const { return this->y; }
 
 bool Posicion::operator==(const Posicion& otro) const {
     return this->x == otro.x && this->y == otro.y;

@@ -49,9 +49,6 @@ void GameLoop::terminar_partida() { jugando = false; }
 bool GameLoop::obtener_estado_de_partida() { return jugando; }
 
 void GameLoop::run() {
-    // auto max_duration = std::chrono::minutes(minutos_de_partida);
-    // std::cout << "     *** **** *** " << minutos_de_partida << " minutos de partida\n";
-
     const std::chrono::nanoseconds rate_ns(static_cast<int>(SCALE_TIME / RATE));
     auto t_0 = std::chrono::high_resolution_clock::now();
 
@@ -85,7 +82,6 @@ void GameLoop::run() {
                 auto lost = behind - behind % rate_ns;
                 t_0 += lost;
             }
-            // Fix de leo ?
             std::this_thread::sleep_for(rest);
             t_0 += rate_ns;
         }
