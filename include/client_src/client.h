@@ -23,7 +23,7 @@ private:
     ClientSender sender;
     Queue<std::shared_ptr<GameStateClient>> server_msg;
     ClientReceiver receiver;
-    bool client_off;
+    std::atomic<bool> client_off;
     std::string personaje;
     uint16_t client_id;
     VectorMonitor<std::shared_ptr<PlatformGui>> plataformas;

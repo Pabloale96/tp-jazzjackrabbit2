@@ -3,11 +3,7 @@
 Frame::Frame(Renderer& renderer, Texture& sprite): renderer(renderer), sprite(sprite) {}
 
 Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
-        renderer(renderer), sprite(sprite), vec_frames{x, y, h, w} {
-
-
-    // this->setFrame(x, y, w, h);
-}
+        renderer(renderer), sprite(sprite), vec_frames{x, y, h, w} {}
 
 
 Frame::~Frame() {}
@@ -26,14 +22,14 @@ void Frame::copy(bool flip, int pos_x, int pos_y) {
 void Frame::copy(float rotate, int pos_x, int pos_y, int area_x, int area_y) {
     sprite.SetAlphaMod(255);
     renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                  Rect(renderer.GetOutputWidth() / 2 - pos_x,
-                       renderer.GetOutputHeight() / 2 - pos_y, area_x, area_y),
+                  Rect(pos_x,pos_y, area_x, area_y),
                   rotate, NullOpt, 2);
 }
 
 void Frame::copyTest() {
     renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
-                  Rect(renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2, 75, 75));
+                  Rect(0, 0 , 75, 75),
+                  315, NullOpt, 2);
 }
 
 

@@ -23,6 +23,7 @@
 #include "gui_escenario.h"
 #include "gui_keyhandler.h"
 #include "gui_personaje.h"
+//#include "gui_ventana.h"
 #include "msgToSent.h"
 #include "vector_monitor.h"
 
@@ -49,7 +50,7 @@ private:
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::map<uint16_t, std::shared_ptr<PersonajeGui>> dic_personajes;
 
-    bool& client_off;
+    std::atomic<bool>& client_off;
 
     std::string& personaje;
 
@@ -68,9 +69,11 @@ private:
     int screenHeight = 800;
 
 
+    //Ventana ventana(pos_x,pos_y,screenHeight, screenWidth,XMAX*SCALING_VALUE_PIXEL_X,YMAX*SCALING_VALUE_PIXEL_y);
+
+
 public:
-    Gui(int, int, bool&, std::string&, Queue<msgAccion>&,
-        VectorMonitor<std::shared_ptr<PlatformGui>>&, uint16_t&);
+    Gui(int, int, std::atomic<bool>&, std::string&, Queue<msgAccion>&, VectorMonitor<std::shared_ptr<PlatformGui>>&, uint16_t&);
     ~Gui();
     void run() override;
     void setGameState(GameStateClient&);

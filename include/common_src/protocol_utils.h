@@ -9,8 +9,8 @@
 #define HEIGHT_PLATFORM_TYPE_1 29
 #define WIDTH_PLATFORM_TYPE_1 192
 
-#define SCALING_VALUE_PIXEL_X 10
-#define SCALING_VALUE_PIXEL_Y 29
+#define SCALING_VALUE_PIXEL_X 100
+#define SCALING_VALUE_PIXEL_Y 64
 
 // tipo de plataforma usado de gui para la interfaz:
 enum class platform : uint8_t { HORIZONTAL = 0, DIAGONAL = 1, VERTICAL = 2 };
@@ -25,7 +25,6 @@ enum class TipoEnemigo { ENEMIGO1, ENEMIGO2, ENEMIGO3 };
 enum class acciones : uint8_t {
 
     NULO = 0x00,
-
     // Acciones del personaje
     //    >> Movimientos
     MOVER_DERECHA = 0x01,
