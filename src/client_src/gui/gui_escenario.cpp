@@ -1,17 +1,11 @@
 #include "../../include/client_src/gui/gui_escenario.h"
 
-Escenario::Escenario(VectorMonitor<std::shared_ptr<PlatformGui>>& plataformas):
-        platforms(plataformas) {
-
-    for (size_t i = 0; i < plataformas.size(); i++) {
-        std::cout << "( " << plataformas[i]->getX() << ", " << plataformas[i]->getY() << ", "
-                  << plataformas[i]->getW() << ", " << plataformas[i]->getH() << " )" << std::endl;
-    }
-}
+Escenario::Escenario(std::vector<PlatformGui>& plataformas):
+        platforms(plataformas) {}
 Escenario::~Escenario() {}
 
-void Escenario::show(int dif_x, int dif_y) {
+void Escenario::show(float dif_x, float dif_y, int h_window, int w_window) {
     for (size_t i = 0; i < platforms.size(); i++) {
-        platforms[i]->show(dif_x, dif_y, i);
+        platforms[i].show(dif_x, dif_y, h_window, w_window,i);
     }
 }

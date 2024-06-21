@@ -14,11 +14,12 @@ private:
     ProtocolClient& protocolo_cliente;
     uint16_t& client_id;
     Queue<std::shared_ptr<GameStateClient>>& server_msg;
+    ClaseTexturas & texturas;
 
 public:
     // Constructor
     ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
-                   Queue<std::shared_ptr<GameStateClient>>& server_msg);
+                   Queue<std::shared_ptr<GameStateClient>>& server_msg, ClaseTexturas & texturas);
 
     void run() override;
 

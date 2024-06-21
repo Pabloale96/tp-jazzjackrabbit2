@@ -4,6 +4,10 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <chrono>
+#include <map>
+
+#include <SDL2pp/SDL2pp.hh>
 
 #include "../common_src/vector_monitor.h"
 
@@ -14,8 +18,22 @@
 #include "msgToSent.h"
 #include "sockets.h"
 
+
+#define RATE 60
+
+using std::chrono::duration;
+using std::chrono::nanoseconds;
+using std::chrono::steady_clock;
+
+using SDL2pp::Renderer;
+using SDL2pp::SDL;
+using SDL2pp::SDLTTF;
+using SDL2pp::Texture;
+using SDL2pp::Window;
+
 class Client {
 private:
+
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;
@@ -23,10 +41,27 @@ private:
     ClientSender sender;
     Queue<std::shared_ptr<GameStateClient>> server_msg;
     ClientReceiver receiver;
-    std::atomic<bool> client_off;
-    std::string personaje;
     uint16_t client_id;
-    VectorMonitor<std::shared_ptr<PlatformGui>> plataformas;
+
+    // GUI:
+
+    // tamanio de la pantalla:
+    int screenWidth = 600;
+    int screenHeight = 800;
+
+    // clases para que despues use gui.cpp:
+    std::shared_ptr<PersonajeGui> jugador;
+    std::vector<PlatformGui> plataformas;
+    std::shared_ptr<GameStateClient> gamestate;
+
+    // ventana con la creacion del renderer:
+    Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                        screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
+
+    Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
+
+    ClaseTexturas texturas{ClaseTexturas(renderer)};
+
     Gui gui;
 
     std::string toLowercase(const std::string& str);

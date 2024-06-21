@@ -9,15 +9,15 @@
 #include "../../include/common_src/catedra/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
-                               Queue<std::shared_ptr<GameStateClient>>& server_msg):
-        protocolo_cliente(protocolo_cliente), client_id(client_id), server_msg(server_msg) {}
+                               Queue<std::shared_ptr<GameStateClient>>& server_msg, ClaseTexturas & texturas):
+        protocolo_cliente(protocolo_cliente), client_id(client_id), server_msg(server_msg), texturas(texturas) {}
 
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            std::unique_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>();
-            protocolo_cliente.recibir_respuesta(gameState, client_id);
-            server_msg.push(std::shared_ptr<GameStateClient>(std::move(gameState)));
+            std::shared_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>();
+            protocolo_cliente.recibir_respuesta(texturas, gameState, client_id);
+            server_msg.push(std::move(gameState));
 
         } catch (const ClosedQueue&) {
             return;

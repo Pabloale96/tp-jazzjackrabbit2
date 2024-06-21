@@ -28,7 +28,7 @@ private:
 public:
     KeyboardHandler();
 
-    bool keyBoardManaged(int& animacion, std::unique_ptr<PersonajeGui>& jugador, Queue<msgAccion>&);
+    bool keyBoardManaged(Queue<msgAccion>&,const uint8_t &);
 
     bool checkKeyPress(SDL_Keycode);
 };
