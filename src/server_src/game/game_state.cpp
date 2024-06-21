@@ -65,7 +65,7 @@ void GameState::imprimir_mensaje() {
         //std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
-       // std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
+        std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
         std::cout << "     - Velocidad: (" << personaje->obtener_velocidad().obtener_velocidad_x()
                   << ", " << personaje->obtener_velocidad().obtener_velocidad_y() << ")."
                   << std::endl;

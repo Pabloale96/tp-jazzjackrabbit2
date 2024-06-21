@@ -21,20 +21,20 @@ sudo apt install -y build-essential cmake git libasound2-dev libpulse-dev libaud
                     libtiff-dev libwebp-dev libfreetype6-dev libfluidsynth-dev \
                     libmodplug-dev libvorbis-dev libmpg123-dev libopusfile-dev
 
-# clone the yaml-cpp repository
+# Clonar y compilar yaml-cpp
 git clone https://github.com/jbeder/yaml-cpp.git
-cd yaml-cpp
+cd ~/yaml-cpp
 mkdir build
 cd build
 cmake ..
 make -j$(nproc)
 sudo make install
 
-# Create a directory for the SDL2 source code
+# Crear directorio para el código fuente de SDL2
 mkdir ~/sdl2-src
 cd ~/sdl2-src
 
-# Clone SDL2 repository
+# Clonar y compilar SDL2
 git clone https://github.com/libsdl-org/SDL.git --branch release-2.30.4
 cd SDL
 mkdir build
@@ -43,7 +43,7 @@ cmake ..
 make -j$(nproc)
 sudo make install
 
-# Clone SDL2_mixer repository
+# Clonar y compilar SDL2_mixer
 cd ~/sdl2-src
 git clone https://github.com/libsdl-org/SDL_mixer.git --branch release-2.8.0
 cd SDL_mixer
@@ -53,7 +53,7 @@ cmake ..
 make -j$(nproc)
 sudo make install
 
-# Clone SDL2_ttf repository
+# Clonar y compilar SDL2_ttf
 cd ~/sdl2-src
 git clone https://github.com/libsdl-org/SDL_ttf.git --branch release-2.22.0
 cd SDL_ttf
@@ -63,7 +63,7 @@ cmake ..
 make -j$(nproc)
 sudo make install
 
-# Clone SDL2_image repository
+# Clonar y compilar SDL2_image
 cd ~/sdl2-src
 git clone https://github.com/libsdl-org/SDL_image.git --branch release-2.8.2
 cd SDL_image
@@ -73,19 +73,43 @@ cmake ..
 make -j$(nproc)
 sudo make install
 
-# Clean up
+# Limpiar
 cd ~
 rm -rf ~/sdl2-src
-rm -rf yaml-cpp
+rm -rf ~/yaml-cpp
 
-# Update the dynamic linker run-time bindings
+# Actualizar las vinculaciones de tiempo de ejecución del enlazador dinámico
 sudo ldconfig
 
-# Configurando y compilando el proyecto jazzJackrabbit2
+# Instalar Google Test y Google Mock
+echo "Instalando Google Test y Google Mock..."
+sudo apt-get install -y libgtest-dev libgmock-dev
+cd /usr/src/gtest
+sudo cmake .
+sudo make
+sudo cp *.a /usr/lib
+
+cd /usr/src/gmock
+sudo cmake .
+sudo make
+sudo cp *.a /usr/lib
+
+# Configurar y compilar el proyecto jazzJackrabbit2
 echo "Configurando y compilando jazzJackrabbit2..."
+cd ~/tp-jazzjackrabbit2  # Cambia este directorio al correcto
+
 mkdir -p build
 cd build
 cmake ..
 make
+
+# Compilar y ejecutar pruebas
+echo "Compilando y ejecutando pruebas unitarias..."
+cd ~/tp-jazzjackrabbit2/test/gtest.cpp
+mkdir -p build
+cd build
+cmake ..
+make
+./protocol_server_test  # Ejecuta las pruebas unitarias
 
 echo "Instalación completa"
