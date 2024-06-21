@@ -72,7 +72,7 @@ public:
 
     void disminuir_municion();
 
-    Posicion obtener_posicion() const;
+    Posicion& obtener_posicion();
 
     uint16_t obtener_partida_id() const;
 

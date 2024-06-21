@@ -55,9 +55,7 @@ void GameEscenario::cargar_plataformas() {
     //      *** Plataformas horizontales  ***
     std::vector<float> x_horizontales = {0,  15, 22, 33, 53, 75, 81, 84, 87, 0, 16,
                                          33, 47, 65, 78, 8,  23, 27, 30, 33, 48};
-    for (size_t i = 0; i < x_horizontales.size(); i++) {
-        x_horizontales[i]++;
-    }
+
     std::vector<float> y_horizontales = {0,  2,  7,  5,  15, 8,  12, 15, 18, 11, 23,
                                          27, 30, 32, 34, 45, 36, 41, 43, 46, 47};
     std::vector<float> w_horizontales = {15, 5,  10, 11, 16, 24, 13, 7, 1, 11, 17,
@@ -75,9 +73,9 @@ void GameEscenario::cargar_plataformas() {
     }
 
     //      *** Plataformas verticales  ***
-    std::vector<float> x_verticales = {0, 15, 33, 53, 33, 65};
-    std::vector<float> y_verticales = {8, 3, 5, 13, 23, 30};
-    std::vector<float> h_verticales = {8, 3, 2, 2, 4, 2};   
+    std::vector<float> x_verticales = { 15, 33, 53, 33, 65};
+    std::vector<float> y_verticales = { 3, 5, 13, 23, 30};
+    std::vector<float> h_verticales = { 3, 2, 2, 4, 2};   
     for (size_t i = 0; i < x_verticales.size(); i++) {
         Plataforma plataforma_inicial_server(
                 platform::VERTICAL, x_verticales[i], y_verticales[i] - h_verticales[i],

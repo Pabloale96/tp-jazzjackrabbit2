@@ -137,7 +137,9 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
     this->tiempo_restante_de_partida = tiempo_restante_de_partida;
 }
 
-void Personaje::mover() { posicion.mover(this->velocidad); }
+void Personaje::mover() { 
+    //chequeo si me voy a chocar
+    posicion.mover(this->velocidad); }
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {
@@ -188,7 +190,7 @@ std::vector<Municion> Personaje::obtener_balas() const { return municiones_dispa
 
 void Personaje::disminuir_municion() { arma->disminuir_municion(); }
 
-Posicion Personaje::obtener_posicion() const { return posicion; }
+Posicion& Personaje::obtener_posicion() { return posicion; }
 
 Velocidad& Personaje::obtener_velocidad() { return velocidad; }
 
