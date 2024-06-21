@@ -82,9 +82,6 @@ void Game::chequear_colisiones_personaje_con_plataforma(Personaje& personaje) {
                     if (colision) {
                         std::cout << "COLISION VERTICAL DERECHA" << std::endl;
                         personaje.setear_posicion_en_x(personaje.obtener_posicion().get_posicion_x()+0.5);
-                        std::cout << "D ARRIBA " << plataforma.obtener_vertice_der_arriba().get_posicion_x() << std::endl;
-                        std::cout << "I ARRIBA " << plataforma.obtener_vertice_izq_arriba().get_posicion_x() << std::endl;
-
                     }
                 }
                 personaje.obtener_velocidad().setear_velocidad_x(0);

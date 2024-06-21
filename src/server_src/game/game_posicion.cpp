@@ -18,22 +18,18 @@ void Posicion::mover(const Velocidad& velocidad) {
 
     this->x += velocidad.obtener_velocidad_x();
     if (x >= XMAX) {
-        // Si llegó al borde derecho, vuelve al borde izquierdo
-        x = 0;
+        x = XMAX;
     }
     if (x < 0) {
-        // Si llegó al borde izquierdo, vuelve al borde derecho
-        x = XMAX;
+        x = 0;
     }
 
     this->y += velocidad.obtener_velocidad_y();
     if (y >= YMAX) {
-        // Si llegó al borde superior, vuelve al borde inferior
-        y = 0;
+        y = YMAX;
     }
     if (y < 0) {
-        // Si llegó al borde inferior, vuelve al borde superior
-        y = YMAX;
+        y = 0;
     }
 
     // std::cout << "DESPUES DE MOVER: (" << x << " ," << y << " )" << std::endl;

@@ -130,12 +130,20 @@ void GameEscenario::cargar_enemigos() {
 }
 
 void GameEscenario::cargar_collectibles() {
-    for (size_t i = 0; i < 5; ++i) {
-        Moneda moneda(i + 1, 0);
-        collectibles.push_back(std::make_unique<Moneda>(moneda));
+    // Monedas
+    collectibles.push_back(std::make_unique<Moneda>(5, 13));
+    collectibles.push_back(std::make_unique<Moneda>(11, 13));
+    // MOnedas de la tabla larga
+    for (int i = 51; i < 96; i+=4) {
+        collectibles.push_back(std::make_unique<Moneda>(i, 49));
     }
-    Zanahoria zanahoria(6, 0);
-    collectibles.push_back(std::make_unique<Zanahoria>(zanahoria));
+
+    // Gemas
+    collectibles.push_back(std::make_unique<Gema>(1, 13));
+
+    // Zanahorias
+    collectibles.push_back(std::make_unique<Zanahoria>(11, 47));
+    collectibles.push_back(std::make_unique<Zanahoria>(39, 7));
 }
 
 /*

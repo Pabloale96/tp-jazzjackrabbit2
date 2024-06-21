@@ -190,7 +190,7 @@ std::vector<Municion> Personaje::obtener_balas() const { return municiones_dispa
 
 void Personaje::disminuir_municion() { arma->disminuir_municion(); }
 
-Posicion& Personaje::obtener_posicion() { return posicion; }
+Posicion Personaje::obtener_posicion() const { return posicion; }
 
 Velocidad& Personaje::obtener_velocidad() { return velocidad; }
 
