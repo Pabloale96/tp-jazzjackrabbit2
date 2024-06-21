@@ -38,15 +38,15 @@ public:
 
     void chequear_colisiones_personaje_con_plataforma(Personaje& personaje);
 
-    bool colision_horizontal(const Personaje& personaje, const Platform& plataforma);
+    bool colision_horizontal(const Personaje& personaje, const Plataforma& plataforma);
 
-    bool colision_vertical(const Personaje& personaje, const Platform& plataforma);
+    bool colision_vertical(const Personaje& personaje, const Plataforma& plataforma);
 
-    bool colision_vertical_por_izquierda(const Personaje& personaje, const Platform& plataforma);
+    bool colision_vertical_por_izquierda(const Personaje& personaje, const Plataforma& plataforma);
 
-    bool colision_vertical_por_derecha(const Personaje& personaje, const Platform& plataforma);
+    bool colision_vertical_por_derecha(const Personaje& personaje, const Plataforma& plataforma);
 
-    bool colision_diagonal(const Personaje& personaje, const Platform& plataforma);
+    bool colision_diagonal(const Personaje& personaje, const Plataforma& plataforma);
 
     void chequear_colisiones_personaje_con_enemigo(Personaje& personaje);
 

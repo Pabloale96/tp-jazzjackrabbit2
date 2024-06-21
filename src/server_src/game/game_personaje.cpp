@@ -219,13 +219,9 @@ float Personaje::getRight() const { return posicion.get_posicion_x() + ancho; }
 
 float Personaje::obtener_ancho() const { return ancho; }
 
-void Personaje::setear_posicion_en_x(float x) {
-    posicion.set_posicion_en_x(x);
-}
+void Personaje::setear_posicion_en_x(float x) { posicion.set_posicion_en_x(x); }
 
-void Personaje::setear_posicion_en_y(float y) {
-    posicion.set_posicion_en_y(y);
-}
+void Personaje::setear_posicion_en_y(float y) { posicion.set_posicion_en_y(y); }
 
 
 // ************  JAZZ  ************

@@ -96,8 +96,8 @@ void PlatformGui::show(int dif_x, int dif_y, int i) {
                            height_sc, width_sc);
         } else {
             // Calcular la nueva posición después de la rotación
-            //std::cout << "Se imprime la plataforma " << i << " con posicion:" << std::endl;
-            //std::cout << "rotacion:" << rotate << std::endl;
+            // std::cout << "Se imprime la plataforma " << i << " con posicion:" << std::endl;
+            // std::cout << "rotacion:" << rotate << std::endl;
             double rad = rotate * M_PI / 180.0;
             double offsetX = width * (1 - cos(rad));
             double offsetY =
