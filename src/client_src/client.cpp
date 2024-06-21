@@ -20,7 +20,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         server_msg(MAX_TAM_COLA),
         receiver(protocolo_client, client_id, server_msg, texturas),
         client_id(CLIENT_ID_NULO),
-        gui(client_commands, jugador, gamestate,plataformas) {}
+        gui(client_commands, jugador, gamestate, plataformas) {}
 
 void Client::imprimir_portada() {
     std::ifstream file("../docs/portada.txt");
@@ -60,9 +60,9 @@ void Client::crear_personaje() {
         return;
     }
     if (personaje == "j") {
-        jugador = std::make_shared<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, 4,
-                                            texturas.findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
+        jugador = std::make_shared<JazzGui>(
+                texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2, 4,
+                texturas.findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
     } else if (personaje == "s") {
         jugador = std::make_shared<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
@@ -154,7 +154,7 @@ void Client::iniciar_hilos() {
 }
 
 void Client::crear_escenario() {
-    if (protocolo_client.recibir_escenario(texturas,plataformas) == false) {
+    if (protocolo_client.recibir_escenario(texturas, plataformas) == false) {
         std::cout << "Error: No se pudo recibir el escenario" << std::endl;
         return;
     }
@@ -191,24 +191,27 @@ void Client::jugar() {
     window.Show();
 
     bool client_off = false;
-    while (!client_off){
+    while (!client_off) {
         while (!server_msg.empty()) {
             server_msg.try_pop(gamestate);
         }
-        if (server_msg.try_pop(gamestate) ) {
+        if (server_msg.try_pop(gamestate)) {
             auto frame_start = steady_clock::now();
 
             renderer.Clear();
-            PersonajeGui jugador_actual = gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
-            std::cout << "Posicion: "<<jugador_actual.obtener_posicion_x()<<" , " <<jugador_actual.obtener_posicion_y()<<std::endl;
-            bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(), jugador_actual.obtener_posicion_y());
-            jugador->setAnimacion(jugador_actual.obtener_estado_actual(),flip);
+            PersonajeGui jugador_actual =
+                    gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
+            std::cout << "Posicion: " << jugador_actual.obtener_posicion_x() << " , "
+                      << jugador_actual.obtener_posicion_y() << std::endl;
+            bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(),
+                                               jugador_actual.obtener_posicion_y());
+            jugador->setAnimacion(jugador_actual.obtener_estado_actual(), flip);
             client_off = gui.run(screenHeight, screenWidth);
-            if(client_off) {
+            if (client_off) {
                 return;
             }
             renderer.Present();
-            
+
             auto frame_end = steady_clock::now();
             auto rest = rate_ns - (frame_end - frame_start);
 

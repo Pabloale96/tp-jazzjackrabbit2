@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 #include <memory>
+#include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -24,16 +25,16 @@ private:
     int type = 0;
     int height;
     int width;
-    std::shared_ptr<std::vector<Frame>> & platform;
+    std::shared_ptr<std::vector<Frame>>& platform;
 
 public:
-    explicit PlatformGui(ClaseTexturas &,const msgPlataforma&);
+    explicit PlatformGui(ClaseTexturas&, const msgPlataforma&);
     ~PlatformGui();
 
-    void show(float dif_x, float dif_y,int h_window, int w_window,int);
+    void show(float dif_x, float dif_y, int h_window, int w_window, int);
     float rotateToFloat();
-    void setFrame(std::shared_ptr<Frame>&,int ,int);
-    bool checkIsInWindow(int ,int, int, int);
+    void setFrame(std::shared_ptr<Frame>&, int, int);
+    bool checkIsInWindow(int, int, int, int);
 
     int getW() { return width; }
     int getH() { return height; }

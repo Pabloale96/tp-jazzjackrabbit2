@@ -1,11 +1,11 @@
 #ifndef __CLIENT_CLIENT_H__
 #define __CLIENT_CLIENT_H__
 
+#include <chrono>
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
-#include <chrono>
-#include <map>
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -33,7 +33,6 @@ using SDL2pp::Window;
 
 class Client {
 private:
-
     std::string hostname;
     std::string servicio;
     ProtocolClient protocolo_client;
@@ -56,7 +55,7 @@ private:
 
     // ventana con la creacion del renderer:
     Window window{Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                        screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
+                         screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)};
 
     Renderer renderer{Renderer(window, -1, SDL_RENDERER_ACCELERATED)};
 

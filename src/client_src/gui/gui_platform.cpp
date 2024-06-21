@@ -1,6 +1,6 @@
 #include "../../include/client_src/gui/gui_platform.h"
 
-PlatformGui::PlatformGui(ClaseTexturas & texturas, const msgPlataforma& msg):
+PlatformGui::PlatformGui(ClaseTexturas& texturas, const msgPlataforma& msg):
         pos_x(msg.plataforma[POS_POSX_PLATAFORMA]),
         pos_y(msg.plataforma[POS_POSY_PLATAFORMA]),
         flip(msg.flip),
@@ -57,7 +57,7 @@ float PlatformGui::rotateToFloat() {
 }
 
 void PlatformGui::show(float dif_x, float dif_y, int h_window, int w_window, int i) {
-    
+
     float rotate = this->rotateToFloat();
 
     // Escalar las dimensiones de la plataforma
@@ -72,18 +72,22 @@ void PlatformGui::show(float dif_x, float dif_y, int h_window, int w_window, int
     int posicion_y_invertida = w_window - posicion_y;
 
     // Comprobar si la plataforma está dentro de la ventana
-    if (this->checkIsInWindow(dif_x* SCALING_VALUE_PIXEL_X, dif_y* SCALING_VALUE_PIXEL_Y, w_window, h_window)) {
+    if (this->checkIsInWindow(dif_x * SCALING_VALUE_PIXEL_X, dif_y * SCALING_VALUE_PIXEL_Y,
+                              w_window, h_window)) {
         if (rotate == 0) {
             platform->at(0).copy(rotate, posicion_x, posicion_y_invertida, width_sc, height_sc);
         } else if (rotate == 90) {
-            platform->at(0).copy(rotate, posicion_x-height_sc/2, posicion_y_invertida+width_sc/2, height_sc,width_sc );
+            platform->at(0).copy(rotate, posicion_x - height_sc / 2,
+                                 posicion_y_invertida + width_sc / 2, height_sc, width_sc);
         } else {
             double rad = rotate * M_PI / 180.0;
             double offsetX = width * (1 - cos(rad));
             double offsetY = width * sin(rad);
-            int newX = (rotate == 135)?(posicion_x- offsetX):(posicion_x-h_window/2- offsetX);
-            int newY = (rotate == 135)?(posicion_y_invertida-w_window/2 - offsetY):(posicion_y_invertida - offsetY);
-            platform->at(0).copy(rotate, newX, newY, width_sc,height_sc );
+            int newX = (rotate == 135) ? (posicion_x - offsetX) :
+                                         (posicion_x - h_window / 2 - offsetX);
+            int newY = (rotate == 135) ? (posicion_y_invertida - w_window / 2 - offsetY) :
+                                         (posicion_y_invertida - offsetY);
+            platform->at(0).copy(rotate, newX, newY, width_sc, height_sc);
         }
     }
 }

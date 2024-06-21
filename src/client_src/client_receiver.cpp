@@ -9,8 +9,12 @@
 #include "../../include/common_src/catedra/liberror.h"
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
-                               Queue<std::shared_ptr<GameStateClient>>& server_msg, ClaseTexturas & texturas):
-        protocolo_cliente(protocolo_cliente), client_id(client_id), server_msg(server_msg), texturas(texturas) {}
+                               Queue<std::shared_ptr<GameStateClient>>& server_msg,
+                               ClaseTexturas& texturas):
+        protocolo_cliente(protocolo_cliente),
+        client_id(client_id),
+        server_msg(server_msg),
+        texturas(texturas) {}
 
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {

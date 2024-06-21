@@ -172,8 +172,8 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
         for (const auto& plataforma: plataformas) {
             if (plataforma.obtener_tipo_plataforma() == platform::HORIZONTAL) {
                 if (plataforma.es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
-                    // Si me muevo atravieso la tabla, asi q seteo el piso de la tabla como mi techo, y
-                    // empiezo a caer
+                    // Si me muevo atravieso la tabla, asi q seteo el piso de la tabla como mi
+                    // techo, y empiezo a caer
                     velocidad.caer();
                     estados.setSaltando(false);
                     estados.setCayendo(true);

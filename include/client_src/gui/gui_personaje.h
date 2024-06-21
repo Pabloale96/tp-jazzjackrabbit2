@@ -33,20 +33,18 @@ protected:
     std::vector<Frame>::iterator it;
 
 public:
-    PersonajeGui(ClaseTexturas&, int, int, int,
-                 std::shared_ptr<std::vector<Frame>>&);
+    PersonajeGui(ClaseTexturas&, int, int, int, std::shared_ptr<std::vector<Frame>>&);
     explicit PersonajeGui(ClaseTexturas&, msgPersonaje&);
-    float obtener_posicion_x() const{ return pos_x; }
-    float obtener_posicion_y() const{ return pos_y; }
-    uint8_t obtener_estado_actual() const{ return estado; }
-    uint8_t obtener_tipo_personaje() const{ return tipo; }
+    float obtener_posicion_x() const { return pos_x; }
+    float obtener_posicion_y() const { return pos_y; }
+    uint8_t obtener_estado_actual() const { return estado; }
+    uint8_t obtener_tipo_personaje() const { return tipo; }
     ~PersonajeGui();
     void show();
     virtual void setFrames();
     void setAccion(uint8_t estado);
     void setAnimacion(uint8_t estado, bool flip);
-    void setPosicion(int x,int y);
-    
+    void setPosicion(int x, int y);
 };
 
 class SpazGui: public PersonajeGui {

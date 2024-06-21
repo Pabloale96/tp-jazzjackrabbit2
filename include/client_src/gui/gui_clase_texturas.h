@@ -62,7 +62,7 @@ public:
     void add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                            int frame_count, Texture& textura_del_personaje, const std::string& key);
 
-    void addFrames(const std::string& key,std::shared_ptr<std::vector<Frame>> & frame);
+    void addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>>& frame);
 
     // Definiciones de frames:
 

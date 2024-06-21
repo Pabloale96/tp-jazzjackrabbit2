@@ -17,8 +17,8 @@ class GameStateClient {
 private:
     bool jugando;
 
-    std::map<uint16_t,PersonajeGui> diccionario_de_personajes;
-    std::map<uint16_t,EnemigosGui> diccionario_de_enemigos;
+    std::map<uint16_t, PersonajeGui> diccionario_de_personajes;
+    std::map<uint16_t, EnemigosGui> diccionario_de_enemigos;
 
 
 public:
@@ -39,11 +39,9 @@ public:
 
     int get_cantidad_de_enemigos() { return diccionario_de_enemigos.size(); }
 
-    void setGameState(const uint8_t& state_partida) {
-        jugando = ((unsigned) state_partida == 0x01);
-    }
+    void setGameState(const uint8_t& state_partida) { jugando = ((unsigned)state_partida == 0x01); }
 
-    void pushPersonajes(ClaseTexturas & texturas,msgPersonaje& msgpers);
+    void pushPersonajes(ClaseTexturas& texturas, msgPersonaje& msgpers);
 
     void pushEnemigos(msgEnemigo& msgenem) {
         EnemigosGui enemigo(msgenem);
@@ -52,11 +50,13 @@ public:
 
     void imprimir_cliente() {
         for (const auto& pair: diccionario_de_personajes) {
-            std::cout << " >> Personaje "<< std::endl;
+            std::cout << " >> Personaje " << std::endl;
             std::cout << "     - Posición: (" << pair.second.obtener_posicion_x() << ", "
                       << pair.second.obtener_posicion_y() << ")." << std::endl;
-            std::cout << "     - Estado: " << (unsigned) pair.second.obtener_estado_actual() << std::endl;
-            std::cout << "     - Tipo: " << (unsigned) pair.second.obtener_tipo_personaje() << std::endl;
+            std::cout << "     - Estado: " << (unsigned)pair.second.obtener_estado_actual()
+                      << std::endl;
+            std::cout << "     - Tipo: " << (unsigned)pair.second.obtener_tipo_personaje()
+                      << std::endl;
         }
     }
 

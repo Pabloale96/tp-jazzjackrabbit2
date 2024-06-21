@@ -28,7 +28,7 @@ private:
 public:
     KeyboardHandler();
 
-    bool keyBoardManaged(Queue<msgAccion>&,const uint8_t &);
+    bool keyBoardManaged(Queue<msgAccion>&, const uint8_t&);
 
     bool checkKeyPress(SDL_Keycode);
 };

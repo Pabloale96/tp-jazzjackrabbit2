@@ -88,7 +88,7 @@ ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
 
 ClaseTexturas::~ClaseTexturas() {}
 
-void ClaseTexturas::addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>> & frame){
+void ClaseTexturas::addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>>& frame) {
     frames_map.emplace(key, frame);
 }
 

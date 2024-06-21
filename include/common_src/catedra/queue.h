@@ -41,7 +41,7 @@ public:
     Queue(): max_size(UINT_MAX - 1), closed(false) {}
     explicit Queue(const unsigned int max_size): max_size(max_size), closed(false) {}
 
-    bool empty(){
+    bool empty() {
         std::unique_lock<std::mutex> lck(mtx);
         return q.empty();
     }

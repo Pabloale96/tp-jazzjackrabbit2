@@ -9,7 +9,7 @@ bool KeyboardHandler::checkKeyPress(SDL_Keycode key) {
     return currentKeyStates[key];
 }
 
-bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const uint8_t & animacion) {
+bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const uint8_t& animacion) {
 
     SDL_Event event;
     // definir N it para las animaciones de frame.
@@ -71,7 +71,6 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
                         client_commands.push(msg_to_sent);
-
                     }
                     break;
                 case SDLK_LEFT:

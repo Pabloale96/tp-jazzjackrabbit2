@@ -1,7 +1,8 @@
-/*
-#include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <gtest/gtest.h>
+
 #include "../include/server_src/server_protocol.h"
+#include "../include/common_src/catedra/sockets.h"
 
 // Definir una clase de socket mockeada que derive de Socket
 class MockSocket {
@@ -49,20 +50,22 @@ TEST_F(ProtocolServerTest, TestRecibirNombrePartida) {
     std::string expected_nombre_partida = "Test1";
 
     EXPECT_CALL(mockSocket, recvall(::testing::_, sizeof(uint8_t), &was_closed))
-        .WillOnce(::testing::DoAll(::testing::SetArgPointee<0>(nombre_partida_len), ::testing::Return()));
+        .WillOnce(::testing::DoAll(::testing::SetArgPointee<0>(nombre_partida_len),
+::testing::Return()));
 
-    EXPECT_CALL(mockSocket, recvall(::testing::_, nombre_partida_len * sizeof(uint8_t), &was_closed))
-        .WillOnce(::testing::DoAll(::testing::SetArrayArgument<0>(expected_nombre_partida.begin(), expected_nombre_partida.end()), ::testing::Return()));
+    EXPECT_CALL(mockSocket, recvall(::testing::_, nombre_partida_len * sizeof(uint8_t),
+&was_closed))
+        .WillOnce(::testing::DoAll(::testing::SetArrayArgument<0>(expected_nombre_partida.begin(),
+expected_nombre_partida.end()), ::testing::Return()));
 
     protocolServer->recibir_nombre_partida(nombre_partida_received, was_closed);
 
     // Additional assertions
     ASSERT_EQ(nombre_partida_received, expected_nombre_partida);
 }
-*/
+
 
 int main(int argc, char** argv) {
-    //::testing::InitGoogleTest(&argc, argv);
-    //return RUN_ALL_TESTS();
-    return 0;
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

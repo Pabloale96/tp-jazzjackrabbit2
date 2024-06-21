@@ -12,8 +12,7 @@ GameStateClient::GameStateClient(): jugando(true) {}
 
 bool GameStateClient::obtener_estado_de_la_partida() { return jugando; }
 
-std::map<uint16_t, PersonajeGui>&
-        GameStateClient::obtener_diccionario_de_personajes() {
+std::map<uint16_t, PersonajeGui>& GameStateClient::obtener_diccionario_de_personajes() {
     return diccionario_de_personajes;
 }
 
@@ -29,18 +28,18 @@ PersonajeGui& GameStateClient::obtener_personaje(uint16_t client_id) {
     throw std::out_of_range("No se encontró el personaje en gamestate");
 }
 
-void GameStateClient::pushPersonajes(ClaseTexturas & texturas, msgPersonaje& msgpers) {
+void GameStateClient::pushPersonajes(ClaseTexturas& texturas, msgPersonaje& msgpers) {
     std::shared_ptr<PersonajeGui> personaje;
     uint8_t tipo = msgpers.tipo_personaje;
     switch (tipo) {
         case static_cast<uint8_t>(personajes::JAZZ):
-            personaje = std::make_shared<JazzGui>(texturas,msgpers);
+            personaje = std::make_shared<JazzGui>(texturas, msgpers);
             break;
         case static_cast<uint8_t>(personajes::SPAZZ):
-            personaje = std::make_shared<SpazGui>(texturas,msgpers);
+            personaje = std::make_shared<SpazGui>(texturas, msgpers);
             break;
         case static_cast<uint8_t>(personajes::LORI):
-            personaje = std::make_shared<LoriGui>(texturas,msgpers);
+            personaje = std::make_shared<LoriGui>(texturas, msgpers);
             break;
         default:
             std::cerr << "Error: Tipo de personaje no válido" << std::endl;
