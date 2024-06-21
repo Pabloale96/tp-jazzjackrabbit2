@@ -73,9 +73,9 @@ void GameEscenario::cargar_plataformas() {
     }
 
     //      *** Plataformas verticales  ***
-    std::vector<float> x_verticales = { 15, 33, 53, 33, 65};
-    std::vector<float> y_verticales = { 3, 5, 13, 23, 30};
-    std::vector<float> h_verticales = { 3, 2, 2, 4, 2};   
+    std::vector<float> x_verticales = {3, 15, 33, 53, 33, 65};
+    std::vector<float> y_verticales = {3, 3, 5, 13, 23, 30};
+    std::vector<float> h_verticales = {3, 3, 2, 2, 4, 2};
     for (size_t i = 0; i < x_verticales.size(); i++) {
         Plataforma plataforma_inicial_server(
                 platform::VERTICAL, x_verticales[i], y_verticales[i] - h_verticales[i],
@@ -134,7 +134,7 @@ void GameEscenario::cargar_collectibles() {
     collectibles.push_back(std::make_unique<Moneda>(5, 13));
     collectibles.push_back(std::make_unique<Moneda>(11, 13));
     // MOnedas de la tabla larga
-    for (int i = 51; i < 96; i+=4) {
+    for (int i = 51; i < 96; i += 4) {
         collectibles.push_back(std::make_unique<Moneda>(i, 49));
     }
 

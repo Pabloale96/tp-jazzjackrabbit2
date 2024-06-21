@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 #include <memory>
+#include <cmath>
 
 #include "defines_msg.h"
 #include "game_posicion.h"
@@ -68,8 +69,51 @@ public:
     Posicion obtener_vertice_izq_arriba() const { return vertice_izq_arriba; }
     Posicion obtener_vertice_der_abajo() const { return vertice_der_abajo; }
     Posicion obtener_vertice_der_arriba() const { return vertice_der_arriba; }
+
+    float obtener_borde_izquierdo() const { return vertice_izq_abajo.get_posicion_x(); }
+
+    float obtener_borde_derecho() const { return vertice_der_abajo.get_posicion_x(); }
+
+    float obtener_borde_superior() const { return vertice_izq_arriba.get_posicion_y(); }
+
+    float obtener_borde_inferior() const { return vertice_izq_abajo.get_posicion_y(); }
+
     Posicion obtener_centro() const { return centro; }
     uint8_t obtener_angulo() const { return angulo; }
+
+    bool es_plataforma_cercana_en_y_abajo(float y) const {
+        // Si la futura posición del personaje está por debajo del borde superior, entonces voy a
+        // chocar
+        return y <= obtener_borde_superior();
+    }
+
+    bool es_plataforma_cercana_en_y_arriba(float y) const {
+        // Si la futura posición del personaje está por encima del borde inferior, entonces voy a
+        // chocar
+        return y >= obtener_borde_inferior();
+    }
+
+    bool es_plataforma_cercana_en_x_izquierda(float x) const {
+        // Si la futura posición del personaje está a la derecha del borde izquierdo, entonces voy a
+        // chocar
+        if ((float)floor(x) <= obtener_borde_derecho()) {
+            if ((float)floor(x) >= obtener_borde_izquierdo()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool es_plataforma_cercana_en_x_derecha(float x) const {
+        // Si la futura posición del personaje está a la izquierda del borde derecho, entonces voy a
+        // chocar
+        if ((float)floor(x) >= obtener_borde_izquierdo()) {
+            if ((float)floor(x) <= obtener_borde_derecho()) {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 #endif

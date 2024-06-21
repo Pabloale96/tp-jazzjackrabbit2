@@ -95,7 +95,8 @@ uint8_t Personaje::obtener_estado_actual() {
 
 uint8_t Personaje::obtener_animacion() { return animacion; }
 
-void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
+void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
+                           std::vector<Plataforma>& plataformas) {
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     for (auto& municion: municiones_disparadas) {
         municion.mover();
@@ -117,20 +118,21 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
     }
 
     if (!estados.getMuerto()) {
+        /*
         while (estados.getSaltando()) {
             if (duracion_del_salto == std::chrono::seconds(SEGUNDOS_DE_SALTO)) {
                 duracion_del_salto = std::chrono::seconds(0);
                 estados.setSaltando(false);
                 estados.setCayendo(true);
                 velocidad.caer();
-                this->mover();
+                this->mover(plataformas);
                 estados.reset();
                 velocidad.idle();
             } else {
                 duracion_del_salto++;
             }
-        }
-        this->mover();
+        }*/
+        this->mover(plataformas);
     }
 }
 
@@ -138,9 +140,73 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
     this->tiempo_restante_de_partida = tiempo_restante_de_partida;
 }
 
-void Personaje::mover() { 
-    //chequeo si me voy a chocar
-    posicion.mover(this->velocidad); }
+void Personaje::mover(std::vector<Plataforma>& plataformas) {
+    chequear_colisiones(plataformas);
+    // posicion.mover(this->velocidad);
+}
+
+void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) {
+    if (velocidad.obtener_velocidad_y() < 0) {
+        // Estoy cayendo
+        float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
+        for (const auto& plataforma: plataformas) {
+            if (plataforma.es_plataforma_cercana_en_y_abajo(prox_pos_y)) {
+                std::cout << "CAYENDO" << std::endl;
+                // Si me muevo atravieso la tabla, asi q seteo el techo de la tabla como mi piso
+                velocidad.setear_velocidad_y(0);
+                estados.setCayendo(false);
+                estados.setIdle(true);
+                return;
+            }
+        }
+    }
+    if (velocidad.obtener_velocidad_y() > 0) {
+        // Estoy saltando/subiendo
+        float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
+        for (const auto& plataforma: plataformas) {
+            if (plataforma.es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
+                std::cout << "SALTANDO" << std::endl;
+                // Si me muevo atravieso la tabla, asi q seteo el piso de la tabla como mi techo, y empiezo a caer
+                velocidad.caer();
+                estados.setSaltando(false);
+                estados.setCayendo(true);
+                return;
+            }
+        }
+    }
+    if (velocidad.obtener_velocidad_x() < 0) {
+        // Estoy yendo a la izquierda
+        float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
+        for (const auto& plataforma: plataformas) {
+            if (plataforma.obtener_tipo_plataforma() == platform::VERTICAL) {
+                if (plataforma.es_plataforma_cercana_en_x_izquierda(prox_pos_x)) {
+                    velocidad.setear_velocidad_x(0);
+                    estados.setCorriendo(false);
+                    estados.setIdle(true);
+                    return;
+                }
+            }
+        }
+    }
+    if (velocidad.obtener_velocidad_x() > 0) {
+        //std::cout << "Personaje::chequear_colisiones: yendo a la derecha" << std::endl;
+        // Estoy yendo a la derecha
+        float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
+        for (const auto& plataforma: plataformas) {
+            if (plataforma.obtener_tipo_plataforma() == platform::VERTICAL) {
+                if (plataforma.es_plataforma_cercana_en_x_derecha(prox_pos_x)) {
+                    velocidad.setear_velocidad_x(0);
+                    estados.setCorriendo(false);
+                    estados.setIdle(true);
+                    return;
+                }
+            }
+        }
+    }
+
+    // No me choco con nada
+    this->posicion.mover(this->velocidad);
+}
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {
