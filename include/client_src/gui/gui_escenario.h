@@ -24,7 +24,7 @@ public:
     explicit Escenario(std::vector<PlatformGui>&);
     ~Escenario();
 
-    void show(int dif_x, int dif_y, int h_window, int w_window);
+    void show(float dif_x, float dif_y, int h_window, int w_window);
 };
 
 #endif

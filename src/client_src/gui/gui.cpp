@@ -10,9 +10,14 @@ Gui::Gui(Queue<msgAccion>& client_commands, std::shared_ptr<PersonajeGui> & juga
 
 Gui::~Gui() {}
 
-void Gui::setPosicionJugador(int posicion_x, int posicion_y) {
+bool Gui::setPosicionJugador(float posicion_x, float posicion_y) {
+    bool flip = false; 
+    if(posicion_jugador_x > posicion_x) {
+        flip = true;
+    }
     posicion_jugador_x = posicion_x;
     posicion_jugador_y = posicion_y;
+    return flip;
 }
 
 bool Gui::run(int h_window, int w_window) {

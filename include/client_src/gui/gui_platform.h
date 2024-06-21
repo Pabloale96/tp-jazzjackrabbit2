@@ -18,8 +18,8 @@ using SDL2pp::Texture;
 
 class PlatformGui {
 private:
-    int pos_x;
-    int pos_y;
+    float pos_x;
+    float pos_y;
     bool flip = false;
     int type = 0;
     int height;
@@ -30,15 +30,15 @@ public:
     explicit PlatformGui(ClaseTexturas &,const msgPlataforma&);
     ~PlatformGui();
 
-    void show(int dif_x, int dif_y,int h_window, int w_window,int);
+    void show(float dif_x, float dif_y,int h_window, int w_window,int);
     float rotateToFloat();
     void setFrame(std::shared_ptr<Frame>&,int ,int);
     bool checkIsInWindow(int ,int, int, int);
 
-    int getW() {return width;}
-    int getH() {return height;}
-    int getX() {return pos_x;}
-    int getY() {return pos_y;}
+    int getW() { return width; }
+    int getH() { return height; }
+    int getX() { return pos_x; }
+    int getY() { return pos_y; }
 };
 
 #endif

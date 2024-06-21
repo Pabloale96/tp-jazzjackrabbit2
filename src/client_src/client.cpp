@@ -1,8 +1,8 @@
 #include "../../include/client_src/client.h"
 
 #include <cctype>  // std::tolower()
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
@@ -60,15 +60,15 @@ void Client::crear_personaje() {
         return;
     }
     if (personaje == "j") {
-        jugador = std::make_unique<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<JazzGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
                                             texturas.findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
     } else if (personaje == "s") {
-        jugador = std::make_unique<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
                                             texturas.findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_unique<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
                                             texturas.findFrame(std::string(LORI_STAND)));
     }
@@ -200,8 +200,9 @@ void Client::jugar() {
 
             renderer.Clear();
             PersonajeGui jugador_actual = gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
-            gui.setPosicionJugador(jugador_actual.obtener_posicion_x(), jugador_actual.obtener_posicion_y());
-            jugador->setAnimacion(jugador_actual.obtener_estado_actual());
+            std::cout << "Posicion: "<<jugador_actual.obtener_posicion_x()<<" , " <<jugador_actual.obtener_posicion_y()<<std::endl;
+            bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(), jugador_actual.obtener_posicion_y());
+            jugador->setAnimacion(jugador_actual.obtener_estado_actual(),flip);
             client_off = gui.run(screenHeight, screenWidth);
             if(client_off) {
                 return;

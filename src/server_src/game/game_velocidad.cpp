@@ -1,17 +1,17 @@
 #include "game_velocidad.h"
 
-Velocidad::Velocidad(): velocidad_x(0), velocidad_y(0) {}
+Velocidad::Velocidad(): velocidad_x(0.0f), velocidad_y(0.0f) {}
 
-Velocidad::Velocidad(int velocidad_x, int velocidad_y):
+Velocidad::Velocidad(float velocidad_x, float velocidad_y):
         velocidad_x(velocidad_x), velocidad_y(velocidad_y) {}
 
-int Velocidad::obtener_velocidad_x() const { return velocidad_x; }
+float Velocidad::obtener_velocidad_x() const { return velocidad_x; }
 
-int Velocidad::obtener_velocidad_y() const { return velocidad_y; }
+float Velocidad::obtener_velocidad_y() const { return velocidad_y; }
 
-void Velocidad::setear_velocidad_x(uint8_t velocidad_x) { this->velocidad_x = velocidad_x; }
+void Velocidad::setear_velocidad_x(float velocidad_x) { this->velocidad_x = velocidad_x; }
 
-void Velocidad::setear_velocidad_y(uint8_t velocidad_y) { this->velocidad_y = velocidad_y; }
+void Velocidad::setear_velocidad_y(float velocidad_y) { this->velocidad_y = velocidad_y; }
 
 void Velocidad::idle() {
     velocidad_x = 0;

@@ -102,8 +102,11 @@ struct msgPersonaje {
         tipo_arma = pers.obtener_nombre_arma();
         estado = pers.obtener_estado_actual();  // accion -->animacion
         personaje[POS_ID_PERSONAJE] = htons(id);
-        personaje[POS_POSX_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_x());  // *100
-        personaje[POS_POSY_PERSONAJE] = htons(pers.obtener_posicion().get_posicion_y());  // *100
+        // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales
+        personaje[POS_POSX_PERSONAJE] =
+                htons((uint16_t)((pers.obtener_posicion().get_posicion_x()) * 100));
+        personaje[POS_POSY_PERSONAJE] =
+                htons((uint16_t)((pers.obtener_posicion().get_posicion_y()) * 100));
         personaje[POS_PUNTOS_PERSONAJE] = htons(pers.obtener_puntos());
         personaje[POS_VIDA_PERSONAJE] = htons(pers.obtener_vida());
         personaje[POS_MUNICION_PERSONAJE] = htons(pers.obtener_municion());
@@ -132,8 +135,11 @@ struct msgEnemigo {
     msgEnemigo(uint16_t id, const Enemigo& enemi) {
         enemigo[POS_ID_ENEMIGO] = htons(id);
         enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
-        enemigo[POS_POSX_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_x());
-        enemigo[POS_POSY_ENEMIGO] = htons(enemi.get_posicion_enemigo().get_posicion_y());
+        // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales
+        enemigo[POS_POSX_ENEMIGO] =
+                htons((uint16_t)((enemi.get_posicion_enemigo().get_posicion_x()) * 100));
+        enemigo[POS_POSY_ENEMIGO] =
+                htons((uint16_t)((enemi.get_posicion_enemigo().get_posicion_y()) * 100));
     }
 } __attribute__((packed));
 
@@ -150,7 +156,8 @@ struct msgPlataforma {
 
     msgPlataforma() {}
 
-    explicit msgPlataforma(const Platform& pla): tipo_plataforma(pla.obtener_tipo()),flip(pla.obtener_flip()) {
+    explicit msgPlataforma(const Platform& pla):
+            tipo_plataforma(pla.obtener_tipo()), flip(pla.obtener_flip()) {
         plataforma[POS_POSX_PLATAFORMA] = pla.obtener_posicion_x();
         plataforma[POS_POSY_PLATAFORMA] = pla.obtener_posicion_y();
         plataforma[POS_WIDTH_PLATAFORMA] = pla.obtener_width();

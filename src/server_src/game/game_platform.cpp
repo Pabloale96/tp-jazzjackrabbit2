@@ -11,7 +11,7 @@ uint16_t Platform::obtener_posicion_y() const { return pos_y; }
 uint8_t Platform::obtener_tipo() const { return type; }
 uint16_t Platform::obtener_width() const { return width; }
 uint16_t Platform::obtener_height() const { return height; }
-uint8_t Platform::obtener_flip() const{ return (flip)?0x01:0x00;}
+uint8_t Platform::obtener_flip() const { return (flip) ? 0x01 : 0x00; }
 
 
 // Funciones para detectar colisiones
