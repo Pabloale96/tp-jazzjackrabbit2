@@ -1,20 +1,15 @@
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(jazzJackrabbit2)
 
-# Find the SDL2pp library
-#find_package(SDL2 REQUIRED)
-#find_package(SDL2_image REQUIRED)
-#find_package(SDL2_mixer REQUIRED)
-
 # Find the yaml-cpp library
 find_package(yaml-cpp REQUIRED)
 
-# set up SDL2pp library
+# Set up SDL2pp library
 set(SDL2PP_WITH_IMAGE YES)
 set(SDL2PP_WITH_TTF YES)
 add_subdirectory(SDL2pp)
 
-# add compilation flags
+# Add compilation flags
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -pedantic-errors -O0 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L")
 
@@ -23,30 +18,17 @@ include_directories(${SDL2PP_INCLUDE_DIRS})
 
 message("[INFO] La raiz del proyecto es ${PROJECT_SOURCE_DIR}")
 
-# Agrego ej3/include a la lista de directorios de includes
+# Add include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
-
-# Agregar subcarpetas a la lista de directorios de includes
 include_directories(${PROJECT_SOURCE_DIR}/include/client_src/gui)
 include_directories(${PROJECT_SOURCE_DIR}/include/server_src/game)
 include_directories(${PROJECT_SOURCE_DIR}/include/common_src/catedra)
 include_directories(${PROJECT_SOURCE_DIR}/include/common_src)
 include_directories(${PROJECT_SOURCE_DIR}/include/client_src)
 include_directories(${PROJECT_SOURCE_DIR}/include/server_src)
-
-# Esta macro toma cada uno los parámetros y ejecuta *uic* sobre ellos
-# La aplicacion uic genera headers con la definición de los widgets
-# a partir de un archivo .ui
-# Los nombres de los headers generados se guardan en la variable pasada
-# como primer parámetro.
-# No, no los genera con la carpeta como prefijo.
-
-# Agrego la carpeta con los headers autogenerados a los includes
-message("Agregando '${PROJECT_BINARY_DIR}' como directorio de includes")
 include_directories(${PROJECT_BINARY_DIR}/include)
 
-message("Headers generados: ${UIS_HEADERS}")
-
+# Add executable for the client
 add_executable(client
   src/client_src/client.cpp
   src/client_src/dict_monitor.cpp
@@ -73,8 +55,8 @@ add_executable(client
   src/client_src/gui/gui_platform.cpp
   ${UIS_HEADERS})
 
-  
-  add_executable(server
+# Add executable for the server
+add_executable(server
   src/server_src/lobby.cpp
   src/server_src/cliente_aceptado.cpp
   src/server_src/server_aceptador.cpp
@@ -105,9 +87,28 @@ add_executable(client
   src/server_src/main.cpp
   ${UIS_HEADERS})
 
-# Use the Widgets module from Qt 5.
+# Add Google Test and Google Mock
+# Clonar Google Test y Google Mock si no están ya clonados
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/googletest)
+  message(STATUS "Cloning GoogleTest and GoogleMock...")
+  execute_process(COMMAND git clone https://github.com/google/googletest.git googletest
+                  WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
+
+# Construir Google Test y Google Mock
+add_subdirectory(${CMAKE_BINARY_DIR}/googletest)
+
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR} ${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
+
+# Add executable for tests
+add_executable(protocol_server_test
+  tests/protocol_server_test.cpp
+  ${UIS_HEADERS})
+
+# Link libraries to executables
 target_link_libraries(client PUBLIC SDL2pp)
 target_link_libraries(server PUBLIC yaml-cpp::yaml-cpp)
+target_link_libraries(protocol_server_test PUBLIC gtest gmock pthread)
 
 # CPack setup
 include(CPack)
@@ -152,7 +153,7 @@ if(CPACK_GENERATOR STREQUAL "RPM")
 endif()
 
 # Include the install targets
-install(TARGETS client server
+install(TARGETS client server protocol_server_test
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)

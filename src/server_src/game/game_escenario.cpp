@@ -13,45 +13,107 @@ GameEscenario::GameEscenario() {
     cargar_collectibles();
 }
 
+/*
 void GameEscenario::cargar_plataformas() {
-
-    // Creo las plataformas iniciales
-    // Se setea los valores del esceneario:
-
+    //      *** Plataformas horizontales  ***
     std::vector<int> x_horizontales = {0,  15, 22, 33, 53, 75, 81, 84, 87, 0, 16,
                                        33, 47, 65, 78, 8,  23, 27, 30, 33, 48};
     std::vector<int> y_horizontales = {0,  2,  7,  5,  15, 8,  12, 15, 18, 11, 23,
                                        27, 30, 32, 34, 45, 36, 41, 43, 46, 47};
     std::vector<int> w_horizontales = {15, 5,  10, 11, 16, 24, 13, 7, 1, 11, 17,
                                        11, 18, 11, 21, 6,  23, 18, 7, 1, 47};
-
     for (size_t i = 0; i < x_horizontales.size(); i++) {
         Platform plataforma_inicial(x_horizontales[i], y_horizontales[i], w_horizontales[i], 1,
                                     static_cast<uint16_t>(platform::HORIZONTAL), false);
         plataformas.push_back(plataforma_inicial);
     }
 
+    //      *** Plataformas verticales  ***
     std::vector<int> x_verticales = {15, 33, 53, 33, 65};
     std::vector<int> y_verticales = {3, 5, 13, 23, 30};
     std::vector<int> h_verticales = {3, 2, 2, 4, 32};
-
     for (size_t i = 0; i < x_verticales.size(); i++) {
         Platform plataforma_inicial(x_verticales[i], y_verticales[i], 1, h_verticales[i],
                                     static_cast<uint16_t>(platform::VERTICAL), false);
         plataformas.push_back(plataforma_inicial);
     }
 
+    //      *** Plataformas diagonales  ***
     std::vector<int> x_diagonales = {3, 1, 7, 23, 19, 44, 75, 23, 16, 76, 44, 49, 41};
     std::vector<int> y_diagonales = {33, 38, 14, 36, 3, 5, 8, 26, 6, 32, 27, 33, 40};
     std::vector<int> w_diagonales = {5, 10, 13, 13, 4, 11, 10, 10, 7, 3, 4, 4, 10};
     std::vector<int> flip_diagonales = {false, true,  true,  false, true,
                                         true,  false, false, false, true};
-
     for (size_t i = 0; i < x_diagonales.size(); i++) {
         Platform plataforma_inicial(x_diagonales[i], y_diagonales[i], w_diagonales[i], 1,
-                                    static_cast<uint16_t>(platform::DIAGONAL), flip_diagonales[i]);
+                                        static_cast<uint16_t>(platform::DIAGONAL),
+        flip_diagonales[i]); plataformas.push_back(plataforma_inicial);
+    }
+}*/
+
+void GameEscenario::cargar_plataformas() {
+    //      *** Plataformas horizontales  ***
+    std::vector<float> x_horizontales = {0,  15, 22, 33, 53, 75, 81, 84, 87, 0, 16,
+                                         33, 47, 65, 78, 8,  23, 27, 30, 33, 48};
+
+    std::vector<float> y_horizontales = {0,  2,  7,  5,  15, 8,  12, 15, 18, 11, 23,
+                                         27, 30, 32, 34, 45, 36, 41, 43, 46, 47};
+    std::vector<float> w_horizontales = {15, 5,  10, 11, 16, 24, 13, 7, 1, 11, 17,
+                                         11, 18, 11, 21, 6,  23, 18, 7, 1, 47};
+    for (size_t i = 0; i < x_horizontales.size(); i++) {
+        Plataforma plataforma_inicial_server(
+                platform::HORIZONTAL, x_horizontales[i], y_horizontales[i], x_horizontales[i],
+                y_horizontales[i] + 1, x_horizontales[i] + w_horizontales[i], y_horizontales[i],
+                x_horizontales[i] + w_horizontales[i], y_horizontales[i] + 1, 0);
+        plataformas_server.push_back(plataforma_inicial_server);
+
+        Platform plataforma_inicial(x_horizontales[i], y_horizontales[i], w_horizontales[i], 1,
+                                    static_cast<uint16_t>(platform::HORIZONTAL), false);
         plataformas.push_back(plataforma_inicial);
     }
+
+    //      *** Plataformas verticales  ***
+    std::vector<float> x_verticales = {3, 15, 33, 53, 33, 65};
+    std::vector<float> y_verticales = {3, 3, 5, 13, 23, 30};
+    std::vector<float> h_verticales = {3, 3, 2, 2, 4, 2};
+    for (size_t i = 0; i < x_verticales.size(); i++) {
+        Plataforma plataforma_inicial_server(
+                platform::VERTICAL, x_verticales[i], y_verticales[i] - h_verticales[i],
+                x_verticales[i], y_verticales[i], x_verticales[i] + 1,
+                y_verticales[i] - h_verticales[i], x_verticales[i] + 1, y_verticales[i], 90);
+        plataformas_server.push_back(plataforma_inicial_server);
+
+        Platform plataforma_inicial(x_verticales[i], y_verticales[i], 1, h_verticales[i],
+                                    static_cast<uint16_t>(platform::VERTICAL), false);
+        plataformas.push_back(plataforma_inicial);
+    }
+
+    //      *** Plataformas diagonales  ***
+    /*
+    std::vector<int> x_diagonales = {3, 1, 7, 23, 19, 44, 75, 23, 16, 76, 44, 49, 41};
+    std::vector<int> y_diagonales = {33, 38, 14, 36, 3, 5, 8, 26, 6, 32, 27, 33, 40};
+    std::vector<int> w_diagonales = {5, 10, 13, 13, 4, 11, 10, 10, 7, 3, 4, 4, 10};
+    std::vector<int> flip_diagonales = {false, true,  true,  false, true,
+                                        true,  false, false, false, true};
+    for (size_t i = 0; i < x_diagonales.size(); i++) {
+        Platform plataforma_inicial(x_diagonales[i], y_diagonales[i], w_diagonales[i], 1,
+                                        static_cast<uint16_t>(platform::DIAGONAL),
+        flip_diagonales[i]); plataformas.push_back(plataforma_inicial);
+    }
+
+
+    std::vector<int> x_diagonales = {3, 1, 7, 23, 19, 44, 75, 23, 16, 76, 44, 49, 41};
+    std::vector<int> y_diagonales = {33, 38, 14, 36, 3, 5, 8, 26, 6, 32, 27, 33, 40};
+    std::vector<int> w_diagonales = {5, 10, 13, 13, 4, 11, 10, 10, 7, 3, 4, 4, 10};
+    std::vector<int> angulos = {45, 135, 135, 45, 135, 135, 45, 45, 45, 135};
+    for (size_t i = 0; i < x_diagonales.size(); i++) {
+        Plataforma plataforma_inicial(platform::DIAGONAL, x_diagonales[i], y_diagonales[i],
+                                      x_diagonales[i], y_diagonales[i], x_diagonales[i],
+                                      y_diagonales[i], x_diagonales[i], y_diagonales[i],
+                                      angulos[i]);
+        plataformas.push_back(plataforma_inicial);
+    }
+    */
 }
 
 void GameEscenario::cargar_enemigos() {
@@ -68,12 +130,20 @@ void GameEscenario::cargar_enemigos() {
 }
 
 void GameEscenario::cargar_collectibles() {
-    for (size_t i = 0; i < 5; ++i) {
-        Moneda moneda(i + 1, 0);
-        collectibles.push_back(std::make_unique<Moneda>(moneda));
+    // Monedas
+    collectibles.push_back(std::make_unique<Moneda>(5, 13));
+    collectibles.push_back(std::make_unique<Moneda>(11, 13));
+    // MOnedas de la tabla larga
+    for (int i = 51; i < 96; i += 4) {
+        collectibles.push_back(std::make_unique<Moneda>(i, 49));
     }
-    Zanahoria zanahoria(6, 0);
-    collectibles.push_back(std::make_unique<Zanahoria>(zanahoria));
+
+    // Gemas
+    collectibles.push_back(std::make_unique<Gema>(1, 13));
+
+    // Zanahorias
+    collectibles.push_back(std::make_unique<Zanahoria>(11, 47));
+    collectibles.push_back(std::make_unique<Zanahoria>(39, 7));
 }
 
 /*

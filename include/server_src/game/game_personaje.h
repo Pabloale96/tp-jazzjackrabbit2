@@ -11,6 +11,7 @@
 #include "game_arma.h"
 #include "game_municion.h"
 #include "game_personaje_estado.h"
+#include "game_platform.h"
 #include "game_posicion.h"
 #include "game_velocidad.h"
 #include "protocol_utils.h"
@@ -33,9 +34,11 @@ private:
     uint16_t bala_id;
 
     Posicion posicion;
+    float gravedad;
     Velocidad velocidad;
-    uint16_t ancho;
-    uint16_t alto;
+    float ancho;
+    float alto;
+
 
     std::chrono::seconds tiempo_restante_de_partida;
     std::chrono::seconds duracion_del_salto;
@@ -60,11 +63,12 @@ public:
 
     uint8_t obtener_animacion();
 
-    void actualizar(std::chrono::seconds tiempo_restante_de_partida);
+    void actualizar(std::chrono::seconds tiempo_restante_de_partida,
+                    std::vector<Plataforma>& plataformas);
 
     void set_tiempo_restante_de_partida(std::chrono::seconds tiempo_restante_de_partida);
 
-    virtual void mover();
+    virtual void mover(std::vector<Plataforma>& plataformas);
 
     Velocidad& obtener_velocidad();
 
@@ -102,12 +106,17 @@ public:
 
     virtual void accion_especial() = 0;
 
-    uint16_t getBottom() const;
-    uint16_t getTop() const;
-    uint16_t getLeft() const;
-    uint16_t getRight() const;
+    float getBottom() const;
+    float getTop() const;
+    float getLeft() const;
+    float getRight() const;
 
-    uint16_t obtener_ancho() const;
+    float obtener_ancho() const;
+
+    void setear_posicion_en_x(float x);
+    void setear_posicion_en_y(float y);
+
+    void chequear_colisiones(const std::vector<Plataforma>& plataformas);
 
     virtual ~Personaje() = default;
 };
