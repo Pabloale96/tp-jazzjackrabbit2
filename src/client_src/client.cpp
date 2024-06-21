@@ -192,22 +192,21 @@ void Client::jugar() {
 
     bool client_off = false;
     while (!client_off){
-        while (server_msg.try_pop(gamestate) ) {
+        while (!server_msg.empty()) {
+            server_msg.try_pop(gamestate);
+        }
+        if (server_msg.try_pop(gamestate) ) {
             auto frame_start = steady_clock::now();
 
             renderer.Clear();
+            PersonajeGui jugador_actual = gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
+            gui.setPosicionJugador(jugador_actual.obtener_posicion_x(), jugador_actual.obtener_posicion_y());
+            jugador->setAnimacion(jugador_actual.obtener_estado_actual());
             client_off = gui.run(screenHeight, screenWidth);
             if(client_off) {
                 return;
             }
             renderer.Present();
-
-            if (gamestate->getJugando() == false) {
-                std::cout << "La partida ha finalizado" << std::endl;
-                // TODO: aca se deberían de mostrar las estadísticas
-                mostrar_estadisticas(*gamestate);
-                return;
-            }
             
             auto frame_end = steady_clock::now();
             auto rest = rate_ns - (frame_end - frame_start);
@@ -219,6 +218,13 @@ void Client::jugar() {
             }
             std::this_thread::sleep_for(rest);
             frame_start += rate_ns;
+
+            if (gamestate->getJugando() == false) {
+                std::cout << "La partida ha finalizado" << std::endl;
+                // TODO: aca se deberían de mostrar las estadísticas
+                mostrar_estadisticas(*gamestate);
+                return;
+            }
         }
     }
 }

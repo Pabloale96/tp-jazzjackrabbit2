@@ -23,15 +23,14 @@ using SDL2pp::Window;
 class PersonajeGui {
 protected:
     ClaseTexturas& texturas;
-    int pos_x;
-    int pos_y;
+    float pos_x;
+    float pos_y;
     uint8_t tipo;
     int speed = 0;
     uint8_t estado;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
-
 
 public:
     PersonajeGui(ClaseTexturas&, int, int, int,
@@ -45,6 +44,8 @@ public:
     void show();
     virtual void setFrames(int);
     void setAccion(uint8_t estado);
+    void setAnimacion(uint8_t estado);
+    void setPosicion(int x,int y);
     
 };
 

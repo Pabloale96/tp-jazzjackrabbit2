@@ -1,6 +1,6 @@
 #include "../include/client_src/gui/gui.h"
 
-Gui::Gui(Queue<msgAccion>& client_commands, std::unique_ptr<PersonajeGui> & jugador,
+Gui::Gui(Queue<msgAccion>& client_commands, std::shared_ptr<PersonajeGui> & jugador,
         std::shared_ptr<GameStateClient> & gamestate, std::vector<PlatformGui>& plataformas):
         client_commands(client_commands),
         jugador(jugador),
@@ -10,15 +10,19 @@ Gui::Gui(Queue<msgAccion>& client_commands, std::unique_ptr<PersonajeGui> & juga
 
 Gui::~Gui() {}
 
+void Gui::setPosicionJugador(int posicion_x, int posicion_y) {
+    posicion_jugador_x = posicion_x;
+    posicion_jugador_y = posicion_y;
+}
+
 bool Gui::run(int h_window, int w_window) {
     
-    bool client_off = keyhandler.keyBoardManaged( jugador, client_commands);
+    bool client_off = keyhandler.keyBoardManaged(client_commands,jugador->obtener_estado_actual());
 
-    if(client_off == true) {
+    if(client_off) {
         return true;
     }
-
-    escenario.show(jugador->obtener_posicion_x(), jugador->obtener_posicion_y(),h_window,w_window);
+    escenario.show(posicion_jugador_x, posicion_jugador_y, h_window, w_window);
     // cppcheck-suppress unusedVariable
     // Poner todo en una clase de enemigos para hacer enemigos ->show()
     /*for (const auto& [id, personaje]: gamestate->obtener_diccionario_de_personajes()) {
@@ -33,5 +37,6 @@ bool Gui::run(int h_window, int w_window) {
         }
     }*/
     jugador->show();
+    
     return false;
 }

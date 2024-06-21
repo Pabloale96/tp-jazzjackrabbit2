@@ -77,7 +77,6 @@ bool ProtocolClient::recibir_escenario(ClaseTexturas & texturas, std::vector<Pla
         }
         socket_cliente.recvall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
         PlatformGui plataforma(texturas,msg_plataforma);
-        std::cout<< "Plataforma i:" << i<<std::endl;
         vec_plataforma.push_back(plataforma);
     }
 

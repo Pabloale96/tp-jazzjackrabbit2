@@ -23,19 +23,21 @@ private:
     Queue<msgAccion>& client_commands;
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
-    std::unique_ptr<PersonajeGui> & jugador;
+    std::shared_ptr<PersonajeGui> & jugador;
     std::shared_ptr<GameStateClient> & gamestate;
     std::vector<PlatformGui>& plataformas;
 
     Escenario escenario;
     KeyboardHandler keyhandler;
 
-    
+    int posicion_jugador_x; 
+    int posicion_jugador_y;
 
 public:
-    Gui(Queue<msgAccion>& client_commands, std::unique_ptr<PersonajeGui> & jugador,
+    Gui(Queue<msgAccion>& client_commands, std::shared_ptr<PersonajeGui> & jugador,
         std::shared_ptr<GameStateClient> & gamestate, std::vector<PlatformGui>& plataformas);
     ~Gui();
+    void setPosicionJugador(int, int);
     bool run(int h_window, int w_window);
 };
 

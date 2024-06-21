@@ -12,8 +12,22 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         pos_x(ntohs(personaje.personaje[POS_POSX_PERSONAJE])),
         pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE])),
         tipo(personaje.tipo_personaje),
-        frames(nullptr) {}
+        frames(nullptr) {
+            this->setAccion(personaje.estado);
+        }
 // estados() {}
+void PersonajeGui::setPosicion(int x,int y){
+    pos_x = x;
+    pos_y = y;
+}
+
+void PersonajeGui::setAnimacion(uint8_t estado) {
+    if(this->estado != estado) {
+        this-> estado = estado;
+        this->setFrames(5);
+    }
+}
+
 void PersonajeGui::setAccion(uint8_t accion){
     switch (accion) {
         case (uint8_t) acciones::NULO:

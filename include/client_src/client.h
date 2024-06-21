@@ -50,7 +50,7 @@ private:
     int screenHeight = 800;
 
     // clases para que despues use gui.cpp:
-    std::unique_ptr<PersonajeGui> jugador;
+    std::shared_ptr<PersonajeGui> jugador;
     std::vector<PlatformGui> plataformas;
     std::shared_ptr<GameStateClient> gamestate;
 
