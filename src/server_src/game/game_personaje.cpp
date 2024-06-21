@@ -22,7 +22,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
         bala_id(ID_BALA_INICIAL),
 
         posicion(YAMLConfig::getConfig().personaje.pos_x, YAMLConfig::getConfig().personaje.pos_y),
-        velocidad(),
+        gravedad(-0.1f),
+        velocidad(0, gravedad),
         ancho(1.0f),
         alto(1.0f),
 

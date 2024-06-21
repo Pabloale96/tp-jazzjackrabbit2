@@ -33,9 +33,11 @@ private:
     uint16_t bala_id;
 
     Posicion posicion;
+    float gravedad;
     Velocidad velocidad;
     float ancho;
     float alto;
+
 
     std::chrono::seconds tiempo_restante_de_partida;
     std::chrono::seconds duracion_del_salto;
