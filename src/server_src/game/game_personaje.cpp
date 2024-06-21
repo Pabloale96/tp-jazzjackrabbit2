@@ -146,8 +146,8 @@ void Personaje::mover(std::vector<Plataforma>& plataformas) {
 }
 
 void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) {
-    if (velocidad.obtener_velocidad_y() < 0) {
-        // Estoy cayendo
+    if (velocidad.obtener_velocidad_y() <= 0) {
+        // Estoy cayendo Tengo q revisar si cai del borde de la tabla
         float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
         for (const auto& plataforma: plataformas) {
             if (plataforma.obtener_tipo_plataforma() == platform::HORIZONTAL) {
@@ -157,6 +157,11 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
                     estados.setCayendo(false);
                     estados.setIdle(true);
                     return;
+                } else {
+                    // Si no estoy en una tabla, entonces estoy cayendo
+                    estados.reset();
+                    estados.setCayendo(true);
+                    velocidad.caer();
                 }
             }
         }
