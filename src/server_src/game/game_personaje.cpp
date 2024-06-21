@@ -150,13 +150,14 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
         // Estoy cayendo
         float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
         for (const auto& plataforma: plataformas) {
-            if (plataforma.es_plataforma_cercana_en_y_abajo(prox_pos_y)) {
-                std::cout << "CAYENDO" << std::endl;
-                // Si me muevo atravieso la tabla, asi q seteo el techo de la tabla como mi piso
-                velocidad.setear_velocidad_y(0);
-                estados.setCayendo(false);
-                estados.setIdle(true);
-                return;
+            if (plataforma.obtener_tipo_plataforma() == platform::HORIZONTAL) {
+                if (plataforma.es_plataforma_cercana_en_y_abajo(prox_pos_y)) {
+                    // Si me muevo atravieso la tabla, asi q seteo el techo de la tabla como mi piso
+                    velocidad.setear_velocidad_y(0);
+                    estados.setCayendo(false);
+                    estados.setIdle(true);
+                    return;
+                }
             }
         }
     }
@@ -164,13 +165,15 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
         // Estoy saltando/subiendo
         float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
         for (const auto& plataforma: plataformas) {
-            if (plataforma.es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
-                std::cout << "SALTANDO" << std::endl;
-                // Si me muevo atravieso la tabla, asi q seteo el piso de la tabla como mi techo, y empiezo a caer
-                velocidad.caer();
-                estados.setSaltando(false);
-                estados.setCayendo(true);
-                return;
+            if (plataforma.obtener_tipo_plataforma() == platform::HORIZONTAL) {
+                if (plataforma.es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
+                    // Si me muevo atravieso la tabla, asi q seteo el piso de la tabla como mi techo, y
+                    // empiezo a caer
+                    velocidad.caer();
+                    estados.setSaltando(false);
+                    estados.setCayendo(true);
+                    return;
+                }
             }
         }
     }
@@ -189,8 +192,8 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
         }
     }
     if (velocidad.obtener_velocidad_x() > 0) {
-        //std::cout << "Personaje::chequear_colisiones: yendo a la derecha" << std::endl;
-        // Estoy yendo a la derecha
+        // std::cout << "Personaje::chequear_colisiones: yendo a la derecha" << std::endl;
+        //  Estoy yendo a la derecha
         float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
         for (const auto& plataforma: plataformas) {
             if (plataforma.obtener_tipo_plataforma() == platform::VERTICAL) {

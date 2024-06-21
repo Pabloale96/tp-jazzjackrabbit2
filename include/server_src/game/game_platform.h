@@ -1,10 +1,10 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+#include <cmath>
 #include <exception>
 #include <iostream>
 #include <memory>
-#include <cmath>
 
 #include "defines_msg.h"
 #include "game_posicion.h"
@@ -81,39 +81,49 @@ public:
     Posicion obtener_centro() const { return centro; }
     uint8_t obtener_angulo() const { return angulo; }
 
-    bool es_plataforma_cercana_en_y_abajo(float y) const {
-        // Si la futura posición del personaje está por debajo del borde superior, entonces voy a
-        // chocar
-        return y <= obtener_borde_superior();
-    }
-
-    bool es_plataforma_cercana_en_y_arriba(float y) const {
-        // Si la futura posición del personaje está por encima del borde inferior, entonces voy a
-        // chocar
-        return y >= obtener_borde_inferior();
-    }
-
-    bool es_plataforma_cercana_en_x_izquierda(float x) const {
-        // Si la futura posición del personaje está a la derecha del borde izquierdo, entonces voy a
-        // chocar
-        if ((float)floor(x) <= obtener_borde_derecho()) {
-            if ((float)floor(x) >= obtener_borde_izquierdo()) {
-                return true;
-            }
+bool es_plataforma_cercana_en_y_abajo(float y) const {
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está por debajo del borde superior, entonces voy a chocar
+    if (y <= obtener_borde_superior() + TOLERANCIA) {
+        if (y >= obtener_borde_inferior() - TOLERANCIA) {
+            return true;
         }
-        return false;
     }
+    return false;
+}
 
-    bool es_plataforma_cercana_en_x_derecha(float x) const {
-        // Si la futura posición del personaje está a la izquierda del borde derecho, entonces voy a
-        // chocar
-        if ((float)floor(x) >= obtener_borde_izquierdo()) {
-            if ((float)floor(x) <= obtener_borde_derecho()) {
-                return true;
-            }
+bool es_plataforma_cercana_en_y_arriba(float y) const {
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está por encima del borde inferior, entonces voy a chocar
+    if (y >= obtener_borde_inferior() - TOLERANCIA) {
+        if (y <= obtener_borde_superior() + TOLERANCIA) {
+            return true;
         }
-        return false;
     }
+    return false;
+}
+
+bool es_plataforma_cercana_en_x_izquierda(float x) const {
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está a la derecha del borde izquierdo, entonces voy a chocar
+    if (x <= obtener_borde_derecho() + TOLERANCIA) {
+        if (x >= obtener_borde_izquierdo() - TOLERANCIA) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool es_plataforma_cercana_en_x_derecha(float x) const {
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está a la izquierda del borde derecho, entonces voy a chocar
+    if (x >= obtener_borde_izquierdo() - TOLERANCIA) {
+        if (x <= obtener_borde_derecho() + TOLERANCIA) {
+            return true;
+        }
+    }
+    return false;
+}
 };
 
 #endif

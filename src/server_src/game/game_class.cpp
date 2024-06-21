@@ -199,7 +199,7 @@ void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
 
 void Game::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
     actualizar_personajes(tiempo_restante_de_partida);
-    //chequear_colisiones();
+    // chequear_colisiones();
     actualizar_escenario();
 }
 
