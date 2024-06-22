@@ -20,7 +20,7 @@ bool Gui::setPosicionJugador(float posicion_x, float posicion_y) {
     return flip;
 }
 
-bool Gui::run(int h_window, int w_window) {
+bool Gui::run(int h_window, int w_window, uint16_t client_id) {
 
     bool client_off = keyhandler.keyBoardManaged(client_commands, jugador->obtener_estado_actual());
 
@@ -29,17 +29,17 @@ bool Gui::run(int h_window, int w_window) {
     }
     escenario.show(posicion_jugador_x, posicion_jugador_y, h_window, w_window);
     // Poner todo en una clase de enemigos para hacer enemigos ->show()
-    /*for (const auto& [id, personaje]: gamestate->obtener_diccionario_de_personajes()) {
-        std::unique_ptr<PersonajeGui> pers;
-        int x = (personaje->obtener_posicion_x() - jugador->obtener_posicion_x()) *
-    SCALING_VALUE_PIXEL_X; int y = (personaje->obtener_posicion_y() - jugador->obtener_posicion_y())
-    * SCALING_VALUE_PIXEL_Y; if (x <= (jugador->obtener_posicion_x() + renderer.GetOutputWidth() /
-    2) || x <= (jugador->obtener_posicion_x() - renderer.GetOutputWidth() / 2) || y <=
-    (jugador->obtener_posicion_y() + renderer.GetOutputHeight() / 2) || y <=
-    (jugador->obtener_posicion_y() - renderer.GetOutputHeight() / 2)) { pers->show();  //
-    personaje->obtener_animacion());
+    for (auto& [id, personaje]: gamestate->obtener_diccionario_de_personajes()) {        
+        if(id == client_id) continue;
+        float x = (personaje.obtener_posicion_x() - posicion_jugador_x) *SCALING_VALUE_PIXEL_X + h_window/2; 
+        float y = (personaje.obtener_posicion_y() - posicion_jugador_y) *SCALING_VALUE_PIXEL_Y + w_window/2; 
+        personaje.setPosicion(x,y);
+        if (x <= (posicion_jugador_x + h_window/2) || x <= (posicion_jugador_x - h_window/2) || y <=
+            (posicion_jugador_y + w_window/2) || y <= (posicion_jugador_y - w_window/2)) { 
+                
+            personaje.show(); 
         }
-    }*/
+    }
     jugador->show();
 
     return false;

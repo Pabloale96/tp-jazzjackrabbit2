@@ -20,6 +20,7 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         server_msg(MAX_TAM_COLA),
         receiver(protocolo_client, client_id, server_msg, texturas),
         client_id(CLIENT_ID_NULO),
+        gamestate(std::make_shared<GameStateClient>(true)),
         gui(client_commands, jugador, gamestate, plataformas) {}
 
 void Client::imprimir_portada() {
@@ -191,20 +192,22 @@ void Client::jugar() {
     window.Show();
 
     bool client_off = false;
+    std::shared_ptr<GameStateClient> gamestate_new;
     while (!client_off) {
-        while (server_msg.try_pop(gamestate)) { }
-        if (gamestate) {
+        while (server_msg.try_pop(gamestate_new)) { }
+        if (gamestate_new) {
             auto frame_start = steady_clock::now();
 
+            gamestate->actualizar_gamestate(*gamestate_new);
             renderer.Clear();
             PersonajeGui jugador_actual =
                     gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
-            std::cout << "Posicion: " << jugador_actual.obtener_posicion_x() << " , "
-                      << jugador_actual.obtener_posicion_y() << std::endl;
+
             bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(),
                                                jugador_actual.obtener_posicion_y());
             jugador->setAnimacion(jugador_actual.obtener_estado_actual(), flip);
-            client_off = gui.run(screenHeight, screenWidth);
+            gamestate->obtener_diccionario_de_personajes().erase(client_id);
+            client_off = gui.run(screenHeight, screenWidth,client_id);
             if (client_off) {
                 return;
             }

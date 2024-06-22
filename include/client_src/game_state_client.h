@@ -27,9 +27,9 @@ public:
 
     bool obtener_estado_de_la_partida();
 
-    std::map<uint16_t, PersonajeGui>& obtener_diccionario_de_personajes();
+    std::map<uint16_t, PersonajeGui> obtener_diccionario_de_personajes()const;
 
-    std::map<uint16_t, EnemigosGui>& obtener_diccionario_de_enemigos();
+    std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos()const;
 
     PersonajeGui& obtener_personaje(uint16_t client_id);
 
@@ -59,6 +59,8 @@ public:
                       << std::endl;
         }
     }
+
+    void actualizar_gamestate(const GameStateClient&);
 
     ~GameStateClient();
 };
