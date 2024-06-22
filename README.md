@@ -51,8 +51,8 @@ pre-commit run --all-files
 ## Ejecutando las pruebas ⚙️
 
 ```shell
-./testing/run_tests.sh ./ testing/casos/ multi-client no-valgrind  60 10 yes
-./testing/compare_outputs.sh testing/casos testing/salidas
+./protocol_server_test
+./test_consola_cliente
 ```
 
 ## Construido con 🛠️
@@ -62,6 +62,7 @@ pre-commit run --all-files
 * [Makefile](https://www.gnu.org/software/make/manual/make.html)
 * [CMake](https://cmake.org/)
 * [YAML](https://yaml.org/)
+* [Gtest](https://github.com/google/googletest)
 
 ## Autores ✒️
 
