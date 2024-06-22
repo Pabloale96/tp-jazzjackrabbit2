@@ -20,7 +20,15 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         server_msg(MAX_TAM_COLA),
         receiver(protocolo_client, client_id, server_msg, texturas),
         client_id(CLIENT_ID_NULO),
-        gui(client_commands, jugador, gamestate, plataformas) {}
+        screenHeight(800),
+        screenWidth(600),
+        window(Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                         screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)),
+        renderer(Renderer(window, -1, SDL_RENDERER_ACCELERATED)),
+        texturas(std::make_shared<ClaseTexturas>(renderer)),
+        jugador(nullptr),
+        gamestate(std::make_shared<GameStateClient>(texturas,vec_plataforma,true)),
+        gui(client_commands, jugador, gamestate) {}
 
 void Client::imprimir_portada() {
     std::ifstream file("../docs/portada.txt");
@@ -61,16 +69,16 @@ void Client::crear_personaje() {
     }
     if (personaje == "j") {
         jugador = std::make_shared<JazzGui>(
-                texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2, 4,
-                texturas.findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
+                *texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2, 4,
+                texturas->findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
     } else if (personaje == "s") {
-        jugador = std::make_shared<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<SpazGui>(*texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
-                                            texturas.findFrame(std::string(SPAZ_STAND)));
+                                            texturas->findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_shared<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<LoriGui>(*texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, 4,
-                                            texturas.findFrame(std::string(LORI_STAND)));
+                                            texturas->findFrame(std::string(LORI_STAND)));
     }
 }
 
@@ -154,7 +162,7 @@ void Client::iniciar_hilos() {
 }
 
 void Client::crear_escenario() {
-    if (protocolo_client.recibir_escenario(texturas, plataformas) == false) {
+    if (protocolo_client.recibir_escenario(gamestate) == false) {
         std::cout << "Error: No se pudo recibir el escenario" << std::endl;
         return;
     }
@@ -199,11 +207,10 @@ void Client::jugar() {
             renderer.Clear();
             PersonajeGui jugador_actual =
                     gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
-            std::cout << "Posicion: " << jugador_actual.obtener_posicion_x() << " , "
-                      << jugador_actual.obtener_posicion_y() << std::endl;
             bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(),
                                                jugador_actual.obtener_posicion_y());
             jugador->setAnimacion(jugador_actual.obtener_estado_actual(), flip);
+            gamestate->obtener_diccionario_de_personajes().erase(client_id);
             client_off = gui.run(screenHeight, screenWidth);
             if (client_off) {
                 return;

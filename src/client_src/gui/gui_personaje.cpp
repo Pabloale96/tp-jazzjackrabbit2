@@ -17,7 +17,7 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
     this->setFrames();
 }
 // estados() {}
-void PersonajeGui::setPosicion(int x, int y) {
+void PersonajeGui::setPosicion(float x, float y) {
     pos_x = x;
     pos_y = y;
 }

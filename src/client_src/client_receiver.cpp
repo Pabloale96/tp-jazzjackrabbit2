@@ -10,7 +10,7 @@
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
                                Queue<std::shared_ptr<GameStateClient>>& server_msg,
-                               ClaseTexturas& texturas):
+                               std::shared_ptr<ClaseTexturas>& texturas):
         protocolo_cliente(protocolo_cliente),
         client_id(client_id),
         server_msg(server_msg),
@@ -19,8 +19,9 @@ ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& clie
 void ClientReceiver::run() {
     while (!protocolo_cliente.obtener_estado_de_la_conexion()) {
         try {
-            std::shared_ptr<GameStateClient> gameState = std::make_unique<GameStateClient>();
-            protocolo_cliente.recibir_respuesta(texturas, gameState, client_id);
+            std::vector<PlatformGui> plataformas;
+            std::shared_ptr<GameStateClient> gameState = std::make_shared<GameStateClient>(texturas,plataformas,true);
+            protocolo_cliente.recibir_respuesta(gameState, client_id);
             server_msg.push(std::move(gameState));
 
         } catch (const ClosedQueue&) {

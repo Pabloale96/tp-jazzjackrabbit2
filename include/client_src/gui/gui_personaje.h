@@ -44,7 +44,7 @@ public:
     virtual void setFrames();
     void setAccion(uint8_t estado);
     void setAnimacion(uint8_t estado, bool flip);
-    void setPosicion(int x, int y);
+    void setPosicion(float x, float y);
 };
 
 class SpazGui: public PersonajeGui {

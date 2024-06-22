@@ -22,7 +22,7 @@ private:
     float pos_x;
     float pos_y;
     bool flip = false;
-    int type = 0;
+    uint8_t type = 0;
     int height;
     int width;
     std::shared_ptr<std::vector<Frame>>& platform;
@@ -38,8 +38,8 @@ public:
 
     int getW() { return width; }
     int getH() { return height; }
-    int getX() { return pos_x; }
-    int getY() { return pos_y; }
+    float getX() { return pos_x; }
+    float getY() { return pos_y; }
 };
 
 #endif

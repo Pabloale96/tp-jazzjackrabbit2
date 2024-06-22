@@ -38,11 +38,12 @@ bool PlatformGui::checkIsInWindow(int pos_camara_x, int pos_camara_y, int w_wind
 float PlatformGui::rotateToFloat() {
 
     float rot = 0;
+
     switch (type) {
-        case static_cast<int>(platform::DIAGONAL):
+        case static_cast<uint8_t>(platform::DIAGONAL):
             rot = 45;
             break;
-        case static_cast<int>(platform::VERTICAL):
+        case static_cast<uint8_t>(platform::VERTICAL):
             rot = 90;
             break;
         default:
@@ -58,7 +59,8 @@ float PlatformGui::rotateToFloat() {
 
 void PlatformGui::show(float dif_x, float dif_y, int h_window, int w_window, int i) {
 
-    float rotate = this->rotateToFloat();
+    
+    
 
     // Escalar las dimensiones de la plataforma
     int width_sc = static_cast<int>(width * SCALING_VALUE_PIXEL_X);
@@ -74,6 +76,7 @@ void PlatformGui::show(float dif_x, float dif_y, int h_window, int w_window, int
     // Comprobar si la plataforma está dentro de la ventana
     if (this->checkIsInWindow(dif_x * SCALING_VALUE_PIXEL_X, dif_y * SCALING_VALUE_PIXEL_Y,
                               w_window, h_window)) {
+        float rotate = this->rotateToFloat();
         if (rotate == 0) {
             platform->at(0).copy(rotate, posicion_x, posicion_y_invertida, width_sc, height_sc);
         } else if (rotate == 90) {
