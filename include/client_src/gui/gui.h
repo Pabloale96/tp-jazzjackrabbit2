@@ -37,7 +37,7 @@ public:
         std::shared_ptr<GameStateClient>& gamestate, std::vector<PlatformGui>& plataformas);
     ~Gui();
     bool setPosicionJugador(float, float);
-    bool run(int h_window, int w_window);
+    bool run(int h_window, int w_window, uint16_t client_id);
 };
 
 #endif

@@ -7,16 +7,16 @@
 
 GameStateClient::GameStateClient(bool jugando): jugando(jugando) {}
 
-GameStateClient::GameStateClient(): jugando(true) {}
+GameStateClient::GameStateClient(): jugando(true), diccionario_de_personajes(), diccionario_de_enemigos() {}
 
 
 bool GameStateClient::obtener_estado_de_la_partida() { return jugando; }
 
-std::map<uint16_t, PersonajeGui>& GameStateClient::obtener_diccionario_de_personajes() {
+std::map<uint16_t, PersonajeGui> GameStateClient::obtener_diccionario_de_personajes() const{
     return diccionario_de_personajes;
 }
 
-std::map<uint16_t, EnemigosGui>& GameStateClient::obtener_diccionario_de_enemigos() {
+std::map<uint16_t, EnemigosGui> GameStateClient::obtener_diccionario_de_enemigos() const{
     return diccionario_de_enemigos;
 }
 
@@ -45,8 +45,32 @@ void GameStateClient::pushPersonajes(ClaseTexturas& texturas, msgPersonaje& msgp
             std::cerr << "Error: Tipo de personaje no válido" << std::endl;
             return;
     }
+    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]), std::move(*personaje));
+    
+}
 
-    diccionario_de_personajes.emplace(ntohs(msgpers.personaje[POS_ID_PERSONAJE]), *personaje);
+void GameStateClient::actualizar_gamestate( const GameStateClient & other) {
+
+        for (const auto& [id, personaje]: other.obtener_diccionario_de_personajes()) {    
+            if (!this->diccionario_de_personajes.empty())  {
+                auto it = this->diccionario_de_personajes.find(id);
+                if (it != diccionario_de_personajes.end()) {
+                    it->second.actualizar_personaje(personaje);
+                } else {
+                    diccionario_de_personajes.emplace(id, std::move(personaje));
+                }
+            } else {
+                this->diccionario_de_personajes = other.obtener_diccionario_de_personajes();
+            }
+        }
+        /*for (auto& [id, enemigo]: other.obtener_diccionario_de_enemigos()) {        
+            auto it = this->obtener_diccionario_de_enemigos.find(id);
+            if (it != diccionario_de_enemigos.end()) {
+                it->second.actualizar_enemigo(enemigo);
+            } else {
+                diccionario_de_enemigos.emplace(ntohs(id, std::move(enemigo));
+            }
+        }*/
 }
 
 GameStateClient::~GameStateClient() {}

@@ -19,7 +19,7 @@ public:
     Animacion();
     ~Animacion();
 
-    void run(int pos_x, int pos_y, int speed, std::shared_ptr<std::vector<Frame>> frames,
+    void run(float pos_x, float pos_y, int speed, std::shared_ptr<std::vector<Frame>> frames,
              std::vector<Frame>::iterator& it);
     void setFlip(bool);
 };
