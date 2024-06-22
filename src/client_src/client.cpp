@@ -192,10 +192,8 @@ void Client::jugar() {
 
     bool client_off = false;
     while (!client_off) {
-        while (!server_msg.empty()) {
-            server_msg.try_pop(gamestate);
-        }
-        if (server_msg.try_pop(gamestate)) {
+        while (server_msg.try_pop(gamestate)) { }
+        if (gamestate) {
             auto frame_start = steady_clock::now();
 
             renderer.Clear();
