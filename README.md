@@ -43,19 +43,29 @@ Lori:
 ### Comandos ⌨️
 
 ⬅️          =  Correr izquierda
+
 Shift + ⬅️  =  Correr izquierda rapido
+
 ➡️          =  Correr derecha
+
 Shift + ➡️  =  Correr derecha rapido
+
 ⬆️          =  Saltar
+
             =  Disparar
+            
             =  Accion especial
+            
             =  Cambiar arma
 
 ### Reglas 📜
 
 ⏳ La partida dura 60 segundos.
+
 🏆 Gana el jugador que haya recaudado la mayor cantidad de puntos en ese lapso de tiempo.
+
 👾 Los puntos se pueden obtener al coleccionar monedas, gemas o matar enemigos.
+
 ⚔️ Ten cuidado! Los enemigos pueden atacarte y quitarte vidas!
 
 ### Cheats 🤫
