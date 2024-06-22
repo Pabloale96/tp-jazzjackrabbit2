@@ -10,6 +10,12 @@ cmake ../
 make
 ```
 
+## VAGRANTFILE
+
+```shell
+vagrant up
+```
+
 ## EJECUCIÓN
 
 ```shell
