@@ -18,7 +18,7 @@ Por último, se compila el programa con el comando `make`.
 
 Para ejecutar el servidor o cliente siempre hay que estar en la carpeta build [para más información sobre cómo correr el juego, vaya a "A jugar"]
 
-### A jugar 🌟
+### A jugar 🎮
 
 Vamos a necesitar de 1 consola para el server:
 
@@ -31,6 +31,40 @@ y luego de 1 consola por cada cliente que quiera conectarse al juego:
 ```shell
 ./client <IP> <puerto>
 ```
+
+### Elige tu personaje 🐰
+
+Jazz:
+
+Spazz:
+
+Lori:
+
+### Comandos ⌨️
+
+⬅️          =  Correr izquierda
+Shift + ⬅️  =  Correr izquierda rapido
+➡️          =  Correr derecha
+Shift + ➡️  =  Correr derecha rapido
+⬆️          =  Saltar
+            =  Disparar
+            =  Accion especial
+            =  Cambiar arma
+
+### Reglas 📜
+
+⏳ La partida dura 60 segundos.
+🏆 Gana el jugador que haya recaudado la mayor cantidad de puntos en ese lapso de tiempo.
+👾 Los puntos se pueden obtener al coleccionar monedas, gemas o matar enemigos.
+⚔️ Ten cuidado! Los enemigos pueden atacarte y quitarte vidas!
+
+### Cheats 🤫
+
+K = Kill all
+
+### Musica / Sonidos 🔊
+
+<Pending work>
 
 ## Ejecutando las pruebas ⚙️
 
