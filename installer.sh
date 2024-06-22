@@ -89,27 +89,19 @@ sudo cmake .
 sudo make
 sudo cp *.a /usr/lib
 
-cd /usr/src/gmock
-sudo cmake .
-sudo make
-sudo cp *.a /usr/lib
-
 # Configurar y compilar el proyecto jazzJackrabbit2
 echo "Configurando y compilando jazzJackrabbit2..."
-cd ~/tp-jazzjackrabbit2  # Cambia este directorio al correcto
-
+git clone https://github.com/Pabloale96/tp-jazzjackrabbit2.git tp-jazzjackrabbit2
+cd tp-jazzjackrabbit2
 mkdir -p build
 cd build
 cmake ..
 make
 
 # Compilar y ejecutar pruebas
-echo "Compilando y ejecutando pruebas unitarias..."
-cd ~/tp-jazzjackrabbit2/test/gtest.cpp
-mkdir -p build
-cd build
-cmake ..
+echo "Compilando pruebas..."
+cd ~/tp-jazzjackrabbit2/tests
+cmake ../
 make
-./protocol_server_test  # Ejecuta las pruebas unitarias
 
 echo "Instalación completa"
