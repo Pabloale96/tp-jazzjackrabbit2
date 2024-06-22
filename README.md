@@ -14,46 +14,27 @@ Una vez adentro de la carpeta build, se tiene que crear el archivo makefile usan
 
 Por ultimo se compila el programa con `make`
 
-Para ejecutar el servidor o cliente hay que estar en la carpeta build:
+Para ejecutar el servidor o cliente siempre hay que estar en la carpeta build. [para más información de cómo correr el juego, vaya a "A jugar"]
 
-Server:
+### A jugar 🌟
+
+Vamos a necesitar de 1 consola para el server:
 
 ```shell
-./server 8080
-
-valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-reachable=yes --trace-children=yes --track-fds=yes --track-origins=no --time-stamp=yes --num-callers=20 ./server 8080
+./server <puerto>
 ```
 
-Tiburoncin:
+y luego de 1 consola por cada cliente que quiera conectarse al juego:
 
 ```shell
-tiburoncin -o -A 127.0.0.1:9095 -B 127.0.0.1:8080 -o
-```
-
-Client:
-
-```shell
-./client 127.0.0.1 9095
-
-valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-reachable=yes --trace-children=yes --track-fds=yes --track-origins=no --time-stamp=yes --num-callers=20 ./client 127.0.0.1 9095
-
-./client 127.0.0.2 8080
-
-./client 127.0.0.3 8080
-```
-
-Pasar el pre-commit:
-
-```shell
-pre-commit run --all-files
+./client <IP> <puerto>
 ```
 
 ## Ejecutando las pruebas ⚙️
 
-```shell
-./protocol_server_test
-./test_consola_cliente
-```
+En la misma carpeta de build que creamos para correr el juego, vamos a abrir 2 consolas.
+En una corremos: `./protocol_server_test`
+Y en la otra corremos: `./test_consola_cliente`
 
 ## Construido con 🛠️
 
