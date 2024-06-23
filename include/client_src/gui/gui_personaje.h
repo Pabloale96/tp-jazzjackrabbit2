@@ -26,7 +26,7 @@ protected:
     float pos_x;
     float pos_y;
     uint8_t tipo;
-    int speed = 0;
+    int speed;
     uint8_t estado;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;

@@ -194,7 +194,7 @@ void Client::jugar() {
     bool client_off = false;
     std::shared_ptr<GameStateClient> gamestate_new;
     while (!client_off) {
-        while (server_msg.try_pop(gamestate_new)) { }
+        while (server_msg.try_pop(gamestate_new));
         if (gamestate_new) {
             auto frame_start = steady_clock::now();
 
