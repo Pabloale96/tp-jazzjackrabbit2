@@ -11,7 +11,7 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         texturas(texturas),
         pos_x(ntohs(personaje.personaje[POS_POSX_PERSONAJE]) / 100),
         pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100),
-        vida(VidaGui(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
+        //vida(VidaGui(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
         tipo(personaje.tipo_personaje),
         estado(personaje.estado){
     this->setFrames();

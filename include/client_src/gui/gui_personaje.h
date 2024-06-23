@@ -29,7 +29,7 @@ protected:
     uint8_t tipo;
     int speed = 0;
     uint8_t estado;
-    VidaGui vida;
+    //VidaGui vida;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
