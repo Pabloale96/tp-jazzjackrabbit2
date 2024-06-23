@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <mutex>
 
 #include <SDL2pp/SDL2pp.hh>
 

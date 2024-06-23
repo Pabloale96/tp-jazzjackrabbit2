@@ -1,8 +1,15 @@
 #include "../../include/client_src/gui/gui_personaje.h"
 
+#define CHECK_SHARED_PTR(ptr) \
+    if (!ptr) { \
+        std::cerr << "Error: " #ptr " is null or uninitialized at " << __FILE__ << ":" << __LINE__ << std::endl; \
+        std::abort(); \
+    }
+
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
         texturas(texturas), pos_x(posx), pos_y(posy), tipo(0), speed(speed), estado(1), animacion(), frames(frames), it(frames->begin()) {
+            assert(frames);
     //it = frames->begin();
 }
 
@@ -117,10 +124,8 @@ void PersonajeGui::setAccion(uint8_t accion) {
     }
 }
 
-PersonajeGui::~PersonajeGui() {}
-
 void PersonajeGui::show() { 
-    
+    CHECK_SHARED_PTR(frames);
     animacion.run(pos_x, pos_y, speed, frames, it);
 }
 
@@ -132,7 +137,8 @@ SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, int speed,
 
 SpazGui::SpazGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg)  {
             this->setFrames();
-        }
+}
+
 SpazGui::~SpazGui() {}
 
 void SpazGui::setFrames() {
@@ -386,3 +392,5 @@ void LoriGui::setFrames() {
             break;
     }
 }
+
+PersonajeGui::~PersonajeGui() {}

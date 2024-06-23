@@ -1,15 +1,23 @@
 #include "../../include/client_src/gui/gui_frame.h"
 
-Frame::Frame(Renderer& renderer, Texture& sprite): renderer(renderer), sprite(sprite) {}
+#include <cassert>
+
+Frame::Frame(Renderer& renderer, Texture& sprite): renderer(renderer), sprite(sprite), vec_frames{0, 0, 0, 0} {}
 
 Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
         renderer(renderer), sprite(sprite), vec_frames{x, y, h, w} {}
 
-
-Frame::~Frame() {}
-
 void Frame::copy(bool flip, int pos_x, int pos_y) {
     //sprite.SetAlphaMod(255);
+
+    // assert(vec_frames.size() == 4);
+
+    std::cout << "copiando frame con "<< flip << " desde x: " << pos_x << " y: " << pos_y << std::endl;
+    std::cout << "Frame: " << vec_frames[0] << std::endl;
+    std::cout << vec_frames[1] << std::endl;
+    std::cout << vec_frames[2] << std::endl;
+    std::cout << vec_frames[3] << std::endl;
+
     if (flip) {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
                       Rect(pos_x, pos_y, vec_frames[2], vec_frames[3]), 180.0, NullOpt, 2);
@@ -51,3 +59,5 @@ int Frame::getX() { return vec_frames[0]; }
 int Frame::getY() { return vec_frames[1]; }
 int Frame::getW() { return vec_frames[2]; }
 int Frame::getH() { return vec_frames[3]; }
+
+Frame::~Frame() {}
