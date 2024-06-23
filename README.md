@@ -44,19 +44,19 @@ Lori:
 
 ⬅️          =  Correr izquierda
 
-Shift + ⬅️  =  Correr izquierda rapido
+ctrl + ⬅️  =  Correr izquierda rapido
 
 ➡️          =  Correr derecha
 
-Shift + ➡️  =  Correr derecha rapido
+ctrl + ➡️  =  Correr derecha rapido
 
 ⬆️          =  Saltar
 
-            =  Disparar
+a           =  Disparar
             
-            =  Accion especial
+s           =  Accion especial
             
-            =  Cambiar arma
+flecha para abajo =  Cambiar arma
 
 ### Reglas 📜
 
