@@ -8,6 +8,8 @@
 
 #include "gui/gui_enemigos.h"
 #include "gui/gui_personaje.h"
+#include "gui/gui_coleccionables.h"
+#include "gui/gui_platform.h"
 
 #include "dict_monitor.h"
 #include "msgToSent.h"
@@ -17,19 +19,25 @@ class GameStateClient {
 private:
     bool jugando;
 
+    std::shared_ptr<ClaseTexturas>& texturas;
+
+    std::vector<PlatformGui> plataformas;
+
     std::map<uint16_t, PersonajeGui> diccionario_de_personajes;
     std::map<uint16_t, EnemigosGui> diccionario_de_enemigos;
+    std::map<uint16_t, ColecionablesGui> diccionario_de_collecionables;
 
 
 public:
-    explicit GameStateClient(bool jugando);
-    GameStateClient();
+    explicit GameStateClient(std::shared_ptr<ClaseTexturas>&,bool jugando);
 
     bool obtener_estado_de_la_partida();
 
     std::map<uint16_t, PersonajeGui> obtener_diccionario_de_personajes()const;
 
     std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos()const;
+
+    std::vector<PlatformGui> & obtener_plataformas();
 
     PersonajeGui& obtener_personaje(uint16_t client_id);
 
@@ -41,12 +49,11 @@ public:
 
     void setGameState(const uint8_t& state_partida) { jugando = ((unsigned)state_partida == 0x01); }
 
-    void pushPersonajes(ClaseTexturas& texturas, msgPersonaje& msgpers);
+    void pushPersonajes(msgPersonaje& msgpers);
 
-    void pushEnemigos(msgEnemigo& msgenem) {
-        EnemigosGui enemigo(msgenem);
-        diccionario_de_enemigos.emplace(enemigo.get_id_enemigo(), enemigo);
-    }
+    void pushEnemigos(msgEnemigo& msgenem);
+
+    void pushPlataformas(msgPlataforma& msgplat);
 
     void imprimir_cliente() {
         for (const auto& pair: diccionario_de_personajes) {
