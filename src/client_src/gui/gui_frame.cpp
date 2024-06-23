@@ -9,7 +9,7 @@ Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
 Frame::~Frame() {}
 
 void Frame::copy(bool flip, int pos_x, int pos_y) {
-    sprite.SetAlphaMod(255);
+    //sprite.SetAlphaMod(255);
     if (flip) {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
                       Rect(pos_x, pos_y, vec_frames[2], vec_frames[3]), 180.0, NullOpt, 2);

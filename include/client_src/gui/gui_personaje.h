@@ -27,7 +27,7 @@ protected:
     float pos_x;
     float pos_y;
     uint8_t tipo;
-    int speed = 0;
+    int speed;
     uint8_t estado;
     VidaGui vida;
     Animacion animacion;

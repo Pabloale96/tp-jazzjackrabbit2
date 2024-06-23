@@ -10,9 +10,9 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint
         estado(0),
         vida(texturas,10,tipo),
         animacion(),
-        frames(frames) {
-    it = frames->begin();
-}
+        frames(frames),
+        it(frames->begin()) {}
+
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         // puntos(ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
         texturas(texturas),
@@ -21,26 +21,33 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         tipo(personaje.tipo_personaje),
         speed(5),
         vida(texturas, 0,tipo),
-        estado(personaje.estado),
+        speed(5),
+        estado(personaje.estado), 
         animacion(),
-        frames(texturas.findFrame(SPAZ_STAND)),
+        frames(texturas.findFrame(std::string(SPAZ_STAND))) ,
         it(frames->begin()){}
+
 // estados() {}
 void PersonajeGui::setPosicion(float x, float y) {
     pos_x = x;
     pos_y = y;
 }
 
-void PersonajeGui::actualizar_personaje(const PersonajeGui& other){
+void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
     this->pos_x = other.obtener_posicion_x();
     this->pos_y = other.obtener_posicion_y();
     if (this->estado != other.obtener_estado_actual()) {
         this->estado = other.obtener_estado_actual();
         this->setFrames();
     } else {
-        this->it++;
-        if(this->it == frames->end()) {
+        if (frames && !frames->empty()) {
+            this->it++;
+            if (this->it == frames->end()) {
+                it = frames->begin();
+            }
+        } else {
             it = frames->begin();
+            //throw std::runtime_error("Error: frames is null or empty");
         }
     }
 }
