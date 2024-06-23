@@ -53,12 +53,12 @@ private:
 
     Renderer renderer;
 
-    std::shared_ptr<ClaseTexturas> texturas;
+    ClaseTexturas texturas;
 
     // clases para que despues use gui.cpp:
     std::shared_ptr<PersonajeGui> jugador;
     
-    std::shared_ptr<GameStateClient> gamestate;
+    GameStateClient gamestate;
 
     Gui gui;
 

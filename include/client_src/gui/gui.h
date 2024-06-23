@@ -23,7 +23,7 @@ private:
 
     // lista de jugadores conectados (llamamos personajes a los jugadores de otros clientes):
     std::shared_ptr<PersonajeGui>& jugador;
-    std::shared_ptr<GameStateClient>& gamestate;
+    GameStateClient& gamestate;
     std::vector<PlatformGui>& plataformas;
 
     Escenario escenario;
@@ -34,7 +34,7 @@ private:
 
 public:
     Gui(Queue<msgAccion>& client_commands, std::shared_ptr<PersonajeGui>& jugador,
-        std::shared_ptr<GameStateClient>& gamestate, std::vector<PlatformGui>& plataformas);
+        GameStateClient& gamestate, std::vector<PlatformGui>& plataformas);
     ~Gui();
     bool setPosicionJugador(float, float);
     bool run(int h_window, int w_window, uint16_t client_id);

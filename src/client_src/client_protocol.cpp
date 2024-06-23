@@ -63,7 +63,7 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     return true;
 }
 
-bool ProtocolClient::recibir_escenario(std::shared_ptr<GameStateClient> gamestate) {
+bool ProtocolClient::recibir_escenario(GameStateClient& gamestate) {
 
     msgEscenario escenario(0);
     if (was_closed) {
@@ -76,7 +76,7 @@ bool ProtocolClient::recibir_escenario(std::shared_ptr<GameStateClient> gamestat
             return false;
         }
         socket_cliente.recvall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
-        gamestate->pushPlataformas(msg_plataforma);
+        gamestate.pushPlataformas(msg_plataforma);
     }
 
     return true;

@@ -5,7 +5,7 @@
 
 #include "../../common_src/msgToSent.h"
 
-GameStateClient::GameStateClient(std::shared_ptr<ClaseTexturas> & texturas, bool jugando)
+GameStateClient::GameStateClient(ClaseTexturas & texturas, bool jugando)
             :texturas(texturas),jugando(jugando) {}
 
 bool GameStateClient::obtener_estado_de_la_partida() { return jugando; }
@@ -30,7 +30,7 @@ PersonajeGui& GameStateClient::obtener_personaje(uint16_t client_id) {
 }
 
 void GameStateClient::pushPlataformas(msgPlataforma& msgplat){
-    PlatformGui platform(*texturas,msgplat);
+    PlatformGui platform(texturas,msgplat);
     plataformas.push_back(platform);
 }
 
@@ -39,13 +39,13 @@ void GameStateClient::pushPersonajes(msgPersonaje& msgpers) {
     uint8_t tipo = msgpers.tipo_personaje;
     switch (tipo) {
         case static_cast<uint8_t>(personajes::JAZZ):
-            personaje = std::make_shared<JazzGui>(*texturas, msgpers);
+            personaje = std::make_shared<JazzGui>(texturas, msgpers);
             break;
         case static_cast<uint8_t>(personajes::SPAZZ):
-            personaje = std::make_shared<SpazGui>(*texturas, msgpers);
+            personaje = std::make_shared<SpazGui>(texturas, msgpers);
             break;
         case static_cast<uint8_t>(personajes::LORI):
-            personaje = std::make_shared<LoriGui>(*texturas, msgpers);
+            personaje = std::make_shared<LoriGui>(texturas, msgpers);
             break;
         default:
             std::cerr << "Error: Tipo de personaje no válido" << std::endl;
@@ -61,13 +61,13 @@ void GameStateClient::pushEnemigos(msgEnemigo& msgenem){
     uint8_t tipo = msgenem.tipo;
     switch (tipo) {
         case static_cast<uint8_t>(TipoEnemigo::ENEMIGO1):
-            enemigo = std::make_shared<EnemigoGui1>(*texturas, msgenem);
+            enemigo = std::make_shared<EnemigoGui1>(texturas, msgenem);
             break;
         case static_cast<uint8_t>(TipoEnemigo::ENEMIGO2):
-            enemigo = std::make_shared<EnemigoGui2>(*texturas, msgenem);
+            enemigo = std::make_shared<EnemigoGui2>(texturas, msgenem);
             break;
         case static_cast<uint8_t>(TipoEnemigo::ENEMIGO3):
-            enemigo = std::make_shared<EnemigoGui3>(*texturas, msgenem);
+            enemigo = std::make_shared<EnemigoGui3>(texturas, msgenem);
             break;
         default:
             std::cerr << "Error: Tipo de enemigo no válido" << std::endl;

@@ -23,9 +23,9 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         window(Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                          screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)),
         renderer(Renderer(window, -1, SDL_RENDERER_ACCELERATED)),
-        texturas(std::make_shared<ClaseTexturas>(renderer)),
-        gamestate(std::make_shared<GameStateClient>(texturas,true)),
-        gui(client_commands, jugador, gamestate, gamestate->obtener_plataformas()) {}
+        texturas(renderer),
+        gamestate(texturas,true),
+        gui(client_commands, jugador, gamestate, gamestate.obtener_plataformas()) {}
 
 void Client::imprimir_portada() {
     std::ifstream file("../docs/portada.txt");
@@ -66,16 +66,16 @@ void Client::crear_personaje() {
     }
     if (personaje == "j") {
         jugador = std::make_shared<JazzGui>(
-                *texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2,(uint8_t) personajes::JAZZ,
-                4, texturas->findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
+                texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2,(uint8_t) personajes::JAZZ,
+                4, texturas.findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
     } else if (personaje == "s") {
-        jugador = std::make_shared<SpazGui>(*texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<SpazGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2,(uint8_t) personajes::SPAZZ, 
-                                            4, texturas->findFrame(std::string(SPAZ_STAND)));
+                                            4, texturas.findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
-        jugador = std::make_shared<LoriGui>(*texturas, renderer.GetOutputWidth() / 2,
+        jugador = std::make_shared<LoriGui>(texturas, renderer.GetOutputWidth() / 2,
                                             renderer.GetOutputHeight() / 2, (uint8_t) personajes::LORI,
-                                            4, texturas->findFrame(std::string(LORI_STAND)));
+                                            4, texturas.findFrame(std::string(LORI_STAND)));
     }
 }
 
@@ -202,15 +202,15 @@ void Client::jugar() {
         if (gamestate_new) {
             auto frame_start = steady_clock::now();
 
-            gamestate->actualizar_gamestate(*gamestate_new);
+            gamestate.actualizar_gamestate(*gamestate_new);
             renderer.Clear();
             PersonajeGui jugador_actual =
-                    gamestate->obtener_diccionario_de_personajes().find(client_id)->second;
+                    gamestate.obtener_diccionario_de_personajes().find(client_id)->second;
 
             bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(),
                                                jugador_actual.obtener_posicion_y());
             jugador->setAnimacion(jugador_actual.obtener_estado_actual(), flip);
-            gamestate->obtener_diccionario_de_personajes().erase(client_id);
+            gamestate.obtener_diccionario_de_personajes().erase(client_id);
             client_off = gui.run(screenHeight, screenWidth,client_id);
             if (client_off) {
                 return;
@@ -228,10 +228,10 @@ void Client::jugar() {
             std::this_thread::sleep_for(rest);
             frame_start += rate_ns;
 
-            if (gamestate->getJugando() == false) {
+            if (gamestate.getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
                 // TODO: aca se deberían de mostrar las estadísticas
-                mostrar_estadisticas(*gamestate);
+                mostrar_estadisticas(gamestate);
                 return;
             }
         }

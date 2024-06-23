@@ -18,7 +18,7 @@ class GameStateClient {
 private:
     bool jugando;
 
-    std::shared_ptr<ClaseTexturas>& texturas;
+    ClaseTexturas& texturas;
 
     std::vector<PlatformGui> plataformas;
 
@@ -28,7 +28,7 @@ private:
 
 
 public:
-    explicit GameStateClient(std::shared_ptr<ClaseTexturas>&,bool jugando);
+    explicit GameStateClient(ClaseTexturas&,bool jugando);
 
     bool obtener_estado_de_la_partida();
 
