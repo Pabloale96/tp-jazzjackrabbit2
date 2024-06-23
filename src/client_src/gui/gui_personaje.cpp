@@ -2,7 +2,7 @@
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
-        texturas(texturas), pos_x(posx), pos_y(posy), speed(speed), frames(frames) {
+        texturas(texturas), pos_x(posx), pos_y(posy), speed(speed), estado(0), frames(frames) {
     it = frames->begin();
 }
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
