@@ -2,9 +2,10 @@
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
-        texturas(texturas), pos_x(posx), pos_y(posy), speed(speed), frames(frames) {
-    it = frames->begin();
+        texturas(texturas), pos_x(posx), pos_y(posy), tipo(0), speed(speed), estado(1), animacion(), frames(frames), it(frames->begin()) {
+    //it = frames->begin();
 }
+
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         // puntos(ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
         // vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
@@ -13,25 +14,34 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100),
         //vida(VidaGui(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
         tipo(personaje.tipo_personaje),
-        estado(personaje.estado){
-    this->setFrames();
+        speed(5),
+        estado(personaje.estado), 
+        animacion(),
+        frames(texturas.findFrame(std::string(SPAZ_STAND))) {
+    //this->setFrames();
 }
+
 // estados() {}
 void PersonajeGui::setPosicion(float x, float y) {
     pos_x = x;
     pos_y = y;
 }
 
-void PersonajeGui::actualizar_personaje(const PersonajeGui& other){
+void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
     this->pos_x = other.obtener_posicion_x();
     this->pos_y = other.obtener_posicion_y();
     if (this->estado != other.obtener_estado_actual()) {
         this->estado = other.obtener_estado_actual();
         this->setFrames();
     } else {
-        this->it++;
-        if(this->it == frames->end()) {
+        if (frames && !frames->empty()) {
+            this->it++;
+            if (this->it == frames->end()) {
+                it = frames->begin();
+            }
+        } else {
             it = frames->begin();
+            //throw std::runtime_error("Error: frames is null or empty");
         }
     }
 }

@@ -6,7 +6,9 @@ Gui::Gui(Queue<msgAccion>& client_commands, std::shared_ptr<PersonajeGui>& jugad
         jugador(jugador),
         gamestate(gamestate),
         plataformas(plataformas),
-        escenario(Escenario(plataformas)) {}
+        escenario(Escenario(plataformas)), 
+        posicion_jugador_x(0), 
+        posicion_jugador_y(0) {}
 
 Gui::~Gui() {}
 

@@ -19,7 +19,7 @@
 #include "sockets.h"
 
 
-#define RATE 60
+#define RATE 30
 
 using std::chrono::duration;
 using std::chrono::nanoseconds;
