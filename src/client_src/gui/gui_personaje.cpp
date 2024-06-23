@@ -59,9 +59,6 @@ void PersonajeGui::setAnimacion(uint8_t estado, bool flip) {
     }
 }
 
-
-PersonajeGui::~PersonajeGui() {}
-
 void PersonajeGui::show(bool con_vida) { 
     if(con_vida) {
         vida.run();
