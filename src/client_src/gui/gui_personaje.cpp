@@ -59,6 +59,7 @@ void PersonajeGui::setAnimacion(uint8_t estado, bool flip) {
     }
 }
 
+
 PersonajeGui::~PersonajeGui() {}
 
 void PersonajeGui::show(bool con_vida) { 
@@ -76,7 +77,8 @@ SpazGui::SpazGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo,
 
 SpazGui::SpazGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg)  {
             this->setFrames();
-        }
+}
+
 SpazGui::~SpazGui() {}
 
 void SpazGui::setFrames() {
@@ -331,3 +333,5 @@ void LoriGui::setFrames() {
             break;
     }
 }
+
+PersonajeGui::~PersonajeGui() {}
