@@ -52,7 +52,7 @@ public:
 
     void enviar_id_partida(uint16_t id_partida);
 
-    bool recibir_escenario(std::shared_ptr<GameStateClient> gamestate);
+    bool recibir_escenario(GameStateClient& gamestate);
 
     bool confirmar_fin_lobby();
 

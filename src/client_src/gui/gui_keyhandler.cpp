@@ -12,8 +12,6 @@ bool KeyboardHandler::checkKeyPress(SDL_Keycode key) {
 bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const uint8_t& animacion) {
 
     SDL_Event event;
-    // definir N it para las animaciones de frame.
-    // dividite por X de la diapos que mostro leo.
     while (SDL_PollEvent(&event)) {
         msgAccion msg_to_sent;
         if (event.type == SDL_KEYDOWN) {
@@ -23,11 +21,12 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                 case SDLK_RIGHT:
                     if ((this->checkKeyPress(SDL_SCANCODE_LCTRL) ||
                          this->checkKeyPress(SDL_SCANCODE_RCTRL)) &&
-                        animacion != ANI_RUN_DERECHA) {
+                        animacion != (uint8_t) efectos::CORRIENDO_RAPIDO) {
                         msg_to_sent = msgAccion(
                                 static_cast<uint8_t>(acciones::MOVER_DERECHA_RAPIDO), true);
                         client_commands.push(msg_to_sent);
-                    } else if (animacion != ANI_MOVER_DERECHA) {
+                    } else if (animacion != (uint8_t) efectos::CORRIENDO || 
+                        animacion != (uint8_t) efectos::CORRIENDO_RAPIDO) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), true);
                         client_commands.push(msg_to_sent);
@@ -36,30 +35,38 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                 case SDLK_LEFT:
                     if ((this->checkKeyPress(SDL_SCANCODE_LCTRL) ||
                          this->checkKeyPress(SDL_SCANCODE_RCTRL)) &&
-                        animacion != ANI_RUN_IZQUIERDA) {
+                        animacion != (uint8_t) efectos::CORRIENDO_RAPIDO) {
                         msg_to_sent = msgAccion(
                                 static_cast<uint8_t>(acciones::MOVER_IZQUIERDA_RAPIDO), true);
                         client_commands.push(msg_to_sent);
-                    } else if (animacion != ANI_MOVER_IZQUIERDA) {
+                    } else if (animacion != (uint8_t) efectos::CORRIENDO || 
+                        animacion != (uint8_t) efectos::CORRIENDO_RAPIDO) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), true);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_UP:
-                    if (this->checkKeyPress(SDL_SCANCODE_A) && animacion != ANI_SALTAR_SHOOT) {
+                    if (this->checkKeyPress(SDL_SCANCODE_A) && animacion != (uint8_t) efectos::DISPARANDO_SALTANDO) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::SALTAR_DISPARANDO), true);
                         client_commands.push(msg_to_sent);
-                    } else if (animacion != ANI_SALTAR) {
+                    } else if (animacion != (uint8_t) efectos::SALTANDO) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), true);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_s:
-                    if (animacion != ANI_ESPECIAL) {
+                    if (animacion != (uint8_t) efectos::ACCION_ESPECIAL) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::ACCION_ESPECIAL), true);
+                        client_commands.push(msg_to_sent);
+                    }
+                    break;
+                case SDLK_a:
+                    if (animacion != (uint8_t) efectos::DISPARANDO) {
+                        msg_to_sent =
+                                msgAccion(static_cast<uint8_t>(acciones::DISPARAR), true);
                         client_commands.push(msg_to_sent);
                     }
                     break;
@@ -67,28 +74,34 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
         } else if (event.type == SDL_KEYUP) {
             switch (event.key.keysym.sym) {
                 case SDLK_RIGHT:
-                    if (animacion != ANI_STAND) {
+                    if (animacion != (uint8_t) efectos::CORRIENDO) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_LEFT:
-                    if (animacion != ANI_STAND) {
+                    if (animacion != (uint8_t) efectos::CORRIENDO) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_UP:
-                    if (animacion != ANI_STAND) {
+                    if (animacion != (uint8_t) efectos::SALTANDO) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_a:
-                    if (animacion != ANI_STAND) {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
+                    if (animacion != (uint8_t) efectos::DISPARANDO) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), false);
+                        client_commands.push(msg_to_sent);
+                    }
+                    break;
+                case SDLK_s:
+                    if (animacion != (uint8_t) efectos::DISPARANDO) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::ACCION_ESPECIAL), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;

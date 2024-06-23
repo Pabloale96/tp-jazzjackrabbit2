@@ -29,6 +29,7 @@ private:
     Surface beach{Surface(IMG_PATH "/beach.png")};
     Surface enemigos{Surface(IMG_PATH "/enemigos.png")};
     Surface items{Surface(IMG_PATH "/items.png")};
+    Surface font{Surface(IMG_PATH "/font.png")};
 
     Texture jazz_tex{Texture(renderer,
                              jazz.SetColorKey(true, SDL_MapRGB(jazz.Get()->format, 44, 102, 150)))};
@@ -44,6 +45,9 @@ private:
 
     Texture items_tex{Texture(
             renderer, items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 44, 102, 150)))};
+            
+    Texture font_text{Texture(
+            renderer, font.SetColorKey(true, SDL_MapRGB(font.Get()->format, 0, 128, 255)))};
 
     std::map<std::string, std::shared_ptr<std::vector<Frame>>> frames_map;
     std::map<int, Frame> frame_number;
@@ -59,13 +63,30 @@ public:
     Texture& beach_text();
 
     std::shared_ptr<std::vector<Frame>>& findFrame(std::string);
+    Frame& findFrame(int);
 
     void add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                            int frame_count, Texture& textura_del_personaje, const std::string& key);
 
     void addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>>& frame);
+    void addFrames(const int& key, Frame& frame);
 
     // Definiciones de frames:
+
+    void add1();
+    void add2();
+    void add3();
+    void add4();
+    void add5();
+    void add6();
+    void add7();
+    void add8();
+    void add9();
+    void add0();
+
+    void iconSpaz();
+    void iconJazz();
+    void iconLori();
 
     void enemigo1();
     void enemigo2();

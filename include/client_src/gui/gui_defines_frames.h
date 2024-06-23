@@ -13,6 +13,10 @@
 #define ANI_SALTAR_SHOOT 9
 #define ANI_ESPECIAL 10
 
+#define ICON_LORI "iconLori"
+#define ICON_SPAZ "iconSpaz"
+#define ICON_JAZZ "iconJazz"
+
 
 #define ENEMIGO1_GUI "enemigo1"
 #define ENEMIGO2_GUI "enemigo2"

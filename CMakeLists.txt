@@ -31,7 +31,6 @@ include_directories(${PROJECT_BINARY_DIR}/include)
 # Add executable for the client
 add_executable(client
   src/client_src/client.cpp
-  src/client_src/dict_monitor.cpp
   src/client_src/game_state_client.cpp
   src/client_src/gui/gui.cpp
   src/client_src/main.cpp
@@ -48,6 +47,7 @@ add_executable(client
   src/client_src/gui/gui_escenario.cpp
   src/client_src/gui/gui_personaje.cpp
   src/client_src/gui/gui_balas.cpp
+  src/client_src/gui/gui_vida.cpp
   src/client_src/gui/gui_coleccionables.cpp
   src/client_src/gui/gui_clase_texturas.cpp
   src/client_src/gui/gui_enemigos.cpp
@@ -139,7 +139,6 @@ add_executable(protocol_server_test
 add_executable(test_consola_cliente
   tests/test_consola_cliente.cpp
   src/client_src/client.cpp
-  src/client_src/dict_monitor.cpp
   src/client_src/game_state_client.cpp
   src/client_src/gui/gui.cpp
   src/common_src/vector_monitor.cpp
@@ -155,6 +154,7 @@ add_executable(test_consola_cliente
   src/client_src/gui/gui_escenario.cpp
   src/client_src/gui/gui_personaje.cpp
   src/client_src/gui/gui_balas.cpp
+  src/client_src/gui/gui_vida.cpp
   src/client_src/gui/gui_coleccionables.cpp
   src/client_src/gui/gui_clase_texturas.cpp
   src/client_src/gui/gui_enemigos.cpp

@@ -10,7 +10,7 @@
 
 ClientReceiver::ClientReceiver(ProtocolClient& protocolo_cliente, uint16_t& client_id,
                                Queue<std::shared_ptr<GameStateClient>>& server_msg,
-                               std::shared_ptr<ClaseTexturas>& texturas):
+                               ClaseTexturas& texturas):
         protocolo_cliente(protocolo_cliente),
         client_id(client_id),
         server_msg(server_msg),

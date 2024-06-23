@@ -7,20 +7,45 @@ Texture& ClaseTexturas::beach_text() { return beach_tex; }
 
 std::shared_ptr<std::vector<Frame>>& ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
+    if (it== frames_map.end())
+    {
+        std::cout<< "No se encontro los frames" << std::endl;
+    }
+    
+    return it->second;
+}
+
+Frame& ClaseTexturas::findFrame(int key) {
+    auto it = frame_number.find(key);
+    if (it== frame_number.end())
+    {
+        std::cout<< "No se encontro los frames" << std::endl;
+    }
+    
     return it->second;
 }
 
 // Definiciones de la clase, de aca para abajo solo se toca
 // si se cambio el sprite:
 
-ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
+ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render), frames_map() {
 
     this->plataformaTipo1();
 
-    this->enemigo1();
-    this->enemigo2();
-    this->enemigo3();
+    this->add1();
+    this->add2();
+    this->add3();
+    this->add4();
+    this->add5();
+    this->add6();
+    this->add7();
+    this->add8();
+    this->add9();
+    this->add0();
 
+    this->iconSpaz();
+    this->iconJazz();
+    this->iconLori();
 
     this->enemigo1();
     this->enemigo2();
@@ -91,6 +116,9 @@ ClaseTexturas::~ClaseTexturas() {}
 void ClaseTexturas::addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>>& frame) {
     frames_map.emplace(key, frame);
 }
+void ClaseTexturas::addFrames(const int& key, Frame& frame) {
+    frame_number.emplace(key, frame);
+}
 
 void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                                       int frame_count, Texture& textura_del_personaje,
@@ -103,6 +131,137 @@ void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frame
     }
     addFrames(key, frame_aux);
 }
+
+
+
+void ClaseTexturas::add1(){
+    int x_frame = 279;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 19;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(1, frame);
+
+}
+void ClaseTexturas::add2(){
+    int x_frame = 343;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 37;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(2, frame);
+}
+void ClaseTexturas::add3(){
+    int x_frame = 403;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 31;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(3, frame);
+}
+void ClaseTexturas::add4(){
+    int x_frame = 465;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 31;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(4, frame);
+}
+void ClaseTexturas::add5(){
+    int x_frame = 526;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 30;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(5, frame);
+}
+void ClaseTexturas::add6(){
+    int x_frame = 586;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 27;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(6, frame);
+}
+void ClaseTexturas::add7(){
+    int x_frame = 648;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 25;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(7, frame);
+}
+void ClaseTexturas::add8(){
+    int x_frame = 707;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 29;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(8, frame);
+}
+void ClaseTexturas::add9(){
+    int x_frame = 769;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 25;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(9, frame);
+}
+void ClaseTexturas::add0(){
+    int x_frame = 222;
+    int y_frame = 440;
+    int w_frame = 41;
+    int h_frame = 32;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(0, frame);
+}
+
+
+void ClaseTexturas::iconSpaz() {
+    
+    int x_frame = 3;
+    int y_frame = 3203;
+    int w_frame = 39;
+    int h_frame = 34;
+
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
+    Frame frame(renderer, spaz_tex, x_frame, y_frame, w_frame, h_frame);
+    frame_aux->emplace_back(frame);
+    addFrames(ICON_SPAZ, frame_aux);
+}
+void ClaseTexturas::iconJazz() {
+    int x_frame = 1;
+    int y_frame = 3249;
+    int w_frame = 38;
+    int h_frame = 36;
+
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
+    Frame frame(renderer, jazz_tex, x_frame, y_frame, w_frame, h_frame);
+    frame_aux->emplace_back(frame);
+    addFrames(ICON_JAZZ, frame_aux);
+}
+void ClaseTexturas::iconLori() {
+    int x_frame = 2;
+    int y_frame = 2907;
+    int w_frame = 46;
+    int h_frame = 39;
+
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
+    Frame frame(renderer, lori_tex, x_frame, y_frame, w_frame, h_frame);
+    frame_aux->emplace_back(frame);
+    addFrames(ICON_LORI, frame_aux);
+}
+
 
 void ClaseTexturas::balas1() {
 

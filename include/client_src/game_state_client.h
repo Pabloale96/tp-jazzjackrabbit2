@@ -11,7 +11,6 @@
 #include "gui/gui_coleccionables.h"
 #include "gui/gui_platform.h"
 
-#include "dict_monitor.h"
 #include "msgToSent.h"
 #include "queue.h"
 
@@ -19,7 +18,7 @@ class GameStateClient {
 private:
     bool jugando;
 
-    std::shared_ptr<ClaseTexturas>& texturas;
+    ClaseTexturas& texturas;
 
     std::vector<PlatformGui> plataformas;
 
@@ -29,7 +28,7 @@ private:
 
 
 public:
-    explicit GameStateClient(std::shared_ptr<ClaseTexturas>&,bool jugando);
+    explicit GameStateClient(ClaseTexturas&,bool jugando);
 
     bool obtener_estado_de_la_partida();
 
@@ -41,7 +40,7 @@ public:
 
     PersonajeGui& obtener_personaje(uint16_t client_id);
 
-    bool getJugando() { return jugando; }
+    bool getJugando() const { return jugando; }
 
     int getSizePersonajes() { return diccionario_de_personajes.size(); }
 
