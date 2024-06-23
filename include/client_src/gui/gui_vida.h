@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <stack> 
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -19,16 +20,14 @@ protected:
     ClaseTexturas & texturas;
 
     uint16_t vida = 0;
-
-    int speed = 0;
-
-    std::shared_ptr<std::vector<Frame>> frames;
-    std::vector<Frame>::iterator it;
+    uint16_t tipo = 0;
 
 public:
-    explicit VidaGui(uint16_t vida, std::shared_ptr<std::vector<Frame>> frame);
+    explicit VidaGui(ClaseTexturas & texturas, uint16_t vida, uint8_t tipo);
     ~VidaGui();
 
-    void run(int speed);
+    void run();
+    void show_icon();
+    void show_vida();
 };
 #endif

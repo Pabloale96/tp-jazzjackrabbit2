@@ -66,16 +66,16 @@ void Client::crear_personaje() {
     }
     if (personaje == "j") {
         jugador = std::make_shared<JazzGui>(
-                *texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2, 4,
-                texturas->findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
+                *texturas, renderer.GetOutputWidth() / 2, renderer.GetOutputHeight() / 2,(uint8_t) personajes::JAZZ,
+                4, texturas->findFrame(std::string(JAZZ_STAND)));  // 4 ponerlo como define
     } else if (personaje == "s") {
         jugador = std::make_shared<SpazGui>(*texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, 4,
-                                            texturas->findFrame(std::string(SPAZ_STAND)));
+                                            renderer.GetOutputHeight() / 2,(uint8_t) personajes::SPAZZ, 
+                                            4, texturas->findFrame(std::string(SPAZ_STAND)));
     } else if (personaje == "l") {
         jugador = std::make_shared<LoriGui>(*texturas, renderer.GetOutputWidth() / 2,
-                                            renderer.GetOutputHeight() / 2, 4,
-                                            texturas->findFrame(std::string(LORI_STAND)));
+                                            renderer.GetOutputHeight() / 2, (uint8_t) personajes::LORI,
+                                            4, texturas->findFrame(std::string(LORI_STAND)));
     }
 }
 

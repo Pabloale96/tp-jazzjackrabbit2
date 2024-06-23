@@ -1,23 +1,30 @@
 #include "../../include/client_src/gui/gui_personaje.h"
 
-PersonajeGui::PersonajeGui(ClaseTexturas& texturas, int posx, int posy, int speed,
+PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
-        texturas(texturas), pos_x(posx), pos_y(posy), speed(speed), estado(0), frames(frames) {
+        texturas(texturas),
+        pos_x(posx),
+        pos_y(posy),
+        tipo(),
+        speed(speed),
+        estado(0),
+        vida(texturas,10,tipo),
+        animacion(),
+        frames(frames) {
     it = frames->begin();
 }
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         // puntos(ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
-        // vida(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
         texturas(texturas),
-        pos_x(ntohs(personaje.personaje[POS_POSX_PERSONAJE]) / 100),
-        pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100),
-        //vida(VidaGui(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
+        pos_x((float) ntohs(personaje.personaje[POS_POSX_PERSONAJE]) / 100.0),
+        pos_y((float) ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100.0),
         tipo(personaje.tipo_personaje),
+        speed(5),
+        vida(texturas, 0,tipo),
         estado(personaje.estado),
-        frames(nullptr),
-        it(nullptr){
-    this->setFrames();
-}
+        animacion(),
+        frames(texturas.findFrame(SPAZ_STAND)),
+        it(frames->begin()){}
 // estados() {}
 void PersonajeGui::setPosicion(float x, float y) {
     pos_x = x;
@@ -48,16 +55,18 @@ void PersonajeGui::setAnimacion(uint8_t estado, bool flip) {
 
 PersonajeGui::~PersonajeGui() {}
 
-void PersonajeGui::show() { 
-    
+void PersonajeGui::show(bool con_vida) { 
+    if(con_vida) {
+        vida.run();
+    }
     animacion.run(pos_x, pos_y, speed, frames, it);
 }
 
 void PersonajeGui::setFrames() {}
 
-SpazGui::SpazGui(ClaseTexturas& texturas, int posx, int posy, int speed,
-                 std::shared_ptr<std::vector<Frame>>& frames):
-        PersonajeGui(texturas, posx, posy, speed, frames) {}
+SpazGui::SpazGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo,
+        int speed, std::shared_ptr<std::vector<Frame>>& frames):
+        PersonajeGui(texturas, posx, posy, tipo, speed, frames) {}
 
 SpazGui::SpazGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg)  {
             this->setFrames();
@@ -142,13 +151,14 @@ void SpazGui::setFrames() {
     }
 }
 
-JazzGui::JazzGui(ClaseTexturas& texturas, int posx, int posy, int speed,
-                 std::shared_ptr<std::vector<Frame>>& frames):
-        PersonajeGui(texturas, posx, posy, speed, frames) {
-            this->setFrames();
-        }
+JazzGui::JazzGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo,
+        int speed, std::shared_ptr<std::vector<Frame>>& frames):
+        PersonajeGui(texturas, posx, posy, tipo, speed, frames) {}
 
-JazzGui::JazzGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg) {}
+JazzGui::JazzGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg) {
+    this->setFrames();
+}
+
 JazzGui::~JazzGui() {}
 
 void JazzGui::setFrames() {
@@ -229,9 +239,9 @@ void JazzGui::setFrames() {
     }
 }
 
-LoriGui::LoriGui(ClaseTexturas& texturas, int posx, int posy, int speed,
-                 std::shared_ptr<std::vector<Frame>>& frames):
-        PersonajeGui(texturas, posx, posy, speed, frames) {}
+LoriGui::LoriGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo,
+        int speed, std::shared_ptr<std::vector<Frame>>& frames):
+        PersonajeGui(texturas, posx, posy, tipo, speed, frames) {}
 
 LoriGui::LoriGui(ClaseTexturas& texturas, msgPersonaje& msg): PersonajeGui(texturas, msg) {
             this->setFrames();
