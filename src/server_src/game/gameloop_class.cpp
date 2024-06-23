@@ -63,12 +63,11 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {}
-            if (comando) {
-                comando->ejecutar(this->game);
+            while (client_commands.try_pop(comando)) {
+                if (comando) {
+                    comando->ejecutar(this->game);
+                }                
             }
-
-
             game.actualizar(obtener_tiempo_restante());
             broadcastear();
 
@@ -106,7 +105,7 @@ std::chrono::seconds GameLoop::obtener_tiempo_restante() {
 void GameLoop::broadcastear() {
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    nuevo_gamestate.imprimir_mensaje();
+    // nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 
