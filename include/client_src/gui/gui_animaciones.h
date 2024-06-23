@@ -12,8 +12,8 @@
 
 class Animacion {
 private:
-    bool flip = false;
-    int contador = 0;
+    bool flip;
+    int contador;
 
 public:
     Animacion();

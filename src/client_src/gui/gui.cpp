@@ -32,7 +32,6 @@ bool Gui::run(int h_window, int w_window, uint16_t client_id) {
     escenario.show(posicion_jugador_x, posicion_jugador_y, h_window, w_window);
     
     for (auto& [id, enemigo]: gamestate->obtener_diccionario_de_enemigos()) {        
-        if(id == client_id) continue;
         float x = (enemigo.obtener_posicion_x() - posicion_jugador_x) *SCALING_VALUE_PIXEL_X + h_window/2; 
         float y = (enemigo.obtener_posicion_y() - posicion_jugador_y) *SCALING_VALUE_PIXEL_Y + w_window/2; 
         enemigo.setPosicion(x,y);
@@ -44,7 +43,9 @@ bool Gui::run(int h_window, int w_window, uint16_t client_id) {
     }
     
     for (auto& [id, personaje]: gamestate->obtener_diccionario_de_personajes()) {        
-        if(id == client_id) continue;
+        if(id == client_id) {
+            continue;
+        }
         float x = (personaje.obtener_posicion_x() - posicion_jugador_x) *SCALING_VALUE_PIXEL_X + h_window/2; 
         float y = (personaje.obtener_posicion_y() - posicion_jugador_y) *SCALING_VALUE_PIXEL_Y + w_window/2; 
         personaje.setPosicion(x,y);

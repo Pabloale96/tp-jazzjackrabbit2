@@ -1,9 +1,6 @@
 #include "../../include/client_src/gui/gui_animaciones.h"
 
-
-Animacion::~Animacion() {}
-
-Animacion::Animacion() {}
+Animacion::Animacion(): flip(false),contador(0) {}
 
 void Animacion::setFlip(bool flip) { this->flip = flip; }
 
@@ -20,3 +17,5 @@ void Animacion::run(float pos_x, float pos_y, int speed, std::shared_ptr<std::ve
     }
     contador++;
 }
+
+Animacion::~Animacion() {}

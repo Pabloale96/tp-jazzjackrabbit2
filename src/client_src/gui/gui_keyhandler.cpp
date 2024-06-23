@@ -12,8 +12,6 @@ bool KeyboardHandler::checkKeyPress(SDL_Keycode key) {
 bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const uint8_t& animacion) {
 
     SDL_Event event;
-    // definir N it para las animaciones de frame.
-    // dividite por X de la diapos que mostro leo.
     while (SDL_PollEvent(&event)) {
         msgAccion msg_to_sent;
         if (event.type == SDL_KEYDOWN) {

@@ -13,7 +13,9 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         pos_y(ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100),
         //vida(VidaGui(ntohs(personaje.personaje[POS_VIDA_PERSONAJE]))),
         tipo(personaje.tipo_personaje),
-        estado(personaje.estado){
+        estado(personaje.estado),
+        frames(nullptr),
+        it(nullptr){
     this->setFrames();
 }
 // estados() {}
@@ -41,69 +43,6 @@ void PersonajeGui::setAnimacion(uint8_t estado, bool flip) {
         this->estado = estado;
         this->setFrames();
         animacion.setFlip(flip);
-    }
-}
-
-void PersonajeGui::setAccion(uint8_t accion) {
-    switch (accion) {
-        case (uint8_t)efectos::IDLE:
-            this->estado = ANI_STAND;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::CORRIENDO:
-            this->estado = ANI_MOVER_DERECHA;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::CORRIENDO_RAPIDO:
-            this->estado = ANI_RUN_DERECHA;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::SALTANDO:
-            this->estado = ANI_SALTAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::CORRIENDO_SALTANDO:
-            this->estado = ANI_SALTAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::CAYENDO:
-            this->estado = ANI_SALTAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::INTOXICADO:
-            this->estado = ANI_SALTAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::HERIDO:
-            this->estado = ANI_SALTAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::MUERTO:
-            this->estado = ANI_SALTAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::DISPARANDO:
-            this->estado = ANI_DISPARAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::DISPARANDO_SALTANDO:
-            this->estado = ANI_DISPARAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::DISPARANDO_CORRIENDO:
-            this->estado = ANI_DISPARAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::DISPARANDO_CAYENDO:
-            this->estado = ANI_DISPARAR;
-            this->setFrames();
-            break;
-        case (uint8_t)efectos::ACCION_ESPECIAL:
-            this->estado = ANI_ESPECIAL;
-            this->setFrames();
-            break;
-        default:
-            break;
     }
 }
 

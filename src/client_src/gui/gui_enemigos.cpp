@@ -5,7 +5,9 @@ EnemigosGui::EnemigosGui(ClaseTexturas& texturas, msgEnemigo& msg):
         id(ntohs(msg.enemigo[POS_ID_ENEMIGO])),
         tipo(ntohs(msg.enemigo[POS_TIPO_ENEMIGO])),
         pos_x(ntohs(msg.enemigo[POS_POSX_ENEMIGO])/100),
-        pos_y(ntohs(msg.enemigo[POS_POSY_ENEMIGO])/100) {}
+        pos_y(ntohs(msg.enemigo[POS_POSY_ENEMIGO])/100),
+        frames(nullptr),
+        it(nullptr) {}
 
 EnemigosGui::~EnemigosGui() {}
 
@@ -21,10 +23,10 @@ void EnemigosGui::show() {
 void EnemigosGui::actualizar_enemigo(const EnemigosGui& other){
     this->pos_x = other.obtener_posicion_x();
     this->pos_y = other.obtener_posicion_y();
-    this->it++;
     if(this->it == frames->end()) {
         it = frames->begin();
     }
+    this->it++;
 }
 
 EnemigoGui1::EnemigoGui1(ClaseTexturas& texturas,msgEnemigo& msg): EnemigosGui(texturas,msg) {

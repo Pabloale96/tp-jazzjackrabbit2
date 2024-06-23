@@ -79,6 +79,8 @@ void GameStateClient::pushEnemigos(msgEnemigo& msgenem){
 
 void GameStateClient::actualizar_gamestate( const GameStateClient & other) {
 
+        this->jugando = other.getJugando();
+
         for (const auto& [id, personaje]: other.obtener_diccionario_de_personajes()) {    
             if (!this->diccionario_de_personajes.empty())  {
                 auto it = this->diccionario_de_personajes.find(id);
@@ -91,6 +93,7 @@ void GameStateClient::actualizar_gamestate( const GameStateClient & other) {
                 this->diccionario_de_personajes = other.obtener_diccionario_de_personajes();
             }
         }
+        
         for (auto& [id, enemigo]: other.obtener_diccionario_de_enemigos()) {       
             if (!this->diccionario_de_enemigos.empty())  {
                 auto it = this->diccionario_de_enemigos.find(id);

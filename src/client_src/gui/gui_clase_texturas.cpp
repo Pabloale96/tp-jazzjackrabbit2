@@ -7,20 +7,20 @@ Texture& ClaseTexturas::beach_text() { return beach_tex; }
 
 std::shared_ptr<std::vector<Frame>>& ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
+    if (it== frames_map.end())
+    {
+        std::cout<< "No se encontro los frames" << std::endl;
+    }
+    
     return it->second;
 }
 
 // Definiciones de la clase, de aca para abajo solo se toca
 // si se cambio el sprite:
 
-ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render) {
+ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render), frames_map() {
 
     this->plataformaTipo1();
-
-    this->enemigo1();
-    this->enemigo2();
-    this->enemigo3();
-
 
     this->enemigo1();
     this->enemigo2();
