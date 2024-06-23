@@ -17,41 +17,45 @@
 
 class EnemigosGui {
 protected:
-    std::shared_ptr<ClaseTexturas> texturas;
+    ClaseTexturas & texturas;
     uint16_t id = 0x00;
-    uint16_t tipo = 0x00;
-    uint16_t pos_x = 0x0000;
-    uint16_t pos_y = 0x0000;
+    uint8_t tipo = 0x00;
+    float pos_x;
+    float pos_y;
     int speed = 0;
-    Animacion enemigo;
+    Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
 
 public:
-    EnemigosGui() {}
-    explicit EnemigosGui(msgEnemigo&);
+    explicit EnemigosGui(ClaseTexturas&, msgEnemigo&);
     ~EnemigosGui();
     uint16_t get_id_enemigo() { return id; }
+    float obtener_posicion_x() const { return pos_x; }
+    float obtener_posicion_y() const { return pos_y; }
+    uint8_t obtener_tipo_personaje() const { return tipo; }
     void show();
+    void setPosicion(float x, float y);
+    void actualizar_enemigo(const EnemigosGui&);
 };
 class EnemigoGui1: public EnemigosGui {
 private:
 public:
-    explicit EnemigoGui1(msgEnemigo&);
+    explicit EnemigoGui1(ClaseTexturas&,msgEnemigo&);
     ~EnemigoGui1();
 };
 
 class EnemigoGui2: public EnemigosGui {
 private:
 public:
-    explicit EnemigoGui2(msgEnemigo&);
+    explicit EnemigoGui2(ClaseTexturas&,msgEnemigo&);
     ~EnemigoGui2();
 };
 
 class EnemigoGui3: public EnemigosGui {
 private:
 public:
-    explicit EnemigoGui3(msgEnemigo&);
+    explicit EnemigoGui3(ClaseTexturas&,msgEnemigo&);
     ~EnemigoGui3();
 };
 #endif

@@ -128,11 +128,12 @@ struct msgBalas {
 
 
 struct msgEnemigo {
+    uint8_t tipo = 0x00;
     uint16_t enemigo[SIZE_ARRAY_ENEMIGO] = {0};
 
     msgEnemigo() {}
 
-    msgEnemigo(uint16_t id, const Enemigo& enemi) {
+    msgEnemigo(uint16_t id, const Enemigo& enemi): tipo((uint8_t) enemi.get_tipo_enemigo()) {
         enemigo[POS_ID_ENEMIGO] = htons(id);
         enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
         // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales

@@ -10,6 +10,7 @@
 
 #include "gui_animaciones.h"
 #include "gui_clase_texturas.h"
+#include "gui_vida.h"
 #include "gui_defines_frames.h"
 #include "gui_frame.h"
 #include "msgToSent.h"
@@ -28,6 +29,7 @@ protected:
     uint8_t tipo;
     int speed = 0;
     uint8_t estado;
+    VidaGui vida;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;

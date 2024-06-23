@@ -52,7 +52,7 @@ public:
 
     void enviar_id_partida(uint16_t id_partida);
 
-    bool recibir_escenario(ClaseTexturas& texturas, std::vector<PlatformGui>& plataforma);
+    bool recibir_escenario(std::shared_ptr<GameStateClient> gamestate);
 
     bool confirmar_fin_lobby();
 
@@ -60,8 +60,7 @@ public:
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    void recibir_respuesta(ClaseTexturas& texturas, std::shared_ptr<GameStateClient>& gameState,
-                           uint16_t& client_id);
+    void recibir_respuesta(std::shared_ptr<GameStateClient>& gameState,uint16_t& client_id);
 
     void cerrar_socket();
 

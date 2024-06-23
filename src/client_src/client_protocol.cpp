@@ -63,8 +63,7 @@ bool ProtocolClient::crear_partida(std::string& nombre_partida) {
     return true;
 }
 
-bool ProtocolClient::recibir_escenario(ClaseTexturas& texturas,
-                                       std::vector<PlatformGui>& vec_plataforma) {
+bool ProtocolClient::recibir_escenario(std::shared_ptr<GameStateClient> gamestate) {
 
     msgEscenario escenario(0);
     if (was_closed) {
@@ -77,8 +76,7 @@ bool ProtocolClient::recibir_escenario(ClaseTexturas& texturas,
             return false;
         }
         socket_cliente.recvall(&msg_plataforma, sizeof(msg_plataforma), &was_closed);
-        PlatformGui plataforma(texturas, msg_plataforma);
-        vec_plataforma.push_back(plataforma);
+        gamestate->pushPlataformas(msg_plataforma);
     }
 
     return true;
@@ -167,8 +165,7 @@ void ProtocolClient::enviar_accion(msgAccion& msg) {
     socket_cliente.sendall(&msg, sizeof(msg), &was_closed);
 }
 
-void ProtocolClient::recibir_respuesta(ClaseTexturas& texturas,
-                                       std::shared_ptr<GameStateClient>& gameState,
+void ProtocolClient::recibir_respuesta(std::shared_ptr<GameStateClient>& gameState,
                                        uint16_t& client_id) {
     msgGameState msg;
     if (was_closed) {
@@ -186,7 +183,7 @@ void ProtocolClient::recibir_respuesta(ClaseTexturas& texturas,
             // return nullptr;
         }
         socket_cliente.recvall(&personaje, sizeof(personaje), &was_closed);
-        gameState->pushPersonajes(texturas, personaje);
+        gameState->pushPersonajes(personaje);
     }
 
     uint16_t cant_iteraciones_enemigos = ntohs(msg.cantidad_enemigos);

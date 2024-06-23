@@ -13,7 +13,6 @@
 class Animacion {
 private:
     bool flip = false;
-    int contador = 0;
 
 public:
     Animacion();
