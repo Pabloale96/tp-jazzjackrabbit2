@@ -74,33 +74,33 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
         } else if (event.type == SDL_KEYUP) {
             switch (event.key.keysym.sym) {
                 case SDLK_RIGHT:
-                    if (animacion != (uint8_t) efectos::CORRIENDO) {
+                    if (animacion != (uint8_t) efectos::IDLE) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_DERECHA), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_LEFT:
-                    if (animacion != (uint8_t) efectos::CORRIENDO) {
+                    if (animacion != (uint8_t) efectos::IDLE) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::MOVER_IZQUIERDA), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_UP:
-                    if (animacion != (uint8_t) efectos::SALTANDO) {
+                    if (animacion != (uint8_t) efectos::IDLE) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::SALTAR), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_a:
-                    if (animacion != (uint8_t) efectos::DISPARANDO) {
+                    if (animacion != (uint8_t) efectos::IDLE) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;
                 case SDLK_s:
-                    if (animacion != (uint8_t) efectos::DISPARANDO) {
+                    if (animacion != (uint8_t) efectos::IDLE) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::ACCION_ESPECIAL), false);
                         client_commands.push(msg_to_sent);
                     }
