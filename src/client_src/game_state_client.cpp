@@ -90,7 +90,7 @@ void GameStateClient::pushBalas(msgBalas& msg) {
             std::cerr << "Error: Tipo de personaje no válido" << std::endl;
             return;
     }
-    vector_balas.push_back(std::move(*bala));
+    vector_balas.push_back(std::move(bala));
 }
 
 void GameStateClient::pushEnemigos(msgEnemigo& msgenem) {
@@ -116,10 +116,11 @@ void GameStateClient::pushEnemigos(msgEnemigo& msgenem) {
 uint16_t GameStateClient::getTiempo() const { return tiempo; }
 
 
-void GameStateClient::actualizar_gamestate(const GameStateClient& other) {
+void GameStateClient::actualizar_gamestate(GameStateClient& other) {
 
     this->jugando = other.getJugando();
     this->tiempo = other.getTiempo();
+    this->vector_balas = other.obtener_balas();
 
     for (const auto& [id, personaje]: other.obtener_diccionario_de_personajes()) {
         if (!this->diccionario_de_personajes.empty()) {

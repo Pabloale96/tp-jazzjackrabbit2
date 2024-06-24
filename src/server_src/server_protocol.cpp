@@ -246,7 +246,7 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
         }
     }
 
-/*
+
     for (auto& pair: gameState.obtener_diccionario_de_collectibles()) {
         msgColecionables collectible(pair.first, pair.second);
 
@@ -255,7 +255,7 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
         }
         socket_cliente.sendall(&collectible, sizeof(collectible), &was_closed);
     }
-*/
+
 }
 
 void ProtocolServer::cerrar_socket_cliente() {

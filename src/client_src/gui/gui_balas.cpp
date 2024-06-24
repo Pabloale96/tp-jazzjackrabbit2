@@ -2,14 +2,16 @@
 
 BalasGui::BalasGui(ClaseTexturas& texturas, msgBalas& msg):
         texturas(texturas),
-        pos_x(ntohs(msg.balas[POS_POSX_BALA])),
-        pos_y(ntohs(msg.balas[POS_POSY_BALA])),
+        pos_x(ntohs(msg.balas[POS_POSX_BALA])/100),
+        pos_y(ntohs(msg.balas[POS_POSY_BALA])/100),
         frames(texturas.findFrame(BALA1)),
         it(frames->begin()) {}
 
 BalasGui::~BalasGui() {}
 
-void BalasGui::show() { animacion.run(pos_x, pos_y, speed, frames, it); }
+void BalasGui::show() { 
+        animacion.run(pos_x, pos_y, speed, frames, it); 
+}
 
 void BalasGui::setPosicion(float x, float y) {
     pos_x = x;

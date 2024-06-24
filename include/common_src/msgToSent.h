@@ -92,6 +92,7 @@ struct msgGameState {
 } __attribute__((packed));
 
 struct msgPersonaje {
+    uint8_t visible;
     uint8_t tipo_personaje;
     uint8_t tipo_arma;
     uint8_t estado;
@@ -124,6 +125,7 @@ struct msgPersonaje {
 
 struct msgColecionables {
     uint8_t tipo_coleccionable;
+    uint8_t visible;
     uint16_t coleccionables[SIZE_ARRAY_COLECCIONABLE];
 
     msgColecionables() {
@@ -157,6 +159,7 @@ struct msgBalas {
 
 
 struct msgEnemigo {
+    uint8_t visible;
     uint8_t tipo;
     uint16_t enemigo[SIZE_ARRAY_ENEMIGO];
 
