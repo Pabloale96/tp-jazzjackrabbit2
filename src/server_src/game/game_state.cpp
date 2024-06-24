@@ -18,6 +18,10 @@ std::map<uint16_t, Enemigo>& GameState::obtener_diccionario_de_enemigos() {
     return diccionario_de_enemigos;
 }
 
+std::map<uint16_t, std::shared_ptr<Collectible>>& GameState::obtener_diccionario_de_collectibles() {
+    return diccionario_de_collectibles;
+}
+
 std::shared_ptr<Personaje>& GameState::obtener_personaje(uint16_t client_id) {
     auto it = diccionario_de_personajes.find(client_id);
     if (it != diccionario_de_personajes.end()) {
@@ -91,7 +95,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }
-    /*
+    
     for (const auto& pair: diccionario_de_enemigos) {
         const Enemigo& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo.get_id_enemigo() << " :" << std::endl;
@@ -100,7 +104,15 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Puntos: " << enemigo.get_puntos() << std::endl;
         std::cout << "     - Vida: " << enemigo.get_vidas() << std::endl;
     }
-    */
+    
+    for (const auto& pair: diccionario_de_collectibles) {
+        const std::shared_ptr<Collectible>& collectible = pair.second;
+        std::cout << " >> Collectible " << collectible->obtener_id() << " :" << std::endl;
+        std::cout << "     - Posición: (" << collectible->obtener_posicion().get_posicion_x()
+                  << ", " << collectible->obtener_posicion().get_posicion_y() << ")." << std::endl;
+        std::cout << "     - Tipo: " << (unsigned)collectible->obtener_tipo_coleccionable()
+                  << std::endl;
+    }
 }
 
 

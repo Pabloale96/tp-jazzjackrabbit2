@@ -9,6 +9,7 @@
 
 #include "game_enemigo.h"
 #include "game_personaje.h"
+#include "game_collectible.h"
 
 
 struct msgPersonaje;
@@ -19,6 +20,7 @@ private:
     bool jugando;
     std::map<uint16_t, std::shared_ptr<Personaje>> diccionario_de_personajes;
     std::map<uint16_t, Enemigo> diccionario_de_enemigos;
+    std::map<uint16_t, std::shared_ptr<Collectible>> diccionario_de_collectibles;
 
 
 public:
@@ -30,6 +32,8 @@ public:
 
     std::map<uint16_t, Enemigo>& obtener_diccionario_de_enemigos();
 
+    std::map<uint16_t, std::shared_ptr<Collectible>>& obtener_diccionario_de_collectibles();
+
     std::shared_ptr<Personaje>& obtener_personaje(uint16_t client_id);
 
     bool getJugando() { return jugando; }
@@ -37,6 +41,8 @@ public:
     int getSizePersonajes() { return diccionario_de_personajes.size(); }
 
     int get_cantidad_de_enemigos() { return diccionario_de_enemigos.size(); }
+
+    int get_cantidad_de_collectibles() { return diccionario_de_collectibles.size(); }
 
     void setGameState(const uint8_t& state_partida) { jugando = (state_partida == 0x01); }
 
