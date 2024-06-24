@@ -2,6 +2,7 @@
 #define _GAME_MUNICION_H_
 
 #include "game_posicion.h"
+#include "game_platform.h"
 
 class Municion {
 private:
@@ -26,6 +27,8 @@ public:
     void mover();
 
     uint16_t obtener_id() const;
+
+    bool choco_con_pared(std::vector<Plataforma>& plataformas);
 };
 
 #endif

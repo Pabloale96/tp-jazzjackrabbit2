@@ -22,3 +22,11 @@ void Municion::mover() { posicion.mover(velocidad); }
 Posicion Municion::obtener_posicion() const { return posicion; }
 
 uint16_t Municion::obtener_id() const { return id; }
+
+bool Municion::choco_con_pared(std::vector<Plataforma>& plataformas) {
+        bool colisiono = false;
+        for (auto& plataforma : plataformas) {
+                colisiono = plataforma.estoy_adentro_de_la_plataforma(posicion.get_posicion_x(), posicion.get_posicion_y());
+        }
+        return colisiono;
+}

@@ -101,14 +101,14 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
     //std::cout << "ACTUALIZANDO Personaje: " << client_id << std::endl;
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     for (auto& municion: municiones_disparadas) {
-    //    std::cout << "Bala: " << municion.obtener_id() << std::endl;
-    //    std::cout << "PRE Posicion: (" << municion.obtener_posicion().get_posicion_x() << ", "
-    //                << municion.obtener_posicion().get_posicion_y() << ")." << std::endl;
-    //    std::cout << "PRE Velocidad: (" << municion.obtener_velocidad().obtener_velocidad_x() << ", "
-    //                << municion.obtener_velocidad().obtener_velocidad_y() << ")." << std::endl;
         municion.mover();
-    //    std::cout << "POST Posicion: (" << municion.obtener_posicion().get_posicion_x() << ", "
-    //                << municion.obtener_posicion().get_posicion_y() << ")." << std::endl;
+        if (municion.choco_con_pared(plataformas)) {
+            this->eliminar_bala(municion.obtener_id());
+        }
+        if (municion.obtener_x() == 0 || municion.obtener_x() == 99) {
+            // Si llego al borde del mapa la borro
+            this->eliminar_bala(municion.obtener_id());
+        }
     }
 
     if (vida == 0) {
