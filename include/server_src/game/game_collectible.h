@@ -11,19 +11,24 @@
 
 class Collectible {
 private:
+    uint16_t id_collectible;
     Posicion posicion;
     coleccionables tipo;
 
 public:
-    Collectible(uint16_t x, uint16_t y, coleccionables tipo): posicion(x, y), tipo(tipo) {}
+    Collectible(uint16_t id_collectible, uint16_t x, uint16_t y, coleccionables tipo):
+            id_collectible(id_collectible),
+            posicion(x, y), tipo(tipo) {}
 
-    // void actualizar();
+    uint16_t obtener_id() const { return id_collectible; }
 
     void set_posicion(uint16_t x, uint16_t y) { posicion.set_posicion(x, y); }
 
     Posicion obtener_posicion() const { return posicion; }
 
     coleccionables obtener_tipo_coleccionable() const { return tipo; }
+
+    virtual uint16_t obtener_premio() const = 0;
 
     virtual ~Collectible() {}
 };
@@ -33,11 +38,13 @@ private:
     uint16_t puntos;
 
 public:
-    Gema(uint16_t x, uint16_t y):
-            Collectible(x, y, coleccionables::GEMAS_TIPO),
+    Gema(uint16_t id_collectible, uint16_t x, uint16_t y):
+            Collectible(id_collectible, x, y, coleccionables::GEMAS_TIPO),
             puntos(YAMLConfig::getConfig().puntos_gemas) {}
 
-    uint16_t obtener_puntos() const { return puntos; }
+    uint16_t obtener_premio() const override {
+        return puntos;
+    }
 };
 
 class Moneda: public Collectible {
@@ -45,11 +52,11 @@ private:
     uint16_t puntos;
 
 public:
-    Moneda(uint16_t x, uint16_t y):
-            Collectible(x, y, coleccionables::MONEDA_TIPO),
+    Moneda(uint16_t id_collectible, uint16_t x, uint16_t y):
+            Collectible(id_collectible, x, y, coleccionables::MONEDA_TIPO),
             puntos(YAMLConfig::getConfig().puntos_monedas) {}
 
-    uint16_t obtener_puntos() const { return puntos; }
+    uint16_t obtener_premio() const override { return puntos; }
 };
 
 class Zanahoria: public Collectible {
@@ -57,11 +64,11 @@ private:
     uint16_t vidas;
 
 public:
-    Zanahoria(uint16_t x, uint16_t y):
-            Collectible(x, y, coleccionables::ZANAHORIA_TIPO),
+    Zanahoria(uint16_t id_collectible, uint16_t x, uint16_t y):
+            Collectible(id_collectible, x, y, coleccionables::ZANAHORIA_TIPO),
             vidas(YAMLConfig::getConfig().vidas_zanahorias) {}
 
-    uint16_t obtener_vidas() const { return vidas; }
+    uint16_t obtener_premio() const override { return vidas; }
 };
 
 #endif

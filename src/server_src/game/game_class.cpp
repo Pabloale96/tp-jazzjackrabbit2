@@ -150,6 +150,15 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
             std::cerr << "ERROR en enemigo de crear_nuevo_gamestate" << std::endl;
         }
     }
+
+    for (auto& collectible: escenario.obtener_collectibles()) {
+        if (collectible) {
+            gamestate.obtener_diccionario_de_collectibles().insert(
+                    std::make_pair(collectible->obtener_id(), collectible));
+        } else {
+            std::cerr << "ERROR en collectible de crear_nuevo_gamestate" << std::endl;
+        }
+    }
 }
 
 void Game::agregar_personaje(uint16_t client_id, uint8_t personaje,

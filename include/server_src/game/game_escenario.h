@@ -15,9 +15,15 @@ private:
     std::vector<Platform> plataformas;
     std::vector<Plataforma> plataformas_server;
     VectorMonitor<std::shared_ptr<Collectible>> collectibles;
+    uint16_t id_enemigo;
+    uint16_t id_collectible;
 
 public:
     GameEscenario();
+
+    uint16_t generar_id_enemigo();
+
+    uint16_t generar_id_collectible();
 
     void cargar_plataformas();
 
