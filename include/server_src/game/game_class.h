@@ -28,6 +28,8 @@ public:
 
     size_t obtener_cantidad_de_personajes();
 
+    size_t obtener_cantidad_de_colecionables();
+
     bool mover(const std::string& direccion, uint16_t client_id);
 
     void accion_especial(uint16_t client_id);

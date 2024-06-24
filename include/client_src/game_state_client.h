@@ -9,6 +9,7 @@
 #include "gui/gui_enemigos.h"
 #include "gui/gui_personaje.h"
 #include "gui/gui_coleccionables.h"
+#include "gui/gui_balas.h"
 #include "gui/gui_platform.h"
 
 #include "msgToSent.h"
@@ -16,15 +17,15 @@
 
 class GameStateClient {
 private:
-    bool jugando;
 
     ClaseTexturas& texturas;
-
+    bool jugando;
     std::vector<PlatformGui> plataformas;
 
     std::map<uint16_t, PersonajeGui> diccionario_de_personajes;
     std::map<uint16_t, EnemigosGui> diccionario_de_enemigos;
-    std::map<uint16_t, ColecionablesGui> diccionario_de_collecionables;
+    std::vector<ColecionablesGui> vector_coleccionables;
+    std::vector<BalasGui> vector_balas;
 
     uint16_t tiempo;
 
@@ -52,13 +53,22 @@ public:
 
     int get_cantidad_de_enemigos() { return diccionario_de_enemigos.size(); }
 
-    void setGameState(const uint8_t& state_partida) { jugando = ((unsigned)state_partida == 0x01); }
+    std::vector<BalasGui>& obtener_balas() { return vector_balas; }
+
+    void setGameState(const msgGameState& msg) { 
+        jugando = ((unsigned)msg.state_partida == 0x01); 
+        tiempo = ntohs(msg.tiempo);
+    }
 
     void pushPersonajes(msgPersonaje& msgpers);
 
     void pushEnemigos(msgEnemigo& msgenem);
 
     void pushPlataformas(msgPlataforma& msgplat);
+
+    void pushColeccionables(msgColecionables& msgcol);
+
+    void pushBalas(msgBalas& msgbal);
 
     void imprimir_cliente() {
         for (const auto& pair: diccionario_de_personajes) {

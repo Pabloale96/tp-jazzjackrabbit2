@@ -37,7 +37,7 @@ void GameStateClient::pushPlataformas(msgPlataforma& msgplat){
 void GameStateClient::showTiempo(int h_window){
     std::stack<uint16_t> pilaCifras;
     uint16_t tiempo_aux =tiempo;
-
+    int offset=0;
     if(tiempo_aux == 0){
         Frame frame = texturas.findFrame(tiempo_aux);
         frame.copy(0,h_window/2,0);
@@ -51,8 +51,9 @@ void GameStateClient::showTiempo(int h_window){
     // Transferir las cifras de la pila al vector.
     while (!pilaCifras.empty()) {
         Frame frame = texturas.findFrame(pilaCifras.top());
-        frame.copy(0,frame.getH()+h_window,0);
+        frame.copy(0,frame.getH()+offset+h_window/2,0);
         pilaCifras.pop();
+        offset+=frame.getH();
     }
 }
 
@@ -77,6 +78,23 @@ void GameStateClient::pushPersonajes(msgPersonaje& msgpers) {
     
 }
 
+void GameStateClient::pushBalas(msgBalas& msg) {
+    std::shared_ptr<BalasGui> bala;
+    uint8_t tipo = msg.tipo_bala;
+    switch (tipo) {
+        case (uint8_t) balas::BALA_TIPO1:
+            bala = std::make_shared<BalasGui1>(texturas, msg);
+            break;
+        case (uint8_t) balas::BALA_TIPO2:
+            bala = std::make_shared<BalasGui2>(texturas, msg);
+            break;
+        default:
+            std::cerr << "Error: Tipo de personaje no válido" << std::endl;
+            return;
+    }
+    vector_balas.push_back(std::move(*bala));
+    
+}
 
 void GameStateClient::pushEnemigos(msgEnemigo& msgenem){
     std::shared_ptr<EnemigosGui> enemigo;

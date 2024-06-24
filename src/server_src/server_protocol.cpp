@@ -205,7 +205,14 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed, uint
 void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id, bool& was_closed) {
     uint16_t tiempo = (uint16_t) gameState.obtener_diccionario_de_personajes().begin()
                                 ->second->obtener_tiempo_restante_de_partida().count();
-    msgGameState msg(gameState,tiempo, cliente_id);
+
+    size_t cantidadBalas = 0;
+    for (auto [id,personaje]: gameState.obtener_diccionario_de_personajes())
+    {
+        cantidadBalas += personaje->obtener_cantidad_balas();
+    }
+    
+    msgGameState msg(gameState,(uint16_t) cantidadBalas, tiempo, cliente_id);
     if (was_closed) {
         return;
     }
@@ -227,6 +234,20 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
         }
         socket_cliente.sendall(&enemigo, sizeof(enemigo), &was_closed);
     }
+
+    for (auto [id,personaje]: gameState.obtener_diccionario_de_personajes())
+    {
+        for (int i = 0; i < personaje->obtener_balas().size(); i++)
+        {
+            msgBalas bala(personaje->obtener_balas()[i]);
+            if (was_closed) {
+                return;
+            }
+            socket_cliente.sendall(&bala, sizeof(bala), &was_closed);
+        }
+    }
+
+    // Agregar collecionables.
 }
 
 void ProtocolServer::cerrar_socket_cliente() {

@@ -22,8 +22,9 @@ using SDL2pp::Window;
 
 class BalasGui {
 protected:
-    int pos_x;
-    int pos_y;
+    ClaseTexturas & texturas;
+    float pos_x;
+    float pos_y;
     int speed = 5;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
@@ -31,9 +32,30 @@ protected:
 
 
 public:
-    BalasGui(std::shared_ptr<std::vector<Frame>>, int, int);
+    BalasGui(ClaseTexturas &, msgBalas&);
     ~BalasGui();
     void show();
+    void setPosicion(float, float);
+    float obtener_posicion_x();
+    float obtener_posicion_y();
 };
+
+class BalasGui1 :public BalasGui {
+protected:
+
+public:
+    BalasGui1(ClaseTexturas &, msgBalas&);
+    ~BalasGui1();
+};
+
+
+class BalasGui2 :public BalasGui {
+protected:
+
+public:
+    BalasGui2(ClaseTexturas &, msgBalas&);
+    ~BalasGui2();
+};
+
 
 #endif

@@ -70,13 +70,13 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Velocidad: (" << personaje->obtener_velocidad().obtener_velocidad_x()
                   << ", " << personaje->obtener_velocidad().obtener_velocidad_y() << ")."
                   << std::endl;
-        /*
-        std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
-        std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
+        
+       // std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
+       // std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
         std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
-        std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
+        //std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
         std::cout << "     - Balas disparadas: " << personaje->obtener_balas().size() << std::endl;
-        */
+        
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }

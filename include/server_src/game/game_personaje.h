@@ -98,6 +98,8 @@ public:
 
     std::vector<Municion> obtener_balas() const;
 
+    size_t obtener_cantidad_balas() const;
+
     void disparar();
 
     void eliminar_bala(uint16_t id_bala);

@@ -20,8 +20,8 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         pos_y((float) ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100.0),
         tipo(personaje.tipo_personaje),
         speed(5),
-        vida(texturas, 0,tipo),
         estado(personaje.estado), 
+        vida(texturas, ntohs(personaje.personaje[POS_VIDA_PERSONAJE]),tipo),
         animacion(),
         frames(texturas.findFrame(std::string(SPAZ_STAND))) ,
         it(frames->begin()){}

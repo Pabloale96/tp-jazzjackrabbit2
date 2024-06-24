@@ -48,6 +48,8 @@ bool Game::disparar_municion(uint16_t client_id) {
     }
 }
 
+size_t Game::obtener_cantidad_de_colecionables() { return escenario.obtener_collectibles().size(); }
+
 void Game::chequear_colisiones() {
     for (auto& personaje: this->personajes) {
         chequear_colisiones_personaje_con_plataforma(*personaje);

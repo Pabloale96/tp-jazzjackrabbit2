@@ -76,13 +76,16 @@ struct msgGameState {
         cantidad_enemigos = 0x00;
     }
 
-    msgGameState(GameState& gameState, uint16_t tiempo,uint16_t client_id) {
+    msgGameState(GameState& gameState,uint16_t cantidadBalas, uint16_t tiempo,uint16_t client_id) {
         memset(this, 0, sizeof(*this));
         header = MSG_HEADER;
         state_partida = gameState.getJugando() ? 0x01 : 0x00;
         this->client_id = htons(client_id);
+        this->tiempo = htons(tiempo);
         cantidad_personajes = htons(gameState.getSizePersonajes());
         cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
+        //cantidad_colecionables = htons(gameState.obtener_cantidad_de_colecionables());
+        cantidad_balas = htons(cantidadBalas);
     }
 } __attribute__((packed));
 
