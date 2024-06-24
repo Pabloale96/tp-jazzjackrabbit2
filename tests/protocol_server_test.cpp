@@ -68,6 +68,19 @@ TEST(ProtocolServerTest, TestRecibirNombrePartida) {
     ASSERT_EQ(nombre_recibido, "partida1");
 }
 
+
+/*
+TEST(ProtocolServerTest, TestEnviarEscenario) {
+    Socket server("8086");
+    Socket cliente = server.accept();
+    ProtocolServer protocolServer(std::move(cliente));
+    bool was_closed = false;
+    Game game(1, 1, 1);
+    protocolServer.enviar_escenario(game, was_closed);
+}
+*/
+
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

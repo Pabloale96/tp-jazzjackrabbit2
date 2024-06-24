@@ -6,7 +6,7 @@
 #include "../../common_src/msgToSent.h"
 
 GameState::GameState(uint16_t partida_id, bool jugando):
-        partida_id(partida_id), jugando(jugando), diccionario_de_personajes() {}
+        partida_id(partida_id), jugando(jugando), diccionario_de_personajes(), diccionario_de_enemigos(), diccionario_de_collectibles() {}
 
 bool GameState::obtener_estado_de_la_partida() { return jugando; }
 
@@ -14,7 +14,7 @@ std::map<uint16_t, std::shared_ptr<Personaje>>& GameState::obtener_diccionario_d
     return diccionario_de_personajes;
 }
 
-std::map<uint16_t, Enemigo>& GameState::obtener_diccionario_de_enemigos() {
+std::map<uint16_t, std::shared_ptr<Enemigo>>& GameState::obtener_diccionario_de_enemigos() {
     return diccionario_de_enemigos;
 }
 
@@ -97,12 +97,12 @@ void GameState::imprimir_mensaje() {
     }
     
     for (const auto& pair: diccionario_de_enemigos) {
-        const Enemigo& enemigo = pair.second;
-        std::cout << " >> Enemigo " << enemigo.get_id_enemigo() << " :" << std::endl;
-        std::cout << "     - Posición: (" << enemigo.get_posicion_enemigo().get_posicion_x() << ", "
-                  << enemigo.get_posicion_enemigo().get_posicion_y() << ")." << std::endl;
-        std::cout << "     - Puntos: " << enemigo.get_puntos() << std::endl;
-        std::cout << "     - Vida: " << enemigo.get_vidas() << std::endl;
+        const std::shared_ptr<Enemigo>& enemigo = pair.second;
+        std::cout << " >> Enemigo " << enemigo->get_id_enemigo() << " :" << std::endl;
+        std::cout << "     - Posición: (" << enemigo->get_posicion_enemigo().get_posicion_x() << ", "
+                  << enemigo->get_posicion_enemigo().get_posicion_y() << ")." << std::endl;
+        std::cout << "     - Puntos: " << enemigo->get_puntos() << std::endl;
+        std::cout << "     - Vida: " << enemigo->get_vidas() << std::endl;
     }
     
     for (const auto& pair: diccionario_de_collectibles) {

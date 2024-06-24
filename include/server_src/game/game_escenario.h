@@ -11,9 +11,9 @@
 
 class GameEscenario {
 private:
-    VectorMonitor<std::shared_ptr<Enemigo>> enemigos;
     std::vector<Platform> plataformas;
     std::vector<Plataforma> plataformas_server;
+    VectorMonitor<std::shared_ptr<Enemigo>> enemigos;
     VectorMonitor<std::shared_ptr<Collectible>> collectibles;
     uint16_t id_enemigo;
     uint16_t id_collectible;
@@ -41,13 +41,13 @@ public:
 
     void actualizar_collectibles();
 
-    std::vector<std::shared_ptr<Enemigo>>& obtener_enemigos();
+    const VectorMonitor<std::shared_ptr<Enemigo>>& obtener_enemigos();
 
     std::vector<Platform>& obtener_plataformas();
 
     std::vector<Plataforma>& obtener_plataformas_server() { return plataformas_server; }
 
-    std::vector<std::shared_ptr<Collectible>>& obtener_collectibles();
+    const VectorMonitor<std::shared_ptr<Collectible>>& obtener_collectibles();
 
     ~GameEscenario();
 };

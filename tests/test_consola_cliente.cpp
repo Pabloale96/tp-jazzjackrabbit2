@@ -49,6 +49,17 @@ TEST(ProtocolClientTest, TestCrearPartida) {
     ASSERT_EQ(se_envio_nombre, true);
 }
 
+
+/*
+TEST(ProtocolClientTest, TestRecibirEscenario) {
+    ProtocolClient protocolClient = crearProtocoloCliente("127.0.0.7'", "8086");
+    GameStateClient gamestate;
+    bool se_recibio_escenario = protocolClient.recibir_escenario(gamestate);
+    ASSERT_EQ(se_recibio_escenario, true);
+}
+*/
+
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

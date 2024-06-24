@@ -6,25 +6,19 @@
 
 #define CALCULO_HIPO(X, Y) (sqrt((X) * (X) + (Y) * (Y)))
 
-GameEscenario::GameEscenario() {
+GameEscenario::GameEscenario() : plataformas(), plataformas_server(), enemigos(), collectibles(), id_enemigo(0), id_collectible(0) {
     std::cout << "Creando escenario" << std::endl;
     cargar_plataformas();
     cargar_enemigos();
     cargar_collectibles();
-    id_enemigo = 0;
-    id_collectible = 0;
 }
 
 uint16_t GameEscenario::generar_id_enemigo() {
-    uint16_t nuevo_id = id_enemigo;
-    id_enemigo++;
-    return nuevo_id;
+    return id_enemigo++;
 }
 
 uint16_t GameEscenario::generar_id_collectible() {
-    uint16_t nuevo_id = id_collectible;
-    id_collectible++;
-    return nuevo_id;
+    return id_collectible++;
 }
 
 void GameEscenario::cargar_plataformas() {
@@ -194,14 +188,14 @@ void GameEscenario::actualizar_collectibles() {
     }
 }
 
-std::vector<std::shared_ptr<Enemigo>>& GameEscenario::obtener_enemigos() {
-    return enemigos.get_vector();
+const VectorMonitor<std::shared_ptr<Enemigo>>& GameEscenario::obtener_enemigos() {
+    return enemigos;
 }
 
 std::vector<Platform>& GameEscenario::obtener_plataformas() { return plataformas; }
 
-std::vector<std::shared_ptr<Collectible>>& GameEscenario::obtener_collectibles() {
-    return collectibles.get_vector();
+const VectorMonitor<std::shared_ptr<Collectible>>& GameEscenario::obtener_collectibles() {
+    return collectibles;
 }
 
 GameEscenario::~GameEscenario() = default;

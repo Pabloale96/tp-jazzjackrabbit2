@@ -133,28 +133,44 @@ void Game::actualizar_personajes(std::chrono::seconds tiempo_restante_de_partida
 void Game::actualizar_escenario() { return escenario.actualizar_escenario(); }
 
 void Game::crear_nuevo_gamestate(GameState& gamestate) {
-    for (const auto& personaje: personajes) {
+    for (const auto& personaje : personajes) {
         if (personaje) {
-            gamestate.obtener_diccionario_de_personajes().insert(
-                    std::make_pair(personaje->obtener_personaje_id(), std::move(personaje)));
+            auto personaje_id = personaje->obtener_personaje_id();
+            if (personaje_id) { // Verificar si personaje_id es válido
+                gamestate.obtener_diccionario_de_personajes().insert(
+                    std::make_pair(personaje_id, std::move(personaje))
+                );
+            } else {
+                std::cerr << "ERROR: personaje_id inválido en crear_nuevo_gamestate" << std::endl;
+            }
         } else {
             std::cerr << "ERROR en personaje de crear_nuevo_gamestate" << std::endl;
         }
     }
 
-    for (auto& enemigo: escenario.obtener_enemigos()) {
+    for (const auto& enemigo : escenario.obtener_enemigos()) {
         if (enemigo) {
-            gamestate.obtener_diccionario_de_enemigos().insert(
-                    std::make_pair(enemigo->get_id_enemigo(), *enemigo));
+            auto enemigo_id = enemigo->get_id_enemigo();
+            //if (enemigo_id) {
+                gamestate.obtener_diccionario_de_enemigos().insert(
+                    std::make_pair(enemigo_id, std::move(enemigo)));
+            //} else {
+            //    std::cerr << "ERROR: enemigo_id inválido en crear_nuevo_gamestate" << std::endl;
+           // }
         } else {
             std::cerr << "ERROR en enemigo de crear_nuevo_gamestate" << std::endl;
         }
     }
 
-    for (auto& collectible: escenario.obtener_collectibles()) {
+    for (const auto& collectible : escenario.obtener_collectibles()) {
         if (collectible) {
-            gamestate.obtener_diccionario_de_collectibles().insert(
-                    std::make_pair(collectible->obtener_id(), collectible));
+            auto collectible_id = collectible->obtener_id();
+           // if (collectible_id) {
+                gamestate.obtener_diccionario_de_collectibles().insert(
+                    std::make_pair(collectible_id, std::move(collectible)));
+        //    } else {
+          //      std::cerr << "ERROR: collectible_id inválido en crear_nuevo_gamestate" << std::endl;
+        //    }
         } else {
             std::cerr << "ERROR en collectible de crear_nuevo_gamestate" << std::endl;
         }
