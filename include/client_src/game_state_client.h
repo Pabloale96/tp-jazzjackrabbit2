@@ -6,10 +6,10 @@
 #include <utility>
 #include <vector>
 
+#include "gui/gui_balas.h"
+#include "gui/gui_coleccionables.h"
 #include "gui/gui_enemigos.h"
 #include "gui/gui_personaje.h"
-#include "gui/gui_coleccionables.h"
-#include "gui/gui_balas.h"
 #include "gui/gui_platform.h"
 
 #include "msgToSent.h"
@@ -17,7 +17,6 @@
 
 class GameStateClient {
 private:
-
     ClaseTexturas& texturas;
     bool jugando;
     std::vector<PlatformGui> plataformas;
@@ -31,15 +30,15 @@ private:
 
 
 public:
-    explicit GameStateClient(ClaseTexturas&,bool jugando);
+    explicit GameStateClient(ClaseTexturas&, bool jugando);
 
     bool obtener_estado_de_la_partida();
 
-    std::map<uint16_t, PersonajeGui> obtener_diccionario_de_personajes()const;
+    std::map<uint16_t, PersonajeGui> obtener_diccionario_de_personajes() const;
 
-    std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos()const;
+    std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos() const;
 
-    std::vector<PlatformGui> & obtener_plataformas();
+    std::vector<PlatformGui>& obtener_plataformas();
 
     void showTiempo(int h_window);
 
@@ -55,8 +54,8 @@ public:
 
     std::vector<BalasGui>& obtener_balas() { return vector_balas; }
 
-    void setGameState(const msgGameState& msg) { 
-        jugando = ((unsigned)msg.state_partida == 0x01); 
+    void setGameState(const msgGameState& msg) {
+        jugando = ((unsigned)msg.state_partida == 0x01);
         tiempo = ntohs(msg.tiempo);
     }
 
@@ -64,7 +63,7 @@ public:
 
     void pushEnemigos(msgEnemigo& msgenem);
 
-    void pushPlataformas(msgPlataforma& msgplat);
+    void pushPlataformas(const msgPlataforma& msgplat);
 
     void pushColeccionables(msgColecionables& msgcol);
 

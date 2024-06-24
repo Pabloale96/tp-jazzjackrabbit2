@@ -1,6 +1,6 @@
 #include "../../include/client_src/gui/gui_animaciones.h"
 
-Animacion::Animacion(): flip(false),contador(0) {}
+Animacion::Animacion(): flip(false), contador(0) {}
 
 void Animacion::setFlip(bool flip) { this->flip = flip; }
 

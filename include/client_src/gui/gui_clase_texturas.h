@@ -6,9 +6,9 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <vector>
-#include <mutex>
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -37,17 +37,17 @@ private:
                              spaz.SetColorKey(true, SDL_MapRGB(spaz.Get()->format, 44, 102, 150)))};
     Texture lori_tex{Texture(renderer,
                              lori.SetColorKey(true, SDL_MapRGB(lori.Get()->format, 44, 102, 150)))};
-    Texture beach_tex{Texture(renderer,
-                             beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0, 203)))};
+    Texture beach_tex{Texture(
+            renderer, beach.SetColorKey(true, SDL_MapRGB(beach.Get()->format, 87, 0, 203)))};
 
-    Texture enemigos_tex{Texture(renderer,
-                    enemigos.SetColorKey(true, SDL_MapRGB(enemigos.Get()->format, 0, 128, 255)))};
+    Texture enemigos_tex{Texture(
+            renderer, enemigos.SetColorKey(true, SDL_MapRGB(enemigos.Get()->format, 0, 128, 255)))};
 
     Texture items_tex{Texture(
             renderer, items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 44, 102, 150)))};
-            
-    Texture font_text{Texture(
-            renderer, font.SetColorKey(true, SDL_MapRGB(font.Get()->format, 0, 128, 255)))};
+
+    Texture font_text{
+            Texture(renderer, font.SetColorKey(true, SDL_MapRGB(font.Get()->format, 0, 128, 255)))};
 
     std::map<std::string, std::shared_ptr<std::vector<Frame>>> frames_map;
     std::map<int, Frame> frame_number;

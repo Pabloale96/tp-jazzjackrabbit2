@@ -76,7 +76,8 @@ struct msgGameState {
         cantidad_enemigos = 0x00;
     }
 
-    msgGameState(GameState& gameState,uint16_t cantidadBalas, uint16_t tiempo,uint16_t client_id) {
+    msgGameState(GameState& gameState, uint16_t cantidadBalas, uint16_t tiempo,
+                 uint16_t client_id) {
         memset(this, 0, sizeof(*this));
         header = MSG_HEADER;
         state_partida = gameState.getJugando() ? 0x01 : 0x00;
@@ -84,7 +85,7 @@ struct msgGameState {
         this->tiempo = htons(tiempo);
         cantidad_personajes = htons(gameState.getSizePersonajes());
         cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
-        //cantidad_colecionables = htons(gameState.obtener_cantidad_de_colecionables());
+        // cantidad_colecionables = htons(gameState.obtener_cantidad_de_colecionables());
         cantidad_balas = htons(cantidadBalas);
     }
 } __attribute__((packed));
@@ -126,7 +127,7 @@ struct msgColecionables {
 
     msgColecionables() {}
 
-    msgColecionables(Municion& muni): tipo_coleccionable(muni.obtener_tipo_bala()) {
+    explicit msgColecionables(Municion& muni): tipo_coleccionable(muni.obtener_tipo_bala()) {
         colecionables[POS_POSX_COLECCIONABLE] = htons(muni.obtener_x());
         colecionables[POS_POSY_COLECCIONABLE] = htons(muni.obtener_y());
     }
@@ -139,7 +140,7 @@ struct msgBalas {
 
     msgBalas() {}
 
-    msgBalas(Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
+    explicit msgBalas(Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
         balas[POS_POSX_BALA] = htons(muni.obtener_x());
         balas[POS_POSY_BALA] = htons(muni.obtener_y());
     }
@@ -152,7 +153,7 @@ struct msgEnemigo {
 
     msgEnemigo() {}
 
-    msgEnemigo(uint16_t id, const Enemigo& enemi): tipo((uint8_t) enemi.get_tipo_enemigo()) {
+    msgEnemigo(uint16_t id, const Enemigo& enemi): tipo((uint8_t)enemi.get_tipo_enemigo()) {
         enemigo[POS_ID_ENEMIGO] = htons(id);
         enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
         // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales

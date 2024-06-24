@@ -22,7 +22,7 @@ using SDL2pp::Window;
 
 class BalasGui {
 protected:
-    ClaseTexturas & texturas;
+    ClaseTexturas& texturas;
     float pos_x;
     float pos_y;
     int speed = 5;
@@ -32,7 +32,7 @@ protected:
 
 
 public:
-    BalasGui(ClaseTexturas &, msgBalas&);
+    BalasGui(ClaseTexturas&, msgBalas&);
     ~BalasGui();
     void show();
     void setPosicion(float, float);
@@ -40,20 +40,18 @@ public:
     float obtener_posicion_y();
 };
 
-class BalasGui1 :public BalasGui {
+class BalasGui1: public BalasGui {
 protected:
-
 public:
-    BalasGui1(ClaseTexturas &, msgBalas&);
+    BalasGui1(ClaseTexturas&, msgBalas&);
     ~BalasGui1();
 };
 
 
-class BalasGui2 :public BalasGui {
+class BalasGui2: public BalasGui {
 protected:
-
 public:
-    BalasGui2(ClaseTexturas &, msgBalas&);
+    BalasGui2(ClaseTexturas&, msgBalas&);
     ~BalasGui2();
 };
 
