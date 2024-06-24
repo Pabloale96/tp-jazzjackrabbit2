@@ -58,12 +58,17 @@ void Game::chequear_colisiones() {
     }
 }
 
-bool Game::esta_en_zona_de_choque(const Personaje& personaje, const std::shared_ptr<Enemigo> enemigo) {
+bool Game::esta_en_zona_de_choque(const Personaje& personaje,
+                                  const std::shared_ptr<Enemigo> enemigo) {
     const float TOLERANCIA = 0.01f;
-    return personaje.obtener_posicion().get_posicion_x() >= enemigo->get_posicion_enemigo().get_posicion_x() + TOLERANCIA &&
-           personaje.obtener_posicion().get_posicion_x() <= enemigo->get_posicion_enemigo().get_posicion_x() - TOLERANCIA &&
-           personaje.obtener_posicion().get_posicion_y() <= enemigo->get_posicion_enemigo().get_posicion_y() + TOLERANCIA &&
-           personaje.obtener_posicion().get_posicion_y() >= enemigo->get_posicion_enemigo().get_posicion_y() - TOLERANCIA;
+    return personaje.obtener_posicion().get_posicion_x() >=
+                   enemigo->get_posicion_enemigo().get_posicion_x() + TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_x() <=
+                   enemigo->get_posicion_enemigo().get_posicion_x() - TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_y() <=
+                   enemigo->get_posicion_enemigo().get_posicion_y() + TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_y() >=
+                   enemigo->get_posicion_enemigo().get_posicion_y() - TOLERANCIA;
 }
 
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {

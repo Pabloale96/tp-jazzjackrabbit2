@@ -33,7 +33,9 @@ private:
     uint16_t puntos;
 
 public:
-    Gema(uint16_t x, uint16_t y): Collectible(x, y, coleccionables::GEMAS_TIPO), puntos(YAMLConfig::getConfig().puntos_gemas) {}
+    Gema(uint16_t x, uint16_t y):
+            Collectible(x, y, coleccionables::GEMAS_TIPO),
+            puntos(YAMLConfig::getConfig().puntos_gemas) {}
 
     uint16_t obtener_puntos() const { return puntos; }
 };
@@ -44,7 +46,8 @@ private:
 
 public:
     Moneda(uint16_t x, uint16_t y):
-            Collectible(x, y, coleccionables::MONEDA_TIPO), puntos(YAMLConfig::getConfig().puntos_monedas) {}
+            Collectible(x, y, coleccionables::MONEDA_TIPO),
+            puntos(YAMLConfig::getConfig().puntos_monedas) {}
 
     uint16_t obtener_puntos() const { return puntos; }
 };
@@ -55,7 +58,8 @@ private:
 
 public:
     Zanahoria(uint16_t x, uint16_t y):
-            Collectible(x, y, coleccionables::ZANAHORIA_TIPO), vidas(YAMLConfig::getConfig().vidas_zanahorias) {}
+            Collectible(x, y, coleccionables::ZANAHORIA_TIPO),
+            vidas(YAMLConfig::getConfig().vidas_zanahorias) {}
 
     uint16_t obtener_vidas() const { return vidas; }
 };

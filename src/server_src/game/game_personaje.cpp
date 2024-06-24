@@ -98,7 +98,7 @@ uint8_t Personaje::obtener_animacion() { return animacion; }
 
 void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
                            std::vector<Plataforma>& plataformas) {
-    //std::cout << "ACTUALIZANDO Personaje: " << client_id << std::endl;
+    // std::cout << "ACTUALIZANDO Personaje: " << client_id << std::endl;
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     for (auto& municion: municiones_disparadas) {
         municion.mover();
@@ -135,15 +135,13 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
     this->tiempo_restante_de_partida = tiempo_restante_de_partida;
 }
 
-void Personaje::mover(std::vector<Plataforma>& plataformas) {
-    chequear_colisiones(plataformas);
-}
+void Personaje::mover(std::vector<Plataforma>& plataformas) { chequear_colisiones(plataformas); }
 
 void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) {
     float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
     float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
 
-    for (const auto& plataforma : plataformas) {
+    for (const auto& plataforma: plataformas) {
         if (velocidad.obtener_velocidad_x() < 0) {
             if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
                 velocidad.setear_velocidad_x(0);
@@ -162,7 +160,7 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
     }
 
     bool hay_piso = false;
-    for (const auto& plataforma : plataformas) {
+    for (const auto& plataforma: plataformas) {
         if (velocidad.obtener_velocidad_y() < 0) {
             if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
                 hay_piso = true;
@@ -176,8 +174,8 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
             if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
                 // std::cout << "COLISION CON TECHO" << std::endl;
                 altura_acumulada = 0;
-                velocidad.setear_velocidad_y(0); // Detener la subida
-                velocidad.caer(); // Iniciar la caída
+                velocidad.setear_velocidad_y(0);  // Detener la subida
+                velocidad.caer();                 // Iniciar la caída
                 estados.setSaltando(false);
                 estados.setCayendo(true);
                 return;
@@ -185,7 +183,7 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
         }
     }
 
-    if ( !hay_piso && estados.getCayendo()) {
+    if (!hay_piso && estados.getCayendo()) {
         // std::cout << "NO HAY PISO" << std::endl;
         velocidad.caer();
         estados.setCayendo(true);
@@ -194,8 +192,8 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
     if (velocidad.obtener_velocidad_y() > 0) {
         if (altura_acumulada >= altura_salto) {
             // std::cout << "ALTURA MAXIMA DEL SALTO" << std::endl;
-            velocidad.setear_velocidad_y(0); // Detener la subida
-            velocidad.caer(); // Iniciar la caída
+            velocidad.setear_velocidad_y(0);  // Detener la subida
+            velocidad.caer();                 // Iniciar la caída
             estados.setSaltando(false);
             estados.setCayendo(true);
             altura_acumulada = 0;

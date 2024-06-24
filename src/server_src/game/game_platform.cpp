@@ -30,8 +30,7 @@ Plataforma::Plataforma(platform tipo_plataforma, float x_ver_izq_abajo, float y_
         vertice_izq_arriba(x_ver_izq_arriba, y_ver_izq_arriba),
         vertice_der_abajo(x_ver_der_abajo, y_ver_der_abajo),
         vertice_der_arriba(x_ver_der_arriba, y_ver_der_arriba),
-        centro((x_ver_izq_abajo + x_ver_der_arriba) / 2,
-               (y_ver_izq_abajo + y_ver_der_arriba) / 2),
+        centro((x_ver_izq_abajo + x_ver_der_arriba) / 2, (y_ver_izq_abajo + y_ver_der_arriba) / 2),
         angulo(angulo) {}
 
 
@@ -53,76 +52,73 @@ Posicion Plataforma::obtener_centro() const { return centro; }
 uint8_t Plataforma::obtener_angulo() const { return angulo; }
 
 bool Plataforma::estoy_adentro_de_la_plataforma(float prox_pos_x, float prox_pos_y) const {
-        if (prox_pos_x >= obtener_borde_izquierdo() &&
-            prox_pos_x <= obtener_borde_derecho() &&
-            prox_pos_y <= obtener_borde_superior() &&
-            prox_pos_y >= obtener_borde_inferior()) {
-                return true;
-        }
-        return false;
+    if (prox_pos_x >= obtener_borde_izquierdo() && prox_pos_x <= obtener_borde_derecho() &&
+        prox_pos_y <= obtener_borde_superior() && prox_pos_y >= obtener_borde_inferior()) {
+        return true;
+    }
+    return false;
 }
 
 void Plataforma::chequear_colisiones(float prox_pos_x, float prox_pos_y, bool& colisiona_en_x,
                                      bool& colisiona_en_y) const {
-        if (es_plataforma_cercana_en_x_izquierda(prox_pos_x)) {
-                colisiona_en_x = true;
-        } else if (es_plataforma_cercana_en_x_derecha(prox_pos_x)) {
-                colisiona_en_x = true;
-        }
-        if (es_plataforma_cercana_en_y_abajo(prox_pos_y)) {
-                colisiona_en_y = true;
-        } else if (es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
-                colisiona_en_y = true;
-        }
+    if (es_plataforma_cercana_en_x_izquierda(prox_pos_x)) {
+        colisiona_en_x = true;
+    } else if (es_plataforma_cercana_en_x_derecha(prox_pos_x)) {
+        colisiona_en_x = true;
+    }
+    if (es_plataforma_cercana_en_y_abajo(prox_pos_y)) {
+        colisiona_en_y = true;
+    } else if (es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
+        colisiona_en_y = true;
+    }
 }
 
 bool Plataforma::es_plataforma_cercana_en_y_abajo(float y) const {
-        const float TOLERANCIA = 0.01f;
-        // Si la futura posición del personaje está por debajo del borde superior, entonces voy a
-        // chocar
-        if (y <= obtener_borde_superior() + TOLERANCIA) {
-                if (y >= obtener_borde_inferior() - TOLERANCIA) {
-                return true;
-                }
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está por debajo del borde superior, entonces voy a
+    // chocar
+    if (y <= obtener_borde_superior() + TOLERANCIA) {
+        if (y >= obtener_borde_inferior() - TOLERANCIA) {
+            return true;
         }
-        return false;
+    }
+    return false;
 }
 
 bool Plataforma::es_plataforma_cercana_en_y_arriba(float y) const {
-        const float TOLERANCIA = 0.01f;
-        // Si la futura posición del personaje está por encima del borde inferior, entonces voy a
-        // chocar
-        if (y >= obtener_borde_inferior() - TOLERANCIA) {
-                if (y <= obtener_borde_superior() + TOLERANCIA) {
-                return true;
-                }
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está por encima del borde inferior, entonces voy a
+    // chocar
+    if (y >= obtener_borde_inferior() - TOLERANCIA) {
+        if (y <= obtener_borde_superior() + TOLERANCIA) {
+            return true;
         }
-        return false;
+    }
+    return false;
 }
 
 bool Plataforma::es_plataforma_cercana_en_x_izquierda(float x) const {
-        const float TOLERANCIA = 0.01f;
-        // Si la futura posición del personaje está a la derecha del borde izquierdo, entonces voy a
-        // chocar
-        if (x <= obtener_borde_derecho() + TOLERANCIA) {
-                if (x >= obtener_borde_izquierdo() - TOLERANCIA) {
-                return true;
-                }
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está a la derecha del borde izquierdo, entonces voy a
+    // chocar
+    if (x <= obtener_borde_derecho() + TOLERANCIA) {
+        if (x >= obtener_borde_izquierdo() - TOLERANCIA) {
+            return true;
         }
-        return false;
+    }
+    return false;
 }
 
 bool Plataforma::es_plataforma_cercana_en_x_derecha(float x) const {
-        const float TOLERANCIA = 0.01f;
-        // Si la futura posición del personaje está a la izquierda del borde derecho, entonces voy a
-        // chocar
-        if (x >= obtener_borde_izquierdo() - TOLERANCIA) {
-                if (x <= obtener_borde_derecho() + TOLERANCIA) {
-                return true;
-                }
+    const float TOLERANCIA = 0.01f;
+    // Si la futura posición del personaje está a la izquierda del borde derecho, entonces voy a
+    // chocar
+    if (x >= obtener_borde_izquierdo() - TOLERANCIA) {
+        if (x <= obtener_borde_derecho() + TOLERANCIA) {
+            return true;
         }
-        return false;
+    }
+    return false;
 }
-
 
 Plataforma::~Plataforma() {}

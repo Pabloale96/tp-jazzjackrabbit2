@@ -23,7 +23,7 @@ TEST(ProtocolServerTest, TestRecibirPersonajeJazz) {
     bool was_closed = false;
 
     uint8_t buffer = protocolServer.recibir_personaje(was_closed);
-    ASSERT_EQ((uint8_t) personajes::JAZZ, buffer);
+    ASSERT_EQ((uint8_t)personajes::JAZZ, buffer);
 }
 
 
@@ -34,7 +34,7 @@ TEST(ProtocolServerTest, TestRecibirPersonajeSpazz) {
     bool was_closed = false;
 
     uint8_t buffer = protocolServer.recibir_personaje(was_closed);
-    ASSERT_EQ((uint8_t) personajes::SPAZZ, buffer);
+    ASSERT_EQ((uint8_t)personajes::SPAZZ, buffer);
 }
 
 TEST(ProtocolServerTest, TestRecibirPersonajeLori) {
@@ -44,7 +44,7 @@ TEST(ProtocolServerTest, TestRecibirPersonajeLori) {
     bool was_closed = false;
 
     uint8_t buffer = protocolServer.recibir_personaje(was_closed);
-    ASSERT_EQ((uint8_t) personajes::LORI, buffer);
+    ASSERT_EQ((uint8_t)personajes::LORI, buffer);
 }
 
 

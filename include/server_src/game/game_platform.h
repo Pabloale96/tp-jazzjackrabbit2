@@ -66,7 +66,8 @@ public:
     Posicion obtener_centro() const;
     uint8_t obtener_angulo() const;
 
-    void chequear_colisiones(float prox_pos_x, float prox_pos_y, bool& colisiona_en_x, bool& colisiona_en_y) const;
+    void chequear_colisiones(float prox_pos_x, float prox_pos_y, bool& colisiona_en_x,
+                             bool& colisiona_en_y) const;
     bool estoy_adentro_de_la_plataforma(float prox_pos_x, float prox_pos_y) const;
 
     bool es_plataforma_cercana_en_y_abajo(float y) const;

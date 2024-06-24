@@ -3,7 +3,7 @@
 #include "../include/client_src/client_protocol.h"
 #include "../include/common_src/catedra/sockets.h"
 
-ProtocolClient crearProtocoloCliente(std::string hostname, std::string servicio) {
+ProtocolClient crearProtocoloCliente(const std::string& hostname, const std::string& servicio) {
     return ProtocolClient(hostname, servicio);
 }
 

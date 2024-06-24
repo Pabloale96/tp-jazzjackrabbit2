@@ -12,10 +12,10 @@
 #include <arpa/inet.h>  // para usar htons()
 
 #include "defines_msg.h"
+#include "game_collectible.h"
 #include "game_platform.h"
 #include "game_state.h"
 #include "protocol_utils.h"
-#include "game_collectible.h"
 
 struct msgAccion {
     uint8_t accion;
@@ -128,9 +128,12 @@ struct msgColecionables {
 
     msgColecionables() {}
 
-    explicit msgColecionables(Collectible& cole): tipo_coleccionable((uint8_t)cole.obtener_tipo_coleccionable()) {
-        colecionables[POS_POSX_COLECCIONABLE] = htons((uint16_t)((cole.obtener_posicion().get_posicion_x()) * 100));
-        colecionables[POS_POSY_COLECCIONABLE] = htons((uint16_t)((cole.obtener_posicion().get_posicion_y()) * 100));
+    explicit msgColecionables(Collectible& cole):
+            tipo_coleccionable((uint8_t)cole.obtener_tipo_coleccionable()) {
+        colecionables[POS_POSX_COLECCIONABLE] =
+                htons((uint16_t)((cole.obtener_posicion().get_posicion_x()) * 100));
+        colecionables[POS_POSY_COLECCIONABLE] =
+                htons((uint16_t)((cole.obtener_posicion().get_posicion_y()) * 100));
     }
 } __attribute__((packed));
 

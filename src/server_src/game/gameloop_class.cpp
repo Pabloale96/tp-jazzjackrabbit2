@@ -67,7 +67,7 @@ void GameLoop::run() {
                 if (comando) {
                     comando->ejecutar(game);
                 }
-            }      
+            }
 
             game.actualizar(obtener_tiempo_restante());
             broadcastear();

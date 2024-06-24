@@ -62,8 +62,7 @@ void GameState::imprimir_mensaje() {
     for (const auto& pair: diccionario_de_personajes) {
         const std::shared_ptr<Personaje>& personaje = pair.second;
         std::cout << " >> Personaje " << personaje->obtener_personaje_id() << " :" << std::endl;
-        std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() <<
-        std::endl;
+        std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
         std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
@@ -78,14 +77,17 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Balas disparadas: " << personaje->obtener_balas().size() << std::endl;
 
         for (const auto& municion: personaje->obtener_balas()) {
-            std::cout << "         - Bala: " << (unsigned) municion.obtener_id() << std::endl;
-            std::cout << "             - Posición: (" << municion.obtener_posicion().get_posicion_x()
-                      << ", " << municion.obtener_posicion().get_posicion_y() << ")." << std::endl;
-            std::cout << "             - Velocidad: (" << municion.obtener_velocidad().obtener_velocidad_x() << ", "
+            std::cout << "         - Bala: " << (unsigned)municion.obtener_id() << std::endl;
+            std::cout << "             - Posición: ("
+                      << municion.obtener_posicion().get_posicion_x() << ", "
+                      << municion.obtener_posicion().get_posicion_y() << ")." << std::endl;
+            std::cout << "             - Velocidad: ("
+                      << municion.obtener_velocidad().obtener_velocidad_x() << ", "
                       << municion.obtener_velocidad().obtener_velocidad_y() << ")." << std::endl;
-            std::cout << "             - Tipo de bala: " << (unsigned) municion.obtener_tipo_bala() << std::endl;
+            std::cout << "             - Tipo de bala: " << (unsigned)municion.obtener_tipo_bala()
+                      << std::endl;
         }
-        
+
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }

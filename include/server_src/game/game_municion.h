@@ -1,8 +1,10 @@
 #ifndef _GAME_MUNICION_H_
 #define _GAME_MUNICION_H_
 
-#include "game_posicion.h"
+#include <vector>
+
 #include "game_platform.h"
+#include "game_posicion.h"
 
 class Municion {
 private:
