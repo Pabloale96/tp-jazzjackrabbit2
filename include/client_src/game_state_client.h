@@ -84,6 +84,10 @@ public:
     void actualizar_gamestate( GameStateClient&);
 
     ~GameStateClient();
+
+    // *** Funciones para tests
+    GameStateClient(ClaseTexturas& tex) : texturas(tex), jugando(false), tiempo(0) {}
+
 };
 
 #endif
