@@ -61,8 +61,11 @@ struct msgGameState {
     uint8_t header;
     uint8_t state_partida;
     uint16_t client_id;
+    uint16_t tiempo;
     uint16_t cantidad_personajes;
     uint16_t cantidad_enemigos;
+    uint16_t cantidad_colecionables;
+    uint16_t cantidad_balas;
 
     msgGameState() {
         memset(this, 0, sizeof(*this));
@@ -73,7 +76,7 @@ struct msgGameState {
         cantidad_enemigos = 0x00;
     }
 
-    msgGameState(GameState& gameState, uint16_t client_id) {
+    msgGameState(GameState& gameState, uint16_t tiempo,uint16_t client_id) {
         memset(this, 0, sizeof(*this));
         header = MSG_HEADER;
         state_partida = gameState.getJugando() ? 0x01 : 0x00;
@@ -114,13 +117,26 @@ struct msgPersonaje {
 } __attribute__((packed));
 
 
+struct msgColecionables {
+    uint8_t tipo_coleccionable = 0x00;
+    uint16_t colecionables[SIZE_ARRAY_COLECCIONABLE] = {0};
+
+    msgColecionables() {}
+
+    msgColecionables(Municion& muni): tipo_coleccionable(muni.obtener_tipo_bala()) {
+        colecionables[POS_POSX_COLECCIONABLE] = htons(muni.obtener_x());
+        colecionables[POS_POSY_COLECCIONABLE] = htons(muni.obtener_y());
+    }
+} __attribute__((packed));
+
+
 struct msgBalas {
     uint8_t tipo_bala = 0x00;
     uint16_t balas[SIZE_ARRAY_BALA] = {0};
 
     msgBalas() {}
 
-    msgBalas(uint16_t id, Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
+    msgBalas(Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
         balas[POS_POSX_BALA] = htons(muni.obtener_x());
         balas[POS_POSY_BALA] = htons(muni.obtener_y());
     }

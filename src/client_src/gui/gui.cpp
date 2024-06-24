@@ -56,6 +56,6 @@ bool Gui::run(int h_window, int w_window, uint16_t client_id) {
         }
     }
     jugador->show(true);
-
+    gamestate.showTiempo(h_window);
     return false;
 }

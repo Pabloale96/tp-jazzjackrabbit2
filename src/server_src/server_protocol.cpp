@@ -203,7 +203,9 @@ std::unique_ptr<Comando> ProtocolServer::recibir_acciones(bool& was_closed, uint
 }
 
 void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id, bool& was_closed) {
-    msgGameState msg(gameState, cliente_id);
+    uint16_t tiempo = (uint16_t) gameState.obtener_diccionario_de_personajes().begin()
+                                ->second->obtener_tiempo_restante_de_partida().count();
+    msgGameState msg(gameState,tiempo, cliente_id);
     if (was_closed) {
         return;
     }

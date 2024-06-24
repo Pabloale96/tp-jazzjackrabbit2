@@ -26,6 +26,8 @@ private:
     std::map<uint16_t, EnemigosGui> diccionario_de_enemigos;
     std::map<uint16_t, ColecionablesGui> diccionario_de_collecionables;
 
+    uint16_t tiempo;
+
 
 public:
     explicit GameStateClient(ClaseTexturas&,bool jugando);
@@ -37,6 +39,10 @@ public:
     std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos()const;
 
     std::vector<PlatformGui> & obtener_plataformas();
+
+    void showTiempo(int h_window);
+
+    uint16_t getTiempo() const;
 
     PersonajeGui& obtener_personaje(uint16_t client_id);
 

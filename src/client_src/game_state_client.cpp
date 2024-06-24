@@ -34,6 +34,28 @@ void GameStateClient::pushPlataformas(msgPlataforma& msgplat){
     plataformas.push_back(platform);
 }
 
+void GameStateClient::showTiempo(int h_window){
+    std::stack<uint16_t> pilaCifras;
+    uint16_t tiempo_aux =tiempo;
+
+    if(tiempo_aux == 0){
+        Frame frame = texturas.findFrame(tiempo_aux);
+        frame.copy(0,h_window/2,0);
+    }
+    // Extraer las cifras y almacenarlas en una pila.
+    while (tiempo_aux > 0) {
+        uint16_t cifra = tiempo_aux % 10; // Extraer la última cifra.
+        pilaCifras.push(cifra); // Almacenar en la pila.
+        tiempo_aux /= 10; // Eliminar la última cifra del número.
+    }  
+    // Transferir las cifras de la pila al vector.
+    while (!pilaCifras.empty()) {
+        Frame frame = texturas.findFrame(pilaCifras.top());
+        frame.copy(0,frame.getH()+h_window,0);
+        pilaCifras.pop();
+    }
+}
+
 void GameStateClient::pushPersonajes(msgPersonaje& msgpers) {
     std::shared_ptr<PersonajeGui> personaje;
     uint8_t tipo = msgpers.tipo_personaje;
@@ -76,10 +98,13 @@ void GameStateClient::pushEnemigos(msgEnemigo& msgenem){
     diccionario_de_enemigos.emplace(ntohs(msgenem.enemigo[POS_ID_ENEMIGO]), std::move(*enemigo));
     }
 
+uint16_t GameStateClient::getTiempo()const { return tiempo;}
+
 
 void GameStateClient::actualizar_gamestate( const GameStateClient & other) {
 
         this->jugando = other.getJugando();
+        this->tiempo = other.getTiempo();
 
         for (const auto& [id, personaje]: other.obtener_diccionario_de_personajes()) {    
             if (!this->diccionario_de_personajes.empty())  {
