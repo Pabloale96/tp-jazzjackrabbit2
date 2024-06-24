@@ -119,20 +119,6 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
     }
 
     if (!estados.getMuerto()) {
-        /*
-        while (estados.getSaltando()) {
-            if (duracion_del_salto == std::chrono::seconds(SEGUNDOS_DE_SALTO)) {
-                duracion_del_salto = std::chrono::seconds(0);
-                estados.setSaltando(false);
-                estados.setCayendo(true);
-                velocidad.caer();
-                this->mover(plataformas);
-                estados.reset();
-                velocidad.idle();
-            } else {
-                duracion_del_salto++;
-            }
-        }*/
         this->mover(plataformas);
     }
 }
@@ -143,11 +129,9 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
 
 void Personaje::mover(std::vector<Plataforma>& plataformas) {
     chequear_colisiones(plataformas);
-    // posicion.mover(this->velocidad);
 }
 
 void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) {
-    std::cout << "VELOCIDAD: " << velocidad.obtener_velocidad_x() << " , " << velocidad.obtener_velocidad_y() << std::endl;
     float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
     float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
 
@@ -174,7 +158,7 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
         if (velocidad.obtener_velocidad_y() < 0) {
             if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
                 hay_piso = true;
-                std::cout << "COLISION CON PISO" << std::endl;
+                // std::cout << "COLISION CON PISO" << std::endl;
                 velocidad.setear_velocidad_y(0);
                 estados.setCayendo(false);
                 estados.setIdle(true);
@@ -182,7 +166,7 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
             }
         } else if (velocidad.obtener_velocidad_y() > 0) {
             if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
-                std::cout << "COLISION CON TECHO" << std::endl;
+                // std::cout << "COLISION CON TECHO" << std::endl;
                 altura_acumulada = 0;
                 velocidad.setear_velocidad_y(0); // Detener la subida
                 velocidad.caer(); // Iniciar la caída
@@ -194,14 +178,14 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
     }
 
     if ( !hay_piso && estados.getCayendo()) {
-        std::cout << "NO HAY PISO" << std::endl;
+        // std::cout << "NO HAY PISO" << std::endl;
         velocidad.caer();
         estados.setCayendo(true);
     }
 
     if (velocidad.obtener_velocidad_y() > 0) {
         if (altura_acumulada >= altura_salto) {
-            std::cout << "ALTURA MAXIMA DEL SALTO" << std::endl;
+            // std::cout << "ALTURA MAXIMA DEL SALTO" << std::endl;
             velocidad.setear_velocidad_y(0); // Detener la subida
             velocidad.caer(); // Iniciar la caída
             estados.setSaltando(false);
@@ -209,7 +193,6 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
             altura_acumulada = 0;
         } else {
             altura_acumulada += velocidad.obtener_velocidad_y();
-            std::cout << "ALTURA ACUMULADA: " << altura_acumulada << std::endl;
         }
     }
 
