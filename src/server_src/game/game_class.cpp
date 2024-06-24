@@ -50,90 +50,13 @@ bool Game::disparar_municion(uint16_t client_id) {
 
 void Game::chequear_colisiones() {
     for (auto& personaje: this->personajes) {
-        chequear_colisiones_personaje_con_plataforma(*personaje);
         chequear_colisiones_personaje_con_enemigo(*personaje);
         chequear_colisiones_balas_con_enemigos(*personaje);
         chequear_colisiones_personaje_con_collectible(*personaje);
     }
 }
 
-void Game::chequear_colisiones_personaje_con_plataforma(Personaje& personaje) {
-    for (const auto& plataforma: obtener_escenario().obtener_plataformas_server()) {
-        bool colision = false;
-        switch (plataforma.obtener_tipo_plataforma()) {
-            case platform::HORIZONTAL:
-                colision = colision_horizontal(personaje, plataforma);
-                if (colision) {
-                    std::cout << "COLISION HORIZONTAL" << std::endl;
-                    personaje.setear_posicion_en_y(
-                            plataforma.obtener_vertice_izq_arriba().get_posicion_y());
-                    personaje.obtener_velocidad().setear_velocidad_y(0);
-                }
-                break;
-
-            case platform::VERTICAL:
-                if (personaje.obtener_velocidad().obtener_velocidad_x() > 0) {
-                    colision = colision_vertical_por_izquierda(personaje, plataforma);
-                    if (colision) {
-                        std::cout << "COLISION VERTICAL IZQUIERDA "
-                                  << personaje.obtener_posicion().get_posicion_x() << std::endl;
-                        personaje.setear_posicion_en_x(
-                                personaje.obtener_posicion().get_posicion_x() - 0.1);
-                    }
-                } else {
-                    colision = colision_vertical_por_derecha(personaje, plataforma);
-                    if (colision) {
-                        std::cout << "COLISION VERTICAL DERECHA" << std::endl;
-                        personaje.setear_posicion_en_x(
-                                personaje.obtener_posicion().get_posicion_x() + 0.5);
-                    }
-                }
-                personaje.obtener_velocidad().setear_velocidad_x(0);
-                break;
-
-            case platform::DIAGONAL:
-                colision = colision_diagonal(personaje, plataforma);
-                if (colision) {
-                    std::cout << "COLISION DIAGONAL" << std::endl;
-                    personaje.setear_posicion_en_y(
-                            plataforma.obtener_vertice_izq_arriba().get_posicion_y());
-                    personaje.obtener_velocidad().setear_velocidad_x(0);
-                    personaje.obtener_velocidad().setear_velocidad_y(0);
-                }
-                break;
-        }
-    }
-}
-
-bool Game::colision_horizontal(const Personaje& personaje, const Plataforma& plataforma) {
-    return personaje.getRight() > plataforma.obtener_vertice_izq_abajo().get_posicion_x() &&
-           personaje.getLeft() < plataforma.obtener_vertice_der_abajo().get_posicion_x() &&
-           personaje.getBottom() >= plataforma.obtener_vertice_izq_arriba().get_posicion_y() &&
-           personaje.getTop() <= plataforma.obtener_vertice_izq_abajo().get_posicion_y();
-}
-
-bool Game::colision_vertical_por_izquierda(const Personaje& personaje,
-                                           const Plataforma& plataforma) {
-    if (personaje.getBottom() >= plataforma.obtener_vertice_izq_abajo().get_posicion_y() &&
-        personaje.getTop() <= plataforma.obtener_vertice_izq_arriba().get_posicion_y()) {
-        // Estoy entre la altura de la plataforma
-        if (personaje.getRight() >= plataforma.obtener_vertice_izq_abajo().get_posicion_x()) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Game::colision_vertical_por_derecha(const Personaje& personaje, const Plataforma& plataforma) {
-    if (personaje.getBottom() >= plataforma.obtener_vertice_der_abajo().get_posicion_y() &&
-        personaje.getTop() <= plataforma.obtener_vertice_der_arriba().get_posicion_y()) {
-        if (plataforma.obtener_vertice_der_abajo().get_posicion_x() + 1 <= personaje.getLeft()) {
-            return true;
-        }
-    }
-    return false;
-}
-
+/*
 bool Game::colision_diagonal(const Personaje& personaje, const Plataforma& plataforma) {
     float personajeCenterX = personaje.getLeft() + personaje.obtener_ancho() / 2;
     float personajeBottomY = personaje.getBottom();
@@ -154,7 +77,7 @@ bool Game::colision_diagonal(const Personaje& personaje, const Plataforma& plata
 
     return interseca;
 }
-
+*/
 
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
@@ -199,7 +122,7 @@ void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
 
 void Game::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
     actualizar_personajes(tiempo_restante_de_partida);
-    // chequear_colisiones();
+    chequear_colisiones();
     actualizar_escenario();
 }
 
