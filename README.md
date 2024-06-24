@@ -84,6 +84,8 @@ En una corremos: `./protocol_server_test`
 
 Y en la otra corremos: `./test_consola_cliente`
 
+Nota: Debido a que hay que crear muchos sokets para las pruebas, se recomienda ir comentando las pruebas y correrlas 1 a la vez para asegurarse de que se crean correctamente los sockets.
+
 ## Construido con 🛠️
 
 * [C++](https://cplusplus.com)

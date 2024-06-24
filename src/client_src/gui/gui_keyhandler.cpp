@@ -94,7 +94,7 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                     }
                     break;
                 case SDLK_a:
-                    if (animacion != (uint8_t)efectos::IDLE) {
+                    if (animacion != (uint8_t) efectos::IDLE) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), false);
                         client_commands.push(msg_to_sent);
                     }

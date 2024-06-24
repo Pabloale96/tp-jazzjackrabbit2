@@ -26,9 +26,10 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
         velocidad(0, gravedad),
         ancho(1.0f),
         alto(1.0f),
+        altura_salto(1.0f),
+        altura_acumulada(0.0f),
 
         tiempo_restante_de_partida(tiempo_restante_de_partida),
-        duracion_del_salto(0),
         duracion_muerto(0),
 
         estados() {}
@@ -118,20 +119,6 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
     }
 
     if (!estados.getMuerto()) {
-        /*
-        while (estados.getSaltando()) {
-            if (duracion_del_salto == std::chrono::seconds(SEGUNDOS_DE_SALTO)) {
-                duracion_del_salto = std::chrono::seconds(0);
-                estados.setSaltando(false);
-                estados.setCayendo(true);
-                velocidad.caer();
-                this->mover(plataformas);
-                estados.reset();
-                velocidad.idle();
-            } else {
-                duracion_del_salto++;
-            }
-        }*/
         this->mover(plataformas);
     }
 }
@@ -142,79 +129,98 @@ void Personaje::set_tiempo_restante_de_partida(std::chrono::seconds tiempo_resta
 
 void Personaje::mover(std::vector<Plataforma>& plataformas) {
     chequear_colisiones(plataformas);
-    // posicion.mover(this->velocidad);
 }
 
 void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) {
-    if (velocidad.obtener_velocidad_y() <= 0) {
-        // Estoy cayendo Tengo q revisar si cai del borde de la tabla
-        float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
-        for (const auto& plataforma: plataformas) {
-            if (plataforma.obtener_tipo_plataforma() == platform::HORIZONTAL) {
-                if (plataforma.es_plataforma_cercana_en_y_abajo(prox_pos_y)) {
-                    // Si me muevo atravieso la tabla, asi q seteo el techo de la tabla como mi piso
-                    velocidad.setear_velocidad_y(0);
-                    estados.setCayendo(false);
-                    estados.setIdle(true);
-                    return;
-                } else {
-                    // Si no estoy en una tabla, entonces estoy cayendo
-                    estados.reset();
-                    estados.setCayendo(true);
-                    velocidad.caer();
-                }
+    float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
+    float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
+
+    for (const auto& plataforma : plataformas) {
+        if (velocidad.obtener_velocidad_x() < 0) {
+            if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
+                velocidad.setear_velocidad_x(0);
+                estados.setCorriendo(false);
+                estados.setIdle(true);
+                break;
             }
-        }
-    }
-    if (velocidad.obtener_velocidad_y() > 0) {
-        // Estoy saltando/subiendo
-        float prox_pos_y = posicion.get_posicion_y() + velocidad.obtener_velocidad_y();
-        for (const auto& plataforma: plataformas) {
-            if (plataforma.obtener_tipo_plataforma() == platform::HORIZONTAL) {
-                if (plataforma.es_plataforma_cercana_en_y_arriba(prox_pos_y)) {
-                    // Si me muevo atravieso la tabla, asi q seteo el piso de la tabla como mi
-                    // techo, y empiezo a caer
-                    velocidad.caer();
-                    estados.setSaltando(false);
-                    estados.setCayendo(true);
-                    return;
-                }
-            }
-        }
-    }
-    if (velocidad.obtener_velocidad_x() < 0) {
-        // Estoy yendo a la izquierda
-        float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
-        for (const auto& plataforma: plataformas) {
-            if (plataforma.obtener_tipo_plataforma() == platform::VERTICAL) {
-                if (plataforma.es_plataforma_cercana_en_x_izquierda(prox_pos_x)) {
-                    velocidad.setear_velocidad_x(0);
-                    estados.setCorriendo(false);
-                    estados.setIdle(true);
-                    return;
-                }
-            }
-        }
-    }
-    if (velocidad.obtener_velocidad_x() > 0) {
-        // std::cout << "Personaje::chequear_colisiones: yendo a la derecha" << std::endl;
-        //  Estoy yendo a la derecha
-        float prox_pos_x = posicion.get_posicion_x() + velocidad.obtener_velocidad_x();
-        for (const auto& plataforma: plataformas) {
-            if (plataforma.obtener_tipo_plataforma() == platform::VERTICAL) {
-                if (plataforma.es_plataforma_cercana_en_x_derecha(prox_pos_x)) {
-                    velocidad.setear_velocidad_x(0);
-                    estados.setCorriendo(false);
-                    estados.setIdle(true);
-                    return;
-                }
+        } else if (velocidad.obtener_velocidad_x() > 0) {
+            if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x + ancho, prox_pos_y)) {
+                velocidad.setear_velocidad_x(0);
+                estados.setCorriendo(false);
+                estados.setIdle(true);
+                break;
             }
         }
     }
 
-    // No me choco con nada
+    bool hay_piso = false;
+    for (const auto& plataforma : plataformas) {
+        if (velocidad.obtener_velocidad_y() < 0) {
+            if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
+                hay_piso = true;
+                // std::cout << "COLISION CON PISO" << std::endl;
+                velocidad.setear_velocidad_y(0);
+                estados.setCayendo(false);
+                estados.setIdle(true);
+                break;
+            }
+        } else if (velocidad.obtener_velocidad_y() > 0) {
+            if (plataforma.estoy_adentro_de_la_plataforma(prox_pos_x, prox_pos_y)) {
+                // std::cout << "COLISION CON TECHO" << std::endl;
+                altura_acumulada = 0;
+                velocidad.setear_velocidad_y(0); // Detener la subida
+                velocidad.caer(); // Iniciar la caída
+                estados.setSaltando(false);
+                estados.setCayendo(true);
+                return;
+            }
+        }
+    }
+
+    if ( !hay_piso && estados.getCayendo()) {
+        // std::cout << "NO HAY PISO" << std::endl;
+        velocidad.caer();
+        estados.setCayendo(true);
+    }
+
+    if (velocidad.obtener_velocidad_y() > 0) {
+        if (altura_acumulada >= altura_salto) {
+            // std::cout << "ALTURA MAXIMA DEL SALTO" << std::endl;
+            velocidad.setear_velocidad_y(0); // Detener la subida
+            velocidad.caer(); // Iniciar la caída
+            estados.setSaltando(false);
+            estados.setCayendo(true);
+            altura_acumulada = 0;
+        } else {
+            altura_acumulada += velocidad.obtener_velocidad_y();
+        }
+    }
+
     this->posicion.mover(this->velocidad);
 }
+
+/*
+bool Game::colision_diagonal(const Personaje& personaje, const Plataforma& plataforma) {
+    float personajeCenterX = personaje.getLeft() + personaje.obtener_ancho() / 2;
+    float personajeBottomY = personaje.getBottom();
+
+    float plataformaStartX = plataforma.obtener_vertice_izq_abajo().get_posicion_x();
+    float plataformaEndX = plataforma.obtener_vertice_der_abajo().get_posicion_x();
+    float plataformaStartY = plataforma.obtener_vertice_izq_abajo().get_posicion_y();
+    float plataformaEndY = plataforma.obtener_vertice_der_arriba().get_posicion_y();
+
+    float m = (plataformaEndY - plataformaStartY) / (plataformaEndX - plataformaStartX);
+    float b = plataformaStartY - m * plataformaStartX;
+
+    float plataformaYatJugadorX = m * personajeCenterX + b;
+
+    bool interseca = personajeBottomY >= plataformaYatJugadorX &&
+                     personajeBottomY <= plataformaYatJugadorX + 1 &&
+                     personajeCenterX >= plataformaStartX && personajeCenterX <= plataformaEndX;
+
+    return interseca;
+}
+*/
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {

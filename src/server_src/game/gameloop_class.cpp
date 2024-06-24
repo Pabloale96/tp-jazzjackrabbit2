@@ -8,7 +8,7 @@
 #include "../../include/server_src/game/game_state.h"
 
 #define MAX_TAM_COLA 10000
-#define RATE 200
+#define RATE 100
 #define SCALE_TIME 1e9
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
@@ -63,11 +63,11 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {}
-            if (comando) {
-                comando->ejecutar(this->game);
-            }
-
+            while (client_commands.try_pop(comando)) {
+                if (comando) {
+                    comando->ejecutar(game);
+                }
+            }      
 
             game.actualizar(obtener_tiempo_restante());
             broadcastear();
@@ -106,7 +106,7 @@ std::chrono::seconds GameLoop::obtener_tiempo_restante() {
 void GameLoop::broadcastear() {
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    nuevo_gamestate.imprimir_mensaje();
+    // nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 

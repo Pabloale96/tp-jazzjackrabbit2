@@ -38,10 +38,11 @@ private:
     Velocidad velocidad;
     float ancho;
     float alto;
+    float altura_salto;
+    float altura_acumulada;
 
 
     std::chrono::seconds tiempo_restante_de_partida;
-    std::chrono::seconds duracion_del_salto;
     std::chrono::seconds duracion_muerto;
 
 protected:
