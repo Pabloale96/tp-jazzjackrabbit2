@@ -205,6 +205,17 @@ void ProtocolClient::recibir_respuesta(std::shared_ptr<GameStateClient>& gameSta
         socket_cliente.recvall(&bala, sizeof(bala), &was_closed);
         gameState->pushBalas(bala);
     }
+
+
+    uint16_t cant_coleccionables = ntohs(msg.cantidad_colecionables);
+    msgColecionables coleccionables;
+    for (uint16_t i = 0; i < cant_coleccionables; i++) {
+        if (was_closed) {
+            // return nullptr;
+        }
+        socket_cliente.recvall(&coleccionables, sizeof(coleccionables), &was_closed);
+        gameState->pushColeccionables(coleccionables);
+    }
 }
 
 void ProtocolClient::cerrar_socket() {

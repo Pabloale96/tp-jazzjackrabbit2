@@ -86,7 +86,7 @@ struct msgGameState {
         this->tiempo = htons(tiempo);
         cantidad_personajes = htons(gameState.getSizePersonajes());
         cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
-        // cantidad_colecionables = htons(gameState.obtener_cantidad_de_colecionables());
+        cantidad_colecionables = htons(gameState.get_cantidad_de_collectibles());
         cantidad_balas = htons(cantidadBalas);
     }
 } __attribute__((packed));

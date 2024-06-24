@@ -32,6 +32,26 @@ void GameStateClient::pushPlataformas(const msgPlataforma& msgplat) {
     plataformas.push_back(platform);
 }
 
+void GameStateClient::pushColeccionables(msgColecionables& msgcol) {
+    std::shared_ptr<ColecionablesGui> coleccionables;
+    uint8_t tipo = msgcol.tipo_coleccionable;
+    switch (tipo) {
+        case static_cast<uint8_t>(coleccionables::MONEDA_TIPO):
+            coleccionables = std::make_shared<MonedaGui>(texturas, msgcol);
+            break;
+        case static_cast<uint8_t>(coleccionables::GEMAS_TIPO):
+            coleccionables = std::make_shared<GemaGui>(texturas, msgcol);
+            break;
+        case static_cast<uint8_t>(coleccionables::ZANAHORIA_TIPO):
+            coleccionables = std::make_shared<ZanahoriaGui>(texturas, msgcol);
+            break;
+        default:
+            std::cerr << "Error: Tipo de enemigo no válido" << std::endl;
+            return;
+    }
+    vector_coleccionables.push_back( std::move(coleccionables));
+} 
+
 void GameStateClient::showTiempo(int h_window) {
     std::stack<uint16_t> pilaCifras;
     uint16_t tiempo_aux = tiempo;
@@ -90,7 +110,7 @@ void GameStateClient::pushBalas(msgBalas& msg) {
             std::cerr << "Error: Tipo de personaje no válido" << std::endl;
             return;
     }
-    vector_balas.push_back(std::move(*bala));
+    vector_balas.push_back(std::move(bala));
 }
 
 void GameStateClient::pushEnemigos(msgEnemigo& msgenem) {
@@ -116,11 +136,14 @@ void GameStateClient::pushEnemigos(msgEnemigo& msgenem) {
 uint16_t GameStateClient::getTiempo() const { return tiempo; }
 
 
-void GameStateClient::actualizar_gamestate(const GameStateClient& other) {
+void GameStateClient::actualizar_gamestate(GameStateClient& other) {
 
     this->jugando = other.getJugando();
     this->tiempo = other.getTiempo();
+    this->vector_balas = other.obtener_balas();
+    this->vector_coleccionables = other.obtener_coleccionables();
 
+    this->diccionario_de_personajes.clear();
     for (const auto& [id, personaje]: other.obtener_diccionario_de_personajes()) {
         if (!this->diccionario_de_personajes.empty()) {
             auto it = this->diccionario_de_personajes.find(id);
@@ -134,6 +157,7 @@ void GameStateClient::actualizar_gamestate(const GameStateClient& other) {
         }
     }
 
+    this->diccionario_de_enemigos.clear();
     for (auto& [id, enemigo]: other.obtener_diccionario_de_enemigos()) {
         if (!this->diccionario_de_enemigos.empty()) {
             auto it = this->diccionario_de_enemigos.find(id);

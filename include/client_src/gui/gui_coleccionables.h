@@ -32,8 +32,12 @@ protected:
 
 public:
     ColecionablesGui(ClaseTexturas& texturas, int x, int y);
+    ColecionablesGui(ClaseTexturas& texturas, msgColecionables& msg);
     ~ColecionablesGui();
     void show();
+    void setPosicion(float x, float y);
+    float obtener_posicion_x();
+    float obtener_posicion_y();
 };
 
 class MunicionGui: public ColecionablesGui {
@@ -47,6 +51,7 @@ class ZanahoriaGui: public ColecionablesGui {
 private:
 public:
     ZanahoriaGui(ClaseTexturas& texturas, int x, int y);
+    ZanahoriaGui(ClaseTexturas& texturas, msgColecionables& msg);
     ~ZanahoriaGui();
 };
 
@@ -54,6 +59,7 @@ class MonedaGui: public ColecionablesGui {
 private:
 public:
     MonedaGui(ClaseTexturas& texturas, int x, int y);
+    MonedaGui(ClaseTexturas& texturas, msgColecionables& msg);
     ~MonedaGui();
 };
 
@@ -61,6 +67,7 @@ class GemaGui: public ColecionablesGui {
 private:
 public:
     GemaGui(ClaseTexturas& texturas, int x, int y);
+    GemaGui(ClaseTexturas& texturas, msgColecionables& msg);
     ~GemaGui();
 };
 #endif
