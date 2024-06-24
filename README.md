@@ -34,39 +34,63 @@ y luego de 1 consola por cada cliente que quiera conectarse al juego:
 
 ### Elige tu personaje 🐰
 
-Jazz:
+Elige tu personaje sabiamente, cada uno tiene una habilidad especial diferente:
 
-Spazz:
+#### Jazz 🟢
 
-Lori:
+Acción especial: *Puñetazo hacia arriba* - Jazz puede hacer un salto vertical, sin posibilidad de moverse lateralmente, pero realizando un daño con todo lo que toque.
+
+#### Spazz 🔴
+
+Acción especial: *Patada hacia un costado* - Spazz puede hacer hacer una patada que la desplaza de forma lateral, sin poder saltar hacia arriba, realizando un daño con todo lo que toque.
+
+#### Lori 🟡
+
+Acción especial: *Patada de corto alcance* - Lori puede hacer un patada voladora de corto alcance mientras da un salto (tal como si fuese una accion de salto), realizando un daño con todo lo que toque.
 
 ### Comandos ⌨️
 
-⬅️          =  Correr izquierda
+    ⬅️     =  Correr izquierda
 
 ctrl + ⬅️  =  Correr izquierda rapido
 
-➡️          =  Correr derecha
+    ➡️     =  Correr derecha
 
 ctrl + ➡️  =  Correr derecha rapido
 
-⬆️          =  Saltar
+    ⬆️     =  Saltar
 
-a           =  Disparar
+     A     =  Disparar
             
-s           =  Accion especial
+     S     =  Accion especial
             
-flecha para abajo =  Cambiar arma
+    ⬇️    =  Cambiar arma
 
 ### Reglas 📜
 
-⏳ La partida dura 60 segundos.
+⏳ La partida dura 5 minutos.
 
 🏆 Gana el jugador que haya recaudado la mayor cantidad de puntos en ese lapso de tiempo.
 
-👾 Los puntos se pueden obtener al coleccionar monedas, gemas o matar enemigos.
+💎 Los puntos se pueden obtener al coleccionar monedas, gemas o matar enemigos.
 
-⚔️ Ten cuidado! Los enemigos pueden atacarte y quitarte vidas!
+⚔️ Ten cuidado! Si tocas los enemigos perderas vidas!
+
+🥕 Las zanahorias te darán vidas extras.
+
+🥴 Ten cuidado con la comida! Si te intoxica podrás moverte, pero no disparar.
+
+### Armas
+
+🔫 Empiezas con el arma inicial, que no tiene límite de munición. Al matar enemigos podrás juntar municiones de las demás armas e ir cambiando de arma.
+
+### Enemigos
+
+🦘 Gigante amarillo: Enemigo de tierra
+
+🐁 Rata loca: Enemigo de tierra
+
+🦇 Murcielago rabioso: Enemigo volador
 
 ### Cheats 🤫
 
@@ -74,7 +98,7 @@ K = Kill all
 
 ### Musica / Sonidos 🔊
 
-<Pending work>
+🚧 En construcción 🚧
 
 ## Ejecutando las pruebas ⚙️
 
@@ -84,7 +108,7 @@ En una corremos: `./protocol_server_test`
 
 Y en la otra corremos: `./test_consola_cliente`
 
-Nota: Debido a que hay que crear muchos sokets para las pruebas, se recomienda ir comentando las pruebas y correrlas 1 a la vez para asegurarse de que se crean correctamente los sockets.
+Nota: Debido a que hay que crear muchos sockets para las pruebas, se recomienda ir comentando las pruebas y correrlas 1 a la vez para asegurarse de que se crean correctamente los sockets y evitar falsos negativos.
 
 ## Construido con 🛠️
 

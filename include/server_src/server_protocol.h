@@ -33,7 +33,7 @@ public:
 
     uint16_t recibir_id_partida(bool& was_closed);
 
-    void enviar_escenario(Game&, bool&);
+    void enviar_escenario(std::vector<Platform>&, bool&);
 
     bool confirmar_fin_lobby(bool& was_closed);
 

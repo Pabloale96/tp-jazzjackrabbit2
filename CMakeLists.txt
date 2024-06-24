@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -pedantic-errors -O0 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L")
 
 add_definitions(-DIMG_PATH="${PROJECT_SOURCE_DIR}/img")
-add_definitions(-DYAML_FILE="${PROJECT_SOURCE_DIR}/config/config.yaml")
+#add_definitions(-DYAML_FILE="${PROJECT_SOURCE_DIR}/config/config.yaml")
 
 
 #define YAML_FILE "../config/config.yaml"

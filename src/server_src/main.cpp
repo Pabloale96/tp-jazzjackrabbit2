@@ -7,6 +7,7 @@
 #define ERROR 1
 #define PORT_ARG argv[1]
 
+#define YAML_FILE "../config/config.yaml"
 
 int main(int argc, char const* argv[]) {
     try {

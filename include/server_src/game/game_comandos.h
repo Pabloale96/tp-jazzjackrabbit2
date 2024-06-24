@@ -80,6 +80,12 @@ public:
     void ejecutar(Game& game) override;
 };
 
+class EliminarPersonaje: public Comando {
+public:
+    EliminarPersonaje(uint16_t client_id, bool toggle);
+    void ejecutar(Game& game) override;
+};
+
 
 class KillAll: public Comando {
 public:

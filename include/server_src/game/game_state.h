@@ -19,7 +19,7 @@ private:
     uint16_t partida_id;
     bool jugando;
     std::map<uint16_t, std::shared_ptr<Personaje>> diccionario_de_personajes;
-    std::map<uint16_t, Enemigo> diccionario_de_enemigos;
+    std::map<uint16_t, std::shared_ptr<Enemigo>> diccionario_de_enemigos;
     std::map<uint16_t, std::shared_ptr<Collectible>> diccionario_de_collectibles;
 
 
@@ -30,7 +30,7 @@ public:
 
     std::map<uint16_t, std::shared_ptr<Personaje>>& obtener_diccionario_de_personajes();
 
-    std::map<uint16_t, Enemigo>& obtener_diccionario_de_enemigos();
+    std::map<uint16_t, std::shared_ptr<Enemigo>>& obtener_diccionario_de_enemigos();
 
     std::map<uint16_t, std::shared_ptr<Collectible>>& obtener_diccionario_de_collectibles();
 
@@ -49,11 +49,6 @@ public:
     void pushPersonajes(msgPersonaje& msgpers);
 
     void imprimir_cliente();
-
-    void pushEnemigos(uint16_t* msgenem) {
-        Enemigo enemigo(msgenem);
-        diccionario_de_enemigos.emplace(enemigo.get_id_enemigo(), enemigo);
-    }
 
     void imprimir_mensaje();
 

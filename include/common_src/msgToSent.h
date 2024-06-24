@@ -123,48 +123,54 @@ struct msgPersonaje {
 
 
 struct msgColecionables {
-    uint8_t tipo_coleccionable = 0x00;
-    uint16_t colecionables[SIZE_ARRAY_COLECCIONABLE] = {0};
+    uint8_t tipo_coleccionable;
+    uint16_t coleccionables[SIZE_ARRAY_COLECCIONABLE];
 
-    msgColecionables() {}
+    msgColecionables() {
+        memset(this, 0, sizeof(*this));
+    }
 
-    explicit msgColecionables(Collectible& cole):
-            tipo_coleccionable((uint8_t)cole.obtener_tipo_coleccionable()) {
-        colecionables[POS_POSX_COLECCIONABLE] =
-                htons((uint16_t)((cole.obtener_posicion().get_posicion_x()) * 100));
-        colecionables[POS_POSY_COLECCIONABLE] =
-                htons((uint16_t)((cole.obtener_posicion().get_posicion_y()) * 100));
+    explicit msgColecionables(uint8_t id, std::shared_ptr<Collectible>& cole) {
+        memset(this, 0, sizeof(*this));
+        tipo_coleccionable = static_cast<uint8_t>(cole->obtener_tipo_coleccionable());
+        coleccionables[POS_POSX_COLECCIONABLE] = htons(static_cast<uint16_t>(cole->obtener_posicion().get_posicion_x() * 100));
+        coleccionables[POS_POSY_COLECCIONABLE] = htons(static_cast<uint16_t>(cole->obtener_posicion().get_posicion_y() * 100));
     }
 } __attribute__((packed));
 
 
 struct msgBalas {
-    uint8_t tipo_bala = 0x00;
-    uint16_t balas[SIZE_ARRAY_BALA] = {0};
+    uint8_t tipo_bala;
+    uint16_t balas[SIZE_ARRAY_BALA];
 
-    msgBalas() {}
+    msgBalas() {
+        memset(this, 0, sizeof(*this));
+    }
 
-    explicit msgBalas(Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
-        balas[POS_POSX_BALA] = htons((uint16_t)((muni.obtener_x()) * 100));
-        balas[POS_POSY_BALA] = htons((uint16_t)((muni.obtener_y()) * 100));
+    explicit msgBalas(Municion& muni) {
+        memset(this, 0, sizeof(*this));
+        tipo_bala = muni.obtener_tipo_bala();
+        balas[POS_POSX_BALA] = htons(static_cast<uint16_t>(muni.obtener_x() * 100));
+        balas[POS_POSY_BALA] = htons(static_cast<uint16_t>(muni.obtener_y() * 100));
     }
 } __attribute__((packed));
 
 
 struct msgEnemigo {
-    uint8_t tipo = 0x00;
-    uint16_t enemigo[SIZE_ARRAY_ENEMIGO] = {0};
+    uint8_t tipo;
+    uint16_t enemigo[SIZE_ARRAY_ENEMIGO];
 
-    msgEnemigo() {}
+    msgEnemigo() {
+        memset(this, 0, sizeof(*this));
+    }
 
-    msgEnemigo(uint16_t id, const Enemigo& enemi): tipo((uint8_t)enemi.get_tipo_enemigo()) {
+    msgEnemigo(uint16_t id, std::shared_ptr<Enemigo>& enemi) {
+        memset(this, 0, sizeof(*this));
+        tipo = static_cast<uint8_t>(enemi->get_tipo_enemigo());
         enemigo[POS_ID_ENEMIGO] = htons(id);
-        enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
-        // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales
-        enemigo[POS_POSX_ENEMIGO] =
-                htons((uint16_t)((enemi.get_posicion_enemigo().get_posicion_x()) * 100));
-        enemigo[POS_POSY_ENEMIGO] =
-                htons((uint16_t)((enemi.get_posicion_enemigo().get_posicion_y()) * 100));
+        enemigo[POS_TIPO_ENEMIGO] = htons(static_cast<uint16_t>(enemi->get_tipo_enemigo()));
+        enemigo[POS_POSX_ENEMIGO] = htons(static_cast<uint16_t>(enemi->get_posicion_enemigo().get_posicion_x() * 100));
+        enemigo[POS_POSY_ENEMIGO] = htons(static_cast<uint16_t>(enemi->get_posicion_enemigo().get_posicion_y() * 100));
     }
 } __attribute__((packed));
 

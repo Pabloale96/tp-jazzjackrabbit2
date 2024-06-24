@@ -41,24 +41,14 @@ ArmaInicial::ArmaInicial():
         Arma(YAMLConfig::getConfig().arma_inicial.municion, (uint8_t)armas::ARMA_INICIAL,
              YAMLConfig::getConfig().arma_inicial.vel_dis,
              YAMLConfig::getConfig().arma_inicial.vel_proy,
-             YAMLConfig::getConfig().arma_inicial.dano) {
-    std::cout << "ArmaInicial::ArmaInicial()" << std::endl;
-    std::cout << "municion: " << YAMLConfig::getConfig().arma_inicial.municion << std::endl;
-    std::cout << "vel_dis: " << YAMLConfig::getConfig().arma_inicial.vel_dis << std::endl;
-    std::cout << "vel_proy: " << YAMLConfig::getConfig().arma_inicial.vel_proy << std::endl;
-}
+             YAMLConfig::getConfig().arma_inicial.dano) {}
 
 ArmaInicial::ArmaInicial(uint16_t municion): ArmaInicial() { set_municion(municion); }
 
 Arma1::Arma1():
         Arma(YAMLConfig::getConfig().arma1.municion, (uint8_t)armas::ARMA_1,
              YAMLConfig::getConfig().arma1.vel_dis, YAMLConfig::getConfig().arma1.vel_proy,
-             YAMLConfig::getConfig().arma1.dano) {
-    std::cout << "Arma1::Arma1()" << std::endl;
-    std::cout << "municion: " << YAMLConfig::getConfig().arma_inicial.municion << std::endl;
-    std::cout << "vel_dis: " << YAMLConfig::getConfig().arma_inicial.vel_dis << std::endl;
-    std::cout << "vel_proy: " << YAMLConfig::getConfig().arma_inicial.vel_proy << std::endl;
-}
+             YAMLConfig::getConfig().arma1.dano) {}
 
 Arma1::Arma1(uint16_t municion): Arma1() { set_municion(municion); }
 
