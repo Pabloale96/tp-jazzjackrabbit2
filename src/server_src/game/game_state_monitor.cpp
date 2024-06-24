@@ -19,7 +19,7 @@ void GameStateMonitor::broadcastear(const GameState& msg) {
                     std::remove(vector_de_server_msg.begin(), vector_de_server_msg.end(),
                                 vector_de_server_msg[i]),
                     vector_de_server_msg.end());
-            // --i;
+            --i;
         }
     }
 }

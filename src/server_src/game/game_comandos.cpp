@@ -141,6 +141,16 @@ void CambiarArma::ejecutar(Game& game) {
 }
 
 
+// **** Eliminar personaje ****
+EliminarPersonaje::EliminarPersonaje(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
+
+void EliminarPersonaje::ejecutar(Game& game) {
+    if (toggle) {
+        game.borrar_personaje(client_id);
+    }
+}
+
+
 // **** Kill all ****
 KillAll::KillAll(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 

@@ -67,7 +67,7 @@ void GameState::imprimir_mensaje() {
         const std::shared_ptr<Personaje>& personaje = pair.second;
         std::cout << " >> Personaje " << personaje->obtener_personaje_id() << " :" << std::endl;
         std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
-        std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
+/*        std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
         std::cout << "     - Velocidad: (" << personaje->obtener_velocidad().obtener_velocidad_x()
@@ -112,7 +112,7 @@ void GameState::imprimir_mensaje() {
                   << ", " << collectible->obtener_posicion().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Tipo: " << (unsigned)collectible->obtener_tipo_coleccionable()
                   << std::endl;
-    }
+*/    }
 }
 
 
