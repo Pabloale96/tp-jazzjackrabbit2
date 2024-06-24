@@ -54,8 +54,8 @@ TEST(ProtocolClientTest, TestCrearPartida) {
 TEST(ProtocolClientTest, TestRecibirPlataformaHorizontal) {
     ProtocolClient protocolClient = crearProtocoloCliente("127.0.0.7", "8086");
     // Como necesito textura par el gamestate, creo una dummy (y todo lo que necesita)
-    SDL2pp::Window window("Dummy Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_HIDDEN);
-    SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL2pp::Window window("Dummy Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640,
+480, SDL_WINDOW_HIDDEN); SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
     ClaseTexturas dummyTexturas(renderer);
     GameStateClient gamestate_test(dummyTexturas);
     bool se_recibio_escenario = protocolClient.recibir_escenario(gamestate_test);
@@ -70,8 +70,8 @@ TEST(ProtocolClientTest, TestRecibirPlataformaHorizontal) {
 TEST(ProtocolClientTest, TestRecibirPlataformaVertical) {
     ProtocolClient protocolClient = crearProtocoloCliente("127.0.0.8", "8087");
     // Como necesito textura par el gamestate, creo una dummy (y todo lo que necesita)
-    SDL2pp::Window window("Dummy Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_HIDDEN);
-    SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL2pp::Window window("Dummy Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640,
+480, SDL_WINDOW_HIDDEN); SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
     ClaseTexturas dummyTexturas(renderer);
     GameStateClient gamestate_test(dummyTexturas);
     bool se_recibio_escenario = protocolClient.recibir_escenario(gamestate_test);
@@ -107,8 +107,8 @@ TEST(ProtocolClientTest, TestRecibirPartidasDisponibles) {
     std::map<uint16_t, std::string> partidas_disponibles;
     protocolClient.recibir_partidas_disponibles(partidas_disponibles);
     ASSERT_EQ(partidas_disponibles.size(), 1);
-    ASSERT_NE(partidas_disponibles.find(1), partidas_disponibles.end()) << "No se encontró el ID 1 en partidas_disponibles";
-    ASSERT_EQ(partidas_disponibles[1], "partida1");
+    ASSERT_NE(partidas_disponibles.find(1), partidas_disponibles.end()) << "No se encontró el ID 1
+en partidas_disponibles"; ASSERT_EQ(partidas_disponibles[1], "partida1");
 }
 */
 

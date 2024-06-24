@@ -55,7 +55,9 @@ public:
     std::vector<std::shared_ptr<BalasGui>> obtener_balas() { return vector_balas; }
 
 
-    std::vector<std::shared_ptr<ColecionablesGui>> obtener_coleccionables() {return vector_coleccionables;}
+    std::vector<std::shared_ptr<ColecionablesGui>> obtener_coleccionables() {
+        return vector_coleccionables;
+    }
     void setGameState(const msgGameState& msg) {
         jugando = ((unsigned)msg.state_partida == 0x01);
         tiempo = ntohs(msg.tiempo);
@@ -83,13 +85,12 @@ public:
         }
     }
 
-    void actualizar_gamestate( GameStateClient&);
+    void actualizar_gamestate(GameStateClient&);
 
     ~GameStateClient();
 
     // *** Funciones para tests
-    GameStateClient(ClaseTexturas& tex) : texturas(tex), jugando(false), tiempo(0) {}
-
+    explicit GameStateClient(ClaseTexturas& tex): texturas(tex), jugando(false), tiempo(0) {}
 };
 
 #endif

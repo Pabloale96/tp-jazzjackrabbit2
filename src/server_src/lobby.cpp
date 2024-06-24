@@ -50,8 +50,11 @@ void Lobby::establecer_partida(GameloopMonitor& gameloop_monitor) {
     }
     receiver = std::make_unique<ServerReceiver>(protocolo_server, was_closed, gameloop_monitor,
                                                 id_partida, id_cliente);
-    protocolo_server.enviar_escenario(
-            (gameloop_monitor.obtener_gameloop(id_partida)->obtener_game().obtener_escenario().obtener_plataformas()), was_closed);
+    protocolo_server.enviar_escenario((gameloop_monitor.obtener_gameloop(id_partida)
+                                               ->obtener_game()
+                                               .obtener_escenario()
+                                               .obtener_plataformas()),
+                                      was_closed);
 }
 
 uint16_t Lobby::crear_partida(GameloopMonitor& gameloop_monitor,

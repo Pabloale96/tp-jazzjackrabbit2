@@ -77,8 +77,8 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
     gameloop->borrar_cliente(client_id);
 
-    //std::unique_lock<std::mutex> lock(m);
-    //borrar_partida_si_esta_vacia(gameloop);
+    // std::unique_lock<std::mutex> lock(m);
+    // borrar_partida_si_esta_vacia(gameloop);
 }
 
 void GameloopMonitor::borrar_partida_si_esta_vacia(GameLoop* gameloop) {

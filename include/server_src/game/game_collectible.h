@@ -17,8 +17,7 @@ private:
 
 public:
     Collectible(uint16_t id_collectible, uint16_t x, uint16_t y, coleccionables tipo):
-            id_collectible(id_collectible),
-            posicion(x, y), tipo(tipo) {}
+            id_collectible(id_collectible), posicion(x, y), tipo(tipo) {}
 
     uint16_t obtener_id() const { return id_collectible; }
 
@@ -42,9 +41,7 @@ public:
             Collectible(id_collectible, x, y, coleccionables::GEMAS_TIPO),
             puntos(YAMLConfig::getConfig().puntos_gemas) {}
 
-    uint16_t obtener_premio() const override {
-        return puntos;
-    }
+    uint16_t obtener_premio() const override { return puntos; }
 };
 
 class Moneda: public Collectible {

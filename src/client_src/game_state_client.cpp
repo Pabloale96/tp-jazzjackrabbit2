@@ -49,8 +49,8 @@ void GameStateClient::pushColeccionables(msgColecionables& msgcol) {
             std::cerr << "Error: Tipo de enemigo no válido" << std::endl;
             return;
     }
-    vector_coleccionables.push_back( std::move(coleccionables));
-} 
+    vector_coleccionables.push_back(std::move(coleccionables));
+}
 
 void GameStateClient::showTiempo(int h_window) {
     std::stack<uint16_t> pilaCifras;

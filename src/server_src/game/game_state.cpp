@@ -6,7 +6,11 @@
 #include "../../common_src/msgToSent.h"
 
 GameState::GameState(uint16_t partida_id, bool jugando):
-        partida_id(partida_id), jugando(jugando), diccionario_de_personajes(), diccionario_de_enemigos(), diccionario_de_collectibles() {}
+        partida_id(partida_id),
+        jugando(jugando),
+        diccionario_de_personajes(),
+        diccionario_de_enemigos(),
+        diccionario_de_collectibles() {}
 
 bool GameState::obtener_estado_de_la_partida() { return jugando; }
 
@@ -95,11 +99,12 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }
-    
+
     for (const auto& pair: diccionario_de_enemigos) {
         const std::shared_ptr<Enemigo>& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo->get_id_enemigo() << " :" << std::endl;
-        std::cout << "     - Posición: (" << enemigo->get_posicion_enemigo().get_posicion_x() << ", "
+        std::cout << "     - Posición: (" << enemigo->get_posicion_enemigo().get_posicion_x() << ",
+    "
                   << enemigo->get_posicion_enemigo().get_posicion_y() << ")." << std::endl;
         std::cout << "     - Puntos: " << enemigo->get_puntos() << std::endl;
         std::cout << "     - Vida: " << enemigo->get_vidas() << std::endl;

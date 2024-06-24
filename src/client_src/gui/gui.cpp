@@ -78,13 +78,15 @@ bool Gui::run(int h_window, int w_window, uint16_t client_id) {
         gamestate.obtener_balas().at(i)->show();
     }
 
-    
+
     for (size_t i = 0; i < gamestate.obtener_coleccionables().size(); i++) {
-        float x = (gamestate.obtener_coleccionables().at(i)->obtener_posicion_x() - posicion_jugador_x) *
+        float x = (gamestate.obtener_coleccionables().at(i)->obtener_posicion_x() -
+                   posicion_jugador_x) *
                           SCALING_VALUE_PIXEL_X +
                   h_window / 2;
         float y = w_window -
-                  (gamestate.obtener_coleccionables().at(i)->obtener_posicion_y() - posicion_jugador_y) *
+                  (gamestate.obtener_coleccionables().at(i)->obtener_posicion_y() -
+                   posicion_jugador_y) *
                           SCALING_VALUE_PIXEL_Y -
                   w_window / 2;
 

@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <cstring>  // para usar memset()
+#include <memory>   // para usar shared_ptr
 
 #include <arpa/inet.h>  // para usar htons()
 
@@ -126,15 +127,15 @@ struct msgColecionables {
     uint8_t tipo_coleccionable;
     uint16_t coleccionables[SIZE_ARRAY_COLECCIONABLE];
 
-    msgColecionables() {
-        memset(this, 0, sizeof(*this));
-    }
+    msgColecionables() { memset(this, 0, sizeof(*this)); }
 
     explicit msgColecionables(uint8_t id, std::shared_ptr<Collectible>& cole) {
         memset(this, 0, sizeof(*this));
         tipo_coleccionable = static_cast<uint8_t>(cole->obtener_tipo_coleccionable());
-        coleccionables[POS_POSX_COLECCIONABLE] = htons(static_cast<uint16_t>(cole->obtener_posicion().get_posicion_x() * 100));
-        coleccionables[POS_POSY_COLECCIONABLE] = htons(static_cast<uint16_t>(cole->obtener_posicion().get_posicion_y() * 100));
+        coleccionables[POS_POSX_COLECCIONABLE] =
+                htons(static_cast<uint16_t>(cole->obtener_posicion().get_posicion_x() * 100));
+        coleccionables[POS_POSY_COLECCIONABLE] =
+                htons(static_cast<uint16_t>(cole->obtener_posicion().get_posicion_y() * 100));
     }
 } __attribute__((packed));
 
@@ -143,9 +144,7 @@ struct msgBalas {
     uint8_t tipo_bala;
     uint16_t balas[SIZE_ARRAY_BALA];
 
-    msgBalas() {
-        memset(this, 0, sizeof(*this));
-    }
+    msgBalas() { memset(this, 0, sizeof(*this)); }
 
     explicit msgBalas(Municion& muni) {
         memset(this, 0, sizeof(*this));
@@ -160,17 +159,17 @@ struct msgEnemigo {
     uint8_t tipo;
     uint16_t enemigo[SIZE_ARRAY_ENEMIGO];
 
-    msgEnemigo() {
-        memset(this, 0, sizeof(*this));
-    }
+    msgEnemigo() { memset(this, 0, sizeof(*this)); }
 
     msgEnemigo(uint16_t id, std::shared_ptr<Enemigo>& enemi) {
         memset(this, 0, sizeof(*this));
         tipo = static_cast<uint8_t>(enemi->get_tipo_enemigo());
         enemigo[POS_ID_ENEMIGO] = htons(id);
         enemigo[POS_TIPO_ENEMIGO] = htons(static_cast<uint16_t>(enemi->get_tipo_enemigo()));
-        enemigo[POS_POSX_ENEMIGO] = htons(static_cast<uint16_t>(enemi->get_posicion_enemigo().get_posicion_x() * 100));
-        enemigo[POS_POSY_ENEMIGO] = htons(static_cast<uint16_t>(enemi->get_posicion_enemigo().get_posicion_y() * 100));
+        enemigo[POS_POSX_ENEMIGO] =
+                htons(static_cast<uint16_t>(enemi->get_posicion_enemigo().get_posicion_x() * 100));
+        enemigo[POS_POSY_ENEMIGO] =
+                htons(static_cast<uint16_t>(enemi->get_posicion_enemigo().get_posicion_y() * 100));
     }
 } __attribute__((packed));
 

@@ -6,20 +6,22 @@
 
 #define CALCULO_HIPO(X, Y) (sqrt((X) * (X) + (Y) * (Y)))
 
-GameEscenario::GameEscenario() : plataformas(), plataformas_server(), enemigos(), collectibles(), id_enemigo(0), id_collectible(0) {
+GameEscenario::GameEscenario():
+        plataformas(),
+        plataformas_server(),
+        enemigos(),
+        collectibles(),
+        id_enemigo(0),
+        id_collectible(0) {
     std::cout << "Creando escenario" << std::endl;
     cargar_plataformas();
     cargar_enemigos();
     cargar_collectibles();
 }
 
-uint16_t GameEscenario::generar_id_enemigo() {
-    return id_enemigo++;
-}
+uint16_t GameEscenario::generar_id_enemigo() { return id_enemigo++; }
 
-uint16_t GameEscenario::generar_id_collectible() {
-    return id_collectible++;
-}
+uint16_t GameEscenario::generar_id_collectible() { return id_collectible++; }
 
 void GameEscenario::cargar_plataformas() {
     //      *** Plataformas horizontales  ***
@@ -109,11 +111,12 @@ void GameEscenario::cargar_collectibles() {
     }
 
     // Monedas de la piramide de arriba
-    for (int i = 0; i < 3; i ++) {
-        collectibles.push_back(std::make_unique<Moneda>(generar_id_collectible(), 25 + i*7, 37));
+    for (int i = 0; i < 3; i++) {
+        collectibles.push_back(std::make_unique<Moneda>(generar_id_collectible(), 25 + i * 7, 37));
     }
-    for (int i = 0; i < 3; i ++) {
-        collectibles.push_back(std::make_unique<Moneda>(generar_id_collectible(), 29 + i*4, 41 + i*7));
+    for (int i = 0; i < 3; i++) {
+        collectibles.push_back(
+                std::make_unique<Moneda>(generar_id_collectible(), 29 + i * 4, 41 + i * 7));
     }
 
     // Gemas

@@ -7,9 +7,9 @@
 #include <memory>
 #include <string>
 
+#include "game_collectible.h"
 #include "game_enemigo.h"
 #include "game_personaje.h"
-#include "game_collectible.h"
 
 
 struct msgPersonaje;

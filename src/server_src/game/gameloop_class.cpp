@@ -109,7 +109,7 @@ void GameLoop::broadcastear() {
     }
     GameState nuevo_gamestate(gameloop_id, obtener_estado_de_partida());
     game.crear_nuevo_gamestate(nuevo_gamestate);
-    nuevo_gamestate.imprimir_mensaje();
+    // nuevo_gamestate.imprimir_mensaje();
     monitor_lista_de_queues_server_msg.broadcastear(nuevo_gamestate);
 }
 
@@ -120,10 +120,10 @@ void GameLoop::borrar_queue_server_msg_de_cliente_aceptado(
 
 void GameLoop::borrar_cliente(uint16_t client_id) {
     std::unique_ptr<Comando> comando = std::make_unique<EliminarPersonaje>(client_id, true);
-    client_commands.push(std::shared_ptr<Comando>(
-                    std::move(comando)));  // Como use unique_ptr por la herencia, tengo q
-                                           // convertirlo a shared_ptr
-    //game.borrar_personaje(client_id);
+    client_commands.push(
+            std::shared_ptr<Comando>(std::move(comando)));  // Como use unique_ptr por la herencia,
+                                                            // tengo q convertirlo a shared_ptr
+    // game.borrar_personaje(client_id);
 }
 
 size_t GameLoop::cantidad_de_clientes() { return game.obtener_cantidad_de_personajes(); }

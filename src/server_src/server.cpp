@@ -6,9 +6,7 @@
 #include "../../include/common_src/catedra/sockets.h"
 #include "../../include/server_src/server_aceptador.h"
 
-Server::Server(const std::string& servname): aceptador(servname.c_str()) {
-    aceptador.start();
-}
+Server::Server(const std::string& servname): aceptador(servname.c_str()) { aceptador.start(); }
 
 void Server::jugar() {
     try {
