@@ -212,7 +212,7 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
         cantidadBalas += personaje->obtener_cantidad_balas();
     }
 
-    msgGameState msg(gameState, (uint16_t)cantidadBalas, tiempo, cliente_id);
+    msgGameState msg(gameState, (uint16_t)cantidadBalas,tiempo, cliente_id);
     if (was_closed) {
         return;
     }
@@ -245,7 +245,6 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
             socket_cliente.sendall(&bala, sizeof(bala), &was_closed);
         }
     }
-
 
     for (auto& pair: gameState.obtener_diccionario_de_collectibles()) {
         msgColecionables collectible(pair.first, pair.second);

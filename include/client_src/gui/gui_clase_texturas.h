@@ -44,7 +44,7 @@ private:
             renderer, enemigos.SetColorKey(true, SDL_MapRGB(enemigos.Get()->format, 0, 128, 255)))};
 
     Texture items_tex{Texture(
-            renderer, items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 44, 102, 150)))};
+            renderer, items.SetColorKey(true, SDL_MapRGB(items.Get()->format, 0, 128, 255)))};
 
     Texture font_text{
             Texture(renderer, font.SetColorKey(true, SDL_MapRGB(font.Get()->format, 0, 128, 255)))};

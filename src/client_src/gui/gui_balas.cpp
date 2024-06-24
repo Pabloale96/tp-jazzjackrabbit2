@@ -2,8 +2,8 @@
 
 BalasGui::BalasGui(ClaseTexturas& texturas, msgBalas& msg):
         texturas(texturas),
-        pos_x(ntohs(msg.balas[POS_POSX_BALA])/100),
-        pos_y(ntohs(msg.balas[POS_POSY_BALA])/100),
+        pos_x((float)ntohs(msg.balas[POS_POSX_BALA])/100),
+        pos_y((float)ntohs(msg.balas[POS_POSY_BALA])/100),
         frames(texturas.findFrame(BALA1)),
         it(frames->begin()) {}
 

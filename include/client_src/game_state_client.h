@@ -23,7 +23,7 @@ private:
 
     std::map<uint16_t, PersonajeGui> diccionario_de_personajes;
     std::map<uint16_t, EnemigosGui> diccionario_de_enemigos;
-    std::vector<ColecionablesGui> vector_coleccionables;
+    std::vector<std::shared_ptr<ColecionablesGui>> vector_coleccionables;
     std::vector<std::shared_ptr<BalasGui>> vector_balas;
 
     uint16_t tiempo;
@@ -54,6 +54,8 @@ public:
 
     std::vector<std::shared_ptr<BalasGui>> obtener_balas() { return vector_balas; }
 
+
+    std::vector<std::shared_ptr<ColecionablesGui>> obtener_coleccionables() {return vector_coleccionables;}
     void setGameState(const msgGameState& msg) {
         jugando = ((unsigned)msg.state_partida == 0x01);
         tiempo = ntohs(msg.tiempo);
