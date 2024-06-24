@@ -98,9 +98,17 @@ uint8_t Personaje::obtener_animacion() { return animacion; }
 
 void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
                            std::vector<Plataforma>& plataformas) {
+    //std::cout << "ACTUALIZANDO Personaje: " << client_id << std::endl;
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     for (auto& municion: municiones_disparadas) {
+    //    std::cout << "Bala: " << municion.obtener_id() << std::endl;
+    //    std::cout << "PRE Posicion: (" << municion.obtener_posicion().get_posicion_x() << ", "
+    //                << municion.obtener_posicion().get_posicion_y() << ")." << std::endl;
+    //    std::cout << "PRE Velocidad: (" << municion.obtener_velocidad().obtener_velocidad_x() << ", "
+    //                << municion.obtener_velocidad().obtener_velocidad_y() << ")." << std::endl;
         municion.mover();
+    //    std::cout << "POST Posicion: (" << municion.obtener_posicion().get_posicion_x() << ", "
+    //                << municion.obtener_posicion().get_posicion_y() << ")." << std::endl;
     }
 
     if (vida == 0) {
@@ -239,7 +247,7 @@ void Personaje::disparar() {
         arma->disminuir_municion();
         this->estados.reset();
         this->estados.setDisparando(true);
-        int vel_dis_con_direccion_personaje = arma->obtener_vel_dis();
+        float vel_dis_con_direccion_personaje = arma->obtener_vel_dis();
         if (this->obtener_velocidad().obtener_velocidad_x() < 0) {
             vel_dis_con_direccion_personaje *= -1;
         }

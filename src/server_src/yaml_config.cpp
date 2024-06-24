@@ -21,20 +21,20 @@ void YAMLConfig::loadConfig() {
         // **** Configuracion de las armas ****
         // **** Configuracion del arma Inicial ****
         config.arma_inicial.municion = configNode["MUNICION_ARMA_INICIAL_INFINITA"].as<uint16_t>();
-        config.arma_inicial.vel_dis = configNode["VEL_DIS_INICIAL"].as<int>();
-        config.arma_inicial.vel_proy = configNode["VEL_PROY_INICIAL"].as<int>();
+        config.arma_inicial.vel_dis = configNode["VEL_DIS_INICIAL"].as<float>();
+        config.arma_inicial.vel_proy = configNode["VEL_PROY_INICIAL"].as<float>();
         config.arma_inicial.dano = configNode["DANO_INICIAL"].as<uint16_t>();
 
         // **** Configuracion del arma 1 ****
         config.arma1.municion = configNode["MUNICION_ARMA1"].as<uint16_t>();
-        config.arma1.vel_dis = configNode["VEL_DIS_ARMA1"].as<int>();
-        config.arma1.vel_proy = configNode["VEL_PROY_ARMA1"].as<int>();
+        config.arma1.vel_dis = configNode["VEL_DIS_ARMA1"].as<float>();
+        config.arma1.vel_proy = configNode["VEL_PROY_ARMA1"].as<float>();
         config.arma1.dano = configNode["DANO_ARMA1"].as<uint16_t>();
 
         // **** Configuracion del arma 2 ****
         config.arma2.municion = configNode["MUNICION_ARMA2"].as<uint16_t>();
-        config.arma2.vel_dis = configNode["VEL_DIS_ARMA2"].as<int>();
-        config.arma2.vel_proy = configNode["VEL_PROY_ARMA2"].as<int>();
+        config.arma2.vel_dis = configNode["VEL_DIS_ARMA2"].as<float>();
+        config.arma2.vel_proy = configNode["VEL_PROY_ARMA2"].as<float>();
         config.arma2.dano = configNode["DANO_ARMA2"].as<uint16_t>();
 
 

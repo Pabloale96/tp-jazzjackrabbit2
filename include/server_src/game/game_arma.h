@@ -8,12 +8,12 @@ class Arma {
 protected:
     uint8_t nombre_arma;
     uint16_t cant_municiones;
-    uint16_t vel_dis;
-    uint16_t vel_proy;
+    float vel_dis;
+    float vel_proy;
     uint16_t dano;
 
 public:
-    Arma(uint16_t municion, uint8_t nombre, uint16_t vel_dis, uint16_t vel_proy, uint16_t dano);
+    Arma(uint16_t municion, uint8_t nombre, float vel_dis, float vel_proy, uint16_t dano);
 
     uint8_t obtener_nombre_arma() const;
 
@@ -21,9 +21,9 @@ public:
 
     void set_municion(uint16_t municion);
 
-    uint16_t obtener_vel_dis() const;
+    float obtener_vel_dis() const;
 
-    uint16_t obtener_vel_proy() const;
+    float obtener_vel_proy() const;
 
     void disminuir_municion();
 

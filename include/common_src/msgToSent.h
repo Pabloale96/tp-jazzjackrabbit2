@@ -15,6 +15,7 @@
 #include "game_platform.h"
 #include "game_state.h"
 #include "protocol_utils.h"
+#include "game_collectible.h"
 
 struct msgAccion {
     uint8_t accion;
@@ -127,9 +128,9 @@ struct msgColecionables {
 
     msgColecionables() {}
 
-    explicit msgColecionables(Municion& muni): tipo_coleccionable(muni.obtener_tipo_bala()) {
-        colecionables[POS_POSX_COLECCIONABLE] = htons(muni.obtener_x());
-        colecionables[POS_POSY_COLECCIONABLE] = htons(muni.obtener_y());
+    explicit msgColecionables(Collectible& cole): tipo_coleccionable((uint8_t)cole.obtener_tipo_coleccionable()) {
+        colecionables[POS_POSX_COLECCIONABLE] = htons((uint16_t)((cole.obtener_posicion().get_posicion_x()) * 100));
+        colecionables[POS_POSY_COLECCIONABLE] = htons((uint16_t)((cole.obtener_posicion().get_posicion_y()) * 100));
     }
 } __attribute__((packed));
 
@@ -141,8 +142,8 @@ struct msgBalas {
     msgBalas() {}
 
     explicit msgBalas(Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
-        balas[POS_POSX_BALA] = htons(muni.obtener_x());
-        balas[POS_POSY_BALA] = htons(muni.obtener_y());
+        balas[POS_POSX_BALA] = htons((uint16_t)((muni.obtener_x()) * 100));
+        balas[POS_POSY_BALA] = htons((uint16_t)((muni.obtener_y()) * 100));
     }
 } __attribute__((packed));
 

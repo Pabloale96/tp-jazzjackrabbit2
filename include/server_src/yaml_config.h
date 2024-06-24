@@ -11,9 +11,9 @@ struct ArmaConfig {
     // cppcheck-suppress unusedStructMember
     uint16_t municion;
     // cppcheck-suppress unusedStructMember
-    int vel_dis;
+    float vel_dis;
     // cppcheck-suppress unusedStructMember
-    int vel_proy;
+    float vel_proy;
     // cppcheck-suppress unusedStructMember
     uint16_t dano;
 };

@@ -237,8 +237,8 @@ void ProtocolServer::enviar_respuesta(GameState& gameState, uint16_t cliente_id,
     }
 
     for (auto [id, personaje]: gameState.obtener_diccionario_de_personajes()) {
-        for (int i = 0; i < personaje->obtener_balas().size(); i++) {
-            msgBalas bala(personaje->obtener_balas()[i]);
+        for (auto municion: personaje->obtener_balas()) {
+            msgBalas bala(municion);
             if (was_closed) {
                 return;
             }
