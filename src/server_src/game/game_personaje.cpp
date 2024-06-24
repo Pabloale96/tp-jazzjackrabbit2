@@ -199,6 +199,28 @@ void Personaje::chequear_colisiones(const std::vector<Plataforma>& plataformas) 
     this->posicion.mover(this->velocidad);
 }
 
+/*
+bool Game::colision_diagonal(const Personaje& personaje, const Plataforma& plataforma) {
+    float personajeCenterX = personaje.getLeft() + personaje.obtener_ancho() / 2;
+    float personajeBottomY = personaje.getBottom();
+
+    float plataformaStartX = plataforma.obtener_vertice_izq_abajo().get_posicion_x();
+    float plataformaEndX = plataforma.obtener_vertice_der_abajo().get_posicion_x();
+    float plataformaStartY = plataforma.obtener_vertice_izq_abajo().get_posicion_y();
+    float plataformaEndY = plataforma.obtener_vertice_der_arriba().get_posicion_y();
+
+    float m = (plataformaEndY - plataformaStartY) / (plataformaEndX - plataformaStartX);
+    float b = plataformaStartY - m * plataformaStartX;
+
+    float plataformaYatJugadorX = m * personajeCenterX + b;
+
+    bool interseca = personajeBottomY >= plataformaYatJugadorX &&
+                     personajeBottomY <= plataformaYatJugadorX + 1 &&
+                     personajeCenterX >= plataformaStartX && personajeCenterX <= plataformaEndX;
+
+    return interseca;
+}
+*/
 
 void Personaje::disminuir_vida(uint16_t danio) {
     if (vida > danio) {

@@ -56,32 +56,17 @@ void Game::chequear_colisiones() {
     }
 }
 
-/*
-bool Game::colision_diagonal(const Personaje& personaje, const Plataforma& plataforma) {
-    float personajeCenterX = personaje.getLeft() + personaje.obtener_ancho() / 2;
-    float personajeBottomY = personaje.getBottom();
-
-    float plataformaStartX = plataforma.obtener_vertice_izq_abajo().get_posicion_x();
-    float plataformaEndX = plataforma.obtener_vertice_der_abajo().get_posicion_x();
-    float plataformaStartY = plataforma.obtener_vertice_izq_abajo().get_posicion_y();
-    float plataformaEndY = plataforma.obtener_vertice_der_arriba().get_posicion_y();
-
-    float m = (plataformaEndY - plataformaStartY) / (plataformaEndX - plataformaStartX);
-    float b = plataformaStartY - m * plataformaStartX;
-
-    float plataformaYatJugadorX = m * personajeCenterX + b;
-
-    bool interseca = personajeBottomY >= plataformaYatJugadorX &&
-                     personajeBottomY <= plataformaYatJugadorX + 1 &&
-                     personajeCenterX >= plataformaStartX && personajeCenterX <= plataformaEndX;
-
-    return interseca;
+bool Game::esta_en_zona_de_choque(const Personaje& personaje, const std::shared_ptr<Enemigo> enemigo) {
+    const float TOLERANCIA = 0.01f;
+    return personaje.obtener_posicion().get_posicion_x() >= enemigo->get_posicion_enemigo().get_posicion_x() + TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_x() <= enemigo->get_posicion_enemigo().get_posicion_x() - TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_y() <= enemigo->get_posicion_enemigo().get_posicion_y() + TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_y() >= enemigo->get_posicion_enemigo().get_posicion_y() - TOLERANCIA;
 }
-*/
 
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
-        if (personaje.obtener_posicion() == enemigo->get_posicion_enemigo()) {
+        if (esta_en_zona_de_choque(personaje, enemigo)) {
             if (personaje.obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
                 // Todas las acciones especalies causan la muerte del enemigo al tocarlo
                 enemigo->matar();
