@@ -13,7 +13,8 @@ MunicionGui::MunicionGui(ClaseTexturas& texturas, int x, int y): ColecionablesGu
 }
 MunicionGui::~MunicionGui() {}
 
-ZanahoriaGui::ZanahoriaGui(ClaseTexturas& texturas, int x, int y): ColecionablesGui(texturas, x, y) {
+ZanahoriaGui::ZanahoriaGui(ClaseTexturas& texturas, int x, int y):
+        ColecionablesGui(texturas, x, y) {
     frames = texturas.findFrame(ZANAHORIA);
     it = frames->begin();
     speed = 5;

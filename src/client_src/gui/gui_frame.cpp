@@ -2,17 +2,19 @@
 
 #include <cassert>
 
-Frame::Frame(Renderer& renderer, Texture& sprite): renderer(renderer), sprite(sprite), vec_frames{0, 0, 0, 0} {}
+Frame::Frame(Renderer& renderer, Texture& sprite):
+        renderer(renderer), sprite(sprite), vec_frames{0, 0, 0, 0} {}
 
 Frame::Frame(Renderer& renderer, Texture& sprite, int x, int y, int w, int h):
         renderer(renderer), sprite(sprite), vec_frames{x, y, h, w} {}
 
 void Frame::copy(bool flip, int pos_x, int pos_y) {
-    //sprite.SetAlphaMod(255);
+    // sprite.SetAlphaMod(255);
 
     // assert(vec_frames.size() == 4);
 
-    std::cout << "copiando frame con "<< flip << " desde x: " << pos_x << " y: " << pos_y << std::endl;
+    std::cout << "copiando frame con " << flip << " desde x: " << pos_x << " y: " << pos_y
+              << std::endl;
     std::cout << "Frame: " << vec_frames[0] << std::endl;
     std::cout << vec_frames[1] << std::endl;
     std::cout << vec_frames[2] << std::endl;

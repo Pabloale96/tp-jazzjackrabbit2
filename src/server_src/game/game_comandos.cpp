@@ -17,6 +17,7 @@ void Disparar::ejecutar(Game& game) {
     // Para no estar todo el tiempo buscando el personaje, lo busco una sola vez y lo guardo
     Personaje& personaje = game.obtener_personaje(client_id);
     if (toggle) {
+        personaje.obtener_estados().reset();
         personaje.obtener_estados().setDisparando(true);
         personaje.disparar();
     } else {

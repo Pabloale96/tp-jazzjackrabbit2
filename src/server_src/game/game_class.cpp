@@ -12,7 +12,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         partida_id(partida_id), escenario() {
     auto personaje_ptr = crear_personaje(
             partida_id, client_id, personaje,
-            std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida)*60));
+            std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida) * 60));
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {
@@ -48,117 +48,32 @@ bool Game::disparar_municion(uint16_t client_id) {
     }
 }
 
+size_t Game::obtener_cantidad_de_colecionables() { return escenario.obtener_collectibles().size(); }
+
 void Game::chequear_colisiones() {
     for (auto& personaje: this->personajes) {
-        chequear_colisiones_personaje_con_plataforma(*personaje);
         chequear_colisiones_personaje_con_enemigo(*personaje);
         chequear_colisiones_balas_con_enemigos(*personaje);
         chequear_colisiones_personaje_con_collectible(*personaje);
     }
 }
 
-void Game::chequear_colisiones_personaje_con_plataforma(Personaje& personaje) {
-    for (const auto& plataforma: obtener_escenario().obtener_plataformas_server()) {
-        bool colision = false;
-        switch (plataforma.obtener_tipo_plataforma()) {
-            case platform::HORIZONTAL:
-                colision = colision_horizontal(personaje, plataforma);
-                if (colision) {
-                    std::cout << "COLISION HORIZONTAL" << std::endl;
-                    personaje.setear_posicion_en_y(
-                            plataforma.obtener_vertice_izq_arriba().get_posicion_y());
-                    personaje.obtener_velocidad().setear_velocidad_y(0);
-                }
-                break;
-
-            case platform::VERTICAL:
-                if (personaje.obtener_velocidad().obtener_velocidad_x() > 0) {
-                    colision = colision_vertical_por_izquierda(personaje, plataforma);
-                    if (colision) {
-                        std::cout << "COLISION VERTICAL IZQUIERDA "
-                                  << personaje.obtener_posicion().get_posicion_x() << std::endl;
-                        personaje.setear_posicion_en_x(
-                                personaje.obtener_posicion().get_posicion_x() - 0.1);
-                    }
-                } else {
-                    colision = colision_vertical_por_derecha(personaje, plataforma);
-                    if (colision) {
-                        std::cout << "COLISION VERTICAL DERECHA" << std::endl;
-                        personaje.setear_posicion_en_x(
-                                personaje.obtener_posicion().get_posicion_x() + 0.5);
-                    }
-                }
-                personaje.obtener_velocidad().setear_velocidad_x(0);
-                break;
-
-            case platform::DIAGONAL:
-                colision = colision_diagonal(personaje, plataforma);
-                if (colision) {
-                    std::cout << "COLISION DIAGONAL" << std::endl;
-                    personaje.setear_posicion_en_y(
-                            plataforma.obtener_vertice_izq_arriba().get_posicion_y());
-                    personaje.obtener_velocidad().setear_velocidad_x(0);
-                    personaje.obtener_velocidad().setear_velocidad_y(0);
-                }
-                break;
-        }
-    }
+bool Game::esta_en_zona_de_choque(const Personaje& personaje,
+                                  const std::shared_ptr<Enemigo> enemigo) {
+    const float TOLERANCIA = 0.01f;
+    return personaje.obtener_posicion().get_posicion_x() >=
+                   enemigo->get_posicion_enemigo().get_posicion_x() + TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_x() <=
+                   enemigo->get_posicion_enemigo().get_posicion_x() - TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_y() <=
+                   enemigo->get_posicion_enemigo().get_posicion_y() + TOLERANCIA &&
+           personaje.obtener_posicion().get_posicion_y() >=
+                   enemigo->get_posicion_enemigo().get_posicion_y() - TOLERANCIA;
 }
-
-bool Game::colision_horizontal(const Personaje& personaje, const Plataforma& plataforma) {
-    return personaje.getRight() > plataforma.obtener_vertice_izq_abajo().get_posicion_x() &&
-           personaje.getLeft() < plataforma.obtener_vertice_der_abajo().get_posicion_x() &&
-           personaje.getBottom() >= plataforma.obtener_vertice_izq_arriba().get_posicion_y() &&
-           personaje.getTop() <= plataforma.obtener_vertice_izq_abajo().get_posicion_y();
-}
-
-bool Game::colision_vertical_por_izquierda(const Personaje& personaje,
-                                           const Plataforma& plataforma) {
-    if (personaje.getBottom() >= plataforma.obtener_vertice_izq_abajo().get_posicion_y() &&
-        personaje.getTop() <= plataforma.obtener_vertice_izq_arriba().get_posicion_y()) {
-        // Estoy entre la altura de la plataforma
-        if (personaje.getRight() >= plataforma.obtener_vertice_izq_abajo().get_posicion_x()) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Game::colision_vertical_por_derecha(const Personaje& personaje, const Plataforma& plataforma) {
-    if (personaje.getBottom() >= plataforma.obtener_vertice_der_abajo().get_posicion_y() &&
-        personaje.getTop() <= plataforma.obtener_vertice_der_arriba().get_posicion_y()) {
-        if (plataforma.obtener_vertice_der_abajo().get_posicion_x() + 1 <= personaje.getLeft()) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Game::colision_diagonal(const Personaje& personaje, const Plataforma& plataforma) {
-    float personajeCenterX = personaje.getLeft() + personaje.obtener_ancho() / 2;
-    float personajeBottomY = personaje.getBottom();
-
-    float plataformaStartX = plataforma.obtener_vertice_izq_abajo().get_posicion_x();
-    float plataformaEndX = plataforma.obtener_vertice_der_abajo().get_posicion_x();
-    float plataformaStartY = plataforma.obtener_vertice_izq_abajo().get_posicion_y();
-    float plataformaEndY = plataforma.obtener_vertice_der_arriba().get_posicion_y();
-
-    float m = (plataformaEndY - plataformaStartY) / (plataformaEndX - plataformaStartX);
-    float b = plataformaStartY - m * plataformaStartX;
-
-    float plataformaYatJugadorX = m * personajeCenterX + b;
-
-    bool interseca = personajeBottomY >= plataformaYatJugadorX &&
-                     personajeBottomY <= plataformaYatJugadorX + 1 &&
-                     personajeCenterX >= plataformaStartX && personajeCenterX <= plataformaEndX;
-
-    return interseca;
-}
-
 
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
-        if (personaje.obtener_posicion() == enemigo->get_posicion_enemigo()) {
+        if (esta_en_zona_de_choque(personaje, enemigo)) {
             if (personaje.obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
                 // Todas las acciones especalies causan la muerte del enemigo al tocarlo
                 enemigo->matar();
@@ -199,7 +114,7 @@ void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
 
 void Game::actualizar(std::chrono::seconds tiempo_restante_de_partida) {
     actualizar_personajes(tiempo_restante_de_partida);
-    // chequear_colisiones();
+    chequear_colisiones();
     actualizar_escenario();
 }
 

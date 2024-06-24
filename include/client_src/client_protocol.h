@@ -60,7 +60,7 @@ public:
     void enviar_accion(msgAccion& msg);
 
     // Para poder recivir comandos
-    void recibir_respuesta(std::shared_ptr<GameStateClient>& gameState,uint16_t& client_id);
+    void recibir_respuesta(std::shared_ptr<GameStateClient>& gameState, uint16_t& client_id);
 
     void cerrar_socket();
 

@@ -174,7 +174,7 @@ void ProtocolClient::recibir_respuesta(std::shared_ptr<GameStateClient>& gameSta
 
     socket_cliente.recvall(&msg, sizeof(msg), &was_closed);
 
-    gameState->setGameState(msg.state_partida);
+    gameState->setGameState(msg);
     client_id = ntohs(msg.client_id);
     uint16_t cant_iteraciones_personaje = ntohs(msg.cantidad_personajes);
     msgPersonaje personaje;
@@ -194,6 +194,16 @@ void ProtocolClient::recibir_respuesta(std::shared_ptr<GameStateClient>& gameSta
         }
         socket_cliente.recvall(&enemigo, sizeof(enemigo), &was_closed);
         gameState->pushEnemigos(enemigo);
+    }
+
+    uint16_t cant_balas = ntohs(msg.cantidad_balas);
+    msgBalas bala;
+    for (uint16_t i = 0; i < cant_balas; i++) {
+        if (was_closed) {
+            // return nullptr;
+        }
+        socket_cliente.recvall(&bala, sizeof(bala), &was_closed);
+        gameState->pushBalas(bala);
     }
 }
 

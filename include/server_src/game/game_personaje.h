@@ -38,10 +38,11 @@ private:
     Velocidad velocidad;
     float ancho;
     float alto;
+    float altura_salto;
+    float altura_acumulada;
 
 
     std::chrono::seconds tiempo_restante_de_partida;
-    std::chrono::seconds duracion_del_salto;
     std::chrono::seconds duracion_muerto;
 
 protected:
@@ -97,6 +98,8 @@ public:
     uint16_t generar_id_bala();
 
     std::vector<Municion> obtener_balas() const;
+
+    size_t obtener_cantidad_balas() const;
 
     void disparar();
 

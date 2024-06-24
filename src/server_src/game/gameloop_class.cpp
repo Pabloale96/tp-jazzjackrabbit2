@@ -8,7 +8,7 @@
 #include "../../include/server_src/game/game_state.h"
 
 #define MAX_TAM_COLA 10000
-#define RATE 200
+#define RATE 100
 #define SCALE_TIME 1e9
 
 GameLoop::GameLoop(uint16_t nuevo_gameloop_id, std::string& nombre_partida, uint16_t client_id,
@@ -63,11 +63,11 @@ void GameLoop::run() {
                 break;
             }
 
-            while (client_commands.try_pop(comando)) {}
-            if (comando) {
-                comando->ejecutar(this->game);
+            while (client_commands.try_pop(comando)) {
+                if (comando) {
+                    comando->ejecutar(game);
+                }
             }
-
 
             game.actualizar(obtener_tiempo_restante());
             broadcastear();
@@ -100,7 +100,7 @@ void GameLoop::run() {
 std::chrono::seconds GameLoop::obtener_tiempo_restante() {
     auto current_time = std::chrono::high_resolution_clock::now();
     auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time);
-    return std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida)*60) - elapsed_time;
+    return std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida) * 60) - elapsed_time;
 }
 
 void GameLoop::broadcastear() {

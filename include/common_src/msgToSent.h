@@ -12,6 +12,7 @@
 #include <arpa/inet.h>  // para usar htons()
 
 #include "defines_msg.h"
+#include "game_collectible.h"
 #include "game_platform.h"
 #include "game_state.h"
 #include "protocol_utils.h"
@@ -61,8 +62,11 @@ struct msgGameState {
     uint8_t header;
     uint8_t state_partida;
     uint16_t client_id;
+    uint16_t tiempo;
     uint16_t cantidad_personajes;
     uint16_t cantidad_enemigos;
+    uint16_t cantidad_colecionables;
+    uint16_t cantidad_balas;
 
     msgGameState() {
         memset(this, 0, sizeof(*this));
@@ -73,13 +77,17 @@ struct msgGameState {
         cantidad_enemigos = 0x00;
     }
 
-    msgGameState(GameState& gameState, uint16_t client_id) {
+    msgGameState(GameState& gameState, uint16_t cantidadBalas, uint16_t tiempo,
+                 uint16_t client_id) {
         memset(this, 0, sizeof(*this));
         header = MSG_HEADER;
         state_partida = gameState.getJugando() ? 0x01 : 0x00;
         this->client_id = htons(client_id);
+        this->tiempo = htons(tiempo);
         cantidad_personajes = htons(gameState.getSizePersonajes());
         cantidad_enemigos = htons(gameState.get_cantidad_de_enemigos());
+        // cantidad_colecionables = htons(gameState.obtener_cantidad_de_colecionables());
+        cantidad_balas = htons(cantidadBalas);
     }
 } __attribute__((packed));
 
@@ -114,15 +122,31 @@ struct msgPersonaje {
 } __attribute__((packed));
 
 
+struct msgColecionables {
+    uint8_t tipo_coleccionable = 0x00;
+    uint16_t colecionables[SIZE_ARRAY_COLECCIONABLE] = {0};
+
+    msgColecionables() {}
+
+    explicit msgColecionables(Collectible& cole):
+            tipo_coleccionable((uint8_t)cole.obtener_tipo_coleccionable()) {
+        colecionables[POS_POSX_COLECCIONABLE] =
+                htons((uint16_t)((cole.obtener_posicion().get_posicion_x()) * 100));
+        colecionables[POS_POSY_COLECCIONABLE] =
+                htons((uint16_t)((cole.obtener_posicion().get_posicion_y()) * 100));
+    }
+} __attribute__((packed));
+
+
 struct msgBalas {
     uint8_t tipo_bala = 0x00;
     uint16_t balas[SIZE_ARRAY_BALA] = {0};
 
     msgBalas() {}
 
-    msgBalas(uint16_t id, Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
-        balas[POS_POSX_BALA] = htons(muni.obtener_x());
-        balas[POS_POSY_BALA] = htons(muni.obtener_y());
+    explicit msgBalas(Municion& muni): tipo_bala(muni.obtener_tipo_bala()) {
+        balas[POS_POSX_BALA] = htons((uint16_t)((muni.obtener_x()) * 100));
+        balas[POS_POSY_BALA] = htons((uint16_t)((muni.obtener_y()) * 100));
     }
 } __attribute__((packed));
 
@@ -133,7 +157,7 @@ struct msgEnemigo {
 
     msgEnemigo() {}
 
-    msgEnemigo(uint16_t id, const Enemigo& enemi): tipo((uint8_t) enemi.get_tipo_enemigo()) {
+    msgEnemigo(uint16_t id, const Enemigo& enemi): tipo((uint8_t)enemi.get_tipo_enemigo()) {
         enemigo[POS_ID_ENEMIGO] = htons(id);
         enemigo[POS_TIPO_ENEMIGO] = htons((uint16_t)enemi.get_tipo_enemigo());
         // Se multiplica por 100 y se castea a uint16 para enviar la posición con dos decimales

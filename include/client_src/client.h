@@ -57,7 +57,7 @@ private:
 
     // clases para que despues use gui.cpp:
     std::shared_ptr<PersonajeGui> jugador;
-    
+
     GameStateClient gamestate;
 
     Gui gui;

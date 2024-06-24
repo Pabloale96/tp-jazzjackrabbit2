@@ -7,21 +7,19 @@ Texture& ClaseTexturas::beach_text() { return beach_tex; }
 
 std::shared_ptr<std::vector<Frame>>& ClaseTexturas::findFrame(std::string frame_string) {
     auto it = frames_map.find(frame_string);
-    if (it== frames_map.end())
-    {
-        std::cout<< "No se encontro los frames" << std::endl;
+    if (it == frames_map.end()) {
+        std::cout << "No se encontro los frames" << std::endl;
     }
-    
+
     return it->second;
 }
 
 Frame& ClaseTexturas::findFrame(int key) {
     auto it = frame_number.find(key);
-    if (it== frame_number.end())
-    {
-        std::cout<< "No se encontro los frames" << std::endl;
+    if (it == frame_number.end()) {
+        std::cout << "No se encontro los frames" << std::endl;
     }
-    
+
     return it->second;
 }
 
@@ -116,9 +114,7 @@ ClaseTexturas::~ClaseTexturas() {}
 void ClaseTexturas::addFrames(const std::string& key, std::shared_ptr<std::vector<Frame>>& frame) {
     frames_map.emplace(key, frame);
 }
-void ClaseTexturas::addFrames(const int& key, Frame& frame) {
-    frame_number.emplace(key, frame);
-}
+void ClaseTexturas::addFrames(const int& key, Frame& frame) { frame_number.emplace(key, frame); }
 
 void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frames, int* h_frames,
                                       int frame_count, Texture& textura_del_personaje,
@@ -133,8 +129,7 @@ void ClaseTexturas::add_frames_to_map(int* x_frames, int* y_frames, int* w_frame
 }
 
 
-
-void ClaseTexturas::add1(){
+void ClaseTexturas::add1() {
     int x_frame = 279;
     int y_frame = 440;
     int w_frame = 41;
@@ -142,9 +137,8 @@ void ClaseTexturas::add1(){
 
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(1, frame);
-
 }
-void ClaseTexturas::add2(){
+void ClaseTexturas::add2() {
     int x_frame = 343;
     int y_frame = 440;
     int w_frame = 41;
@@ -153,7 +147,7 @@ void ClaseTexturas::add2(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(2, frame);
 }
-void ClaseTexturas::add3(){
+void ClaseTexturas::add3() {
     int x_frame = 403;
     int y_frame = 440;
     int w_frame = 41;
@@ -162,7 +156,7 @@ void ClaseTexturas::add3(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(3, frame);
 }
-void ClaseTexturas::add4(){
+void ClaseTexturas::add4() {
     int x_frame = 465;
     int y_frame = 440;
     int w_frame = 41;
@@ -171,7 +165,7 @@ void ClaseTexturas::add4(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(4, frame);
 }
-void ClaseTexturas::add5(){
+void ClaseTexturas::add5() {
     int x_frame = 526;
     int y_frame = 440;
     int w_frame = 41;
@@ -180,7 +174,7 @@ void ClaseTexturas::add5(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(5, frame);
 }
-void ClaseTexturas::add6(){
+void ClaseTexturas::add6() {
     int x_frame = 586;
     int y_frame = 440;
     int w_frame = 41;
@@ -189,7 +183,7 @@ void ClaseTexturas::add6(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(6, frame);
 }
-void ClaseTexturas::add7(){
+void ClaseTexturas::add7() {
     int x_frame = 648;
     int y_frame = 440;
     int w_frame = 41;
@@ -198,7 +192,7 @@ void ClaseTexturas::add7(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(7, frame);
 }
-void ClaseTexturas::add8(){
+void ClaseTexturas::add8() {
     int x_frame = 707;
     int y_frame = 440;
     int w_frame = 41;
@@ -207,7 +201,7 @@ void ClaseTexturas::add8(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(8, frame);
 }
-void ClaseTexturas::add9(){
+void ClaseTexturas::add9() {
     int x_frame = 769;
     int y_frame = 440;
     int w_frame = 41;
@@ -216,7 +210,7 @@ void ClaseTexturas::add9(){
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(9, frame);
 }
-void ClaseTexturas::add0(){
+void ClaseTexturas::add0() {
     int x_frame = 222;
     int y_frame = 440;
     int w_frame = 41;
@@ -228,7 +222,7 @@ void ClaseTexturas::add0(){
 
 
 void ClaseTexturas::iconSpaz() {
-    
+
     int x_frame = 3;
     int y_frame = 3203;
     int w_frame = 39;

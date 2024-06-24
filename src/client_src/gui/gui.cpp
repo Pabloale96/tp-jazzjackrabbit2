@@ -6,8 +6,8 @@ Gui::Gui(Queue<msgAccion>& client_commands, std::shared_ptr<PersonajeGui>& jugad
         jugador(jugador),
         gamestate(gamestate),
         plataformas(plataformas),
-        escenario(Escenario(plataformas)), 
-        posicion_jugador_x(0.0f), 
+        escenario(Escenario(plataformas)),
+        posicion_jugador_x(0.0f),
         posicion_jugador_y(0.0f) {}
 
 Gui::~Gui() {}
@@ -30,32 +30,53 @@ bool Gui::run(int h_window, int w_window, uint16_t client_id) {
         return true;
     }
     escenario.show(posicion_jugador_x, posicion_jugador_y, h_window, w_window);
-    
-    for (auto& [id, enemigo]: gamestate.obtener_diccionario_de_enemigos()) {        
-        float x = (enemigo.obtener_posicion_x() - posicion_jugador_x) *SCALING_VALUE_PIXEL_X + h_window/2; 
-        float y = (enemigo.obtener_posicion_y() - posicion_jugador_y) *SCALING_VALUE_PIXEL_Y + w_window/2; 
-        enemigo.setPosicion(x,y);
-        if (x <= (posicion_jugador_x + h_window/2) || x <= (posicion_jugador_x - h_window/2) || y <=
-            (posicion_jugador_y + w_window/2) || y <= (posicion_jugador_y - w_window/2)) { 
-                
-            enemigo.show(); 
+
+    // cppcheck-suppress unusedVariable
+    for (auto& [id, enemigo]: gamestate.obtener_diccionario_de_enemigos()) {
+        float x = (enemigo.obtener_posicion_x() - posicion_jugador_x) * SCALING_VALUE_PIXEL_X +
+                  h_window / 2;
+        float y = w_window -
+                  (enemigo.obtener_posicion_y() - posicion_jugador_y) * SCALING_VALUE_PIXEL_Y -
+                  w_window / 2;
+        enemigo.setPosicion(x, y);
+        if (x <= (posicion_jugador_x + h_window / 2) || x <= (posicion_jugador_x - h_window / 2) ||
+            y <= (posicion_jugador_y + w_window / 2) || y <= (posicion_jugador_y - w_window / 2)) {
+
+            enemigo.show();
         }
     }
-    
-    for (auto& [id, personaje]: gamestate.obtener_diccionario_de_personajes()) {        
-        if(id == client_id) {
+
+    // cppcheck-suppress unassignedVariable
+    for (auto& [id, personaje]: gamestate.obtener_diccionario_de_personajes()) {
+        if (id == client_id) {
             continue;
         }
-        float x = (personaje.obtener_posicion_x() - posicion_jugador_x) *SCALING_VALUE_PIXEL_X + h_window/2; 
-        float y = (personaje.obtener_posicion_y() - posicion_jugador_y) *SCALING_VALUE_PIXEL_Y + w_window/2; 
-        personaje.setPosicion(x,y);
-        if (x <= (posicion_jugador_x + h_window/2) || x <= (posicion_jugador_x - h_window/2) || y <=
-            (posicion_jugador_y + w_window/2) || y <= (posicion_jugador_y - w_window/2)) { 
-                
-            personaje.show(false); 
+        float x = (personaje.obtener_posicion_x() - posicion_jugador_x) * SCALING_VALUE_PIXEL_X +
+                  h_window / 2;
+        float y = w_window -
+                  (personaje.obtener_posicion_y() - posicion_jugador_y) * SCALING_VALUE_PIXEL_Y -
+                  w_window / 2;
+        personaje.setPosicion(x, y);
+        if (x <= (posicion_jugador_x + h_window / 2) || x <= (posicion_jugador_x - h_window / 2) ||
+            y <= (posicion_jugador_y + w_window / 2) || y <= (posicion_jugador_y - w_window / 2)) {
+
+            personaje.show(false);
         }
     }
     jugador->show(true);
 
+    for (size_t i = 0; i < gamestate.obtener_balas().size(); i++) {
+        float x = (gamestate.obtener_balas()[i].obtener_posicion_x() - posicion_jugador_x) *
+                          SCALING_VALUE_PIXEL_X +
+                  h_window / 2;
+        float y = w_window -
+                  (gamestate.obtener_balas()[i].obtener_posicion_y() - posicion_jugador_y) *
+                          SCALING_VALUE_PIXEL_Y -
+                  w_window / 2;
+        gamestate.obtener_balas()[i].setPosicion(x, y);
+        gamestate.obtener_balas()[i].show();
+    }
+
+    gamestate.showTiempo(h_window);
     return false;
 }

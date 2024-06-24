@@ -40,7 +40,7 @@ void Velocidad::correrIzquierdaRapido() {
 
 void Velocidad::saltar() {
     // Si estoy corriendo y salto, mantengo la velocidad en x
-    velocidad_y = VELOCIDAD_NORMAL;
+    velocidad_y = 3.0f;
 }
 
 void Velocidad::caer() { velocidad_y = (-1) * VELOCIDAD_NORMAL; }
