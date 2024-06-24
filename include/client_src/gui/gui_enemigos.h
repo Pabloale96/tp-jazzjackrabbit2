@@ -17,7 +17,7 @@
 
 class EnemigosGui {
 protected:
-    ClaseTexturas & texturas;
+    ClaseTexturas& texturas;
     uint16_t id = 0x00;
     uint8_t tipo = 0x00;
     float pos_x;
@@ -41,21 +41,21 @@ public:
 class EnemigoGui1: public EnemigosGui {
 private:
 public:
-    explicit EnemigoGui1(ClaseTexturas&,msgEnemigo&);
+    explicit EnemigoGui1(ClaseTexturas&, msgEnemigo&);
     ~EnemigoGui1();
 };
 
 class EnemigoGui2: public EnemigosGui {
 private:
 public:
-    explicit EnemigoGui2(ClaseTexturas&,msgEnemigo&);
+    explicit EnemigoGui2(ClaseTexturas&, msgEnemigo&);
     ~EnemigoGui2();
 };
 
 class EnemigoGui3: public EnemigosGui {
 private:
 public:
-    explicit EnemigoGui3(ClaseTexturas&,msgEnemigo&);
+    explicit EnemigoGui3(ClaseTexturas&, msgEnemigo&);
     ~EnemigoGui3();
 };
 #endif

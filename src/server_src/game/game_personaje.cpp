@@ -237,6 +237,8 @@ void Personaje::disparar() {
         return;
     } else {
         arma->disminuir_municion();
+        this->estados.reset();
+        this->estados.setDisparando(true);
         int vel_dis_con_direccion_personaje = arma->obtener_vel_dis();
         if (this->obtener_velocidad().obtener_velocidad_x() < 0) {
             vel_dis_con_direccion_personaje *= -1;
@@ -268,6 +270,8 @@ void Personaje::eliminar_bala(uint16_t id_bala) {
 }
 
 std::vector<Municion> Personaje::obtener_balas() const { return municiones_disparadas; }
+
+size_t Personaje::obtener_cantidad_balas() const { return municiones_disparadas.size(); }
 
 void Personaje::disminuir_municion() { arma->disminuir_municion(); }
 

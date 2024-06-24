@@ -6,9 +6,10 @@
 #include <utility>
 #include <vector>
 
+#include "gui/gui_balas.h"
+#include "gui/gui_coleccionables.h"
 #include "gui/gui_enemigos.h"
 #include "gui/gui_personaje.h"
-#include "gui/gui_coleccionables.h"
 #include "gui/gui_platform.h"
 
 #include "msgToSent.h"
@@ -16,27 +17,32 @@
 
 class GameStateClient {
 private:
-    bool jugando;
-
     ClaseTexturas& texturas;
-
+    bool jugando;
     std::vector<PlatformGui> plataformas;
 
     std::map<uint16_t, PersonajeGui> diccionario_de_personajes;
     std::map<uint16_t, EnemigosGui> diccionario_de_enemigos;
-    std::map<uint16_t, ColecionablesGui> diccionario_de_collecionables;
+    std::vector<ColecionablesGui> vector_coleccionables;
+    std::vector<BalasGui> vector_balas;
+
+    uint16_t tiempo;
 
 
 public:
-    explicit GameStateClient(ClaseTexturas&,bool jugando);
+    explicit GameStateClient(ClaseTexturas&, bool jugando);
 
     bool obtener_estado_de_la_partida();
 
-    std::map<uint16_t, PersonajeGui> obtener_diccionario_de_personajes()const;
+    std::map<uint16_t, PersonajeGui> obtener_diccionario_de_personajes() const;
 
-    std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos()const;
+    std::map<uint16_t, EnemigosGui> obtener_diccionario_de_enemigos() const;
 
-    std::vector<PlatformGui> & obtener_plataformas();
+    std::vector<PlatformGui>& obtener_plataformas();
+
+    void showTiempo(int h_window);
+
+    uint16_t getTiempo() const;
 
     PersonajeGui& obtener_personaje(uint16_t client_id);
 
@@ -46,13 +52,22 @@ public:
 
     int get_cantidad_de_enemigos() { return diccionario_de_enemigos.size(); }
 
-    void setGameState(const uint8_t& state_partida) { jugando = ((unsigned)state_partida == 0x01); }
+    std::vector<BalasGui>& obtener_balas() { return vector_balas; }
+
+    void setGameState(const msgGameState& msg) {
+        jugando = ((unsigned)msg.state_partida == 0x01);
+        tiempo = ntohs(msg.tiempo);
+    }
 
     void pushPersonajes(msgPersonaje& msgpers);
 
     void pushEnemigos(msgEnemigo& msgenem);
 
-    void pushPlataformas(msgPlataforma& msgplat);
+    void pushPlataformas(const msgPlataforma& msgplat);
+
+    void pushColeccionables(msgColecionables& msgcol);
+
+    void pushBalas(msgBalas& msgbal);
 
     void imprimir_cliente() {
         for (const auto& pair: diccionario_de_personajes) {

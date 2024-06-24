@@ -10,9 +10,9 @@
 
 #include "gui_animaciones.h"
 #include "gui_clase_texturas.h"
-#include "gui_vida.h"
 #include "gui_defines_frames.h"
 #include "gui_frame.h"
+#include "gui_vida.h"
 #include "msgToSent.h"
 
 

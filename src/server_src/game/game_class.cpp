@@ -12,7 +12,7 @@ Game::Game(uint16_t partida_id, uint16_t client_id, uint8_t personaje):
         partida_id(partida_id), escenario() {
     auto personaje_ptr = crear_personaje(
             partida_id, client_id, personaje,
-            std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida)*60));
+            std::chrono::seconds((YAMLConfig::getConfig().minutos_de_partida) * 60));
     if (personaje_ptr) {
         personajes.push_back(std::shared_ptr<Personaje>(personaje_ptr));
     } else {
@@ -47,6 +47,8 @@ bool Game::disparar_municion(uint16_t client_id) {
         return true;
     }
 }
+
+size_t Game::obtener_cantidad_de_colecionables() { return escenario.obtener_collectibles().size(); }
 
 void Game::chequear_colisiones() {
     for (auto& personaje: this->personajes) {
