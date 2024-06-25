@@ -83,6 +83,10 @@ public:
     void add8();
     void add9();
     void add0();
+    void addInf();
+
+    void iconArma1();
+    void iconArma2();
 
     void iconSpaz();
     void iconJazz();

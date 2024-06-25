@@ -10,6 +10,7 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint
         speed(speed),
         estado(0),
         vida(texturas, 10, tipo),
+        municion(texturas,10000,1),
         animacion(),
         frames(frames),
         it(frames->begin()) {}
@@ -23,9 +24,12 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         speed(5),
         estado(personaje.estado),
         vida(texturas, ntohs(personaje.personaje[POS_VIDA_PERSONAJE]), tipo),
+        municion(texturas,ntohs(personaje.personaje[POS_MUNICION_PERSONAJE]),(int) personaje.tipo_arma),
         animacion(),
         frames(texturas.findFrame(std::string(SPAZ_STAND))),
-        it(frames->begin()) {}
+        it(frames->begin()) {
+                std::cout << "Tipo Arma: "<<(unsigned) personaje.tipo_arma << std::endl; 
+        }
 
 // estados() {}
 void PersonajeGui::setPosicion(float x, float y) {
@@ -57,6 +61,8 @@ void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
 void PersonajeGui::setAnimacion(const PersonajeGui& other, bool flip) {
     this->vida.setVida(other.getVida());
     this->puntos.setPuntos(other.getPuntos());
+    this->municion.setMunicion(other.getMunicion());
+    this->municion.setTipoArma(other.getTipoArma());
     if (this->estado != other.obtener_estado_actual()) {
         this->estado = other.obtener_estado_actual();
         this->setFrames();
@@ -68,6 +74,7 @@ void PersonajeGui::show(bool con_vida, int h_window, int w_window) {
     if (con_vida) {
         puntos.show(h_window);
         vida.run();
+        municion.run(w_window);
     }
     animacion.run(pos_x, pos_y, speed, frames, it);
 }
@@ -103,7 +110,7 @@ void SpazGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::CORRIENDO_SALTANDO:
-            frames = texturas.findFrame(std::string(SPAZ_JUMP));
+            frames = texturas.findFrame(std::string(SPAZ_JUMPANDMOVE));
             it = frames->begin();
             speed = spe;
             break;
@@ -118,27 +125,27 @@ void SpazGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::CAYENDO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::INTOXICADO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_INTOXICATED));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::HERIDO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_HURT));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::MUERTO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_HURT));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::DISPARANDO_SALTANDO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
@@ -148,7 +155,7 @@ void SpazGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::DISPARANDO_CAYENDO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
@@ -191,7 +198,7 @@ void JazzGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::CORRIENDO_SALTANDO:
-            frames = texturas.findFrame(std::string(JAZZ_JUMP));
+            frames = texturas.findFrame(std::string(JAZZ_JUMPANDMOVE));
             it = frames->begin();
             speed = spe;
             break;
@@ -206,17 +213,17 @@ void JazzGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::CAYENDO:
-            frames = texturas.findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::INTOXICADO:
-            frames = texturas.findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_INTOXICATED));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::HERIDO:
-            frames = texturas.findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_HURT));
             it = frames->begin();
             speed = spe;
             break;
@@ -226,7 +233,7 @@ void JazzGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::DISPARANDO_SALTANDO:
-            frames = texturas.findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
@@ -236,7 +243,7 @@ void JazzGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::DISPARANDO_CAYENDO:
-            frames = texturas.findFrame(std::string(JAZZ_RUN));
+            frames = texturas.findFrame(std::string(JAZZ_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
@@ -293,17 +300,17 @@ void LoriGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::CAYENDO:
-            frames = texturas.findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::INTOXICADO:
-            frames = texturas.findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_INTOXICATED));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::HERIDO:
-            frames = texturas.findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_HURT));
             it = frames->begin();
             speed = spe;
             break;
@@ -318,12 +325,12 @@ void LoriGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::DISPARANDO_CORRIENDO:
-            frames = texturas.findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_JUMPANDMOVE));
             it = frames->begin();
             speed = spe;
             break;
         case (uint8_t)efectos::DISPARANDO_CAYENDO:
-            frames = texturas.findFrame(std::string(LORI_RUN));
+            frames = texturas.findFrame(std::string(LORI_SHOOTANDFALLING));
             it = frames->begin();
             speed = spe;
             break;

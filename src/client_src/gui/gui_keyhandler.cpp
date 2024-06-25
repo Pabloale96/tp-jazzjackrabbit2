@@ -71,8 +71,8 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                     }
                     break;
                 case SDLK_DOWN:
-                    if (animacion != (uint8_t)efectos::DISPARANDO) {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), true);
+                    if (animacion != (uint8_t)efectos::CAMBIAR_ARMA_EFEC) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::CAMBIAR_ARMA), true);
                         client_commands.push(msg_to_sent);
                     }
                     break;
@@ -114,7 +114,7 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                     break;
                 case SDLK_DOWN:
                     if (animacion != (uint8_t)efectos::IDLE) {
-                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), true);
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::CAMBIAR_ARMA), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;

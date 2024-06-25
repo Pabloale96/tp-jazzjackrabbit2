@@ -40,6 +40,11 @@ ClaseTexturas::ClaseTexturas(Renderer& render): renderer(render), frames_map() {
     this->add8();
     this->add9();
     this->add0();
+    this->addInf();
+
+    this->iconArma1();
+    this->iconArma2();
+
 
     this->iconSpaz();
     this->iconJazz();
@@ -201,6 +206,17 @@ void ClaseTexturas::add8() {
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(8, frame);
 }
+
+void ClaseTexturas::addInf() {
+    int x_frame = 463;
+    int y_frame = 642;
+    int w_frame = 28;
+    int h_frame = 52;
+
+    Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
+    addFrames(INFINITO, frame);
+}
+
 void ClaseTexturas::add9() {
     int x_frame = 769;
     int y_frame = 440;
@@ -218,6 +234,32 @@ void ClaseTexturas::add0() {
 
     Frame frame(renderer, font_text, x_frame, y_frame, w_frame, h_frame);
     addFrames(0, frame);
+}
+
+void ClaseTexturas::iconArma1() {
+
+    int x_frame = 11;
+    int y_frame = 397;
+    int w_frame = 18;
+    int h_frame = 28;
+
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
+    Frame frame(renderer, items_tex, x_frame, y_frame, w_frame, h_frame);
+    frame_aux->emplace_back(frame);
+    addFrames(ICON_ARMA1, frame_aux);
+}
+
+void ClaseTexturas::iconArma2() {
+
+    int x_frame = 11;
+    int y_frame = 422;
+    int w_frame = 18;
+    int h_frame = 28;
+
+    std::shared_ptr<std::vector<Frame>> frame_aux = std::make_shared<std::vector<Frame>>();
+    Frame frame(renderer, items_tex, x_frame, y_frame, w_frame, h_frame);
+    frame_aux->emplace_back(frame);
+    addFrames(ICON_ARMA2, frame_aux);
 }
 
 

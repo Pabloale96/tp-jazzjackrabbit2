@@ -13,12 +13,12 @@ void Frame::copy(bool flip, int pos_x, int pos_y) {
 
     // assert(vec_frames.size() == 4);
 
-    std::cout << "copiando frame con " << flip << " desde x: " << pos_x << " y: " << pos_y
+    /*std::cout << "copiando frame con " << flip << " desde x: " << pos_x << " y: " << pos_y
               << std::endl;
     std::cout << "Frame: " << vec_frames[0] << std::endl;
     std::cout << vec_frames[1] << std::endl;
     std::cout << vec_frames[2] << std::endl;
-    std::cout << vec_frames[3] << std::endl;
+    std::cout << vec_frames[3] << std::endl;*/
 
     if (flip) {
         renderer.Copy(sprite, Rect(vec_frames[0], vec_frames[1], vec_frames[2], vec_frames[3]),
