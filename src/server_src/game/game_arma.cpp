@@ -21,7 +21,7 @@ float Arma::obtener_vel_dis() const { return vel_dis; }
 float Arma::obtener_vel_proy() const { return vel_proy; }
 
 void Arma::disminuir_municion() {
-    if (nombre_arma != 0) {
+    if (nombre_arma != (uint8_t) armas::ARMA_INICIAL) {
         cant_municiones--;
     }
 }
