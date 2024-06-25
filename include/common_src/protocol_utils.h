@@ -15,7 +15,7 @@
 // tipo de plataforma usado de gui para la interfaz:
 enum class platform : uint8_t { HORIZONTAL = 0, DIAGONAL = 1, VERTICAL = 2 };
 
-enum class balas : uint8_t { BALA_TIPO1 = 0, BALA_TIPO2 = 1 };
+enum class balas : uint8_t { BALA_DE_ARMA_INICIAL = 0, BALA_DE_ARMA_1 = 1, BALA_DE_ARMA_2 = 2 };
 
 enum class coleccionables : uint8_t { MONEDA_TIPO = 0, GEMAS_TIPO = 1, ZANAHORIA_TIPO = 2 };
 

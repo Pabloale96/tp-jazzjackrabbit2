@@ -261,6 +261,7 @@ void Personaje::disparar() {
 
 void Personaje::cambiar_arma() {
     if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_INICIAL)) {
+        std::cout << "Cambiando a arma 1" << std::endl;
         arma = std::make_unique<Arma1>();
         // El orden es: arma inicial -> arma 1 -> arma 2
         // } else if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)) {

@@ -100,10 +100,10 @@ void GameStateClient::pushBalas(msgBalas& msg) {
     std::shared_ptr<BalasGui> bala;
     uint8_t tipo = msg.tipo_bala;
     switch (tipo) {
-        case (uint8_t)balas::BALA_TIPO1:
+        case (uint8_t)balas::BALA_DE_ARMA_INICIAL:
             bala = std::make_shared<BalasGui1>(texturas, msg);
             break;
-        case (uint8_t)balas::BALA_TIPO2:
+        case (uint8_t)balas::BALA_DE_ARMA_1:
             bala = std::make_shared<BalasGui2>(texturas, msg);
             break;
         default:
