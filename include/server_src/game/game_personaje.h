@@ -30,6 +30,8 @@ private:
     uint8_t animacion;
 
     std::unique_ptr<Arma> arma;
+    uint16_t municion_de_arma_1;
+    uint16_t municion_de_arma_2;
     std::vector<Municion> municiones_disparadas;
     uint16_t bala_id;
 

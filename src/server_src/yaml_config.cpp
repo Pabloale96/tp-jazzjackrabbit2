@@ -86,7 +86,8 @@ void YAMLConfig::loadConfig() {
         config.personaje.pos_y = configNode["Y_INICIAL"].as<uint16_t>();
         config.personaje.segundos_para_revivir =
                 configNode["SEGUNDOS_PARA_REVIVIR_PERSONAJE"].as<uint8_t>();
-
+        config.personaje.municiones_iniciales_de_arma_1 = configNode["MUNICIONES_INICIALES_DE_ARMA_1"].as<uint16_t>();
+        config.personaje.municiones_iniciales_de_arma_2 = configNode["MUNICIONES_INICIALES_DE_ARMA_2"].as<uint16_t>();
     } catch (const YAML::Exception& e) {
         std::cerr << "Error loading YAML configuration: " << e.what() << std::endl;
         throw;

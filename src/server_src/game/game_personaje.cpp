@@ -19,6 +19,8 @@ Personaje::Personaje(uint16_t partida_id, uint16_t client_id,
         vida(YAMLConfig::getConfig().personaje.vidas),
 
         arma(std::make_unique<ArmaInicial>()),
+        municion_de_arma_1(YAMLConfig::getConfig().personaje.municiones_iniciales_de_arma_1),
+        municion_de_arma_2(YAMLConfig::getConfig().personaje.municiones_iniciales_de_arma_2),
         bala_id(ID_BALA_INICIAL),
 
         posicion(YAMLConfig::getConfig().personaje.pos_x, YAMLConfig::getConfig().personaje.pos_y),
@@ -260,11 +262,11 @@ void Personaje::disparar() {
 }
 
 void Personaje::cambiar_arma() {
-    if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_INICIAL)) {
+    if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_INICIAL) && municion_de_arma_1 > 0) {
         std::cout << "Cambiando a arma 1" << std::endl;
         arma = std::make_unique<Arma1>();
         // El orden es: arma inicial -> arma 1 -> arma 2
-        // } else if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)) {
+        // } else if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1) && municion_de_arma_2 > 0) {
         //    arma = std::make_unique<Arma2>();
     } else {
         arma = std::make_unique<ArmaInicial>();

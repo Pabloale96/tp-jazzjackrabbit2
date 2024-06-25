@@ -17,6 +17,8 @@ enum class platform : uint8_t { HORIZONTAL = 0, DIAGONAL = 1, VERTICAL = 2 };
 
 enum class balas : uint8_t { BALA_DE_ARMA_INICIAL = 0, BALA_DE_ARMA_1 = 1, BALA_DE_ARMA_2 = 2 };
 
+enum class armas : uint8_t { ARMA_INICIAL = 0, ARMA_1 = 1, ARMA_2 = 2 };
+
 enum class coleccionables : uint8_t { MONEDA_TIPO = 0, GEMAS_TIPO = 1, ZANAHORIA_TIPO = 2 };
 
 // tipo de enemigos usado de gui para la interfaz:
@@ -74,7 +76,5 @@ enum class efectos : uint8_t {
     //      con correr
     CORRIENDO_SALTANDO = 0x14
 };
-
-enum class armas : uint8_t { ARMA_INICIAL = 0x01, ARMA_1 = 0x02, ARMA_2 = 0x03 };
 
 #endif

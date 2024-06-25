@@ -44,6 +44,10 @@ struct PersonajeConfig {
     uint16_t puntos;
     // cppcheck-suppress unusedStructMember
     uint8_t segundos_para_revivir;
+    // cppcheck-suppress unusedStructMember
+    uint16_t municiones_iniciales_de_arma_1;
+    // cppcheck-suppress unusedStructMember
+    uint16_t municiones_iniciales_de_arma_2;
 };
 
 struct GameConfig {

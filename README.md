@@ -6,7 +6,7 @@
 
 ### Pre-requisitos 📋
 
-Antes que nada, aseguragte de correr el `installer.sh` que se encargará de bajar todas las librerías y dependencias necesarias para correr el juego.
+Antes que nada, asegurate de correr el `installer.sh` que se encargará de bajar todas las librerías y dependencias necesarias para correr el juego.
 
 Luego, será necesario crear una carpeta build usando: `mkdir build`. (En caso de tenerla previamente, borrarla con `rm -r build` y luego crearla nuevamente).
 
