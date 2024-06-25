@@ -33,7 +33,7 @@ void PersonajeGui::setPosicion(float x, float y) {
     pos_y = y;
 }
 
-void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
+void PersonajeGui::actualizar_personaje(const PersonajeGui& other, bool flip) {
     this->pos_x = other.obtener_posicion_x();
     this->pos_y = other.obtener_posicion_y();
     this->vida.setVida(other.getVida());
@@ -41,6 +41,7 @@ void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
     if (this->estado != other.obtener_estado_actual()) {
         this->estado = other.obtener_estado_actual();
         this->setFrames();
+        this->animacion.setFlip(flip);
     } else {
         if (frames && !frames->empty()) {
             this->it++;
