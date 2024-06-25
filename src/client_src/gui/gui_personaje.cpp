@@ -55,8 +55,8 @@ void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
 }
 
 void PersonajeGui::setAnimacion(const PersonajeGui& other, bool flip) {
-    if (this->estado != estado) {
-      this->actualizar_personaje(other);
+    this->actualizar_personaje(other);
+    if (this->estado != other.obtener_estado_actual()) {
       this->animacion.setFlip(flip);
     }
 }
