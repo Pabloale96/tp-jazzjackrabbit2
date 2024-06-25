@@ -123,3 +123,8 @@ Nota: Debido a que hay que crear muchos sockets para las pruebas, se recomienda 
 
 * **Camila Belén Sebellin** - 100.204 - [camiSebe](https://github.com/camiSebe)
 * **Pablo Martin Alejando** - 98.021 - [Pabloale96](https://github.com/Pabloale96)
+
+## Documentación 📑
+
+* [Documenatción técnica](https://docs.google.com/document/d/1h1i4a4oaY9HMisN2TjUG-nXqcukfXPpaYPUQWQCsYPM/edit?usp=sharing)
+* [Manual de proyecto](https://docs.google.com/document/d/1f9TC8P7NMN0P-ebGJbDh_8txFRzjGv043ukbH_dU7EQ/edit?usp=sharing)
