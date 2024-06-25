@@ -70,6 +70,12 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                         client_commands.push(msg_to_sent);
                     }
                     break;
+                case SDLK_DOWN:
+                    if (animacion != (uint8_t)efectos::DISPARANDO) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), true);
+                        client_commands.push(msg_to_sent);
+                    }
+                    break;
             }
         } else if (event.type == SDL_KEYUP) {
             switch (event.key.keysym.sym) {
@@ -103,6 +109,12 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                     if (animacion != (uint8_t)efectos::IDLE) {
                         msg_to_sent =
                                 msgAccion(static_cast<uint8_t>(acciones::ACCION_ESPECIAL), false);
+                        client_commands.push(msg_to_sent);
+                    }
+                    break;
+                case SDLK_DOWN:
+                    if (animacion != (uint8_t)efectos::IDLE) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::DISPARAR), true);
                         client_commands.push(msg_to_sent);
                     }
                     break;

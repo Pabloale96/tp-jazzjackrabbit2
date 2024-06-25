@@ -2,6 +2,7 @@
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
+        puntos(texturas,0),
         texturas(texturas),
         pos_x(posx),
         pos_y(posy),
@@ -14,7 +15,7 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint
         it(frames->begin()) {}
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
-        // puntos(ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
+        puntos(texturas,(int)ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
         texturas(texturas),
         pos_x((float)ntohs(personaje.personaje[POS_POSX_PERSONAJE]) / 100.0),
         pos_y((float)ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100.0),
@@ -35,6 +36,8 @@ void PersonajeGui::setPosicion(float x, float y) {
 void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
     this->pos_x = other.obtener_posicion_x();
     this->pos_y = other.obtener_posicion_y();
+    this->vida.setVida(other.getVida());
+    this->puntos.setPuntos(other.getPuntos());
     if (this->estado != other.obtener_estado_actual()) {
         this->estado = other.obtener_estado_actual();
         this->setFrames();
@@ -59,8 +62,9 @@ void PersonajeGui::setAnimacion(uint8_t estado, bool flip) {
     }
 }
 
-void PersonajeGui::show(bool con_vida) {
+void PersonajeGui::show(bool con_vida,int h_window, int w_window) {
     if (con_vida) {
+        puntos.show(h_window);
         vida.run();
     }
     animacion.run(pos_x, pos_y, speed, frames, it);

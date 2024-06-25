@@ -60,10 +60,10 @@ bool Gui::run(int h_window, int w_window, uint16_t client_id) {
         if (x <= (posicion_jugador_x + h_window / 2) || x <= (posicion_jugador_x - h_window / 2) ||
             y <= (posicion_jugador_y + w_window / 2) || y <= (posicion_jugador_y - w_window / 2)) {
 
-            personaje.show(false);
+            personaje.show(false,h_window,w_window);
         }
     }
-    jugador->show(true);
+    jugador->show(true,h_window,w_window);
 
     for (size_t i = 0; i < gamestate.obtener_balas().size(); i++) {
         float x = (gamestate.obtener_balas().at(i)->obtener_posicion_x() - posicion_jugador_x) *
