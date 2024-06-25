@@ -40,7 +40,7 @@ public:
 
     void chequear_colisiones_personaje_con_enemigo(Personaje& personaje);
 
-    bool esta_en_zona_de_choque(const Personaje& personaje, const std::shared_ptr<Enemigo> enemigo);
+    bool posiciones_estan_en_zona_de_choque(const Posicion& colisionable_uno, const Posicion& colisionable_dos);
 
     void chequear_colisiones_balas_con_enemigos(Personaje& personaje);
 

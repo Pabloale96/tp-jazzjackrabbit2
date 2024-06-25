@@ -67,23 +67,23 @@ void GameState::imprimir_cliente() {
 
 void GameState::imprimir_mensaje() {
     std::cout << " PARTIDA " << partida_id << " :" << std::endl;
-    /* for (const auto& pair: diccionario_de_personajes) {
+    for (const auto& pair: diccionario_de_personajes) {
         const std::shared_ptr<Personaje>& personaje = pair.second;
         std::cout << " >> Personaje " << personaje->obtener_personaje_id() << " :" << std::endl;
-        std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
-       std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
+    //    std::cout << "     - Tipo: " << (unsigned)personaje->obtener_tipo_personaje() << std::endl;
+        std::cout << "     - Posición: (" << personaje->obtener_posicion().get_posicion_x() << ", "
                   << personaje->obtener_posicion().get_posicion_y() << ")." << std::endl;
-        std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
-        std::cout << "     - Velocidad: (" << personaje->obtener_velocidad().obtener_velocidad_x()
-                  << ", " << personaje->obtener_velocidad().obtener_velocidad_y() << ")."
-                  << std::endl;
+    //    std::cout << "     - Estado: " << (unsigned)personaje->obtener_estado_actual() << std::endl;
+    //    std::cout << "     - Velocidad: (" << personaje->obtener_velocidad().obtener_velocidad_x()
+    //              << ", " << personaje->obtener_velocidad().obtener_velocidad_y() << ")."
+    //              << std::endl;
 
         std::cout << "     - Puntos: " << personaje->obtener_puntos() << std::endl;
         std::cout << "     - Vida: " << personaje->obtener_vida() << std::endl;
-        std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
-        std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
-        std::cout << "     - Balas disparadas: " << personaje->obtener_balas().size() << std::endl;
-
+    //    std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
+    //    std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
+    //    std::cout << "     - Balas disparadas: " << personaje->obtener_balas().size() << std::endl;
+    /*
         for (const auto& municion: personaje->obtener_balas()) {
             std::cout << "         - Bala: " << (unsigned)municion.obtener_id() << std::endl;
             std::cout << "             - Posición: ("
@@ -98,8 +98,10 @@ void GameState::imprimir_mensaje() {
 
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
+    */
     }
-
+    
+    /*
     for (const auto& pair: diccionario_de_enemigos) {
         const std::shared_ptr<Enemigo>& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo->get_id_enemigo() << " :" << std::endl;
@@ -109,7 +111,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Puntos: " << enemigo->get_puntos() << std::endl;
         std::cout << "     - Vida: " << enemigo->get_vidas() << std::endl;
     }
-    */
+
     for (const auto& pair: diccionario_de_collectibles) {
         const std::shared_ptr<Collectible>& collectible = pair.second;
         std::cout << " >> Collectible " << collectible->obtener_id() << " :" << std::endl;
@@ -118,6 +120,8 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Tipo: " << (unsigned)collectible->obtener_tipo_coleccionable()
                   << std::endl;
     }
+    */
+
 }
 
 

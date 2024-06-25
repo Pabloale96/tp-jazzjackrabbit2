@@ -58,26 +58,44 @@ void Game::chequear_colisiones() {
     }
 }
 
-bool Game::esta_en_zona_de_choque(const Personaje& personaje,
-                                  const std::shared_ptr<Enemigo> enemigo) {
-    const float TOLERANCIA = 0.01f;
-    return personaje.obtener_posicion().get_posicion_x() >=
-                   enemigo->get_posicion_enemigo().get_posicion_x() + TOLERANCIA &&
-           personaje.obtener_posicion().get_posicion_x() <=
-                   enemigo->get_posicion_enemigo().get_posicion_x() - TOLERANCIA &&
-           personaje.obtener_posicion().get_posicion_y() <=
-                   enemigo->get_posicion_enemigo().get_posicion_y() + TOLERANCIA &&
-           personaje.obtener_posicion().get_posicion_y() >=
-                   enemigo->get_posicion_enemigo().get_posicion_y() - TOLERANCIA;
+bool Game::posiciones_estan_en_zona_de_choque(const Posicion& colisionable_uno,
+                                              const Posicion& colisionable_dos) {
+    const float MARGEN = 0.2f;
+
+    float colisionable_uno_x = colisionable_uno.get_posicion_x();
+    float colisionable_uno_y = colisionable_uno.get_posicion_y();
+
+    float colisionable_dos_x = colisionable_dos.get_posicion_x();
+    float colisionable_dos_y = colisionable_dos.get_posicion_y();
+
+    // Defino rectángulos alrededor de las posiciones
+    float colisionable_uno_min_x = colisionable_uno_x - MARGEN;
+    float colisionable_uno_max_x = colisionable_uno_x + MARGEN;
+    float colisionable_uno_min_y = colisionable_uno_y - MARGEN;
+    float colisionable_uno_max_y = colisionable_uno_y + MARGEN;
+
+    float colisionable_dos_min_x = colisionable_dos_x - MARGEN;
+    float colisionable_dos_max_x = colisionable_dos_x + MARGEN;
+    float colisionable_dos_min_y = colisionable_dos_y - MARGEN;
+    float colisionable_dos_max_y = colisionable_dos_y + MARGEN;
+
+    // Verifico si los rectángulos se superponen
+    bool colision_x = colisionable_uno_max_x >= colisionable_dos_min_x && colisionable_uno_min_x <= colisionable_dos_max_x;
+    bool colision_y = colisionable_uno_max_y >= colisionable_dos_min_y && colisionable_uno_min_y <= colisionable_dos_max_y;
+
+    // Si se superponen en ambos ejes, hay colisión
+    return colision_x && colision_y;
 }
 
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
-        if (esta_en_zona_de_choque(personaje, enemigo)) {
+        if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(), enemigo->get_posicion_enemigo())) {
             if (personaje.obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
                 // Todas las acciones especalies causan la muerte del enemigo al tocarlo
                 enemigo->matar();
             } else {
+                std::cout << "El enemigo " << enemigo->get_id_enemigo() << " le hizo daño al personaje "
+                          << personaje.obtener_personaje_id() << std::endl;
                 personaje.disminuir_vida(enemigo->get_danio_al_jugador());
             }
         }
@@ -87,7 +105,9 @@ void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
 void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
         for (auto& bala: personaje.obtener_balas()) {
-            if (bala.obtener_posicion() == enemigo->get_posicion_enemigo()) {
+            if (posiciones_estan_en_zona_de_choque(bala.obtener_posicion(), enemigo->get_posicion_enemigo())) {
+                std::cout << "La bala " << bala.obtener_id() << " le hizo daño al enemigo "
+                          << enemigo->get_id_enemigo() << std::endl;
                 if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
                     enemigo->recibir_disparo(YAMLConfig::getConfig().arma_inicial.dano);
                 } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_1) {
@@ -101,7 +121,9 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
 
 void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
     for (auto& collectible: obtener_escenario().obtener_collectibles()) {
-        if (personaje.obtener_posicion() == collectible->obtener_posicion()) {
+        if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(), collectible->obtener_posicion())) {
+            std::cout << "El personaje " << personaje.obtener_personaje_id() << " agarró un collectible"
+                      << std::endl;
             // TODO: Implementar collectibles
             // std::cout << "COLLECTIBLE" << std::endl;
             // personaje->aumentar_municion();
