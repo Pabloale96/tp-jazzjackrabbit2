@@ -55,9 +55,12 @@ void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
 }
 
 void PersonajeGui::setAnimacion(const PersonajeGui& other, bool flip) {
-    this->actualizar_personaje(other);
+    this->vida.setVida(other.getVida());
+    this->puntos.setPuntos(other.getPuntos());
     if (this->estado != other.obtener_estado_actual()) {
-      this->animacion.setFlip(flip);
+        this->estado = other.obtener_estado_actual();
+        this->setFrames();
+        this->animacion.setFlip(flip);
     }
 }
 
