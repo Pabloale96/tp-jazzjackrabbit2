@@ -48,7 +48,9 @@ ArmaInicial::ArmaInicial(uint16_t municion): ArmaInicial() { set_municion(munici
 Arma1::Arma1():
         Arma(YAMLConfig::getConfig().arma1.municion, (uint8_t)armas::ARMA_1,
              YAMLConfig::getConfig().arma1.vel_dis, YAMLConfig::getConfig().arma1.vel_proy,
-             YAMLConfig::getConfig().arma1.dano) {}
+             YAMLConfig::getConfig().arma1.dano) {
+                std::cout << "Arma1::Arma1()" << std::endl;
+             }
 
 Arma1::Arma1(uint16_t municion): Arma1() { set_municion(municion); }
 

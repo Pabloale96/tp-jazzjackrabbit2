@@ -182,6 +182,9 @@ std::unique_ptr<Comando> ProtocolServer::deserializar_acciones(const msgAccion& 
         case static_cast<uint8_t>(acciones::ACCION_ESPECIAL):
             comando = std::make_unique<AccionEspecial>(cliente_id, mensaje_recibido.toggle);
             return comando;
+        case static_cast<uint8_t>(acciones::CAMBIAR_ARMA):
+            comando = std::make_unique<CambiarArma>(cliente_id, mensaje_recibido.toggle);
+            return comando;
 
         case static_cast<uint8_t>(acciones::KILL_ALL):
             comando = std::make_unique<KillAll>(cliente_id, mensaje_recibido.toggle);

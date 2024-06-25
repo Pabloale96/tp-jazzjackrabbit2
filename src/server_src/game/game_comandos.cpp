@@ -136,6 +136,7 @@ CambiarArma::CambiarArma(uint16_t client_id, bool toggle): Comando(client_id, to
 
 void CambiarArma::ejecutar(Game& game) {
     if (toggle) {
+        std::cout << "Cambiando arma\n";
         game.obtener_personaje(client_id).cambiar_arma();
     }
 }
