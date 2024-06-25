@@ -231,7 +231,6 @@ void Client::jugar() {
 
             if (gamestate.getJugando() == false) {
                 std::cout << "La partida ha finalizado" << std::endl;
-                // TODO: aca se deberían de mostrar las estadísticas
                 mostrar_estadisticas(gamestate);
                 return;
             }
@@ -264,6 +263,7 @@ void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
         std::cout << "   " << (unsigned)id_personajes[i] << "   |   " << top_puntos[i] << std::endl;
     }
 }
+
 void Client::stop_hilos() {}
 
 Client::~Client() {

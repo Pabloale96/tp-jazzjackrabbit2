@@ -18,7 +18,7 @@ uint16_t GameloopMonitor::crear_gameloop(std::string nombre_partida, uint16_t cl
         std::unique_lock<std::mutex> lock(m);
         uint16_t nuevo_gameloop_id = gameloop_id;
         gameloop_id++;
-        // TODO: Probar usar smart_pointers()
+        // TODO: Podría usar smart_pointers()
         GameLoop* nuevo_gameloop =
                 new GameLoop(nuevo_gameloop_id, nombre_partida, client_id, personaje);
         nuevo_gameloop->start();

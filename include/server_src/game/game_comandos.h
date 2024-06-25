@@ -64,7 +64,6 @@ class Disparar: public Comando {
 public:
     Disparar(uint16_t client_id, bool toggle);
 
-    // TODO: Necesito la dirección en la q esta mirando
     void ejecutar(Game& game) override;
 };
 

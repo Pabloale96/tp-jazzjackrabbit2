@@ -15,7 +15,6 @@ void Server::jugar() {
             // Loopeo hasta que encuentro un q o un ctrl+c
         }
         std::cout << "****  Server stopped. Proceeding to close  ****" << std::endl;
-        // TODO: Notificar a los clientes que se va a cerrar el servidor
         aceptador.stop();
         aceptador.join();
         std::cout << "****  Server succesfully closed  ****" << std::endl;
