@@ -33,7 +33,7 @@ void PersonajeGui::setPosicion(float x, float y) {
     pos_y = y;
 }
 
-void PersonajeGui::actualizar_personaje(const PersonajeGui& other, bool flip) {
+void PersonajeGui::actualizar_personaje(const PersonajeGui& other) {
     this->pos_x = other.obtener_posicion_x();
     this->pos_y = other.obtener_posicion_y();
     this->vida.setVida(other.getVida());
@@ -41,7 +41,6 @@ void PersonajeGui::actualizar_personaje(const PersonajeGui& other, bool flip) {
     if (this->estado != other.obtener_estado_actual()) {
         this->estado = other.obtener_estado_actual();
         this->setFrames();
-        this->animacion.setFlip(flip);
     } else {
         if (frames && !frames->empty()) {
             this->it++;
@@ -55,12 +54,9 @@ void PersonajeGui::actualizar_personaje(const PersonajeGui& other, bool flip) {
     }
 }
 
-void PersonajeGui::setAnimacion(uint8_t estado, bool flip) {
-    if (this->estado != estado) {
-        this->estado = estado;
-        this->setFrames();
-        animacion.setFlip(flip);
-    }
+void PersonajeGui::setAnimacion(const PersonajeGui& other, bool flip) {
+    this->actualizar_personaje(other);
+    this->animacion.setFlip(flip);
 }
 
 void PersonajeGui::show(bool con_vida,int h_window, int w_window) {
