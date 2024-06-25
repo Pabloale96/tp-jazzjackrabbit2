@@ -154,7 +154,6 @@ void GameEscenario::crear_enemigo_aleatorio(uint16_t id_enemigo) {
 
 void GameEscenario::actualizar_escenario() {
     actualizar_enemigos();
-    actualizar_collectibles();
 }
 
 void GameEscenario::actualizar_enemigos() {
@@ -163,30 +162,6 @@ void GameEscenario::actualizar_enemigos() {
             enemigo->actualizar();
         } else {
             std::cerr << "ERROR en actualizar_enemigos" << std::endl;
-        }
-    }
-}
-
-/*
-bool GameEscenario::aumentar_iteraciones() {
-    for (auto& enemigo: enemigos) {
-        if (!enemigo->esta_vivo()) {
-            enemigo->aumentar_iteraciones();
-            if (enemigo->esta_vivo()) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-*/
-
-void GameEscenario::actualizar_collectibles() {
-    for (auto& collectible: collectibles) {
-        if (collectible) {
-            // collectible->actualizar();
-        } else {
-            std::cerr << "ERROR en actualizar_collectibles" << std::endl;
         }
     }
 }

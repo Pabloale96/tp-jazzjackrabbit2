@@ -100,7 +100,6 @@ uint8_t Personaje::obtener_animacion() { return animacion; }
 
 void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
                            std::vector<Plataforma>& plataformas) {
-    // std::cout << "ACTUALIZANDO Personaje: " << client_id << std::endl;
     set_tiempo_restante_de_partida(tiempo_restante_de_partida);
     for (auto& municion: municiones_disparadas) {
         municion.mover();
@@ -252,9 +251,9 @@ void Personaje::disparar() {
         if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)){
             municion_de_arma_1--;
         }
-        if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_2)){
-            municion_de_arma_2--;
-        }
+        // if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_2)){
+        //     municion_de_arma_2--;
+        // }
         this->estados.reset();
         this->estados.setDisparando(true);
         float vel_dis_con_direccion_personaje = arma->obtener_vel_dis();

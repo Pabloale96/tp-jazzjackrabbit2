@@ -124,6 +124,11 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
                         if (enemigo->get_vidas() == 0) {
                             personaje.aumentar_puntos(enemigo->get_puntos());
                         }
+                    // } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_2) {
+                    //     enemigo->recibir_disparo(YAMLConfig::getConfig().arma2.dano);
+                    //     if (enemigo->get_vidas() == 0) {
+                    //         personaje.aumentar_puntos(enemigo->get_puntos());
+                    //     }
                     }
                     personaje.eliminar_bala(bala.obtener_id());
                 }

@@ -99,7 +99,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }
-
+    /*
     for (const auto& pair: diccionario_de_enemigos) {
         const std::shared_ptr<Enemigo>& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo->get_id_enemigo() << " :" << std::endl;
@@ -108,7 +108,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Puntos: " << enemigo->get_puntos() << std::endl;
         std::cout << "     - Vida: " << enemigo->get_vidas() << std::endl;
     }
-    /*
+
     for (const auto& pair: diccionario_de_collectibles) {
         const std::shared_ptr<Collectible>& collectible = pair.second;
         std::cout << " >> Collectible " << collectible->obtener_id() << " :" << std::endl;
