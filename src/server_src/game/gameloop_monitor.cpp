@@ -93,6 +93,14 @@ void GameloopMonitor::borrar_partida_si_esta_vacia(GameLoop* gameloop) {
     }
 }
 
+void GameloopMonitor::borrar_partida(uint16_t gameloop_id) {
+    GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    gameloop->stop();
+    gameloop->join();
+    delete gameloop;
+    diccionario_de_gameloops.erase(diccionario_de_gameloops.find(gameloop_id));
+}
+
 GameloopMonitor::~GameloopMonitor() {
     std::unique_lock<std::mutex> lock(m);
     // cppcheck-suppress unassignedVariable

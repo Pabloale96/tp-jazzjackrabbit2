@@ -42,6 +42,8 @@ public:
 
     void borrar_partida_si_esta_vacia(GameLoop* gameloop);
 
+    void borrar_partida(uint16_t gameloop_id);
+
     ~GameloopMonitor();
 };
 

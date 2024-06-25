@@ -78,4 +78,6 @@ enum class efectos : uint8_t {
     CAMBIAR_ARMA_EFEC = 0x15
 };
 
+enum class dropeables : uint8_t { DROPPEO_MUNICION = 0, DROPPEO_VIDA = 1 };
+
 #endif
