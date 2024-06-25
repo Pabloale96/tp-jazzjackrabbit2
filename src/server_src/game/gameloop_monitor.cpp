@@ -75,6 +75,7 @@ void GameloopMonitor::borrar_cliente_de_gameloop(uint16_t gameloop_id, uint16_t 
     // Este lock no hace falta porque obtener_gameloop ya tiene un lock (por lo que terminariamos en
     // deadlock) std::unique_lock<std::mutex> lock(m);
     GameLoop* gameloop = obtener_gameloop(gameloop_id);
+    //gameloop->borrar_queue_server_msg_de_cliente_aceptado(queue_server_msg);
     gameloop->borrar_cliente(client_id);
 
     // std::unique_lock<std::mutex> lock(m);
