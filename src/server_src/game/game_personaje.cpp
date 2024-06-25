@@ -249,6 +249,12 @@ void Personaje::disparar() {
         return;
     } else {
         arma->disminuir_municion();
+        if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_1)){
+            municion_de_arma_1--;
+        }
+        if (arma->obtener_nombre_arma() == static_cast<uint8_t>(armas::ARMA_2)){
+            municion_de_arma_2--;
+        }
         this->estados.reset();
         this->estados.setDisparando(true);
         float vel_dis_con_direccion_personaje = arma->obtener_vel_dis();
