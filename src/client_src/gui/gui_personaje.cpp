@@ -118,7 +118,7 @@ void SpazGui::setFrames() {
             speed = spe;
             break;
         case (uint8_t)efectos::CORRIENDO_RAPIDO:
-            frames = texturas.findFrame(std::string(SPAZ_RUN));
+            frames = texturas.findFrame(std::string(SPAZ_DASH));
             it = frames->begin();
             speed = spe;
             break;

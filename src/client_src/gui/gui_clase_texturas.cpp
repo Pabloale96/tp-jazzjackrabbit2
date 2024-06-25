@@ -563,10 +563,10 @@ void ClaseTexturas::jazzStopShootAndMove() {
 // creo que conviene directamente usar WALK
 void ClaseTexturas::jazzShootAndFalling() {
 
-    int x_frames[8] = {4, 52, 103, 154, 205, 257, 307, 356};
-    int y_frames[8] = {944, 944, 944, 944, 944, 944, 944, 944};
-    int w_frames[8] = {43, 43, 43, 43, 43, 43, 43, 43};
-    int h_frames[8] = {45, 46, 45, 45, 46, 45, 45, 46};
+    int x_frames[] = {445, 502, 563};
+    int y_frames[] = {1123, 1123, 1123};
+    int w_frames[] = {46, 46, 46};
+    int h_frames[] = {53, 57, 55};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
     add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, jazz_tex,
@@ -692,7 +692,7 @@ void ClaseTexturas::spazHurt() {
 void ClaseTexturas::spazShoot() {
 
     int x_frames[] = {5, 56};
-    int y_frames[] = {504, 504};
+    int y_frames[] = {537, 537};
     int w_frames[] = {45, 45};
     int h_frames[] = {45, 40};
 
@@ -753,10 +753,10 @@ void ClaseTexturas::spazStopShootAndMove() {
 // creo que conviene directamente usar stop shoot
 void ClaseTexturas::spazShootAndFalling() {
 
-    int x_frames[8] = {4, 52, 103, 154, 205, 257, 307, 356};
-    int y_frames[8] = {944, 944, 944, 944, 944, 944, 944, 944};
-    int w_frames[8] = {43, 43, 43, 43, 43, 43, 43, 43};
-    int h_frames[8] = {45, 46, 45, 45, 46, 45, 45, 46};
+    int x_frames[] = {421, 477, 531};
+    int y_frames[] = {1059, 1059, 1059};
+    int w_frames[] = {51, 51, 51};
+    int h_frames[] = {48, 48, 48};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
     add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, spaz_tex,
@@ -941,10 +941,10 @@ void ClaseTexturas::loriStopShootAndMove() {
 // creo que conviene directamente usar walk
 void ClaseTexturas::loriShootAndFalling() {
 
-    int x_frames[8] = {4, 52, 103, 154, 205, 257, 307, 356};
-    int y_frames[8] = {944, 944, 944, 944, 944, 944, 944, 944};
-    int w_frames[8] = {43, 43, 43, 43, 43, 43, 43, 43};
-    int h_frames[8] = {45, 46, 45, 45, 46, 45, 45, 46};
+    int x_frames[] = {393, 429, 466};
+    int y_frames[] = {890, 890, 890};
+    int w_frames[] = {51, 51, 51};
+    int h_frames[] = {30, 30, 30};
 
     int frame_count = sizeof(x_frames) / sizeof(x_frames[0]);
     add_frames_to_map(x_frames, y_frames, w_frames, h_frames, frame_count, lori_tex,
