@@ -13,6 +13,7 @@
 #include "gui_defines_frames.h"
 #include "gui_frame.h"
 #include "gui_vida.h"
+#include "gui_puntos.h"
 #include "msgToSent.h"
 
 
@@ -23,6 +24,7 @@ using SDL2pp::Window;
 
 class PersonajeGui {
 protected:
+    PuntosGui puntos;
     ClaseTexturas& texturas;
     float pos_x;
     float pos_y;
@@ -41,8 +43,11 @@ public:
     float obtener_posicion_y() const { return pos_y; }
     uint8_t obtener_estado_actual() const { return estado; }
     uint8_t obtener_tipo_personaje() const { return tipo; }
+
+    int getPuntos() const {return puntos.getPuntos();}
+    uint16_t getVida() const {return vida.getVida();}
     ~PersonajeGui();
-    void show(bool con_vida);
+    void show(bool con_vida, int h_window, int w_window);
     virtual void setFrames();
     void setAnimacion(uint8_t estado, bool flip);
     void setPosicion(float x, float y);

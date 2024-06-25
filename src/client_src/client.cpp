@@ -243,10 +243,31 @@ void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
     // TODO: Habria q dejarla mas linda y que imprima en orden de puntos
     std::cout << "Estadísticas de la partida:" << std::endl;
     std::cout << "   PERSONAJE   |   PUNTOS" << std::endl;
-    /*for (const auto& respuesta: respuestas.obtener_respuestas()) {
-        std::cout << "   " << respuesta.obtener_id_personaje() << "   |   " <<
-    respuesta.obtener_puntos() << std::endl;
-    }*/
+    std::vector<int> top_puntos;
+    std::vector<uint16_t> id_personajes;
+    for (const auto& [id, personaje]: respuestas.obtener_diccionario_de_personajes()) {
+        if (top_puntos.empty() || top_puntos.size()<3)
+        {
+            top_puntos.push_back(personaje.getPuntos());
+            id_personajes.push_back(id);
+            continue;
+        } else {
+            for (size_t i = 0; i < top_puntos.size(); i++)
+            {
+                if(personaje.getPuntos() > top_puntos[i]) {
+                    top_puntos[i] = personaje.getPuntos();
+                    id_personajes[i] = id;
+                }
+            }
+        }
+    }
+
+    for (size_t i = 0; i < top_puntos.size(); i++)
+    {
+        std::cout << "   " <<(unsigned) id_personajes[i] << "   |   " <<
+            top_puntos[i] << std::endl;
+    }
+    
 }
 void Client::stop_hilos() {}
 
