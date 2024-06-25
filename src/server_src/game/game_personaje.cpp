@@ -316,6 +316,8 @@ void Personaje::setear_posicion_en_x(float x) { posicion.set_posicion_en_x(x); }
 
 void Personaje::setear_posicion_en_y(float y) { posicion.set_posicion_en_y(y); }
 
+void Personaje::aumentar_puntos(uint16_t puntos) { this->puntos += puntos; }
+
 
 // ************  JAZZ  ************
 Jazz::Jazz(uint16_t partida_id, uint16_t client_id,

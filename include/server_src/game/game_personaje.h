@@ -121,6 +121,8 @@ public:
 
     void chequear_colisiones(const std::vector<Plataforma>& plataformas);
 
+    void aumentar_puntos(uint16_t puntos);
+
     virtual ~Personaje() = default;
 };
 
