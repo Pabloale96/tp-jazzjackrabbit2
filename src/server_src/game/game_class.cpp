@@ -134,14 +134,18 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
 
 void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
     for (auto& collectible: obtener_escenario().obtener_collectibles()) {
-        if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(),
-                                               collectible->obtener_posicion())) {
-            // TODO: Implementar collectibles
-            // std::cout << "COLLECTIBLE" << std::endl;
-            // personaje->aumentar_municion();
-            // personaje->aumentar_vida();
-            // personaje->aumentar_puntos();
-            // collectible->desaparecer();
+        if (collectible->esta_activo()) {
+            if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(),
+                                                collectible->obtener_posicion())) {
+                if (collectible->obtener_tipo_coleccionable() == coleccionables::ZANAHORIA_TIPO) {
+                    personaje.aumentar_vida(collectible->obtener_premio());
+                } else if (collectible->obtener_tipo_coleccionable() == coleccionables::GEMAS_TIPO) {
+                    personaje.aumentar_puntos(collectible->obtener_premio());
+                } else if (collectible->obtener_tipo_coleccionable() == coleccionables::MONEDA_TIPO) {
+                    personaje.aumentar_puntos(collectible->obtener_premio());
+                }
+
+            }
         }
     }
 }
@@ -188,7 +192,7 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
     }
 
     for (const auto& collectible: escenario.obtener_collectibles()) {
-        if (collectible) {
+        if (collectible->esta_activo()) {
             auto collectible_id = collectible->obtener_id();
             gamestate.obtener_diccionario_de_collectibles().insert(
                     std::make_pair(collectible_id, std::move(collectible)));

@@ -14,10 +14,11 @@ private:
     uint16_t id_collectible;
     Posicion posicion;
     coleccionables tipo;
+    bool activo;
 
 public:
     Collectible(uint16_t id_collectible, uint16_t x, uint16_t y, coleccionables tipo):
-            id_collectible(id_collectible), posicion(x, y), tipo(tipo) {}
+            id_collectible(id_collectible), posicion(x, y), tipo(tipo), activo(true) {}
 
     uint16_t obtener_id() const { return id_collectible; }
 
@@ -27,7 +28,11 @@ public:
 
     coleccionables obtener_tipo_coleccionable() const { return tipo; }
 
-    virtual uint16_t obtener_premio() const = 0;
+    virtual uint16_t obtener_premio() = 0;
+
+    void desactivar() { activo = false; }
+
+    bool esta_activo() const { return activo; }
 
     virtual ~Collectible() {}
 };
@@ -41,7 +46,10 @@ public:
             Collectible(id_collectible, x, y, coleccionables::GEMAS_TIPO),
             puntos(YAMLConfig::getConfig().puntos_gemas) {}
 
-    uint16_t obtener_premio() const override { return puntos; }
+    uint16_t obtener_premio() override {
+        this->desactivar();
+        return puntos;
+    }
 };
 
 class Moneda: public Collectible {
@@ -53,7 +61,10 @@ public:
             Collectible(id_collectible, x, y, coleccionables::MONEDA_TIPO),
             puntos(YAMLConfig::getConfig().puntos_monedas) {}
 
-    uint16_t obtener_premio() const override { return puntos; }
+    uint16_t obtener_premio() override {
+        this->desactivar();
+        return puntos;
+    }
 };
 
 class Zanahoria: public Collectible {
@@ -65,7 +76,10 @@ public:
             Collectible(id_collectible, x, y, coleccionables::ZANAHORIA_TIPO),
             vidas(YAMLConfig::getConfig().vidas_zanahorias) {}
 
-    uint16_t obtener_premio() const override { return vidas; }
+    uint16_t obtener_premio() override {
+        this->desactivar();
+        return vidas;
+    }
 };
 
 #endif

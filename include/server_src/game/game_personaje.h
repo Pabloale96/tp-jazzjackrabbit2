@@ -75,6 +75,8 @@ public:
 
     void disminuir_vida(uint16_t danio);
 
+    void aumentar_vida(uint16_t zanahoria);
+
     void disminuir_municion();
 
     Posicion obtener_posicion() const;
