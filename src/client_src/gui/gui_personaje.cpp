@@ -27,9 +27,7 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
         municion(texturas,ntohs(personaje.personaje[POS_MUNICION_PERSONAJE]),(int) personaje.tipo_arma),
         animacion(),
         frames(texturas.findFrame(std::string(SPAZ_STAND))),
-        it(frames->begin()) {
-                std::cout << "Tipo Arma: "<<(unsigned) personaje.tipo_arma << std::endl; 
-        }
+        it(frames->begin()) { }
 
 // estados() {}
 void PersonajeGui::setPosicion(float x, float y) {
