@@ -76,6 +76,12 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                         client_commands.push(msg_to_sent);
                     }
                     break;
+                case SDLK_k:
+                    if (animacion != (uint8_t)efectos::CHEAT) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::KILL_ALL), true);
+                        client_commands.push(msg_to_sent);
+                    }
+                    break;
             }
         } else if (event.type == SDL_KEYUP) {
             switch (event.key.keysym.sym) {
@@ -115,6 +121,12 @@ bool KeyboardHandler::keyBoardManaged(Queue<msgAccion>& client_commands, const u
                 case SDLK_DOWN:
                     if (animacion != (uint8_t)efectos::IDLE) {
                         msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::CAMBIAR_ARMA), false);
+                        client_commands.push(msg_to_sent);
+                    }
+                    break;
+                case SDLK_k:
+                    if (animacion != (uint8_t)efectos::IDLE) {
+                        msg_to_sent = msgAccion(static_cast<uint8_t>(acciones::KILL_ALL), false);
                         client_commands.push(msg_to_sent);
                     }
                     break;

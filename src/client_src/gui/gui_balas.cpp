@@ -9,7 +9,7 @@ BalasGui::BalasGui(ClaseTexturas& texturas, msgBalas& msg):
 
 BalasGui::~BalasGui() {}
 
-void BalasGui::show() { animacion.run(pos_x, pos_y, speed, frames, it); }
+void BalasGui::show() { animacion.run(pos_x, pos_y, 5, frames, it); }
 
 void BalasGui::setPosicion(float x, float y) {
     pos_x = x;
@@ -29,7 +29,7 @@ BalasGui1::BalasGui1(ClaseTexturas& texturas, msgBalas& msg): BalasGui(texturas,
 BalasGui1::~BalasGui1() {}
 
 BalasGui2::BalasGui2(ClaseTexturas& texturas, msgBalas& msg): BalasGui(texturas, msg) {
-    frames = texturas.findFrame(BALA1);
+    frames = texturas.findFrame(BALA2);
     it = frames->begin();
 }
 

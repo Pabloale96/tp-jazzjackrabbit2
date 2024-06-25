@@ -47,7 +47,7 @@ enum class acciones : uint8_t {
     CAMBIAR_ARMA = 0x09,
 
     // Cheats
-    KILL_ALL = 0x010
+    KILL_ALL = 0x10
 };
 
 enum class efectos : uint8_t {
@@ -75,7 +75,9 @@ enum class efectos : uint8_t {
     DISPARANDO_CAYENDO = 0x13,
     //      con correr
     CORRIENDO_SALTANDO = 0x14,
-    CAMBIAR_ARMA_EFEC = 0x15
+    CAMBIAR_ARMA_EFEC = 0x15,
+
+    CHEAT = 0xFF
 };
 
 #endif
