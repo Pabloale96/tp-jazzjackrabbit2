@@ -74,7 +74,8 @@ enum class efectos : uint8_t {
     DISPARANDO_SALTANDO = 0x12,
     DISPARANDO_CAYENDO = 0x13,
     //      con correr
-    CORRIENDO_SALTANDO = 0x14
+    CORRIENDO_SALTANDO = 0x14,
+    CAMBIAR_ARMA_EFEC = 0x15
 };
 
 #endif

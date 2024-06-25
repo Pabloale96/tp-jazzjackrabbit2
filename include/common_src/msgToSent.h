@@ -49,6 +49,9 @@ struct msgAccion {
             case acciones::ACCION_ESPECIAL:
                 accion = static_cast<uint8_t>(acciones::ACCION_ESPECIAL);
                 break;
+            case acciones::CAMBIAR_ARMA:
+                accion = static_cast<uint8_t>(acciones::CAMBIAR_ARMA);
+                break;
             case acciones::KILL_ALL:
                 accion = static_cast<uint8_t>(acciones::KILL_ALL);
                 break;

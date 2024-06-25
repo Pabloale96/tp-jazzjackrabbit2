@@ -52,6 +52,7 @@ add_executable(client
   src/client_src/gui/gui_personaje.cpp
   src/client_src/gui/gui_balas.cpp
   src/client_src/gui/gui_vida.cpp
+  src/client_src/gui/gui_municion.cpp
   src/client_src/gui/gui_puntos.cpp
   src/client_src/gui/gui_coleccionables.cpp
   src/client_src/gui/gui_clase_texturas.cpp
@@ -161,6 +162,7 @@ add_executable(test_consola_cliente
   src/client_src/gui/gui_balas.cpp
   src/client_src/gui/gui_vida.cpp
   src/client_src/gui/gui_puntos.cpp
+  src/client_src/gui/gui_municion.cpp
   src/client_src/gui/gui_coleccionables.cpp
   src/client_src/gui/gui_clase_texturas.cpp
   src/client_src/gui/gui_enemigos.cpp

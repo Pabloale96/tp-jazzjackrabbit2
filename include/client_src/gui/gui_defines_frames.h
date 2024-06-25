@@ -17,6 +17,10 @@
 #define ICON_SPAZ "iconSpaz"
 #define ICON_JAZZ "iconJazz"
 
+#define INFINITO 100000000
+
+#define ICON_ARMA1 "iconArma1"
+#define ICON_ARMA2 "iconArma2"
 
 #define ENEMIGO1_GUI "enemigo1"
 #define ENEMIGO2_GUI "enemigo2"
@@ -29,7 +33,6 @@
 #define MUNICION "municion"
 #define BALA1 "bala1"
 #define BALA2 "bala2"
-
 
 #define PLATFORM_BEACH_TYPE_1 "beachType1"
 

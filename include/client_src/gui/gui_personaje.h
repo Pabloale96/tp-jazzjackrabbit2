@@ -14,6 +14,7 @@
 #include "gui_frame.h"
 #include "gui_puntos.h"
 #include "gui_vida.h"
+#include "gui_municion.h"
 #include "msgToSent.h"
 
 
@@ -32,6 +33,7 @@ protected:
     int speed;
     uint8_t estado;
     VidaGui vida;
+    CantidadMunicionGui municion;
     Animacion animacion;
     std::shared_ptr<std::vector<Frame>> frames;
     std::vector<Frame>::iterator it;
@@ -46,6 +48,8 @@ public:
 
     int getPuntos() const { return puntos.getPuntos(); }
     uint16_t getVida() const { return vida.getVida(); }
+    int getMunicion() const { return municion.getMunicion(); }
+    int getTipoArma() const { return municion.getTipoArma(); }
     ~PersonajeGui();
     void show(bool con_vida, int h_window, int w_window);
     virtual void setFrames();
