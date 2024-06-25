@@ -30,6 +30,6 @@ public:
     void show_icon();
     void show_vida();
     void setVida(uint16_t);
-    uint16_t getVida() const ;
+    uint16_t getVida() const;
 };
 #endif

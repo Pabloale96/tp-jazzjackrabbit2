@@ -4,8 +4,8 @@
 #include <exception>
 #include <iostream>
 #include <memory>
-#include <vector>
 #include <stack>
+#include <vector>
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -17,16 +17,16 @@
 
 class PuntosGui {
 private:
-    ClaseTexturas & texturas;
+    ClaseTexturas& texturas;
     int puntos;
 
 public:
-    PuntosGui(ClaseTexturas &,int);
+    PuntosGui(ClaseTexturas&, int);
     ~PuntosGui();
 
     void show(int);
     void setPuntos(int puntos);
-    int getPuntos() const ;
+    int getPuntos() const;
 };
 
 #endif

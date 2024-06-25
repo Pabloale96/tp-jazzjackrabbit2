@@ -24,8 +24,8 @@ void VidaGui::show_icon() {
     }
 }
 
-void VidaGui::setVida(uint16_t vida) {this->vida = vida;}
-uint16_t VidaGui::getVida() const {return vida;}
+void VidaGui::setVida(uint16_t vida) { this->vida = vida; }
+uint16_t VidaGui::getVida() const { return vida; }
 
 void VidaGui::show_vida() {
 

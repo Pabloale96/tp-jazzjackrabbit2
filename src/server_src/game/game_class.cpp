@@ -80,8 +80,10 @@ bool Game::posiciones_estan_en_zona_de_choque(const Posicion& colisionable_uno,
     float colisionable_dos_max_y = colisionable_dos_y + MARGEN;
 
     // Verifico si los rectángulos se superponen
-    bool colision_x = colisionable_uno_max_x >= colisionable_dos_min_x && colisionable_uno_min_x <= colisionable_dos_max_x;
-    bool colision_y = colisionable_uno_max_y >= colisionable_dos_min_y && colisionable_uno_min_y <= colisionable_dos_max_y;
+    bool colision_x = colisionable_uno_max_x >= colisionable_dos_min_x &&
+                      colisionable_uno_min_x <= colisionable_dos_max_x;
+    bool colision_y = colisionable_uno_max_y >= colisionable_dos_min_y &&
+                      colisionable_uno_min_y <= colisionable_dos_max_y;
 
     // Si se superponen en ambos ejes, hay colisión
     return colision_x && colision_y;
@@ -90,7 +92,8 @@ bool Game::posiciones_estan_en_zona_de_choque(const Posicion& colisionable_uno,
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
         if (enemigo->esta_vivo()) {
-            if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(), enemigo->get_posicion_enemigo())) {
+            if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(),
+                                                   enemigo->get_posicion_enemigo())) {
                 if (personaje.obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
                     // Todas las acciones especalies causan la muerte del enemigo al tocarlo
                     enemigo->matar();
@@ -109,7 +112,8 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
         if (enemigo->esta_vivo()) {
             for (auto& bala: personaje.obtener_balas()) {
-                if (posiciones_estan_en_zona_de_choque(bala.obtener_posicion(), enemigo->get_posicion_enemigo())) {
+                if (posiciones_estan_en_zona_de_choque(bala.obtener_posicion(),
+                                                       enemigo->get_posicion_enemigo())) {
                     if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
                         enemigo->recibir_disparo(YAMLConfig::getConfig().arma_inicial.dano);
                         if (enemigo->get_vidas() == 0) {
@@ -130,7 +134,8 @@ void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
 
 void Game::chequear_colisiones_personaje_con_collectible(Personaje& personaje) {
     for (auto& collectible: obtener_escenario().obtener_collectibles()) {
-        if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(), collectible->obtener_posicion())) {
+        if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(),
+                                               collectible->obtener_posicion())) {
             // TODO: Implementar collectibles
             // std::cout << "COLLECTIBLE" << std::endl;
             // personaje->aumentar_municion();

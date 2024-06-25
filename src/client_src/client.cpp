@@ -210,7 +210,7 @@ void Client::jugar() {
 
             bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(),
                                                jugador_actual.obtener_posicion_y());
-            jugador->setAnimacion(jugador_actual,flip);
+            jugador->setAnimacion(jugador_actual, flip);
             gamestate.obtener_diccionario_de_personajes().erase(client_id);
             client_off = gui.run(screenHeight, screenWidth, client_id);
             if (client_off) {
@@ -246,15 +246,13 @@ void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
     std::vector<int> top_puntos;
     std::vector<uint16_t> id_personajes;
     for (const auto& [id, personaje]: respuestas.obtener_diccionario_de_personajes()) {
-        if (top_puntos.empty() || top_puntos.size()<3)
-        {
+        if (top_puntos.empty() || top_puntos.size() < 3) {
             top_puntos.push_back(personaje.getPuntos());
             id_personajes.push_back(id);
             continue;
         } else {
-            for (size_t i = 0; i < top_puntos.size(); i++)
-            {
-                if(personaje.getPuntos() > top_puntos[i]) {
+            for (size_t i = 0; i < top_puntos.size(); i++) {
+                if (personaje.getPuntos() > top_puntos[i]) {
                     top_puntos[i] = personaje.getPuntos();
                     id_personajes[i] = id;
                 }
@@ -262,12 +260,9 @@ void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
         }
     }
 
-    for (size_t i = 0; i < top_puntos.size(); i++)
-    {
-        std::cout << "   " <<(unsigned) id_personajes[i] << "   |   " <<
-            top_puntos[i] << std::endl;
+    for (size_t i = 0; i < top_puntos.size(); i++) {
+        std::cout << "   " << (unsigned)id_personajes[i] << "   |   " << top_puntos[i] << std::endl;
     }
-    
 }
 void Client::stop_hilos() {}
 

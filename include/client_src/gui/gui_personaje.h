@@ -12,8 +12,8 @@
 #include "gui_clase_texturas.h"
 #include "gui_defines_frames.h"
 #include "gui_frame.h"
-#include "gui_vida.h"
 #include "gui_puntos.h"
+#include "gui_vida.h"
 #include "msgToSent.h"
 
 
@@ -44,8 +44,8 @@ public:
     uint8_t obtener_estado_actual() const { return estado; }
     uint8_t obtener_tipo_personaje() const { return tipo; }
 
-    int getPuntos() const {return puntos.getPuntos();}
-    uint16_t getVida() const {return vida.getVida();}
+    int getPuntos() const { return puntos.getPuntos(); }
+    uint16_t getVida() const { return vida.getVida(); }
     ~PersonajeGui();
     void show(bool con_vida, int h_window, int w_window);
     virtual void setFrames();

@@ -2,7 +2,7 @@
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint8_t tipo, int speed,
                            std::shared_ptr<std::vector<Frame>>& frames):
-        puntos(texturas,0),
+        puntos(texturas, 0),
         texturas(texturas),
         pos_x(posx),
         pos_y(posy),
@@ -15,7 +15,7 @@ PersonajeGui::PersonajeGui(ClaseTexturas& texturas, float posx, float posy, uint
         it(frames->begin()) {}
 
 PersonajeGui::PersonajeGui(ClaseTexturas& texturas, msgPersonaje& personaje):
-        puntos(texturas,(int)ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
+        puntos(texturas, (int)ntohs(personaje.personaje[POS_PUNTOS_PERSONAJE])),
         texturas(texturas),
         pos_x((float)ntohs(personaje.personaje[POS_POSX_PERSONAJE]) / 100.0),
         pos_y((float)ntohs(personaje.personaje[POS_POSY_PERSONAJE]) / 100.0),
@@ -64,7 +64,7 @@ void PersonajeGui::setAnimacion(const PersonajeGui& other, bool flip) {
     }
 }
 
-void PersonajeGui::show(bool con_vida,int h_window, int w_window) {
+void PersonajeGui::show(bool con_vida, int h_window, int w_window) {
     if (con_vida) {
         puntos.show(h_window);
         vida.run();

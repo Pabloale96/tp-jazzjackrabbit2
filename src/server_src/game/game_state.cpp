@@ -83,7 +83,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Municion: " << personaje->obtener_municion() << std::endl;
         std::cout << "     - Arma: " << (unsigned)personaje->obtener_nombre_arma() << std::endl;
         std::cout << "     - Balas disparadas: " << personaje->obtener_balas().size() << std::endl;
-    
+
         for (const auto& municion: personaje->obtener_balas()) {
             std::cout << "         - Bala: " << (unsigned)municion.obtener_id() << std::endl;
             std::cout << "             - Posición: ("
@@ -99,7 +99,7 @@ void GameState::imprimir_mensaje() {
         std::cout << "     - Tiempo restante de partida: "
                   << personaje->obtener_tiempo_restante_de_partida().count() << std::endl;
     }
-    
+
     for (const auto& pair: diccionario_de_enemigos) {
         const std::shared_ptr<Enemigo>& enemigo = pair.second;
         std::cout << " >> Enemigo " << enemigo->get_id_enemigo() << " :" << std::endl;
@@ -118,7 +118,6 @@ void GameState::imprimir_mensaje() {
                   << std::endl;
     }
     */
-
 }
 
 
