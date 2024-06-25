@@ -20,6 +20,8 @@ Client::Client(const std::string& hostname, const std::string& servicio):
         server_msg(MAX_TAM_COLA),
         receiver(protocolo_client, client_id, server_msg, texturas),
         client_id(CLIENT_ID_NULO),
+        //mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 4, 4096)
+        //sonidos(Mixer)
         window(Window("Jazz JackRabbit 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                       screenHeight, screenWidth, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN)),
         renderer(Renderer(window, -1, SDL_RENDERER_ACCELERATED)),
@@ -195,7 +197,7 @@ void Client::jugar() {
     std::cout << "Comienza la partida!" << std::endl;
     iniciar_hilos();
     window.Show();
-
+    //sonidos.findAudio(AMBIENTE_CASTLE).run();
     bool client_off = false;
     std::shared_ptr<GameStateClient> gamestate_new;
     while (!client_off) {

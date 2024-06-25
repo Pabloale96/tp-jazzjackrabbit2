@@ -30,6 +30,7 @@ using SDL2pp::SDL;
 using SDL2pp::SDLTTF;
 using SDL2pp::Texture;
 using SDL2pp::Window;
+//using SDL2pp::Mixer;
 
 class Client {
 private:
@@ -43,6 +44,10 @@ private:
     uint16_t client_id;
 
     // GUI:
+
+    //SONIDOS:
+    //Mixer mixer;
+    //ClaseSonidos sonidos;
 
     // tamanio de la pantalla:
     int screenWidth = 600;

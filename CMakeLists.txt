@@ -3,7 +3,6 @@ project(jazzJackrabbit2)
 
 # Find the yaml-cpp library
 find_package(yaml-cpp REQUIRED)
-
 # Set up SDL2pp library
 set(SDL2PP_WITH_IMAGE YES)
 set(SDL2PP_WITH_TTF YES)
@@ -52,6 +51,8 @@ add_executable(client
   src/client_src/gui/gui_personaje.cpp
   src/client_src/gui/gui_balas.cpp
   src/client_src/gui/gui_vida.cpp
+  #src/client_src/gui/gui_clase_sonidos.cpp
+  #src/client_src/gui/gui_audio.cpp
   src/client_src/gui/gui_municion.cpp
   src/client_src/gui/gui_puntos.cpp
   src/client_src/gui/gui_coleccionables.cpp
@@ -161,6 +162,8 @@ add_executable(test_consola_cliente
   src/client_src/gui/gui_personaje.cpp
   src/client_src/gui/gui_balas.cpp
   src/client_src/gui/gui_vida.cpp
+  #src/client_src/gui/gui_clase_sonidos.cpp
+  #src/client_src/gui/gui_audio.cpp
   src/client_src/gui/gui_puntos.cpp
   src/client_src/gui/gui_municion.cpp
   src/client_src/gui/gui_coleccionables.cpp
