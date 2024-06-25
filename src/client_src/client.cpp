@@ -211,7 +211,7 @@ void Client::jugar() {
             bool flip = gui.setPosicionJugador(jugador_actual.obtener_posicion_x(),
                                                jugador_actual.obtener_posicion_y());
             jugador->setAnimacion(jugador_actual,flip);
-            jugador->setPosicion(screenHeight/2,screenWidth/2);
+            jugador->setPosicion((float) screenHeight/2, (float) screenWidth/2);
             gamestate.obtener_diccionario_de_personajes().erase(client_id);
             client_off = gui.run(screenHeight, screenWidth, client_id);
             if (client_off) {
