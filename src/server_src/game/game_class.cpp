@@ -233,9 +233,10 @@ void Game::borrar_personaje(uint16_t client_id) {
 
 GameEscenario& Game::obtener_escenario() { return escenario; }
 
-void Game::cheat_matar_todos_los_enemigos() {
+void Game::cheat_matar_todos_los_enemigos(uint16_t client_id) {
     for (auto& enemigo: escenario.obtener_enemigos()) {
         enemigo->matar();
+        obtener_personaje(client_id).aumentar_puntos(enemigo->get_puntos());
     }
 }
 

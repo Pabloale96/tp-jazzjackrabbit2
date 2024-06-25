@@ -157,6 +157,6 @@ KillAll::KillAll(uint16_t client_id, bool toggle): Comando(client_id, toggle) {}
 
 void KillAll::ejecutar(Game& game) {
     if (toggle) {
-        game.cheat_matar_todos_los_enemigos();
+        game.cheat_matar_todos_los_enemigos(client_id);
     }
 }

@@ -64,7 +64,7 @@ public:
 
     GameEscenario& obtener_escenario();
 
-    void cheat_matar_todos_los_enemigos();
+    void cheat_matar_todos_los_enemigos(uint16_t client_id);
 
     ~Game();
 };
