@@ -10,7 +10,11 @@
 
 // Todos los enemigos tienen la misma velocidad y arrancan para la derecha
 Enemigo::Enemigo(uint16_t id_enemigo):
-        id_enemigo(id_enemigo), velocidad_enemigo(VELOCIDAD_EN_x, VELOCIDAD_EN_y) {}
+        id_enemigo(id_enemigo),
+        velocidad_enemigo(VELOCIDAD_EN_x, VELOCIDAD_EN_y),
+        tiempo_muerte(),
+        moviendose_a_la_derecha(true),
+        pasos_hechos(0) {}
 
 Enemigo::Enemigo(uint16_t* datos_enemigo):
         id_enemigo(ntohs(datos_enemigo[POS_ID_ENEMIGO])),
@@ -51,15 +55,31 @@ uint16_t Enemigo::get_danio_al_jugador() const { return danio_al_jugador; }
 uint16_t Enemigo::get_puntos() const { return puntos; }
 
 void Enemigo::actualizar() {
-    // segun en que direccion esta, llamar a mover
-
-    // Si el enemigo esta muerto, aumenta las iteraciones para revivir
+    if (esta_vivo()) {
+        mover();
+    } else {
+        aumentar_iteraciones();
+    }
 }
 
 void Enemigo::mover() {
-    // Mover enemigo
-    // Si llega a la pared, cambiar de direccion
-    // Si llega al borde de la pantalla, cambiar de direccion
+    if (moviendose_a_la_derecha) {
+        posicion_enemigo.set_posicion(posicion_enemigo.get_posicion_x() + 0.1,
+                                      posicion_enemigo.get_posicion_y());
+        pasos_hechos++;
+        if (pasos_hechos >= limite_de_pasos) {
+            moviendose_a_la_derecha = false;
+            pasos_hechos = 0;
+        }
+    } else {
+        posicion_enemigo.set_posicion(posicion_enemigo.get_posicion_x() - 0.1,
+                                      posicion_enemigo.get_posicion_y());
+        pasos_hechos++;
+        if (pasos_hechos >= limite_de_pasos) {
+            moviendose_a_la_derecha = true;
+            pasos_hechos = 0;
+        }
+    }
 }
 
 void Enemigo::recibir_disparo(uint8_t danio) {
@@ -67,21 +87,21 @@ void Enemigo::recibir_disparo(uint8_t danio) {
         vidas -= danio;
     } else {
         vidas = 0;
+        set_time_death(std::chrono::system_clock::now());
     }
 }
 
-/*
+void Enemigo::set_time_death(std::chrono::time_point<std::chrono::system_clock> time) {
+    tiempo_muerte = time;
+}
+
 void Enemigo::aumentar_iteraciones() {
-    if (iteraciones < ITERACIONES_PARA_REVIVIR) {
-        iteraciones++;
-    }
-
-    if (iteraciones == ITERACIONES_PARA_REVIVIR) {
+    auto now = std::chrono::system_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - tiempo_muerte).count();
+    if (elapsed >= time_revive) {
         revivir_enemigo();
-        iteraciones = 0;
     }
 }
-*/
 
 void Enemigo::matar() { vidas = 0; }
 

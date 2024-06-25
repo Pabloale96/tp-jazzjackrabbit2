@@ -1,6 +1,7 @@
 #ifndef _GAME_ENEMIGO_H_
 #define _GAME_ENEMIGO_H_
 
+#include <chrono>
 #include <cstdint>
 
 #include "game_posicion.h"
@@ -24,6 +25,12 @@ private:
     float prob_municion;
     float prob_vida;
 
+    std::chrono::time_point<std::chrono::system_clock> tiempo_muerte;
+
+    bool moviendose_a_la_derecha;
+    uint16_t pasos_hechos;
+    const uint16_t limite_de_pasos = 30;
+
 public:
     // Constructor para el servidor
     explicit Enemigo(uint16_t id_enemigo);
@@ -41,6 +48,7 @@ public:
     void set_time_revive(int time_revive);
     void set_prob_municion(float prob_municion);
     void set_prob_vida(float prob_vida);
+    void set_time_death(std::chrono::time_point<std::chrono::system_clock> time);
 
     // Getters
     uint16_t get_id_enemigo() const;

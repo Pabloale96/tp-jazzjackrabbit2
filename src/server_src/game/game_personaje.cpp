@@ -240,9 +240,7 @@ void Personaje::disminuir_vida(uint16_t danio) {
     }
 }
 
-void Personaje::aumentar_vida(uint16_t zanahoria) {
-    vida += zanahoria;
-}
+void Personaje::aumentar_vida(uint16_t zanahoria) { vida += zanahoria; }
 
 void Personaje::disparar() {
     if (arma->obtener_municion() == 0) {
