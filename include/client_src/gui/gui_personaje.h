@@ -49,7 +49,7 @@ public:
     ~PersonajeGui();
     void show(bool con_vida, int h_window, int w_window);
     virtual void setFrames();
-    void setAnimacion(uint8_t estado, bool flip);
+    void setAnimacion(const PersonajeGui& other, bool flip);
     void setPosicion(float x, float y);
     void actualizar_personaje(const PersonajeGui&,bool);
 };
