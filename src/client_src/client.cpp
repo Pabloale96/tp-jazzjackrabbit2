@@ -260,6 +260,25 @@ void Client::mostrar_estadisticas(const GameStateClient& respuestas) const {
             }
         }
     }
+    // ordeno vectores:
+    for (size_t i = 0; i < top_puntos.size()-1; i++) {
+        if (top_puntos[i+1] > top_puntos[i]) {
+            int top_punto_i = top_puntos[i];
+            int id_i = id_personajes[i];
+            top_puntos[i] = top_puntos[i+1];
+            id_personajes[i] = id_personajes[i+1];
+            top_puntos[i+1] = top_punto_i;
+            id_personajes[i+1] = id_i;
+        }
+    } 
+    if (top_puntos[1] > top_puntos[0]) {
+        int top_punto_i = top_puntos[0];
+        int id_i = id_personajes[0];
+        top_puntos[0] = top_puntos[1];
+        id_personajes[0] = id_personajes[1];
+        top_puntos[1] = top_punto_i;
+        id_personajes[1] = id_i;
+    }
 
     for (size_t i = 0; i < top_puntos.size(); i++) {
         std::cout << "   " << (unsigned)id_personajes[i] << "   |   " << top_puntos[i] << std::endl;
