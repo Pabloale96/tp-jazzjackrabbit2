@@ -89,15 +89,17 @@ bool Game::posiciones_estan_en_zona_de_choque(const Posicion& colisionable_uno,
 
 void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
-        if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(), enemigo->get_posicion_enemigo())) {
-            if (personaje.obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
-                // Todas las acciones especalies causan la muerte del enemigo al tocarlo
-                enemigo->matar();
-                if (enemigo->get_vidas() == 0) {
-                    personaje.aumentar_puntos(enemigo->get_puntos());
+        if (enemigo->esta_vivo()) {
+            if (posiciones_estan_en_zona_de_choque(personaje.obtener_posicion(), enemigo->get_posicion_enemigo())) {
+                if (personaje.obtener_estado_actual() == (uint8_t)efectos::ACCION_ESPECIAL) {
+                    // Todas las acciones especalies causan la muerte del enemigo al tocarlo
+                    enemigo->matar();
+                    if (enemigo->get_vidas() == 0) {
+                        personaje.aumentar_puntos(enemigo->get_puntos());
+                    }
+                } else {
+                    personaje.disminuir_vida(enemigo->get_danio_al_jugador());
                 }
-            } else {
-                personaje.disminuir_vida(enemigo->get_danio_al_jugador());
             }
         }
     }
@@ -105,20 +107,22 @@ void Game::chequear_colisiones_personaje_con_enemigo(Personaje& personaje) {
 
 void Game::chequear_colisiones_balas_con_enemigos(Personaje& personaje) {
     for (auto& enemigo: obtener_escenario().obtener_enemigos()) {
-        for (auto& bala: personaje.obtener_balas()) {
-            if (posiciones_estan_en_zona_de_choque(bala.obtener_posicion(), enemigo->get_posicion_enemigo())) {
-                if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
-                    enemigo->recibir_disparo(YAMLConfig::getConfig().arma_inicial.dano);
-                    if (enemigo->get_vidas() == 0) {
-                        personaje.aumentar_puntos(enemigo->get_puntos());
+        if (enemigo->esta_vivo()) {
+            for (auto& bala: personaje.obtener_balas()) {
+                if (posiciones_estan_en_zona_de_choque(bala.obtener_posicion(), enemigo->get_posicion_enemigo())) {
+                    if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_INICIAL) {
+                        enemigo->recibir_disparo(YAMLConfig::getConfig().arma_inicial.dano);
+                        if (enemigo->get_vidas() == 0) {
+                            personaje.aumentar_puntos(enemigo->get_puntos());
+                        }
+                    } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_1) {
+                        enemigo->recibir_disparo(YAMLConfig::getConfig().arma1.dano);
+                        if (enemigo->get_vidas() == 0) {
+                            personaje.aumentar_puntos(enemigo->get_puntos());
+                        }
                     }
-                } else if (bala.obtener_tipo_bala() == (uint8_t)armas::ARMA_1) {
-                    enemigo->recibir_disparo(YAMLConfig::getConfig().arma1.dano);
-                    if (enemigo->get_vidas() == 0) {
-                        personaje.aumentar_puntos(enemigo->get_puntos());
-                    }
+                    personaje.eliminar_bala(bala.obtener_id());
                 }
-                personaje.eliminar_bala(bala.obtener_id());
             }
         }
     }
@@ -169,7 +173,7 @@ void Game::crear_nuevo_gamestate(GameState& gamestate) {
     }
 
     for (const auto& enemigo: escenario.obtener_enemigos()) {
-        if (enemigo) {
+        if (enemigo->esta_vivo()) {
             auto enemigo_id = enemigo->get_id_enemigo();
             gamestate.obtener_diccionario_de_enemigos().insert(
                     std::make_pair(enemigo_id, std::move(enemigo)));

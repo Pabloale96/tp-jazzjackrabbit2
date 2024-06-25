@@ -51,7 +51,7 @@ public:
     virtual void setFrames();
     void setAnimacion(const PersonajeGui& other, bool flip);
     void setPosicion(float x, float y);
-    void actualizar_personaje(const PersonajeGui&,bool);
+    void actualizar_personaje(const PersonajeGui&);
 };
 
 class SpazGui: public PersonajeGui {

@@ -122,6 +122,8 @@ void Personaje::actualizar(std::chrono::seconds tiempo_restante_de_partida,
             estados.reset();
             estados.setIdle(true);
             duracion_muerto = std::chrono::seconds(0);
+            posicion.set_posicion_en_x(YAMLConfig::getConfig().personaje.pos_x);
+            posicion.set_posicion_en_y(YAMLConfig::getConfig().personaje.pos_y);
         }
         return;
     }
